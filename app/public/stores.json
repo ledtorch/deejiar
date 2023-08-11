@@ -1,0 +1,42 @@
+
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Big Bear Cafe",
+        "description": "A northside park that is home to the Lincoln Park Zoo",
+        "icon": {
+          "default": "Button/Marker/Café_default.png",
+          "mini": "Button/Marker/Café_mini.png",
+          "larger": "Button/Marker/Café_larger.png",
+          "active": "Button/Marker/Café_active.png",
+          "withFriends": "Button/Marker/Café_withFriends.png"
+        }
+      },
+      "geometry": {
+        "coordinates": [-77.01243920316357, 38.91286090122076],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Teaism Penn Quarter",
+        "description": "A lakefront park on Chicago's south side",
+        "icon": {
+          "default": "Button/Marker/Bar_default.png",
+          "mini": "Button/Marker/Bar_mini.png",
+          "larger": "Button/Marker/Bar_larger.png",
+          "active": "Button/Marker/Bar_active.png",
+          "withFriends": "Button/Marker/Bar_withFriends.png"
+        }
+      },
+      "geometry": {
+        "coordinates": [-77.02328634317668, 38.89548380468532],
+        "type": "Point"
+      }
+    }
+  ],
+  "type": "FeatureCollection"
+}
