@@ -2,9 +2,6 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 // Mapbox Dependency
 
-import Map from "./components/Map.vue";
-import BottomSheet from "./components/BottomSheet.vue";
-
 import { useRouter } from "vue-router";
 const router = useRouter();
 </script>
@@ -12,8 +9,6 @@ const router = useRouter();
 <template>
   <div>
     <router-view></router-view>
-    <Map />
-    <BottomSheet />
   </div>
 </template>
 

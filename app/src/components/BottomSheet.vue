@@ -1,62 +1,27 @@
 <template>
-  <div class="bottom-sheet" :class="{ open: isOpen }">
-    <div class="handle" @click="toggle"></div>
-    <div class="content">
-      <slot></slot>
-    </div>
+  <div class="bottom-sheet">
+    <h1>{{ store.properties.title }}</h1>
+    <p>{{ store.properties.description }}</p>
+    <p>This is ME</p>
+    <!-- Display other store information as needed -->
   </div>
 </template>
-  
-  <script>
+
+<script>
 export default {
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
-  methods: {
-    toggle() {
-      this.isOpen = !this.isOpen;
-    },
-  },
+  props: ["store"],
 };
 </script>
-  
-  <style>
+
+<style>
 .bottom-sheet {
-  position: fixed;
+  /* Add styles to position the bottom sheet at the bottom of the screen and make it look like a bottom sheet */
+  /* width: 100px;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70px;
-  overflow: hidden;
-  transition: height 0.3s ease;
-  display: flex;
-  width: 100px; /* Added */
-  padding: 12px 16px 16px 16px; /* Added */
-  flex-direction: column; /* Added */
-  align-items: center; /* Added */
-  gap: 8px; /* Added */
-  border-radius: 12px 12px 0px 0px; /* Updated */
-  background: var(--1-system-black, #000); /* Updated */
-}
-
-.bottom-sheet.open {
-  height: 300px; /* You can adjust this value to fit your content */
-}
-
-.handle {
-  height: 8px;
-  width: 40px;
-  margin: 8px auto;
-  background-color: #cccccc;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.content {
-  padding: 16px;
-  overflow-y: auto;
+  background-color: #ffffff; */
+  /* Add additional styling as needed */
 }
 </style>
-  

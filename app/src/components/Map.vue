@@ -1,14 +1,19 @@
 <template>
-  <div id="map"></div>
+  <div id="map">
+    <div class="big">Content goes here</div>
+    <BottomSheet id="bottomsheet" :store="selectedStore"></BottomSheet>
+  </div>
 </template>
 
 <script>
 import mapboxgl from "mapbox-gl";
+import BottomSheet from "./BottomSheet.vue";
 
 export default {
   data() {
     return {
       map: null,
+      selectedStore: null,
     };
   },
 
@@ -98,12 +103,11 @@ export default {
           });
 
           this.map.on("click", "points", (e) => {
-            console.log("Click!");
+            console.log("Clicked the Marker");
             const title = e.features[0].properties.title;
-            this.$router.push({
-              name: "store",
-              params: { title: encodeURIComponent(title) },
-            }); // Encode the title
+            this.selectedStore = data.features.find(
+              (store) => store.properties.title === title
+            ); // Set the selected store
           });
         });
     },
@@ -113,7 +117,31 @@ export default {
 
 <style>
 #map {
+  /* position: relative; */
+  display: flex;
   width: 100vw;
   height: 100vh;
+}
+
+.big {
+  z-index: 1;
+  width: 99%;
+  height: 100px;
+  background-color: #fff;
+}
+
+#bottomsheet {
+  position: absolute; /* Absolute positioning */
+  z-index: 1;
+  width: 100%;
+  height: 76px;
+  bottom: 0;
+  padding: 12px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px 12px 0px 0px;
+  background-color: #000;
 }
 </style>
