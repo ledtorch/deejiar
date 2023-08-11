@@ -127,7 +127,7 @@ export default {
   z-index: 1;
   width: 99%;
   height: 100px;
-  background-color: #fff;
+  background-color: #000;
 }
 
 #bottomsheet {

@@ -10,18 +10,27 @@
 <script>
 export default {
   props: ["store"],
+
+  mounted() {
+    console.log("Store:", this.store);
+  },
 };
 </script>
 
 <style>
 .bottom-sheet {
-  /* Add styles to position the bottom sheet at the bottom of the screen and make it look like a bottom sheet */
-  /* width: 100px;
   position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 76px;
   bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #ffffff; */
+  padding: 12px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px 12px 0px 0px;
+  background-color: #ffffff;
   /* Add additional styling as needed */
 }
 </style>
