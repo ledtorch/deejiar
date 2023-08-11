@@ -1,7 +1,7 @@
 <template>
   <div id="map">
     <div class="big">Content goes here</div>
-    <BottomSheet id="bottomsheet" :store="selectedStore"></BottomSheet>
+    <BottomSheet id="bottomsheet" :store="selectedStore">ddasdffda</BottomSheet>
   </div>
 </template>
 
@@ -125,8 +125,9 @@ export default {
 
 .big {
   z-index: 1;
-  width: 99%;
+  width: 100%;
   height: 100px;
+  border-radius: 0px 0px 12px 12px;
   background-color: #000;
 }
 

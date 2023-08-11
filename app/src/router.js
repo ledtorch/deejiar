@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Map from './components/Map.vue';
 import Store from './components/Store.vue';
+import BottomSheet from './components/BottomSheet.vue';
 
 const routes = [
     { path: '/', component: Map },
