@@ -1,12 +1,18 @@
 <!-- Store.vue -->
 <template>
   <div>
+    <div class="cover" :style="cover"></div>
+    <div class="title-block">
+      <h2 class="stretch">{{ store ? store.title : "" }}</h2>
+      <TagShopType :store="store" />
+    </div>
     <h1>{{ title }}</h1>
     <p>{{ description }}</p>
   </div>
 </template>
   
-  <script>
+<script>
+import { useRoute } from "vue-router";
 export default {
   props: ["title"],
   data() {
@@ -14,9 +20,21 @@ export default {
       description: null,
     };
   },
+
+  computed: {
+    cover() {
+      const type = this.store?.storefront || "Taco"; // Set Taco as default png to prevent the undefined msg
+      const path = `/Icon/category/${type}.png`;
+      console.log("🆗 Component -> TagShopType, Icon Path: " + path);
+      return `background: url('${path}') center/cover no-repeat; width: 24px; height: 24px;`;
+    },
+  },
+
   async mounted() {
     // Decode the title from the URL
-    const decodedTitle = decodeURIComponent(this.title);
+    const route = useRoute();
+    const title = route.params.title;
+    const decodedTitle = decodeURIComponent(title);
 
     // Fetch store details based on the decoded title
     const response = await fetch(`/stores.json`);
@@ -31,7 +49,12 @@ export default {
 };
 </script>
   
-  <style>
-/* Add your styles here */
+<style>
+.cover {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
 </style>
   

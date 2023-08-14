@@ -1,19 +1,31 @@
 <template>
-  <div id="map">
-    <div class="big">Content goes here</div>
-    <BottomSheet id="bottomsheet" :store="selectedStore">ddasdffda</BottomSheet>
+  <div>
+    <div id="map"></div>
+    <IconButtonLocate
+      id="iconbuttonlocate"
+      :state="buttonState"
+      @locate="locateUser"
+    ></IconButtonLocate>
+    <BottomSheet id="bottomsheet" :store="selectedStore"></BottomSheet>
   </div>
 </template>
 
 <script>
 import mapboxgl from "mapbox-gl";
 import BottomSheet from "./BottomSheet.vue";
+import IconButtonLocate from "./Button/IconButtonLocate.vue";
 
 export default {
+  components: {
+    BottomSheet,
+    IconButtonLocate,
+  },
   data() {
     return {
       map: null,
       selectedStore: null,
+      buttonState: "default",
+      locate: null,
     };
   },
 
@@ -21,6 +33,33 @@ export default {
   mounted() {
     mapboxgl.accessToken =
       "pk.eyJ1IjoibmFpdmViYXJhIiwiYSI6ImNsa3lzZmV6ZzA1NHMzbW13ZjJ4aTJodzIifQ.kaC5YvO-g5idBZK4bDvZ7g";
+
+    this.locate = new mapboxgl.GeolocateControl({
+      positionOptions: { enableHighAccuracy: true },
+      trackUserLocation: true,
+      showUserHeading: true,
+    });
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.map.setCenter([
+          position.coords.longitude,
+          position.coords.latitude,
+        ]);
+        console.log(
+          "🧭 User's current position: " +
+            "(" +
+            position.coords.latitude +
+            "," +
+            position.coords.longitude +
+            ")"
+        );
+      },
+      (error) => {
+        console.error("Geolocation error: ", error);
+        this.map.setCenter([-77.0364976166554, 38.897684621644885]); // White House or default location
+      }
+    );
 
     this.map = new mapboxgl.Map({
       container: "map",
@@ -48,14 +87,21 @@ export default {
           // Define the source
 
           data.features.forEach((feature) => {
-            ["mini", "default", "larger"].forEach((size) => {
-              const iconPath = "/" + feature.properties.icon[size];
+            ["mini", "default", "larger", "active"].forEach((size) => {
+              const iconPath =
+                "/Button/Marker/" +
+                feature.properties.type +
+                "_" +
+                size +
+                ".png";
               this.map.loadImage(iconPath, (error, image) => {
                 if (error) throw error;
                 this.map.addImage(feature.properties.title + "-" + size, image);
-                if (size === "mini") {
-                  console.log("Mini image loaded:", iconPath);
-                }
+                console.log(feature.properties.title + "-" + size);
+                console.log(
+                  "Marker's Icon:",
+                  feature.properties.type + "_" + size + ".png"
+                );
               });
             });
           });
@@ -65,7 +111,7 @@ export default {
 
             if (zoomLevel >= 14.5) {
               this.map.setLayoutProperty("points", "text-offset", [1, 0]);
-            } else if (zoomLevel >= 12.5) {
+            } else if (zoomLevel >= 12.4) {
               this.map.setLayoutProperty("points", "text-offset", [0.8, 0]);
             } else {
               this.map.setLayoutProperty("points", "text-offset", [0, 0]);
@@ -103,13 +149,41 @@ export default {
           });
 
           this.map.on("click", "points", (e) => {
-            console.log("Clicked the Marker");
+            console.log("✅ Clicked the Marker");
             const title = e.features[0].properties.title;
             this.selectedStore = data.features.find(
               (store) => store.properties.title === title
-            ); // Set the selected store
+            ).properties;
+
+            console.log("📃 Selected Store:", this.selectedStore);
+            // Check the data passed by the click
           });
         });
+    },
+
+    locateUser() {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.map.flyTo({
+            center: [position.coords.longitude, position.coords.latitude],
+            zoom: 12.5, // optional zoom level
+            speed: 2, // make the flying slow
+            curve: 1, // change the speed at which it zooms out
+          });
+          console.log(
+            "🧭 Locate the user to current position: " +
+              "(" +
+              position.coords.latitude +
+              "," +
+              position.coords.longitude +
+              ")"
+          );
+        },
+        (error) => {
+          console.error("Geolocation error: ", error);
+          this.map.setCenter([-77.0364976166554, 38.897684621644885]); // White House or default location
+        }
+      );
     },
   },
 };
@@ -117,32 +191,27 @@ export default {
 
 <style>
 #map {
-  /* position: relative; */
+  position: relative;
   display: flex;
+  flex-direction: column; /* Align children vertically */
   width: 100vw;
   height: 100vh;
-}
-
-.big {
-  z-index: 1;
-  width: 100%;
-  height: 100px;
-  border-radius: 0px 0px 12px 12px;
-  background-color: #000;
+  overflow: hidden; /* Prevent any unexpected overflow */
 }
 
 #bottomsheet {
-  position: absolute; /* Absolute positioning */
+  position: absolute;
+  bottom: 0;
   z-index: 1;
   width: 100%;
-  height: 76px;
-  bottom: 0;
-  padding: 12px 16px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  border-radius: 12px 12px 0px 0px;
-  background-color: #000;
+  height: auto;
+}
+
+#iconbuttonlocate {
+  position: absolute;
+  bottom: 48px; /* Distance from the bottom */
+  right: 16px; /* Distance from the right */
+  z-index: 1;
+  transition: transform 0.3s ease;
 }
 </style>

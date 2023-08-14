@@ -1,59 +1,67 @@
+.mapboxgl-ctrl-logo {
+	display: none !important;
+}
+/* Romove the watermark */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	line-height: 1.5;
+	font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+	color-scheme: light dark;
+	background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
 }
 
-/* @import 'mapbox-gl/dist/mapbox-gl.css'; */
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Color System */
+:root {
+	--dark-primary-text: 255, 255, 255, 0.95;
+	--dark-secondary-text: 255, 255, 255, 0.7;
+	/* Brand */
+
+	--system-dark-midnight-blue: #07080a;
+	--system-dark-2nd-white: f2f2f5;
+	--color-2rd-white: #c2c2c6;
+	/* System */
+
+	--color-gray: #878280;
+	--color-light-gray: #D1D7EB;
+	/* Base */
+	
+	--color-green: #24ad6e;
+	--color-red: #f46060;
+	/* Element */
+	
+	--color-base: 255, 255, 255, 0.7;
+	/* Component color */
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Be Vietnam Pro', system-ui, Avenir, Helvetica, Arial, sans-serif, sans-serif;
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-
-body {
   overflow-x: hidden; /* Hide horizontal scroll */
   overflow-y: hidden; /* Hide vertical scroll */
   width: 100vw; /* 100% of viewport width */
   height: 100vh; /* 100% of viewport height */
 }
+
+
 
 button:hover {
   border-color: #646cff;
@@ -63,15 +71,42 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/*  */
+h1 {
+
+	color: var(--3-text-dark-1st-white, rgba(255, 255, 255, 0.95));
+	font-size: 27px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 36px;
 }
+
+h2 {
+  color: var(--3-text-dark-1st-white, rgba(255, 255, 255, 0.95));
+  font-feature-settings: 'clig' off, 'liga' off;
+
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 152.381% */
+}
+
+h3 {
+	font-size: 19px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 24px; /* 126.316% */
+}
+
+p {
+	font-family: Be Vietnam Pro;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 300;
+	line-height: 24px; /* 160% */
+}
+
+
+
+
+

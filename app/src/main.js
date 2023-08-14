@@ -8,6 +8,8 @@ import router from './router.js'
 
 import './style.css'
 // Global CSS
+import 'mapbox-gl/dist/mapbox-gl.css';
+// Dependency
 
 
 // const routes = [

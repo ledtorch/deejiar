@@ -5,13 +5,17 @@
       "type": "Feature",
       "properties": {
         "title": "Big Bear Cafe",
-        "description": "A northside park that is home to the Lincoln Park Zoo",
+        "description": "Boston ivy covers the building, and it sets the café apart from the bustle of the city...",
+        "type": "Cafe",
+        "storefront": "Store/cafe/bigbearcafe/Storefront.jpg",
+        "item1": "Store/cafe/bigbearcafe/IcedSteamer.jpg",
+        "item2": "Store/cafe/bigbearcafe/ShrimpTaco.jpg",
         "icon": {
-          "default": "Button/Marker/Café_default.png",
-          "mini": "Button/Marker/Café_mini.png",
-          "larger": "Button/Marker/Café_larger.png",
-          "active": "Button/Marker/Café_active.png",
-          "withFriends": "Button/Marker/Café_withFriends.png"
+          "default": "Button/Marker/Cafe_default.png",
+          "mini": "Button/Marker/Cafe_mini.png",
+          "larger": "Button/Marker/Cafe_larger.png",
+          "active": "Button/Marker/Cafe_active.png",
+          "withFriends": "Button/Marker/Cafe_withFriends.png"
         }
       },
       "geometry": {
@@ -24,6 +28,10 @@
       "properties": {
         "title": "Teaism Penn Quarter",
         "description": "A lakefront park on Chicago's south side",
+        "type": "Bar",
+        "storefront": "Store/cafe/teaismpennquarter/Storefront.jpg",
+        "item1": "Store/cafe/teaismpennquarter/Chai.jpg",
+        "item2": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
         "icon": {
           "default": "Button/Marker/Bar_default.png",
           "mini": "Button/Marker/Bar_mini.png",
