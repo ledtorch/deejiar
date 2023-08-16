@@ -7,22 +7,26 @@
     <div class="control-area" ref="controlArea">
       <div class="control-bar"></div>
     </div>
-    <div class="nav">
-      <div class="title-block">
-        <h2 class="stretch">{{ store ? store.title : "" }}</h2>
-        <TagShopType :store="store" />
+    <div class="bottom-sheet-content">
+      <Avatar v-if="showAvatar" />
+
+      <div class="nav" v-if="!showAvatar">
+        <div class="title-block">
+          <h2 class="stretch">{{ store ? store.title : "" }}</h2>
+          <TagShopType :store="store" />
+        </div>
+        <IconButtonClose :state="buttonState" @close="closeBottomSheet" />
       </div>
-      <IconButtonClose :state="buttonState" @close="closeBottomSheet" />
-    </div>
-    <div class="image-div">
-      <div class="main-column" :style="mainColumnImage"></div>
-      <div class="secondary-column">
-        <div class="image" :style="item1"></div>
-        <div class="image" :style="item2"></div>
+      <div class="image-div">
+        <div class="main-column" :style="mainColumnImage"></div>
+        <div class="secondary-column">
+          <div class="image" :style="item1"></div>
+          <div class="image" :style="item2"></div>
+        </div>
       </div>
+      <div class="state">{{ store ? store.description : "" }}</div>
+      <div class="key-info-div"></div>
     </div>
-    <div class="state">{{ store ? store.description : "" }}</div>
-    <div class="key-info-div"></div>
   </div>
 </template>
 
@@ -134,7 +138,8 @@ export default {
 
   methods: {
     closeBottomSheet() {
-      this.bottomSheetHeight = "32px";
+      this.bottomSheetHeight = "84px";
+      this.$emit("reset");
     },
   },
 
@@ -172,14 +177,20 @@ export default {
   padding: 0px 16px 16px 16px;
   border-radius: 12px 12px 0px 0px;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  gap: 0px;
   background-color: #000;
   transition: height 0.2s ease;
 }
 
+.bottom-sheet-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .control-area {
   display: flex;
+  height: 32px;
   padding: 16px 0px 12px 0px;
   flex-direction: column;
   justify-content: center;
@@ -205,7 +216,6 @@ export default {
 .nav {
   display: flex;
   align-items: flex-start;
-  margin-top: -12px;
   height: 32px;
   gap: 12px;
   align-self: stretch;

@@ -6,8 +6,11 @@
       :state="buttonState"
       @locate="locateUser"
     ></IconButtonLocate>
-    <BottomSheet id="bottomsheet" :store="selectedStore"></BottomSheet>
-    <!-- <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" /> -->
+    <BottomSheet
+      id="bottomsheet"
+      :store="selectedStore"
+      @reset="resetSelectedStore"
+    />
   </div>
 </template>
 
@@ -190,6 +193,7 @@ export default {
     resetSelectedStore() {
       this.selectedStore = null;
     },
+    // Clean the data and make showAvatar = false, so the default avatar could be displayed
   },
 };
 </script>
