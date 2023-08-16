@@ -32,10 +32,11 @@ import { ref, onMounted } from "vue";
 
 import IconButtonClose from "./Button/IconButtonClose.vue";
 import TagShopType from "./Button/TagShopType.vue";
+import Avatar from "./Avatar.vue";
 import { useRouter } from "vue-router";
 
 export default {
-  components: { IconButtonClose, TagShopType },
+  components: { IconButtonClose, TagShopType, Avatar },
   data() {
     return {
       buttonState: "default",
@@ -138,6 +139,10 @@ export default {
   },
 
   computed: {
+    showAvatar() {
+      return !this.store;
+    },
+
     mainColumnImage() {
       console.log("📃 Storefront URL: " + this.store?.storefront);
       console.log("📃 item1 URL: " + this.store?.item1);
@@ -150,6 +155,7 @@ export default {
     item2() {
       return `background: url('${this.store?.item2}') center/cover no-repeat;`;
     },
+    // Store data
   },
 };
 </script>

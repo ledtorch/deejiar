@@ -1,6 +1,6 @@
 <template>
-  <div class="frame">
-    <div class="image" :style="frame"></div>
+  <div class="tag-shop-frame">
+    <div class="icon-image" :style="icon"></div>
     <h2>{{ store ? store.type : "" }}</h2>
   </div>
 </template>
@@ -15,21 +15,26 @@ export default {
   },
 
   computed: {
-    frame() {
-      const type = this.store?.type || "Taco"; // Set Taco as default png to prevent the undefined msg
+    icon() {
+      const type = this.store?.type; // Set Taco as default png to prevent the undefined msg
       const path = `/Icon/category/${type}.png`;
       console.log("🆗 Component -> TagShopType, Icon Path: " + path);
-      return `background: url('${path}') center/cover no-repeat; width: 24px; height: 24px;`;
+      return { backgroundImage: `url('${path}')` };
     },
   },
 };
 </script>
 
 <style scoped>
-.frame {
-  display: inline-flex;
-  flex-direction: row;
+.tag-shop-frame {
+  display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.icon-image {
+  background: no-repeat center/cover;
+  width: 24px;
+  height: 24px;
 }
 </style>

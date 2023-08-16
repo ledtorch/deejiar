@@ -7,6 +7,7 @@
       @locate="locateUser"
     ></IconButtonLocate>
     <BottomSheet id="bottomsheet" :store="selectedStore"></BottomSheet>
+    <!-- <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" /> -->
   </div>
 </template>
 
@@ -184,6 +185,10 @@ export default {
           this.map.setCenter([-77.0364976166554, 38.897684621644885]); // White House or default location
         }
       );
+    },
+
+    resetSelectedStore() {
+      this.selectedStore = null;
     },
   },
 };
