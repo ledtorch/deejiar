@@ -1,0 +1,6 @@
+# Editor-specific files and directories
+.vscode/*
+
+# Miscellaneous
+*.local
+.git
