@@ -7,7 +7,6 @@
     <div class="control-area" ref="controlArea">
       <div class="control-bar"></div>
     </div>
-
     <div class="nav">
       <div class="title-block">
         <h2 class="stretch">{{ store ? store.title : "" }}</h2>
@@ -29,7 +28,7 @@
 
 
 <script>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted } from "vue";
 
 import IconButtonClose from "./Button/IconButtonClose.vue";
 import TagShopType from "./Button/TagShopType.vue";
@@ -48,57 +47,82 @@ export default {
   },
 
   setup() {
-    const isDragging = ref(false);
-    const bottomSheetHeight = ref("32px"); // Default height
-    const bottomSheet = ref(null);
     const router = useRouter();
+
+    const isDragging = ref(false);
+    const bottomSheetHeight = ref("32px");
+    const bottomSheet = ref(null);
     const controlArea = ref(null);
-    let lastY = 0;
-    const someMinHeight = 32;
-    const someMaxHeight = 467;
-    const startDragging = (event) => {
+    // Use ref to bound to DOM
+
+    let startY = 0;
+    let startHeight = 0;
+    const minHeight = `32px`;
+    const withStoreHeight = `467px`;
+    const maxHeight = `100%`;
+    // Initialize values for dragging fn'
+
+    const updateSheetHeight = (height) => {
+      bottomSheetHeight.value = `${height}`;
+      console.log("👉 updateSheetHeight: " + bottomSheetHeight.value);
+      // Toggles the fullscreen class to bottomSheet if the height is equal to 100
+      // bottomSheet.classList.toggle("fullscreen", height === 100);
+    };
+
+    const dragStart = (event) => {
+      console.log("dragStart");
+
       isDragging.value = true;
-      event.preventDefault(); // Prevent default action for touch devices
+      startY = event.pageY || event.touches?.[0].pageY;
+      // Assign startY to pageY(mouse) or pageY(touch screen)
+
+      startHeight = parseInt(bottomSheetHeight.value);
+      bottomSheet.value.classList.add("dragging");
+      console.log("startHeight: " + startHeight + " & " + "startY: " + startY);
+      console.log(
+        "bottomSheet.value.classList: " + bottomSheet.value.classList
+      );
+
+      document.addEventListener("mousemove", dragging);
+      document.addEventListener("mouseup", dragStop);
+      document.addEventListener("touchmove", dragging);
+      document.addEventListener("touchend", dragStop);
+      // Add listener
     };
-    const drag = (event) => {
-      if (!isDragging.value) return;
-      // Use clientY for touch events
-      const movementY =
-        event instanceof MouseEvent
-          ? event.movementY
-          : event.touches[0].clientY - lastY;
-      lastY = event.touches ? event.touches[0].clientY : event.clientY;
-      const currentHeight = parseFloat(bottomSheetHeight.value);
-      const newHeight = currentHeight - movementY;
-      if (newHeight >= someMaxHeight) {
-        bottomSheetHeight.value = "600px"; // or another desired value
-        const storeTitle = encodeURIComponent(this.store.properties.title);
-        router.push(`/store/${storeTitle}`);
-      } else {
-        bottomSheetHeight.value =
-          Math.max(someMinHeight, Math.min(someMaxHeight, newHeight)) + "px";
-      }
-      if (newHeight >= someMaxHeight) {
-        const storeTitle = encodeURIComponent(this.store.properties.title);
-        router.push(`/store/${storeTitle}`);
-      }
-    };
-    const stopDragging = () => {
+
+    const dragStop = () => {
+      console.log("dragStop");
       isDragging.value = false;
+      bottomSheet.value.classList.remove("dragging");
+      const sheetHeight = parseInt(bottomSheet.value.style.height);
+      sheetHeight < 150
+        ? updateSheetHeight(minHeight)
+        : sheetHeight > 500
+        ? updateSheetHeight(maxHeight)
+        : updateSheetHeight(withStoreHeight);
+
+      document.removeEventListener("mousemove", dragging);
+      document.removeEventListener("touchmove", dragging);
+      document.removeEventListener("mouseup", dragStop);
+      document.removeEventListener("touchend", dragStop);
+      // Remove listener
     };
+
+    const dragging = (event) => {
+      console.log("Dragging");
+
+      if (!isDragging.value) return;
+      const delta = startY - (event.pageY || event.touches?.[0].pageY);
+      const newHeight = startHeight + delta;
+
+      updateSheetHeight(newHeight + `px`);
+
+      console.log("newHeight: " + newHeight + " & " + "delta: " + delta);
+    };
+
     onMounted(() => {
-      controlArea.value.addEventListener("mousedown", startDragging);
-      controlArea.value.addEventListener("touchstart", startDragging, {
-        passive: false,
-      });
-      window.addEventListener("mousemove", drag);
-      window.addEventListener("touchmove", drag, { passive: false });
-      window.addEventListener("mouseup", stopDragging);
-      window.addEventListener("touchend", stopDragging);
-    });
-    onBeforeUnmount(() => {
-      window.removeEventListener("mousemove", drag);
-      window.removeEventListener("mouseup", stopDragging);
+      controlArea.value.addEventListener("mousedown", dragStart);
+      controlArea.value.addEventListener("touchstart", dragStart);
     });
     return {
       controlArea,
@@ -135,6 +159,9 @@ export default {
 .bottom-sheet {
   display: flex;
   width: 390px;
+  min-height: 32px;
+  max-height: 100%;
+  /* Define the min and max of the BottomSheet comp */
   height: auto;
   padding: 0px 16px 16px 16px;
   border-radius: 12px 12px 0px 0px;
@@ -240,5 +267,4 @@ export default {
 .stretch {
   flex: 1 0 0;
 }
-/* Local Prefix */
 </style>

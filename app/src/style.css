@@ -1,53 +1,39 @@
-.mapboxgl-ctrl-logo {
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
 	display: none !important;
 }
 /* Romove the watermark */
 
 :root {
-	line-height: 1.5;
 	font-weight: 400;
-
 	color-scheme: light dark;
 	background-color: #242424;
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
-}
-
-
-/* Color System */
-:root {
+  
+	/* Color System */
 	--dark-primary-text: 255, 255, 255, 0.95;
 	--dark-secondary-text: 255, 255, 255, 0.7;
-	/* Brand */
 
 	--system-dark-midnight-blue: #07080a;
-	--system-dark-2nd-white: f2f2f5;
-	--color-2rd-white: #c2c2c6;
-	/* System */
+	--system-dark-2nd-white: #f2f2f5;
 
 	--color-gray: #878280;
 	--color-light-gray: #D1D7EB;
-	/* Base */
-	
 	--color-green: #24ad6e;
 	--color-red: #f46060;
-	/* Element */
-	
 	--color-base: 255, 255, 255, 0.7;
-	/* Component color */
 }
-
+  
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: 'Be Vietnam Pro', system-ui, Avenir, Helvetica, Arial, sans-serif, sans-serif;
+	font-family: 'Be Vietnam Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -62,7 +48,6 @@ body {
 }
 
 
-
 button:hover {
   border-color: #646cff;
 }
@@ -71,42 +56,66 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/*  */
+/* Font */
 h1 {
-
 	color: var(--3-text-dark-1st-white, rgba(255, 255, 255, 0.95));
 	font-size: 27px;
-	font-style: normal;
 	font-weight: 500;
 	line-height: 36px;
 }
 
 h2 {
-  color: var(--3-text-dark-1st-white, rgba(255, 255, 255, 0.95));
-  font-feature-settings: 'clig' off, 'liga' off;
-
-  font-size: 21px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 32px; /* 152.381% */
+	color: var(--3-text-dark-1st-white, rgba(255, 255, 255, 0.95));
+	font-size: 21px;
+	font-weight: 500;
+	line-height: 32px;
 }
 
 h3 {
 	font-size: 19px;
-	font-style: normal;
 	font-weight: 500;
-	line-height: 24px; /* 126.316% */
+	line-height: 24px;
 }
 
 p {
-	font-family: Be Vietnam Pro;
 	font-size: 15px;
-	font-style: normal;
 	font-weight: 300;
-	line-height: 24px; /* 160% */
+	line-height: 24px; 
 }
 
+.button-text {
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 24px;
+}
 
+.headline {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 21px; 
+}
 
+.subhead {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 19px;
+}
 
+.footnote {
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.caption1 {
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 14px;
+}
+
+.caption2 {
+	font-size: 9px;
+	font-weight: 400;
+	line-height: 12px;
+}
 
