@@ -1,5 +1,6 @@
 # Editor-specific files and directories
-.vscode/*
+.vscode/
+.DS_Store
 
 # Miscellaneous
 *.local
