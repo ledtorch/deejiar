@@ -1,4 +1,3 @@
-<!-- Store.vue -->
 <template>
   <div>
     <div class="cover" :style="cover"></div>
@@ -49,9 +48,8 @@ export default {
 };
 </script>
   
-<style>
+<style scoped>
 .cover {
-  display: flex;
   width: 100%;
   height: 100%;
   align-items: center;

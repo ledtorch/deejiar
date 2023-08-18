@@ -3,6 +3,14 @@
 }
 /* Romove the watermark */
 
+@font-face {
+	font-family: 'Be Vietnam Pro';
+	src: url('/src/assets/fonts/BeVietnamPro-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+  }
+  
+
 :root {
 	font-weight: 400;
 	color-scheme: light dark;
@@ -47,6 +55,9 @@ body {
   height: 100vh; /* 100% of viewport height */
 }
 
+div {
+	display: flex;
+}
 
 button:hover {
   border-color: #646cff;

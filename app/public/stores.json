@@ -16,7 +16,58 @@
           "larger": "Button/Marker/Cafe_larger.png",
           "active": "Button/Marker/Cafe_active.png",
           "withFriends": "Button/Marker/Cafe_withFriends.png"
-        }
+        },
+        "businesshour": [
+          {
+            "Holiday": 
+              [ "0101", "0818" ]
+          },
+          {
+            "Monday": null
+          },
+          {
+            "Tuesday": 
+              [
+                { "Start": "0800", "Finish": "1500" },
+                { "Start": "1600", "Finish": "2200" }
+              ]
+          },
+          {
+            "Wednesday": 
+              [
+                { "Start": "0800", "Finish": "1500" },
+                { "Start": "1600", "Finish": "2200" }
+              ]
+          },
+          {
+            "Thursday": 
+              [
+                { "Start": "0800", "Finish": "1500" },
+                { "Start": "1600", "Finish": "2200" }
+              ]
+          },
+          {
+            "Friday": 
+              [
+                { "Start": "0800", "Finish": "1500" },
+                { "Start": "1600", "Finish": "2200" }
+              ]
+          },
+          {
+            "Saturday": 
+              [
+                { "Start": "0800", "Finish": "1500" },
+                { "Start": "1600", "Finish": "2200" }
+              ]
+          },
+          {
+            "Sunday": 
+              [
+                { "Start": "0800", "Finish": "1500" },
+                { "Start": "1600", "Finish": "2200" }
+              ]
+          }
+        ]
       },
       "geometry": {
         "coordinates": [-77.01243920316357, 38.91286090122076],
@@ -38,7 +89,53 @@
           "larger": "Button/Marker/Bar_larger.png",
           "active": "Button/Marker/Bar_active.png",
           "withFriends": "Button/Marker/Bar_withFriends.png"
-        }
+        },
+        "businesshour": [
+          {
+            "Holiday": [ "0000" ]
+          },
+
+          {
+            "Monday":
+              [
+                { "Start": "1100", "Finish": "1800" }
+              ]
+          },
+          {
+            "Tuesday": 
+              [
+                { "Start": "1100", "Finish": "1800" }
+              ]
+          },
+          {
+            "Wednesday": 
+              [
+                { "Start": "1100", "Finish": "1800" }
+              ]
+          },
+          {
+            "Thursday": 
+              [
+                { "Start": "1100", "Finish": "1800" }
+              ]
+          },
+          
+            null
+
+          ,
+          {
+            "Saturday": 
+              [
+                { "Start": "1100", "Finish": "1800" }
+              ]
+          },
+          {
+            "Sunday": 
+              [
+                { "Start": "1100", "Finish": "1800" }
+              ]
+          }
+        ]
       },
       "geometry": {
         "coordinates": [-77.02328634317668, 38.89548380468532],

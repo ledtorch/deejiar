@@ -16,7 +16,7 @@
 
 <script>
 import mapboxgl from "mapbox-gl";
-import BottomSheet from "./BottomSheet.vue";
+import BottomSheet from "./Sheet/BottomSheet.vue";
 import IconButtonLocate from "./Button/IconButtonLocate.vue";
 
 export default {
@@ -70,7 +70,7 @@ export default {
       style: "mapbox://styles/naivebara/clkyvh09v00m701me403i1svm",
       center: [-77.0364976166554, 38.897684621644885], // White House
       zoom: 12.5,
-      minZoom: 3,
+      minZoom: 4,
       maxZoom: 18,
     });
 
@@ -198,10 +198,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #map {
   position: relative;
-  display: flex;
   flex-direction: column; /* Align children vertically */
   width: 100vw;
   height: 100vh;

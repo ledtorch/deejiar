@@ -27,7 +27,6 @@ export default {
 
 <style scoped>
 .tag-shop-frame {
-  display: flex;
   align-items: center;
   gap: 4px;
 }

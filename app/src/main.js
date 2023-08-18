@@ -5,27 +5,9 @@ import Store from "./components/Store.vue";
 
 import router from './router.js'
 
-
 import './style.css'
 // Global CSS
 import 'mapbox-gl/dist/mapbox-gl.css';
 // Dependency
-
-
-// const routes = [
-//     { path: "/", component: Map },
-//     { path: "/store/:title", name: "store", component: Store, props: true }
-//   ];
-  
-//   const router = createRouter({
-//     history: createWebHistory(),
-//     routes
-//   });
-  
-//   createApp(App)
-//     .use(router)
-//     .mount("#app");
-
-
 
 createApp(App).use(router).mount('#app')

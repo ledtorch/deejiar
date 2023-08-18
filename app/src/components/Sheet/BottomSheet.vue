@@ -7,10 +7,13 @@
     <div class="control-area" ref="controlArea">
       <div class="control-bar"></div>
     </div>
-    <div class="bottom-sheet-content">
-      <Avatar v-if="showAvatar" />
 
-      <div class="nav" v-if="!showAvatar">
+    <div class="bottom-sheet-content" v-if="storeState">
+      <Avatar />
+    </div>
+
+    <div class="bottom-sheet-content" v-if="!storeState">
+      <div class="nav">
         <div class="title-block">
           <h2 class="stretch">{{ store ? store.title : "" }}</h2>
           <TagShopType :store="store" />
@@ -25,6 +28,8 @@
         </div>
       </div>
       <div class="state">{{ store ? store.description : "" }}</div>
+      <Review />
+      <Businesshour :store="store" />
       <div class="key-info-div"></div>
     </div>
   </div>
@@ -34,13 +39,15 @@
 <script>
 import { ref, onMounted } from "vue";
 
-import IconButtonClose from "./Button/IconButtonClose.vue";
-import TagShopType from "./Button/TagShopType.vue";
+import IconButtonClose from "../Button/IconButtonClose.vue";
+import TagShopType from "../Button/TagShopType.vue";
 import Avatar from "./Avatar.vue";
+import Review from "./Review.vue";
+import Businesshour from "./Businesshour.vue";
 import { useRouter } from "vue-router";
 
 export default {
-  components: { IconButtonClose, TagShopType, Avatar },
+  components: { IconButtonClose, TagShopType, Avatar, Review, Businesshour },
   data() {
     return {
       buttonState: "default",
@@ -138,26 +145,25 @@ export default {
 
   methods: {
     closeBottomSheet() {
-      this.bottomSheetHeight = "84px";
       this.$emit("reset");
     },
   },
 
   computed: {
-    showAvatar() {
+    storeState() {
       return !this.store;
     },
 
     mainColumnImage() {
-      console.log("📃 Storefront URL: " + this.store?.storefront);
-      console.log("📃 item1 URL: " + this.store?.item1);
-      console.log("📃 item2 URL: " + this.store?.item2);
+      // console.log("📃 Storefront URL: " + this.store?.storefront); // ← 🐞 Debug console
       return `background: url('${this.store?.storefront}') center/cover no-repeat;`;
     },
     item1() {
+      // console.log("📃 item1 URL: " + this.store?.item1); // ← 🐞 Debug console
       return `background: url('${this.store?.item1}') center/cover no-repeat;  `;
     },
     item2() {
+      // console.log("📃 item2 URL: " + this.store?.item2); // ← 🐞 Debug console
       return `background: url('${this.store?.item2}') center/cover no-repeat;`;
     },
     // Store data
@@ -168,7 +174,6 @@ export default {
 
 <style scoped>
 .bottom-sheet {
-  display: flex;
   width: 390px;
   min-height: 32px;
   max-height: 100%;
@@ -183,20 +188,17 @@ export default {
 }
 
 .bottom-sheet-content {
-  display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
 .control-area {
-  display: flex;
   height: 32px;
   padding: 16px 0px 12px 0px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-self: stretch;
-
   cursor: grab;
 }
 
@@ -214,7 +216,6 @@ export default {
 }
 
 .nav {
-  display: flex;
   align-items: flex-start;
   height: 32px;
   gap: 12px;
@@ -222,7 +223,6 @@ export default {
 }
 
 .title-block {
-  display: flex;
   align-items: flex-start;
   align-content: flex-start;
   gap: 12px;
@@ -232,7 +232,6 @@ export default {
 }
 
 .image-div {
-  display: flex;
   align-items: flex-end;
   gap: 8px;
   align-self: stretch;
@@ -253,7 +252,6 @@ export default {
 }
 
 .secondary-column {
-  display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
@@ -262,18 +260,15 @@ export default {
 }
 
 .state {
-  display: flex;
   padding: 12px;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-
   border-radius: var(--border-button-round, 8px);
   background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
 }
 
 .key-info-div {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
@@ -282,5 +277,9 @@ export default {
 
 .stretch {
   flex: 1 0 0;
+}
+
+.businesshour-frame {
+  gap: 4px;
 }
 </style>
