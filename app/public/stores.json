@@ -1,4 +1,3 @@
-
 {
   "features": [
     {
@@ -7,6 +6,7 @@
         "title": "Big Bear Cafe",
         "description": "Boston ivy covers the building, and it sets the café apart from the bustle of the city...",
         "type": "Cafe",
+        "address": "1001 S Washington St, Alexandria, VA 22314",
         "storefront": "Store/cafe/bigbearcafe/Storefront.jpg",
         "item1": "Store/cafe/bigbearcafe/IcedSteamer.jpg",
         "item2": "Store/cafe/bigbearcafe/ShrimpTaco.jpg",
@@ -18,59 +18,77 @@
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
         "businesshour": [
-          {
-            "Holiday": 
-              [ "0101", "0818" ]
+          { "Holiday": [ "0101", "0818", "0819", "0820", "1231" ] },
+          { "Monday": null },
+          { "Tuesday": [
+              { "Start": "0800", "Finish": "1500" },
+              { "Start": "1600", "Finish": "2200" }
+            ]
           },
           {
-            "Monday": null
+            "Wednesday": [
+              {
+                "Start": "0800",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1600",
+                "Finish": "2200"
+              }
+            ]
           },
           {
-            "Tuesday": 
-              [
-                { "Start": "0800", "Finish": "1500" },
-                { "Start": "1600", "Finish": "2200" }
-              ]
+            "Thursday": [
+              {
+                "Start": "0800",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1600",
+                "Finish": "2200"
+              }
+            ]
           },
           {
-            "Wednesday": 
-              [
-                { "Start": "0800", "Finish": "1500" },
-                { "Start": "1600", "Finish": "2200" }
-              ]
+            "Friday": [
+              {
+                "Start": "0800",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1600",
+                "Finish": "2200"
+              }
+            ]
           },
           {
-            "Thursday": 
-              [
-                { "Start": "0800", "Finish": "1500" },
-                { "Start": "1600", "Finish": "2200" }
-              ]
+            "Saturday": [
+              {
+                "Start": "0800",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1600",
+                "Finish": "2200"
+              }
+            ]
           },
           {
-            "Friday": 
-              [
-                { "Start": "0800", "Finish": "1500" },
-                { "Start": "1600", "Finish": "2200" }
-              ]
-          },
-          {
-            "Saturday": 
-              [
-                { "Start": "0800", "Finish": "1500" },
-                { "Start": "1600", "Finish": "2200" }
-              ]
-          },
-          {
-            "Sunday": 
-              [
-                { "Start": "0800", "Finish": "1500" },
-                { "Start": "1600", "Finish": "2200" }
-              ]
+            "Sunday": [
+              {
+                "Start": "0800",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1600",
+                "Finish": "2200"
+              }
+            ]
           }
         ]
       },
       "geometry": {
-        "coordinates": [-77.01243920316357, 38.91286090122076],
+        "coordinates": [ -77.01243920316357, 38.91286090122076 ],
         "type": "Point"
       }
     },
@@ -80,6 +98,7 @@
         "title": "Teaism Penn Quarter",
         "description": "A lakefront park on Chicago's south side",
         "type": "Bar",
+        "address": "1001 S Washington St, Alexandria, VA 22314",
         "storefront": "Store/cafe/teaismpennquarter/Storefront.jpg",
         "item1": "Store/cafe/teaismpennquarter/Chai.jpg",
         "item2": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
@@ -91,54 +110,77 @@
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
         "businesshour": [
-          {
-            "Holiday": [ "0000" ]
+          { "Holiday": [ "0000" ] },
+          { "Monday": [
+              { "Start": "1100", "Finish": "1800" }
+            ]
           },
-
-          {
-            "Monday":
-              [
-                { "Start": "1100", "Finish": "1800" }
-              ]
+          { "Tuesday": [
+              { "Start": "1100", "Finish": "1800" }
+            ]
           },
-          {
-            "Tuesday": 
-              [
-                { "Start": "1100", "Finish": "1800" }
-              ]
+          { "Wednesday": [
+              {
+                "Start": "1100",
+                "Finish": "1800"
+              }
+            ]
           },
-          {
-            "Wednesday": 
-              [
-                { "Start": "1100", "Finish": "1800" }
-              ]
+          { "Thursday": [
+              {
+                "Start": "1100",
+                "Finish": "1800"
+              }
+            ]
           },
-          {
-            "Thursday": 
-              [
-                { "Start": "1100", "Finish": "1800" }
-              ]
+          null,
+          { "Saturday": [
+              {
+                "Start": "1100",
+                "Finish": "1800"
+              }
+            ]
           },
-          
-            null
-
-          ,
-          {
-            "Saturday": 
-              [
-                { "Start": "1100", "Finish": "1800" }
-              ]
-          },
-          {
-            "Sunday": 
-              [
-                { "Start": "1100", "Finish": "1800" }
-              ]
+          { "Sunday": [
+              {
+                "Start": "1100",
+                "Finish": "1800"
+              }
+            ]
           }
         ]
       },
       "geometry": {
-        "coordinates": [-77.02328634317668, 38.89548380468532],
+        "coordinates": [
+          -77.02328634317668,
+          38.89548380468532
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Contrabands and Freedmen Cemetery Memorial",
+        "description": "",
+        "type": "Landscape",
+        "address": "1001 S Washington St, Alexandria, VA 22314",
+        "storefront": "Store/cafe/teaismpennquarter/Storefront.jpg",
+        "item1": "Store/cafe/teaismpennquarter/Chai.jpg",
+        "item2": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
+        "icon": {
+          "default": "Button/Marker/Landscape_default.png",
+          "mini": "Button/Marker/Landscape_mini.png",
+          "larger": "Button/Marker/Landscape_larger.png",
+          "active": "Button/Marker/Landscape_active.png",
+          "withFriends": "Button/Marker/Landscape_withFriends.png"
+        },
+        "businesshour": null
+      },
+      "geometry": {
+        "coordinates": [
+          -77.04963686614573, 38.794590717782455
+        ],
         "type": "Point"
       }
     }

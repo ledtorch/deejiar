@@ -28,14 +28,33 @@ export default {
       // console.log("Hour: " + currentHour)
       // console.log("Minute: " + currentMinute)
 
+      if (this.store.businesshour === null) {
+        return "Open 24H";
+      }
+
       const holidays = this.store.businesshour[0].Holiday;
       // console.log("Holidays: " + holidays); // ← 🐞 Debug console
       // Extract holiday
 
       // ↓ Check if the business is closed for the holiday
+      // const currentMonthandDay = currentMonth + currentDate;
+      // if (holidays.includes(currentMonthandDay)) {
+      //   return "Closed for Holiday";
+      // }
+
       const currentMonthandDay = currentMonth + currentDate;
       if (holidays.includes(currentMonthandDay)) {
-        return "Closed for Holiday";
+        // Check for next open day after holiday
+        let nextOpenDate = new Date(currentTime);
+        let nextMonthAndDate;
+        do {
+          nextOpenDate.setDate(nextOpenDate.getDate() + 1); // Increment date by 1
+          nextMonthAndDate =
+            String(nextOpenDate.getMonth() + 1).padStart(2, "0") +
+            String(nextOpenDate.getDate()).padStart(2, "0");
+        } while (holidays.includes(nextMonthAndDate));
+
+        return `Closed for Holiday. Opens on ${nextMonthAndDate}`;
       }
 
       // ↓ Check if closed today
@@ -44,14 +63,14 @@ export default {
       if (bizDay == null) {
         return "Closed";
       }
-
-      // return `${currentDay}:${currentMonth}:${currentDate}:${currentHour}:${currentMinute}`;
     },
     businessHoursClass() {
       if (this.businessHours === "Closed for Holiday") {
         return "closed-for-holiday";
       } else if (this.businessHours === "Closed") {
         return "closed";
+      } else if (this.businessHours === "Open 24H") {
+        return "opens";
       }
       return ""; // Default class if none of the conditions are met
     },
@@ -66,6 +85,11 @@ export default {
 
 .closed {
   color: #fd435f;
+}
+
+.opens {
+  color: #3dc363;
+  font-weight: 700;
 }
 </style>
 

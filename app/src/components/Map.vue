@@ -101,11 +101,11 @@ export default {
               this.map.loadImage(iconPath, (error, image) => {
                 if (error) throw error;
                 this.map.addImage(feature.properties.title + "-" + size, image);
-                console.log(feature.properties.title + "-" + size);
-                console.log(
-                  "Marker's Icon:",
-                  feature.properties.type + "_" + size + ".png"
-                );
+                // // ↓ 🐞 Debug console
+                // console.log(
+                //   "Marker's Icon:",
+                //   feature.properties.type + "_" + size + ".png"
+                // );
               });
             });
           });
