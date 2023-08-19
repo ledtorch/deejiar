@@ -30,6 +30,7 @@ export default {
       selectedStore: null,
       buttonState: "default",
       locate: null,
+      markerSize: {}, // Record current size for each marker
     };
   },
 
@@ -164,6 +165,20 @@ export default {
             // Check the data passed by the click
           });
         });
+    },
+    setActiveMarker(feature) {
+      this.map.setLayoutProperty(
+        "points",
+        "icon-image",
+        feature.properties.title + "-active"
+      );
+    },
+    resetActiveMarker() {
+      this.map.setLayoutProperty("points", "icon-image", [
+        "concat",
+        ["get", "title"],
+        "-default",
+      ]);
     },
 
     // ↓ Locate
