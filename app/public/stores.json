@@ -3,6 +3,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "1",
         "title": "Big Bear Cafe",
         "description": "Boston ivy covers the building, and it sets the café apart from the bustle of the city...",
         "type": "Cafe",
@@ -54,6 +55,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "2",
         "title": "Teaism Penn Quarter",
         "description": "A lakefront park on Chicago's south side",
         "type": "Bar",
@@ -108,11 +110,12 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "3",
         "title": "Contrabands and Freedmen Cemetery Memorial",
         "description": "",
         "type": "Landscape",
         "address": "1001 S Washington St, Alexandria, VA 22314",
-        "storefront": "Store/cafe/teaismpennquarter/Storefront.jpg",
+        "storefront": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg",
         "item1": "Store/cafe/teaismpennquarter/Chai.jpg",
         "item2": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
         "icon": {

@@ -30,6 +30,8 @@ export default {
       selectedStore: null,
       buttonState: "default",
       locate: null,
+      mapData: null, // Register the data for the fn' outside addMarkers
+      tempMarker: null, // Register the temporary marker
     };
   },
 
@@ -89,8 +91,10 @@ export default {
             type: "geojson",
             data: data,
           });
+          this.mapData = data;
           // Define the source
 
+          // ↓ Extract the data from json
           data.features.forEach((feature) => {
             ["mini", "default", "larger", "active"].forEach((size) => {
               const iconPath =
@@ -111,6 +115,7 @@ export default {
             });
           });
 
+          // ↓ Setup the text of the marker
           this.map.on("zoom", () => {
             const zoomLevel = this.map.getZoom();
 
@@ -123,6 +128,7 @@ export default {
             }
           });
 
+          // ↓ Render the marker as a layer
           this.map.addLayer({
             id: "points",
             type: "symbol",
@@ -153,17 +159,63 @@ export default {
             },
           });
 
-          this.map.on("click", "points", (e) => {
-            console.log("✅ Clicked the Marker");
-            const title = e.features[0].properties.title;
-            this.selectedStore = data.features.find(
-              (store) => store.properties.title === title
-            ).properties;
+          // Pass the data to clickMarker
+          this.map.on("click", "points", (event) => this.clickMarker(event));
 
-            console.log("📃 Selected Store:", this.selectedStore);
-            // Check the data passed by the click
+          // If click the map, reset the active marker
+          this.map.on("click", (event) => {
+            // Check if the click event occurred on the points layer
+            const features = this.map.queryRenderedFeatures(event.point, {
+              layers: ["points"], // assuming "points" is the layer id where markers are
+            });
+
+            // If the click event did not occur on the points layer, remove the temporary marker
+            if (!features.length && this.tempMarker) {
+              this.tempMarker.remove();
+              this.tempMarker = null; // Reset the temporary marker variable
+            }
           });
         });
+    },
+
+    clickMarker(event) {
+      if (this.tempMarker) {
+        this.tempMarker.remove();
+      }
+
+      const title = event.features[0].properties.title;
+      // When the event pass to clickMarker(), the Mapbox makes a new "features" that packages the data of the event
+      // Which means this "features" is a new features instead of the stores.json
+      const coordinates = event.features[0].geometry.coordinates;
+      const iconString = event.features[0].properties.icon;
+      const iconObject = JSON.parse(iconString);
+      const activeIcon = iconObject.active;
+
+      this.selectedStore = this.mapData.features.find(
+        (store) => store.properties.title === title
+      ).properties;
+
+      // ↓ Create a temporary marker
+      const el = document.createElement("div");
+      el.className = "marker-active";
+      el.style.backgroundImage = `url(${activeIcon})`;
+      el.style.backgroundPosition = "center";
+      el.style.backgroundRepeat = "no-repeat";
+      el.style.backgroundSize = "contain";
+      el.style.width = "52px";
+      el.style.height = "79px";
+
+      console.log("Icon: ", activeIcon);
+
+      // console.log("el.style.backgroundImage: " + el.style.backgroundImage);
+      this.tempMarker = new mapboxgl.Marker(el, { offset: [0, -24] })
+        .setLngLat(coordinates)
+        .addTo(this.map);
+
+      // // ↓ 🐞 Debug console
+      // console.log("⬇️ Clicked the Marker");
+      // console.log("title: " + title);
+      // console.log("Selected Store:", this.selectedStore);
     },
 
     // ↓ Locate
@@ -194,6 +246,7 @@ export default {
 
     resetSelectedStore() {
       this.selectedStore = null;
+      this.tempMarker.remove();
     },
     // Clean the data and make showAvatar = false, so the default avatar could be displayed
   },
@@ -223,5 +276,10 @@ export default {
   right: 16px; /* Distance from the right */
   z-index: 1;
   transition: transform 0.3s ease;
+}
+
+.marker-active {
+  background: no-repeat center/contain;
+  background-color: aliceblue;
 }
 </style>
