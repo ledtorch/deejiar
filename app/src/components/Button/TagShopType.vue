@@ -39,8 +39,8 @@ h2 {
 }
 
 .icon-image {
-  background: no-repeat center/cover;
   width: 28px;
   height: 28px;
+  background: no-repeat center/cover;
 }
 </style>

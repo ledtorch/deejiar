@@ -39,11 +39,11 @@ export default {};
 <style scoped>
 .body-section {
   display: flex;
-  width: 100%;
-  padding: 0px 24px;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+  width: 100%;
+  padding: 0px 24px;
 }
 
 .account-section {
@@ -54,18 +54,18 @@ export default {};
 
 .btn-frame {
   display: flex;
-  padding-left: 0px;
   justify-content: space-between;
   align-items: flex-start;
   align-self: stretch;
+  padding-left: 0px;
 }
 
 .bottom-section {
-  padding: 24px 12px 0px 0px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
   align-self: stretch;
+  gap: 24px;
+  padding: 24px 12px 0px 0px;
 }
 
 .btn-set {
@@ -74,18 +74,18 @@ export default {};
 }
 
 .page-card {
-  padding: 12px;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  padding: 12px;
 }
 
 .splitline {
-  width: 100%;
-  height: 1px;
   justify-content: center;
   align-items: center;
   align-self: stretch;
+  width: 100%;
+  height: 1px;
   background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
 }
 </style>

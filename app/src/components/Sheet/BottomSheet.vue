@@ -13,6 +13,7 @@
     </div>
 
     <div class="bottom-sheet-content" v-if="storeState">
+      <!-- Template Food -->
       <template v-if="storeLayout === 'food'">
         <div class="nav">
           <div class="title-block">
@@ -33,6 +34,8 @@
         <Businesshour :store="store" />
         <div class="key-info-div"></div>
       </template>
+
+      <!-- Template View -->
       <template v-if="storeLayout === 'view'">
         <div class="nav">
           <div class="title-block">
@@ -92,18 +95,15 @@ export default {
     const maxHeight = `100%`;
     // Initialize values for dragging fn'
 
-    const { store } = toRefs(props); // Convert props to reactive references
+    const { store } = toRefs(props);
+    // Convert props to reactive references
 
-    const isContent = computed(
-      () => store.value !== null && store.value !== undefined
-    );
-
-    // Watch the store value for changes
-    watch(store, (newStore, oldStore) => {
+    watch(store, (newStore) => {
       if (newStore !== null) {
         bottomSheetHeight.value = withStoreHeight;
       }
     });
+    // Watch the store value for changes
 
     const updateSheetHeight = (height) => {
       bottomSheetHeight.value = `${height}`;
@@ -185,12 +185,6 @@ export default {
       return this.store;
     },
 
-    // storeState() {
-    //   if (this.store === true) {
-    //     return this.store;
-    //   }
-    // },
-
     storeLayout() {
       console.log("Compute storeLayout:" + this.store?.layout); // ← 🐞 Debug console
       return this.store?.layout;
@@ -215,15 +209,14 @@ export default {
 
 <style scoped>
 .bottom-sheet {
-  width: 390px;
-  min-height: 32px;
-  max-height: 100%;
-  /* Define the min and max of the BottomSheet comp */
-  height: auto;
-  padding: 0px 16px 16px 16px;
-  border-radius: 12px 12px 0px 0px;
   flex-direction: column;
   gap: 0px;
+  width: 390px;
+  height: auto;
+  min-height: 32px;
+  max-height: 100%;
+  padding: 0px 16px 16px 16px;
+  border-radius: 12px 12px 0px 0px;
   background-color: #000;
   transition: height 0.3s ease;
 }
@@ -234,13 +227,13 @@ export default {
 }
 
 .control-area {
-  height: 32px;
-  padding: 16px 0px 12px 0px;
+  cursor: grab;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-self: stretch;
-  cursor: grab;
+  height: 32px;
+  padding: 16px 0px 12px 0px;
 }
 
 .control-area:active {
@@ -249,34 +242,31 @@ export default {
 
 .control-bar {
   cursor: grab;
+  flex-shrink: 0;
   width: 48px;
   height: 4px;
-  flex-shrink: 0;
   border-radius: 4px;
   background-color: #808cab;
 }
 
 .nav {
-  /* align-items: flex-start; */
-  /* height: auto; */
   gap: 12px;
-  /* align-self: stretch; */
 }
 
 .title-block {
   align-items: flex-start;
   justify-content: flex-start;
   align-content: flex-start;
-  gap: 12px;
-  flex: 1 0 0;
   align-self: stretch;
   flex-wrap: wrap;
+  flex: 1 0 0;
+  gap: 12px;
 }
 
 .image-div {
   align-items: flex-end;
-  gap: 8px;
   align-self: stretch;
+  gap: 8px;
 }
 
 .main-column {
@@ -291,9 +281,9 @@ export default {
 }
 
 .image {
-  border-radius: 12px;
-  height: 86px;
   align-self: stretch;
+  height: 86px;
+  border-radius: 12px;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -302,15 +292,15 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  gap: 8px;
   flex: 1 0 0;
+  gap: 8px;
 }
 
 .state {
-  padding: 12px;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
+  padding: 12px;
   border-radius: var(--border-button-round, 8px);
   background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
 }
@@ -318,8 +308,8 @@ export default {
 .key-info-div {
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
   align-self: stretch;
+  gap: 12px;
 }
 
 .stretch {

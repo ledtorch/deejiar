@@ -49,12 +49,12 @@ export default {
 
 <style scoped>
 .icon-button {
-  background: no-repeat center/contain;
+  cursor: pointer;
   width: 32px;
   height: 32px;
   border: none;
-  cursor: pointer;
   padding: 0;
+  background: no-repeat center/contain;
   transition: transform 0.2s ease;
 }
 

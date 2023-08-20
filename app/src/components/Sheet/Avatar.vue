@@ -41,18 +41,18 @@ export default {
   
 <style scoped>
 .frame {
-  width: 100%;
   justify-content: space-between;
   align-items: flex-start;
+  width: 100%;
 }
 
 .icon-button {
-  background: no-repeat center/contain;
+  cursor: pointer;
   width: 36px;
   height: 36px;
   border: none;
-  cursor: pointer;
   padding: 0;
+  background: no-repeat center/contain;
   transition: transform 0.2s ease;
 }
 </style>

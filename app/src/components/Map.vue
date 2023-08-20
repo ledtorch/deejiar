@@ -264,11 +264,11 @@ export default {
 
 <style scoped>
 #map {
+  overflow: hidden; /* Prevent any unexpected overflow */
   position: relative;
   flex-direction: column; /* Align children vertically */
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* Prevent any unexpected overflow */
 }
 
 #bottomsheet {
