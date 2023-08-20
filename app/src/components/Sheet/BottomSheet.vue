@@ -55,7 +55,7 @@
 
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch, toRefs, computed } from "vue";
 
 import IconButtonClose from "../Button/IconButtonClose.vue";
 import TagShopType from "../Button/TagShopType.vue";
@@ -76,7 +76,7 @@ export default {
     store: Object,
   },
 
-  setup() {
+  setup(props) {
     const router = useRouter();
 
     const isDragging = ref(false);
@@ -91,6 +91,19 @@ export default {
     const withStoreHeight = `467px`;
     const maxHeight = `100%`;
     // Initialize values for dragging fn'
+
+    const { store } = toRefs(props); // Convert props to reactive references
+
+    const isContent = computed(
+      () => store.value !== null && store.value !== undefined
+    );
+
+    // Watch the store value for changes
+    watch(store, (newStore, oldStore) => {
+      if (newStore !== null) {
+        bottomSheetHeight.value = withStoreHeight;
+      }
+    });
 
     const updateSheetHeight = (height) => {
       bottomSheetHeight.value = `${height}`;
@@ -171,6 +184,12 @@ export default {
     storeState() {
       return this.store;
     },
+
+    // storeState() {
+    //   if (this.store === true) {
+    //     return this.store;
+    //   }
+    // },
 
     storeLayout() {
       console.log("Compute storeLayout:" + this.store?.layout); // ← 🐞 Debug console
