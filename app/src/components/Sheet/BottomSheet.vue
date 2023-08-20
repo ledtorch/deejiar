@@ -1,7 +1,7 @@
 <template>
   <div
     class="bottom-sheet"
-    :style="{ height: bottomSheetHeight || storeState }"
+    :style="{ height: bottomSheetHeight }"
     ref="bottomSheet"
   >
     <div class="control-area" ref="controlArea">
@@ -207,10 +207,6 @@ export default {
   gap: 0px;
   background-color: #000;
   transition: height 0.3s ease;
-}
-
-.bottom-sheet--expanded {
-  /* height: 467px !important; */
 }
 
 .bottom-sheet-content {
