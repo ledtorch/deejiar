@@ -178,6 +178,7 @@ export default {
         });
     },
 
+    // ↓ Create a temp marker and move the center when click it
     clickMarker(event) {
       if (this.tempMarker) {
         this.tempMarker.remove();
@@ -211,6 +212,14 @@ export default {
       this.tempMarker = new mapboxgl.Marker(el, { offset: [0, -24] })
         .setLngLat(coordinates)
         .addTo(this.map);
+
+      this.map.flyTo({
+        center: [coordinates[0], coordinates[1]],
+        offset: [0, -200],
+        duration: 500,
+        curve: 1,
+      });
+      console.log("center: " + coordinates[0] + ", " + coordinates[1]);
 
       // // ↓ 🐞 Debug console
       // console.log("⬇️ Clicked the Marker");

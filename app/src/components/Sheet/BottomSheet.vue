@@ -1,36 +1,54 @@
 <template>
   <div
     class="bottom-sheet"
-    :style="{ height: bottomSheetHeight }"
+    :style="{ height: bottomSheetHeight || storeState }"
     ref="bottomSheet"
   >
     <div class="control-area" ref="controlArea">
       <div class="control-bar"></div>
     </div>
 
-    <div class="bottom-sheet-content" v-if="storeState">
+    <div class="bottom-sheet-content" v-if="!storeState">
       <Avatar />
     </div>
 
-    <div class="bottom-sheet-content" v-if="!storeState">
-      <div class="nav">
-        <div class="title-block">
-          <h2 class="stretch">{{ store ? store.title : "" }}</h2>
-          <TagShopType :store="store" />
+    <div class="bottom-sheet-content" v-if="storeState">
+      <template v-if="storeLayout === 'food'">
+        <div class="nav">
+          <div class="title-block">
+            <h2 class="stretch">{{ store ? store.title : "" }}</h2>
+            <TagShopType :store="store" />
+          </div>
+          <IconButtonClose :state="buttonState" @close="closeBottomSheet" />
         </div>
-        <IconButtonClose :state="buttonState" @close="closeBottomSheet" />
-      </div>
-      <div class="image-div">
-        <div class="main-column" :style="mainColumnImage"></div>
-        <div class="secondary-column">
-          <div class="image" :style="item1"></div>
-          <div class="image" :style="item2"></div>
+        <div class="image-div">
+          <div class="main-column" :style="mainColumnImage"></div>
+          <div class="secondary-column">
+            <div class="image" :style="item1"></div>
+            <div class="image" :style="item2"></div>
+          </div>
         </div>
-      </div>
-      <div class="state">{{ store ? store.description : "" }}</div>
-      <Review />
-      <Businesshour :store="store" />
-      <div class="key-info-div"></div>
+        <div class="state">{{ store ? store.description : "" }}</div>
+        <Review />
+        <Businesshour :store="store" />
+        <div class="key-info-div"></div>
+      </template>
+      <template v-if="storeLayout === 'view'">
+        <div class="nav">
+          <div class="title-block">
+            <h2 class="stretch">{{ store ? store.title : "" }}</h2>
+            <TagShopType :store="store" />
+          </div>
+          <IconButtonClose :state="buttonState" @close="closeBottomSheet" />
+        </div>
+        <div class="image-div">
+          <div class="main-column--view" :style="mainColumnImage"></div>
+        </div>
+        <div class="state">{{ store ? store.description : "" }}</div>
+        <Review />
+        <Businesshour :store="store" />
+        <div class="key-info-div"></div>
+      </template>
     </div>
   </div>
 </template>
@@ -151,7 +169,12 @@ export default {
 
   computed: {
     storeState() {
-      return !this.store;
+      return this.store;
+    },
+
+    storeLayout() {
+      console.log("Compute storeLayout:" + this.store?.layout); // ← 🐞 Debug console
+      return this.store?.layout;
     },
 
     mainColumnImage() {
@@ -166,7 +189,6 @@ export default {
       // console.log("📃 item2 URL: " + this.store?.item2); // ← 🐞 Debug console
       return `background: url('${this.store?.item2}') center/cover no-repeat;`;
     },
-    // Store data
   },
 };
 </script>
@@ -184,7 +206,11 @@ export default {
   flex-direction: column;
   gap: 0px;
   background-color: #000;
-  transition: height 0.2s ease;
+  transition: height 0.3s ease;
+}
+
+.bottom-sheet--expanded {
+  /* height: 467px !important; */
 }
 
 .bottom-sheet-content {
@@ -216,14 +242,15 @@ export default {
 }
 
 .nav {
-  align-items: flex-start;
-  height: 32px;
+  /* align-items: flex-start; */
+  /* height: auto; */
   gap: 12px;
-  align-self: stretch;
+  /* align-self: stretch; */
 }
 
 .title-block {
   align-items: flex-start;
+  justify-content: flex-start;
   align-content: flex-start;
   gap: 12px;
   flex: 1 0 0;
@@ -240,6 +267,11 @@ export default {
 .main-column {
   width: 180px;
   height: 180px;
+  border-radius: 12px;
+}
+.main-column--view {
+  width: 100%;
+  height: 260px;
   border-radius: 12px;
 }
 
