@@ -20,7 +20,7 @@
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
         "businesshour": [
-          { "Holiday": [ "0101", "0818", "0819", "0820", "1231" ] },
+          { "Holiday": [ "0000" ] },
           { "Monday": null },
           { "Tuesday": [
               { "Start": "0800", "Finish": "1500" },
@@ -93,8 +93,11 @@
           { "Friday": [
               { "Start": "1100", "Finish": "1800" }
             ]
+          },         
+          { "Saturday": [
+              { "Start": "1100", "Finish": "1800" }
+            ]
           },
-          null,
           { "Sunday": [
               { "Start": "1100", "Finish": "1800" }
             ]
@@ -119,8 +122,8 @@
         "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
         "address": "1001 S Washington St, Alexandria, VA 22314",
         "storefront": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg",
-        "item1": "Store/cafe/teaismpennquarter/Chai.jpg",
-        "item2": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
+        "item1": "",
+        "item2": "",
         "icon": {
           "default": "Button/Marker/Landscape_default.png",
           "mini": "Button/Marker/Landscape_mini.png",
