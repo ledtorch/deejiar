@@ -4,7 +4,6 @@
     <button
       class="icon-button"
       @click="loginWithTwitter"
-      :class="buttonClass"
       :style="buttonStyle"
     ></button>
   </div>
@@ -39,7 +38,7 @@ export default {
 };
 </script>
   
-<style scoped>
+<style lang="scss" scoped>
 .frame {
   justify-content: space-between;
   align-items: flex-start;

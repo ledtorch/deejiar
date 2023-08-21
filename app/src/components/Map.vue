@@ -262,7 +262,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #map {
   overflow: hidden; /* Prevent any unexpected overflow */
   position: relative;

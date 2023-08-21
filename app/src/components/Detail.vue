@@ -22,7 +22,7 @@ export default {
 
   computed: {
     cover() {
-      const type = this.store?.storefront || "Taco"; // Set Taco as default png to prevent the undefined msg
+      const type = this.store?.storefront; // Set Taco as default png to prevent the undefined msg
       const path = `/Icon/category/${type}.png`;
       console.log("🆗 Component -> TagShopType, Icon Path: " + path);
       return `background: url('${path}') center/cover no-repeat; width: 24px; height: 24px;`;
@@ -48,7 +48,7 @@ export default {
 };
 </script>
   
-<style scoped>
+<style lang="scss" scoped>
 .cover {
   align-items: center;
   width: 100%;

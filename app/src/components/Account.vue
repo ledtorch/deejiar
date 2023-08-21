@@ -36,7 +36,7 @@ import { useRoute } from "vue-router";
 export default {};
 </script>
   
-<style scoped>
+<style lang="scss" scoped>
 .body-section {
   display: flex;
   flex-direction: column;

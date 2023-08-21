@@ -29,7 +29,9 @@
             <div class="image" :style="item2"></div>
           </div>
         </div>
-        <div class="state">{{ store ? store.description : "" }}</div>
+        <div class="state">
+          <p class="text-limited">{{ store ? store.description : "" }}</p>
+        </div>
         <Review />
         <Businesshour :store="store" />
         <div class="key-info-div"></div>
@@ -47,8 +49,9 @@
         <div class="image-div">
           <div class="main-column--view" :style="mainColumnImage"></div>
         </div>
-        <div class="state">{{ store ? store.description : "" }}</div>
-        <Review />
+        <div class="state">
+          <p class="text-limited">{{ store ? store.description : "" }}</p>
+        </div>
         <Businesshour :store="store" />
         <div class="key-info-div"></div>
       </template>
@@ -207,7 +210,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
 .bottom-sheet {
   flex-direction: column;
   gap: 0px;
@@ -303,6 +306,15 @@ export default {
   padding: 12px;
   border-radius: var(--border-button-round, 8px);
   background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
+}
+
+.text-limited {
+  max-height: 48px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Adjust to the number of lines you want to display */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 .key-info-div {

@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .icon-button {
   cursor: pointer;
   width: 32px;

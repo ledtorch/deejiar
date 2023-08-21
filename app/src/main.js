@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import Map from "./components/Map.vue";
-import Store from "./components/Store.vue";
+import Detail from "./components/Detail.vue";
 
 import router from './router.js'
 

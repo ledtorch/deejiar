@@ -9,14 +9,13 @@
 export default {};
 </script>
   
-<style scoped>
+<style lang="scss" scoped>
 /* .review-frame {
 } */
 
 .icon-star {
   width: 24px;
   height: 24px;
-  background-image: url("/Icon/Rate.png");
-  background: no-repeat center/contain;
+  background: url("/Icon/Rate.png") no-repeat center/contain;
 }
 </style>
