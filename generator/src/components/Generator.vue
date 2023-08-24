@@ -8,50 +8,72 @@
       <button class="temp-button" @click="downloadJSON">Download JSON</button>
     </div>
 
-    <table class="table">
-      <p>Number of Features: {{ numberOfFeatures }}</p>
-      <tr v-for="feature in jsonData.features" :key="feature.properties.id">
-        <td>{{ feature.properties.title }}</td>
-        <td>
-          <button
-            class="text-button"
-            @click="editFeature(feature.properties.id)"
-          >
-            Edit
-          </button>
-        </td>
-        <td>{{ feature.properties.layout }}</td>
-        <td>
-          <button
-            class="text-button"
-            @click="editFeature(feature.properties.id)"
-          >
-            Edit
-          </button>
-        </td>
-      </tr>
-    </table>
-    <div class="form" v-if="editingFeature">
-      <input v-model="editingFeature.title" />
-      <button class="text-button" @click="saveFeature">Save</button>
-      <input v-model="editingFeature.layout" />
-      <button class="text-button" @click="saveFeature">Save</button>
+    <h2>Number of Features: {{ jsonData.features.length }}</h2>
+
+    <div
+      class="data-section"
+      v-for="feature in jsonData.features"
+      :key="feature.properties.id"
+    >
+      <h3>{{ feature.properties.title }}</h3>
+      <Form
+        :value="feature.properties"
+        property="title"
+        @update="updateFeature(feature.properties.id, $event)"
+      />
+      <div class="form-set">
+        <Form
+          :value="feature.properties"
+          property="type"
+          @update="updateFeature(feature.properties.id, $event)"
+        />
+        <Form
+          :value="feature.properties"
+          property="layout"
+          @update="updateFeature(feature.properties.id, $event)"
+        />
+      </div>
+
+      <Form
+        :value="feature.properties"
+        property="description"
+        @update="updateFeature(feature.properties.id, $event)"
+      />
+      <div class="form-set">
+        <Form
+          :value="feature.properties"
+          property="address"
+          @update="updateFeature(feature.properties.id, $event)"
+        />
+
+        <Form
+          :value="feature.geometry.coordinates"
+          property="0"
+          @update="updateCoordinates(feature.properties.id, 0, $event)"
+        />
+
+        <Form
+          :value="feature.geometry.coordinates"
+          property="1"
+          @update="updateCoordinates(feature.properties.id, 1, $event)"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Form from "./Form.vue";
+
 export default {
+  components: { Form },
   data() {
     return {
-      jsonData: { features: [] }, // Define jsonData with a default structure
-      editingFeature: null, // Define editingFeature with a default value
+      jsonData: { features: [] },
+      editingFeature: null,
+      editingFeatureId: null, // The ID of the feature being edited
+      editingProperty: null, // The property of the feature being edited ('title' or 'layout')
     };
-  },
-  computed: {
-    numberOfFeatures() {
-      return this.jsonData.features.length;
-    },
   },
   methods: {
     uploadJSON(event) {
@@ -64,14 +86,29 @@ export default {
 
       reader.readAsText(file);
     },
-    editFeature(id) {
+    editFeature(id, property) {
+      this.editingFeatureId = id;
+      this.editingProperty = property;
       this.editingFeature = this.jsonData.features.find(
         (feature) => feature.properties.id === id
       ).properties;
     },
+    updateFeature(id, [property, value]) {
+      const feature = this.jsonData.features.find(
+        (feature) => feature.properties.id === id
+      ).properties;
+      feature[property] = value;
+    },
+    updateCoordinates(id, index, value) {
+      const feature = this.jsonData.features.find(
+        (feature) => feature.properties.id === id
+      );
+      feature.geometry.coordinates[index] = parseFloat(value);
+    },
     saveFeature() {
-      // Save logic here
       this.editingFeature = null;
+      this.editingFeatureId = null;
+      this.editingProperty = null;
     },
     downloadJSON() {
       const dataStr =
@@ -93,23 +130,19 @@ export default {
 .body {
   flex-direction: column;
   align-items: center;
+  padding: 80px;
   width: 100vw;
   height: 100%;
-  padding: 100px 100px;
-  gap: 100px;
+  gap: 24px;
 }
 
-.table {
-  gap: 120px;
-}
-
-.form {
-  justify-content: space-between;
-  align-items: center;
-  width: auto;
-  padding: 12px;
-  border-radius: var(--border-content, 6px);
-  background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
+.data-section {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--token-secondary-text, rgba(255, 255, 255, 0.75));
 }
 
 .button-set {
@@ -117,6 +150,10 @@ export default {
   gap: 20px;
 }
 
+.form-set {
+  align-items: flex-start;
+  gap: 24px;
+}
 // Temp
 
 .temp-button {

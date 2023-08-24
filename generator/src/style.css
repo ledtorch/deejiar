@@ -61,16 +61,11 @@
 body {
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
   overflow-x: hidden; /* Hide horizontal scroll */
-  overflow-y: hidden; /* Hide vertical scroll */
-  width: 100vw; /* 100% of viewport width */
-  height: 100vh; /* 100% of viewport height */
 }
 
 div {
-	display: flex;
+  display: flex;
 }
 
 button {
