@@ -1,19 +1,42 @@
 <template>
-  <div>
-    <input type="file" @change="uploadJSON" />
-    <table>
+  <div class="body">
+    <div class="button-set">
+      <label for="file-input" class="temp-button">Upload JSON</label>
+      <!-- Custom Button -->
+      <input type="file" id="file-input" @change="uploadJSON" class="hide" />
+      <!-- Actual Input -->
+      <button class="temp-button" @click="downloadJSON">Download JSON</button>
+    </div>
+
+    <table class="table">
+      <p>Number of Features: {{ numberOfFeatures }}</p>
       <tr v-for="feature in jsonData.features" :key="feature.properties.id">
         <td>{{ feature.properties.title }}</td>
         <td>
-          <button @click="editFeature(feature.properties.id)">Edit</button>
+          <button
+            class="text-button"
+            @click="editFeature(feature.properties.id)"
+          >
+            Edit
+          </button>
+        </td>
+        <td>{{ feature.properties.layout }}</td>
+        <td>
+          <button
+            class="text-button"
+            @click="editFeature(feature.properties.id)"
+          >
+            Edit
+          </button>
         </td>
       </tr>
     </table>
-    <div v-if="editingFeature">
+    <div class="form" v-if="editingFeature">
       <input v-model="editingFeature.title" />
-      <button @click="saveFeature">Save</button>
+      <button class="text-button" @click="saveFeature">Save</button>
+      <input v-model="editingFeature.layout" />
+      <button class="text-button" @click="saveFeature">Save</button>
     </div>
-    <button @click="downloadJSON">Download JSON</button>
   </div>
 </template>
 
@@ -24,6 +47,11 @@ export default {
       jsonData: { features: [] }, // Define jsonData with a default structure
       editingFeature: null, // Define editingFeature with a default value
     };
+  },
+  computed: {
+    numberOfFeatures() {
+      return this.jsonData.features.length;
+    },
   },
   methods: {
     uploadJSON(event) {
@@ -61,5 +89,67 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
+.body {
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+  padding: 100px 100px;
+  gap: 100px;
+}
+
+.table {
+  gap: 120px;
+}
+
+.form {
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  padding: 12px;
+  border-radius: var(--border-content, 6px);
+  background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
+}
+
+.button-set {
+  align-items: flex-start;
+  gap: 20px;
+}
+
+// Temp
+
+.temp-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0px;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-button-round, 8px);
+  background: var(--token-theme, #fafafa);
+  color: var(--token-invert, #0e0d0f);
+
+  font-family: Be Vietnam Pro;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.hide {
+  display: none;
+}
+
+.text-button {
+  cursor: pointer;
+  color: var(--2-brand-gray, #808cab);
+  background-color: transparent;
+
+  font-family: Be Vietnam Pro;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
 </style>

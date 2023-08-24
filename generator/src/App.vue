@@ -6,7 +6,7 @@ import Generator from "./components/Generator.vue";
   <Generator />
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .logo {
   height: 6em;
   padding: 1.5em;

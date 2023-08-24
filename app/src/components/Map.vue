@@ -48,6 +48,22 @@ export default {
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        const el = document.createElement("div");
+        el.className = "location-indicator";
+
+        const ringDiv = document.createElement("div");
+        ringDiv.className = "ring";
+        el.appendChild(ringDiv);
+
+        const innerBallDiv = document.createElement("div");
+        innerBallDiv.className = "inner-ball";
+        ringDiv.appendChild(innerBallDiv);
+
+        new mapboxgl.Marker(el)
+          .setLngLat([position.coords.longitude, position.coords.latitude])
+          .addTo(this.map);
+        // Create a location indicator of the user
+
         this.map.setCenter([
           position.coords.longitude,
           position.coords.latitude,
@@ -290,5 +306,33 @@ export default {
 .marker-active {
   background: no-repeat center/contain;
   background-color: aliceblue;
+}
+
+.location-indicator {
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  display: flex; // Added to center the inner elements
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.inner-ball {
+  // Corrected from .ball to .inner-ball
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background-color: var(--token-theme, #fafafa);
+}
+
+.ring {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px dashed var(--token-theme, #fafafa);
 }
 </style>
