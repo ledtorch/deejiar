@@ -64,6 +64,7 @@
 
 <script>
 import Form from "./Form.vue";
+import * as turf from "@turf/turf";
 
 export default {
   components: { Form },
@@ -121,6 +122,10 @@ export default {
       document.body.appendChild(downloadAnchorNode);
       downloadAnchorNode.click();
       downloadAnchorNode.remove();
+    },
+    centralizePolygon() {
+      // ↓ Calculate the centroid of the polygon using turf
+      const center = turf.centroid(feature.geometry);
     },
   },
 };

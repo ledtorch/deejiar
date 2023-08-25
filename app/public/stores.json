@@ -103,11 +103,11 @@
         ]
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
           -77.01243920316357,
           38.91286090122076
-        ],
-        "type": "Point"
+        ]
       }
     },
     {
@@ -194,11 +194,11 @@
         ]
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
           -77.02328634317668,
           38.89548380468532
-        ],
-        "type": "Point"
+        ]
       }
     },
     {
@@ -223,11 +223,11 @@
         "businesshour": null
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
           -77.04963686614573,
           38.794590717782455
-        ],
-        "type": "Point"
+        ]
       }
     }
   ],
