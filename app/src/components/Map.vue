@@ -30,7 +30,8 @@ export default {
       selectedStore: null,
       buttonState: "default",
       locate: null,
-      mapData: null, // Register the data for the fn' outside addMarkers
+      storeData: null, // Register the data for the fn' outside addStores
+      districtData: null, // Register the data for the fn' outside addStores
       tempMarker: null, // Register the temporary marker
     };
   },
@@ -93,21 +94,22 @@ export default {
     });
 
     this.map.on("load", () => {
-      this.addMarkers();
+      this.addStores();
+      this.addDistricts();
     });
   },
 
   methods: {
-    // ↓ Marker
-    addMarkers() {
+    // ↓ Stores
+    addStores() {
       fetch("/stores.json")
         .then((response) => response.json())
         .then((data) => {
-          this.map.addSource("points", {
+          this.map.addSource("stores", {
             type: "geojson",
             data: data,
           });
-          this.mapData = data;
+          this.storeData = data;
           // Define the source
 
           // ↓ Extract the data from json
@@ -131,24 +133,24 @@ export default {
             });
           });
 
-          // ↓ Setup the text of the marker
+          // ↓ Setup the text of the stores' marker
           this.map.on("zoom", () => {
             const zoomLevel = this.map.getZoom();
 
             if (zoomLevel >= 14.5) {
-              this.map.setLayoutProperty("points", "text-offset", [1, 0]);
+              this.map.setLayoutProperty("stores", "text-offset", [1, 0]);
             } else if (zoomLevel >= 12.4) {
-              this.map.setLayoutProperty("points", "text-offset", [0.8, 0]);
+              this.map.setLayoutProperty("stores", "text-offset", [0.8, 0]);
             } else {
-              this.map.setLayoutProperty("points", "text-offset", [0, 0]);
+              this.map.setLayoutProperty("stores", "text-offset", [0, 0]);
             }
           });
 
-          // ↓ Render the marker as a layer
+          // ↓ Render the stores' marker as a layer
           this.map.addLayer({
-            id: "points",
+            id: "stores",
             type: "symbol",
-            source: "points",
+            source: "stores",
             layout: {
               "icon-image": [
                 "step",
@@ -165,27 +167,25 @@ export default {
               // Import higher resolution and compress to normal size
 
               "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-
               "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
-              // "text-offset": [0, 0],
               "text-anchor": "left",
             },
             paint: {
-              "text-color": "#FFFFFF", // Red color for example
+              "text-color": "#FFFFFF",
             },
           });
 
           // Pass the data to clickMarker
-          this.map.on("click", "points", (event) => this.clickMarker(event));
+          this.map.on("click", "stores", (event) => this.clickMarker(event));
 
-          // If click the map, reset the active marker
+          // If click the map, reset the active stores' marker
           this.map.on("click", (event) => {
-            // Check if the click event occurred on the points layer
+            // Check if the click event occurred on the stores layer
             const features = this.map.queryRenderedFeatures(event.point, {
-              layers: ["points"], // assuming "points" is the layer id where markers are
+              layers: ["stores"], // assuming "stores" is the layer id where markers are
             });
 
-            // If the click event did not occur on the points layer, remove the temporary marker
+            // If the click event did not occur on the stores layer, remove the temporary marker
             if (!features.length && this.tempMarker) {
               this.tempMarker.remove();
               this.tempMarker = null; // Reset the temporary marker variable
@@ -208,7 +208,7 @@ export default {
       const iconObject = JSON.parse(iconString);
       const activeIcon = iconObject.active;
 
-      this.selectedStore = this.mapData.features.find(
+      this.selectedStore = this.storeData.features.find(
         (store) => store.properties.title === title
       ).properties;
 
@@ -241,6 +241,105 @@ export default {
       // console.log("⬇️ Clicked the Marker");
       // console.log("title: " + title);
       // console.log("Selected Store:", this.selectedStore);
+    },
+
+    // ↓ District
+    addDistricts() {
+      fetch("/districts.json")
+        .then((response) => response.json())
+        .then((data) => {
+          this.map.addSource("districts", {
+            type: "geojson",
+            data: data,
+          });
+          this.districtData = data;
+
+          // Render the district's area
+          this.map.addLayer({
+            id: "districts",
+            type: "fill",
+            source: "districts",
+            layout: {},
+            paint: {
+              "fill-color": "#3DC363",
+              "fill-opacity": 0.6,
+            },
+            filter: ["==", "$type", "Polygon"],
+          });
+          // Render the district's border
+          this.map.addLayer({
+            id: "outline",
+            type: "line",
+            source: "districts",
+            layout: {},
+            paint: {
+              "line-color": "#3DC363",
+              "line-width": 1,
+            },
+            filter: ["==", "$type", "Polygon"],
+          });
+
+          // ↓ Extract the data from json
+          // Load images
+          data.features.forEach((feature) => {
+            if (feature.geometry.type === "Point") {
+              ["mini", "default", "larger", "active"].forEach((size) => {
+                const iconPath =
+                  "/Button/Marker/" +
+                  feature.properties.type +
+                  "_" +
+                  size +
+                  ".png";
+                this.map.loadImage(iconPath, (error, image) => {
+                  if (error) throw error;
+                  const iconName = feature.properties.type + "-" + size;
+                  this.map.addImage(iconName, image);
+                });
+              });
+            }
+          });
+
+          // ↓ Setup the text of the districts' marker
+          this.map.on("zoom", () => {
+            const zoomLevel = this.map.getZoom();
+
+            if (zoomLevel >= 14.5) {
+              this.map.setLayoutProperty("markers", "text-offset", [1, 0]);
+            } else if (zoomLevel >= 12.4) {
+              this.map.setLayoutProperty("markers", "text-offset", [0.8, 0]);
+            } else {
+              this.map.setLayoutProperty("markers", "text-offset", [0, 0]);
+            }
+          });
+
+          // Render the districts' marker as a layer
+          this.map.addLayer({
+            id: "markers",
+            type: "symbol",
+            source: "districts",
+            layout: {
+              "icon-image": [
+                "step",
+                ["zoom"],
+                "", // this will display nothing from zoom levels 3-10
+                10,
+                ["concat", ["get", "type"], "-mini"],
+                12.4,
+                ["concat", ["get", "type"], "-default"],
+                14.5,
+                ["concat", ["get", "type"], "-larger"],
+              ],
+              "icon-size": 0.25,
+              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+              "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
+              "text-anchor": "left",
+            },
+            paint: {
+              "text-color": "#FFFFFF",
+            },
+            filter: ["==", "$type", "Point"],
+          });
+        });
     },
 
     // ↓ Locate
