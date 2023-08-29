@@ -15,6 +15,7 @@
 </template>
 
 <script>
+// What?
 import mapboxgl from "mapbox-gl";
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import IconButtonLocate from "./Button/IconButtonLocate.vue";
