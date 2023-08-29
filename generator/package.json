@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@turf/flatten": "^6.5.0",
     "@turf/turf": "^6.5.0",
     "vue": "^3.3.4"
   },

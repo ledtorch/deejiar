@@ -115,7 +115,7 @@
       "properties": {
         "id": "2",
         "layout": "food",
-        "type": "Bar",
+        "type": "Cafe",
         "title": "Teaism Penn Quarter",
         "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
         "address": "400 8th St NW, Washington, DC 20004",
@@ -227,6 +227,97 @@
         "coordinates": [
           -77.04963686614573,
           38.794590717782455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "4",
+        "layout": "food",
+        "type": "Bar",
+        "title": "Jane Jane",
+        "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
+        "address": "1705 14th St NW, Washington, DC 20009",
+        "storefront": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg",
+        "item1": "",
+        "item2": "",
+        "icon": {
+          "default": "Button/Marker/Bar_default.png",
+          "mini": "Button/Marker/Bar_mini.png",
+          "larger": "Button/Marker/Bar_larger.png",
+          "active": "Button/Marker/Bar_active.png",
+          "withFriends": "Button/Marker/Bar_withFriends.png"
+        },
+        "businesshour": [
+          {
+            "Holiday": [
+              "0000"
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Start": "1700",
+                "Finish": "2400"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "1700",
+                "Finish": "2400"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1700",
+                "Finish": "2400"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1700",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1700",
+                "Finish": "2600"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1400",
+                "Finish": "2600"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1400",
+                "Finish": "2400"
+              }
+            ]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03162544459492,
+          38.9132761409135
         ]
       }
     }

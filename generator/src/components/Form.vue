@@ -40,7 +40,14 @@ export default {
       this.editingValue = this.value[property];
     },
     save() {
-      this.$emit("update", [this.property, this.editingValue]);
+      let valueToEmit = this.editingValue;
+
+      // Check if editingValue is a number
+      if (!isNaN(valueToEmit)) {
+        valueToEmit = parseFloat(valueToEmit);
+      }
+
+      this.$emit("update", [this.property, valueToEmit]);
       this.editing = false;
     },
   },

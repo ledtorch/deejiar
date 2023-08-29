@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@turf/flatten", "npm:6.5.0"],\
             ["@turf/turf", "npm:6.5.0"],\
             ["@vitejs/plugin-vue", "virtual:b2f8d4e6a78865a9e01715cb0771a6392074b914ebc6b5b4a7e7b279e52298abb249da0bac8a8c92bd8a1073767a26c24ff57329d61d056ce453f158bf617a61#npm:4.3.1"],\
             ["autoprefixer", "virtual:b2f8d4e6a78865a9e01715cb0771a6392074b914ebc6b5b4a7e7b279e52298abb249da0bac8a8c92bd8a1073767a26c24ff57329d61d056ce453f158bf617a61#npm:10.4.15"],\
@@ -2654,6 +2655,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["generator", "workspace:."],\
+            ["@turf/flatten", "npm:6.5.0"],\
             ["@turf/turf", "npm:6.5.0"],\
             ["@vitejs/plugin-vue", "virtual:b2f8d4e6a78865a9e01715cb0771a6392074b914ebc6b5b4a7e7b279e52298abb249da0bac8a8c92bd8a1073767a26c24ff57329d61d056ce453f158bf617a61#npm:4.3.1"],\
             ["autoprefixer", "virtual:b2f8d4e6a78865a9e01715cb0771a6392074b914ebc6b5b4a7e7b279e52298abb249da0bac8a8c92bd8a1073767a26c24ff57329d61d056ce453f158bf617a61#npm:10.4.15"],\
