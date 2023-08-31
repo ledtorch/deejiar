@@ -1,21 +1,12 @@
 <template>
   <div>
     <div id="map"></div>
-    <IconButtonLocate
-      id="iconbuttonlocate"
-      :state="buttonState"
-      @locate="locateUser"
-    ></IconButtonLocate>
-    <BottomSheet
-      id="bottomsheet"
-      :store="selectedStore"
-      @reset="resetSelectedStore"
-    />
+    <IconButtonLocate id="iconbuttonlocate" :state="buttonState" @locate="locateUser"></IconButtonLocate>
+    <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
 </template>
 
 <script>
-// What?
 import mapboxgl from "mapbox-gl";
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import IconButtonLocate from "./Button/IconButtonLocate.vue";
@@ -23,7 +14,7 @@ import IconButtonLocate from "./Button/IconButtonLocate.vue";
 export default {
   components: {
     BottomSheet,
-    IconButtonLocate,
+    IconButtonLocate
   },
   data() {
     return {
@@ -33,7 +24,7 @@ export default {
       locate: null,
       storeData: null, // Register the data for the fn' outside addStores
       districtData: null, // Register the data for the fn' outside addStores
-      tempMarker: null, // Register the temporary marker
+      tempMarker: null // Register the temporary marker
     };
   },
 
@@ -45,11 +36,11 @@ export default {
     this.locate = new mapboxgl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
       trackUserLocation: true,
-      showUserHeading: true,
+      showUserHeading: true
     });
 
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         const el = document.createElement("div");
         el.className = "location-indicator";
 
@@ -68,7 +59,7 @@ export default {
 
         this.map.setCenter([
           position.coords.longitude,
-          position.coords.latitude,
+          position.coords.latitude
         ]);
         console.log(
           "🧭 User's current position: " +
@@ -79,7 +70,7 @@ export default {
             ")"
         );
       },
-      (error) => {
+      error => {
         console.error("Geolocation error: ", error);
         this.map.setCenter([-77.0364976166554, 38.897684621644885]); // White House or default location
       }
@@ -91,12 +82,12 @@ export default {
       center: [-77.0364976166554, 38.897684621644885], // White House
       zoom: 12.5,
       minZoom: 4,
-      maxZoom: 18,
+      maxZoom: 18
     });
 
     this.map.on("load", () => {
       this.addStores();
-      this.addDistricts();
+      // this.addDistricts();
     });
   },
 
@@ -104,18 +95,18 @@ export default {
     // ↓ Stores
     addStores() {
       fetch("/stores.json")
-        .then((response) => response.json())
-        .then((data) => {
+        .then(response => response.json())
+        .then(data => {
           this.map.addSource("stores", {
             type: "geojson",
-            data: data,
+            data: data
           });
           this.storeData = data;
           // Define the source
 
           // ↓ Extract the data from json
-          data.features.forEach((feature) => {
-            ["mini", "default", "larger", "active"].forEach((size) => {
+          data.features.forEach(feature => {
+            ["mini", "default", "larger", "active"].forEach(size => {
               const iconPath =
                 "/Button/Marker/" +
                 feature.properties.type +
@@ -162,28 +153,28 @@ export default {
                 12.4,
                 ["concat", ["get", "title"], "-default"],
                 14.5,
-                ["concat", ["get", "title"], "-larger"],
+                ["concat", ["get", "title"], "-larger"]
               ],
               "icon-size": 0.25,
               // Import higher resolution and compress to normal size
 
               "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
               "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
-              "text-anchor": "left",
+              "text-anchor": "left"
             },
             paint: {
-              "text-color": "#FFFFFF",
-            },
+              "text-color": "#FFFFFF"
+            }
           });
 
           // Pass the data to clickMarker
-          this.map.on("click", "stores", (event) => this.clickMarker(event));
+          this.map.on("click", "stores", event => this.clickMarker(event));
 
           // If click the map, reset the active stores' marker
-          this.map.on("click", (event) => {
+          this.map.on("click", event => {
             // Check if the click event occurred on the stores layer
             const features = this.map.queryRenderedFeatures(event.point, {
-              layers: ["stores"], // assuming "stores" is the layer id where markers are
+              layers: ["stores"] // assuming "stores" is the layer id where markers are
             });
 
             // If the click event did not occur on the stores layer, remove the temporary marker
@@ -210,7 +201,7 @@ export default {
       const activeIcon = iconObject.active;
 
       this.selectedStore = this.storeData.features.find(
-        (store) => store.properties.title === title
+        store => store.properties.title === title
       ).properties;
 
       // ↓ Create a temporary marker
@@ -234,124 +225,124 @@ export default {
         center: [coordinates[0], coordinates[1]],
         offset: [0, -200],
         duration: 500,
-        curve: 1,
+        curve: 1
       });
       console.log("center: " + coordinates[0] + ", " + coordinates[1]);
 
       // // ↓ 🐞 Debug console
       // console.log("⬇️ Clicked the Marker");
       // console.log("title: " + title);
-      // console.log("Selected Store:", this.selectedStore);
+      console.log("Selected Store:", this.selectedStore);
     },
 
-    // ↓ District
-    addDistricts() {
-      fetch("/districts.json")
-        .then((response) => response.json())
-        .then((data) => {
-          this.map.addSource("districts", {
-            type: "geojson",
-            data: data,
-          });
-          this.districtData = data;
+    // // ↓ District
+    // addDistricts() {
+    //   fetch("/districts.json")
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       this.map.addSource("districts", {
+    //         type: "geojson",
+    //         data: data
+    //       });
+    //       this.districtData = data;
 
-          // Render the district's area
-          this.map.addLayer({
-            id: "districts",
-            type: "fill",
-            source: "districts",
-            layout: {},
-            paint: {
-              "fill-color": "#3DC363",
-              "fill-opacity": 0.6,
-            },
-            filter: ["==", "$type", "Polygon"],
-          });
-          // Render the district's border
-          this.map.addLayer({
-            id: "outline",
-            type: "line",
-            source: "districts",
-            layout: {},
-            paint: {
-              "line-color": "#3DC363",
-              "line-width": 1,
-            },
-            filter: ["==", "$type", "Polygon"],
-          });
+    //       // Render the district's area
+    //       this.map.addLayer({
+    //         id: "districts",
+    //         type: "fill",
+    //         source: "districts",
+    //         layout: {},
+    //         paint: {
+    //           "fill-color": "#3DC363",
+    //           "fill-opacity": 0.6
+    //         },
+    //         filter: ["==", "$type", "Polygon"]
+    //       });
+    //       // Render the district's border
+    //       this.map.addLayer({
+    //         id: "outline",
+    //         type: "line",
+    //         source: "districts",
+    //         layout: {},
+    //         paint: {
+    //           "line-color": "#3DC363",
+    //           "line-width": 1
+    //         },
+    //         filter: ["==", "$type", "Polygon"]
+    //       });
 
-          // ↓ Extract the data from json
-          // Load images
-          data.features.forEach((feature) => {
-            if (feature.geometry.type === "Point") {
-              ["mini", "default", "larger", "active"].forEach((size) => {
-                const iconPath =
-                  "/Button/Marker/" +
-                  feature.properties.type +
-                  "_" +
-                  size +
-                  ".png";
-                this.map.loadImage(iconPath, (error, image) => {
-                  if (error) throw error;
-                  const iconName = feature.properties.type + "-" + size;
-                  this.map.addImage(iconName, image);
-                });
-              });
-            }
-          });
+    //       // ↓ Extract the data from json
+    //       // Load images
+    //       data.features.forEach(feature => {
+    //         if (feature.geometry.type === "Point") {
+    //           ["mini", "default", "larger", "active"].forEach(size => {
+    //             const iconPath =
+    //               "/Button/Marker/" +
+    //               feature.properties.type +
+    //               "_" +
+    //               size +
+    //               ".png";
+    //             this.map.loadImage(iconPath, (error, image) => {
+    //               if (error) throw error;
+    //               const iconName = feature.properties.type + "-" + size;
+    //               this.map.addImage(iconName, image);
+    //             });
+    //           });
+    //         }
+    //       });
 
-          // ↓ Setup the text of the districts' marker
-          this.map.on("zoom", () => {
-            const zoomLevel = this.map.getZoom();
+    //       // ↓ Setup the text of the districts' marker
+    //       this.map.on("zoom", () => {
+    //         const zoomLevel = this.map.getZoom();
 
-            if (zoomLevel >= 14.5) {
-              this.map.setLayoutProperty("markers", "text-offset", [1, 0]);
-            } else if (zoomLevel >= 12.4) {
-              this.map.setLayoutProperty("markers", "text-offset", [0.8, 0]);
-            } else {
-              this.map.setLayoutProperty("markers", "text-offset", [0, 0]);
-            }
-          });
+    //         if (zoomLevel >= 14.5) {
+    //           this.map.setLayoutProperty("markers", "text-offset", [1, 0]);
+    //         } else if (zoomLevel >= 12.4) {
+    //           this.map.setLayoutProperty("markers", "text-offset", [0.8, 0]);
+    //         } else {
+    //           this.map.setLayoutProperty("markers", "text-offset", [0, 0]);
+    //         }
+    //       });
 
-          // Render the districts' marker as a layer
-          this.map.addLayer({
-            id: "markers",
-            type: "symbol",
-            source: "districts",
-            layout: {
-              "icon-image": [
-                "step",
-                ["zoom"],
-                "", // this will display nothing from zoom levels 3-10
-                10,
-                ["concat", ["get", "type"], "-mini"],
-                12.4,
-                ["concat", ["get", "type"], "-default"],
-                14.5,
-                ["concat", ["get", "type"], "-larger"],
-              ],
-              "icon-size": 0.25,
-              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-              "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
-              "text-anchor": "left",
-            },
-            paint: {
-              "text-color": "#FFFFFF",
-            },
-            filter: ["==", "$type", "Point"],
-          });
-        });
-    },
+    //       // Render the districts' marker as a layer
+    //       this.map.addLayer({
+    //         id: "markers",
+    //         type: "symbol",
+    //         source: "districts",
+    //         layout: {
+    //           "icon-image": [
+    //             "step",
+    //             ["zoom"],
+    //             "", // this will display nothing from zoom levels 3-10
+    //             10,
+    //             ["concat", ["get", "type"], "-mini"],
+    //             12.4,
+    //             ["concat", ["get", "type"], "-default"],
+    //             14.5,
+    //             ["concat", ["get", "type"], "-larger"]
+    //           ],
+    //           "icon-size": 0.25,
+    //           "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+    //           "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
+    //           "text-anchor": "left"
+    //         },
+    //         paint: {
+    //           "text-color": "#FFFFFF"
+    //         },
+    //         filter: ["==", "$type", "Point"]
+    //       });
+    //     });
+    // },
 
     // ↓ Locate
     locateUser() {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        position => {
           this.map.flyTo({
             center: [position.coords.longitude, position.coords.latitude],
             zoom: 12.5, // optional zoom level
             speed: 2, // make the flying slow
-            curve: 1, // change the speed at which it zooms out
+            curve: 1 // change the speed at which it zooms out
           });
           console.log(
             "🧭 Locate the user to current position: " +
@@ -362,7 +353,7 @@ export default {
               ")"
           );
         },
-        (error) => {
+        error => {
           console.error("Geolocation error: ", error);
           this.map.setCenter([-77.0364976166554, 38.897684621644885]); // White House or default location
         }
@@ -372,9 +363,9 @@ export default {
     resetSelectedStore() {
       this.selectedStore = null;
       this.tempMarker.remove();
-    },
+    }
     // Clean the data and make showAvatar = false, so the default avatar could be displayed
-  },
+  }
 };
 </script>
 

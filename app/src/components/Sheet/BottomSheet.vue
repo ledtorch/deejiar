@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="bottom-sheet"
-    :style="{ height: bottomSheetHeight }"
-    ref="bottomSheet"
-  >
+  <div class="bottom-sheet" :style="{ height: bottomSheetHeight }" ref="bottomSheet">
     <div class="control-area" ref="controlArea">
       <div class="control-bar"></div>
     </div>
@@ -74,12 +70,12 @@ export default {
   components: { IconButtonClose, TagShopType, Avatar, Review, Businesshour },
   data() {
     return {
-      buttonState: "default",
+      buttonState: "default"
     };
   },
   name: "BottomSheet",
   props: {
-    store: Object,
+    store: Object
   },
 
   setup(props) {
@@ -101,21 +97,18 @@ export default {
     const { store } = toRefs(props);
     // Convert props to reactive references
 
-    watch(store, (newStore) => {
+    watch(store, newStore => {
       if (newStore !== null) {
         bottomSheetHeight.value = withStoreHeight;
       }
     });
     // Watch the store value for changes
 
-    const updateSheetHeight = (height) => {
+    const updateSheetHeight = height => {
       bottomSheetHeight.value = `${height}`;
-      console.log("👉 updateSheetHeight: " + bottomSheetHeight.value);
-      // Toggles the fullscreen class to bottomSheet if the height is equal to 100
-      // bottomSheet.classList.toggle("fullscreen", height === 100);
     };
 
-    const dragStart = (event) => {
+    const dragStart = event => {
       console.log("dragStart");
 
       isDragging.value = true;
@@ -124,10 +117,7 @@ export default {
 
       startHeight = parseInt(bottomSheetHeight.value);
       bottomSheet.value.classList.add("dragging");
-      console.log("startHeight: " + startHeight + " & " + "startY: " + startY);
-      console.log(
-        "bottomSheet.value.classList: " + bottomSheet.value.classList
-      );
+      // console.log("startHeight: " + startHeight + " & " + "startY: " + startY); // ← 🐞 Debug console
 
       document.addEventListener("mousemove", dragging);
       document.addEventListener("mouseup", dragStop);
@@ -141,11 +131,22 @@ export default {
       isDragging.value = false;
       bottomSheet.value.classList.remove("dragging");
       const sheetHeight = parseInt(bottomSheet.value.style.height);
-      sheetHeight < 150
-        ? updateSheetHeight(minHeight)
-        : sheetHeight > 500
-        ? updateSheetHeight(maxHeight)
-        : updateSheetHeight(withStoreHeight);
+
+      if (sheetHeight >= 600) {
+        if (store && props.store.title) {
+          // Navigate to detail.vue
+          router.push({
+            name: "detail",
+            params: { title: props.store.title }
+          });
+          console.log("Navigating to Detail with title:", props.store.title);
+        }
+        sheetHeight < 150
+          ? updateSheetHeight(minHeight)
+          : sheetHeight > 500
+          ? updateSheetHeight(maxHeight)
+          : updateSheetHeight(withStoreHeight);
+      }
 
       document.removeEventListener("mousemove", dragging);
       document.removeEventListener("touchmove", dragging);
@@ -154,7 +155,7 @@ export default {
       // Remove listener
     };
 
-    const dragging = (event) => {
+    const dragging = event => {
       console.log("Dragging");
 
       if (!isDragging.value) return;
@@ -162,8 +163,7 @@ export default {
       const newHeight = startHeight + delta;
 
       updateSheetHeight(newHeight + `px`);
-
-      console.log("newHeight: " + newHeight + " & " + "delta: " + delta);
+      // console.log("newHeight: " + newHeight + " & " + "delta: " + delta); // ← 🐞 Debug console
     };
 
     onMounted(() => {
@@ -173,14 +173,14 @@ export default {
     return {
       controlArea,
       bottomSheet,
-      bottomSheetHeight,
+      bottomSheetHeight
     };
   },
 
   methods: {
     closeBottomSheet() {
       this.$emit("reset");
-    },
+    }
   },
 
   computed: {
@@ -189,7 +189,7 @@ export default {
     },
 
     storeLayout() {
-      console.log("Compute storeLayout:" + this.store?.layout); // ← 🐞 Debug console
+      // console.log("Compute storeLayout: " + this.store?.layout); // ← 🐞 Debug console
       return this.store?.layout;
     },
 
@@ -199,13 +199,13 @@ export default {
     },
     item1() {
       // console.log("📃 item1 URL: " + this.store?.item1); // ← 🐞 Debug console
-      return `background: url('${this.store?.item1}') center/cover no-repeat;  `;
+      return `background: url('${this.store?.item1.image}') center/cover no-repeat;  `;
     },
     item2() {
       // console.log("📃 item2 URL: " + this.store?.item2); // ← 🐞 Debug console
-      return `background: url('${this.store?.item2}') center/cover no-repeat;`;
-    },
-  },
+      return `background: url('${this.store?.item2.image}') center/cover no-repeat;`;
+    }
+  }
 };
 </script>
 
