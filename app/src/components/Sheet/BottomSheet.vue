@@ -81,28 +81,28 @@ export default {
   setup(props) {
     const router = useRouter();
 
+    // Use ref to bound to DOM
     const isDragging = ref(false);
     const bottomSheetHeight = ref("32px");
     const bottomSheet = ref(null);
     const controlArea = ref(null);
-    // Use ref to bound to DOM
 
+    // Initialize values for dragging fn'
     let startY = 0;
     let startHeight = 0;
     const minHeight = `32px`;
     const withStoreHeight = `467px`;
     const maxHeight = `100%`;
-    // Initialize values for dragging fn'
 
-    const { store } = toRefs(props);
     // Convert props to reactive references
+    const { store } = toRefs(props);
 
+    // Watch the store value for changes
     watch(store, newStore => {
       if (newStore !== null) {
         bottomSheetHeight.value = withStoreHeight;
       }
     });
-    // Watch the store value for changes
 
     const updateSheetHeight = height => {
       bottomSheetHeight.value = `${height}`;
@@ -111,19 +111,20 @@ export default {
     const dragStart = event => {
       console.log("dragStart");
 
+      // Assign startY to pageY(mouse) or pageY(touch screen)
       isDragging.value = true;
       startY = event.pageY || event.touches?.[0].pageY;
-      // Assign startY to pageY(mouse) or pageY(touch screen)
 
       startHeight = parseInt(bottomSheetHeight.value);
       bottomSheet.value.classList.add("dragging");
-      // console.log("startHeight: " + startHeight + " & " + "startY: " + startY); // ← 🐞 Debug console
+      // // 🐞 Debug console
+      // console.log("startHeight: " + startHeight + " & " + "startY: " + startY);
 
+      // Add listener
       document.addEventListener("mousemove", dragging);
       document.addEventListener("mouseup", dragStop);
       document.addEventListener("touchmove", dragging);
       document.addEventListener("touchend", dragStop);
-      // Add listener
     };
 
     const dragStop = () => {
@@ -132,9 +133,9 @@ export default {
       bottomSheet.value.classList.remove("dragging");
       const sheetHeight = parseInt(bottomSheet.value.style.height);
 
+      // Navigate to detail.vue
       if (sheetHeight >= 600) {
         if (store && props.store.title) {
-          // Navigate to detail.vue
           router.push({
             name: "detail",
             params: { title: props.store.title }
@@ -148,11 +149,11 @@ export default {
           : updateSheetHeight(withStoreHeight);
       }
 
+      // Remove listener
       document.removeEventListener("mousemove", dragging);
       document.removeEventListener("touchmove", dragging);
       document.removeEventListener("mouseup", dragStop);
       document.removeEventListener("touchend", dragStop);
-      // Remove listener
     };
 
     const dragging = event => {
@@ -163,7 +164,8 @@ export default {
       const newHeight = startHeight + delta;
 
       updateSheetHeight(newHeight + `px`);
-      // console.log("newHeight: " + newHeight + " & " + "delta: " + delta); // ← 🐞 Debug console
+      // // 🐞 Debug console
+      // console.log("newHeight: " + newHeight + " & " + "delta: " + delta);
     };
 
     onMounted(() => {
@@ -189,21 +191,25 @@ export default {
     },
 
     storeLayout() {
-      // console.log("Compute storeLayout: " + this.store?.layout); // ← 🐞 Debug console
+      // // 🐞 Debug console
+      // console.log("Compute storeLayout: " + this.store?.layout);
       return this.store?.layout;
     },
 
     mainColumnImage() {
-      // console.log("📃 Storefront URL: " + this.store?.storefront); // ← 🐞 Debug console
       return `background: url('${this.store?.storefront}') center/cover no-repeat;`;
+      // // 🐞 Debug console
+      // console.log("📃 Storefront URL: " + this.store?.storefront);
     },
     item1() {
-      // console.log("📃 item1 URL: " + this.store?.item1); // ← 🐞 Debug console
       return `background: url('${this.store?.item1.image}') center/cover no-repeat;  `;
+      // // 🐞 Debug console
+      // console.log("📃 item1 URL: " + this.store?.item1);
     },
     item2() {
-      // console.log("📃 item2 URL: " + this.store?.item2); // ← 🐞 Debug console
       return `background: url('${this.store?.item2.image}') center/cover no-repeat;`;
+      // // 🐞 Debug console
+      // console.log("📃 item2 URL: " + this.store?.item2);
     }
   }
 };

@@ -1,31 +1,34 @@
 <template>
   <div>
     <p :class="['subhead', bizHr.stateClass]">{{ bizHr.state }}</p>
-    <p :class="['subhead', bizHr.timeClass]" v-if="bizHr.isTime">
-      &nbsp; · &nbsp;{{ bizHr.time }}
-    </p>
-    <p :class="['subhead', bizHr.nextTimeClass]" v-if="bizHr.isNextTime">
-      &nbsp; · &nbsp;{{ bizHr.nextTime }}
-    </p>
+    <p :class="['subhead', bizHr.timeClass]" v-if="bizHr.isTime">&nbsp; · &nbsp;{{ bizHr.time }}</p>
+    <p
+      :class="['subhead', bizHr.nextTimeClass]"
+      v-if="bizHr.isNextTime"
+    >&nbsp; · &nbsp;{{ bizHr.nextTime }}</p>
   </div>
 </template>
   
 <script>
 export default {
   props: {
-    store: Object,
+    store: Object
   },
   computed: {
     bizHr() {
+      // Define time
       const currentTime = new Date();
-      let currentDay = currentTime.getDay(); // Sunday = 0
-      if (currentDay === 0) currentDay = 7; // If Sunday, make it 7
-      const currentMonth = String(currentTime.getMonth() + 1).padStart(2, "0"); // Jan = 0
+
+      // If Sunday, make it 7 instead of 0
+      let currentDay = currentTime.getDay();
+      if (currentDay === 0) currentDay = 7;
+
+      const currentMonth = String(currentTime.getMonth() + 1).padStart(2, "0");
       const currentDate = String(currentTime.getDate()).padStart(2, "0");
       const currentHour = String(currentTime.getHours()).padStart(2, "0");
       const currentMinute = String(currentTime.getMinutes()).padStart(2, "0");
-      // Define time
 
+      // Initialization
       let state = "";
       let time = "";
       let isTime = false;
@@ -34,9 +37,8 @@ export default {
       let stateClass = "";
       let timeClass = "";
       let nextTimeClass = "";
-      // Initialization
 
-      // // ↓ 🐞 Debug console
+      // // 🐞 Debug console
       // console.log("Day: " + currentDay)
       // console.log("Month: " + currentMonth)
       // console.log("Date: " + currentDate)
@@ -56,11 +58,12 @@ export default {
         this.store.businesshour[0] &&
         this.store.businesshour[0].Holiday !== null
       ) {
-        const holidays = this.store.businesshour[0].Holiday;
-        // console.log("Holidays: " + holidays); // ← 🐞 Debug console
         // Extract holiday
+        const holidays = this.store.businesshour[0].Holiday;
+        // // 🐞 Debug console
+        // console.log("Holidays: " + holidays);
 
-        // ↓ Check if the business is closed for the holiday
+        // Check if the business is closed for the holiday
         const currentMonthandDay = currentMonth + currentDate;
         const bizDay = this.store.businesshour[currentDay];
         if (holidays.includes(currentMonthandDay)) {
@@ -81,11 +84,13 @@ export default {
         } else if (bizDay === null) {
           state = "Closed";
           stateClass = "isClose";
-          // Reopen?
+
+          // TODO: Reopen
         } else {
           state = "Open";
           stateClass = "isOpen";
-          // Check time range
+
+          // TODO: Check time range
         }
       }
 
@@ -97,10 +102,10 @@ export default {
         isNextTime: isNextTime,
         stateClass: stateClass,
         timeClass: timeClass,
-        nextTimeClass: nextTimeClass,
+        nextTimeClass: nextTimeClass
       };
-    },
-  },
+    }
+  }
 };
 </script>
   

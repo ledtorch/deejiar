@@ -21,11 +21,6 @@ export default defineConfig({
     },
   },
 
-  // // Normal Server
-  // server: {
-  //   host: '0.0.0.0'
-  // }
-
   // HTTPS Server
   server: {
     https: {
