@@ -43,36 +43,55 @@ export default {
       showUserHeading: true
     });
 
+
+    // If localStorage contains markerLatitude and markerLongitude, set the map center to these coordinates
+    const markerLatitude = localStorage.getItem('markerLatitude');
+    const markerLongitude = localStorage.getItem('markerLongitude');
+    console.log("markerLatitude: " + markerLatitude)
+
     navigator.geolocation.getCurrentPosition(
       position => {
-        const el = document.createElement("div");
-        el.className = "location-indicator";
+        // TODO: User mark
+        // const el = document.createElement("div");
+        // el.className = "location-indicator";
 
-        const ringDiv = document.createElement("div");
-        ringDiv.className = "ring";
-        el.appendChild(ringDiv);
+        // const ringDiv = document.createElement("div");
+        // ringDiv.className = "ring";
+        // el.appendChild(ringDiv);
 
-        const innerBallDiv = document.createElement("div");
-        innerBallDiv.className = "inner-ball";
-        ringDiv.appendChild(innerBallDiv);
+        // const innerBallDiv = document.createElement("div");
+        // innerBallDiv.className = "inner-ball";
+        // ringDiv.appendChild(innerBallDiv);
 
-        // Create a location indicator of the user
-        new mapboxgl.Marker(el)
-          .setLngLat([position.coords.longitude, position.coords.latitude])
-          .addTo(this.map);
+        // // Create a location indicator of the user
+        // new mapboxgl.Marker(el)
+        //   .setLngLat([position.coords.longitude, position.coords.latitude])
+        //   .addTo(this.map);
 
-        this.map.setCenter([
-          position.coords.longitude,
-          position.coords.latitude
-        ]);
+        // this.map.setCenter([
+        //   position.coords.longitude,
+        //   position.coords.latitude
+        // ]);
+
+        if (markerLatitude && markerLongitude) {
+          this.map.setCenter([
+            markerLatitude,
+            markerLongitude
+          ]);
+        } else {
+          this.map.setCenter([
+            position.coords.longitude,
+            position.coords.latitude
+          ]);
+        }
 
         console.log(
-          "🧭 User's current position: " +
-            "(" +
-            position.coords.latitude +
-            "," +
-            position.coords.longitude +
-            ")"
+          "📍 User's current position: " +
+          "(" +
+          position.coords.latitude +
+          "," +
+          position.coords.longitude +
+          ")"
         );
       },
       error => {
@@ -93,6 +112,9 @@ export default {
       minZoom: 4,
       maxZoom: 18
     });
+
+
+
 
     this.map.on("load", () => {
       this.addStores();
@@ -158,12 +180,9 @@ export default {
                 "step",
                 ["zoom"],
                 "",
-                10,
-                ["concat", ["get", "title"], "-mini"],
-                12.4,
-                ["concat", ["get", "title"], "-default"],
-                14.5,
-                ["concat", ["get", "title"], "-larger"]
+                10, ["concat", ["get", "title"], "-mini"],
+                12.4, ["concat", ["get", "title"], "-default"],
+                14.5, ["concat", ["get", "title"], "-larger"]
               ],
 
               // Import higher resolution and compress to normal size
@@ -205,8 +224,10 @@ export default {
       }
 
       const title = event.features[0].properties.title;
-      // When the event pass to clickMarker(), the Mapbox makes a new "features" that packages the data of the event
-      // Which means this "features" is a new features instead of the stores.json
+      /** 
+       * When the event pass to clickMarker(), the Mapbox makes a new "features" that packages the data of the event
+       * which means this "features" is a new features instead of the stores.json
+       */
       const coordinates = event.features[0].geometry.coordinates;
       const iconString = event.features[0].properties.icon;
       const iconObject = JSON.parse(iconString);
@@ -226,7 +247,8 @@ export default {
       el.style.width = "52px";
       el.style.height = "79px";
 
-      console.log("Icon: ", activeIcon);
+      // // 🐞 Debug console
+      // console.log("Icon: ", activeIcon);
 
       this.tempMarker = new mapboxgl.Marker(el, { offset: [0, -24] })
         .setLngLat(coordinates)
@@ -238,12 +260,16 @@ export default {
         duration: 500,
         curve: 1
       });
-      console.log("center: " + coordinates[0] + ", " + coordinates[1]);
+
+      // Store latitude and longitude in local storage
+      localStorage.setItem('markerLatitude', coordinates[0]);
+      localStorage.setItem('markerLongitude', coordinates[1]);
 
       // // 🐞 Debug console
       // console.log("⬇️ Clicked the Marker");
       // console.log("title: " + title);
       // console.log("Selected Store:", this.selectedStore);
+      // console.log("center: " + coordinates[0] + ", " + coordinates[1]);
     },
 
     // // District
@@ -345,7 +371,7 @@ export default {
     //     });
     // },
 
-    // ↓ Locate
+    // Locate
     locateUser() {
       navigator.geolocation.getCurrentPosition(
         position => {
@@ -356,12 +382,8 @@ export default {
             curve: 1 // change the speed at which it zooms out
           });
           console.log(
-            "🧭 Locate the user to current position: " +
-              "(" +
-              position.coords.latitude +
-              "," +
-              position.coords.longitude +
-              ")"
+            "Locate the user to current position: "
+            + "(" + position.coords.latitude + "," + position.coords.longitude + ")"
           );
         },
         error => {
