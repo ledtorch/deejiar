@@ -5,9 +5,10 @@ import Detail from "./components/Detail.vue";
 
 import router from './router.js'
 
-import './style.css'
 // Global CSS
-import 'mapbox-gl/dist/mapbox-gl.css';
+import './style.css'
+
 // Dependency
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 createApp(App).use(router).mount('#app')

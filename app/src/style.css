@@ -1,7 +1,7 @@
+/* Romove the watermark */
 .mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
 	display: none !important;
 }
-/* Romove the watermark */
 
 @font-face {
 	font-family: 'Be Vietnam Pro';
@@ -63,10 +63,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden; /* Hide horizontal scroll */
-  overflow-y: hidden; /* Hide vertical scroll */
-  width: 100vw; /* 100% of viewport width */
-  height: 100vh; /* 100% of viewport height */
+
+	/* Hide scroll */
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  width: 100vw;
+  height: 100vh;
 }
 
 div {

@@ -1,13 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-import autoprefixer from 'autoprefixer';
 // CSS Dependency
+import autoprefixer from 'autoprefixer';
 
-import fs from 'fs';
 // HTTPS Dependency
+import fs from 'fs';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
   css: {
@@ -26,7 +25,7 @@ export default defineConfig({
   // server: {
   //   host: '0.0.0.0'
   // }
-  
+
   // HTTPS Server
   server: {
     https: {

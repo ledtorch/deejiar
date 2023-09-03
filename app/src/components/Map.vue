@@ -22,13 +22,17 @@ export default {
       selectedStore: null,
       buttonState: "default",
       locate: null,
-      storeData: null, // Register the data for the fn' outside addStores
-      districtData: null, // Register the data for the fn' outside addStores
-      tempMarker: null // Register the temporary marker
+
+      // Register the data for using out of the render layer
+      storeData: null,
+      districtData: null,
+
+      // Register the temporary marker
+      tempMarker: null
     };
   },
 
-  // ↓ Mount Mapbox
+  // Mount Mapbox
   mounted() {
     mapboxgl.accessToken =
       "pk.eyJ1IjoibmFpdmViYXJhIiwiYSI6ImNsa3lzZmV6ZzA1NHMzbW13ZjJ4aTJodzIifQ.kaC5YvO-g5idBZK4bDvZ7g";
@@ -52,15 +56,16 @@ export default {
         innerBallDiv.className = "inner-ball";
         ringDiv.appendChild(innerBallDiv);
 
+        // Create a location indicator of the user
         new mapboxgl.Marker(el)
           .setLngLat([position.coords.longitude, position.coords.latitude])
           .addTo(this.map);
-        // Create a location indicator of the user
 
         this.map.setCenter([
           position.coords.longitude,
           position.coords.latitude
         ]);
+
         console.log(
           "🧭 User's current position: " +
             "(" +
@@ -72,14 +77,18 @@ export default {
       },
       error => {
         console.error("Geolocation error: ", error);
-        this.map.setCenter([-77.0364976166554, 38.897684621644885]); // White House or default location
+
+        // If error, direct the user to the White House
+        this.map.setCenter([-77.0364976166554, 38.897684621644885]);
       }
     );
 
     this.map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/naivebara/clkyvh09v00m701me403i1svm",
-      center: [-77.0364976166554, 38.897684621644885], // White House
+
+      // White House
+      center: [-77.0364976166554, 38.897684621644885],
       zoom: 12.5,
       minZoom: 4,
       maxZoom: 18
@@ -92,7 +101,7 @@ export default {
   },
 
   methods: {
-    // ↓ Stores
+    // Stores
     addStores() {
       fetch("/stores.json")
         .then(response => response.json())
@@ -101,10 +110,11 @@ export default {
             type: "geojson",
             data: data
           });
-          this.storeData = data;
-          // Define the source
 
-          // ↓ Extract the data from json
+          // Define the source
+          this.storeData = data;
+
+          // Extract the data from json
           data.features.forEach(feature => {
             ["mini", "default", "larger", "active"].forEach(size => {
               const iconPath =
@@ -125,7 +135,7 @@ export default {
             });
           });
 
-          // ↓ Setup the text of the stores' marker
+          // Setup the text of the stores' marker
           this.map.on("zoom", () => {
             const zoomLevel = this.map.getZoom();
 
@@ -138,7 +148,7 @@ export default {
             }
           });
 
-          // ↓ Render the stores' marker as a layer
+          // Render the stores' marker as a layer
           this.map.addLayer({
             id: "stores",
             type: "symbol",
@@ -147,7 +157,7 @@ export default {
               "icon-image": [
                 "step",
                 ["zoom"],
-                "", // this will display nothing from zoom levels 3-10
+                "",
                 10,
                 ["concat", ["get", "title"], "-mini"],
                 12.4,
@@ -155,8 +165,9 @@ export default {
                 14.5,
                 ["concat", ["get", "title"], "-larger"]
               ],
-              "icon-size": 0.25,
+
               // Import higher resolution and compress to normal size
+              "icon-size": 0.25,
 
               "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
               "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
@@ -174,19 +185,20 @@ export default {
           this.map.on("click", event => {
             // Check if the click event occurred on the stores layer
             const features = this.map.queryRenderedFeatures(event.point, {
-              layers: ["stores"] // assuming "stores" is the layer id where markers are
+              // assuming "stores" is the layer id where markers are
+              layers: ["stores"]
             });
 
             // If the click event did not occur on the stores layer, remove the temporary marker
             if (!features.length && this.tempMarker) {
               this.tempMarker.remove();
-              this.tempMarker = null; // Reset the temporary marker variable
+              this.tempMarker = null;
             }
           });
         });
     },
 
-    // ↓ Create a temp marker and move the center when click it
+    // Create a temp marker and move the center when click it
     clickMarker(event) {
       if (this.tempMarker) {
         this.tempMarker.remove();
@@ -204,7 +216,7 @@ export default {
         store => store.properties.title === title
       ).properties;
 
-      // ↓ Create a temporary marker
+      // Create a temporary marker
       const el = document.createElement("div");
       el.className = "marker-active";
       el.style.backgroundImage = `url(${activeIcon})`;
@@ -216,7 +228,6 @@ export default {
 
       console.log("Icon: ", activeIcon);
 
-      // console.log("el.style.backgroundImage: " + el.style.backgroundImage);
       this.tempMarker = new mapboxgl.Marker(el, { offset: [0, -24] })
         .setLngLat(coordinates)
         .addTo(this.map);
@@ -229,13 +240,13 @@ export default {
       });
       console.log("center: " + coordinates[0] + ", " + coordinates[1]);
 
-      // // ↓ 🐞 Debug console
+      // // 🐞 Debug console
       // console.log("⬇️ Clicked the Marker");
       // console.log("title: " + title);
-      console.log("Selected Store:", this.selectedStore);
+      // console.log("Selected Store:", this.selectedStore);
     },
 
-    // // ↓ District
+    // // District
     // addDistricts() {
     //   fetch("/districts.json")
     //     .then(response => response.json())
@@ -364,16 +375,17 @@ export default {
       this.selectedStore = null;
       this.tempMarker.remove();
     }
-    // Clean the data and make showAvatar = false, so the default avatar could be displayed
   }
 };
 </script>
 
 <style lang="scss" scoped>
 #map {
-  overflow: hidden; /* Prevent any unexpected overflow */
+  /* Prevent any unexpected overflow */
+  overflow: hidden;
+
   position: relative;
-  flex-direction: column; /* Align children vertically */
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
 }
@@ -388,8 +400,8 @@ export default {
 
 #iconbuttonlocate {
   position: absolute;
-  bottom: 48px; /* Distance from the bottom */
-  right: 16px; /* Distance from the right */
+  bottom: 48px;
+  right: 16px;
   z-index: 1;
   transition: transform 0.3s ease;
 }
@@ -403,7 +415,6 @@ export default {
   width: 24px;
   height: 24px;
   padding: 2px;
-  display: flex; // Added to center the inner elements
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
@@ -411,7 +422,6 @@ export default {
 }
 
 .inner-ball {
-  // Corrected from .ball to .inner-ball
   width: 16px;
   height: 16px;
   flex-shrink: 0;
