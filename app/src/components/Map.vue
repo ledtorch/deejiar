@@ -10,6 +10,7 @@
 import mapboxgl from "mapbox-gl";
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import IconButtonLocate from "./Button/IconButtonLocate.vue";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -34,8 +35,7 @@ export default {
 
   // Mount Mapbox
   mounted() {
-    mapboxgl.accessToken =
-      "pk.eyJ1IjoibmFpdmViYXJhIiwiYSI6ImNsa3lzZmV6ZzA1NHMzbW13ZjJ4aTJodzIifQ.kaC5YvO-g5idBZK4bDvZ7g";
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
     this.locate = new mapboxgl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
@@ -43,8 +43,7 @@ export default {
       showUserHeading: true
     });
 
-
-    // If localStorage contains markerLatitude and markerLongitude, set the map center to these coordinates
+    // Initialize stored position
     const markerLatitude = localStorage.getItem('markerLatitude');
     const markerLongitude = localStorage.getItem('markerLongitude');
     console.log("markerLatitude: " + markerLatitude)
@@ -112,9 +111,6 @@ export default {
       minZoom: 4,
       maxZoom: 18
     });
-
-
-
 
     this.map.on("load", () => {
       this.addStores();
@@ -232,6 +228,8 @@ export default {
       const iconString = event.features[0].properties.icon;
       const iconObject = JSON.parse(iconString);
       const activeIcon = iconObject.active;
+
+      const router = useRouter();
 
       this.selectedStore = this.storeData.features.find(
         store => store.properties.title === title

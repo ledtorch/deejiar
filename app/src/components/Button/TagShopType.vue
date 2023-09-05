@@ -18,7 +18,9 @@ export default {
     icon() {
       const type = this.store?.type;
       const path = `/Icon/category/${type}.png`;
-      console.log("🆗 Component -> TagShopType, Icon Path: " + path);
+
+      // // 🐞 Debug console
+      // console.log("🆗 Component -> TagShopType, Icon Path: " + path);
       return { backgroundImage: `url('${path}')` };
     },
   },
@@ -29,6 +31,7 @@ export default {
 h2 {
   color: black;
 }
+
 .tag-shop-frame {
   align-items: center;
   gap: 4px;

@@ -138,15 +138,20 @@ export default {
         if (store && props.store.title) {
           router.push({
             name: "detail",
-            params: { title: props.store.title }
+            params: {
+              title: props.store.title,
+
+              // Convert the obj into a string and pass it to router
+              dataFromBottomSheet: JSON.stringify(props.store)
+            }
           });
-          console.log("Navigating to Detail with title:", props.store.title);
+          console.log("dataFromBottomSheet:", this.dataFromBottomSheet);
         }
         sheetHeight < 150
           ? updateSheetHeight(minHeight)
           : sheetHeight > 500
-          ? updateSheetHeight(maxHeight)
-          : updateSheetHeight(withStoreHeight);
+            ? updateSheetHeight(maxHeight)
+            : updateSheetHeight(withStoreHeight);
       }
 
       // Remove listener
@@ -197,19 +202,19 @@ export default {
     },
 
     mainColumnImage() {
-      return `background: url('${this.store?.storefront}') center/cover no-repeat;`;
       // // 🐞 Debug console
       // console.log("📃 Storefront URL: " + this.store?.storefront);
+      return `background: url('${this.store?.storefront}') center/cover no-repeat;`;
     },
     item1() {
-      return `background: url('${this.store?.item1.image}') center/cover no-repeat;  `;
       // // 🐞 Debug console
       // console.log("📃 item1 URL: " + this.store?.item1);
+      return `background: url('${this.store?.item1.image}') center/cover no-repeat;  `;
     },
     item2() {
-      return `background: url('${this.store?.item2.image}') center/cover no-repeat;`;
       // // 🐞 Debug console
       // console.log("📃 item2 URL: " + this.store?.item2);
+      return `background: url('${this.store?.item2.image}') center/cover no-repeat;`;
     }
   }
 };
@@ -283,6 +288,7 @@ export default {
   height: 180px;
   border-radius: 12px;
 }
+
 .main-column--view {
   width: 100%;
   height: 260px;
@@ -318,7 +324,8 @@ export default {
   max-height: 48px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Adjust to the number of lines you want to display */
+  -webkit-line-clamp: 2;
+  /* Adjust to the number of lines you want to display */
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
 }

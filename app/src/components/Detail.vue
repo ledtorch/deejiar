@@ -1,69 +1,131 @@
 <template>
   <div class="body">
-    <div class="cover" :style="cover"></div>
-    <TagShopType :store="store" />
-    <div class="title-block">
-      <h2 class="stretch">{{ title }}</h2>
-      <TagShopType :store="store" />
+    <div class="cover" :style="{ 'backgroundImage': mainColumnImage }"></div>
+    <div class="content">
+      <div class=" content-frame">
+        <div class="title-block">
+          <h2 class="stretch">{{ storeTitle }}</h2>
+          <TagShopType :store="dataFromBottomSheet" />
+        </div>
+        <p class="state">{{ description }}</p>
+        <p>{{}}</p>
+      </div>
     </div>
-    <p class="state">{{ description }}</p>
   </div>
 </template>
   
 <script>
-import { useRoute } from "vue-router";
 import IconButtonClose from "./Button/IconButtonClose.vue";
 import TagShopType from "./Button/TagShopType.vue";
-import Avatar from "./Sheet/Avatar.vue";
 import Review from "./Sheet/Review.vue";
 import Businesshour from "./Sheet/Businesshour.vue";
+
 export default {
-  props: ["store", "title"],
+  components: { IconButtonClose, TagShopType, Review, Businesshour },
   data() {
     return {
-      description: null
-    };
+      storeTitle: '',
+      description: '',
+      storeType: ''
+    }
+  },
+  props: {
+    title: String,
+    dataFromBottomSheet: Object,
+  },
+  methods: {
+    backgroundImageUrl(imagePath) {
+      const baseUrl = `${window.location.protocol}//${window.location.host}`;
+      return `url('${baseUrl}/${imagePath}')`;
+    }
   },
 
   computed: {
-    cover() {
-      const type = this.store?.storefront;
 
-      const path = `/Icon/category/${type}.png`;
-      console.log("🆗 Component -> TagShopType, Icon Path: " + path);
-      return `background: url('${path}') center/cover no-repeat; width: 24px; height: 24px;`;
+    storeLayout() {
+      // // 🐞 Debug console
+      // console.log("Compute storeLayout: " + this.store?.layout);
+      return this.dataFromBottomSheet?.layout;
+    },
+
+    mainColumnImage() {
+      return this.backgroundImageUrl(this.dataFromBottomSheet.storefront);
+    },
+    item1() {
+      return this.backgroundImageUrl(this.dataFromBottomSheet?.item1.image);
+    },
+    item2() {
+      return this.backgroundImageUrl(this.dataFromBottomSheet?.item2.image);
+    },
+    item3() {
+      return this.backgroundImageUrl(this.dataFromBottomSheet?.item3.image);
+    },
+    item4() {
+      return this.backgroundImageUrl(this.dataFromBottomSheet?.item4.image);
+    },
+    item5() {
+      return this.backgroundImageUrl(this.dataFromBottomSheet?.item5.image);
     }
   },
+  mounted() {
+    this.storeTitle = this.title;
+    this.description = this.dataFromBottomSheet.description;
+    this.storeType = this.dataFromBottomSheet.type;
 
-  async mounted() {
-    // Decode the title from the URL
-    const route = useRoute();
-    const title = route.params.title;
-    const decodedTitle = decodeURIComponent(title);
-
-    // Fetch store details based on the decoded title
-    const response = await fetch(`/stores.json`);
-    const stores = await response.json();
-    const store = stores.features.find(
-      store => store.properties.title === decodedTitle
-    );
-    if (store) {
-      this.description = store.properties.description;
-    }
-  }
+    // // 🐞 Debug console
+    // console.log("The Data in Detail.vue");
+    // console.log("dataFromBottomSheet:", this.dataFromBottomSheet);
+    // console.log("title:", this.title);
+    // console.log('storeType:', this.storeType);
+  },
 };
+
 </script>
-  
+
 <style lang="scss" scoped>
 .body {
+  position: relative;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.content {
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px 20px 20px 20px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  gap: 24px;
 }
+
+.title-block {
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-self: stretch;
+  flex-wrap: wrap;
+  flex: 1 0 0;
+  gap: 12px;
+}
+
 .cover {
   align-items: center;
   width: 100%;
   height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.stretch {
+  flex: 1 0 0;
+}
+
+.content-frame {
+  flex-direction: column;
+  gap: 12px;
 }
 
 .state {
