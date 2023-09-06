@@ -14,6 +14,8 @@ const routes = [
 
       // Convert the string back to an object in Detail.vue
       dataFromBottomSheet: JSON.parse(route.params.dataFromBottomSheet),
+      // TEST: dataFromBottomSheet: JSON.parse(route.query.dataFromBottomSheet || '{}')
+
     }),
     meta: { title: "Detail" },
   },
