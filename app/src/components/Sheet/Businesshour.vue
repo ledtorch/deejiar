@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <p :class="['subhead', bizHr.stateClass]">{{ bizHr.state }}</p>
     <p :class="['subhead', bizHr.timeClass]" v-if="bizHr.isTime">&nbsp; · &nbsp;{{ bizHr.time }}</p>
@@ -7,12 +7,32 @@
       v-if="bizHr.isNextTime"
     >&nbsp; · &nbsp;{{ bizHr.nextTime }}</p>
   </div>
+</template> -->
+
+<template>
+  <div>
+    <template v-if="viewMode === 'overview'">
+      <div>
+        <p :class="['subhead', bizHr.stateClass]">{{ bizHr.state }}</p>
+        <p :class="['subhead', bizHr.timeClass]" v-if="bizHr.isTime">&nbsp; · &nbsp;{{ bizHr.time }}</p>
+        <p :class="['subhead', bizHr.nextTimeClass]" v-if="bizHr.isNextTime">&nbsp; · &nbsp;{{ bizHr.nextTime }}</p>
+      </div>
+    </template>
+
+    <template v-if="viewMode === 'detail'">
+      <div class="icon"></div>
+      <p class="body">{{ time }}</p>
+    </template>
+  </div>
 </template>
-  
+
+
 <script>
 export default {
   props: {
-    store: Object
+    // DEBUG: It's obj when it's passed by BottomSheet.vue but array when it's passed by Detail.vue
+    bizTime: '',
+    viewMode: String
   },
   computed: {
     bizHr() {
@@ -45,27 +65,28 @@ export default {
       // console.log("Hour: " + currentHour)
       // console.log("Minute: " + currentMinute)
 
-      if (this.store.businesshour === null) {
+      if (this.bizTime === null) {
         state = "Open 24H";
         stateClass = "isOpen";
       } else if (
-        this.store.businesshour[0] &&
-        this.store.businesshour[0].Holiday === null
+        this.bizTime[0] &&
+        this.bizTime[0].Holiday === null
       ) {
         state = "Open";
         stateClass = "isOpen";
       } else if (
-        this.store.businesshour[0] &&
-        this.store.businesshour[0].Holiday !== null
+        this.bizTime[0] &&
+        this.bizTime[0].Holiday !== null
       ) {
         // Extract holiday
-        const holidays = this.store.businesshour[0].Holiday;
+        const holidays = this.bizTime[0].Holiday;
+
         // // 🐞 Debug console
         // console.log("Holidays: " + holidays);
 
         // Check if the business is closed for the holiday
         const currentMonthandDay = currentMonth + currentDate;
-        const bizDay = this.store.businesshour[currentDay];
+        const bizDay = this.bizTime[currentDay];
         if (holidays.includes(currentMonthandDay)) {
           // Check for next open day after holiday
           let nextOpenDate = new Date(currentTime);
@@ -121,5 +142,11 @@ export default {
 .isOpen {
   color: #3dc363;
   font-weight: 700;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  background: url("/Icon/Info/Time.png") no-repeat center/contain;
 }
 </style>

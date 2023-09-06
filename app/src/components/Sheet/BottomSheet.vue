@@ -29,7 +29,7 @@
           <p class="text-limited">{{ store ? store.description : "" }}</p>
         </div>
         <Review />
-        <Businesshour :store="store" />
+        <Businesshour :bizTime="store.businesshour" viewMode="overview" />
         <div class="key-info-div"></div>
       </template>
 
@@ -48,23 +48,24 @@
         <div class="state">
           <p class="text-limited">{{ store ? store.description : "" }}</p>
         </div>
-        <Businesshour :store="store" />
+        <Businesshour :bizTime="store.businesshour" viewMode="overview" />
         <div class="key-info-div"></div>
       </template>
     </div>
   </div>
 </template>
 
-
 <script>
+// Vue Dependencies
 import { ref, onMounted, watch, toRefs, computed } from "vue";
+import { useRouter } from "vue-router";
 
+// Components
 import IconButtonClose from "../Button/IconButtonClose.vue";
 import TagShopType from "../Button/TagShopType.vue";
 import Avatar from "./Avatar.vue";
 import Review from "./Review.vue";
 import Businesshour from "./Businesshour.vue";
-import { useRouter } from "vue-router";
 
 export default {
   components: { IconButtonClose, TagShopType, Avatar, Review, Businesshour },

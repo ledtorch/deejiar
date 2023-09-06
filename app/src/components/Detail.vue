@@ -8,8 +8,16 @@
           <TagShopType :store="dataFromBottomSheet" />
         </div>
         <p class="state">{{ description }}</p>
-        <p>{{}}</p>
+        <Businesshour :bizTime="dataFromBottomSheet.businesshour" viewMode="overview" />
       </div>
+      <div class="splitline"></div>
+      <div class="content-frame">
+        <Businesshour :bizTime="dataFromBottomSheet.businesshour" viewMode="detail" />
+      </div>
+      <div class="content-frame">
+        <Address :address="dataFromBottomSheet.address" />
+      </div>
+      <div class="splitline"></div>
     </div>
   </div>
 </template>
@@ -19,9 +27,10 @@ import IconButtonClose from "./Button/IconButtonClose.vue";
 import TagShopType from "./Button/TagShopType.vue";
 import Review from "./Sheet/Review.vue";
 import Businesshour from "./Sheet/Businesshour.vue";
+import Address from "./Sheet/Address.vue";
 
 export default {
-  components: { IconButtonClose, TagShopType, Review, Businesshour },
+  components: { IconButtonClose, TagShopType, Review, Businesshour, Address },
   data() {
     return {
       storeTitle: '',
@@ -73,10 +82,12 @@ export default {
     this.storeType = this.dataFromBottomSheet.type;
 
     // // 🐞 Debug console
-    // console.log("The Data in Detail.vue");
+    console.log("The Data in Detail.vue");
     // console.log("dataFromBottomSheet:", this.dataFromBottomSheet);
     // console.log("title:", this.title);
     // console.log('storeType:', this.storeType);
+    console.log("Is dataFromBottomSheet defined?", this.dataFromBottomSheet);
+    console.log("Is dataFromBottomSheet.businesshour defined?", this.dataFromBottomSheet?.businesshour);
   },
 };
 
@@ -91,6 +102,7 @@ export default {
 }
 
 .content {
+  overflow-y: auto;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
