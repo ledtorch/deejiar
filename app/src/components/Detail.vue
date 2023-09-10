@@ -2,14 +2,18 @@
   <div class="body">
     <div class="cover" :style="{ 'backgroundImage': mainColumnImage }"></div>
     <div class="content">
-      <div class=" content-frame">
+      <div class=" items-frame">
+        <div class="leftImage" :style="{ 'backgroundImage': item1 }"></div>
+        <div class="rightImage" :style="{ 'backgroundImage': item2 }"></div>
+      </div>
+      <div class="content-frame">
         <div class="title-block">
           <h2 class="stretch">{{ storeTitle }}</h2>
           <TagShopType :store="data" />
         </div>
         <p class="state">{{ description }}</p>
-        <Businesshour :bizTime="data.businesshour" viewMode="overview" />
       </div>
+      <Businesshour :bizTime="data.businesshour" viewMode="overview" />
       <div class="splitline"></div>
       <div class="content-frame">
         <Businesshour :bizTime="data.businesshour" viewMode="detail" />
@@ -36,7 +40,7 @@ export default {
       storeTitle: '',
       description: '',
       storeType: '',
-      data: null, // Initialize this as null
+      data: null,
     }
   },
   async created() {
@@ -54,14 +58,11 @@ export default {
     const storeData = stores.features.find(store => store.properties.title === urlTitle);
     console.log("The storeData: ", storeData);
 
-    // If a matching store is found, update the component's data
-    if (storeData) {
-      console.log('storeData: ' + storeData)
-      this.data = storeData.properties;
-      this.storeTitle = storeData.properties.title;
-      this.description = storeData.properties.description;
-      this.storeType = storeData.properties.type;
-    }
+    this.data = storeData.properties;
+    this.storeTitle = this.data.title;
+    this.description = this.data.description;
+    this.storeType = this.data.type;
+
   },
   methods: {
     backgroundImageUrl(imagePath) {
@@ -137,6 +138,25 @@ export default {
   background-repeat: no-repeat;
 }
 
+.leftImage {
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.rightImage {
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 .stretch {
   flex: 1 0 0;
@@ -144,6 +164,11 @@ export default {
 
 .content-frame {
   flex-direction: column;
+  gap: 12px;
+}
+
+.items-frame {
+  align-items: flex-start;
   gap: 12px;
 }
 
