@@ -155,6 +155,7 @@ p {
 /* Global Symbols */
 .splitline {
 	width: 100%;
-	height: 1px;
+	/* This min-height makes sure it could be displayed with Safari on iPhone */
+	min-height: 1px;
 	background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
 }
