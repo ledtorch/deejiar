@@ -137,16 +137,13 @@ export default {
       // Navigate to detail.vue
       if (sheetHeight >= 600) {
         if (store && props.store.title) {
+          // Make the dynamic url with title
           router.push({
             name: "detail",
             params: {
               title: props.store.title,
-
-              // Convert the obj into a string and pass it to router
-              dataFromBottomSheet: JSON.stringify(props.store)
             }
           });
-          console.log("dataFromBottomSheet:", this.dataFromBottomSheet);
         }
         sheetHeight < 150
           ? updateSheetHeight(minHeight)

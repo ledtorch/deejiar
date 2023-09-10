@@ -9,10 +9,6 @@ const routes = [
     path: "/detail/:title",
     name: "detail",
     component: Detail,
-    props: (route) => ({
-      title: route.params.title,
-      dataFromBottomSheet: JSON.parse(route.params.dataFromBottomSheet),
-    }),
     meta: { title: "Detail" },
   },
   { path: "/account", component: Account, meta: { title: "Account" } },

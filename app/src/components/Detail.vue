@@ -5,17 +5,17 @@
       <div class=" content-frame">
         <div class="title-block">
           <h2 class="stretch">{{ storeTitle }}</h2>
-          <TagShopType :store="dataFromBottomSheet" />
+          <TagShopType :store="data" />
         </div>
         <p class="state">{{ description }}</p>
-        <Businesshour :bizTime="dataFromBottomSheet.businesshour" viewMode="overview" />
+        <Businesshour :bizTime="data.businesshour" viewMode="overview" />
       </div>
       <div class="splitline"></div>
       <div class="content-frame">
-        <Businesshour :bizTime="dataFromBottomSheet.businesshour" viewMode="detail" />
+        <Businesshour :bizTime="data.businesshour" viewMode="detail" />
       </div>
       <div class="content-frame">
-        <Address :address="dataFromBottomSheet.address" />
+        <Address :address="data.address" />
       </div>
       <div class="splitline"></div>
     </div>
@@ -35,12 +35,33 @@ export default {
     return {
       storeTitle: '',
       description: '',
-      storeType: ''
+      storeType: '',
+      data: null, // Initialize this as null
     }
   },
-  props: {
-    title: String,
-    dataFromBottomSheet: Object,
+  async created() {
+    // Fetch url title and decode it
+    const urlTitle = decodeURIComponent(this.$route.params.title);
+
+    // Define root: https://root.com
+    const rootURL = `${window.location.protocol}//${window.location.host}`;
+
+    const response = await fetch(`${rootURL}/stores.json`);
+    const stores = await response.json();
+    console.log("Fetched JSON data: ", stores);
+
+    // Find the store matching the title from the URL
+    const storeData = stores.features.find(store => store.properties.title === urlTitle);
+    console.log("The storeData: ", storeData);
+
+    // If a matching store is found, update the component's data
+    if (storeData) {
+      console.log('storeData: ' + storeData)
+      this.data = storeData.properties;
+      this.storeTitle = storeData.properties.title;
+      this.description = storeData.properties.description;
+      this.storeType = storeData.properties.type;
+    }
   },
   methods: {
     backgroundImageUrl(imagePath) {
@@ -48,49 +69,34 @@ export default {
       return `url('${baseUrl}/${imagePath}')`;
     }
   },
-
   computed: {
 
     storeLayout() {
       // // 🐞 Debug console
       // console.log("Compute storeLayout: " + this.store?.layout);
-      return this.dataFromBottomSheet?.layout;
+      return this.data?.layout;
     },
 
     mainColumnImage() {
-      return this.backgroundImageUrl(this.dataFromBottomSheet.storefront);
+      return this.backgroundImageUrl(this.data.storefront);
     },
     item1() {
-      return this.backgroundImageUrl(this.dataFromBottomSheet?.item1.image);
+      return this.backgroundImageUrl(this.data?.item1.image);
     },
     item2() {
-      return this.backgroundImageUrl(this.dataFromBottomSheet?.item2.image);
+      return this.backgroundImageUrl(this.data?.item2.image);
     },
     item3() {
-      return this.backgroundImageUrl(this.dataFromBottomSheet?.item3.image);
+      return this.backgroundImageUrl(this.data?.item3.image);
     },
     item4() {
-      return this.backgroundImageUrl(this.dataFromBottomSheet?.item4.image);
+      return this.backgroundImageUrl(this.data?.item4.image);
     },
     item5() {
-      return this.backgroundImageUrl(this.dataFromBottomSheet?.item5.image);
+      return this.backgroundImageUrl(this.data?.item5.image);
     }
   },
-  mounted() {
-    this.storeTitle = this.title;
-    this.description = this.dataFromBottomSheet.description;
-    this.storeType = this.dataFromBottomSheet.type;
-
-    // // 🐞 Debug console
-    console.log("The Data in Detail.vue");
-    // console.log("dataFromBottomSheet:", this.dataFromBottomSheet);
-    // console.log("title:", this.title);
-    // console.log('storeType:', this.storeType);
-    console.log("Is dataFromBottomSheet defined?", this.dataFromBottomSheet);
-    console.log("Is dataFromBottomSheet.businesshour defined?", this.dataFromBottomSheet?.businesshour);
-  },
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -99,6 +105,7 @@ export default {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  margin-bottom: 133px;
 }
 
 .content {
