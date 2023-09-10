@@ -7,7 +7,7 @@ import Detail from "./components/Detail.vue";
 
 // Plugin
 import router from './router.js'
-import { createPinia } from 'pinia';
+// import { createPinia } from 'pinia';
 
 // Global CSS
 import './style.css'
@@ -16,7 +16,7 @@ import './style.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Initialize and use Pinia
-const pinia = createPinia();
-app.use(pinia);
+// const pinia = createPinia();
+// app.use(pinia);
 
 createApp(App).use(router).mount('#app')
