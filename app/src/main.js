@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createMetaManager } from 'vue-meta';
 
 // Components
 import App from './App.vue'
@@ -15,8 +16,4 @@ import './style.css'
 // Dependency
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-// Initialize and use Pinia
-// const pinia = createPinia();
-// app.use(pinia);
-
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(createMetaManager()).mount('#app')

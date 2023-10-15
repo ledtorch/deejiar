@@ -16,13 +16,13 @@
             <h2 class="stretch">{{ store ? store.title : "" }}</h2>
             <TagShopType :store="store" />
           </div>
-          <IconButtonClose :state="buttonState" @close="closeBottomSheet" />
+          <Close :state="buttonState" @close="closeBottomSheet" />
         </div>
         <div class="image-div">
-          <div class="main-column" :style="mainColumnImage"></div>
+          <div class="main-column" :style="{ 'backgroundImage': frontStoreImage }"></div>
           <div class="secondary-column">
-            <div class="image" :style="item1"></div>
-            <div class="image" :style="item2"></div>
+            <div class="image" :style="{ 'backgroundImage': item1 }"></div>
+            <div class="image" :style="{ 'backgroundImage': item2 }"></div>
           </div>
         </div>
         <div class="state">
@@ -40,10 +40,10 @@
             <h2 class="stretch">{{ store ? store.title : "" }}</h2>
             <TagShopType :store="store" />
           </div>
-          <IconButtonClose :state="buttonState" @close="closeBottomSheet" />
+          <Close :state="buttonState" @close="closeBottomSheet" />
         </div>
         <div class="image-div">
-          <div class="main-column--view" :style="mainColumnImage"></div>
+          <div class="main-column--view" :style="{ 'backgroundImage': frontStoreImage }"></div>
         </div>
         <div class="state">
           <p class="text-limited">{{ store ? store.description : "" }}</p>
@@ -61,14 +61,14 @@ import { ref, onMounted, watch, toRefs, computed } from "vue";
 import { useRouter } from "vue-router";
 
 // Components
-import IconButtonClose from "../Button/IconButtonClose.vue";
+import Close from "../Button/Icon/Close.vue";
 import TagShopType from "../Button/TagShopType.vue";
 import Avatar from "./Avatar.vue";
 import Review from "./Review.vue";
 import Businesshour from "./Businesshour.vue";
 
 export default {
-  components: { IconButtonClose, TagShopType, Avatar, Review, Businesshour },
+  components: { Close, TagShopType, Avatar, Review, Businesshour },
   data() {
     return {
       buttonState: "default"
@@ -183,6 +183,12 @@ export default {
   },
 
   methods: {
+    // Utility Methods
+    rootUrl(imagePath) {
+      const baseUrl = `${window.location.protocol}//${window.location.host}`;
+      return `url('${baseUrl}/${imagePath}')`;
+    },
+    // Event Handlers
     closeBottomSheet() {
       this.$emit("reset");
     }
@@ -192,27 +198,21 @@ export default {
     storeState() {
       return this.store;
     },
-
     storeLayout() {
       // // 🐞 Debug console
       // console.log("Compute storeLayout: " + this.store?.layout);
       return this.store?.layout;
     },
-
-    mainColumnImage() {
+    frontStoreImage() {
       // // 🐞 Debug console
-      // console.log("📃 Storefront URL: " + this.store?.storefront);
-      return `background: url('${this.store?.storefront}') center/cover no-repeat;`;
+      // console.log("URL function: " + this.rootUrl(this.store?.storefront.day);
+      return this.rootUrl(this.store?.storefront.day);
     },
     item1() {
-      // // 🐞 Debug console
-      // console.log("📃 item1 URL: " + this.store?.item1);
-      return `background: url('${this.store?.item1.image}') center/cover no-repeat;  `;
+      return this.rootUrl(this.store?.item1.image);
     },
     item2() {
-      // // 🐞 Debug console
-      // console.log("📃 item2 URL: " + this.store?.item2);
-      return `background: url('${this.store?.item2.image}') center/cover no-repeat;`;
+      return this.rootUrl(this.store?.item2.image);
     }
   }
 };
@@ -285,18 +285,31 @@ export default {
   width: 180px;
   height: 180px;
   border-radius: 12px;
+
+  // Image setting
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .main-column--view {
   width: 100%;
   height: 260px;
   border-radius: 12px;
+
+  // Image setting
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .image {
   align-self: stretch;
   height: 86px;
   border-radius: 12px;
+
+  // Image setting
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }

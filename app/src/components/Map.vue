@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="map"></div>
-    <IconButtonLocate id="iconbuttonlocate" :state="buttonState" @locate="locateUser"></IconButtonLocate>
+    <Locate id="button-locate" :state="buttonState" @locate="locateUser"></Locate>
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
 </template>
@@ -9,13 +9,13 @@
 <script>
 import mapboxgl from "mapbox-gl";
 import BottomSheet from "./Sheet/BottomSheet.vue";
-import IconButtonLocate from "./Button/IconButtonLocate.vue";
+import Locate from "./Button/Icon/Locate.vue";
 import { useRouter } from "vue-router";
 
 export default {
   components: {
     BottomSheet,
-    IconButtonLocate
+    Locate
   },
   data() {
     return {
@@ -418,7 +418,7 @@ export default {
   height: auto;
 }
 
-#iconbuttonlocate {
+#button-locate {
   position: absolute;
   bottom: 48px;
   right: 16px;

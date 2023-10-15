@@ -1,10 +1,5 @@
 <template>
-  <button
-    class="icon-button"
-    @click="onClick"
-    :class="buttonClass"
-    :style="buttonStyle"
-  ></button>
+  <button class="icon-button" @click="onClick" :class="buttonClass" :style="buttonStyle"></button>
 </template>
 
 <script>
@@ -15,33 +10,35 @@ export default {
       default: "default",
     },
   },
-
   computed: {
     buttonClass() {
       return this.state === "inactive" ? "inactive" : "";
     },
     buttonStyle() {
-      const baseUrl = "Button/Icon/withBase/Locate_";
-      let image;
+      let imageFileName;
       switch (this.state) {
         case "click":
-          image = "Click.png";
+          imageFileName = "Click.png";
           break;
         case "inactive":
-          image = "Inactive.png";
+          imageFileName = "Inactive.png";
           break;
         default:
-          image = "Default.png";
+          imageFileName = "Default.png";
           break;
       }
       return {
-        backgroundImage: `url('${baseUrl}${image}')`,
+        backgroundImage: this.backgroundImageUrl(imageFileName),
       };
     },
   },
   methods: {
+    backgroundImageUrl(imageFileName) {
+      const baseUrl = `${window.location.protocol}//${window.location.host}`;
+      return `url('${baseUrl}/Button/Icon/withBase/Home_${imageFileName}')`;
+    },
     onClick() {
-      this.$emit("locate");
+      this.$emit("close");
     },
   },
 };

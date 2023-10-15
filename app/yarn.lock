@@ -518,6 +518,7 @@ __metadata:
     sass: ^1.66.1
     vite: ^4.4.5
     vue: ^3.3.4
+    vue-meta: alpha
     vue-router: next
   languageName: unknown
   linkType: soft
@@ -2100,6 +2101,15 @@ __metadata:
     vue-demi-fix: bin/vue-demi-fix.js
     vue-demi-switch: bin/vue-demi-switch.js
   checksum: 424b1f340d5111fc4d4a0f8042c14ae836ba983bc968773a6d955d6846202d7e6f951993ac1525be8732b0cfe0c81d94ab88f427c97bfa86ead08db06491279b
+  languageName: node
+  linkType: hard
+
+"vue-meta@npm:alpha":
+  version: 3.0.0-alpha.10
+  resolution: "vue-meta@npm:3.0.0-alpha.10"
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: 18dc53c6e27fdd7450267412385b36e663f9f546646f19271d10dd3bfbec0002bd4bb9213ead43d80c2ce576720c4c17e69fc8eb48e4723257133c692c290af2
   languageName: node
   linkType: hard
 
