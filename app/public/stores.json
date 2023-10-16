@@ -10,6 +10,7 @@
         "title": "Big Bear Cafe",
         "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
         "address": "1201 S St NW, Washington, DC 20009",
+        "tag": "[]",
         "storefront": {
           "day": "Store/cafe/bigbearcafe/Storefront.jpg",
           "night": "Store/cafe/bigbearcafe/Storefront.jpg"
@@ -52,9 +53,7 @@
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
         "businesshour": [
-          {
-            "Holiday": ["0000"]
-          },
+          null,
           {
             "Monday": null
           },
@@ -146,6 +145,7 @@
         "title": "Teaism Penn Quarter",
         "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
         "address": "400 8th St NW, Washington, DC 20004",
+        "tag": "[]",
         "storefront": {
           "day": "Store/cafe/teaismpennquarter/Storefront.jpg",
           "night": "Store/cafe/teaismpennquarter/Storefront.jpg"
@@ -188,9 +188,7 @@
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
         "businesshour": [
-          {
-            "Holiday": ["0000"]
-          },
+          null,
           {
             "Monday": [
               {
@@ -258,68 +256,12 @@
       "type": "Feature",
       "properties": {
         "id": "3",
-        "layout": "view",
-        "type": "Landscape",
-        "title": "Contrabands and Freedmen Cemetery Memorial",
-        "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
-        "address": "1001 S Washington St, Alexandria, VA 22314",
-        "storefront": {
-          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg",
-          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg"
-        },
-        "item1": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item2": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item3": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item4": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item5": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "icon": {
-          "default": "Button/Marker/Landscape_default.png",
-          "mini": "Button/Marker/Landscape_mini.png",
-          "larger": "Button/Marker/Landscape_larger.png",
-          "active": "Button/Marker/Landscape_active.png",
-          "withFriends": "Button/Marker/Landscape_withFriends.png"
-        },
-        "businesshour": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-77.04963686614573, 38.794590717782455]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "4",
         "layout": "food",
         "type": "Bar",
         "title": "Jane Jane",
         "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
         "address": "1705 14th St NW, Washington, DC 20009",
+        "tag": "[]",
         "storefront": {
           "day": "Store/bar/janejane/Storefront.jpg",
           "night": "Store/bar/janejane/Storefront.jpg"
@@ -362,9 +304,7 @@
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
         "businesshour": [
-          {
-            "Holiday": ["0000"]
-          },
+          null,
           {
             "Monday": [
               {
@@ -426,6 +366,180 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-77.03162544459492, 38.9132761409135]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "4",
+        "layout": "food",
+        "type": "Thai",
+        "title": "Rice Restaurant",
+        "description": "A cozy restaurant is situated on 14th Street, offering delicious Thai cuisine; its Japanese fare is also commendable. Upon entering the restaurant, don't miss the Rice Market—simply head downstairs to the basement of the same building. It offers a variety of Asian seasonings and ingredients, along with Japanese kitchenware and tableware.",
+        "address": "1608 14th St NW, Washington, DC 20009",
+        "tag": "[]",
+        "storefront": {
+          "day": "Store/restaurant/ricerestaurant/StorefrontDay.jpg",
+          "night": "Store/restaurant/ricerestaurant/StorefrontDay.jpg"
+        },
+        "item1": {
+          "name": "Takoyaki",
+          "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
+          "description": "",
+          "price": "$8"
+        },
+        "item2": {
+          "name": "Sweet Tea Lemonade",
+          "image": "Store/restaurant/ricerestaurant/SweetTeaLemonade.jpg",
+          "description": "Fire Fly Vodka, Sour mix, Lime juice.",
+          "price": "$10"
+        },
+        "item3": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "item4": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "item5": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "icon": {
+          "default": "Button/Marker/Thai_default.png",
+          "mini": "Button/Marker/Thai_mini.png",
+          "larger": "Button/Marker/Thai_larger.png",
+          "active": "Button/Marker/Thai_active.png",
+          "withFriends": "Button/Marker/Thai_withFriends.png"
+        },
+        "businesshour": [
+          null,
+          {
+            "Monday": [
+              {
+                "Start": "1130",
+                "Finish": "2200"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "1130",
+                "Finish": "2200"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1130",
+                "Finish": "2200"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1130",
+                "Finish": "2200"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1130",
+                "Finish": "2230"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1130",
+                "Finish": "2230"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1130",
+                "Finish": "2200"
+              }
+            ]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-77.03217263705724, 38.911501815280616]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "5",
+        "layout": "view",
+        "type": "Landscape",
+        "title": "Contrabands and Freedmen Cemetery Memorial",
+        "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
+        "address": "1001 S Washington St, Alexandria, VA 22314",
+        "tag": "[]",
+        "storefront": {
+          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg",
+          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg"
+        },
+        "item1": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "item2": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "item3": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "item4": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "item5": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "icon": {
+          "default": "Button/Marker/Landscape_default.png",
+          "mini": "Button/Marker/Landscape_mini.png",
+          "larger": "Button/Marker/Landscape_larger.png",
+          "active": "Button/Marker/Landscape_active.png",
+          "withFriends": "Button/Marker/Landscape_withFriends.png"
+        },
+        "businesshour": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-77.04963686614573, 38.794590717782455]
       }
     }
   ]

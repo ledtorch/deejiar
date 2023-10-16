@@ -1,7 +1,7 @@
 <template>
   <div class="frame">
     <div class="icon"></div>
-    <p class="body">{{ address }}</p>
+    <p class="subhead">{{ address }}</p>
   </div>
 </template>
   
@@ -18,7 +18,7 @@ export default {
 } */
 
 .frame {
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   align-self: stretch;
 }
