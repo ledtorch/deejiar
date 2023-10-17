@@ -12,8 +12,7 @@
       <div class="frame">
         <div class="icon"></div>
         <p class="subhead">{{ bizHr.currentDayName }}</p>
-        <p class="subhead" v-if="bizHr.timeRanges.length > 0">{{ bizHr.formattedBusinessHours }}</p>
-        <p class="subhead isClose" v-else>Closed</p>
+        <p class="subhead">{{ bizHr.formattedBusinessHours }}</p>
       </div>
     </template>
   </div>
@@ -40,7 +39,7 @@ export default {
       const currentMinute = String(currentTime.getMinutes());
       const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
       const currentDayName = daysOfWeek[currentDay - 1];
-      let timeRanges = [];
+      // let timeRanges = [];
       let formattedTimeRanges = [];
       let displayStartHour = "";
       let displayStartMinute = "";
@@ -174,7 +173,7 @@ export default {
         timeClass: timeClass,
         nextTimeClass: nextTimeClass,
         currentDayName: currentDayName,
-        timeRanges: timeRanges,
+        // timeRanges: timeRanges,
         formattedBusinessHours: formattedBusinessHours
       };
     }

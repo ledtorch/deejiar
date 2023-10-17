@@ -205,8 +205,8 @@ export default {
     },
     frontStoreImage() {
       // // 🐞 Debug console
-      // console.log("URL function: " + this.rootUrl(this.store?.storefront.day);
-      return this.rootUrl(this.store?.storefront.day);
+      // console.log("URL function: " + this.rootUrl(this.store?.storefront.day));
+      return this.rootUrl(this.store.storefront.day);
     },
     item1() {
       return this.rootUrl(this.store?.item1.image);

@@ -12,8 +12,8 @@
         "address": "1201 S St NW, Washington, DC 20009",
         "tag": "[]",
         "storefront": {
-          "day": "Store/cafe/bigbearcafe/Storefront.jpg",
-          "night": "Store/cafe/bigbearcafe/Storefront.jpg"
+          "day": "Store/cafe/bigbearcafe/StorefrontDay.jpg",
+          "night": "Store/cafe/bigbearcafe/StorefrontNight.jpg"
         },
         "item1": {
           "name": "Iced Steamer",
@@ -147,8 +147,8 @@
         "address": "400 8th St NW, Washington, DC 20004",
         "tag": "[]",
         "storefront": {
-          "day": "Store/cafe/teaismpennquarter/Storefront.jpg",
-          "night": "Store/cafe/teaismpennquarter/Storefront.jpg"
+          "day": "Store/cafe/teaismpennquarter/StorefrontDay.jpg",
+          "night": "Store/cafe/teaismpennquarter/StorefrontNight.jpg"
         },
         "item1": {
           "name": "Chai",
@@ -263,8 +263,8 @@
         "address": "1705 14th St NW, Washington, DC 20009",
         "tag": "[]",
         "storefront": {
-          "day": "Store/bar/janejane/Storefront.jpg",
-          "night": "Store/bar/janejane/Storefront.jpg"
+          "day": "Store/bar/janejane/StorefrontDay.jpg",
+          "night": "Store/bar/janejane/StorefrontNight.jpg"
         },
         "item1": {
           "name": "Onion Dip",
@@ -380,7 +380,7 @@
         "tag": "[]",
         "storefront": {
           "day": "Store/restaurant/ricerestaurant/StorefrontDay.jpg",
-          "night": "Store/restaurant/ricerestaurant/StorefrontDay.jpg"
+          "night": "Store/restaurant/ricerestaurant/StorefrontNight.jpg"
         },
         "item1": {
           "name": "Takoyaki",
@@ -488,6 +488,142 @@
       "type": "Feature",
       "properties": {
         "id": "5",
+        "layout": "food",
+        "type": "Thai",
+        "title": "THEP Thai Restaurant",
+        "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles. notionvc: f2942d80-5113-42b8-a37e-d17554105885 ",
+        "address": "1439 2nd Ave, New York, NY 10021",
+        "tag": "[]",
+        "storefront": {
+          "day": "Store/restaurant/THEP Thai Restaurant/StorefrontDay.jpg",
+          "night": "Store/restaurant/THEP Thai Restaurant/StorefrontNight.jpg"
+        },
+        "item1": {
+          "name": "",
+          "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
+          "description": "",
+          "price": "$8"
+        },
+        "item2": {
+          "name": "",
+          "image": "Store/restaurant/ricerestaurant/SweetTeaLemonade.jpg",
+          "description": "Fire Fly Vodka, Sour mix, Lime juice.",
+          "price": "$10"
+        },
+        "item3": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "item4": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "item5": {
+          "name": "",
+          "image": "",
+          "description": "",
+          "price": ""
+        },
+        "icon": {
+          "default": "Button/Marker/Thai_default.png",
+          "mini": "Button/Marker/Thai_mini.png",
+          "larger": "Button/Marker/Thai_larger.png",
+          "active": "Button/Marker/Thai_active.png",
+          "withFriends": "Button/Marker/Thai_withFriends.png"
+        },
+        "businesshour": [
+          null,
+          {
+            "Monday": [
+              {
+                "Start": "1130",
+                "Finish": "1530"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2230"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "1130",
+                "Finish": "1530"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2230"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1130",
+                "Finish": "1530"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2230"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1130",
+                "Finish": "1530"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2230"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1130",
+                "Finish": "1530"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2330"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1200",
+                "Finish": "2330"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1200",
+                "Finish": "2230"
+              }
+            ]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.95725715767244, 40.77092171697179]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "6",
         "layout": "view",
         "type": "Landscape",
         "title": "Contrabands and Freedmen Cemetery Memorial",
@@ -495,8 +631,8 @@
         "address": "1001 S Washington St, Alexandria, VA 22314",
         "tag": "[]",
         "storefront": {
-          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg",
-          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/Storefront.jpg"
+          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/StorefrontDay.jpg",
+          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/StorefrontNight.jpg"
         },
         "item1": {
           "name": "",
