@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { createMetaManager } from 'vue-meta';
+import { createHead } from '@vueuse/head'
 
 // Components
 import App from './App.vue'
@@ -16,4 +16,9 @@ import './style.css'
 // Dependency
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-createApp(App).use(router).use(createMetaManager()).mount('#app')
+const head = createHead()
+const app = createApp(App)
+
+app.use(router)
+app.use(head)
+app.mount('#app')
