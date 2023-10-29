@@ -2,15 +2,15 @@
   <div class="body">
     <!-- Carousel Content -->
     <div v-if="currentPage === 0" class="cover" :style="{ 'backgroundImage': frontStoreImage }">
-      <LeftArrow @click="previousPage" class="left-arrow"></LeftArrow>
-      <Home @click="toHomePage" class="home-btn"></Home>
-      <Share @click="share" class="share-btn"></Share>
-      <RightArrow @click="nextPage" class="right-arrow"></RightArrow>
+      <LeftArrow @click="previousPage" class="left-arrow" />
+      <Home @click="toHomePage" class="home-btn" />
+      <Share @click="share" class="share-btn" />
+      <RightArrow @click="nextPage" class="right-arrow" />
     </div>
     <div v-else class="cover" :style="{ 'backgroundImage': rootUrl(currentItem.image) }">
-      <LeftArrow @click="previousPage" class="left-arrow"></LeftArrow>
-      <DetailHome @click="toDetailHomePage" class="home-btn"></DetailHome>
-      <RightArrow @click="nextPage" class="right-arrow"></RightArrow>
+      <LeftArrow @click="previousPage" class="left-arrow" />
+      <DetailHome @click="toDetailHomePage" class="home-btn" />
+      <RightArrow @click="nextPage" class="right-arrow" />
     </div>
 
     <!-- Cover Page -->

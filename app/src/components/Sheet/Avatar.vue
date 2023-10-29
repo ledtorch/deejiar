@@ -1,11 +1,7 @@
 <template>
   <div class="frame">
-    <h1>BistroMap</h1>
-    <button
-      class="icon-button"
-      @click="loginWithTwitter"
-      :style="buttonStyle"
-    ></button>
+    <h1>Deejiar</h1>
+    <button class="icon-button" @click="loginWithTwitter" :style="buttonStyle"></button>
   </div>
 </template>
   

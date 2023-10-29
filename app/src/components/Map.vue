@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="map"></div>
-    <Locate id="button-locate" :state="buttonState" @locate="locateUser"></Locate>
+    <Locate id="button-locate" :state="buttonState" @locate="locateUser" />
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   // 🏗️TODO: OG image
   setup() {
     useHead({
-      title: 'TīTsia',
+      title: 'Tītsia',
       meta: [
         {
           name: 'description',

@@ -33,7 +33,15 @@
   
 <script>
 import { useRoute } from "vue-router";
-export default {};
+import { useHead } from 'unhead';
+
+export default {
+  setup() {
+    useHead({
+      title: 'Tītsia - Account',
+    })
+  },
+};
 </script>
   
 <style lang="scss" scoped>
