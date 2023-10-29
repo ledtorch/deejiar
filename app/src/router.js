@@ -9,9 +9,8 @@ const routes = [
     path: "/detail/:title",
     name: "detail",
     component: Detail,
-    meta: { title: "Detail" },
   },
-  { path: "/account", component: Account, meta: { title: "Account" } },
+  { path: "/account", component: Account },
 ];
 
 const router = createRouter({
