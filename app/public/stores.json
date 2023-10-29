@@ -270,13 +270,13 @@
           "name": "Onion Dip",
           "image": "Store/bar/janejane/Onion Dip.jpg",
           "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
-          "price": "12"
+          "price": "$12"
         },
         "item2": {
           "name": "Cusco",
           "image": "Store/bar/janejane/Cusco.jpg",
           "description": "Pisco, Aperol, Maraschino Liqueur, Grapefruit Juice, Lemon Juice, Simple Syrup",
-          "price": "15"
+          "price": "$15"
         },
         "item3": {
           "name": "Cameron's Kick",
@@ -288,7 +288,7 @@
           "name": "Singapore Sling",
           "image": "Store/bar/janejane/Singapore Sling.jpg",
           "description": "Gin, Benedictine, Cointreau, Heering Cherry Liqueur, Pineapple Juice, Lime Juice, Angostura, Soda Water",
-          "price": "16"
+          "price": "$16"
         },
         "item5": {
           "name": "",
@@ -513,7 +513,7 @@
         "item3": {
           "name": "Grilled Butter Bread",
           "image": "Store/restaurant/THEP Thai Restaurant/Grilled Butter Bread.jpg",
-          "description": "Side dish: Grilled Butter Bread",
+          "description": "Side dish: Grilled Butter Bread.",
           "price": "$4"
         },
         "item4": {
