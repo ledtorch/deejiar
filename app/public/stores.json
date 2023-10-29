@@ -491,7 +491,7 @@
         "layout": "food",
         "type": "Thai",
         "title": "THEP Thai Restaurant",
-        "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles. notionvc: f2942d80-5113-42b8-a37e-d17554105885 ",
+        "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles.",
         "address": "1439 2nd Ave, New York, NY 10021",
         "tag": "[]",
         "storefront": {
@@ -499,28 +499,28 @@
           "night": "Store/restaurant/THEP Thai Restaurant/StorefrontNight.jpg"
         },
         "item1": {
-          "name": "",
-          "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
-          "description": "",
-          "price": "$8"
+          "name": "Muk Yarng",
+          "image": "Store/restaurant/THEP Thai Restaurant/Muk Yarng.jpg",
+          "description": "Grilled octopus tentacle, grape tomato, chickpea, cilantro, mint, basil, fried onion.",
+          "price": "$18"
         },
         "item2": {
-          "name": "",
-          "image": "Store/restaurant/ricerestaurant/SweetTeaLemonade.jpg",
-          "description": "Fire Fly Vodka, Sour mix, Lime juice.",
-          "price": "$10"
+          "name": "Tom Yum",
+          "image": "Store/restaurant/THEP Thai Restaurant/Tom Yum.jpg",
+          "description": "Choose either chicken, shrimp, vegetables, or tofu. This light and spicy tom yum broth simmered with galangal, lemongrass, onions, mushrooms, scallions and cilantro.",
+          "price": "$8(S)/$15(L)"
         },
         "item3": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
+          "name": "Grilled Butter Bread",
+          "image": "Store/restaurant/THEP Thai Restaurant/Grilled Butter Bread.jpg",
+          "description": "Side dish: Grilled Butter Bread",
+          "price": "$4"
         },
         "item4": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
+          "name": "What-a-melon",
+          "image": "Store/restaurant/THEP Thai Restaurant/What-a-melon.jpg",
+          "description": "Don Fulano Reposado Tequila, Domaine de Canton, watermelon juice, Tanjin spicy rim.",
+          "price": "$17"
         },
         "item5": {
           "name": "",

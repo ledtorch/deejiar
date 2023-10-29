@@ -11,8 +11,60 @@ import mapboxgl from "mapbox-gl";
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import Locate from "./Button/Icon/Locate.vue";
 import { useRouter } from "vue-router";
+import { useHead } from 'unhead';
 
 export default {
+  // 🏗️TODO: OG image
+  setup() {
+    useHead({
+      title: 'TīTsia',
+      meta: [
+        {
+          name: 'description',
+          content: 'TīTsia designed by Jerry',
+        },
+        {
+          property: 'og:title',
+          content: 'TīTsia',
+        },
+        {
+          property: 'og:description',
+          content: 'This is a page',
+        },
+        {
+          property: 'og:image',
+          content: 'https://app.morispace.com/Icon/logo/logo.png',
+        },
+        {
+          property: 'twitter:title',
+          content: 'TīTsia',
+        },
+        {
+          property: 'twitter:description',
+          content: 'This is a page',
+        },
+        {
+          property: 'twitter:image',
+          content: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Welsh_Pembroke_Corgi.jpg/640px-Welsh_Pembroke_Corgi.jpg',
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          property: 'og:type',
+          content: 'website',
+        }
+      ],
+      link: [
+        {
+          rel: 'icon',
+          href: 'https://app.morispace.com/Icon/logo/logo.ico',
+          type: 'image/x-icon',
+        },
+      ]
+    })
+  },
   components: {
     BottomSheet,
     Locate

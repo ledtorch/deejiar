@@ -38,7 +38,7 @@ export default {
       return `url('${baseUrl}/Button/Icon/withBase/Like_${imageFileName}')`;
     },
     onClick() {
-      this.$emit("close");
+      this.$emit("like");
     },
   },
 };

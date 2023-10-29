@@ -4,7 +4,7 @@ import Detail from "./components/Detail.vue";
 import Account from "./components/Account.vue";
 
 const routes = [
-  { path: "/", component: Map, meta: { title: "ínlōopmap" } },
+  { path: "/", component: Map },
   {
     path: "/detail/:title",
     name: "detail",

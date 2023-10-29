@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { createHead } from '@vueuse/head'
+import { createHead } from '@unhead/vue'
 
 // Components
 import App from './App.vue'
@@ -17,8 +17,24 @@ import './style.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const head = createHead()
-const app = createApp(App)
+createApp(App).use(router).use(head).mount('#app')
 
-app.use(router)
-app.use(head)
-app.mount('#app')
+// // Backup
+// import { createApp } from 'vue'
+
+// // Components
+// import App from './App.vue'
+// import Map from "./components/Map.vue";
+// import Detail from "./components/Detail.vue";
+
+// // Plugin
+// import router from './router.js'
+// // import { createPinia } from 'pinia';
+
+// // Global CSS
+// import './style.css'
+
+// // Dependency
+// import 'mapbox-gl/dist/mapbox-gl.css';
+
+// createApp(App).use(router).mount('#app')
