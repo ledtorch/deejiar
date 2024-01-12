@@ -18,13 +18,13 @@ export default {
 } */
 
 .frame {
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   align-self: stretch;
 }
 
 .icon {
-  width: 24px;
+  min-width: 24px;
   height: 24px;
   background: url("/Icon/Info/Address.png") no-repeat center/contain;
 }
