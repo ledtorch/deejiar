@@ -39,7 +39,12 @@
           "active": "Button/Marker/Landscape_active.png",
           "withFriends": "Button/Marker/Landscape_withFriends.png"
         },
-        "businesshour": null
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          }
+        ]
       },
       "geometry": {
         "type": "Point",

@@ -63,20 +63,20 @@ export default {
       // console.log("Hour: " + currentHour)
       // console.log("Minute: " + currentMinute)
 
-      if (this.bizTime === null) {
+      if (this.bizTime[0]?.['24hr']) {
         state = "Open 24H";
         stateClass = "isOpen";
       }
 
-      else if (this.bizTime[0]?.Holiday?.includes(currentDate) === true) {
+      // Check for holiday
+      else if (this.bizTime[0]?.['Holiday']?.includes(currentDate)) {
         state = "Closed for Holiday";
         stateClass = "isHoliday";
-
         // 🏗️ TODO:
         // Next Time
       }
 
-      else if (this.bizTime[currentDay] === null) {
+      else if (this.bizTime[currentDay] === false) {
         state = "Closed";
         stateClass = "isClose";
 
@@ -88,7 +88,7 @@ export default {
         // Access the object containing the business hours for the current day
         const currentBizHrObj = this.bizTime[currentDay];
 
-        if (currentBizHrObj !== null && currentBizHrObj[currentDayName]) {
+        if (currentBizHrObj !== false && currentBizHrObj[currentDayName]) {
           const currentBizHr = currentBizHrObj[currentDayName];
           // // 🐞 Debug console
           // console.log('currentBizHr: ', currentBizHr);
@@ -196,13 +196,13 @@ export default {
 }
 
 .frame {
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   align-self: stretch;
 }
 
 .icon {
-  width: 24px;
+  min-width: 24px;
   height: 24px;
   background: url("/Icon/Info/Time.png") no-repeat center/contain;
 }

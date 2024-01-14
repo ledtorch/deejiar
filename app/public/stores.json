@@ -53,9 +53,12 @@
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
         "businesshour": [
-          null,
           {
-            "Monday": null
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": false
           },
           {
             "Tuesday": [
@@ -188,7 +191,10 @@
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
         "businesshour": [
-          null,
+          {
+            "24hr": false,
+            "Holiday": []
+          },
           {
             "Monday": [
               {
@@ -304,7 +310,10 @@
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
         "businesshour": [
-          null,
+          {
+            "24hr": false,
+            "Holiday": []
+          },
           {
             "Monday": [
               {
@@ -420,7 +429,10 @@
           "withFriends": "Button/Marker/Thai_withFriends.png"
         },
         "businesshour": [
-          null,
+          {
+            "24hr": false,
+            "Holiday": []
+          },
           {
             "Monday": [
               {
@@ -536,7 +548,10 @@
           "withFriends": "Button/Marker/Thai_withFriends.png"
         },
         "businesshour": [
-          null,
+          {
+            "24hr": false,
+            "Holiday": []
+          },
           {
             "Monday": [
               {
@@ -671,7 +686,12 @@
           "active": "Button/Marker/Landscape_active.png",
           "withFriends": "Button/Marker/Landscape_withFriends.png"
         },
-        "businesshour": null
+        "businesshour": [
+          {
+            "24hr": true,
+            "Holiday": []
+          }
+        ]
       },
       "geometry": {
         "type": "Point",
@@ -730,9 +750,12 @@
           "withFriends": "Button/Marker/FormosanNoodles_withFriends.png"
         },
         "businesshour": [
-          null,
           {
-            "Monday": null
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": false
           },
           {
             "Tuesday": [
@@ -767,10 +790,10 @@
             ]
           },
           {
-            "Saturday": null
+            "Saturday": false
           },
           {
-            "Sunday": null
+            "Sunday": false
           }
         ]
       },
