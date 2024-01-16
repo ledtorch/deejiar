@@ -75,6 +75,7 @@ export default {
       storeTitle: '',
       description: '',
       storeType: '',
+      // The data from the JSON file
       data: '',
       currentPage: 0,
     }
@@ -125,6 +126,7 @@ export default {
     this.description = this.data.description;
     this.storeType = this.data.type;
   },
+
   computed: {
     storeLayout() {
       // // 🐞 Debug console
@@ -133,8 +135,10 @@ export default {
     },
     frontStoreImage() {
       return this.rootUrl(this.data?.storefront.day);
+
       // Fallback to an empty string if data is not available
       // return this.data?.storefront ? this.rootUrl(this.data.storefront.day) : '';
+
     },
     item1() {
       return this.rootUrl(this.data?.item1.image);
