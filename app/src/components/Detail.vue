@@ -134,13 +134,13 @@ export default {
       return this.data?.layout;
     },
     frontStoreImage() {
-      return this.rootUrl(this.data?.storefront.day);
-
-      // Fallback to an empty string if data is not available
-      // return this.data?.storefront ? this.rootUrl(this.data.storefront.day) : '';
-
+      // Defaults to an empty string before the app renders without data 
+      const storeFrontDayData = this.data?.storefront?.day || '';
+      return this.rootUrl(storeFrontDayData);
+      // return this.rootUrl(this.data?.storefront.day);
     },
     item1() {
+      // const item1Data = this.data?.item1?.image || '';
       return this.rootUrl(this.data?.item1.image);
     },
     item2() {
