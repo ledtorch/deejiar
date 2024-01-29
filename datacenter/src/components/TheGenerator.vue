@@ -10,64 +10,35 @@
 
     <h2>Number of Features: {{ jsonData.features.length }}</h2>
 
-    <div
-      class="data-section"
-      v-for="feature in jsonData.features"
-      :key="feature.properties.id"
-    >
+    <div class="data-section" v-for="feature in jsonData.features" :key="feature.properties.id">
       <h3>{{ feature.properties.title }}</h3>
-      <Form
-        :value="feature.properties"
-        property="title"
-        @update="updateFeature(feature.properties.id, $event)"
-      />
+      <TheForm :value="feature.properties" property="title" @update="updateFeature(feature.properties.id, $event)" />
       <div class="form-set">
-        <Form
-          :value="feature.properties"
-          property="type"
-          @update="updateFeature(feature.properties.id, $event)"
-        />
-        <Form
-          :value="feature.properties"
-          property="layout"
-          @update="updateFeature(feature.properties.id, $event)"
-        />
+        <TheForm :value="feature.properties" property="type" @update="updateFeature(feature.properties.id, $event)" />
+        <TheForm :value="feature.properties" property="layout" @update="updateFeature(feature.properties.id, $event)" />
       </div>
 
-      <Form
-        :value="feature.properties"
-        property="description"
-        @update="updateFeature(feature.properties.id, $event)"
-      />
+      <TheForm :value="feature.properties" property="description"
+        @update="updateFeature(feature.properties.id, $event)" />
       <div class="form-set">
-        <Form
-          :value="feature.properties"
-          property="address"
-          @update="updateFeature(feature.properties.id, $event)"
-        />
+        <TheForm :value="feature.properties" property="address" @update="updateFeature(feature.properties.id, $event)" />
 
-        <Form
-          :value="feature.geometry.coordinates"
-          property="0"
-          @update="updateCoordinates(feature.properties.id, 0, $event)"
-        />
+        <TheForm :value="feature.geometry.coordinates" property="0"
+          @update="updateCoordinates(feature.properties.id, 0, $event)" />
 
-        <Form
-          :value="feature.geometry.coordinates"
-          property="1"
-          @update="updateCoordinates(feature.properties.id, 1, $event)"
-        />
+        <TheForm :value="feature.geometry.coordinates" property="1"
+          @update="updateCoordinates(feature.properties.id, 1, $event)" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Form from "./Form.vue";
+import TheForm from "./TheForm.vue";
 import * as turf from "@turf/turf";
 
 export default {
-  components: { Form },
+  components: { TheForm },
   data() {
     return {
       jsonData: { features: [] },
@@ -159,6 +130,7 @@ export default {
   align-items: flex-start;
   gap: 24px;
 }
+
 // Temp
 
 .temp-button {
