@@ -3,20 +3,13 @@
     <div class="nav">
       <p class="headline">{{ capitalizedProperty }}</p>
       <!-- Only show the Edit button when editing is false -->
-      <button
-        class="text-button"
-        v-if="!editing"
-        @click="startEditing(property)"
-      >
+      <button class="text-button" v-if="!editing" @click="startEditing(property)">
         Edit
       </button>
       <!-- Only show the Save button when editing is true -->
       <button class="text-button" v-if="editing" @click="save">Save</button>
     </div>
-    <input
-      :class="{ input: !editing, 'input-on': editing }"
-      v-model="editingValue"
-    />
+    <input :class="{ input: !editing, 'input-on': editing }" v-model="editingValue" />
   </div>
 </template>
 
@@ -54,8 +47,6 @@ export default {
 };
 </script>
 
-
-
 <style lang="scss" scoped>
 .input {
   width: auto;
@@ -72,33 +63,19 @@ export default {
   align-self: stretch;
 }
 
-.table {
-  gap: 120px;
-}
-
 .form-frame {
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
   gap: 4px;
 }
-.form {
-  justify-content: space-between;
-  align-items: center;
-  width: auto;
-  padding: 12px;
-  border-radius: var(--border-content, 6px);
-  background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
-}
 
 .headline {
   font-size: 16px;
   font-weight: 500;
   line-height: 21px;
-  color: var(
-    --3-text-dark-2nd-white,
-    var(--token-secondary-text, rgba(255, 255, 255, 0.75))
-  );
+  color: var(--3-text-dark-2nd-white,
+      var(--token-secondary-text, rgba(255, 255, 255, 0.75)));
 }
 
 .input {
@@ -110,6 +87,7 @@ export default {
   align-items: center;
   align-self: stretch;
 }
+
 .input-on {
   width: auto;
   padding: 12px;

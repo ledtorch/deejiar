@@ -1,33 +1,34 @@
 <template>
   <div class="body">
-    <div class="button-set">
-      <label for="file-input" class="temp-button">Upload JSON</label>
-      <!-- Custom Button -->
-      <input type="file" id="file-input" @change="uploadJSON" class="hide" />
-      <!-- Actual Input -->
-      <button class="temp-button" @click="downloadJSON">Download JSON</button>
-    </div>
-
-    <h2>Number of Features: {{ jsonData.features.length }}</h2>
-
-    <div class="data-section" v-for="feature in jsonData.features" :key="feature.properties.id">
-      <h3>{{ feature.properties.title }}</h3>
-      <TheForm :value="feature.properties" property="title" @update="updateFeature(feature.properties.id, $event)" />
-      <div class="form-set">
-        <TheForm :value="feature.properties" property="type" @update="updateFeature(feature.properties.id, $event)" />
-        <TheForm :value="feature.properties" property="layout" @update="updateFeature(feature.properties.id, $event)" />
+    <div class="dashboard-frame">
+      <div class="button-set">
+        <label for="file-input" class="temp-button">Upload JSON</label>
+        <!-- Custom Button -->
+        <input type="file" id="file-input" @change="uploadJSON" class="hide" />
+        <!-- Actual Input -->
+        <button class="temp-button" @click="saveJSON">Save JSON</button>
       </div>
+      <h2>Number of Features: {{ jsonData.features.length }}</h2>
+      <div class="data-section" v-for="feature in jsonData.features" :key="feature.properties.id">
+        <h3>{{ feature.properties.title }}</h3>
+        <TheForm :value="feature.properties" property="title" @update="updateFeature(feature.properties.id, $event)" />
+        <div class="form-set">
+          <TheForm :value="feature.properties" property="type" @update="updateFeature(feature.properties.id, $event)" />
+          <TheForm :value="feature.properties" property="layout" @update="updateFeature(feature.properties.id, $event)" />
+        </div>
 
-      <TheForm :value="feature.properties" property="description"
-        @update="updateFeature(feature.properties.id, $event)" />
-      <div class="form-set">
-        <TheForm :value="feature.properties" property="address" @update="updateFeature(feature.properties.id, $event)" />
+        <TheForm :value="feature.properties" property="description"
+          @update="updateFeature(feature.properties.id, $event)" />
+        <div class="form-set">
+          <TheForm :value="feature.properties" property="address"
+            @update="updateFeature(feature.properties.id, $event)" />
 
-        <TheForm :value="feature.geometry.coordinates" property="0"
-          @update="updateCoordinates(feature.properties.id, 0, $event)" />
+          <TheForm :value="feature.geometry.coordinates" property="0"
+            @update="updateCoordinates(feature.properties.id, 0, $event)" />
 
-        <TheForm :value="feature.geometry.coordinates" property="1"
-          @update="updateCoordinates(feature.properties.id, 1, $event)" />
+          <TheForm :value="feature.geometry.coordinates" property="1"
+            @update="updateCoordinates(feature.properties.id, 1, $event)" />
+        </div>
       </div>
     </div>
   </div>
@@ -36,6 +37,7 @@
 <script>
 import TheForm from "./TheForm.vue";
 import * as turf from "@turf/turf";
+import axios from 'axios';
 
 export default {
   components: { TheForm },
@@ -82,18 +84,18 @@ export default {
       this.editingFeatureId = null;
       this.editingProperty = null;
     },
-    downloadJSON() {
-      const dataStr =
-        "data:text/json;charset=utf-8," +
-        encodeURIComponent(JSON.stringify(this.jsonData));
-      const downloadAnchorNode = document.createElement("a");
 
-      downloadAnchorNode.setAttribute("href", dataStr);
-      downloadAnchorNode.setAttribute("download", "data.json");
-      document.body.appendChild(downloadAnchorNode);
-      downloadAnchorNode.click();
-      downloadAnchorNode.remove();
+    async saveJSON() {
+      try {
+        // Use axios to send a POST request to your Flask endpoint
+        const response = await axios.post('http://127.0.0.1:5000/save_json', this.jsonData);
+        console.log(response.data.message); // Log the success message from Flask
+      } catch (error) {
+        console.error('Failed to save JSON:', error.response ? error.response.data : error);
+      }
     },
+
+
     centralizePolygon() {
       // ↓ Calculate the centroid of the polygon using turf
       const center = turf.centroid(feature.geometry);
@@ -109,6 +111,12 @@ export default {
   padding: 80px;
   width: 100vw;
   height: 100%;
+  gap: 24px;
+}
+
+.dashboard-frame {
+  flex-direction: column;
+  align-items: flex-start;
   gap: 24px;
 }
 
