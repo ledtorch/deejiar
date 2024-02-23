@@ -1,26 +1,40 @@
+# System
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
+from dotenv import load_dotenv
 
 # Security dependencies 
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from datetime import datetime, timedelta
 
-# Editing JSON dependencies
+# Other dependencies
 import os
 import json
-from datetime import datetime
+
+# Env setting
+env_file = '.env.production' if os.getenv('FLASK_ENV') == 'production' else '.env.local'
+load_dotenv(env_file)
+DATACENTER_API_BASE_URL = os.getenv('DATACENTER_API_BASE_URL')
+
 
 app = Flask(__name__)
 # Enable CORS for all routes and origins
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # Change this to a random secret key
+
+app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 jwt = JWTManager(app)
 
-# Example user data
+# User data
 users = {
     "jerry": generate_password_hash("0000")
 }
+
+# 🐞 Debug URL
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to the Flask API"}), 200
 
 # Account
 @app.route('/login', methods=['POST'])
@@ -28,9 +42,11 @@ def login():
     credentials = request.json
     username = credentials.get('account')
     password = credentials.get('password')
+    # expires = timedelta(minutes=30)
+    expires = timedelta(seconds=5)
 
     if username in users and check_password_hash(users[username], password):
-        access_token = create_access_token(identity=username)
+        access_token = create_access_token(identity=username, expires_delta=expires)
         return jsonify({"message": "Login successful", "access_token": access_token, "redirect": "/dashboard"}), 200    
     else:
         return jsonify({"error": "Invalid credentials"}), 401

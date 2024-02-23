@@ -50,6 +50,15 @@ export default {
     };
   },
   methods: {
+    async fetchStoresJSON() {
+      try {
+        const response = await axios.get('/stores.json'); // Adjust the URL based on your actual path
+        this.jsonData = response.data;
+      } catch (error) {
+        console.error('Failed to fetch stores.json:', error);
+      }
+    }
+    ,
     uploadJSON(event) {
       const file = event.target.files[0];
       const reader = new FileReader();

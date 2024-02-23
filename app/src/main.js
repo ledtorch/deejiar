@@ -10,7 +10,8 @@ import Detail from "./components/Detail.vue";
 import router from './router.js'
 // import { createPinia } from 'pinia';
 
-// Global CSS
+// Global CSS and normalize CSS
+import 'normalize.css';
 import './style.css'
 
 // Dependency

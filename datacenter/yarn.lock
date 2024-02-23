@@ -2362,6 +2362,7 @@ __metadata:
     eslint: "npm:^8.49.0"
     eslint-plugin-vue: "npm:^9.17.0"
     fs: "npm:^0.0.1-security"
+    normalize.css: "npm:^8.0.1"
     pinia: "npm:^2.1.7"
     postcss: "npm:^8.4.31"
     sass: "npm:^1.69.5"
@@ -3656,6 +3657,13 @@ __metadata:
   version: 0.1.2
   resolution: "normalize-range@npm:0.1.2"
   checksum: bf39b73a63e0a42ad1a48c2bd1bda5a07ede64a7e2567307a407674e595bcff0fa0d57e8e5f1e7fa5e91000797c7615e13613227aaaa4d6d6e87f5bd5cc95de6
+  languageName: node
+  linkType: hard
+
+"normalize.css@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "normalize.css@npm:8.0.1"
+  checksum: 4ddf56d1af5ca755fa5e692e718316d8758ecb792aa96e1ad206824b5810a043763d681d6f7697d46573515f5e9690038b4c91a95c1997567128815545fb8cd7
   languageName: node
   linkType: hard
 

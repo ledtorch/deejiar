@@ -7,7 +7,8 @@ import App from './App.vue'
 // Plugin
 import router from './router'
 
-// Global CSS
+// Global CSS and normalize CSS
+import 'normalize.css';
 import './style.css'
 
 const app = createApp(App)

@@ -36,6 +36,7 @@ const RAW_RUNTIME_STATE =
           ["eslint", "npm:8.56.0"],\
           ["eslint-plugin-vue", "virtual:13c7e0140e73d5cb45ba6e1364089aacc0893b6cc2d76e0a52d466b39e5f7a332c2ea82963340dd31ab41067095dc77af88acc549d153eba15363ba9ac589f48#npm:9.21.1"],\
           ["fs", "npm:0.0.1-security"],\
+          ["normalize.css", "npm:8.0.1"],\
           ["pinia", "virtual:13c7e0140e73d5cb45ba6e1364089aacc0893b6cc2d76e0a52d466b39e5f7a332c2ea82963340dd31ab41067095dc77af88acc549d153eba15363ba9ac589f48#npm:2.1.7"],\
           ["postcss", "npm:8.4.33"],\
           ["sass", "npm:1.70.0"],\
@@ -2767,6 +2768,7 @@ const RAW_RUNTIME_STATE =
           ["eslint", "npm:8.56.0"],\
           ["eslint-plugin-vue", "virtual:13c7e0140e73d5cb45ba6e1364089aacc0893b6cc2d76e0a52d466b39e5f7a332c2ea82963340dd31ab41067095dc77af88acc549d153eba15363ba9ac589f48#npm:9.21.1"],\
           ["fs", "npm:0.0.1-security"],\
+          ["normalize.css", "npm:8.0.1"],\
           ["pinia", "virtual:13c7e0140e73d5cb45ba6e1364089aacc0893b6cc2d76e0a52d466b39e5f7a332c2ea82963340dd31ab41067095dc77af88acc549d153eba15363ba9ac589f48#npm:2.1.7"],\
           ["postcss", "npm:8.4.33"],\
           ["sass", "npm:1.70.0"],\
@@ -4213,6 +4215,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../../.yarn/berry/cache/normalize-range-npm-0.1.2-bec5e259e2-10c0.zip/node_modules/normalize-range/",\
         "packageDependencies": [\
           ["normalize-range", "npm:0.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["normalize.css", [\
+      ["npm:8.0.1", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/normalize.css-npm-8.0.1-6124fb39b6-10c0.zip/node_modules/normalize.css/",\
+        "packageDependencies": [\
+          ["normalize.css", "npm:8.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\

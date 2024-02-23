@@ -2,6 +2,7 @@
   <div class="body">
     <div class="dashboard-frame">
       <h1>Datacenter</h1>
+
       <form class="submit-frame" @submit.prevent="submitLogin">
         <div class="form-frame">
           <div class="nav">
@@ -19,11 +20,7 @@
             v-model="credentials.password" />
         </div>
 
-
-
         <button type="submit">Login</button>
-
-
 
       </form>
     </div>
@@ -32,7 +29,7 @@
 
 <script>
 import axios from 'axios';
-import { useRouter } from 'vue-router'; // Import useRouter
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'TheAdm',
@@ -42,20 +39,38 @@ export default {
         account: '',
         password: ''
       },
-      editing: false, // Assuming you have some logic for this
+      // Initially not in editing mode for css
+      editing: false,
     }
   },
   setup() {
-    const router = useRouter(); // Use useRouter to access the router instance
+    const router = useRouter();
     return { router };
   },
   methods: {
-    async submitLogin() { // Updated to match the @submit.prevent
+    // Token timer
+    startSessionTimer() {
+      setTimeout(() => {
+        console.log('Session expired');
+        localStorage.removeItem('access_token');
+        this.router.push('/');
+      }, 5000); // 5 seconds
+    },
+
+    async submitLogin() {
       try {
-        const response = await axios.post('http://127.0.0.1:5000/login', this.credentials);
-        console.log('Login successful:', response.data);
-        // Store the JWT in local storage
+        // Link to the Flask 
+        const apiUrl = import.meta.env.VITE_DATACENTER_API;
+        const response = await axios.post(`${apiUrl}/login`, this.credentials);
         localStorage.setItem('access_token', response.data.access_token);
+
+        // 🐞 Debug console
+        console.log('Login successful:', response.data);
+        console.log('API URL:', import.meta.env.VITE_DATACENTER_API);
+
+        // Start the session timer after successful login
+        this.startSessionTimer();
+
         this.router.push('/dashboard');
       } catch (error) {
         if (error.response) {
@@ -65,8 +80,8 @@ export default {
         }
       }
     }
-  }
 
+  }
 }
 </script>
 

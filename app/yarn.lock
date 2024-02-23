@@ -544,6 +544,7 @@ __metadata:
     dotenv: "npm:^16.3.1"
     fs: "npm:^0.0.1-security"
     mapbox-gl: "npm:^2.15.0"
+    normalize.css: "npm:^8.0.1"
     pinia: "npm:^2.1.7"
     postcss: "npm:^8.4.31"
     sass: "npm:^1.69.5"
@@ -1607,6 +1608,13 @@ __metadata:
   version: 0.1.2
   resolution: "normalize-range@npm:0.1.2"
   checksum: 9b2f14f093593f367a7a0834267c24f3cb3e887a2d9809c77d8a7e5fd08738bcd15af46f0ab01cc3a3d660386f015816b5c922cea8bf2ee79777f40874063184
+  languageName: node
+  linkType: hard
+
+"normalize.css@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "normalize.css@npm:8.0.1"
+  checksum: c3af2145c21d57b94fe9f1abe7bac82ec91f8088810ada6ee3385f29a2d51af441a469b3c680d25b27bfab5291908a3ef3ed7012955036e8967f0b18fe39f38a
   languageName: node
   linkType: hard
 
