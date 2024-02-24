@@ -545,7 +545,6 @@ __metadata:
     fs: "npm:^0.0.1-security"
     mapbox-gl: "npm:^2.15.0"
     normalize.css: "npm:^8.0.1"
-    pinia: "npm:^2.1.7"
     postcss: "npm:^8.4.31"
     sass: "npm:^1.69.5"
     vite: "npm:^4.5.0"
@@ -1698,25 +1697,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pinia@npm:^2.1.7":
-  version: 2.1.7
-  resolution: "pinia@npm:2.1.7"
-  dependencies:
-    "@vue/devtools-api": "npm:^6.5.0"
-    vue-demi: "npm:>=0.14.5"
-  peerDependencies:
-    "@vue/composition-api": ^1.4.0
-    typescript: ">=4.4.4"
-    vue: ^2.6.14 || ^3.3.0
-  peerDependenciesMeta:
-    "@vue/composition-api":
-      optional: true
-    typescript:
-      optional: true
-  checksum: e8426e01b127610c96069ae04a68a57569596611816f24d2baa50a03cb2bf773c5b794280063cce53501ad6ad75e419bfd9dc7b45c05014f78fb0b3421dbb7b0
-  languageName: node
-  linkType: hard
-
 "postcss-value-parser@npm:^4.2.0":
   version: 4.2.0
   resolution: "postcss-value-parser@npm:4.2.0"
@@ -2158,22 +2138,6 @@ __metadata:
     "@mapbox/vector-tile": "npm:^1.3.1"
     pbf: "npm:^3.2.1"
   checksum: e1b6c5611440f3c5aa6eee59d50d755c8225836c21ed491f880f1de304052967e9534626969119f79a1a1b276c3b9fe01200c2c213e8c7c668297d24ebe515e7
-  languageName: node
-  linkType: hard
-
-"vue-demi@npm:>=0.14.5":
-  version: 0.14.6
-  resolution: "vue-demi@npm:0.14.6"
-  peerDependencies:
-    "@vue/composition-api": ^1.0.0-rc.1
-    vue: ^3.0.0-0 || ^2.6.0
-  peerDependenciesMeta:
-    "@vue/composition-api":
-      optional: true
-  bin:
-    vue-demi-fix: bin/vue-demi-fix.js
-    vue-demi-switch: bin/vue-demi-switch.js
-  checksum: cafe2b92039dac74e813bdf3db322c09f8fd0367f5650eca9b67ac08f749c7214dd75b7ef05f5ec4ffc8461eeff7151f09b9b6ad270edd49888de5b4c2985df4
   languageName: node
   linkType: hard
 

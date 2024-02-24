@@ -1,5 +1,6 @@
 <template>
   <div class="body">
+    <button @click="fetchStoresJSON">fetchStoresJSON</button>
     <div class="dashboard-frame">
       <div class="button-set">
         <label for="file-input" class="temp-button">Upload JSON</label>
@@ -51,14 +52,16 @@ export default {
   },
   methods: {
     async fetchStoresJSON() {
+      const jsonUrl = import.meta.env.VITE_MAP_STORES;
       try {
-        const response = await axios.get('/stores.json'); // Adjust the URL based on your actual path
+        const response = await axios.get(jsonUrl);
         this.jsonData = response.data;
+        console.log('jsonUrl:', jsonUrl);
       } catch (error) {
         console.error('Failed to fetch stores.json:', error);
       }
-    }
-    ,
+    },
+
     uploadJSON(event) {
       const file = event.target.files[0];
       const reader = new FileReader();

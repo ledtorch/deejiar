@@ -1,5 +1,5 @@
 # System
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 
@@ -11,6 +11,9 @@ from datetime import datetime, timedelta
 # Other dependencies
 import os
 import json
+
+# Sources
+STORES_JSON_PATH = '../data/test.json'
 
 # Env setting
 env_file = '.env.production' if os.getenv('FLASK_ENV') == 'production' else '.env.local'
@@ -73,6 +76,31 @@ def save_json():
         json.dump(data, f, ensure_ascii=False, indent=4)
 
     return jsonify({"message": "JSON data saved successfully"}), 200
+
+
+@app.route('/stores', methods=['GET'])
+def get_stores():
+    if os.path.exists(STORES_JSON_PATH):
+        with open(STORES_JSON_PATH, 'r', encoding='utf-8') as file:
+            stores_data = json.load(file)
+        return jsonify(stores_data)
+    else:
+        return jsonify({"error": "stores.json not found"}), 404
+
+@app.route('/stores', methods=['POST'])
+@jwt_required()  # Assuming you want to protect this endpoint
+def save_stores():
+    # Make a backup of the current stores.json, if it exists
+    if os.path.exists(STORES_JSON_PATH):
+        backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{datetime.now().strftime("%Y%m%d%H%M%S")}.json')
+        os.rename(STORES_JSON_PATH, backup_path)
+
+    # Save the new JSON data
+    data = request.json
+    with open(STORES_JSON_PATH, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+    return jsonify({"message": "stores.json updated successfully"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -16,7 +16,6 @@
     "axios": "^1.6.7",
     "fs": "^0.0.1-security",
     "normalize.css": "^8.0.1",
-    "pinia": "^2.1.7",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   },
