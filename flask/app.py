@@ -1,35 +1,36 @@
 # System
 from flask import Flask, request, jsonify, make_response, send_from_directory
+
+# Security and authentication 
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+
+# Environment
 from dotenv import load_dotenv
 
-# Security dependencies 
-from werkzeug.security import check_password_hash, generate_password_hash
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-from datetime import datetime, timedelta
-
-# Other dependencies
+# Data
 import os
 import json
-
-# Sources
-STORES_JSON_PATH = '../data/test.json'
+from datetime import datetime, timedelta
 
 # Env setting
 env_file = '.env.production' if os.getenv('FLASK_ENV') == 'production' else '.env.local'
 load_dotenv(env_file)
+
+# Files and sources
+STORES_JSON_PATH = '../data/stores.json'
 DATACENTER_API_BASE_URL = os.getenv('DATACENTER_API_BASE_URL')
 
-
+# Flask app config
 app = Flask(__name__)
 # Enable CORS for all routes and origins
 CORS(app, resources={r"/*": {"origins": "*"}})
-
-
+# Auth
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 jwt = JWTManager(app)
 
-# User data
+# User
 users = {
     "jerry": generate_password_hash("0000")
 }
@@ -40,6 +41,7 @@ def home():
     return jsonify({"message": "Welcome to the Flask API"}), 200
 
 # Account
+# 🏗️ expires seems doesn't match the real timeframe
 @app.route('/login', methods=['POST'])
 def login():
     credentials = request.json
@@ -63,20 +65,20 @@ def dashboard():
     return jsonify(logged_in_as=current_user), 200
 
 # JSON
-@app.route('/save_json', methods=['POST'])
-def save_json():
-    # Make a backup of the current stores.json, if it exists
-    if os.path.exists('stores.json'):
+@app.route('/stores', methods=['POST'])
+def update_json():
+    # Make a backup of the current stores.json
+    if os.path.exists(STORES_JSON_PATH):
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-        os.rename('stores.json', f'stores_backup_{timestamp}.json')
+        backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{timestamp}.json')
+        os.rename(STORES_JSON_PATH, backup_path)
 
     # Save the new JSON data
     data = request.json
-    with open('stores.json', 'w', encoding='utf-8') as f:
+    with open(STORES_JSON_PATH, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
-    return jsonify({"message": "JSON data saved successfully"}), 200
-
+    return jsonify({"message": "JSON data updated successfully"}), 200
 
 @app.route('/stores', methods=['GET'])
 def get_stores():
@@ -87,20 +89,20 @@ def get_stores():
     else:
         return jsonify({"error": "stores.json not found"}), 404
 
-@app.route('/stores', methods=['POST'])
-@jwt_required()  # Assuming you want to protect this endpoint
-def save_stores():
-    # Make a backup of the current stores.json, if it exists
-    if os.path.exists(STORES_JSON_PATH):
-        backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{datetime.now().strftime("%Y%m%d%H%M%S")}.json')
-        os.rename(STORES_JSON_PATH, backup_path)
+# @app.route('/stores', methods=['POST'])
+# @jwt_required()  # Assuming you want to protect this endpoint
+# def save_stores():
+#     # Make a backup of the current stores.json, if it exists
+#     if os.path.exists(STORES_JSON_PATH):
+#         backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{datetime.now().strftime("%Y%m%d%H%M%S")}.json')
+#         os.rename(STORES_JSON_PATH, backup_path)
 
-    # Save the new JSON data
-    data = request.json
-    with open(STORES_JSON_PATH, 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
+#     # Save the new JSON data
+#     data = request.json
+#     with open(STORES_JSON_PATH, 'w', encoding='utf-8') as file:
+#         json.dump(data, file, ensure_ascii=False, indent=4)
 
-    return jsonify({"message": "stores.json updated successfully"}), 200
+#     return jsonify({"message": "stores.json updated successfully"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)

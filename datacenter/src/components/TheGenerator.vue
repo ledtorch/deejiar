@@ -1,13 +1,9 @@
 <template>
   <div class="body">
-    <button @click="fetchStoresJSON">fetchStoresJSON</button>
     <div class="dashboard-frame">
       <div class="button-set">
-        <label for="file-input" class="temp-button">Upload JSON</label>
-        <!-- Custom Button -->
-        <input type="file" id="file-input" @change="uploadJSON" class="hide" />
-        <!-- Actual Input -->
-        <button class="temp-button" @click="saveJSON">Save JSON</button>
+        <button @click="editJSON">Edit JSON from Server</button>
+        <button class="temp-button" @click="updateJSON">Update JSON</button>
       </div>
       <h2>Number of Features: {{ jsonData.features.length }}</h2>
       <div class="data-section" v-for="feature in jsonData.features" :key="feature.properties.id">
@@ -37,7 +33,6 @@
 
 <script>
 import TheForm from "./TheForm.vue";
-import * as turf from "@turf/turf";
 import axios from 'axios';
 
 export default {
@@ -48,37 +43,29 @@ export default {
       editingFeature: null,
       editingFeatureId: null, // The ID of the feature being edited
       editingProperty: null, // The property of the feature being edited ('title' or 'layout')
+      jsonUrl: import.meta.env.VITE_MAP_STORES
     };
   },
   methods: {
-    async fetchStoresJSON() {
-      const jsonUrl = import.meta.env.VITE_MAP_STORES;
+    async editJSON() {
       try {
-        const response = await axios.get(jsonUrl);
+        const response = await axios.get(this.jsonUrl);
+        console.log('Fetched data:', response.data);
         this.jsonData = response.data;
-        console.log('jsonUrl:', jsonUrl);
+        console.log('jsonData after assignment:', this.jsonData);
       } catch (error) {
         console.error('Failed to fetch stores.json:', error);
       }
     },
-
-    uploadJSON(event) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        this.jsonData = JSON.parse(e.target.result);
-      };
-
-      reader.readAsText(file);
+    async updateJSON() {
+      try {
+        const response = await axios.post(this.jsonUrl, this.jsonData);
+        console.log(response.data.message);
+      } catch (error) {
+        console.error('Failed to update stores.json:', error.response ? error.response.data : error);
+      }
     },
-    editFeature(id, property) {
-      this.editingFeatureId = id;
-      this.editingProperty = property;
-      this.editingFeature = this.jsonData.features.find(
-        (feature) => feature.properties.id === id
-      ).properties;
-    },
+
     updateFeature(id, [property, value]) {
       const feature = this.jsonData.features.find(
         (feature) => feature.properties.id === id
@@ -90,28 +77,7 @@ export default {
         (feature) => feature.properties.id === id
       );
       feature.geometry.coordinates[index] = parseFloat(value);
-    },
-    saveFeature() {
-      this.editingFeature = null;
-      this.editingFeatureId = null;
-      this.editingProperty = null;
-    },
-
-    async saveJSON() {
-      try {
-        // Use axios to send a POST request to your Flask endpoint
-        const response = await axios.post('http://127.0.0.1:5000/save_json', this.jsonData);
-        console.log(response.data.message); // Log the success message from Flask
-      } catch (error) {
-        console.error('Failed to save JSON:', error.response ? error.response.data : error);
-      }
-    },
-
-
-    centralizePolygon() {
-      // ↓ Calculate the centroid of the polygon using turf
-      const center = turf.centroid(feature.geometry);
-    },
+    }
   },
 };
 </script>
