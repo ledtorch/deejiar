@@ -9,7 +9,7 @@
                 "type": "Point"
             },
             "properties": {
-                "address": "1201 S St NW, Washington, DC 20009999",
+                "address": "1201 S St NW, Washington, DC 20009",
                 "businesshour": [
                     {
                         "24hr": false,

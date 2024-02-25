@@ -35,6 +35,7 @@
         <Address :address="data.address" />
       </div>
       <div class="splitline"></div>
+      <GetDirection :geo="geoData" />
     </div>
 
     <!-- Product Page -->
@@ -44,6 +45,7 @@
         <h2>{{ currentItem.price }}</h2>
       </div>
       <p class="state">{{ currentItem.description }}</p>
+      <GetDirection :geo="geoData" />
     </div>
 
   </div>
@@ -51,15 +53,17 @@
   
 <script>
 // Components
+import TagShopType from "./Button/TagShopType.vue";
+import Review from "./Sheet/Review.vue";
+import Businesshour from "./Sheet/Businesshour.vue";
+import Address from "./Sheet/Address.vue";
+// Buttons
 import Home from "./Button/Icon/Home.vue";
 import DetailHome from "./Button/Icon/DetailHome.vue";
 import Share from "./Button/Icon/Share.vue";
 import LeftArrow from "./Button/Icon/LeftArrow.vue";
 import RightArrow from "./Button/Icon/RightArrow.vue";
-import TagShopType from "./Button/TagShopType.vue";
-import Review from "./Sheet/Review.vue";
-import Businesshour from "./Sheet/Businesshour.vue";
-import Address from "./Sheet/Address.vue";
+import GetDirection from "./Button/CTA/GetDirection.vue";
 
 // 🏗️ TODO: Share Feature
 // Vue Utilities and Plugins
@@ -69,7 +73,7 @@ import Address from "./Sheet/Address.vue";
 // import { ref, computed, watchEffect } from 'vue';
 
 export default {
-  components: { Home, DetailHome, Share, LeftArrow, RightArrow, TagShopType, Review, Businesshour, Address },
+  components: { Home, DetailHome, Share, LeftArrow, RightArrow, TagShopType, Review, Businesshour, Address, GetDirection },
   data() {
     return {
       storeTitle: '',
@@ -77,6 +81,7 @@ export default {
       storeType: '',
       // The data from the JSON file
       data: '',
+      geoData: [],
       currentPage: 0,
     }
   },
@@ -122,6 +127,7 @@ export default {
     console.log("The storeData: ", storeData);
 
     this.data = storeData.properties;
+    this.geoData = storeData.geometry.coordinates;
     this.storeTitle = this.data.title;
     this.description = this.data.description;
     this.storeType = this.data.type;
