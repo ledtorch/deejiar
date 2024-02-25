@@ -66,14 +66,12 @@ body {
 	display: flex;
 	place-items: center;
 	min-width: 320px;
-	min-height: 100vh;
+	min-height: 100%;
+	width: 100%;
 
 	/* Hide scroll */
 	overflow-x: hidden;
 	overflow-y: hidden;
-
-	width: 100vw;
-	height: 100vh;
 }
 
 div {
@@ -117,11 +115,14 @@ p {
 	line-height: 24px;
 }
 
-.button-text {
+/* Mobile styles */
+.m-button-text {
 	font-size: 15px;
 	font-weight: 700;
 	line-height: 24px;
 }
+
+/* Not yet update */
 
 .headline {
 	font-size: 16px;
@@ -153,10 +154,11 @@ p {
 	line-height: 12px;
 }
 
+/* ↑ Not yet update */
+
 /* Global Symbols */
 .splitline {
 	width: 100%;
-	/* This min-height makes sure it could be displayed with Safari on iPhone */
 	min-height: 1px;
 	background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
 }
