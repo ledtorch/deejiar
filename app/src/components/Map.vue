@@ -438,7 +438,8 @@ export default {
         },
         error => {
           console.error("Geolocation error: ", error);
-          this.map.setCenter([-77.0364976166554, 38.897684621644885]); // White House or default location
+          // White House as default location
+          this.map.setCenter([-77.0364976166554, 38.897684621644885]);
         }
       );
     },
