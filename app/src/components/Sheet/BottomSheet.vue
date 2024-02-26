@@ -57,7 +57,7 @@
 
 <script>
 // Vue Dependencies
-import { ref, onMounted, watch, toRefs, computed } from "vue";
+import { ref, onMounted, watch, toRefs } from "vue";
 import { useRouter } from "vue-router";
 
 // Components
