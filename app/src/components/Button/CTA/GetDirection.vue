@@ -4,6 +4,7 @@
       <div class="apple-maps"></div>
       <h2 class="m-button-text">Get Direction</h2>
     </div>
+    <div class="outer-link"></div>
   </button>
 </template>
 
@@ -38,6 +39,23 @@ export default {
   background: rgba(255, 255, 255, 0.07);
 }
 
+/* Reset button styles */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  background: none;
+  color: inherit;
+  /* Use the text color of the element the button is inside */
+  border: none;
+  padding: 0;
+  font: inherit;
+  /* Use the font settings of the element the button is inside */
+  cursor: pointer;
+  outline: inherit;
+  /* Use the outline settings of the element the button is inside */
+}
+
 .title-frame {
   display: flex;
   justify-content: center;
@@ -48,7 +66,7 @@ export default {
 .apple-maps {
   width: 24px;
   height: 24px;
-  background: url("/Button/Icon/apple/maps.svg") no-repeat center/contain;
+  background: url("/Button/Icon/brand/appleMaps.svg") no-repeat center/contain;
 }
 
 .outer-link {
