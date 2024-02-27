@@ -39,20 +39,23 @@ export default {
   components: { TheForm },
   data() {
     return {
+      jsonUrl: import.meta.env.VITE_MAP_STORES,
+      // Initialize jsonData for GeoJSON FeatureCollection format with an empty features array
       jsonData: { features: [] },
       editingFeature: null,
       editingFeatureId: null, // The ID of the feature being edited
-      editingProperty: null, // The property of the feature being edited ('title' or 'layout')
-      jsonUrl: import.meta.env.VITE_MAP_STORES
+      editingProperty: null // The property of the feature being edited ('title' or 'layout')
     };
   },
   methods: {
     async editJSON() {
       try {
         const response = await axios.get(this.jsonUrl);
-        console.log('Fetched data:', response.data);
         this.jsonData = response.data;
-        console.log('jsonData after assignment:', this.jsonData);
+        // 🐞 Debug console
+        console.log('Fetched URL:', this.jsonUrl);
+        console.log('Fetched data:', response.data);
+        console.log('jsonData:', this.jsonData);
       } catch (error) {
         console.error('Failed to fetch stores.json:', error);
       }
@@ -60,6 +63,7 @@ export default {
     async updateJSON() {
       try {
         const response = await axios.post(this.jsonUrl, this.jsonData);
+        // 🐞 Debug console, the confirm message from 'Flask'
         console.log(response.data.message);
       } catch (error) {
         console.error('Failed to update stores.json:', error.response ? error.response.data : error);
