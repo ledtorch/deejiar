@@ -1,57 +1,12 @@
 {
-  "type": "FeatureCollection",
   "features": [
     {
-      "type": "Feature",
+      "geometry": {
+        "coordinates": [-77.01243920316357, 38.91286090122076],
+        "type": "Point"
+      },
       "properties": {
-        "id": "1",
-        "layout": "food",
-        "type": "Cafe",
-        "title": "Big Bear Cafe",
-        "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
         "address": "1201 S St NW, Washington, DC 20009",
-        "tag": "[]",
-        "storefront": {
-          "day": "Store/cafe/bigbearcafe/StorefrontDay.jpg",
-          "night": "Store/cafe/bigbearcafe/StorefrontNight.jpg"
-        },
-        "item1": {
-          "name": "Iced Steamer",
-          "image": "Store/cafe/bigbearcafe/IcedSteamer.jpg",
-          "description": "Cold whole or oat milk drink with flavored syrup. No coffee! Enjoy with a classic chai or vanilla syrup, or ask our baristas about our seasonal syrup options.",
-          "price": "$3.8"
-        },
-        "item2": {
-          "name": "Shrimp Taco",
-          "image": "Store/cafe/bigbearcafe/ShrimpTaco.jpg",
-          "description": "Enjoy your chewy shrimp with sour salsa, but the original taste is awesome as well.",
-          "price": "$12"
-        },
-        "item3": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item4": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item5": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "icon": {
-          "default": "Button/Marker/Cafe_default.png",
-          "mini": "Button/Marker/Cafe_mini.png",
-          "larger": "Button/Marker/Cafe_larger.png",
-          "active": "Button/Marker/Cafe_active.png",
-          "withFriends": "Button/Marker/Cafe_withFriends.png"
-        },
         "businesshour": [
           {
             "24hr": false,
@@ -63,133 +18,256 @@
           {
             "Tuesday": [
               {
-                "Start": "0800",
-                "Finish": "1500"
+                "Finish": "1500",
+                "Start": "0800"
               },
               {
-                "Start": "1600",
-                "Finish": "2200"
+                "Finish": "2200",
+                "Start": "1600"
               }
             ]
           },
           {
             "Wednesday": [
               {
-                "Start": "0800",
-                "Finish": "1500"
+                "Finish": "1500",
+                "Start": "0800"
               },
               {
-                "Start": "1600",
-                "Finish": "2200"
+                "Finish": "2200",
+                "Start": "1600"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Start": "0800",
-                "Finish": "1500"
+                "Finish": "1500",
+                "Start": "0800"
               },
               {
-                "Start": "1600",
-                "Finish": "2200"
+                "Finish": "2200",
+                "Start": "1600"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Start": "0800",
-                "Finish": "1500"
+                "Finish": "1500",
+                "Start": "0800"
               },
               {
-                "Start": "1600",
-                "Finish": "2200"
+                "Finish": "2200",
+                "Start": "1600"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Start": "0800",
-                "Finish": "1500"
+                "Finish": "1500",
+                "Start": "0800"
               },
               {
-                "Start": "1600",
-                "Finish": "2200"
+                "Finish": "2200",
+                "Start": "1600"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Start": "0800",
-                "Finish": "1500"
+                "Finish": "1500",
+                "Start": "0800"
               },
               {
-                "Start": "1600",
-                "Finish": "2200"
+                "Finish": "2200",
+                "Start": "1600"
               }
             ]
           }
-        ]
+        ],
+        "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
+        "icon": {
+          "active": "Button/Marker/Cafe_active.png",
+          "default": "Button/Marker/Cafe_default.png",
+          "larger": "Button/Marker/Cafe_larger.png",
+          "mini": "Button/Marker/Cafe_mini.png",
+          "withFriends": "Button/Marker/Cafe_withFriends.png"
+        },
+        "id": "1",
+        "item1": {
+          "description": "Cold whole or oat milk drink with flavored syrup. No coffee! Enjoy with a classic chai or vanilla syrup, or ask our baristas about our seasonal syrup options.",
+          "image": "Store/cafe/bigbearcafe/IcedSteamer.jpg",
+          "name": "Iced Steamer",
+          "price": "$3.8"
+        },
+        "item2": {
+          "description": "Enjoy your chewy shrimp with sour salsa, but the original taste is awesome as well.",
+          "image": "Store/cafe/bigbearcafe/ShrimpTaco.jpg",
+          "name": "Shrimp Taco",
+          "price": "$12"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/cafe/bigbearcafe/StorefrontDay.jpg",
+          "night": "Store/cafe/bigbearcafe/StorefrontNight.jpg"
+        },
+        "tag": "[]",
+        "title": "Big Bear Cafe",
+        "type": "Cafe",
+        "auid": "1141545104174516841",
+        "googlePlaceId": ""
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-77.01243920316357, 38.91286090122076]
-      }
+      "type": "Feature"
     },
     {
-      "type": "Feature",
+      "geometry": {
+        "coordinates": [-77.02328634317668, 38.89548380468532],
+        "type": "Point"
+      },
       "properties": {
-        "id": "2",
-        "layout": "food",
-        "type": "Cafe",
-        "title": "Teaism Penn Quarter",
-        "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
         "address": "400 8th St NW, Washington, DC 20004",
-        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "1800",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "1800",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "1800",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "1800",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "1800",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "1800",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "1800",
+                "Start": "1100"
+              }
+            ]
+          }
+        ],
+        "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
+        "icon": {
+          "active": "Button/Marker/Cafe_active.png",
+          "default": "Button/Marker/Cafe_default.png",
+          "larger": "Button/Marker/Cafe_larger.png",
+          "mini": "Button/Marker/Cafe_mini.png",
+          "withFriends": "Button/Marker/Cafe_withFriends.png"
+        },
+        "id": "2",
+        "item1": {
+          "description": "Hot Chai Indian spices with milk & sugar",
+          "image": "Store/cafe/teaismpennquarter/Chai.jpg",
+          "name": "Chai",
+          "price": "$4.75"
+        },
+        "item2": {
+          "description": "2 Vegan Ginger Scones",
+          "image": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
+          "name": "Vegan Ginger Scones",
+          "price": "$4"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
         "storefront": {
           "day": "Store/cafe/teaismpennquarter/StorefrontDay.jpg",
           "night": "Store/cafe/teaismpennquarter/StorefrontNight.jpg"
         },
-        "item1": {
-          "name": "Chai",
-          "image": "Store/cafe/teaismpennquarter/Chai.jpg",
-          "description": "Hot Chai Indian spices with milk & sugar",
-          "price": "$4.75"
-        },
-        "item2": {
-          "name": "Vegan Ginger Scones",
-          "image": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
-          "description": "2 Vegan Ginger Scones",
-          "price": "$4"
-        },
-        "item3": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item4": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item5": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "icon": {
-          "default": "Button/Marker/Cafe_default.png",
-          "mini": "Button/Marker/Cafe_mini.png",
-          "larger": "Button/Marker/Cafe_larger.png",
-          "active": "Button/Marker/Cafe_active.png",
-          "withFriends": "Button/Marker/Cafe_withFriends.png"
-        },
+        "tag": "[]",
+        "title": "Teaism Penn Quarter",
+        "type": "Cafe",
+        "auid": "856799894333602973",
+        "googlePlaceId": ""
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [-77.03162544459492, 38.9132761409135],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "1705 14th St NW, Washington, DC 20009",
         "businesshour": [
           {
             "24hr": false,
@@ -198,117 +276,119 @@
           {
             "Monday": [
               {
-                "Start": "1100",
-                "Finish": "1800"
+                "Finish": "2400",
+                "Start": "1700"
               }
             ]
           },
           {
             "Tuesday": [
               {
-                "Start": "1100",
-                "Finish": "1800"
+                "Finish": "2400",
+                "Start": "1700"
               }
             ]
           },
           {
             "Wednesday": [
               {
-                "Start": "1100",
-                "Finish": "1800"
+                "Finish": "2400",
+                "Start": "1700"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Start": "1100",
-                "Finish": "1800"
+                "Finish": "2500",
+                "Start": "1700"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Start": "1100",
-                "Finish": "1800"
+                "Finish": "2600",
+                "Start": "1700"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Start": "1100",
-                "Finish": "1800"
+                "Finish": "2600",
+                "Start": "1400"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Start": "1100",
-                "Finish": "1800"
+                "Finish": "2400",
+                "Start": "1400"
               }
             ]
           }
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-77.02328634317668, 38.89548380468532]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "3",
-        "layout": "food",
-        "type": "Bar",
-        "title": "Jane Jane",
+        ],
         "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
-        "address": "1705 14th St NW, Washington, DC 20009",
-        "tag": "[]",
+        "icon": {
+          "active": "Button/Marker/Bar_active.png",
+          "default": "Button/Marker/Bar_default.png",
+          "larger": "Button/Marker/Bar_larger.png",
+          "mini": "Button/Marker/Bar_mini.png",
+          "withFriends": "Button/Marker/Bar_withFriends.png"
+        },
+        "id": "3",
+        "item1": {
+          "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
+          "image": "Store/bar/janejane/Onion Dip.jpg",
+          "name": "Onion Dip",
+          "price": "$12"
+        },
+        "item2": {
+          "description": "Pisco, Aperol, Maraschino Liqueur, Grapefruit Juice, Lemon Juice, Simple Syrup",
+          "image": "Store/bar/janejane/Cusco.jpg",
+          "name": "Cusco",
+          "price": "$15"
+        },
+        "item3": {
+          "description": "Scotch, Irish Whiskey, Orgeat, Lemon Juice",
+          "image": "Store/bar/janejane/Cameron's Kick.jpg",
+          "name": "Cameron's Kick",
+          "price": "$15"
+        },
+        "item4": {
+          "description": "Gin, Benedictine, Cointreau, Heering Cherry Liqueur, Pineapple Juice, Lime Juice, Angostura, Soda Water",
+          "image": "Store/bar/janejane/Singapore Sling.jpg",
+          "name": "Singapore Sling",
+          "price": "$16"
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
         "storefront": {
           "day": "Store/bar/janejane/StorefrontDay.jpg",
           "night": "Store/bar/janejane/StorefrontNight.jpg"
         },
-        "item1": {
-          "name": "Onion Dip",
-          "image": "Store/bar/janejane/Onion Dip.jpg",
-          "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
-          "price": "$12"
-        },
-        "item2": {
-          "name": "Cusco",
-          "image": "Store/bar/janejane/Cusco.jpg",
-          "description": "Pisco, Aperol, Maraschino Liqueur, Grapefruit Juice, Lemon Juice, Simple Syrup",
-          "price": "$15"
-        },
-        "item3": {
-          "name": "Cameron's Kick",
-          "image": "Store/bar/janejane/Cameron's Kick.jpg",
-          "description": "Scotch, Irish Whiskey, Orgeat, Lemon Juice",
-          "price": "$15"
-        },
-        "item4": {
-          "name": "Singapore Sling",
-          "image": "Store/bar/janejane/Singapore Sling.jpg",
-          "description": "Gin, Benedictine, Cointreau, Heering Cherry Liqueur, Pineapple Juice, Lime Juice, Angostura, Soda Water",
-          "price": "$16"
-        },
-        "item5": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "icon": {
-          "default": "Button/Marker/Bar_default.png",
-          "mini": "Button/Marker/Bar_mini.png",
-          "larger": "Button/Marker/Bar_larger.png",
-          "active": "Button/Marker/Bar_active.png",
-          "withFriends": "Button/Marker/Bar_withFriends.png"
-        },
+        "tag": "[]",
+        "title": "Jane Jane",
+        "type": "Bar",
+        "auid": "3689846720665772135",
+        "googlePlaceId": ""
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [-77.03217263705724, 38.911501815280616],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "1608 14th St NW, Washington, DC 20009",
         "businesshour": [
           {
             "24hr": false,
@@ -317,117 +397,119 @@
           {
             "Monday": [
               {
-                "Start": "1700",
-                "Finish": "2400"
+                "Finish": "2200",
+                "Start": "1130"
               }
             ]
           },
           {
             "Tuesday": [
               {
-                "Start": "1700",
-                "Finish": "2400"
+                "Finish": "2200",
+                "Start": "1130"
               }
             ]
           },
           {
             "Wednesday": [
               {
-                "Start": "1700",
-                "Finish": "2400"
+                "Finish": "2200",
+                "Start": "1130"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Start": "1700",
-                "Finish": "2500"
+                "Finish": "2200",
+                "Start": "1130"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Start": "1700",
-                "Finish": "2600"
+                "Finish": "2230",
+                "Start": "1130"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Start": "1400",
-                "Finish": "2600"
+                "Finish": "2230",
+                "Start": "1130"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Start": "1400",
-                "Finish": "2400"
+                "Finish": "2200",
+                "Start": "1130"
               }
             ]
           }
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-77.03162544459492, 38.9132761409135]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "4",
-        "layout": "food",
-        "type": "Thai",
-        "title": "Rice Restaurant",
+        ],
         "description": "A cozy restaurant is situated on 14th Street, offering delicious Thai cuisine; its Japanese fare is also commendable. Upon entering the restaurant, don't miss the Rice Market—simply head downstairs to the basement of the same building. It offers a variety of Asian seasonings and ingredients, along with Japanese kitchenware and tableware.",
-        "address": "1608 14th St NW, Washington, DC 20009",
-        "tag": "[]",
+        "icon": {
+          "active": "Button/Marker/Thai_active.png",
+          "default": "Button/Marker/Thai_default.png",
+          "larger": "Button/Marker/Thai_larger.png",
+          "mini": "Button/Marker/Thai_mini.png",
+          "withFriends": "Button/Marker/Thai_withFriends.png"
+        },
+        "id": "4",
+        "item1": {
+          "description": "Takoyaki",
+          "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
+          "name": "Takoyaki",
+          "price": "$8"
+        },
+        "item2": {
+          "description": "Fire Fly Vodka, Sour mix, Lime juice.",
+          "image": "Store/restaurant/ricerestaurant/SweetTeaLemonade.jpg",
+          "name": "Sweet Tea Lemonade",
+          "price": "$10"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
         "storefront": {
           "day": "Store/restaurant/ricerestaurant/StorefrontDay.jpg",
           "night": "Store/restaurant/ricerestaurant/StorefrontNight.jpg"
         },
-        "item1": {
-          "name": "Takoyaki",
-          "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
-          "description": "Takoyaki",
-          "price": "$8"
-        },
-        "item2": {
-          "name": "Sweet Tea Lemonade",
-          "image": "Store/restaurant/ricerestaurant/SweetTeaLemonade.jpg",
-          "description": "Fire Fly Vodka, Sour mix, Lime juice.",
-          "price": "$10"
-        },
-        "item3": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item4": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item5": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "icon": {
-          "default": "Button/Marker/Thai_default.png",
-          "mini": "Button/Marker/Thai_mini.png",
-          "larger": "Button/Marker/Thai_larger.png",
-          "active": "Button/Marker/Thai_active.png",
-          "withFriends": "Button/Marker/Thai_withFriends.png"
-        },
+        "tag": "[]",
+        "title": "Rice Restaurant",
+        "type": "Thai",
+        "auid": "14472969398923707248",
+        "googlePlaceId": ""
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [-73.95725715767244, 40.77092171697179],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "1439 2nd Ave, New York, NY 10021",
         "businesshour": [
           {
             "24hr": false,
@@ -436,423 +518,204 @@
           {
             "Monday": [
               {
-                "Start": "1130",
-                "Finish": "2200"
+                "Finish": "1530",
+                "Start": "1130"
+              },
+              {
+                "Finish": "2230",
+                "Start": "1700"
               }
             ]
           },
           {
             "Tuesday": [
               {
-                "Start": "1130",
-                "Finish": "2200"
+                "Finish": "1530",
+                "Start": "1130"
+              },
+              {
+                "Finish": "2230",
+                "Start": "1700"
               }
             ]
           },
           {
             "Wednesday": [
               {
-                "Start": "1130",
-                "Finish": "2200"
+                "Finish": "1530",
+                "Start": "1130"
+              },
+              {
+                "Finish": "2230",
+                "Start": "1700"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Start": "1130",
-                "Finish": "2200"
+                "Finish": "1530",
+                "Start": "1130"
+              },
+              {
+                "Finish": "2230",
+                "Start": "1700"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Start": "1130",
-                "Finish": "2230"
+                "Finish": "1530",
+                "Start": "1130"
+              },
+              {
+                "Finish": "2330",
+                "Start": "1700"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Start": "1130",
-                "Finish": "2230"
+                "Finish": "2330",
+                "Start": "1200"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Start": "1130",
-                "Finish": "2200"
+                "Finish": "2230",
+                "Start": "1200"
               }
             ]
           }
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-77.03217263705724, 38.911501815280616]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "5",
-        "layout": "food",
-        "type": "Thai",
-        "title": "THEP Thai Restaurant",
+        ],
         "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles.",
-        "address": "1439 2nd Ave, New York, NY 10021",
-        "tag": "[]",
+        "icon": {
+          "active": "Button/Marker/Thai_active.png",
+          "default": "Button/Marker/Thai_default.png",
+          "larger": "Button/Marker/Thai_larger.png",
+          "mini": "Button/Marker/Thai_mini.png",
+          "withFriends": "Button/Marker/Thai_withFriends.png"
+        },
+        "id": "5",
+        "item1": {
+          "description": "Grilled octopus tentacle, grape tomato, chickpea, cilantro, mint, basil, fried onion.",
+          "image": "Store/restaurant/THEP Thai Restaurant/Muk Yarng.jpg",
+          "name": "Muk Yarng",
+          "price": "$18"
+        },
+        "item2": {
+          "description": "Choose either chicken, shrimp, vegetables, or tofu. This light and spicy tom yum broth simmered with galangal, lemongrass, onions, mushrooms, scallions and cilantro.",
+          "image": "Store/restaurant/THEP Thai Restaurant/Tom Yum.jpg",
+          "name": "Tom Yum",
+          "price": "$8(S)/$15(L)"
+        },
+        "item3": {
+          "description": "Side dish: Grilled Butter Bread.",
+          "image": "Store/restaurant/THEP Thai Restaurant/Grilled Butter Bread.jpg",
+          "name": "Grilled Butter Bread",
+          "price": "$4"
+        },
+        "item4": {
+          "description": "Don Fulano Reposado Tequila, Domaine de Canton, watermelon juice, Tanjin spicy rim.",
+          "image": "Store/restaurant/THEP Thai Restaurant/What-a-melon.jpg",
+          "name": "What-a-melon",
+          "price": "$17"
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
         "storefront": {
           "day": "Store/restaurant/THEP Thai Restaurant/StorefrontDay.jpg",
           "night": "Store/restaurant/THEP Thai Restaurant/StorefrontNight.jpg"
         },
-        "item1": {
-          "name": "Muk Yarng",
-          "image": "Store/restaurant/THEP Thai Restaurant/Muk Yarng.jpg",
-          "description": "Grilled octopus tentacle, grape tomato, chickpea, cilantro, mint, basil, fried onion.",
-          "price": "$18"
-        },
-        "item2": {
-          "name": "Tom Yum",
-          "image": "Store/restaurant/THEP Thai Restaurant/Tom Yum.jpg",
-          "description": "Choose either chicken, shrimp, vegetables, or tofu. This light and spicy tom yum broth simmered with galangal, lemongrass, onions, mushrooms, scallions and cilantro.",
-          "price": "$8(S)/$15(L)"
-        },
-        "item3": {
-          "name": "Grilled Butter Bread",
-          "image": "Store/restaurant/THEP Thai Restaurant/Grilled Butter Bread.jpg",
-          "description": "Side dish: Grilled Butter Bread.",
-          "price": "$4"
-        },
-        "item4": {
-          "name": "What-a-melon",
-          "image": "Store/restaurant/THEP Thai Restaurant/What-a-melon.jpg",
-          "description": "Don Fulano Reposado Tequila, Domaine de Canton, watermelon juice, Tanjin spicy rim.",
-          "price": "$17"
-        },
-        "item5": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "icon": {
-          "default": "Button/Marker/Thai_default.png",
-          "mini": "Button/Marker/Thai_mini.png",
-          "larger": "Button/Marker/Thai_larger.png",
-          "active": "Button/Marker/Thai_active.png",
-          "withFriends": "Button/Marker/Thai_withFriends.png"
-        },
-        "businesshour": [
-          {
-            "24hr": false,
-            "Holiday": []
-          },
-          {
-            "Monday": [
-              {
-                "Start": "1130",
-                "Finish": "1530"
-              },
-              {
-                "Start": "1700",
-                "Finish": "2230"
-              }
-            ]
-          },
-          {
-            "Tuesday": [
-              {
-                "Start": "1130",
-                "Finish": "1530"
-              },
-              {
-                "Start": "1700",
-                "Finish": "2230"
-              }
-            ]
-          },
-          {
-            "Wednesday": [
-              {
-                "Start": "1130",
-                "Finish": "1530"
-              },
-              {
-                "Start": "1700",
-                "Finish": "2230"
-              }
-            ]
-          },
-          {
-            "Thursday": [
-              {
-                "Start": "1130",
-                "Finish": "1530"
-              },
-              {
-                "Start": "1700",
-                "Finish": "2230"
-              }
-            ]
-          },
-          {
-            "Friday": [
-              {
-                "Start": "1130",
-                "Finish": "1530"
-              },
-              {
-                "Start": "1700",
-                "Finish": "2330"
-              }
-            ]
-          },
-          {
-            "Saturday": [
-              {
-                "Start": "1200",
-                "Finish": "2330"
-              }
-            ]
-          },
-          {
-            "Sunday": [
-              {
-                "Start": "1200",
-                "Finish": "2230"
-              }
-            ]
-          }
-        ]
+        "tag": "[]",
+        "title": "THEP Thai Restaurant",
+        "type": "Thai",
+        "auid": "12312912529817511982",
+        "googlePlaceId": ""
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-73.95725715767244, 40.77092171697179]
-      }
+      "type": "Feature"
     },
     {
-      "type": "Feature",
+      "geometry": {
+        "coordinates": [-77.04963686614573, 38.794590717782455],
+        "type": "Point"
+      },
       "properties": {
-        "id": "6",
-        "layout": "view",
-        "type": "Landscape",
-        "title": "Contrabands and Freedmen Cemetery Memorial",
-        "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
         "address": "1001 S Washington St, Alexandria, VA 22314",
-        "tag": "[]",
-        "storefront": {
-          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/StorefrontDay.jpg",
-          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/StorefrontNight.jpg"
-        },
-        "item1": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item2": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item3": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item4": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item5": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "icon": {
-          "default": "Button/Marker/Landscape_default.png",
-          "mini": "Button/Marker/Landscape_mini.png",
-          "larger": "Button/Marker/Landscape_larger.png",
-          "active": "Button/Marker/Landscape_active.png",
-          "withFriends": "Button/Marker/Landscape_withFriends.png"
-        },
         "businesshour": [
           {
             "24hr": true,
             "Holiday": []
           }
-        ]
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-77.04963686614573, 38.794590717782455]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "7",
-        "layout": "food",
-        "type": "FormosanNoodles",
-        "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
-        "description": "Minsheng Community's cuisine, operating for over 30 years since its start in 1985.",
-        "address": "No.1, Lane 26, Xindong St, Songshan District, Taipei City, 105",
-        "tag": "[]",
-        "storefront": {
-          "day": "Store/restaurant/Hsiaos Beef Offal Soup/StorefrontDay.jpg",
-          "night": "Store/restaurant/Hsiaos Beef Offal Soup/StorefrontNight.jpg"
+        ],
+        "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
+        "icon": {
+          "active": "Button/Marker/Landscape_active.png",
+          "default": "Button/Marker/Landscape_default.png",
+          "larger": "Button/Marker/Landscape_larger.png",
+          "mini": "Button/Marker/Landscape_mini.png",
+          "withFriends": "Button/Marker/Landscape_withFriends.png"
         },
+        "id": "6",
         "item1": {
-          "name": "牛肉炒麵(Beef Chow Mein)",
-          "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Chow Mein.jpg",
-          "description": "Beef and chow mein",
-          "price": "NT$ 120"
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
         },
         "item2": {
-          "name": "牛肉炒米粉(Beef Fried Rice Noodles)",
-          "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Fried Rice Noodles.jpg",
-          "description": "Beef and fried rice noodles",
-          "price": "NT$ 120"
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
         },
         "item3": {
-          "name": "",
-          "image": "",
           "description": "",
+          "image": "",
+          "name": "",
           "price": ""
         },
         "item4": {
-          "name": "",
-          "image": "",
           "description": "",
+          "image": "",
+          "name": "",
           "price": ""
         },
         "item5": {
-          "name": "",
-          "image": "",
           "description": "",
+          "image": "",
+          "name": "",
           "price": ""
         },
-        "icon": {
-          "default": "Button/Marker/FormosanNoodles_default.png",
-          "mini": "Button/Marker/FormosanNoodles_mini.png",
-          "larger": "Button/Marker/FormosanNoodles_larger.png",
-          "active": "Button/Marker/FormosanNoodles_active.png",
-          "withFriends": "Button/Marker/FormosanNoodles_withFriends.png"
+        "layout": "view",
+        "storefront": {
+          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/StorefrontDay.jpg",
+          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/StorefrontNight.jpg"
         },
-        "businesshour": [
-          {
-            "24hr": false,
-            "Holiday": []
-          },
-          {
-            "Monday": false
-          },
-          {
-            "Tuesday": [
-              {
-                "Start": "1100",
-                "Finish": "1930"
-              }
-            ]
-          },
-          {
-            "Wednesday": [
-              {
-                "Start": "1100",
-                "Finish": "1930"
-              }
-            ]
-          },
-          {
-            "Thursday": [
-              {
-                "Start": "1100",
-                "Finish": "1930"
-              }
-            ]
-          },
-          {
-            "Friday": [
-              {
-                "Start": "1100",
-                "Finish": "1930"
-              }
-            ]
-          },
-          {
-            "Saturday": false
-          },
-          {
-            "Sunday": false
-          }
-        ]
+        "tag": "[]",
+        "title": "Contrabands and Freedmen Cemetery Memorial",
+        "type": "Landscape",
+        "auid": "5175948244239708735",
+        "googlePlaceId": ""
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [121.56618994603467, 25.059403726374924]
-      }
+      "type": "Feature"
     },
     {
-      "type": "Feature",
+      "geometry": {
+        "coordinates": [-122.07874960703995, 37.393664872080464],
+        "type": "Point"
+      },
       "properties": {
-        "id": "8",
-        "layout": "food",
-        "type": "Cafe",
-        "title": "Red Rock Coffee",
-        "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
         "address": "201 Castro St, Mountain View, CA 94041, United States",
-        "tag": "[]",
-        "storefront": {
-          "day": "Store/cafe/Red Rock Coffee/StorefrontDay.jpg",
-          "night": "Store/cafe/Red Rock Coffee/StorefrontNight.jpg"
-        },
-        "item1": {
-          "name": "Chai Latte (S)",
-          "image": "Store/cafe/Red Rock Coffee/Chai Latte (S).jpg",
-          "description": "Chai latte. Small size is 10oz and large size is 16oz.",
-          "price": "$5.75(S) / $7.5(L)"
-        },
-        "item2": {
-          "name": "Ham & Cheese Croissant",
-          "image": "Store/cafe/Red Rock Coffee/Ham & Cheese Croissant.jpg",
-          "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
-          "price": "$7.25"
-        },
-        "item3": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item4": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "item5": {
-          "name": "",
-          "image": "",
-          "description": "",
-          "price": ""
-        },
-        "icon": {
-          "default": "Button/Marker/Cafe_default.png",
-          "mini": "Button/Marker/Cafe_mini.png",
-          "larger": "Button/Marker/Cafe_larger.png",
-          "active": "Button/Marker/Cafe_active.png",
-          "withFriends": "Button/Marker/Cafe_withFriends.png"
-        },
         "businesshour": [
           {
             "24hr": false,
@@ -861,16 +724,16 @@
           {
             "Monday": [
               {
-                "Start": "0730",
-                "Finish": "1600"
+                "Finish": "1600",
+                "Start": "0730"
               }
             ]
           },
           {
             "Tuesday": [
               {
-                "Start": "0730",
-                "Finish": "1600"
+                "Finish": "1600",
+                "Start": "0730"
               }
             ]
           },
@@ -880,41 +743,194 @@
           {
             "Thursday": [
               {
-                "Start": "0730",
-                "Finish": "1600"
+                "Finish": "1600",
+                "Start": "0730"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Start": "0730",
-                "Finish": "1600"
+                "Finish": "1600",
+                "Start": "0730"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Start": "0730",
-                "Finish": "1600"
+                "Finish": "1600",
+                "Start": "0730"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Start": "0800",
-                "Finish": "1600"
+                "Finish": "1600",
+                "Start": "0800"
               }
             ]
           }
-        ]
+        ],
+        "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
+        "icon": {
+          "active": "Button/Marker/Cafe_active.png",
+          "default": "Button/Marker/Cafe_default.png",
+          "larger": "Button/Marker/Cafe_larger.png",
+          "mini": "Button/Marker/Cafe_mini.png",
+          "withFriends": "Button/Marker/Cafe_withFriends.png"
+        },
+        "id": "8",
+        "item1": {
+          "description": "Chai latte. Small size is 10oz and large size is 16oz.",
+          "image": "Store/cafe/Red Rock Coffee/Chai Latte (S).jpg",
+          "name": "Chai Latte (S)",
+          "price": "$5.75(S) / $7.5(L)"
+        },
+        "item2": {
+          "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
+          "image": "Store/cafe/Red Rock Coffee/Ham & Cheese Croissant.jpg",
+          "name": "Ham & Cheese Croissant",
+          "price": "$7.25"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/cafe/Red Rock Coffee/StorefrontDay.jpg",
+          "night": "Store/cafe/Red Rock Coffee/StorefrontNight.jpg"
+        },
+        "tag": "[]",
+        "title": "Red Rock Coffee",
+        "type": "Cafe",
+        "auid": "5303100039772177289",
+        "googlePlaceId": ""
       },
+      "type": "Feature"
+    },
+    {
       "geometry": {
-        "type": "Point",
-        "coordinates": [-122.07874960703995, 37.393664872080464]
-      }
+        "coordinates": [121.56618994603467, 25.059403726374924],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "No.1, Lane 26, Xindong St, Songshan District, Taipei City, 105",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": false
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "1930",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "1930",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "1930",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "1930",
+                "Start": "1100"
+              }
+            ]
+          },
+          {
+            "Saturday": false
+          },
+          {
+            "Sunday": false
+          }
+        ],
+        "description": "Minsheng Community's cuisine, operating for over 30 years since its start in 1985.",
+        "icon": {
+          "active": "Button/Marker/FormosanNoodles_active.png",
+          "default": "Button/Marker/FormosanNoodles_default.png",
+          "larger": "Button/Marker/FormosanNoodles_larger.png",
+          "mini": "Button/Marker/FormosanNoodles_mini.png",
+          "withFriends": "Button/Marker/FormosanNoodles_withFriends.png"
+        },
+        "id": "7",
+        "item1": {
+          "description": "Beef and chow mein",
+          "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Chow Mein.jpg",
+          "name": "牛肉炒麵(Beef Chow Mein)",
+          "price": "NT$ 120"
+        },
+        "item2": {
+          "description": "Beef and fried rice noodles",
+          "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Fried Rice Noodles.jpg",
+          "name": "牛肉炒米粉(Beef Fried Rice Noodles)",
+          "price": "NT$ 120"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/restaurant/Hsiaos Beef Offal Soup/StorefrontDay.jpg",
+          "night": "Store/restaurant/Hsiaos Beef Offal Soup/StorefrontNight.jpg"
+        },
+        "tag": "[]",
+        "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
+        "type": "FormosanNoodles",
+        "auid": "11101312776362088440",
+        "googlePlaceId": ""
+      },
+      "type": "Feature"
     }
-  ]
+  ],
+  "type": "FeatureCollection"
 }

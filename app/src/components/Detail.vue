@@ -35,7 +35,8 @@
         <Address :address="data.address" />
       </div>
       <div class="splitline"></div>
-      <GetDirection :geo="geoData" />
+      <GetDirection variant="apple" :appleAUID="appleAUID"></GetDirection>
+      <GetDirection variant="google" :storeTitle="storeTitle"></GetDirection>
     </div>
 
     <!-- Product Page -->
@@ -45,7 +46,8 @@
         <h2>{{ currentItem.price }}</h2>
       </div>
       <p class="state">{{ currentItem.description }}</p>
-      <GetDirection :geo="geoData" />
+      <GetDirection variant="apple" :appleAUID="appleAUID"></GetDirection>
+      <GetDirection variant="google" :storeTitle="storeTitle"></GetDirection>
     </div>
 
   </div>
@@ -81,7 +83,7 @@ export default {
       storeType: '',
       // The data from the JSON file
       data: '',
-      geoData: [],
+      appleAUID: '',
       currentPage: 0,
     }
   },
@@ -127,7 +129,7 @@ export default {
     console.log("The storeData: ", storeData);
 
     this.data = storeData.properties;
-    this.geoData = storeData.geometry.coordinates;
+    this.appleAUID = storeData.properties.auid;
     this.storeTitle = this.data.title;
     this.description = this.data.description;
     this.storeType = this.data.type;
