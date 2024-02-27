@@ -35,6 +35,7 @@ export default {
         // 🐞 Debug console
         console.log('storeTitle:', this.storeTitle)
         /** 
+         * https://developers.google.com/maps/documentation/urls/get-started
          * If the title is Mandarin, convert the data before (
          * If the title is English, convert the blank to '+'' symbol
          */
