@@ -19,7 +19,7 @@
           <Close :state="buttonState" @close="closeBottomSheet" />
         </div>
         <div class="image-div">
-          <div class="main-column" :style="{ 'backgroundImage': frontStoreImage }"></div>
+          <div class="main-column" :style="{ 'backgroundImage': storefrontImage }"></div>
           <div class="secondary-column">
             <div class="image" :style="{ 'backgroundImage': item1 }"></div>
             <div class="image" :style="{ 'backgroundImage': item2 }"></div>
@@ -43,7 +43,7 @@
           <Close :state="buttonState" @close="closeBottomSheet" />
         </div>
         <div class="image-div">
-          <div class="main-column--view" :style="{ 'backgroundImage': frontStoreImage }"></div>
+          <div class="main-column--view" :style="{ 'backgroundImage': storefrontImage }"></div>
         </div>
         <div class="state">
           <p class="text-limited">{{ store ? store.description : "" }}</p>
@@ -203,7 +203,7 @@ export default {
       // console.log("Compute storeLayout: " + this.store?.layout);
       return this.store?.layout;
     },
-    frontStoreImage() {
+    storefrontImage() {
       // // 🐞 Debug console
       // console.log("URL function: " + this.rootUrl(this.store?.storefront.day));
       return this.rootUrl(this.store.storefront.day);
