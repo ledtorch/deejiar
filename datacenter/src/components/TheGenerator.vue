@@ -1,21 +1,45 @@
 <template>
   <div class="body">
     <div class="dashboard-frame">
+
       <div class="button-set">
         <button @click="editJSON">Edit JSON from Server</button>
         <button class="temp-button" @click="updateJSON">Update JSON</button>
       </div>
+
       <h2>Number of Features: {{ jsonData.features.length }}</h2>
+
       <div class="data-section" v-for="feature in jsonData.features" :key="feature.properties.id">
         <h3>{{ feature.properties.title }}</h3>
         <TheForm :value="feature.properties" property="title" @update="updateFeature(feature.properties.id, $event)" />
+        <TheForm :value="feature.properties" property="auid" @update="updateFeature(feature.properties.id, $event)" />
+
         <div class="form-set">
+          <!-- Editing icons -->
+          <div>
+            <input type="text" v-model="iconBase" placeholder="Enter icon base e.g., FormosanNoodles"
+              @change="updateIcons(feature.properties.id)" />
+          </div>
           <TheForm :value="feature.properties" property="type" @update="updateFeature(feature.properties.id, $event)" />
           <TheForm :value="feature.properties" property="layout" @update="updateFeature(feature.properties.id, $event)" />
         </div>
+        <!-- Storefront -->
+        <div class="form-set">
+          <TheForm :value="feature.properties.storefront" property="day"
+            @update="updateStorefront(feature.properties.id, 'day', $event)" />
+          <TheForm :value="feature.properties.storefront" property="night"
+            @update="updateStorefront(feature.properties.id, 'night', $event)" />
 
+        </div>
         <TheForm :value="feature.properties" property="description"
           @update="updateFeature(feature.properties.id, $event)" />
+
+        <!-- Items -->
+        <div v-for="itemIndex in 5" :key="`item${itemIndex}`">
+          <TheForm :value="feature.properties" :property="`item${itemIndex}`"
+            @update="updateFeatureItem(feature.properties.id, `item${itemIndex}`, $event)" />
+        </div>
+
         <div class="form-set">
           <TheForm :value="feature.properties" property="address"
             @update="updateFeature(feature.properties.id, $event)" />
@@ -27,6 +51,7 @@
             @update="updateCoordinates(feature.properties.id, 1, $event)" />
         </div>
       </div>
+
     </div>
   </div>
 </template>
