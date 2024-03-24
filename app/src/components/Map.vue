@@ -17,7 +17,7 @@ export default {
   // 🏗️TODO: OG image
   setup() {
     useHead({
-      title: 'Tītsia',
+      title: 'Deejiar | Map for Taste Adventurers to Explore without Boundaries',
       meta: [
         {
           name: 'description',
@@ -25,7 +25,7 @@ export default {
         },
         {
           property: 'og:title',
-          content: 'TīTsia',
+          content: 'Deejiar | Map for Taste Adventurers to Explore without Boundaries',
         },
         {
           property: 'og:description',
