@@ -11,45 +11,39 @@
 
       <div class="data-section" v-for="feature in jsonData.features" :key="feature.properties.id">
         <h3>{{ feature.properties.title }}</h3>
-        <TheForm :value="feature.properties" property="title" @update="updateFeature(feature.properties.id, $event)" />
-        <TheForm :value="feature.properties" property="auid" @update="updateFeature(feature.properties.id, $event)" />
-
         <div class="form-set">
-          <!-- Editing icons -->
-          <div>
-            <input type="text" v-model="iconBase" placeholder="Enter icon base e.g., FormosanNoodles"
-              @change="updateIcons(feature.properties.id)" />
-          </div>
-          <TheForm :value="feature.properties" property="type" @update="updateFeature(feature.properties.id, $event)" />
-          <TheForm :value="feature.properties" property="layout" @update="updateFeature(feature.properties.id, $event)" />
+          <FormString v-for="prop in ['title', 'type', 'layout']" :key="prop" :value="feature.properties"
+            :property="prop" @update="updateFeature(feature.properties.id, $event)" />
         </div>
+
         <!-- Storefront -->
         <div class="form-set">
-          <TheForm :value="feature.properties.storefront" property="day"
+          <FormString :value="feature.properties.storefront" property="day"
             @update="updateStorefront(feature.properties.id, 'day', $event)" />
-          <TheForm :value="feature.properties.storefront" property="night"
+          <FormString :value="feature.properties.storefront" property="night"
             @update="updateStorefront(feature.properties.id, 'night', $event)" />
-
         </div>
-        <TheForm :value="feature.properties" property="description"
+        <FormString :value="feature.properties" property="description"
           @update="updateFeature(feature.properties.id, $event)" />
 
         <!-- Items -->
-        <div v-for="itemIndex in 5" :key="`item${itemIndex}`">
-          <TheForm :value="feature.properties" :property="`item${itemIndex}`"
-            @update="updateFeatureItem(feature.properties.id, `item${itemIndex}`, $event)" />
+        <div v-for="itemIndex in 5" :key="`item${itemIndex}`" class="form-wrap">
+          <h3>Item {{ itemIndex }}</h3>
+          <FormString v-for="prop in ['name', 'image', 'price', 'description']" :key="prop"
+            :value="feature.properties[`item${itemIndex}`][prop]" :property="prop"
+            @update="newValue => updateFeatureItem(feature.properties.id, `item${itemIndex}.${prop}`, newValue)" />
         </div>
 
+        <h3>Geo data</h3>
         <div class="form-set">
-          <TheForm :value="feature.properties" property="address"
+          <FormString :value="feature.properties" property="auid"
             @update="updateFeature(feature.properties.id, $event)" />
-
-          <TheForm :value="feature.geometry.coordinates" property="0"
-            @update="updateCoordinates(feature.properties.id, 0, $event)" />
-
-          <TheForm :value="feature.geometry.coordinates" property="1"
-            @update="updateCoordinates(feature.properties.id, 1, $event)" />
+          <FormString :value="feature.properties" property="address"
+            @update="updateFeature(feature.properties.id, $event)" />
+          <FormArray :value="feature.geometry.coordinates" property="coordinates"
+            @update="newValue => updateCoordinates(feature.properties.id, newValue)" />
         </div>
+        <h3>Business hour</h3>
       </div>
 
     </div>
@@ -57,11 +51,12 @@
 </template>
 
 <script>
-import TheForm from "./TheForm.vue";
+import FormString from "./FormString.vue";
+import FormArray from "./FormArray.vue";
 import axios from 'axios';
 
 export default {
-  components: { TheForm },
+  components: { FormString, FormArray },
   data() {
     return {
       jsonUrl: import.meta.env.VITE_MAP_STORES,
@@ -94,19 +89,28 @@ export default {
         console.error('Failed to update stores.json:', error.response ? error.response.data : error);
       }
     },
-
+    updateStorefront(id, key, [property, value]) {
+      const feature = this.jsonData.features.find(feature => feature.properties.id === id);
+      if (feature && feature.properties.storefront) {
+        feature.properties.storefront[key] = value;
+      } else {
+        console.error('Feature or storefront not found');
+      }
+    },
     updateFeature(id, [property, value]) {
       const feature = this.jsonData.features.find(
         (feature) => feature.properties.id === id
       ).properties;
       feature[property] = value;
     },
-    updateCoordinates(id, index, value) {
-      const feature = this.jsonData.features.find(
-        (feature) => feature.properties.id === id
-      );
-      feature.geometry.coordinates[index] = parseFloat(value);
+    updateCoordinates(id, newValue) {
+      const feature = this.jsonData.features.find(feature => feature.properties.id === id);
+      if (feature) {
+        // Directly set the coordinates to the new values assuming newValue is already an array of numbers
+        feature.geometry.coordinates = Array.isArray(newValue[1]) ? newValue[1] : newValue;
+      }
     }
+
   },
 };
 </script>
@@ -129,6 +133,7 @@ export default {
 
 .data-section {
   flex-direction: column;
+  max-width: 996px;
   align-items: flex-start;
   gap: 24px;
   padding: 24px;
@@ -142,7 +147,16 @@ export default {
 }
 
 .form-set {
+  display: flex;
+  align-self: stretch;
   align-items: flex-start;
+  gap: 24px;
+}
+
+.form-wrap {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 24px;
 }
 
