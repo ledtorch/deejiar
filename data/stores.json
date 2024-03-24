@@ -129,8 +129,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/bigbearcafe/StorefrontDay.jpg",
-          "night": "Store/cafe/bigbearcafe/StorefrontNight.jpg"
+          "day": "Store/cafe/bigbearcafe/storefront-day.jpg",
+          "night": "Store/cafe/bigbearcafe/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Big Bear Cafe",
@@ -249,8 +249,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/teaismpennquarter/StorefrontDay.jpg",
-          "night": "Store/cafe/teaismpennquarter/StorefrontNight.jpg"
+          "day": "Store/cafe/teaismpennquarter/storefront-day.jpg",
+          "night": "Store/cafe/teaismpennquarter/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Teaism Penn Quarter",
@@ -369,8 +369,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/bar/janejane/StorefrontDay.jpg",
-          "night": "Store/bar/janejane/StorefrontNight.jpg"
+          "day": "Store/bar/janejane/storefront-day.jpg",
+          "night": "Store/bar/janejane/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Jane Jane",
@@ -489,8 +489,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/ricerestaurant/StorefrontDay.jpg",
-          "night": "Store/restaurant/ricerestaurant/StorefrontNight.jpg"
+          "day": "Store/restaurant/ricerestaurant/storefront-day.jpg",
+          "night": "Store/restaurant/ricerestaurant/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Rice Restaurant",
@@ -629,8 +629,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/THEP Thai Restaurant/StorefrontDay.jpg",
-          "night": "Store/restaurant/THEP Thai Restaurant/StorefrontNight.jpg"
+          "day": "Store/restaurant/THEP Thai Restaurant/storefront-day.jpg",
+          "night": "Store/restaurant/THEP Thai Restaurant/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "THEP Thai Restaurant",
@@ -693,8 +693,8 @@
         },
         "layout": "view",
         "storefront": {
-          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/StorefrontDay.jpg",
-          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/StorefrontNight.jpg"
+          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/storefront-day.jpg",
+          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Contrabands and Freedmen Cemetery Memorial",
@@ -808,8 +808,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/Red Rock Coffee/StorefrontDay.jpg",
-          "night": "Store/cafe/Red Rock Coffee/StorefrontNight.jpg"
+          "day": "Store/cafe/Red Rock Coffee/storefront-day.jpg",
+          "night": "Store/cafe/Red Rock Coffee/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Red Rock Coffee",
@@ -913,8 +913,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/Hsiaos Beef Offal Soup/StorefrontDay.jpg",
-          "night": "Store/restaurant/Hsiaos Beef Offal Soup/StorefrontNight.jpg"
+          "day": "Store/restaurant/Hsiaos Beef Offal Soup/storefront-day.jpg",
+          "night": "Store/restaurant/Hsiaos Beef Offal Soup/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
