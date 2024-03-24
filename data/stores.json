@@ -7,6 +7,7 @@
       },
       "properties": {
         "address": "1201 S St NW, Washington, DC 20009",
+        "auid": "1141545104174516841",
         "businesshour": [
           {
             "24hr": false,
@@ -134,8 +135,7 @@
         },
         "tag": "[]",
         "title": "Big Bear Cafe",
-        "type": "Cafe",
-        "auid": "1141545104174516841"
+        "type": "Cafe"
       },
       "type": "Feature"
     },
@@ -146,6 +146,7 @@
       },
       "properties": {
         "address": "400 8th St NW, Washington, DC 20004",
+        "auid": "856799894333602973",
         "businesshour": [
           {
             "24hr": false,
@@ -254,8 +255,7 @@
         },
         "tag": "[]",
         "title": "Teaism Penn Quarter",
-        "type": "Cafe",
-        "auid": "856799894333602973"
+        "type": "Cafe"
       },
       "type": "Feature"
     },
@@ -266,6 +266,7 @@
       },
       "properties": {
         "address": "1705 14th St NW, Washington, DC 20009",
+        "auid": "3689846720665772135",
         "businesshour": [
           {
             "24hr": false,
@@ -374,8 +375,7 @@
         },
         "tag": "[]",
         "title": "Jane Jane",
-        "type": "Bar",
-        "auid": "3689846720665772135"
+        "type": "Bar"
       },
       "type": "Feature"
     },
@@ -386,6 +386,7 @@
       },
       "properties": {
         "address": "1608 14th St NW, Washington, DC 20009",
+        "auid": "14472969398923707248",
         "businesshour": [
           {
             "24hr": false,
@@ -494,8 +495,7 @@
         },
         "tag": "[]",
         "title": "Rice Restaurant",
-        "type": "Thai",
-        "auid": "14472969398923707248"
+        "type": "Thai"
       },
       "type": "Feature"
     },
@@ -506,6 +506,7 @@
       },
       "properties": {
         "address": "1439 2nd Ave, New York, NY 10021",
+        "auid": "12312912529817511982",
         "businesshour": [
           {
             "24hr": false,
@@ -634,8 +635,7 @@
         },
         "tag": "[]",
         "title": "THEP Thai Restaurant",
-        "type": "Thai",
-        "auid": "12312912529817511982"
+        "type": "Thai"
       },
       "type": "Feature"
     },
@@ -646,6 +646,7 @@
       },
       "properties": {
         "address": "1001 S Washington St, Alexandria, VA 22314",
+        "auid": "5175948244239708735",
         "businesshour": [
           {
             "24hr": true,
@@ -698,8 +699,7 @@
         },
         "tag": "[]",
         "title": "Contrabands and Freedmen Cemetery Memorial",
-        "type": "Landscape",
-        "auid": "5175948244239708735"
+        "type": "Landscape"
       },
       "type": "Feature"
     },
@@ -710,6 +710,7 @@
       },
       "properties": {
         "address": "201 Castro St, Mountain View, CA 94041, United States",
+        "auid": "5303100039772177289",
         "businesshour": [
           {
             "24hr": false,
@@ -813,8 +814,127 @@
         },
         "tag": "[]",
         "title": "Red Rock Coffee",
-        "type": "Cafe",
-        "auid": "5303100039772177289"
+        "type": "Cafe"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [-122.39415586213765, 37.79615016210502],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "One Ferry Building, The Embarcadero S, San Francisco, CA 94111, United States",
+        "auid": "5447192823055003222",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "2100",
+                "Start": "1000"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2100",
+                "Start": "1000"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2100",
+                "Start": "1000"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2100",
+                "Start": "1000"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2200",
+                "Start": "1000"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2200",
+                "Start": "1000"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "2030",
+                "Start": "1000"
+              }
+            ]
+          }
+        ],
+        "description": "Gott's Roadside, established by brothers Joel and Duncan Gott in St. Helena in 1999, offers a diverse menu that includes meals, tacos, beer, and ice cream. It is celebrated for its contemporary California-inspired dishes, crafted with locally sourced ingredients. The store is situated on the left side of the Ferry Building, featuring a roadside restaurant and a walk-through ice cream store inside.",
+        "icon": {
+          "active": "Button/Marker/Hamburger_active.png",
+          "default": "Button/Marker/Hamburger_default.png",
+          "larger": "Button/Marker/Hamburger_larger.png",
+          "mini": "Button/Marker/Hamburger_mini.png",
+          "withFriends": "Button/Marker/Hamburger_withFriends.png"
+        },
+        "id": "7",
+        "item1": {
+          "description": "The California flavor hamburger with below ingredients: Fried egg, Cowgirl Creamery's Wagon Wheel cheese, Zoe's bacon, arugula, balsamic onions & mayo on a toasted sesame brioche bun.",
+          "image": "Store/hamburger/gotts-roadside/california-burger.jpg",
+          "name": "California Burger",
+          "price": "$16.99"
+        },
+        "item2": {
+          "image": "Store/hamburger/gotts-roadside/fries.jpg",
+          "name": "Fries",
+          "description": "Fried crisp & lightly salted.",
+          "price": "$4.49"
+        },
+        "item3": {
+          "image": "Store/hamburger/gotts-roadside/coke.jpg",
+          "name": "Coke",
+          "description": "Add Flavors: Vanilla, Cherry with $0.99",
+          "price": "$2.99(16oz) / $3.99(24oz)"
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/hamburger/gotts-roadside/storefront-day.jpg",
+          "night": "Store/hamburger/gotts-roadside/storefront-night.jpg"
+        },
+        "tag": "[]",
+        "title": "Gott's Roadside",
+        "type": "Hamburger"
       },
       "type": "Feature"
     },
@@ -825,6 +945,7 @@
       },
       "properties": {
         "address": "No.1, Lane 26, Xindong St, Songshan District, Taipei City, 105",
+        "auid": "11101312776362088440",
         "businesshour": [
           {
             "24hr": false,
@@ -880,7 +1001,7 @@
           "mini": "Button/Marker/FormosanNoodles_mini.png",
           "withFriends": "Button/Marker/FormosanNoodles_withFriends.png"
         },
-        "id": "7",
+        "id": "8",
         "item1": {
           "description": "Beef and chow mein",
           "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Chow Mein.jpg",
@@ -918,8 +1039,7 @@
         },
         "tag": "[]",
         "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
-        "type": "FormosanNoodles",
-        "auid": "11101312776362088440"
+        "type": "FormosanNoodles"
       },
       "type": "Feature"
     }
