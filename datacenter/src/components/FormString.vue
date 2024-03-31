@@ -25,11 +25,14 @@ export default {
   computed: {
     capitalizedProperty() {
       // Convert the key to the title
+      console.log('The value: ' + this.value);
+      console.log('The property: ' + this.property);
       return this.property.charAt(0).toUpperCase() + this.property.slice(1);
     },
   },
   methods: {
     startEditing(property) {
+      console.log('Props: ' + this.value[property])
       this.editing = true;
       // Check if the value is an array
       this.editingValue = this.value[property].toString();
@@ -118,10 +121,6 @@ export default {
   font-style: normal;
   font-weight: 700;
   line-height: 24px;
-}
-
-.hide {
-  display: none;
 }
 
 .text-button {

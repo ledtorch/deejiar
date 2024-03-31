@@ -6,6 +6,8 @@
 
     <div class="bottom-sheet-content" v-if="!storeState">
       <Avatar />
+      <a href="https://www.buymeacoffee.com/deejiar"><img
+          src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=deejiar&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff" /></a>
     </div>
 
     <div class="bottom-sheet-content" v-if="storeState">
@@ -28,7 +30,7 @@
         <div class="state">
           <p class="text-limited">{{ store ? store.description : "" }}</p>
         </div>
-        <Review />
+        <!-- <Review /> -->
         <Businesshour :bizTime="store.businesshour" viewMode="overview" />
         <div class="key-info-div"></div>
       </template>

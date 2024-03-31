@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dotenv from 'dotenv';
+// import { visualizer } from 'rollup-plugin-visualizer';
+
 
 // CSS Dependency
 import autoprefixer from 'autoprefixer';
@@ -9,7 +11,10 @@ import autoprefixer from 'autoprefixer';
 import fs from 'fs';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    // visualizer({ open: true, filename: 'bundle-report.html' })
+  ],
   css: {
     preprocessorOptions: {
       scss: {

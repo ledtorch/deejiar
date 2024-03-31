@@ -45,14 +45,15 @@
         <h2 class="stretch">{{ currentItem.name }}</h2>
         <h2>{{ currentItem.price }}</h2>
       </div>
-      <p class="state">{{ currentItem.description }}</p>
+      <!-- Use v-html to render <br> -->
+      <p class="state" v-html="currentItem.description"></p>
       <GetDirection variant="apple" :appleAUID="appleAUID"></GetDirection>
       <GetDirection variant="google" :storeTitle="storeTitle"></GetDirection>
     </div>
 
   </div>
 </template>
-  
+
 <script>
 // Components
 import TagShopType from "./Button/TagShopType.vue";
@@ -339,4 +340,3 @@ export default {
   top: 12px;
 }
 </style>
-  

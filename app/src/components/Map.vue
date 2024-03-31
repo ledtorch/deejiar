@@ -21,7 +21,7 @@ export default {
       meta: [
         {
           name: 'description',
-          content: 'TīTsia designed by Jerry',
+          content: 'Deejiar designed by Jerry',
         },
         {
           property: 'og:title',
@@ -33,19 +33,15 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://app.morispace.com/Icon/logo/logo.png',
+          content: 'https://deejiar/Image/cover.jpg',
         },
         {
           property: 'twitter:title',
-          content: 'TīTsia',
+          content: 'Deejiar',
         },
         {
           property: 'twitter:description',
           content: 'This is a page',
-        },
-        {
-          property: 'twitter:image',
-          content: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Welsh_Pembroke_Corgi.jpg/640px-Welsh_Pembroke_Corgi.jpg',
         },
         {
           name: 'twitter:card',
@@ -59,7 +55,7 @@ export default {
       link: [
         {
           rel: 'icon',
-          href: 'https://app.morispace.com/Icon/logo/logo.ico',
+          href: 'https://deejiar.com/Icon/logo/logo.ico',
           type: 'image/x-icon',
         },
       ]

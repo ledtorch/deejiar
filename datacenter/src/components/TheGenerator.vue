@@ -11,12 +11,13 @@
 
       <div class="data-section" v-for="feature in jsonData.features" :key="feature.properties.id">
         <h3>{{ feature.properties.title }}</h3>
+        <!-- Title, type and layout -->
         <div class="form-set">
-          <FormString v-for="prop in ['title', 'type', 'layout']" :key="prop" :value="feature.properties"
+          <FormString v-for="prop in ['id', 'title', 'type', 'layout']" :key="prop" :value="feature.properties"
             :property="prop" @update="updateFeature(feature.properties.id, $event)" />
         </div>
 
-        <!-- Storefront -->
+        <!-- Storefront and overview-->
         <div class="form-set">
           <FormString :value="feature.properties.storefront" property="day"
             @update="updateStorefront(feature.properties.id, 'day', $event)" />
@@ -27,13 +28,30 @@
           @update="updateFeature(feature.properties.id, $event)" />
 
         <!-- Items -->
+        <!-- <div v-for="itemIndex in 5" :key="`item${itemIndex}`" class="form-wrap">
+          <h3>Item {{ itemIndex }}</h3>
+          <FormString v-for="prop in ['name', 'image', 'price', 'description']" :key="`item${itemIndex}-${prop}`"
+            :value="feature.properties[`item${itemIndex}`][prop]" :property="`item${itemIndex}.${prop}`"
+            @update="newValue => updateFeatureItem(feature.properties.id, `item${itemIndex}.${prop}`, newValue)" />
+
+        </div> -->
+        <!-- Simplified Items Display -->
         <div v-for="itemIndex in 5" :key="`item${itemIndex}`" class="form-wrap">
           <h3>Item {{ itemIndex }}</h3>
-          <FormString v-for="prop in ['name', 'image', 'price', 'description']" :key="prop"
-            :value="feature.properties[`item${itemIndex}`][prop]" :property="prop"
-            @update="newValue => updateFeatureItem(feature.properties.id, `item${itemIndex}.${prop}`, newValue)" />
+          <button @click="logItemProperties(feature.properties.id, itemIndex)">Log Item {{ itemIndex }}
+            Properties</button>
+
+          <!-- <FormString :value="feature.properties[`item${itemIndex}`]" property="`item${itemIndex}.name`"
+            @update="updateFeature(feature.properties.id, $event)" /> -->
+
+          <FormString v-for="prop in ['name', 'price', 'image', 'description']" :key="prop"
+            :value="feature.properties[`item${itemIndex}`].prop" :property="prop"
+            @update="handlePropertyUpdate(feature.properties.id, $event)" />
+
         </div>
 
+
+        <!-- Geo data -->
         <h3>Geo data</h3>
         <div class="form-set">
           <FormString :value="feature.properties" property="auid"
@@ -98,11 +116,55 @@ export default {
       }
     },
     updateFeature(id, [property, value]) {
+      console.log('Hi!');
+      console.log('property: ' + property);
+      console.log('value: ' + value);
       const feature = this.jsonData.features.find(
         (feature) => feature.properties.id === id
       ).properties;
       feature[property] = value;
     },
+    logItemProperties(id, itemIndex) {
+      console.log('Hi!');
+      console.log(`LogItemProperties called with id: ${id}, itemIndex: ${itemIndex}`);
+
+      // Find the feature with the given id
+      const feature = this.jsonData.features.find(f => f.properties.id === id);
+      console.log('Feature: ' + feature.properties.id)
+      if (feature) {
+        const item = feature.properties[`item${itemIndex}`];
+        console.log(`Item ${itemIndex} properties:`, item);
+
+        // If you need to log each property individually:
+        ['name', 'image', 'price', 'description'].forEach(prop => {
+          console.log(`Item ${itemIndex} ${prop}:`, item[prop]);
+        });
+      } else {
+        console.error(`Feature with id ${id} not found`);
+      }
+    },
+
+
+    handlePropertyUpdate(id, [property, value]) {
+      console.log('Oh ya!');
+      console.log('property: ' + property);
+      console.log('value: ' + value);
+      const feature = this.jsonData.features.find(
+        (feature) => feature.properties.id === id
+      ).properties;
+      feature[property] = value;
+      // const feature = this.jsonData.features.find(f => f.properties.id === id);
+      // console.log('Feature: ' + feature.properties.id.name)
+      // if (feature) {
+      //   const item = feature.properties[`item${itemIndex}`];
+      //   console.log(`Item ${itemIndex} properties:`, item);
+      // } else {
+      //   console.log('failed');
+      // }
+    },
+
+
+
     updateCoordinates(id, newValue) {
       const feature = this.jsonData.features.find(feature => feature.properties.id === id);
       if (feature) {
