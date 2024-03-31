@@ -145,6 +145,7 @@
         "type": "Point"
       },
       "properties": {
+        "id": "2",
         "address": "400 8th St NW, Washington, DC 20004",
         "auid": "856799894333602973",
         "businesshour": [
@@ -217,7 +218,6 @@
           "mini": "Button/Marker/Cafe_mini.png",
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
-        "id": "2",
         "item1": {
           "description": "Hot Chai Indian spices with milk & sugar",
           "image": "Store/cafe/teaismpennquarter/Chai.jpg",
@@ -265,6 +265,7 @@
         "type": "Point"
       },
       "properties": {
+        "id": "3",
         "address": "1705 14th St NW, Washington, DC 20009",
         "auid": "3689846720665772135",
         "businesshour": [
@@ -337,7 +338,6 @@
           "mini": "Button/Marker/Bar_mini.png",
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
-        "id": "3",
         "item1": {
           "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
           "image": "Store/bar/janejane/Onion Dip.jpg",
@@ -385,6 +385,7 @@
         "type": "Point"
       },
       "properties": {
+        "id": "4",
         "address": "1608 14th St NW, Washington, DC 20009",
         "auid": "14472969398923707248",
         "businesshour": [
@@ -457,7 +458,6 @@
           "mini": "Button/Marker/Thai_mini.png",
           "withFriends": "Button/Marker/Thai_withFriends.png"
         },
-        "id": "4",
         "item1": {
           "description": "Takoyaki",
           "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
@@ -505,6 +505,7 @@
         "type": "Point"
       },
       "properties": {
+        "id": "5",
         "address": "1439 2nd Ave, New York, NY 10021",
         "auid": "12312912529817511982",
         "businesshour": [
@@ -597,7 +598,6 @@
           "mini": "Button/Marker/Thai_mini.png",
           "withFriends": "Button/Marker/Thai_withFriends.png"
         },
-        "id": "5",
         "item1": {
           "description": "Grilled octopus tentacle, grape tomato, chickpea, cilantro, mint, basil, fried onion.",
           "image": "Store/restaurant/THEP Thai Restaurant/Muk Yarng.jpg",
@@ -645,6 +645,7 @@
         "type": "Point"
       },
       "properties": {
+        "id": "6",
         "address": "1001 S Washington St, Alexandria, VA 22314",
         "auid": "5175948244239708735",
         "businesshour": [
@@ -661,7 +662,6 @@
           "mini": "Button/Marker/Landscape_mini.png",
           "withFriends": "Button/Marker/Landscape_withFriends.png"
         },
-        "id": "6",
         "item1": {
           "description": "",
           "image": "",
@@ -705,125 +705,11 @@
     },
     {
       "geometry": {
-        "coordinates": [-122.07874960703995, 37.393664872080464],
-        "type": "Point"
-      },
-      "properties": {
-        "address": "201 Castro St, Mountain View, CA 94041, United States",
-        "auid": "5303100039772177289",
-        "businesshour": [
-          {
-            "24hr": false,
-            "Holiday": []
-          },
-          {
-            "Monday": [
-              {
-                "Finish": "1600",
-                "Start": "0730"
-              }
-            ]
-          },
-          {
-            "Tuesday": [
-              {
-                "Finish": "1600",
-                "Start": "0730"
-              }
-            ]
-          },
-          {
-            "Wednesday": false
-          },
-          {
-            "Thursday": [
-              {
-                "Finish": "1600",
-                "Start": "0730"
-              }
-            ]
-          },
-          {
-            "Friday": [
-              {
-                "Finish": "1600",
-                "Start": "0730"
-              }
-            ]
-          },
-          {
-            "Saturday": [
-              {
-                "Finish": "1600",
-                "Start": "0730"
-              }
-            ]
-          },
-          {
-            "Sunday": [
-              {
-                "Finish": "1600",
-                "Start": "0800"
-              }
-            ]
-          }
-        ],
-        "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
-        "icon": {
-          "active": "Button/Marker/Cafe_active.png",
-          "default": "Button/Marker/Cafe_default.png",
-          "larger": "Button/Marker/Cafe_larger.png",
-          "mini": "Button/Marker/Cafe_mini.png",
-          "withFriends": "Button/Marker/Cafe_withFriends.png"
-        },
-        "id": "8",
-        "item1": {
-          "description": "Chai latte. Small size is 10oz and large size is 16oz.",
-          "image": "Store/cafe/Red Rock Coffee/Chai Latte (S).jpg",
-          "name": "Chai Latte (S)",
-          "price": "$5.75(S) / $7.5(L)"
-        },
-        "item2": {
-          "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
-          "image": "Store/cafe/Red Rock Coffee/Ham & Cheese Croissant.jpg",
-          "name": "Ham & Cheese Croissant",
-          "price": "$7.25"
-        },
-        "item3": {
-          "description": "",
-          "image": "",
-          "name": "",
-          "price": ""
-        },
-        "item4": {
-          "description": "",
-          "image": "",
-          "name": "",
-          "price": ""
-        },
-        "item5": {
-          "description": "",
-          "image": "",
-          "name": "",
-          "price": ""
-        },
-        "layout": "food",
-        "storefront": {
-          "day": "Store/cafe/Red Rock Coffee/storefront-day.jpg",
-          "night": "Store/cafe/Red Rock Coffee/storefront-night.jpg"
-        },
-        "tag": "[]",
-        "title": "Red Rock Coffee",
-        "type": "Cafe"
-      },
-      "type": "Feature"
-    },
-    {
-      "geometry": {
         "coordinates": [-122.39415586213765, 37.79615016210502],
         "type": "Point"
       },
       "properties": {
+        "id": "7",
         "address": "One Ferry Building, The Embarcadero S, San Francisco, CA 94111, United States",
         "auid": "5447192823055003222",
         "businesshour": [
@@ -896,7 +782,6 @@
           "mini": "Button/Marker/Hamburger_mini.png",
           "withFriends": "Button/Marker/Hamburger_withFriends.png"
         },
-        "id": "7",
         "item1": {
           "description": "The California flavor hamburger with below ingredients: Fried egg, Cowgirl Creamery's Wagon Wheel cheese, Zoe's bacon, arugula, balsamic onions & mayo on a toasted sesame brioche bun.",
           "image": "Store/hamburger/gotts-roadside/california-burger.jpg",
@@ -940,10 +825,126 @@
     },
     {
       "geometry": {
+        "coordinates": [-122.07874960703995, 37.393664872080464],
+        "type": "Point"
+      },
+      "properties": {
+        "id": "8",
+        "address": "201 Castro St, Mountain View, CA 94041, United States",
+        "auid": "5303100039772177289",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "1600",
+                "Start": "0730"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "1600",
+                "Start": "0730"
+              }
+            ]
+          },
+          {
+            "Wednesday": false
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "1600",
+                "Start": "0730"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "1600",
+                "Start": "0730"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "1600",
+                "Start": "0730"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "1600",
+                "Start": "0800"
+              }
+            ]
+          }
+        ],
+        "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
+        "icon": {
+          "active": "Button/Marker/Cafe_active.png",
+          "default": "Button/Marker/Cafe_default.png",
+          "larger": "Button/Marker/Cafe_larger.png",
+          "mini": "Button/Marker/Cafe_mini.png",
+          "withFriends": "Button/Marker/Cafe_withFriends.png"
+        },
+        "item1": {
+          "description": "Chai latte. Small size is 10oz and large size is 16oz.",
+          "image": "Store/cafe/Red Rock Coffee/Chai Latte (S).jpg",
+          "name": "Chai Latte (S)",
+          "price": "$5.75(S) / $7.5(L)"
+        },
+        "item2": {
+          "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
+          "image": "Store/cafe/Red Rock Coffee/Ham & Cheese Croissant.jpg",
+          "name": "Ham & Cheese Croissant",
+          "price": "$7.25"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/cafe/Red Rock Coffee/storefront-day.jpg",
+          "night": "Store/cafe/Red Rock Coffee/storefront-night.jpg"
+        },
+        "tag": "[]",
+        "title": "Red Rock Coffee",
+        "type": "Cafe"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
         "coordinates": [121.56618994603467, 25.059403726374924],
         "type": "Point"
       },
       "properties": {
+        "id": "9",
         "address": "No.1, Lane 26, Xindong St, Songshan District, Taipei City, 105",
         "auid": "11101312776362088440",
         "businesshour": [
@@ -1001,18 +1002,17 @@
           "mini": "Button/Marker/FormosanNoodles_mini.png",
           "withFriends": "Button/Marker/FormosanNoodles_withFriends.png"
         },
-        "id": "8",
         "item1": {
           "description": "Beef and chow mein",
           "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Chow Mein.jpg",
           "name": "牛肉炒麵(Beef Chow Mein)",
-          "price": "NT$ 120"
+          "price": "NT$120"
         },
         "item2": {
           "description": "Beef and fried rice noodles",
           "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Fried Rice Noodles.jpg",
           "name": "牛肉炒米粉(Beef Fried Rice Noodles)",
-          "price": "NT$ 120"
+          "price": "NT$120"
         },
         "item3": {
           "description": "",
@@ -1049,6 +1049,7 @@
         "type": "Point"
       },
       "properties": {
+        "id": "10",
         "address": "1F, No.4,  Lane 109, Section 1, Anhe Rd, Da’an District, Taipei City 106",
         "auid": "7131535993595000173",
         "businesshour": [
@@ -1111,7 +1112,6 @@
           "mini": "Button/Marker/Bar_mini.png",
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
-        "id": "10",
         "item1": {
           "description": "The rum =)",
           "image": "Store/bar/ole-rum-bar-and-tapas/selection.jpg",
@@ -1122,13 +1122,13 @@
           "description": "Region: Belize and Australia, 69.4% ABV <br> Cyberpunk series from French bottler Zn09 Zero Nine Spirits. Selected with passion by Grégory and Alain, this Belize rum, aged for 12 years in the tropics, is an invitation to discovery.",
           "image": "Store/bar/ole-rum-bar-and-tapas/cyberpunk-belize-2007-rum.jpg",
           "name": "Zn09 Cyberpunk Series Rh02 Belize 2007",
-          "price": "NT$ 600"
+          "price": "NT$600"
         },
         "item3": {
           "description": "Region: Martinique, 60,8° ABV <br> A 100% pure cane juice rum from the French West Indies, aged for 5 years in bourbon barrels (3 years on site and 2 years in Europe).",
           "image": "Store/bar/ole-rum-bar-and-tapas/martinique-rhum.jpg",
           "name": "Zn09 So Rum Rh07 Pure Juice Cask Strength",
-          "price": "NT$ 400"
+          "price": "NT$400"
         },
         "item4": {
           "description": "",
@@ -1159,6 +1159,7 @@
         "type": "Point"
       },
       "properties": {
+        "id": "11",
         "address": "No. 4, Lane 23, Section 2, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
         "auid": "4323237897240854204",
         "businesshour": [
@@ -1236,18 +1237,17 @@
           "mini": "Button/Marker/Bar_mini.png",
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
-        "id": "13",
         "item1": {
           "description": "Region: Cuba, 45° ABV <br> A 1998 vintage Cuban rum from an unnamed distillery.  It is not stated which of the distilleries or stills this rum came from, but American oak cask #8 was bottled in Scotland.",
           "image": "Store/bar/larriere-cour/samaroli.jpg",
           "name": "Cuba Rum 1998 Samaroli Single Cask #8",
-          "price": "NT$ 720"
+          "price": "NT$720"
         },
         "item2": {
           "description": "The cocktail is made by a waiter who will follow your mood and tastes.",
           "image": "Store/bar/larriere-cour/cocktail.jpg",
           "name": "Personalized Cocktail",
-          "price": "NT$ 400"
+          "price": "NT$400"
         },
         "item3": {
           "description": "",
@@ -1284,6 +1284,7 @@
         "type": "Point"
       },
       "properties": {
+        "id": "12",
         "address": "No. 181, Wenchang St, Da’an District, Taipei City, Taiwan 106",
         "auid": "9155073419001978017",
         "businesshour": [
@@ -1302,52 +1303,52 @@
           {
             "Tuesday": [
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Wednesday": [
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Start": "1200",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1200"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Start": "1200",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1200"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Start": "1200",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1200"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
@@ -1363,7 +1364,6 @@
           "mini": "Button/Marker/Taco_mini.png",
           "withFriends": "Button/Marker/Taco_withFriends.png"
         },
-        "id": "12",
         "item1": {
           "description": "Chorizo, Pollo asado and Baja fish. <br> Add any drinks +NT$90",
           "image": "Store/taco/pang-taqueria/any-3-tacos-combo.jpg",
@@ -1407,12 +1407,13 @@
     },
     {
       "geometry": {
-        "coordinates": [121.55288446528934, 25.032059162354336],
+        "coordinates": [121.52976830972298, 25.017195212353954],
         "type": "Point"
       },
       "properties": {
-        "address": "No. 4, Lane 23, Section 2, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
-        "auid": "4323237897240854204",
+        "id": "13",
+        "address": "No. 107-1, Section 3, Tingzhou Rd, Zhongzheng District, Taipei City, Taiwan, 100 ",
+        "auid": "14372726423338286649",
         "businesshour": [
           {
             "24hr": false,
@@ -1424,82 +1425,100 @@
             ]
           },
           {
-            "Monday": [
-              {
-                "Finish": "2600",
-                "Start": "1900"
-              }
-            ]
+            "Monday": false
           },
           {
             "Tuesday": [
               {
-                "Finish": "2600",
-                "Start": "1900"
+                "Start": "1200",
+                "Finish": "1400"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2100"
               }
             ]
           },
           {
             "Wednesday": [
               {
-                "Finish": "2600",
-                "Start": "1900"
+                "Start": "1200",
+                "Finish": "1400"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2100"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Finish": "2600",
-                "Start": "1900"
+                "Start": "1100",
+                "Finish": "1400"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2100"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Finish": "2600",
-                "Start": "1900"
+                "Start": "1100",
+                "Finish": "1400"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2100"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Finish": "2600",
-                "Start": "1900"
+                "Start": "1100",
+                "Finish": "1400"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2100"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Finish": "2600",
-                "Start": "1900"
+                "Start": "1100",
+                "Finish": "1400"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2100"
               }
             ]
           }
         ],
-        "description": "A professional whiskey bar, where bartenders possess a wealth of knowledge about whiskey and offer friendly service, is designed to help you find the whiskey that best suits your taste.",
+        "description": "A traditional Mexican food restaurant located in the Gongguan business district.",
         "icon": {
-          "active": "Button/Marker/Bar_active.png",
-          "default": "Button/Marker/Bar_default.png",
-          "larger": "Button/Marker/Bar_larger.png",
-          "mini": "Button/Marker/Bar_mini.png",
-          "withFriends": "Button/Marker/Bar_withFriends.png"
+          "active": "Button/Marker/Taco_active.png",
+          "default": "Button/Marker/Taco_default.png",
+          "larger": "Button/Marker/Taco_larger.png",
+          "mini": "Button/Marker/Taco_mini.png",
+          "withFriends": "Button/Marker/Taco_withFriends.png"
         },
-        "id": "11",
         "item1": {
-          "description": "Region: Cuba, 45° ABV <br> A 1998 vintage Cuban rum from an unnamed distillery.  It is not stated which of the distilleries or stills this rum came from, but American oak cask #8 was bottled in Scotland.",
-          "image": "Store/bar/larriere-cour/samaroli.jpg",
-          "name": "Cuba Rum 1998 Samaroli Single Cask #8",
-          "price": "NT$ 720"
+          "description": "Grilled chicken with tomato chili salsa and a 330ml Coke.",
+          "image": "Store/taco/el-sabroso-mexican-food/quesadilla-combo.jpg",
+          "name": "Quesadilla Combo",
+          "price": "NT$315"
         },
         "item2": {
-          "description": "The cocktail is made by a waiter who will follow your mood and tastes.",
-          "image": "Store/bar/larriere-cour/cocktail.jpg",
-          "name": "Personalized Cocktail",
-          "price": "NT$ 400"
+          "description": "A piñata hanging from the ceiling.",
+          "image": "Store/taco/el-sabroso-mexican-food/pinata.jpg",
+          "name": "Piñata",
+          "price": ""
         },
         "item3": {
           "description": "",
@@ -1521,12 +1540,12 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/bar/larriere-cour/storefront-day.jpg",
-          "night": "Store/bar/larriere-cour/storefront-night.jpg"
+          "day": "Store/taco/el-sabroso-mexican-food/storefront-day.jpg",
+          "night": "Store/taco/el-sabroso-mexican-food/storefront-night.jpg"
         },
         "tag": "[]",
-        "title": "Larriere-cour",
-        "type": "Bar"
+        "title": "El Sabroso Mexican Food",
+        "type": "Taco"
       },
       "type": "Feature"
     }
