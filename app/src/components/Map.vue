@@ -33,7 +33,7 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://deejiar/Image/cover.jpg',
+          content: 'https://deejiar/images/cover.jpg',
         },
         {
           property: 'twitter:title',
