@@ -7,9 +7,16 @@
         <button class="temp-button" @click="updateJSON">Update JSON</button>
       </div>
 
-      <h2>Number of Features: {{ jsonData.features.length }}</h2>
+      <div class="nav">
+        <h2>Number of Features: {{ jsonData.features.length }}</h2>
+        <div class="button-set">
+          <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
+          <span>Page {{ currentPage }} of {{ totalPages }}</span>
+          <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+        </div>
+      </div>
+      <div class="data-section" v-for="feature in paginatedFeatures" :key="feature.properties.id">
 
-      <div class="data-section" v-for="feature in jsonData.features" :key="feature.properties.id">
         <h3>{{ feature.properties.title }}</h3>
         <!-- Title, type and layout -->
         <div class="form-set">
@@ -82,8 +89,22 @@ export default {
       jsonData: { features: [] },
       editingFeature: null,
       editingFeatureId: null, // The ID of the feature being edited
-      editingProperty: null // The property of the feature being edited ('title' or 'layout')
+      editingProperty: null, // The property of the feature being edited ('title' or 'layout')
+
+      // Page data
+      currentPage: 1,
+      featuresPerPage: 10,
     };
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.jsonData.features.length / this.featuresPerPage);
+    },
+    paginatedFeatures() {
+      let start = (this.currentPage - 1) * this.featuresPerPage;
+      let end = start + this.featuresPerPage;
+      return this.jsonData.features.slice(start, end);
+    }
   },
   methods: {
     async editJSON() {
@@ -107,6 +128,18 @@ export default {
         console.error('Failed to update stores.json:', error.response ? error.response.data : error);
       }
     },
+
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+
     updateStorefront(id, key, [property, value]) {
       const feature = this.jsonData.features.find(feature => feature.properties.id === id);
       if (feature && feature.properties.storefront) {
@@ -144,7 +177,6 @@ export default {
       }
     },
 
-
     handlePropertyUpdate(id, [property, value]) {
       console.log('Oh ya!');
       console.log('property: ' + property);
@@ -162,8 +194,6 @@ export default {
       //   console.log('failed');
       // }
     },
-
-
 
     updateCoordinates(id, newValue) {
       const feature = this.jsonData.features.find(feature => feature.properties.id === id);
@@ -223,6 +253,13 @@ export default {
 }
 
 // Temp
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
 
 .temp-button {
   cursor: pointer;
