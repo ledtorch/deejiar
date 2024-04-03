@@ -3,6 +3,10 @@ from flask import Flask, request, jsonify, make_response, send_from_directory
 
 # Security and authentication 
 from werkzeug.security import check_password_hash, generate_password_hash
+
+# for OG
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
@@ -13,6 +17,14 @@ from dotenv import load_dotenv
 import os
 import json
 from datetime import datetime, timedelta
+
+# OG image feature
+from og import og_bp
+
+# # Debug
+# import logging
+# logging.basicConfig(level=logging.DEBUG)
+
 
 # Env setting
 env_file = '.env.production' if os.getenv('FLASK_ENV') == 'production' else '.env.local'
@@ -34,6 +46,11 @@ jwt = JWTManager(app)
 users = {
     "jerry": generate_password_hash("0000")
 }
+
+# Register the blueprint for OG image feature
+app.register_blueprint(og_bp)
+# app.register_blueprint(og_bp, url_prefix='')
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 # 🐞 Debug URL
 @app.route('/')
@@ -88,21 +105,6 @@ def get_stores():
         return jsonify(stores_data)
     else:
         return jsonify({"error": "stores.json not found"}), 404
-
-# @app.route('/stores', methods=['POST'])
-# @jwt_required()  # Assuming you want to protect this endpoint
-# def save_stores():
-#     # Make a backup of the current stores.json, if it exists
-#     if os.path.exists(STORES_JSON_PATH):
-#         backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{datetime.now().strftime("%Y%m%d%H%M%S")}.json')
-#         os.rename(STORES_JSON_PATH, backup_path)
-
-#     # Save the new JSON data
-#     data = request.json
-#     with open(STORES_JSON_PATH, 'w', encoding='utf-8') as file:
-#         json.dump(data, file, ensure_ascii=False, indent=4)
-
-#     return jsonify({"message": "stores.json updated successfully"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
