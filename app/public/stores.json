@@ -145,7 +145,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "2",
         "address": "400 8th St NW, Washington, DC 20004",
         "auid": "856799894333602973",
         "businesshour": [
@@ -218,6 +217,7 @@
           "mini": "Button/Marker/Cafe_mini.png",
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
+        "id": "2",
         "item1": {
           "description": "Hot Chai Indian spices with milk & sugar",
           "image": "Store/cafe/teaismpennquarter/Chai.jpg",
@@ -265,7 +265,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "3",
         "address": "1705 14th St NW, Washington, DC 20009",
         "auid": "3689846720665772135",
         "businesshour": [
@@ -338,6 +337,7 @@
           "mini": "Button/Marker/Bar_mini.png",
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
+        "id": "3",
         "item1": {
           "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
           "image": "Store/bar/janejane/Onion Dip.jpg",
@@ -385,7 +385,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "4",
         "address": "1608 14th St NW, Washington, DC 20009",
         "auid": "14472969398923707248",
         "businesshour": [
@@ -458,6 +457,7 @@
           "mini": "Button/Marker/Thai_mini.png",
           "withFriends": "Button/Marker/Thai_withFriends.png"
         },
+        "id": "4",
         "item1": {
           "description": "Takoyaki",
           "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
@@ -505,7 +505,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "5",
         "address": "1439 2nd Ave, New York, NY 10021",
         "auid": "12312912529817511982",
         "businesshour": [
@@ -598,6 +597,7 @@
           "mini": "Button/Marker/Thai_mini.png",
           "withFriends": "Button/Marker/Thai_withFriends.png"
         },
+        "id": "5",
         "item1": {
           "description": "Grilled octopus tentacle, grape tomato, chickpea, cilantro, mint, basil, fried onion.",
           "image": "Store/restaurant/THEP Thai Restaurant/Muk Yarng.jpg",
@@ -645,7 +645,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "6",
         "address": "1001 S Washington St, Alexandria, VA 22314",
         "auid": "5175948244239708735",
         "businesshour": [
@@ -662,6 +661,7 @@
           "mini": "Button/Marker/Landscape_mini.png",
           "withFriends": "Button/Marker/Landscape_withFriends.png"
         },
+        "id": "6",
         "item1": {
           "description": "",
           "image": "",
@@ -709,7 +709,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "7",
         "address": "One Ferry Building, The Embarcadero S, San Francisco, CA 94111, United States",
         "auid": "5447192823055003222",
         "businesshour": [
@@ -782,6 +781,7 @@
           "mini": "Button/Marker/Hamburger_mini.png",
           "withFriends": "Button/Marker/Hamburger_withFriends.png"
         },
+        "id": "7",
         "item1": {
           "description": "The California flavor hamburger with below ingredients: Fried egg, Cowgirl Creamery's Wagon Wheel cheese, Zoe's bacon, arugula, balsamic onions & mayo on a toasted sesame brioche bun.",
           "image": "Store/hamburger/gotts-roadside/california-burger.jpg",
@@ -829,7 +829,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "8",
         "address": "201 Castro St, Mountain View, CA 94041, United States",
         "auid": "5303100039772177289",
         "businesshour": [
@@ -897,6 +896,7 @@
           "mini": "Button/Marker/Cafe_mini.png",
           "withFriends": "Button/Marker/Cafe_withFriends.png"
         },
+        "id": "8",
         "item1": {
           "description": "Chai latte. Small size is 10oz and large size is 16oz.",
           "image": "Store/cafe/Red Rock Coffee/Chai Latte (S).jpg",
@@ -944,7 +944,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "9",
         "address": "No.1, Lane 26, Xindong St, Songshan District, Taipei City, 105",
         "auid": "11101312776362088440",
         "businesshour": [
@@ -1002,6 +1001,7 @@
           "mini": "Button/Marker/FormosanNoodles_mini.png",
           "withFriends": "Button/Marker/FormosanNoodles_withFriends.png"
         },
+        "id": "9",
         "item1": {
           "description": "Beef and chow mein",
           "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Chow Mein.jpg",
@@ -1049,7 +1049,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "10",
         "address": "1F, No.4,  Lane 109, Section 1, Anhe Rd, Da’an District, Taipei City 106",
         "auid": "7131535993595000173",
         "businesshour": [
@@ -1112,6 +1111,7 @@
           "mini": "Button/Marker/Bar_mini.png",
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
+        "id": "10",
         "item1": {
           "description": "The rum =)",
           "image": "Store/bar/ole-rum-bar-and-tapas/selection.jpg",
@@ -1159,7 +1159,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "11",
         "address": "No. 4, Lane 23, Section 2, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
         "auid": "4323237897240854204",
         "businesshour": [
@@ -1237,6 +1236,7 @@
           "mini": "Button/Marker/Bar_mini.png",
           "withFriends": "Button/Marker/Bar_withFriends.png"
         },
+        "id": "11",
         "item1": {
           "description": "Region: Cuba, 45° ABV <br> A 1998 vintage Cuban rum from an unnamed distillery.  It is not stated which of the distilleries or stills this rum came from, but American oak cask #8 was bottled in Scotland.",
           "image": "Store/bar/larriere-cour/samaroli.jpg",
@@ -1284,7 +1284,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "12",
         "address": "No. 181, Wenchang St, Da’an District, Taipei City, Taiwan 106",
         "auid": "9155073419001978017",
         "businesshour": [
@@ -1364,6 +1363,7 @@
           "mini": "Button/Marker/Taco_mini.png",
           "withFriends": "Button/Marker/Taco_withFriends.png"
         },
+        "id": "12",
         "item1": {
           "description": "Chorizo, Pollo asado and Baja fish. <br> Add any drinks +NT$90",
           "image": "Store/taco/pang-taqueria/any-3-tacos-combo.jpg",
@@ -1411,7 +1411,6 @@
         "type": "Point"
       },
       "properties": {
-        "id": "13",
         "address": "No. 107-1, Section 3, Tingzhou Rd, Zhongzheng District, Taipei City, Taiwan, 100 ",
         "auid": "14372726423338286649",
         "businesshour": [
@@ -1430,72 +1429,72 @@
           {
             "Tuesday": [
               {
-                "Start": "1200",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1200"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Wednesday": [
               {
-                "Start": "1200",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1200"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Start": "1100",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1100"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Start": "1100",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1100"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Start": "1100",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1100"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Start": "1100",
-                "Finish": "1400"
+                "Finish": "1400",
+                "Start": "1100"
               },
               {
-                "Start": "1700",
-                "Finish": "2100"
+                "Finish": "2100",
+                "Start": "1700"
               }
             ]
           }
@@ -1508,6 +1507,7 @@
           "mini": "Button/Marker/Taco_mini.png",
           "withFriends": "Button/Marker/Taco_withFriends.png"
         },
+        "id": "13",
         "item1": {
           "description": "Grilled chicken with tomato chili salsa and a 330ml Coke.",
           "image": "Store/taco/el-sabroso-mexican-food/quesadilla-combo.jpg",
@@ -1545,6 +1545,131 @@
         },
         "tag": "[]",
         "title": "El Sabroso Mexican Food",
+        "type": "Taco"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [121.55046504508994, 25.039727905632322],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "No. 9, Lane 21, Section 1, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
+        "auid": "3475026617689486784",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Start": "1130",
+                "Finish": "2130"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "1130",
+                "Finish": "2130"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1130",
+                "Finish": "2130"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1130",
+                "Finish": "2130"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1130",
+                "Finish": "2300"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1130",
+                "Finish": "2300"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1130",
+                "Finish": "2200"
+              }
+            ]
+          }
+        ],
+        "description": "Mexican restaurant located in the Eastern District, yet it offers spacious seating unlike other crowded small restaurants nearby. The staff is friendly and eager to introduce the dishes, and they enjoy chatting with customers. The tacos and sauce boast authentic Mexican flavors.",
+        "icon": {
+          "active": "Button/Marker/Taco_active.png",
+          "default": "Button/Marker/Taco_default.png",
+          "larger": "Button/Marker/Taco_larger.png",
+          "mini": "Button/Marker/Taco_mini.png",
+          "withFriends": "Button/Marker/Taco_withFriends.png"
+        },
+        "id": "14",
+        "item1": {
+          "description": "4 Tacos set + 1 drink. <br> Prices only valid for lunch set offer Monday - Friday 11:30 - 1430",
+          "image": "Store/taco/teotihuacan-mexican-restaurant/lunch-special-set-a.jpg",
+          "name": "Lunch Special - Set A",
+          "price": "NT$399"
+        },
+        "item2": {
+          "description": "Cocktails",
+          "image": "Store/taco/teotihuacan-mexican-restaurant/mojito.jpg",
+          "name": "Mojito",
+          "price": "NT$280"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/taco/teotihuacan-mexican-restaurant/storefront-day.jpg",
+          "night": "Store/taco/teotihuacan-mexican-restaurant/storefront-night.jpg"
+        },
+        "tag": "[]",
+        "title": "Teotihuacan Mexican Restaurant",
         "type": "Taco"
       },
       "type": "Feature"
