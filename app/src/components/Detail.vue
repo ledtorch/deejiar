@@ -68,13 +68,6 @@ import LeftArrow from "./Button/Icon/LeftArrow.vue";
 import RightArrow from "./Button/Icon/RightArrow.vue";
 import GetDirection from "./Button/CTA/GetDirection.vue";
 
-// 🏗️ TODO: Share Feature
-// Vue Utilities and Plugins
-// import { ref, onMounted } from 'vue'
-// import { useHead } from '@vueuse/head'
-// import { useRouter } from "vue-router";
-// import { ref, computed, watchEffect } from 'vue';
-
 export default {
   components: { Home, DetailHome, Share, LeftArrow, RightArrow, TagShopType, Review, Businesshour, Address, GetDirection },
   data() {
@@ -88,31 +81,6 @@ export default {
       currentPage: 0,
     }
   },
-
-  // // TODO
-  // props: {
-  //   storefront: Object
-  // },
-  // setup(props) {
-  //   const frontStoreImage = ref('')
-
-  //   const head = useHead({
-  //     title: 'Your Page Title',
-  //     meta: [
-  //       { name: 'description', content: 'Your Page Description' },
-  //       { name: 'twitter:card', content: 'summary' },
-  //       { name: 'twitter:site', content: '@yourTwitterHandle' },
-  //       { name: 'twitter:title', content: 'Your Page Title' },
-  //       { name: 'twitter:description', content: 'Your Page Description' },
-  //       { name: 'twitter:image', content: frontStoreImage.value }
-  //     ]
-  //   })
-
-  //   onMounted(() => {
-  //     frontStoreImage.value = props.storefront.day
-  //   })
-  // },
-  // //  TODO^^^
 
   async created() {
     // Fetch url title and decode it

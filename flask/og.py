@@ -40,4 +40,3 @@ def detail(title):
 
 
 
-{"creation_number":0,"account_address":"04dbae908dfc2f904386f3f1181f4db0c43b402ae77bc72881d210e531cbf1b1"},"sequence_number":0,"type_tag":{"struct":{"address":"0000000000000000000000000000000000000000000000000000000000000001","module":"account","name":"CoinRegisterEvent","type_args":[]}},"event_data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,10,97,112,116,111,115,95,99,111,105,110,9,65,112,116,111,115,67,111,105,110]}},{"V2":{"type_tag":{"struct":{"address":"0000000000000000000000000000000000000000000000000000000000000001","module":"transaction_fee","name":"FeeStatement","type_args":[]}},"event_data":[225,3,0,0,0,0,0,0,4,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,240,129,1,0,0,0,0,0,0,0,0,0,0,0,0,0]}}],"confirmation_time":1712229027534804,"block_number":232,"block_hash":"816ebf2779c7e09b79f751e6b77c754af50b407ae7640371784e9fc9f89a092f","status":"Success"}
