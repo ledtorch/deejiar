@@ -1,11 +1,8 @@
 # System
-from flask import Flask, request, jsonify, make_response, send_from_directory
+from flask import Flask, request, jsonify
 
 # Security and authentication 
 from werkzeug.security import check_password_hash, generate_password_hash
-
-# for OG
-from werkzeug.middleware.proxy_fix import ProxyFix
 
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
@@ -20,11 +17,10 @@ from datetime import datetime, timedelta
 
 # OG image feature
 from og import og_bp
+from werkzeug.middleware.proxy_fix import ProxyFix
 
-# # Debug
-# import logging
-# logging.basicConfig(level=logging.DEBUG)
-
+# Debug
+import logging
 
 # Env setting
 env_file = '.env.production' if os.getenv('FLASK_ENV') == 'production' else '.env.local'
@@ -36,13 +32,14 @@ DATACENTER_API_BASE_URL = os.getenv('DATACENTER_API_BASE_URL')
 
 # Flask app config
 app = Flask(__name__)
+
 # Enable CORS for all routes and origins
 CORS(app, resources={r"/*": {"origins": "*"}})
 # Auth
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 jwt = JWTManager(app)
 
-# User
+# User account
 users = {
     "jerry": generate_password_hash("0000")
 }
@@ -52,10 +49,14 @@ app.register_blueprint(og_bp)
 # app.register_blueprint(og_bp, url_prefix='')
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
-# 🐞 Debug URL
+
+# app.logger.setLevel(logging.DEBUG)
+
+# 🐞 Debug URL, check deejiar.com/admin/api
 @app.route('/')
 def home():
-    return jsonify({"message": "Welcome to the Flask API"}), 200
+    print("Home route accessed")
+    return jsonify({"message": "Flask Server"}), 200
 
 # Account
 # 🏗️ expires seems doesn't match the real timeframe
