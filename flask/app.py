@@ -46,11 +46,7 @@ users = {
 
 # Register the blueprint for OG image feature
 app.register_blueprint(og_bp)
-# app.register_blueprint(og_bp, url_prefix='')
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
-
-
-# app.logger.setLevel(logging.DEBUG)
 
 # 🐞 Debug URL, check deejiar.com/admin/api
 @app.route('/')
