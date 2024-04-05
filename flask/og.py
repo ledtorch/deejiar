@@ -1,6 +1,5 @@
 from flask import Blueprint, request, render_template, current_app, send_from_directory
 import requests
-import json
 
 # Blueprint for Open Graph functionalities
 og_bp = Blueprint('og', __name__, template_folder='templates')
@@ -35,8 +34,3 @@ def detail(title):
         return render_template('bot_response.html', image_url=image_url, title="Deejiar", description="The App.")
     else:
         return send_from_directory(app_directory, 'index.html')
-
-
-
-
-
