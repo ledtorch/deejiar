@@ -1,12 +1,12 @@
 from flask import Blueprint, request, render_template, current_app, send_from_directory
 import requests
 
+# Data path
+STORES_JSON_PATH = 'https://www.deejiar.com/stores.json'
+app_directory = '/var/www/deejiar'
+
 # Blueprint for Open Graph functionalities
 og_bp = Blueprint('og', __name__, template_folder='templates')
-
-STORES_JSON_PATH = 'https://www.deejiar.com/stores.json'
-
-app_directory = '/var/www/deejiar'
 
 def get_image_url_for_title(title):
     response = requests.get(STORES_JSON_PATH)
