@@ -25,23 +25,15 @@ export default {
         },
         {
           property: 'og:title',
-          content: 'Deejiar | Map for Taste Adventurers to Explore without Boundaries',
+          content: 'Deejiar',
         },
         {
           property: 'og:description',
-          content: 'This is a page',
+          content: 'Map for Taste Adventurers to Explore without Boundaries',
         },
         {
           property: 'og:image',
           content: 'https://deejiar/images/cover.jpg',
-        },
-        {
-          property: 'twitter:title',
-          content: 'Deejiar',
-        },
-        {
-          property: 'twitter:description',
-          content: 'This is a page',
         },
         {
           name: 'twitter:card',
@@ -55,7 +47,7 @@ export default {
       link: [
         {
           rel: 'icon',
-          href: 'https://deejiar.com/Icon/logo/logo.ico',
+          href: 'https://deejiar.com/Icon/logo/favicon.ico',
           type: 'image/x-icon',
         },
       ]
