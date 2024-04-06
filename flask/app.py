@@ -30,6 +30,11 @@ load_dotenv(env_file)
 STORES_JSON_PATH = '../data/stores.json'
 DATACENTER_API_BASE_URL = os.getenv('DATACENTER_API_BASE_URL')
 
+# User account
+users = {
+    "jerry": generate_password_hash("0000")
+}
+
 # Flask app config
 app = Flask(__name__)
 
@@ -39,10 +44,7 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 jwt = JWTManager(app)
 
-# User account
-users = {
-    "jerry": generate_password_hash("0000")
-}
+
 
 # Register the blueprint for OG image feature
 app.register_blueprint(og_bp)
