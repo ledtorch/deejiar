@@ -1,26 +1,22 @@
-# System
+# Flask framework
 from flask import Flask, request, jsonify
 
-# Security and authentication 
-from werkzeug.security import check_password_hash, generate_password_hash
-
-from flask_cors import CORS
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-
-# Environment
+# Environment settings
 from dotenv import load_dotenv
 
-# Data
+# Standard libraries
 import os
 import json
 from datetime import datetime, timedelta
 
-# OG image feature
-from og import og_bp
+# Security, authentication, and route handling
+from flask_cors import CORS
+from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity, create_access_token
+from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-# Debug
-import logging
+# Modules
+from og import og_bp
 
 # Env setting
 env_file = '.env.production' if os.getenv('FLASK_ENV') == 'production' else '.env.local'
