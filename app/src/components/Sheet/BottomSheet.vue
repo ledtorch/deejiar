@@ -8,7 +8,7 @@
       <Avatar />
       <h4>Wanna get the premium list and advanced features before they launch on Deejiar? Or simply want to leave your
         feedback? =)</h4>
-      <a href="https://www.buymeacoffee.com/deejiar"><img
+      <a href="https://www.buymeacoffee.com/deejiar" alt="Buy Me a Coffee"><img
           src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=deejiar&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff" /></a>
       <div class="learn-more-frame">
         <h4>Learn more on:</h4>
