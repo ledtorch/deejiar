@@ -1,14 +1,11 @@
 import { createApp } from 'vue'
 import { createHead } from '@unhead/vue'
 
-// Components
+// Vue
 import App from './App.vue'
-import Map from "./components/Map.vue";
-import Detail from "./components/Detail.vue";
 
 // Plugin
 import router from './router.js'
-// import { createPinia } from 'pinia';
 
 // Global CSS and normalize CSS
 import 'normalize.css';
