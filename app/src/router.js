@@ -1,19 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Map from "./components/Map.vue";
-import Detail from "./components/Detail.vue";
-import Account from "./components/Account.vue";
 
 const routes = [
-  { path: "/", component: Map },
+  {
+    path: "/",
+    component: () => import("./components/Map.vue")
+  },
   {
     path: "/detail/:title",
     name: "detail",
-    component: Detail
+    component: () => import("./components/Detail.vue")
   },
   {
     path: "/account",
     name: "Account",
-    component: Account
+    component: () => import("./components/Account.vue")
   },
 ];
 
