@@ -58,12 +58,10 @@ export default {
   data() {
     return {
       map: null,
-
       mapboxgl: null,
-
       selectedStore: null,
-      buttonState: "default",
       locate: null,
+      buttonState: "default",
 
       // Register the data for using out of the render layer
       storeData: null,
@@ -74,7 +72,7 @@ export default {
     };
   },
 
-  // Mount Mapbox
+  // Asynchronously import the Mapbox to separate Mapbox and main js
   async mounted() {
     const mapboxgl = await import("mapbox-gl");
     this.mapboxgl = mapboxgl.default;
@@ -160,7 +158,7 @@ export default {
               const iconPath =
                 "/Button/Marker/" +
                 feature.properties.type +
-                "_" +
+                "-" +
                 size +
                 ".png";
               this.map.loadImage(iconPath, (error, image) => {
@@ -169,7 +167,7 @@ export default {
                 // // ↓ 🐞 Debug console
                 // console.log(
                 //   "Marker's Icon:",
-                //   feature.properties.type + "_" + size + ".png"
+                //   feature.properties.type + "-" + size + ".png"
                 // );
               });
             });

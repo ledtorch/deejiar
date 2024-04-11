@@ -91,11 +91,11 @@
         ],
         "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
         "icon": {
-          "active": "Button/Marker/Cafe-active.png",
-          "default": "Button/Marker/Cafe-default.png",
-          "larger": "Button/Marker/Cafe-larger.png",
-          "mini": "Button/Marker/Cafe-mini.png",
-          "withFriends": "Button/Marker/Cafe-withFriends.png"
+          "active": "Button/Marker/cafe-active.png",
+          "default": "Button/Marker/cafe-default.png",
+          "larger": "Button/Marker/cafe-larger.png",
+          "mini": "Button/Marker/cafe-mini.png",
+          "withFriends": "Button/Marker/cafe-withFriends.png"
         },
         "id": "1",
         "item1": {
@@ -211,11 +211,11 @@
         ],
         "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
         "icon": {
-          "active": "Button/Marker/Cafe-active.png",
-          "default": "Button/Marker/Cafe-default.png",
-          "larger": "Button/Marker/Cafe-larger.png",
-          "mini": "Button/Marker/Cafe-mini.png",
-          "withFriends": "Button/Marker/Cafe-withFriends.png"
+          "active": "Button/Marker/cafe-active.png",
+          "default": "Button/Marker/cafe-default.png",
+          "larger": "Button/Marker/cafe-larger.png",
+          "mini": "Button/Marker/cafe-mini.png",
+          "withFriends": "Button/Marker/cafe-withFriends.png"
         },
         "id": "2",
         "item1": {
@@ -451,11 +451,11 @@
         ],
         "description": "A cozy restaurant is situated on 14th Street, offering delicious Thai cuisine; its Japanese fare is also commendable. Upon entering the restaurant, don't miss the Rice Market—simply head downstairs to the basement of the same building. It offers a variety of Asian seasonings and ingredients, along with Japanese kitchenware and tableware.",
         "icon": {
-          "active": "Button/Marker/Thai-active.png",
-          "default": "Button/Marker/Thai-default.png",
-          "larger": "Button/Marker/Thai-larger.png",
-          "mini": "Button/Marker/Thai-mini.png",
-          "withFriends": "Button/Marker/Thai-withFriends.png"
+          "active": "Button/Marker/thai-active.png",
+          "default": "Button/Marker/thai-default.png",
+          "larger": "Button/Marker/thai-larger.png",
+          "mini": "Button/Marker/thai-mini.png",
+          "withFriends": "Button/Marker/thai-withFriends.png"
         },
         "id": "4",
         "item1": {
@@ -591,11 +591,11 @@
         ],
         "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles.",
         "icon": {
-          "active": "Button/Marker/Thai-active.png",
-          "default": "Button/Marker/Thai-default.png",
-          "larger": "Button/Marker/Thai-larger.png",
-          "mini": "Button/Marker/Thai-mini.png",
-          "withFriends": "Button/Marker/Thai-withFriends.png"
+          "active": "Button/Marker/thai-active.png",
+          "default": "Button/Marker/thai-default.png",
+          "larger": "Button/Marker/thai-larger.png",
+          "mini": "Button/Marker/thai-mini.png",
+          "withFriends": "Button/Marker/thai-withFriends.png"
         },
         "id": "5",
         "item1": {
@@ -655,11 +655,11 @@
         ],
         "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
         "icon": {
-          "active": "Button/Marker/Landscape-active.png",
-          "default": "Button/Marker/Landscape-default.png",
-          "larger": "Button/Marker/Landscape-larger.png",
-          "mini": "Button/Marker/Landscape-mini.png",
-          "withFriends": "Button/Marker/Landscape-withFriends.png"
+          "active": "Button/Marker/landscape-active.png",
+          "default": "Button/Marker/landscape-default.png",
+          "larger": "Button/Marker/landscape-larger.png",
+          "mini": "Button/Marker/landscape-mini.png",
+          "withFriends": "Button/Marker/landscape-withFriends.png"
         },
         "id": "6",
         "item1": {
@@ -775,28 +775,28 @@
         ],
         "description": "Gott's Roadside, established by brothers Joel and Duncan Gott in St. Helena in 1999, offers a diverse menu that includes meals, tacos, beer, and ice cream. It is celebrated for its contemporary California-inspired dishes, crafted with locally sourced ingredients. The store is situated on the left side of the Ferry Building, featuring a roadside restaurant and a walk-through ice cream store inside.",
         "icon": {
-          "active": "Button/Marker/Burger-active.png",
-          "default": "Button/Marker/Burger-default.png",
-          "larger": "Button/Marker/Burger-larger.png",
-          "mini": "Button/Marker/Burger-mini.png",
-          "withFriends": "Button/Marker/Burger-withFriends.png"
+          "active": "Button/Marker/burger-active.png",
+          "default": "Button/Marker/burger-default.png",
+          "larger": "Button/Marker/burger-larger.png",
+          "mini": "Button/Marker/burger-mini.png",
+          "withFriends": "Button/Marker/burger-withFriends.png"
         },
         "id": "7",
         "item1": {
           "description": "The California flavor hamburger with below ingredients: Fried egg, Cowgirl Creamery's Wagon Wheel cheese, Zoe's bacon, arugula, balsamic onions & mayo on a toasted sesame brioche bun.",
-          "image": "Store/hamburger/gotts-roadside/california-burger.jpg",
+          "image": "Store/burger/gotts-roadside/california-burger.jpg",
           "name": "California Burger",
           "price": "$16.99"
         },
         "item2": {
           "description": "Fried crisp & lightly salted.",
-          "image": "Store/hamburger/gotts-roadside/fries.jpg",
+          "image": "Store/burger/gotts-roadside/fries.jpg",
           "name": "Fries",
           "price": "$4.49"
         },
         "item3": {
           "description": "Add Flavors: Vanilla, Cherry with $0.99",
-          "image": "Store/hamburger/gotts-roadside/coke.jpg",
+          "image": "Store/burger/gotts-roadside/coke.jpg",
           "name": "Coke",
           "price": "$2.99(16oz) / $3.99(24oz)"
         },
@@ -814,8 +814,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/hamburger/gotts-roadside/storefront-day.jpg",
-          "night": "Store/hamburger/gotts-roadside/storefront-night.jpg"
+          "day": "Store/burger/gotts-roadside/storefront-day.jpg",
+          "night": "Store/burger/gotts-roadside/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Gott's Roadside",
@@ -890,22 +890,22 @@
         ],
         "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
         "icon": {
-          "active": "Button/Marker/Cafe-active.png",
-          "default": "Button/Marker/Cafe-default.png",
-          "larger": "Button/Marker/Cafe-larger.png",
-          "mini": "Button/Marker/Cafe-mini.png",
-          "withFriends": "Button/Marker/Cafe-withFriends.png"
+          "active": "Button/Marker/cafe-active.png",
+          "default": "Button/Marker/cafe-default.png",
+          "larger": "Button/Marker/cafe-larger.png",
+          "mini": "Button/Marker/cafe-mini.png",
+          "withFriends": "Button/Marker/cafe-withFriends.png"
         },
         "id": "8",
         "item1": {
           "description": "Chai latte. <br> $5.75(10oz) / $7.5(16oz)",
-          "image": "Store/cafe/Red Rock Coffee/Chai Latte (S).jpg",
+          "image": "Store/cafe/red-rock-coffee/Chai Latte (S).jpg",
           "name": "Chai Latte (S)",
           "price": "$5.75"
         },
         "item2": {
           "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
-          "image": "Store/cafe/Red Rock Coffee/Ham & Cheese Croissant.jpg",
+          "image": "Store/cafe/red-rock-coffee/Ham & Cheese Croissant.jpg",
           "name": "Ham & Cheese Croissant",
           "price": "$7.25"
         },
@@ -929,8 +929,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/Red Rock Coffee/storefront-day.jpg",
-          "night": "Store/cafe/Red Rock Coffee/storefront-night.jpg"
+          "day": "Store/cafe/red-rock-coffee/storefront-day.jpg",
+          "night": "Store/cafe/red-rock-coffee/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Red Rock Coffee",
@@ -995,11 +995,11 @@
         ],
         "description": "Minsheng Community's cuisine, operating for over 30 years since its start in 1985.",
         "icon": {
-          "active": "Button/Marker/FormosanNoodles-active.png",
-          "default": "Button/Marker/FormosanNoodles-default.png",
-          "larger": "Button/Marker/FormosanNoodles-larger.png",
-          "mini": "Button/Marker/FormosanNoodles-mini.png",
-          "withFriends": "Button/Marker/FormosanNoodles-withFriends.png"
+          "active": "Button/Marker/formosan-noodles-active.png",
+          "default": "Button/Marker/formosan-noodles-default.png",
+          "larger": "Button/Marker/formosan-noodles-larger.png",
+          "mini": "Button/Marker/formosan-noodles-mini.png",
+          "withFriends": "Button/Marker/formosan-noodles-withFriends.png"
         },
         "id": "9",
         "item1": {
