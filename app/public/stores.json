@@ -91,11 +91,11 @@
         ],
         "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
         "icon": {
-          "active": "Button/Marker/Cafe_active.png",
-          "default": "Button/Marker/Cafe_default.png",
-          "larger": "Button/Marker/Cafe_larger.png",
-          "mini": "Button/Marker/Cafe_mini.png",
-          "withFriends": "Button/Marker/Cafe_withFriends.png"
+          "active": "Button/Marker/Cafe-active.png",
+          "default": "Button/Marker/Cafe-default.png",
+          "larger": "Button/Marker/Cafe-larger.png",
+          "mini": "Button/Marker/Cafe-mini.png",
+          "withFriends": "Button/Marker/Cafe-withFriends.png"
         },
         "id": "1",
         "item1": {
@@ -135,7 +135,7 @@
         },
         "tag": "[]",
         "title": "Big Bear Cafe",
-        "type": "Cafe"
+        "type": "cafe"
       },
       "type": "Feature"
     },
@@ -211,11 +211,11 @@
         ],
         "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
         "icon": {
-          "active": "Button/Marker/Cafe_active.png",
-          "default": "Button/Marker/Cafe_default.png",
-          "larger": "Button/Marker/Cafe_larger.png",
-          "mini": "Button/Marker/Cafe_mini.png",
-          "withFriends": "Button/Marker/Cafe_withFriends.png"
+          "active": "Button/Marker/Cafe-active.png",
+          "default": "Button/Marker/Cafe-default.png",
+          "larger": "Button/Marker/Cafe-larger.png",
+          "mini": "Button/Marker/Cafe-mini.png",
+          "withFriends": "Button/Marker/Cafe-withFriends.png"
         },
         "id": "2",
         "item1": {
@@ -255,7 +255,7 @@
         },
         "tag": "[]",
         "title": "Teaism Penn Quarter",
-        "type": "Cafe"
+        "type": "cafe"
       },
       "type": "Feature"
     },
@@ -331,11 +331,11 @@
         ],
         "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
         "icon": {
-          "active": "Button/Marker/Bar_active.png",
-          "default": "Button/Marker/Bar_default.png",
-          "larger": "Button/Marker/Bar_larger.png",
-          "mini": "Button/Marker/Bar_mini.png",
-          "withFriends": "Button/Marker/Bar_withFriends.png"
+          "active": "Button/Marker/bar-active.png",
+          "default": "Button/Marker/bar-default.png",
+          "larger": "Button/Marker/bar-larger.png",
+          "mini": "Button/Marker/bar-mini.png",
+          "withFriends": "Button/Marker/bar-withFriends.png"
         },
         "id": "3",
         "item1": {
@@ -375,7 +375,7 @@
         },
         "tag": "[]",
         "title": "Jane Jane",
-        "type": "Bar"
+        "type": "bar"
       },
       "type": "Feature"
     },
@@ -451,11 +451,11 @@
         ],
         "description": "A cozy restaurant is situated on 14th Street, offering delicious Thai cuisine; its Japanese fare is also commendable. Upon entering the restaurant, don't miss the Rice Market—simply head downstairs to the basement of the same building. It offers a variety of Asian seasonings and ingredients, along with Japanese kitchenware and tableware.",
         "icon": {
-          "active": "Button/Marker/Thai_active.png",
-          "default": "Button/Marker/Thai_default.png",
-          "larger": "Button/Marker/Thai_larger.png",
-          "mini": "Button/Marker/Thai_mini.png",
-          "withFriends": "Button/Marker/Thai_withFriends.png"
+          "active": "Button/Marker/Thai-active.png",
+          "default": "Button/Marker/Thai-default.png",
+          "larger": "Button/Marker/Thai-larger.png",
+          "mini": "Button/Marker/Thai-mini.png",
+          "withFriends": "Button/Marker/Thai-withFriends.png"
         },
         "id": "4",
         "item1": {
@@ -495,7 +495,7 @@
         },
         "tag": "[]",
         "title": "Rice Restaurant",
-        "type": "Thai"
+        "type": "thai"
       },
       "type": "Feature"
     },
@@ -591,11 +591,11 @@
         ],
         "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles.",
         "icon": {
-          "active": "Button/Marker/Thai_active.png",
-          "default": "Button/Marker/Thai_default.png",
-          "larger": "Button/Marker/Thai_larger.png",
-          "mini": "Button/Marker/Thai_mini.png",
-          "withFriends": "Button/Marker/Thai_withFriends.png"
+          "active": "Button/Marker/Thai-active.png",
+          "default": "Button/Marker/Thai-default.png",
+          "larger": "Button/Marker/Thai-larger.png",
+          "mini": "Button/Marker/Thai-mini.png",
+          "withFriends": "Button/Marker/Thai-withFriends.png"
         },
         "id": "5",
         "item1": {
@@ -605,10 +605,10 @@
           "price": "$18"
         },
         "item2": {
-          "description": "Choose either chicken, shrimp, vegetables, or tofu. This light and spicy tom yum broth simmered with galangal, lemongrass, onions, mushrooms, scallions and cilantro.",
+          "description": "Choose either chicken, shrimp, vegetables, or tofu. This light and spicy tom yum broth simmered with galangal, lemongrass, onions, mushrooms, scallions and cilantro. <br> $8(S)/$15(L)",
           "image": "Store/restaurant/THEP Thai Restaurant/Tom Yum.jpg",
           "name": "Tom Yum",
-          "price": "$8(S)/$15(L)"
+          "price": "$8(S)"
         },
         "item3": {
           "description": "Side dish: Grilled Butter Bread.",
@@ -635,7 +635,7 @@
         },
         "tag": "[]",
         "title": "THEP Thai Restaurant",
-        "type": "Thai"
+        "type": "thai"
       },
       "type": "Feature"
     },
@@ -655,11 +655,11 @@
         ],
         "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
         "icon": {
-          "active": "Button/Marker/Landscape_active.png",
-          "default": "Button/Marker/Landscape_default.png",
-          "larger": "Button/Marker/Landscape_larger.png",
-          "mini": "Button/Marker/Landscape_mini.png",
-          "withFriends": "Button/Marker/Landscape_withFriends.png"
+          "active": "Button/Marker/Landscape-active.png",
+          "default": "Button/Marker/Landscape-default.png",
+          "larger": "Button/Marker/Landscape-larger.png",
+          "mini": "Button/Marker/Landscape-mini.png",
+          "withFriends": "Button/Marker/Landscape-withFriends.png"
         },
         "id": "6",
         "item1": {
@@ -699,7 +699,7 @@
         },
         "tag": "[]",
         "title": "Contrabands and Freedmen Cemetery Memorial",
-        "type": "Landscape"
+        "type": "landscape"
       },
       "type": "Feature"
     },
@@ -775,11 +775,11 @@
         ],
         "description": "Gott's Roadside, established by brothers Joel and Duncan Gott in St. Helena in 1999, offers a diverse menu that includes meals, tacos, beer, and ice cream. It is celebrated for its contemporary California-inspired dishes, crafted with locally sourced ingredients. The store is situated on the left side of the Ferry Building, featuring a roadside restaurant and a walk-through ice cream store inside.",
         "icon": {
-          "active": "Button/Marker/Hamburger_active.png",
-          "default": "Button/Marker/Hamburger_default.png",
-          "larger": "Button/Marker/Hamburger_larger.png",
-          "mini": "Button/Marker/Hamburger_mini.png",
-          "withFriends": "Button/Marker/Hamburger_withFriends.png"
+          "active": "Button/Marker/Burger-active.png",
+          "default": "Button/Marker/Burger-default.png",
+          "larger": "Button/Marker/Burger-larger.png",
+          "mini": "Button/Marker/Burger-mini.png",
+          "withFriends": "Button/Marker/Burger-withFriends.png"
         },
         "id": "7",
         "item1": {
@@ -819,7 +819,7 @@
         },
         "tag": "[]",
         "title": "Gott's Roadside",
-        "type": "Hamburger"
+        "type": "burger"
       },
       "type": "Feature"
     },
@@ -890,18 +890,18 @@
         ],
         "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
         "icon": {
-          "active": "Button/Marker/Cafe_active.png",
-          "default": "Button/Marker/Cafe_default.png",
-          "larger": "Button/Marker/Cafe_larger.png",
-          "mini": "Button/Marker/Cafe_mini.png",
-          "withFriends": "Button/Marker/Cafe_withFriends.png"
+          "active": "Button/Marker/Cafe-active.png",
+          "default": "Button/Marker/Cafe-default.png",
+          "larger": "Button/Marker/Cafe-larger.png",
+          "mini": "Button/Marker/Cafe-mini.png",
+          "withFriends": "Button/Marker/Cafe-withFriends.png"
         },
         "id": "8",
         "item1": {
-          "description": "Chai latte. Small size is 10oz and large size is 16oz.",
+          "description": "Chai latte. <br> $5.75(10oz) / $7.5(16oz)",
           "image": "Store/cafe/Red Rock Coffee/Chai Latte (S).jpg",
           "name": "Chai Latte (S)",
-          "price": "$5.75(S) / $7.5(L)"
+          "price": "$5.75"
         },
         "item2": {
           "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
@@ -934,7 +934,7 @@
         },
         "tag": "[]",
         "title": "Red Rock Coffee",
-        "type": "Cafe"
+        "type": "cafe"
       },
       "type": "Feature"
     },
@@ -995,11 +995,11 @@
         ],
         "description": "Minsheng Community's cuisine, operating for over 30 years since its start in 1985.",
         "icon": {
-          "active": "Button/Marker/FormosanNoodles_active.png",
-          "default": "Button/Marker/FormosanNoodles_default.png",
-          "larger": "Button/Marker/FormosanNoodles_larger.png",
-          "mini": "Button/Marker/FormosanNoodles_mini.png",
-          "withFriends": "Button/Marker/FormosanNoodles_withFriends.png"
+          "active": "Button/Marker/FormosanNoodles-active.png",
+          "default": "Button/Marker/FormosanNoodles-default.png",
+          "larger": "Button/Marker/FormosanNoodles-larger.png",
+          "mini": "Button/Marker/FormosanNoodles-mini.png",
+          "withFriends": "Button/Marker/FormosanNoodles-withFriends.png"
         },
         "id": "9",
         "item1": {
@@ -1039,7 +1039,7 @@
         },
         "tag": "[]",
         "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
-        "type": "FormosanNoodles"
+        "type": "formosan-noodles"
       },
       "type": "Feature"
     },
@@ -1105,11 +1105,11 @@
         ],
         "description": "This is a Rum bar that offers a variety of Rums and Spanish cuisine. The staff is passionate about introducing their products.",
         "icon": {
-          "active": "Button/Marker/Bar_active.png",
-          "default": "Button/Marker/Bar_default.png",
-          "larger": "Button/Marker/Bar_larger.png",
-          "mini": "Button/Marker/Bar_mini.png",
-          "withFriends": "Button/Marker/Bar_withFriends.png"
+          "active": "Button/Marker/bar-active.png",
+          "default": "Button/Marker/bar-default.png",
+          "larger": "Button/Marker/bar-larger.png",
+          "mini": "Button/Marker/bar-mini.png",
+          "withFriends": "Button/Marker/bar-withFriends.png"
         },
         "id": "10",
         "item1": {
@@ -1149,7 +1149,7 @@
         },
         "tag": "[]",
         "title": "Ole Rum Bar & Tapas",
-        "type": "Bar"
+        "type": "bar"
       },
       "type": "Feature"
     },
@@ -1230,11 +1230,11 @@
         ],
         "description": "A professional whiskey bar, where bartenders possess a wealth of knowledge about whiskey and offer friendly service, is designed to help you find the whiskey that best suits your taste.",
         "icon": {
-          "active": "Button/Marker/Bar_active.png",
-          "default": "Button/Marker/Bar_default.png",
-          "larger": "Button/Marker/Bar_larger.png",
-          "mini": "Button/Marker/Bar_mini.png",
-          "withFriends": "Button/Marker/Bar_withFriends.png"
+          "active": "Button/Marker/bar-active.png",
+          "default": "Button/Marker/bar-default.png",
+          "larger": "Button/Marker/bar-larger.png",
+          "mini": "Button/Marker/bar-mini.png",
+          "withFriends": "Button/Marker/bar-withFriends.png"
         },
         "id": "11",
         "item1": {
@@ -1274,7 +1274,7 @@
         },
         "tag": "[]",
         "title": "Larriere-cour",
-        "type": "Bar"
+        "type": "bar"
       },
       "type": "Feature"
     },
@@ -1357,11 +1357,11 @@
         ],
         "description": "A taco restaurant operated by a Taiwanese sous chef from ZEA, with his unique understanding of Mexican food. It offers corn-based tacos in a clean environment, albeit at a slightly higher price than regular taco restaurants.",
         "icon": {
-          "active": "Button/Marker/Taco_active.png",
-          "default": "Button/Marker/Taco_default.png",
-          "larger": "Button/Marker/Taco_larger.png",
-          "mini": "Button/Marker/Taco_mini.png",
-          "withFriends": "Button/Marker/Taco_withFriends.png"
+          "active": "Button/Marker/taco-active.png",
+          "default": "Button/Marker/taco-default.png",
+          "larger": "Button/Marker/taco-larger.png",
+          "mini": "Button/Marker/taco-mini.png",
+          "withFriends": "Button/Marker/taco-withFriends.png"
         },
         "id": "12",
         "item1": {
@@ -1401,7 +1401,7 @@
         },
         "tag": "[]",
         "title": "Pàng Taqueria",
-        "type": "Taco"
+        "type": "taco"
       },
       "type": "Feature"
     },
@@ -1501,11 +1501,11 @@
         ],
         "description": "A traditional Mexican food restaurant located in the Gongguan business district.",
         "icon": {
-          "active": "Button/Marker/Taco_active.png",
-          "default": "Button/Marker/Taco_default.png",
-          "larger": "Button/Marker/Taco_larger.png",
-          "mini": "Button/Marker/Taco_mini.png",
-          "withFriends": "Button/Marker/Taco_withFriends.png"
+          "active": "Button/Marker/taco-active.png",
+          "default": "Button/Marker/taco-default.png",
+          "larger": "Button/Marker/taco-larger.png",
+          "mini": "Button/Marker/taco-mini.png",
+          "withFriends": "Button/Marker/taco-withFriends.png"
         },
         "id": "13",
         "item1": {
@@ -1545,7 +1545,7 @@
         },
         "tag": "[]",
         "title": "El Sabroso Mexican Food",
-        "type": "Taco"
+        "type": "taco"
       },
       "type": "Feature"
     },
@@ -1570,67 +1570,67 @@
           {
             "Monday": [
               {
-                "Start": "1130",
-                "Finish": "2130"
+                "Finish": "2130",
+                "Start": "1130"
               }
             ]
           },
           {
             "Tuesday": [
               {
-                "Start": "1130",
-                "Finish": "2130"
+                "Finish": "2130",
+                "Start": "1130"
               }
             ]
           },
           {
             "Wednesday": [
               {
-                "Start": "1130",
-                "Finish": "2130"
+                "Finish": "2130",
+                "Start": "1130"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Start": "1130",
-                "Finish": "2130"
+                "Finish": "2130",
+                "Start": "1130"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Start": "1130",
-                "Finish": "2300"
+                "Finish": "2300",
+                "Start": "1130"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Start": "1130",
-                "Finish": "2300"
+                "Finish": "2300",
+                "Start": "1130"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Start": "1130",
-                "Finish": "2200"
+                "Finish": "2200",
+                "Start": "1130"
               }
             ]
           }
         ],
         "description": "Mexican restaurant located in the Eastern District, yet it offers spacious seating unlike other crowded small restaurants nearby. The staff is friendly and eager to introduce the dishes, and they enjoy chatting with customers. The tacos and sauce boast authentic Mexican flavors.",
         "icon": {
-          "active": "Button/Marker/Taco_active.png",
-          "default": "Button/Marker/Taco_default.png",
-          "larger": "Button/Marker/Taco_larger.png",
-          "mini": "Button/Marker/Taco_mini.png",
-          "withFriends": "Button/Marker/Taco_withFriends.png"
+          "active": "Button/Marker/taco-active.png",
+          "default": "Button/Marker/taco-default.png",
+          "larger": "Button/Marker/taco-larger.png",
+          "mini": "Button/Marker/taco-mini.png",
+          "withFriends": "Button/Marker/taco-withFriends.png"
         },
         "id": "14",
         "item1": {
@@ -1670,7 +1670,132 @@
         },
         "tag": "[]",
         "title": "Teotihuacan Mexican Restaurant",
-        "type": "Taco"
+        "type": "taco"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [121.55164116754744, 25.04269480315472],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "No. 48, Lane 187, Section 1, Dunhua S Rd, Da’an District, Taipei City, Taiwan 106",
+        "auid": "14510735417314001215",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2300",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2300",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "2200",
+                "Start": "1130"
+              }
+            ]
+          }
+        ],
+        "description": "An internet-famous milk tea shop known for its 4 flavors gelato offerings. The original store was established in L.A., and this is the inaugural branch in Taiwan.",
+        "icon": {
+          "active": "Button/Marker/icecream-active.png",
+          "default": "Button/Marker/icecream-default.png",
+          "larger": "Button/Marker/icecream-larger.png",
+          "mini": "Button/Marker/icecream-mini.png",
+          "withFriends": "Button/Marker/icecream-withFriends.png"
+        },
+        "id": "15",
+        "item1": {
+          "description": "Earl gray lemongrass and red oolong. <br> NT$120(Single) / NT$180(Double)",
+          "image": "Store/icecream/odd-one-out-dunnan-shop/botanical-gelato.webp",
+          "name": "Botanical Gelato",
+          "price": "NT$180(Double)"
+        },
+        "item2": {
+          "description": "Red oolong milk tea + cream foam <br> NT$100(12oz) / NT$120(16oz)",
+          "image": "Store/icecream/odd-one-out-dunnan-shop/champion-milk-tea.webp",
+          "name": "Champion Milk Tea (M)",
+          "price": "NT$100(M)"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/icecream/odd-one-out-dunnan-shop/storefront-day.webp",
+          "night": "Store/icecream/odd-one-out-dunnan-shop/storefront-night.webp"
+        },
+        "tag": "[]",
+        "title": "Odd One Out - Dunnan Shop",
+        "type": "icecream"
       },
       "type": "Feature"
     }
