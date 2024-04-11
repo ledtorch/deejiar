@@ -7,10 +7,8 @@
 </template>
 
 <script>
-import mapboxgl from "mapbox-gl";
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import Locate from "./Button/Icon/Locate.vue";
-import { useRouter } from "vue-router";
 import { useHead } from 'unhead';
 
 export default {
@@ -60,6 +58,9 @@ export default {
   data() {
     return {
       map: null,
+
+      mapboxgl: null,
+
       selectedStore: null,
       buttonState: "default",
       locate: null,
@@ -74,10 +75,13 @@ export default {
   },
 
   // Mount Mapbox
-  mounted() {
-    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+  async mounted() {
+    const mapboxgl = await import("mapbox-gl");
+    this.mapboxgl = mapboxgl.default;
 
-    this.locate = new mapboxgl.GeolocateControl({
+    this.mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+
+    this.locate = new this.mapboxgl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
       trackUserLocation: true,
       showUserHeading: true
@@ -90,28 +94,6 @@ export default {
 
     navigator.geolocation.getCurrentPosition(
       position => {
-        // TODO: User mark
-        // const el = document.createElement("div");
-        // el.className = "location-indicator";
-
-        // const ringDiv = document.createElement("div");
-        // ringDiv.className = "ring";
-        // el.appendChild(ringDiv);
-
-        // const innerBallDiv = document.createElement("div");
-        // innerBallDiv.className = "inner-ball";
-        // ringDiv.appendChild(innerBallDiv);
-
-        // // Create a location indicator of the user
-        // new mapboxgl.Marker(el)
-        //   .setLngLat([position.coords.longitude, position.coords.latitude])
-        //   .addTo(this.map);
-
-        // this.map.setCenter([
-        //   position.coords.longitude,
-        //   position.coords.latitude
-        // ]);
-
         if (markerLatitude && markerLongitude) {
           this.map.setCenter([
             markerLatitude,
@@ -141,7 +123,7 @@ export default {
       }
     );
 
-    this.map = new mapboxgl.Map({
+    this.map = new this.mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/naivebara/clkyvh09v00m701me403i1svm",
 
@@ -211,6 +193,7 @@ export default {
             id: "stores",
             type: "symbol",
             source: "stores",
+
             layout: {
               "icon-image": [
                 "step",
@@ -269,8 +252,6 @@ export default {
       const iconObject = JSON.parse(iconString);
       const activeIcon = iconObject.active;
 
-      const router = useRouter();
-
       this.selectedStore = this.storeData.features.find(
         store => store.properties.title === title
       ).properties;
@@ -288,7 +269,7 @@ export default {
       // // 🐞 Debug console
       // console.log("Icon: ", activeIcon);
 
-      this.tempMarker = new mapboxgl.Marker(el, { offset: [0, -24] })
+      this.tempMarker = new this.mapboxgl.Marker(el, { offset: [0, -24] })
         .setLngLat(coordinates)
         .addTo(this.map);
 
@@ -309,105 +290,6 @@ export default {
       // console.log("Selected Store:", this.selectedStore);
       // console.log("center: " + coordinates[0] + ", " + coordinates[1]);
     },
-
-    // // District
-    // addDistricts() {
-    //   fetch("/districts.json")
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.map.addSource("districts", {
-    //         type: "geojson",
-    //         data: data
-    //       });
-    //       this.districtData = data;
-
-    //       // Render the district's area
-    //       this.map.addLayer({
-    //         id: "districts",
-    //         type: "fill",
-    //         source: "districts",
-    //         layout: {},
-    //         paint: {
-    //           "fill-color": "#3DC363",
-    //           "fill-opacity": 0.6
-    //         },
-    //         filter: ["==", "$type", "Polygon"]
-    //       });
-    //       // Render the district's border
-    //       this.map.addLayer({
-    //         id: "outline",
-    //         type: "line",
-    //         source: "districts",
-    //         layout: {},
-    //         paint: {
-    //           "line-color": "#3DC363",
-    //           "line-width": 1
-    //         },
-    //         filter: ["==", "$type", "Polygon"]
-    //       });
-
-    //       // ↓ Extract the data from json
-    //       // Load images
-    //       data.features.forEach(feature => {
-    //         if (feature.geometry.type === "Point") {
-    //           ["mini", "default", "larger", "active"].forEach(size => {
-    //             const iconPath =
-    //               "/Button/Marker/" +
-    //               feature.properties.type +
-    //               "_" +
-    //               size +
-    //               ".png";
-    //             this.map.loadImage(iconPath, (error, image) => {
-    //               if (error) throw error;
-    //               const iconName = feature.properties.type + "-" + size;
-    //               this.map.addImage(iconName, image);
-    //             });
-    //           });
-    //         }
-    //       });
-
-    //       // ↓ Setup the text of the districts' marker
-    //       this.map.on("zoom", () => {
-    //         const zoomLevel = this.map.getZoom();
-
-    //         if (zoomLevel >= 14.5) {
-    //           this.map.setLayoutProperty("markers", "text-offset", [1, 0]);
-    //         } else if (zoomLevel >= 12.4) {
-    //           this.map.setLayoutProperty("markers", "text-offset", [0.8, 0]);
-    //         } else {
-    //           this.map.setLayoutProperty("markers", "text-offset", [0, 0]);
-    //         }
-    //       });
-
-    //       // Render the districts' marker as a layer
-    //       this.map.addLayer({
-    //         id: "markers",
-    //         type: "symbol",
-    //         source: "districts",
-    //         layout: {
-    //           "icon-image": [
-    //             "step",
-    //             ["zoom"],
-    //             "", // this will display nothing from zoom levels 3-10
-    //             10,
-    //             ["concat", ["get", "type"], "-mini"],
-    //             12.4,
-    //             ["concat", ["get", "type"], "-default"],
-    //             14.5,
-    //             ["concat", ["get", "type"], "-larger"]
-    //           ],
-    //           "icon-size": 0.25,
-    //           "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-    //           "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
-    //           "text-anchor": "left"
-    //         },
-    //         paint: {
-    //           "text-color": "#FFFFFF"
-    //         },
-    //         filter: ["==", "$type", "Point"]
-    //       });
-    //     });
-    // },
 
     // Locate
     locateUser() {
