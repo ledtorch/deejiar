@@ -11,8 +11,5 @@ import router from './router.js'
 import 'normalize.css';
 import './style.css'
 
-// Dependency
-import 'mapbox-gl/dist/mapbox-gl.css';
-
 const head = createHead()
 createApp(App).use(router).use(head).mount('#app')

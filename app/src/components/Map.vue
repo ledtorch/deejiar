@@ -74,6 +74,7 @@ export default {
 
   // Asynchronously import the Mapbox to separate Mapbox and main js
   async mounted() {
+    await import('mapbox-gl/dist/mapbox-gl.css');
     const mapboxgl = await import("mapbox-gl");
     this.mapboxgl = mapboxgl.default;
 
@@ -123,7 +124,9 @@ export default {
 
     this.map = new this.mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/naivebara/clkyvh09v00m701me403i1svm",
+      // style: "mapbox://styles/naivebara/clkyvh09v00m701me403i1svm",
+      // Test for removing pedestrain layer
+      style: "mapbox://styles/naivebara/cluvh6drq000001q11cezdkgl",
 
       // White House
       center: [-77.0364976166554, 38.897684621644885],
