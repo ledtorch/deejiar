@@ -10,15 +10,16 @@
   },
   "dependencies": {
     "@unhead/vue": "^1.8.0",
+    "caniuse-lite": "^1.0.30001608",
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
-    "mapbox-gl": "^2.15.0",
+    "mapbox-gl": "^3.3.0",
     "normalize.css": "^8.0.1",
     "vue": "3.4.14",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "sass": "^1.69.5",
