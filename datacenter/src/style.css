@@ -1,9 +1,3 @@
-/* Romove the watermark */
-.mapboxgl-ctrl-logo,
-.mapboxgl-ctrl-bottom-right {
-	display: none !important;
-}
-
 /* Font Family */
 @font-face {
 	font-family: 'Be Vietnam Pro';
