@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <!-- Carousel Content -->
-    <div v-if="currentPage === 0" class="cover" :style="{ 'backgroundImage': frontStoreImage }">
+    <div v-if="currentPage === 0" class="cover" :style="{ 'backgroundImage': storeFrontImage }">
       <LeftArrow @click="previousPage" class="left-arrow" />
       <Home @click="toHomePage" class="home-btn" />
       <Share @click="share" class="share-btn" />
@@ -110,7 +110,7 @@ export default {
       // console.log("Compute storeLayout: " + this.store?.layout);
       return this.data?.layout;
     },
-    frontStoreImage() {
+    storeFrontImage() {
       // Defaults to an empty string before the app renders without data 
       const storeFrontDayData = this.data?.storefront?.day || '';
       return this.rootUrl(storeFrontDayData);
