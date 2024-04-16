@@ -7,13 +7,11 @@ dist
 dist-ssr
 
 # Environment and sensitive data
-.env.dev
-.env.product
+.env*
 localhost.crt
 localhost.key
 
 # Env
-.env
 
 # Logs and debug files
 logs
