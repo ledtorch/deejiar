@@ -1,4 +1,21 @@
-# Logs
+# Dependency directories
+node_modules
+.yarn
+
+# Build and distribution
+dist
+dist-ssr
+
+# Environment and sensitive data
+.env.dev
+.env.product
+localhost.crt
+localhost.key
+
+# Env
+.env
+
+# Logs and debug files
 logs
 *.log
 npm-debug.log*
@@ -7,17 +24,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# OS-specific files
 .DS_Store
-dist
-dist-ssr
-coverage
-*.local
 
-/cypress/videos/
-/cypress/screenshots/
-
-# Editor directories and files
+# Editor-specific files and directories
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -27,4 +37,6 @@ coverage
 *.sln
 *.sw?
 
-*.tsbuildinfo
+# Miscellaneous
+*.local
+.gitignore
