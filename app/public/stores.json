@@ -600,25 +600,25 @@
         "id": "5",
         "item1": {
           "description": "Grilled octopus tentacle, grape tomato, chickpea, cilantro, mint, basil, fried onion.",
-          "image": "Store/restaurant/THEP Thai Restaurant/Muk Yarng.jpg",
+          "image": "Store/restaurant/thep-thai-restaurant/muk-yarng.jpg",
           "name": "Muk Yarng",
           "price": "$18"
         },
         "item2": {
           "description": "Choose either chicken, shrimp, vegetables, or tofu. This light and spicy tom yum broth simmered with galangal, lemongrass, onions, mushrooms, scallions and cilantro. <br> $8(S)/$15(L)",
-          "image": "Store/restaurant/THEP Thai Restaurant/Tom Yum.jpg",
+          "image": "Store/restaurant/thep-thai-restaurant/tom-yum.jpg",
           "name": "Tom Yum",
           "price": "$8(S)"
         },
         "item3": {
           "description": "Side dish: Grilled Butter Bread.",
-          "image": "Store/restaurant/THEP Thai Restaurant/Grilled Butter Bread.jpg",
+          "image": "Store/restaurant/thep-thai-restaurant/grilled-butter-bread.jpg",
           "name": "Grilled Butter Bread",
           "price": "$4"
         },
         "item4": {
           "description": "Don Fulano Reposado Tequila, Domaine de Canton, watermelon juice, Tanjin spicy rim.",
-          "image": "Store/restaurant/THEP Thai Restaurant/What-a-melon.jpg",
+          "image": "Store/restaurant/thep-thai-restaurant/what-a-melon.jpg",
           "name": "What-a-melon",
           "price": "$17"
         },
@@ -630,8 +630,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/THEP Thai Restaurant/storefront-day.jpg",
-          "night": "Store/restaurant/THEP Thai Restaurant/storefront-night.jpg"
+          "day": "Store/restaurant/thep-thai-restaurant/storefront-day.jpg",
+          "night": "Store/restaurant/thep-thai-restaurant/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "THEP Thai Restaurant",
