@@ -1760,13 +1760,13 @@
         "id": "15",
         "item1": {
           "description": "Earl gray lemongrass and red oolong. <br> NT$120(Single) / NT$180(Double)",
-          "image": "Store/icecream/odd-one-out-dunnan-shop/botanical-gelato.webp",
+          "image": "Store/icecream/odd-one-out-dunnan-shop/botanical-gelato.jpg",
           "name": "Botanical Gelato",
           "price": "NT$180(Double)"
         },
         "item2": {
           "description": "Red oolong milk tea + cream foam <br> NT$100(12oz) / NT$120(16oz)",
-          "image": "Store/icecream/odd-one-out-dunnan-shop/champion-milk-tea.webp",
+          "image": "Store/icecream/odd-one-out-dunnan-shop/champion-milk-tea.jpg",
           "name": "Champion Milk Tea (M)",
           "price": "NT$100(M)"
         },
@@ -1796,6 +1796,264 @@
         "tag": "[]",
         "title": "Odd One Out - Dunnan Shop",
         "type": "icecream"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [121.54480981123537, 25.039215200109936],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "No. 11, Lane 219, Section 1, Fuxing S Rd, Da’an District, Taipei City, 106",
+        "auid": "7217928507319275413",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1800",
+                "Finish": "2700"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1100",
+                "Finish": "1700"
+              },
+              {
+                "Start": "1800",
+                "Finish": "2700"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1100",
+                "Finish": "1700"
+              },
+              {
+                "Start": "1800",
+                "Finish": "2600"
+              }
+            ]
+          }
+        ],
+        "description": "Indulge Experimental Bistro is consistently ranked among the World’s 50 Best Bars and remains a top-five favorite in Asia’s 50 Best. Its tea-infused cocktail captures the essence of its subtropical flavors. The chef has meticulously gathered representative ingredients from all over Taiwan to create unique small plates designed to complement the drinks. The staff expertly introduces patrons to the local ingredients, explaining how the chef aims to inspire clients with the vivid imagery of Formosa.",
+        "icon": {
+          "active": "Button/Marker/bar-active.png",
+          "default": "Button/Marker/bar-default.png",
+          "larger": "Button/Marker/bar-larger.png",
+          "mini": "Button/Marker/bar-mini.png",
+          "withFriends": "Button/Marker/bar-withFriends.png"
+        },
+        "id": "16",
+        "item1": {
+          "name": "Herbal Flora",
+          "description": "Botanist Gin <br> William Pear / Lily / Bergamot / Tonic Water",
+          "image": "Store/bar/indulge-experimental-bistro/herbal-flora.jpg",
+          "price": "NT$500"
+        },
+        "item2": {
+          "name": "Wood Flora",
+          "description": "Don Julio Tequila Blanco. Rose Cherry Liqueur. Rosewood Iron Buddha Tea.",
+          "image": "Store/bar/indulge-experimental-bistro/wood-flora.jpg",
+          "price": "NT$450"
+        },
+        "item3": {
+          "name": "Gnocchi·Duroc Pork·Spicy Tomato·Mushroom",
+          "description": "Taiwanese gnocchi, also commonly known as 'cloud soft' owes its name to its texture. The inspiration comes from the early morning in the mountains, when the sun rises, and the sky gradually reveals a ruby-like hue between the sea of clouds and the forest. The red onion noodle dumplings represent the sea of clouds, while the chicken fat transformed into powder and tea tree mushrooms represent the mountains and forests. The spicy tomato-braised pork belly with turmeric and Buddha's hand citron pickled daikon represents the various displays of light. This also symbolizes the enticingly diverse flavors!",
+          "image": "Store/bar/indulge-experimental-bistro/gnocchi.jpg",
+          "price": "NT$480"
+        },
+        "item4": {
+          "name": "Egg Tofu·Scallop·Salmon-roll·Fermented Chili",
+          "description": "Taking a dish we are all too familiar with - Teppan tofu - as a point of discovery, we mix pure shrimp paste into the egg tofu mixture for reshaping, first baking then frying it. It is then combined with the sweetness of caramelized onions, the spiciness of pepper, the sourness of pickled salmon roe in black vinegar, and the freshness of fermented chili, presenting a novel appearance of Taiwanese-style Western cuisine.",
+          "image": "Store/bar/indulge-experimental-bistro/egg-tofu.jpg",
+          "price": "NT$360"
+        },
+        "item5": {
+          "name": "",
+          "description": "",
+          "image": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/bar/indulge-experimental-bistro/storefront-day.jpg",
+          "night": "Store/bar/indulge-experimental-bistro/storefront-night.jpg"
+        },
+        "tag": "[]",
+        "title": "Indulge Experimental Bistro",
+        "type": "bar"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [121.56114707019687, 25.031488137915723],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "No. 180, Zhuangjing Rd, Xinyi District, Taipei City, 110",
+        "auid": "6224758275121354720",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2300",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2300",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "2200",
+                "Start": "1130"
+              }
+            ]
+          }
+        ],
+        "description": "A reputable burger store meticulously crafts small yet flavorful and juicy burgers. Rather than overeating, try to savor these burgers as fine cuisine. It is located in the Xinyi District, conveniently near Exit 2 of the Taipei 101/World Trade Center MRT station.",
+        "icon": {
+          "active": "Button/Marker/burger-active.png",
+          "default": "Button/Marker/burger-default.png",
+          "larger": "Button/Marker/burger-larger.png",
+          "mini": "Button/Marker/burger-mini.png",
+          "withFriends": "Button/Marker/burger-withFriends.png"
+        },
+        "id": "17",
+        "item1": {
+          "description": "Classic burger with a small combo (NT$80 side and NT$80 drink).",
+          "image": "Store/burger/selfish-burger/classic-with-small-combo.jpg",
+          "name": "Classic with Combo",
+          "price": "NT$240+100"
+        },
+        "item2": {
+          "description": "Cod with yuzu tartar sauce and a chilled purple cabbage salad.",
+          "image": "Store/burger/selfish-burger/yuzu-cod.jpg",
+          "name": "Cod Yuzu",
+          "price": "NT$280"
+        },
+        "item3": {
+          "description": "The bear with wheat and black tea flavor.",
+          "image": "Store/burger/selfish-burger/toastea-larger.jpg",
+          "name": "TOASTea Larger",
+          "price": "NT$160"
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "Store/burger/selfish-burger/storefront-day.jpg",
+          "night": "Store/burger/selfish-burger/storefront-night.jpg"
+        },
+        "tag": "[]",
+        "title": "Selfish Burger",
+        "type": "burger"
       },
       "type": "Feature"
     }
