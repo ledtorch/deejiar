@@ -91,11 +91,11 @@
         ],
         "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
         "icon": {
-          "active": "Button/Marker/cafe-active.png",
-          "default": "Button/Marker/cafe-default.png",
-          "larger": "Button/Marker/cafe-larger.png",
-          "mini": "Button/Marker/cafe-mini.png",
-          "withFriends": "Button/Marker/cafe-withFriends.png"
+          "active": "Button/marker/cafe-active.png",
+          "default": "Button/marker/cafe-default.png",
+          "larger": "Button/marker/cafe-larger.png",
+          "mini": "Button/marker/cafe-mini.png",
+          "withFriends": "Button/marker/cafe-withFriends.png"
         },
         "id": "1",
         "item1": {
@@ -211,11 +211,11 @@
         ],
         "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
         "icon": {
-          "active": "Button/Marker/cafe-active.png",
-          "default": "Button/Marker/cafe-default.png",
-          "larger": "Button/Marker/cafe-larger.png",
-          "mini": "Button/Marker/cafe-mini.png",
-          "withFriends": "Button/Marker/cafe-withFriends.png"
+          "active": "Button/marker/cafe-active.png",
+          "default": "Button/marker/cafe-default.png",
+          "larger": "Button/marker/cafe-larger.png",
+          "mini": "Button/marker/cafe-mini.png",
+          "withFriends": "Button/marker/cafe-withFriends.png"
         },
         "id": "2",
         "item1": {
@@ -331,11 +331,11 @@
         ],
         "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
         "icon": {
-          "active": "Button/Marker/bar-active.png",
-          "default": "Button/Marker/bar-default.png",
-          "larger": "Button/Marker/bar-larger.png",
-          "mini": "Button/Marker/bar-mini.png",
-          "withFriends": "Button/Marker/bar-withFriends.png"
+          "active": "Button/marker/bar-active.png",
+          "default": "Button/marker/bar-default.png",
+          "larger": "Button/marker/bar-larger.png",
+          "mini": "Button/marker/bar-mini.png",
+          "withFriends": "Button/marker/bar-withFriends.png"
         },
         "id": "3",
         "item1": {
@@ -451,11 +451,11 @@
         ],
         "description": "A cozy restaurant is situated on 14th Street, offering delicious Thai cuisine; its Japanese fare is also commendable. Upon entering the restaurant, don't miss the Rice Market—simply head downstairs to the basement of the same building. It offers a variety of Asian seasonings and ingredients, along with Japanese kitchenware and tableware.",
         "icon": {
-          "active": "Button/Marker/thai-active.png",
-          "default": "Button/Marker/thai-default.png",
-          "larger": "Button/Marker/thai-larger.png",
-          "mini": "Button/Marker/thai-mini.png",
-          "withFriends": "Button/Marker/thai-withFriends.png"
+          "active": "Button/marker/thai-active.png",
+          "default": "Button/marker/thai-default.png",
+          "larger": "Button/marker/thai-larger.png",
+          "mini": "Button/marker/thai-mini.png",
+          "withFriends": "Button/marker/thai-withFriends.png"
         },
         "id": "4",
         "item1": {
@@ -591,11 +591,11 @@
         ],
         "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles.",
         "icon": {
-          "active": "Button/Marker/thai-active.png",
-          "default": "Button/Marker/thai-default.png",
-          "larger": "Button/Marker/thai-larger.png",
-          "mini": "Button/Marker/thai-mini.png",
-          "withFriends": "Button/Marker/thai-withFriends.png"
+          "active": "Button/marker/thai-active.png",
+          "default": "Button/marker/thai-default.png",
+          "larger": "Button/marker/thai-larger.png",
+          "mini": "Button/marker/thai-mini.png",
+          "withFriends": "Button/marker/thai-withFriends.png"
         },
         "id": "5",
         "item1": {
@@ -655,11 +655,11 @@
         ],
         "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
         "icon": {
-          "active": "Button/Marker/landscape-active.png",
-          "default": "Button/Marker/landscape-default.png",
-          "larger": "Button/Marker/landscape-larger.png",
-          "mini": "Button/Marker/landscape-mini.png",
-          "withFriends": "Button/Marker/landscape-withFriends.png"
+          "active": "Button/marker/landscape-active.png",
+          "default": "Button/marker/landscape-default.png",
+          "larger": "Button/marker/landscape-larger.png",
+          "mini": "Button/marker/landscape-mini.png",
+          "withFriends": "Button/marker/landscape-withFriends.png"
         },
         "id": "6",
         "item1": {
@@ -775,11 +775,11 @@
         ],
         "description": "Gott's Roadside, established by brothers Joel and Duncan Gott in St. Helena in 1999, offers a diverse menu that includes meals, tacos, beer, and ice cream. It is celebrated for its contemporary California-inspired dishes, crafted with locally sourced ingredients. The store is situated on the left side of the Ferry Building, featuring a roadside restaurant and a walk-through ice cream store inside.",
         "icon": {
-          "active": "Button/Marker/burger-active.png",
-          "default": "Button/Marker/burger-default.png",
-          "larger": "Button/Marker/burger-larger.png",
-          "mini": "Button/Marker/burger-mini.png",
-          "withFriends": "Button/Marker/burger-withFriends.png"
+          "active": "Button/marker/burger-active.png",
+          "default": "Button/marker/burger-default.png",
+          "larger": "Button/marker/burger-larger.png",
+          "mini": "Button/marker/burger-mini.png",
+          "withFriends": "Button/marker/burger-withFriends.png"
         },
         "id": "7",
         "item1": {
@@ -890,11 +890,11 @@
         ],
         "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
         "icon": {
-          "active": "Button/Marker/cafe-active.png",
-          "default": "Button/Marker/cafe-default.png",
-          "larger": "Button/Marker/cafe-larger.png",
-          "mini": "Button/Marker/cafe-mini.png",
-          "withFriends": "Button/Marker/cafe-withFriends.png"
+          "active": "Button/marker/cafe-active.png",
+          "default": "Button/marker/cafe-default.png",
+          "larger": "Button/marker/cafe-larger.png",
+          "mini": "Button/marker/cafe-mini.png",
+          "withFriends": "Button/marker/cafe-withFriends.png"
         },
         "id": "8",
         "item1": {
@@ -995,11 +995,11 @@
         ],
         "description": "Minsheng Community's cuisine, operating for over 30 years since its start in 1985.",
         "icon": {
-          "active": "Button/Marker/formosan-noodles-active.png",
-          "default": "Button/Marker/formosan-noodles-default.png",
-          "larger": "Button/Marker/formosan-noodles-larger.png",
-          "mini": "Button/Marker/formosan-noodles-mini.png",
-          "withFriends": "Button/Marker/formosan-noodles-withFriends.png"
+          "active": "Button/marker/formosan-noodles-active.png",
+          "default": "Button/marker/formosan-noodles-default.png",
+          "larger": "Button/marker/formosan-noodles-larger.png",
+          "mini": "Button/marker/formosan-noodles-mini.png",
+          "withFriends": "Button/marker/formosan-noodles-withFriends.png"
         },
         "id": "9",
         "item1": {
@@ -1105,11 +1105,11 @@
         ],
         "description": "This is a Rum bar that offers a variety of Rums and Spanish cuisine. The staff is passionate about introducing their products.",
         "icon": {
-          "active": "Button/Marker/bar-active.png",
-          "default": "Button/Marker/bar-default.png",
-          "larger": "Button/Marker/bar-larger.png",
-          "mini": "Button/Marker/bar-mini.png",
-          "withFriends": "Button/Marker/bar-withFriends.png"
+          "active": "Button/marker/bar-active.png",
+          "default": "Button/marker/bar-default.png",
+          "larger": "Button/marker/bar-larger.png",
+          "mini": "Button/marker/bar-mini.png",
+          "withFriends": "Button/marker/bar-withFriends.png"
         },
         "id": "10",
         "item1": {
@@ -1230,11 +1230,11 @@
         ],
         "description": "A professional whiskey bar, where bartenders possess a wealth of knowledge about whiskey and offer friendly service, is designed to help you find the whiskey that best suits your taste.",
         "icon": {
-          "active": "Button/Marker/bar-active.png",
-          "default": "Button/Marker/bar-default.png",
-          "larger": "Button/Marker/bar-larger.png",
-          "mini": "Button/Marker/bar-mini.png",
-          "withFriends": "Button/Marker/bar-withFriends.png"
+          "active": "Button/marker/bar-active.png",
+          "default": "Button/marker/bar-default.png",
+          "larger": "Button/marker/bar-larger.png",
+          "mini": "Button/marker/bar-mini.png",
+          "withFriends": "Button/marker/bar-withFriends.png"
         },
         "id": "11",
         "item1": {
@@ -1357,11 +1357,11 @@
         ],
         "description": "A taco restaurant operated by a Taiwanese sous chef from ZEA, with his unique understanding of Mexican food. It offers corn-based tacos in a clean environment, albeit at a slightly higher price than regular taco restaurants.",
         "icon": {
-          "active": "Button/Marker/taco-active.png",
-          "default": "Button/Marker/taco-default.png",
-          "larger": "Button/Marker/taco-larger.png",
-          "mini": "Button/Marker/taco-mini.png",
-          "withFriends": "Button/Marker/taco-withFriends.png"
+          "active": "Button/marker/taco-active.png",
+          "default": "Button/marker/taco-default.png",
+          "larger": "Button/marker/taco-larger.png",
+          "mini": "Button/marker/taco-mini.png",
+          "withFriends": "Button/marker/taco-withFriends.png"
         },
         "id": "12",
         "item1": {
@@ -1501,11 +1501,11 @@
         ],
         "description": "A traditional Mexican food restaurant located in the Gongguan business district.",
         "icon": {
-          "active": "Button/Marker/taco-active.png",
-          "default": "Button/Marker/taco-default.png",
-          "larger": "Button/Marker/taco-larger.png",
-          "mini": "Button/Marker/taco-mini.png",
-          "withFriends": "Button/Marker/taco-withFriends.png"
+          "active": "Button/marker/taco-active.png",
+          "default": "Button/marker/taco-default.png",
+          "larger": "Button/marker/taco-larger.png",
+          "mini": "Button/marker/taco-mini.png",
+          "withFriends": "Button/marker/taco-withFriends.png"
         },
         "id": "13",
         "item1": {
@@ -1626,11 +1626,11 @@
         ],
         "description": "Mexican restaurant located in the Eastern District, yet it offers spacious seating unlike other crowded small restaurants nearby. The staff is friendly and eager to introduce the dishes, and they enjoy chatting with customers. The tacos and sauce boast authentic Mexican flavors.",
         "icon": {
-          "active": "Button/Marker/taco-active.png",
-          "default": "Button/Marker/taco-default.png",
-          "larger": "Button/Marker/taco-larger.png",
-          "mini": "Button/Marker/taco-mini.png",
-          "withFriends": "Button/Marker/taco-withFriends.png"
+          "active": "Button/marker/taco-active.png",
+          "default": "Button/marker/taco-default.png",
+          "larger": "Button/marker/taco-larger.png",
+          "mini": "Button/marker/taco-mini.png",
+          "withFriends": "Button/marker/taco-withFriends.png"
         },
         "id": "14",
         "item1": {
@@ -1751,11 +1751,11 @@
         ],
         "description": "An internet-famous milk tea shop known for its 4 flavors gelato offerings. The original store was established in L.A., and this is the inaugural branch in Taiwan.",
         "icon": {
-          "active": "Button/Marker/icecream-active.png",
-          "default": "Button/Marker/icecream-default.png",
-          "larger": "Button/Marker/icecream-larger.png",
-          "mini": "Button/Marker/icecream-mini.png",
-          "withFriends": "Button/Marker/icecream-withFriends.png"
+          "active": "Button/marker/icecream-active.png",
+          "default": "Button/marker/icecream-default.png",
+          "larger": "Button/marker/icecream-larger.png",
+          "mini": "Button/marker/icecream-mini.png",
+          "withFriends": "Button/marker/icecream-withFriends.png"
         },
         "id": "15",
         "item1": {
@@ -1790,8 +1790,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/icecream/odd-one-out-dunnan-shop/storefront-day.webp",
-          "night": "Store/icecream/odd-one-out-dunnan-shop/storefront-night.webp"
+          "day": "Store/icecream/odd-one-out-dunnan-shop/storefront-day.jpg",
+          "night": "Store/icecream/odd-one-out-dunnan-shop/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Odd One Out - Dunnan Shop",
@@ -1884,11 +1884,11 @@
         ],
         "description": "Indulge Experimental Bistro is consistently ranked among the World’s 50 Best Bars and remains a top-five favorite in Asia’s 50 Best. Its tea-infused cocktail captures the essence of its subtropical flavors. The chef has meticulously gathered representative ingredients from all over Taiwan to create unique small plates designed to complement the drinks. The staff expertly introduces patrons to the local ingredients, explaining how the chef aims to inspire clients with the vivid imagery of Formosa.",
         "icon": {
-          "active": "Button/Marker/bar-active.png",
-          "default": "Button/Marker/bar-default.png",
-          "larger": "Button/Marker/bar-larger.png",
-          "mini": "Button/Marker/bar-mini.png",
-          "withFriends": "Button/Marker/bar-withFriends.png"
+          "active": "Button/marker/bar-active.png",
+          "default": "Button/marker/bar-default.png",
+          "larger": "Button/marker/bar-larger.png",
+          "mini": "Button/marker/bar-mini.png",
+          "withFriends": "Button/marker/bar-withFriends.png"
         },
         "id": "16",
         "item1": {
@@ -2009,11 +2009,11 @@
         ],
         "description": "A reputable burger store meticulously crafts small yet flavorful and juicy burgers. Rather than overeating, try to savor these burgers as fine cuisine. It is located in the Xinyi District, conveniently near Exit 2 of the Taipei 101/World Trade Center MRT station.",
         "icon": {
-          "active": "Button/Marker/burger-active.png",
-          "default": "Button/Marker/burger-default.png",
-          "larger": "Button/Marker/burger-larger.png",
-          "mini": "Button/Marker/burger-mini.png",
-          "withFriends": "Button/Marker/burger-withFriends.png"
+          "active": "Button/marker/burger-active.png",
+          "default": "Button/marker/burger-default.png",
+          "larger": "Button/marker/burger-larger.png",
+          "mini": "Button/marker/burger-mini.png",
+          "withFriends": "Button/marker/burger-withFriends.png"
         },
         "id": "17",
         "item1": {
