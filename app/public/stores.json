@@ -460,13 +460,13 @@
         "id": "4",
         "item1": {
           "description": "Takoyaki",
-          "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
+          "image": "Store/restaurant/rice-restaurant/takoyaki.jpg",
           "name": "Takoyaki",
           "price": "$8"
         },
         "item2": {
           "description": "Fire Fly Vodka, Sour mix, Lime juice.",
-          "image": "Store/restaurant/ricerestaurant/SweetTeaLemonade.jpg",
+          "image": "Store/restaurant/rice-restaurant/sweet-tea-lemonade.jpg",
           "name": "Sweet Tea Lemonade",
           "price": "$10"
         },
@@ -490,8 +490,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/ricerestaurant/storefront-day.jpg",
-          "night": "Store/restaurant/ricerestaurant/storefront-night.jpg"
+          "day": "Store/restaurant/rice-restaurant/storefront-day.jpg",
+          "night": "Store/restaurant/rice-restaurant/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Rice Restaurant",
@@ -1004,13 +1004,13 @@
         "id": "9",
         "item1": {
           "description": "Beef and chow mein",
-          "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Chow Mein.jpg",
+          "image": "Store/restaurant/hsiaos-beef-offal-soup/beef-chow-mein.jpg",
           "name": "牛肉炒麵(Beef Chow Mein)",
           "price": "NT$120"
         },
         "item2": {
           "description": "Beef and fried rice noodles",
-          "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Fried Rice Noodles.jpg",
+          "image": "Store/restaurant/hsiaos-beef-offal-soup/beef-fried-rice-noodles.jpg",
           "name": "牛肉炒米粉(Beef Fried Rice Noodles)",
           "price": "NT$120"
         },
@@ -1034,8 +1034,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/Hsiaos Beef Offal Soup/storefront-day.jpg",
-          "night": "Store/restaurant/Hsiaos Beef Offal Soup/storefront-night.jpg"
+          "day": "Store/restaurant/hsiaos-beef-offal-soup/storefront-day.jpg",
+          "night": "Store/restaurant/hsiaos-beef-offal-soup/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
