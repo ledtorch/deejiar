@@ -159,7 +159,7 @@ export default {
           data.features.forEach(feature => {
             ["mini", "default", "larger", "active"].forEach(size => {
               const iconPath =
-                "/Button/Marker/" +
+                "/Button/marker/" +
                 feature.properties.type +
                 "-" +
                 size +

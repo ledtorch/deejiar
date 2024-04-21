@@ -100,13 +100,13 @@
         "id": "1",
         "item1": {
           "description": "Cold whole or oat milk drink with flavored syrup. No coffee! Enjoy with a classic chai or vanilla syrup, or ask our baristas about our seasonal syrup options.",
-          "image": "Store/cafe/bigbearcafe/IcedSteamer.jpg",
+          "image": "Store/cafe/big-bear-cafe/iced-steamer.jpg",
           "name": "Iced Steamer",
           "price": "$3.8"
         },
         "item2": {
           "description": "Enjoy your chewy shrimp with sour salsa, but the original taste is awesome as well.",
-          "image": "Store/cafe/bigbearcafe/ShrimpTaco.jpg",
+          "image": "Store/cafe/big-bear-cafe/shrimp-taco.jpg",
           "name": "Shrimp Taco",
           "price": "$12"
         },
@@ -130,8 +130,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/bigbearcafe/storefront-day.jpg",
-          "night": "Store/cafe/bigbearcafe/storefront-night.jpg"
+          "day": "Store/cafe/big-bear-cafe/storefront-day.jpg",
+          "night": "Store/cafe/big-bear-cafe/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Big Bear Cafe",
@@ -220,13 +220,13 @@
         "id": "2",
         "item1": {
           "description": "Hot Chai Indian spices with milk & sugar",
-          "image": "Store/cafe/teaismpennquarter/Chai.jpg",
+          "image": "Store/cafe/teaism-penn-quarter/chai.jpg",
           "name": "Chai",
           "price": "$4.75"
         },
         "item2": {
           "description": "2 Vegan Ginger Scones",
-          "image": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
+          "image": "Store/cafe/teaism-penn-quarter/vegan-ginger-scones.jpg",
           "name": "Vegan Ginger Scones",
           "price": "$4"
         },
@@ -250,8 +250,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/teaismpennquarter/storefront-day.jpg",
-          "night": "Store/cafe/teaismpennquarter/storefront-night.jpg"
+          "day": "Store/cafe/teaism-penn-quarter/storefront-day.jpg",
+          "night": "Store/cafe/teaism-penn-quarter/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Teaism Penn Quarter",
@@ -340,25 +340,25 @@
         "id": "3",
         "item1": {
           "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
-          "image": "Store/bar/janejane/Onion Dip.jpg",
+          "image": "Store/bar/jane-jane/onion-dip.jpg",
           "name": "Onion Dip",
           "price": "$12"
         },
         "item2": {
           "description": "Pisco, Aperol, Maraschino Liqueur, Grapefruit Juice, Lemon Juice, Simple Syrup",
-          "image": "Store/bar/janejane/Cusco.jpg",
+          "image": "Store/bar/jane-jane/cusco.jpg",
           "name": "Cusco",
           "price": "$15"
         },
         "item3": {
           "description": "Scotch, Irish Whiskey, Orgeat, Lemon Juice",
-          "image": "Store/bar/janejane/Cameron's Kick.jpg",
+          "image": "Store/bar/jane-jane/camerons-kick.jpg",
           "name": "Cameron's Kick",
           "price": "$15"
         },
         "item4": {
           "description": "Gin, Benedictine, Cointreau, Heering Cherry Liqueur, Pineapple Juice, Lime Juice, Angostura, Soda Water",
-          "image": "Store/bar/janejane/Singapore Sling.jpg",
+          "image": "Store/bar/jane-jane/singapore-sling.jpg",
           "name": "Singapore Sling",
           "price": "$16"
         },
@@ -370,8 +370,8 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/bar/janejane/storefront-day.jpg",
-          "night": "Store/bar/janejane/storefront-night.jpg"
+          "day": "Store/bar/jane-jane/storefront-day.jpg",
+          "night": "Store/bar/jane-jane/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Jane Jane",
@@ -694,8 +694,8 @@
         },
         "layout": "view",
         "storefront": {
-          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/storefront-day.jpg",
-          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/storefront-night.jpg"
+          "day": "Store/landscape/contrabands-and-freedmen-cemetery-memorial/storefront-day.jpg",
+          "night": "Store/landscape/contrabands-and-freedmen-cemetery-memorial/storefront-night.jpg"
         },
         "tag": "[]",
         "title": "Contrabands and Freedmen Cemetery Memorial",
@@ -899,13 +899,13 @@
         "id": "8",
         "item1": {
           "description": "Chai latte. <br> $5.75(10oz) / $7.5(16oz)",
-          "image": "Store/cafe/red-rock-coffee/Chai Latte (S).jpg",
+          "image": "Store/cafe/red-rock-coffee/chai-latte.jpg",
           "name": "Chai Latte (S)",
           "price": "$5.75"
         },
         "item2": {
           "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
-          "image": "Store/cafe/red-rock-coffee/Ham & Cheese Croissant.jpg",
+          "image": "Store/cafe/red-rock-coffee/ham-and-cheese-croissant.jpg",
           "name": "Ham & Cheese Croissant",
           "price": "$7.25"
         },
