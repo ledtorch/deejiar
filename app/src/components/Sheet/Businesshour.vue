@@ -204,6 +204,6 @@ export default {
 .icon {
   min-width: 24px;
   height: 24px;
-  background: url("/Icon/Info/Time.png") no-repeat center/contain;
+  background: url("/icon/info/time.png") no-repeat center/contain;
 }
 </style>

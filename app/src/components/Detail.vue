@@ -9,7 +9,7 @@
     </div>
     <div v-else class="cover" :style="{ 'backgroundImage': rootUrl(currentItem.image) }">
       <LeftArrow @click="previousPage" class="left-arrow" />
-      <DetailHome @click="toDetailHomePage" class="home-btn" />
+      <HomeToDetail @click="toDetailHomePage" class="home-btn" />
       <RightArrow @click="nextPage" class="right-arrow" />
     </div>
 
@@ -62,14 +62,14 @@ import Businesshour from "./Sheet/Businesshour.vue";
 import Address from "./Sheet/Address.vue";
 // Buttons
 import Home from "./Button/Icon/Home.vue";
-import DetailHome from "./Button/Icon/DetailHome.vue";
+import HomeToDetail from "./Button/Icon/HomeToDetail.vue";
 import Share from "./Button/Icon/Share.vue";
 import LeftArrow from "./Button/Icon/LeftArrow.vue";
 import RightArrow from "./Button/Icon/RightArrow.vue";
 import GetDirection from "./Button/CTA/GetDirection.vue";
 
 export default {
-  components: { Home, DetailHome, Share, LeftArrow, RightArrow, TagShopType, Review, Businesshour, Address, GetDirection },
+  components: { Home, HomeToDetail, Share, LeftArrow, RightArrow, TagShopType, Review, Businesshour, Address, GetDirection },
   data() {
     return {
       storeTitle: '',
@@ -174,7 +174,7 @@ export default {
       this.currentPage = 0;
     },
     share() {
-      const text = encodeURIComponent('I check ' + this.storeTitle + ' with Deejia!');
+      const text = encodeURIComponent('I check ' + this.storeTitle + ' with Deejiar!');
       const url = encodeURIComponent('\n' + window.location.href);
       const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
       window.open(twitterUrl, '_blank');

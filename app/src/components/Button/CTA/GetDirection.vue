@@ -94,18 +94,18 @@ input[type="submit"] {
 .apple-maps {
   width: 24px;
   height: 24px;
-  background: url("/Button/Icon/brand/appleMaps.png") no-repeat center/contain;
+  background: url("/button/icon/brand/apple-maps.png") no-repeat center/contain;
 }
 
 .google-maps {
   width: 24px;
   height: 24px;
-  background: url("/Button/Icon/brand/googleMaps.png") no-repeat center/contain;
+  background: url("/button/icon/brand/google-maps.png") no-repeat center/contain;
 }
 
 .outer-link {
   width: 24px;
   height: 24px;
-  background: url("/Button/Icon/controlData/outerLink.svg") no-repeat center/contain;
+  background: url("/button/icon/control-data/outer-link.svg") no-repeat center/contain;
 }
 </style>

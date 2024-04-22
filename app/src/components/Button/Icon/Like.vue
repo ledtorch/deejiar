@@ -18,24 +18,24 @@ export default {
       let imageFileName;
       switch (this.state) {
         case "click":
-          imageFileName = "Click.png";
+          imageFileName = "click.png";
           break;
         case "inactive":
-          imageFileName = "Inactive.png";
+          imageFileName = "inactive.png";
           break;
         default:
-          imageFileName = "Default.png";
+          imageFileName = "default.png";
           break;
       }
       return {
         backgroundImage: this.backgroundImageUrl(imageFileName),
       };
     },
-  },
-  methods: {
-    backgroundImageUrl(imageFileName) {
-      const baseUrl = `${window.location.protocol}//${window.location.host}`;
-      return `url('${baseUrl}/Button/Icon/withBase/Like_${imageFileName}')`;
+    methods: {
+      backgroundImageUrl(imageFileName) {
+        const baseUrl = `${window.location.protocol}//${window.location.host}`;
+        return `url('${baseUrl}/button/icon/with-base/like-${imageFileName}')`;
+      },
     },
     onClick() {
       this.$emit("like");

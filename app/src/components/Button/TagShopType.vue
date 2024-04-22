@@ -17,7 +17,7 @@ export default {
   computed: {
     icon() {
       const type = this.store?.type;
-      const path = `/Icon/category/${type}.png`;
+      const path = `/icon/category/${type}.png`;
 
       // // 🐞 Debug console
       // console.log("🆗 Component -> TagShopType, Icon Path: " + path);

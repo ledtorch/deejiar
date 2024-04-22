@@ -4,7 +4,7 @@
     <p class="subhead">{{ address }}</p>
   </div>
 </template>
-  
+
 <script>
 export default {
   props: {
@@ -12,7 +12,7 @@ export default {
   }
 };
 </script>
-  
+
 <style lang="scss" scoped>
 /* .review-frame {
 } */
@@ -26,6 +26,6 @@ export default {
 .icon {
   min-width: 24px;
   height: 24px;
-  background: url("/Icon/Info/Address.png") no-repeat center/contain;
+  background: url("/icon/info/address.png") no-repeat center/contain;
 }
 </style>

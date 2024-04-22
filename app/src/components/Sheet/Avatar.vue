@@ -4,7 +4,7 @@
     <button class="icon-button" @click="loginWithTwitter" :style="buttonStyle"></button>
   </div>
 </template>
-  
+
 <script>
 // import firebase from "firebase/app";
 // import "firebase/auth";
@@ -27,13 +27,13 @@ export default {
   computed: {
     buttonStyle() {
       return {
-        backgroundImage: "url('/Icon/Avatar.png')",
+        backgroundImage: "url('/icon/avatar.png')",
       };
     },
   },
 };
 </script>
-  
+
 <style lang="scss" scoped>
 .frame {
   justify-content: space-between;

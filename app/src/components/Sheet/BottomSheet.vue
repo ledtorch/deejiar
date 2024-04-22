@@ -18,13 +18,13 @@
         <div class="button-set">
           <a href="https://twitter.com/deejiar" style="text-decoration: none; color: inherit;">
             <div>
-              <img class="social-button" src="/Icon/social/twitter.png" alt="Twitter">
+              <img class="social-button" src="/icon/social/twitter.png" alt="Twitter">
               <p>@deejiar</p>
             </div>
           </a>
           <a href="https://www.instagram.com/deejiar" style="text-decoration: none; color: inherit;">
             <div>
-              <img class="social-button" src="/Icon/social/instagram.png" alt="Instagram">
+              <img class="social-button" src="/icon/social/instagram.png" alt="Instagram">
               <p>@deejiar</p>
             </div>
           </a>

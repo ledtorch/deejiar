@@ -13,44 +13,44 @@ import { useHead } from 'unhead';
 
 export default {
   // 🏗️TODO: OG image
-  setup() {
-    useHead({
-      title: 'Deejiar | Map for Taste Adventurers to Explore without Boundaries',
-      meta: [
-        {
-          name: 'description',
-          content: 'Deejiar designed by Jerry',
-        },
-        {
-          property: 'og:title',
-          content: 'Deejiar',
-        },
-        {
-          property: 'og:description',
-          content: 'Map for Taste Adventurers to Explore without Boundaries',
-        },
-        {
-          property: 'og:image',
-          content: 'https://deejiar/images/cover.jpg',
-        },
-        {
-          name: 'twitter:card',
-          content: 'summary_large_image',
-        },
-        {
-          property: 'og:type',
-          content: 'website',
-        }
-      ],
-      link: [
-        {
-          rel: 'icon',
-          href: 'https://deejiar.com/Icon/logo/favicon.ico',
-          type: 'image/x-icon',
-        },
-      ]
-    })
-  },
+  // setup() {
+  //   useHead({
+  //     title: 'Deejiar | Map for Taste Adventurers to Explore without Boundaries',
+  //     meta: [
+  //       {
+  //         name: 'description',
+  //         content: 'Deejiar designed by Jerry',
+  //       },
+  //       {
+  //         property: 'og:title',
+  //         content: 'Deejiar',
+  //       },
+  //       {
+  //         property: 'og:description',
+  //         content: 'Map for Taste Adventurers to Explore without Boundaries',
+  //       },
+  //       {
+  //         property: 'og:image',
+  //         content: 'https://deejiar/images/cover.jpg',
+  //       },
+  //       {
+  //         name: 'twitter:card',
+  //         content: 'summary_large_image',
+  //       },
+  //       {
+  //         property: 'og:type',
+  //         content: 'website',
+  //       }
+  //     ],
+  //     link: [
+  //       {
+  //         rel: 'icon',
+  //         href: 'https://deejiar.com/Icon/logo/favicon.ico',
+  //         type: 'image/x-icon',
+  //       },
+  //     ]
+  //   })
+  // },
   components: {
     BottomSheet,
     Locate
@@ -159,7 +159,7 @@ export default {
           data.features.forEach(feature => {
             ["mini", "default", "larger", "active"].forEach(size => {
               const iconPath =
-                "/Button/marker/" +
+                "/button/marker/" +
                 feature.properties.type +
                 "-" +
                 size +
