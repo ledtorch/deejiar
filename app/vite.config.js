@@ -1,19 +1,16 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dotenv from 'dotenv';
-// import { visualizer } from 'rollup-plugin-visualizer';
 
-
-// CSS Dependency
+// CSS dependency
 import autoprefixer from 'autoprefixer';
 
-// HTTPS Dependency
+// HTTPS dependency
 import fs from 'fs';
 
 export default defineConfig({
   plugins: [
     vue(),
-    // visualizer({ open: true, filename: 'bundle-report.html' })
   ],
   css: {
     preprocessorOptions: {
@@ -27,7 +24,7 @@ export default defineConfig({
     },
   },
 
-  // HTTPS Server
+  // Local https server
   server: {
     https: {
       key: fs.readFileSync('./localhost.key'),
