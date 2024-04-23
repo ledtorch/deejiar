@@ -1,9 +1,3 @@
-The proxies of:
-App: deejiar.com/
-Datacenter: deejiar.com/admin/
-Flask Server: deejiar.com/admin/api/
-
-
 #### V1
 August 6, 2023
 Kick off
