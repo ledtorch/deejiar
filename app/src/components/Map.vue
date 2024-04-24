@@ -144,7 +144,12 @@ export default {
   methods: {
     // Stores
     addStores() {
-      fetch("/stores.json")
+      // Add timestamp to ensure to fetch the latest json
+      const url = `/stores.json?v=${new Date().getTime()}`;
+      // // 🐞 Debug console
+      // console.log("Fetching JSON from:", url);
+
+      fetch(url)
         .then(response => response.json())
         .then(data => {
           this.map.addSource("stores", {
