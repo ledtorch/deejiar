@@ -13,6 +13,7 @@
   "dependencies": {
     "@turf/flatten": "^6.5.0",
     "@turf/turf": "^6.5.0",
+    "autoprefixer": "^10.4.19",
     "axios": "^1.6.7",
     "fs": "^0.0.1-security",
     "tailwindcss": "^3.4.3",
@@ -23,7 +24,6 @@
     "@rushstack/eslint-patch": "^1.3.3",
     "@vitejs/plugin-vue": "^4.5.2",
     "@vue/eslint-config-prettier": "^8.0.0",
-    "autoprefixer": "^10.4.16",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
     "postcss": "^8.4.31",
