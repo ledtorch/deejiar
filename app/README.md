@@ -6,7 +6,7 @@ This is Deejiar's user-facing front-end, developed using Vue 3.4 and Vite 5. It 
 - Yarn
 - Vite
 - Vue3
-- Mapbox token <a url="https://docs.mapbox.com/help/getting-started/access-tokens/">Tutorial</a>
+- Mapbox token <a href="https://docs.mapbox.com/help/getting-started/access-tokens/">Tutorial</a>
 
 ```zsh
 openssl req -x509 -newkey rsa:2048 -keyout localhost.key -out localhost.crt -days 365 -nodes
