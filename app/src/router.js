@@ -22,4 +22,12 @@ const router = createRouter({
   routes,
 });
 
+// Navigation guard to track page views
+router.afterEach((to) => {
+  // Use window.trackPageView function defined in index.html
+  if (typeof window.trackPageView === 'function') {
+    window.trackPageView(to.fullPath); // Sends the full path of the current page to GA
+  }
+});
+
 export default router;
