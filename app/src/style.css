@@ -62,6 +62,12 @@
 	font-family: 'Be Vietnam Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+html,
+body {
+	/* Disables double-tap to zoom across the entire application */
+	touch-action: manipulation;
+}
+
 body {
 	display: flex;
 	place-items: center;
