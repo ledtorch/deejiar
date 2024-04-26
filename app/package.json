@@ -24,5 +24,6 @@
     "postcss": "^8.4.31",
     "sass": "^1.69.5",
     "vite": "^5.2.8"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
