@@ -1,46 +1,10 @@
 <template>
-  <button class="icon-button" @click="onClick" :class="buttonClass" :style="buttonStyle"></button>
+  <button class="icon-button"></button>
 </template>
 
 <script>
 export default {
-  props: {
-    state: {
-      type: String,
-      default: "default",
-    },
-  },
-  computed: {
-    buttonClass() {
-      return this.state === "inactive" ? "inactive" : "";
-    },
-    buttonStyle() {
-      let imageFileName;
-      switch (this.state) {
-        case "click":
-          imageFileName = "click.png";
-          break;
-        case "inactive":
-          imageFileName = "inactive.png";
-          break;
-        default:
-          imageFileName = "default.png";
-          break;
-      }
-      return {
-        backgroundImage: this.backgroundImageUrl(imageFileName),
-      };
-    },
-  },
-  methods: {
-    backgroundImageUrl(imageFileName) {
-      const baseUrl = `${window.location.protocol}//${window.location.host}`;
-      return `url('${baseUrl}/button/icon/with-base/right-arrow-${imageFileName}')`;
-    },
-    onClick() {
-      this.$emit("close");
-    },
-  },
+  name: 'RightArrow'
 };
 </script>
 
@@ -52,10 +16,20 @@ export default {
   border: none;
   padding: 0;
   background: no-repeat center/contain;
-  transition: transform 0.2s ease;
-}
+  background-image: url("/button/icon/with-base/right-arrow-default.png");
 
-.icon-button.inactive {
-  cursor: not-allowed;
+  // 🏗️ TODO: Doesn't work
+  &:active {
+    background-image: url("/button/icon/with-base/right-arrow-click.png");
+  }
+
+  &:hover {
+    background-image: url("/button/icon/with-base/right-arrow-hover.png");
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-image: url("/button/icon/with-base/right-arrow-inactive.png");
+  }
 }
 </style>

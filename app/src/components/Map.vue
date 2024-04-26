@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="map"></div>
-    <Locate id="button-locate" :state="buttonState" @locate="locateUser" />
+    <Locate id="button-locate" @locate="locateUser" />
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
 </template>
@@ -61,7 +61,6 @@ export default {
       mapboxgl: null,
       selectedStore: null,
       locate: null,
-      buttonState: "default",
 
       // Register the data for using out of the render layer
       storeData: null,
