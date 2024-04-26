@@ -26,7 +26,8 @@ const router = createRouter({
 router.afterEach((to) => {
   // Use window.trackPageView function defined in index.html
   if (typeof window.trackPageView === 'function') {
-    window.trackPageView(to.fullPath); // Sends the full path of the current page to GA
+    // Sends the full path of the current page to GA
+    window.trackPageView(to.fullPath);
   }
 });
 
