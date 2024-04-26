@@ -37,11 +37,8 @@
     </div>
   </div>
 </template>
-  
-<script>
-import { useRoute } from "vue-router";
-import { useHead } from 'unhead';
 
+<script>
 export default {
   setup() {
     useHead({
@@ -50,7 +47,7 @@ export default {
   },
 };
 </script>
-  
+
 <style lang="scss" scoped>
 .body {
   position: relative;
@@ -115,4 +112,3 @@ export default {
   width: 100%;
 }
 </style>
-  

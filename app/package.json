@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@unhead/vue": "^1.8.0",
     "caniuse-lite": "^1.0.30001608",
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
