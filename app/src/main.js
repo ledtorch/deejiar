@@ -1,7 +1,4 @@
 import { createApp } from 'vue'
-import { createHead } from '@unhead/vue'
-
-// Vue
 import App from './App.vue'
 
 // Plugin
@@ -12,4 +9,4 @@ import 'normalize.css';
 import './style.css'
 
 const head = createHead()
-createApp(App).use(router).use(head).mount('#app')
+createApp(App).use(router).mount('#app')
