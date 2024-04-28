@@ -627,7 +627,7 @@ __metadata:
     normalize.css: "npm:^8.0.1"
     postcss: "npm:^8.4.31"
     sass: "npm:^1.69.5"
-    vite: "npm:^5.2.8"
+    vite: "npm:^5.2.10"
     vue: "npm:3.4.14"
     vue-router: "npm:^4.2.5"
   languageName: unknown
@@ -2019,7 +2019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.8":
+"vite@npm:^5.2.10":
   version: 5.2.10
   resolution: "vite@npm:5.2.10"
   dependencies:

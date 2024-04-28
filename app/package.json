@@ -22,7 +22,7 @@
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "sass": "^1.69.5",
-    "vite": "^5.2.8"
+    "vite": "^5.2.10"
   },
   "packageManager": "yarn@4.1.1"
 }
