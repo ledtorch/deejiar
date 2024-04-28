@@ -6,8 +6,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Big Bear Cafe",
+        "type": "cafe",
         "address": "1201 S St NW, Washington, DC 20009",
         "auid": "1141545104174516841",
+        "placeid": "ChIJWbmml_e3t4kRDzgyQ5HJP_c",
         "businesshour": [
           {
             "24hr": false,
@@ -91,22 +94,22 @@
         ],
         "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
         "icon": {
-          "active": "Button/Marker/cafe-active.png",
-          "default": "Button/Marker/cafe-default.png",
-          "larger": "Button/Marker/cafe-larger.png",
-          "mini": "Button/Marker/cafe-mini.png",
-          "withFriends": "Button/Marker/cafe-withFriends.png"
+          "active": "button/marker/cafe-active.png",
+          "default": "button/marker/cafe-default.png",
+          "larger": "button/marker/cafe-larger.png",
+          "mini": "button/marker/cafe-mini.png",
+          "withFriends": "button/marker/cafe-withFriends.png"
         },
         "id": "1",
         "item1": {
           "description": "Cold whole or oat milk drink with flavored syrup. No coffee! Enjoy with a classic chai or vanilla syrup, or ask our baristas about our seasonal syrup options.",
-          "image": "Store/cafe/bigbearcafe/IcedSteamer.jpg",
+          "image": "stores/cafe/big-bear-cafe/iced-steamer.jpg",
           "name": "Iced Steamer",
           "price": "$3.8"
         },
         "item2": {
           "description": "Enjoy your chewy shrimp with sour salsa, but the original taste is awesome as well.",
-          "image": "Store/cafe/bigbearcafe/ShrimpTaco.jpg",
+          "image": "stores/cafe/big-bear-cafe/shrimp-taco.jpg",
           "name": "Shrimp Taco",
           "price": "$12"
         },
@@ -130,12 +133,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/bigbearcafe/storefront-day.jpg",
-          "night": "Store/cafe/bigbearcafe/storefront-night.jpg"
+          "day": "stores/cafe/big-bear-cafe/storefront-day.jpg",
+          "night": "stores/cafe/big-bear-cafe/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Big Bear Cafe",
-        "type": "cafe"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -145,8 +146,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Teaism Penn Quarter",
+        "type": "cafe",
         "address": "400 8th St NW, Washington, DC 20004",
         "auid": "856799894333602973",
+        "placeid": "ChIJFRD8DZC3t4kRSmKIq6kkdXc",
         "businesshour": [
           {
             "24hr": false,
@@ -211,22 +215,22 @@
         ],
         "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
         "icon": {
-          "active": "Button/Marker/cafe-active.png",
-          "default": "Button/Marker/cafe-default.png",
-          "larger": "Button/Marker/cafe-larger.png",
-          "mini": "Button/Marker/cafe-mini.png",
-          "withFriends": "Button/Marker/cafe-withFriends.png"
+          "active": "button/marker/cafe-active.png",
+          "default": "button/marker/cafe-default.png",
+          "larger": "button/marker/cafe-larger.png",
+          "mini": "button/marker/cafe-mini.png",
+          "withFriends": "button/marker/cafe-withFriends.png"
         },
         "id": "2",
         "item1": {
           "description": "Hot Chai Indian spices with milk & sugar",
-          "image": "Store/cafe/teaismpennquarter/Chai.jpg",
+          "image": "stores/cafe/teaism-penn-quarter/chai.jpg",
           "name": "Chai",
           "price": "$4.75"
         },
         "item2": {
           "description": "2 Vegan Ginger Scones",
-          "image": "Store/cafe/teaismpennquarter/VeganGingerScones.jpg",
+          "image": "stores/cafe/teaism-penn-quarter/vegan-ginger-scones.jpg",
           "name": "Vegan Ginger Scones",
           "price": "$4"
         },
@@ -250,12 +254,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/teaismpennquarter/storefront-day.jpg",
-          "night": "Store/cafe/teaismpennquarter/storefront-night.jpg"
+          "day": "stores/cafe/teaism-penn-quarter/storefront-day.jpg",
+          "night": "stores/cafe/teaism-penn-quarter/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Teaism Penn Quarter",
-        "type": "cafe"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -265,8 +267,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Jane Jane",
+        "type": "bar",
         "address": "1705 14th St NW, Washington, DC 20009",
         "auid": "3689846720665772135",
+        "placeid": "ChIJbwUdjH63t4kR9_gS9lEMU8A",
         "businesshour": [
           {
             "24hr": false,
@@ -331,34 +336,34 @@
         ],
         "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
         "icon": {
-          "active": "Button/Marker/bar-active.png",
-          "default": "Button/Marker/bar-default.png",
-          "larger": "Button/Marker/bar-larger.png",
-          "mini": "Button/Marker/bar-mini.png",
-          "withFriends": "Button/Marker/bar-withFriends.png"
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
         },
         "id": "3",
         "item1": {
           "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
-          "image": "Store/bar/janejane/Onion Dip.jpg",
+          "image": "stores/bar/jane-jane/onion-dip.jpg",
           "name": "Onion Dip",
           "price": "$12"
         },
         "item2": {
           "description": "Pisco, Aperol, Maraschino Liqueur, Grapefruit Juice, Lemon Juice, Simple Syrup",
-          "image": "Store/bar/janejane/Cusco.jpg",
+          "image": "stores/bar/jane-jane/cusco.jpg",
           "name": "Cusco",
           "price": "$15"
         },
         "item3": {
           "description": "Scotch, Irish Whiskey, Orgeat, Lemon Juice",
-          "image": "Store/bar/janejane/Cameron's Kick.jpg",
+          "image": "stores/bar/jane-jane/camerons-kick.jpg",
           "name": "Cameron's Kick",
           "price": "$15"
         },
         "item4": {
           "description": "Gin, Benedictine, Cointreau, Heering Cherry Liqueur, Pineapple Juice, Lime Juice, Angostura, Soda Water",
-          "image": "Store/bar/janejane/Singapore Sling.jpg",
+          "image": "stores/bar/jane-jane/singapore-sling.jpg",
           "name": "Singapore Sling",
           "price": "$16"
         },
@@ -370,12 +375,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/bar/janejane/storefront-day.jpg",
-          "night": "Store/bar/janejane/storefront-night.jpg"
+          "day": "stores/bar/jane-jane/storefront-day.jpg",
+          "night": "stores/bar/jane-jane/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Jane Jane",
-        "type": "bar"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -385,8 +388,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Rice Restaurant",
+        "type": "thai",
         "address": "1608 14th St NW, Washington, DC 20009",
         "auid": "14472969398923707248",
+        "placeid": "ChIJMTUzjem3t4kRvTmjKsl04Rc",
         "businesshour": [
           {
             "24hr": false,
@@ -451,22 +457,22 @@
         ],
         "description": "A cozy restaurant is situated on 14th Street, offering delicious Thai cuisine; its Japanese fare is also commendable. Upon entering the restaurant, don't miss the Rice Market—simply head downstairs to the basement of the same building. It offers a variety of Asian seasonings and ingredients, along with Japanese kitchenware and tableware.",
         "icon": {
-          "active": "Button/Marker/thai-active.png",
-          "default": "Button/Marker/thai-default.png",
-          "larger": "Button/Marker/thai-larger.png",
-          "mini": "Button/Marker/thai-mini.png",
-          "withFriends": "Button/Marker/thai-withFriends.png"
+          "active": "button/marker/thai-active.png",
+          "default": "button/marker/thai-default.png",
+          "larger": "button/marker/thai-larger.png",
+          "mini": "button/marker/thai-mini.png",
+          "withFriends": "button/marker/thai-withFriends.png"
         },
         "id": "4",
         "item1": {
           "description": "Takoyaki",
-          "image": "Store/restaurant/ricerestaurant/Takoyaki.jpg",
+          "image": "stores/restaurant/rice-restaurant/takoyaki.jpg",
           "name": "Takoyaki",
           "price": "$8"
         },
         "item2": {
           "description": "Fire Fly Vodka, Sour mix, Lime juice.",
-          "image": "Store/restaurant/ricerestaurant/SweetTeaLemonade.jpg",
+          "image": "stores/restaurant/rice-restaurant/sweet-tea-lemonade.jpg",
           "name": "Sweet Tea Lemonade",
           "price": "$10"
         },
@@ -490,12 +496,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/ricerestaurant/storefront-day.jpg",
-          "night": "Store/restaurant/ricerestaurant/storefront-night.jpg"
+          "day": "stores/restaurant/rice-restaurant/storefront-day.jpg",
+          "night": "stores/restaurant/rice-restaurant/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Rice Restaurant",
-        "type": "thai"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -505,8 +509,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "THEP Thai Restaurant",
+        "type": "thai",
         "address": "1439 2nd Ave, New York, NY 10021",
         "auid": "12312912529817511982",
+        "placeid": "ChIJz6VeesBYwokRNBYu4Sar8lw",
         "businesshour": [
           {
             "24hr": false,
@@ -591,34 +598,34 @@
         ],
         "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles.",
         "icon": {
-          "active": "Button/Marker/thai-active.png",
-          "default": "Button/Marker/thai-default.png",
-          "larger": "Button/Marker/thai-larger.png",
-          "mini": "Button/Marker/thai-mini.png",
-          "withFriends": "Button/Marker/thai-withFriends.png"
+          "active": "button/marker/thai-active.png",
+          "default": "button/marker/thai-default.png",
+          "larger": "button/marker/thai-larger.png",
+          "mini": "button/marker/thai-mini.png",
+          "withFriends": "button/marker/thai-withFriends.png"
         },
         "id": "5",
         "item1": {
           "description": "Grilled octopus tentacle, grape tomato, chickpea, cilantro, mint, basil, fried onion.",
-          "image": "Store/restaurant/THEP Thai Restaurant/Muk Yarng.jpg",
+          "image": "stores/restaurant/thep-thai-restaurant/muk-yarng.jpg",
           "name": "Muk Yarng",
           "price": "$18"
         },
         "item2": {
           "description": "Choose either chicken, shrimp, vegetables, or tofu. This light and spicy tom yum broth simmered with galangal, lemongrass, onions, mushrooms, scallions and cilantro. <br> $8(S)/$15(L)",
-          "image": "Store/restaurant/THEP Thai Restaurant/Tom Yum.jpg",
+          "image": "stores/restaurant/thep-thai-restaurant/tom-yum.jpg",
           "name": "Tom Yum",
           "price": "$8(S)"
         },
         "item3": {
           "description": "Side dish: Grilled Butter Bread.",
-          "image": "Store/restaurant/THEP Thai Restaurant/Grilled Butter Bread.jpg",
+          "image": "stores/restaurant/thep-thai-restaurant/grilled-butter-bread.jpg",
           "name": "Grilled Butter Bread",
           "price": "$4"
         },
         "item4": {
           "description": "Don Fulano Reposado Tequila, Domaine de Canton, watermelon juice, Tanjin spicy rim.",
-          "image": "Store/restaurant/THEP Thai Restaurant/What-a-melon.jpg",
+          "image": "stores/restaurant/thep-thai-restaurant/what-a-melon.jpg",
           "name": "What-a-melon",
           "price": "$17"
         },
@@ -630,12 +637,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/THEP Thai Restaurant/storefront-day.jpg",
-          "night": "Store/restaurant/THEP Thai Restaurant/storefront-night.jpg"
+          "day": "stores/restaurant/thep-thai-restaurant/storefront-day.jpg",
+          "night": "stores/restaurant/thep-thai-restaurant/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "THEP Thai Restaurant",
-        "type": "thai"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -645,8 +650,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Contrabands and Freedmen Cemetery Memorial",
+        "type": "landscape",
         "address": "1001 S Washington St, Alexandria, VA 22314",
         "auid": "5175948244239708735",
+        "placeid": "ChIJQ0gH4lGwt4kRs_K1XzDY7SY",
         "businesshour": [
           {
             "24hr": true,
@@ -655,11 +663,11 @@
         ],
         "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
         "icon": {
-          "active": "Button/Marker/landscape-active.png",
-          "default": "Button/Marker/landscape-default.png",
-          "larger": "Button/Marker/landscape-larger.png",
-          "mini": "Button/Marker/landscape-mini.png",
-          "withFriends": "Button/Marker/landscape-withFriends.png"
+          "active": "button/marker/landscape-active.png",
+          "default": "button/marker/landscape-default.png",
+          "larger": "button/marker/landscape-larger.png",
+          "mini": "button/marker/landscape-mini.png",
+          "withFriends": "button/marker/landscape-withFriends.png"
         },
         "id": "6",
         "item1": {
@@ -694,12 +702,10 @@
         },
         "layout": "view",
         "storefront": {
-          "day": "Store/landscape/contrabandsandfreedmencemeterymemorial/storefront-day.jpg",
-          "night": "Store/landscape/contrabandsandfreedmencemeterymemorial/storefront-night.jpg"
+          "day": "stores/landscape/contrabands-and-freedmen-cemetery-memorial/storefront-day.jpg",
+          "night": "stores/landscape/contrabands-and-freedmen-cemetery-memorial/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Contrabands and Freedmen Cemetery Memorial",
-        "type": "landscape"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -709,8 +715,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Gott's Roadside",
+        "type": "burger",
         "address": "One Ferry Building, The Embarcadero S, San Francisco, CA 94111, United States",
         "auid": "5447192823055003222",
+        "placeid": "ChIJVVWVjGaAhYARH_4JjCTVBz8",
         "businesshour": [
           {
             "24hr": false,
@@ -775,28 +784,28 @@
         ],
         "description": "Gott's Roadside, established by brothers Joel and Duncan Gott in St. Helena in 1999, offers a diverse menu that includes meals, tacos, beer, and ice cream. It is celebrated for its contemporary California-inspired dishes, crafted with locally sourced ingredients. The store is situated on the left side of the Ferry Building, featuring a roadside restaurant and a walk-through ice cream store inside.",
         "icon": {
-          "active": "Button/Marker/burger-active.png",
-          "default": "Button/Marker/burger-default.png",
-          "larger": "Button/Marker/burger-larger.png",
-          "mini": "Button/Marker/burger-mini.png",
-          "withFriends": "Button/Marker/burger-withFriends.png"
+          "active": "button/marker/burger-active.png",
+          "default": "button/marker/burger-default.png",
+          "larger": "button/marker/burger-larger.png",
+          "mini": "button/marker/burger-mini.png",
+          "withFriends": "button/marker/burger-withFriends.png"
         },
         "id": "7",
         "item1": {
           "description": "The California flavor hamburger with below ingredients: Fried egg, Cowgirl Creamery's Wagon Wheel cheese, Zoe's bacon, arugula, balsamic onions & mayo on a toasted sesame brioche bun.",
-          "image": "Store/burger/gotts-roadside/california-burger.jpg",
+          "image": "stores/burger/gotts-roadside/california-burger.jpg",
           "name": "California Burger",
           "price": "$16.99"
         },
         "item2": {
           "description": "Fried crisp & lightly salted.",
-          "image": "Store/burger/gotts-roadside/fries.jpg",
+          "image": "stores/burger/gotts-roadside/fries.jpg",
           "name": "Fries",
           "price": "$4.49"
         },
         "item3": {
           "description": "Add Flavors: Vanilla, Cherry with $0.99",
-          "image": "Store/burger/gotts-roadside/coke.jpg",
+          "image": "stores/burger/gotts-roadside/coke.jpg",
           "name": "Coke",
           "price": "$2.99(16oz) / $3.99(24oz)"
         },
@@ -814,12 +823,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/burger/gotts-roadside/storefront-day.jpg",
-          "night": "Store/burger/gotts-roadside/storefront-night.jpg"
+          "day": "stores/burger/gotts-roadside/storefront-day.jpg",
+          "night": "stores/burger/gotts-roadside/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Gott's Roadside",
-        "type": "burger"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -829,8 +836,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Red Rock Coffee",
+        "type": "cafe",
         "address": "201 Castro St, Mountain View, CA 94041, United States",
         "auid": "5303100039772177289",
+        "placeid": "ChIJF8VqETS3j4ARxmLCuGE7dzk",
         "businesshour": [
           {
             "24hr": false,
@@ -890,22 +900,22 @@
         ],
         "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
         "icon": {
-          "active": "Button/Marker/cafe-active.png",
-          "default": "Button/Marker/cafe-default.png",
-          "larger": "Button/Marker/cafe-larger.png",
-          "mini": "Button/Marker/cafe-mini.png",
-          "withFriends": "Button/Marker/cafe-withFriends.png"
+          "active": "button/marker/cafe-active.png",
+          "default": "button/marker/cafe-default.png",
+          "larger": "button/marker/cafe-larger.png",
+          "mini": "button/marker/cafe-mini.png",
+          "withFriends": "button/marker/cafe-withFriends.png"
         },
         "id": "8",
         "item1": {
           "description": "Chai latte. <br> $5.75(10oz) / $7.5(16oz)",
-          "image": "Store/cafe/red-rock-coffee/Chai Latte (S).jpg",
+          "image": "stores/cafe/red-rock-coffee/chai-latte.jpg",
           "name": "Chai Latte (S)",
           "price": "$5.75"
         },
         "item2": {
           "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
-          "image": "Store/cafe/red-rock-coffee/Ham & Cheese Croissant.jpg",
+          "image": "stores/cafe/red-rock-coffee/ham-and-cheese-croissant.jpg",
           "name": "Ham & Cheese Croissant",
           "price": "$7.25"
         },
@@ -929,12 +939,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/cafe/red-rock-coffee/storefront-day.jpg",
-          "night": "Store/cafe/red-rock-coffee/storefront-night.jpg"
+          "day": "stores/cafe/red-rock-coffee/storefront-day.jpg",
+          "night": "stores/cafe/red-rock-coffee/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Red Rock Coffee",
-        "type": "cafe"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -944,8 +952,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
+        "type": "formosan-noodles",
         "address": "No.1, Lane 26, Xindong St, Songshan District, Taipei City, 105",
         "auid": "11101312776362088440",
+        "placeid": "ChIJUahmDo6rQjQRf2NTI5JdeZ4",
         "businesshour": [
           {
             "24hr": false,
@@ -995,22 +1006,22 @@
         ],
         "description": "Minsheng Community's cuisine, operating for over 30 years since its start in 1985.",
         "icon": {
-          "active": "Button/Marker/formosan-noodles-active.png",
-          "default": "Button/Marker/formosan-noodles-default.png",
-          "larger": "Button/Marker/formosan-noodles-larger.png",
-          "mini": "Button/Marker/formosan-noodles-mini.png",
-          "withFriends": "Button/Marker/formosan-noodles-withFriends.png"
+          "active": "button/marker/formosan-noodles-active.png",
+          "default": "button/marker/formosan-noodles-default.png",
+          "larger": "button/marker/formosan-noodles-larger.png",
+          "mini": "button/marker/formosan-noodles-mini.png",
+          "withFriends": "button/marker/formosan-noodles-withFriends.png"
         },
         "id": "9",
         "item1": {
           "description": "Beef and chow mein",
-          "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Chow Mein.jpg",
+          "image": "stores/restaurant/hsiaos-beef-offal-soup/beef-chow-mein.jpg",
           "name": "牛肉炒麵(Beef Chow Mein)",
           "price": "NT$120"
         },
         "item2": {
           "description": "Beef and fried rice noodles",
-          "image": "Store/restaurant/Hsiaos Beef Offal Soup/Beef Fried Rice Noodles.jpg",
+          "image": "stores/restaurant/hsiaos-beef-offal-soup/beef-fried-rice-noodles.jpg",
           "name": "牛肉炒米粉(Beef Fried Rice Noodles)",
           "price": "NT$120"
         },
@@ -1034,12 +1045,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/restaurant/Hsiaos Beef Offal Soup/storefront-day.jpg",
-          "night": "Store/restaurant/Hsiaos Beef Offal Soup/storefront-night.jpg"
+          "day": "stores/restaurant/hsiaos-beef-offal-soup/storefront-day.jpg",
+          "night": "stores/restaurant/hsiaos-beef-offal-soup/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
-        "type": "formosan-noodles"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -1049,8 +1058,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Ole Rum Bar & Tapas",
+        "type": "bar",
         "address": "1F, No.4,  Lane 109, Section 1, Anhe Rd, Da’an District, Taipei City 106",
         "auid": "7131535993595000173",
+        "placeid": "ChIJN-4uPaWuQjQRl5vzIpBxpFM",
         "businesshour": [
           {
             "24hr": false,
@@ -1105,28 +1117,28 @@
         ],
         "description": "This is a Rum bar that offers a variety of Rums and Spanish cuisine. The staff is passionate about introducing their products.",
         "icon": {
-          "active": "Button/Marker/bar-active.png",
-          "default": "Button/Marker/bar-default.png",
-          "larger": "Button/Marker/bar-larger.png",
-          "mini": "Button/Marker/bar-mini.png",
-          "withFriends": "Button/Marker/bar-withFriends.png"
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
         },
         "id": "10",
         "item1": {
           "description": "The rum =)",
-          "image": "Store/bar/ole-rum-bar-and-tapas/selection.jpg",
+          "image": "stores/bar/ole-rum-bar-and-tapas/selection.jpg",
           "name": "Walls of Rum",
           "price": ""
         },
         "item2": {
           "description": "Region: Belize and Australia, 69.4% ABV <br> Cyberpunk series from French bottler Zn09 Zero Nine Spirits. Selected with passion by Grégory and Alain, this Belize rum, aged for 12 years in the tropics, is an invitation to discovery.",
-          "image": "Store/bar/ole-rum-bar-and-tapas/cyberpunk-belize-2007-rum.jpg",
+          "image": "stores/bar/ole-rum-bar-and-tapas/cyberpunk-belize-2007-rum.jpg",
           "name": "Zn09 Cyberpunk Series Rh02 Belize 2007",
           "price": "NT$600"
         },
         "item3": {
           "description": "Region: Martinique, 60,8° ABV <br> A 100% pure cane juice rum from the French West Indies, aged for 5 years in bourbon barrels (3 years on site and 2 years in Europe).",
-          "image": "Store/bar/ole-rum-bar-and-tapas/martinique-rhum.jpg",
+          "image": "stores/bar/ole-rum-bar-and-tapas/martinique-rhum.jpg",
           "name": "Zn09 So Rum Rh07 Pure Juice Cask Strength",
           "price": "NT$400"
         },
@@ -1144,12 +1156,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/bar/ole-rum-bar-and-tapas/storefront-day.jpg",
-          "night": "Store/bar/ole-rum-bar-and-tapas/storefront-night.jpg"
+          "day": "stores/bar/ole-rum-bar-and-tapas/storefront-day.jpg",
+          "night": "stores/bar/ole-rum-bar-and-tapas/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Ole Rum Bar & Tapas",
-        "type": "bar"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -1159,8 +1169,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Larriere-cour",
+        "type": "bar",
         "address": "No. 4, Lane 23, Section 2, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
         "auid": "4323237897240854204",
+        "placeid": "ChIJjY4zZ8yrQjQRO9r-32pw-eg",
         "businesshour": [
           {
             "24hr": false,
@@ -1230,22 +1243,22 @@
         ],
         "description": "A professional whiskey bar, where bartenders possess a wealth of knowledge about whiskey and offer friendly service, is designed to help you find the whiskey that best suits your taste.",
         "icon": {
-          "active": "Button/Marker/bar-active.png",
-          "default": "Button/Marker/bar-default.png",
-          "larger": "Button/Marker/bar-larger.png",
-          "mini": "Button/Marker/bar-mini.png",
-          "withFriends": "Button/Marker/bar-withFriends.png"
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
         },
         "id": "11",
         "item1": {
           "description": "Region: Cuba, 45° ABV <br> A 1998 vintage Cuban rum from an unnamed distillery.  It is not stated which of the distilleries or stills this rum came from, but American oak cask #8 was bottled in Scotland.",
-          "image": "Store/bar/larriere-cour/samaroli.jpg",
+          "image": "stores/bar/larriere-cour/samaroli.jpg",
           "name": "Cuba Rum 1998 Samaroli Single Cask #8",
           "price": "NT$720"
         },
         "item2": {
           "description": "The cocktail is made by a waiter who will follow your mood and tastes.",
-          "image": "Store/bar/larriere-cour/cocktail.jpg",
+          "image": "stores/bar/larriere-cour/cocktail.jpg",
           "name": "Personalized Cocktail",
           "price": "NT$400"
         },
@@ -1269,12 +1282,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/bar/larriere-cour/storefront-day.jpg",
-          "night": "Store/bar/larriere-cour/storefront-night.jpg"
+          "day": "stores/bar/larriere-cour/storefront-day.jpg",
+          "night": "stores/bar/larriere-cour/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Larriere-cour",
-        "type": "bar"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -1284,8 +1295,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Pàng Taqueria",
+        "type": "taco",
         "address": "No. 181, Wenchang St, Da’an District, Taipei City, Taiwan 106",
         "auid": "9155073419001978017",
+        "placeid": "ChIJ3Z4HxHurQjQRnx4_tgoRhjU",
         "businesshour": [
           {
             "24hr": false,
@@ -1357,22 +1371,22 @@
         ],
         "description": "A taco restaurant operated by a Taiwanese sous chef from ZEA, with his unique understanding of Mexican food. It offers corn-based tacos in a clean environment, albeit at a slightly higher price than regular taco restaurants.",
         "icon": {
-          "active": "Button/Marker/taco-active.png",
-          "default": "Button/Marker/taco-default.png",
-          "larger": "Button/Marker/taco-larger.png",
-          "mini": "Button/Marker/taco-mini.png",
-          "withFriends": "Button/Marker/taco-withFriends.png"
+          "active": "button/marker/taco-active.png",
+          "default": "button/marker/taco-default.png",
+          "larger": "button/marker/taco-larger.png",
+          "mini": "button/marker/taco-mini.png",
+          "withFriends": "button/marker/taco-withFriends.png"
         },
         "id": "12",
         "item1": {
           "description": "Chorizo, Pollo asado and Baja fish. <br> Add any drinks +NT$90",
-          "image": "Store/taco/pang-taqueria/any-3-tacos-combo.jpg",
+          "image": "stores/taco/pang-taqueria/any-3-tacos-combo.jpg",
           "name": "Any 3 Tacos Combo",
           "price": "NT$330"
         },
         "item2": {
           "description": "Burrito",
-          "image": "Store/taco/pang-taqueria/burrito.jpg",
+          "image": "stores/taco/pang-taqueria/burrito.jpg",
           "name": "Burrito",
           "price": "NT$260"
         },
@@ -1396,12 +1410,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/taco/pang-taqueria/storefront-day.jpg",
-          "night": "Store/taco/pang-taqueria/storefront-night.jpg"
+          "day": "stores/taco/pang-taqueria/storefront-day.jpg",
+          "night": "stores/taco/pang-taqueria/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Pàng Taqueria",
-        "type": "taco"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -1411,8 +1423,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "El Sabroso Mexican Food",
+        "type": "taco",
         "address": "No. 107-1, Section 3, Tingzhou Rd, Zhongzheng District, Taipei City, Taiwan, 100 ",
         "auid": "14372726423338286649",
+        "placeid": "ChIJxZPxQYypQjQRmP3Fw5cvpZc",
         "businesshour": [
           {
             "24hr": false,
@@ -1501,22 +1516,22 @@
         ],
         "description": "A traditional Mexican food restaurant located in the Gongguan business district.",
         "icon": {
-          "active": "Button/Marker/taco-active.png",
-          "default": "Button/Marker/taco-default.png",
-          "larger": "Button/Marker/taco-larger.png",
-          "mini": "Button/Marker/taco-mini.png",
-          "withFriends": "Button/Marker/taco-withFriends.png"
+          "active": "button/marker/taco-active.png",
+          "default": "button/marker/taco-default.png",
+          "larger": "button/marker/taco-larger.png",
+          "mini": "button/marker/taco-mini.png",
+          "withFriends": "button/marker/taco-withFriends.png"
         },
         "id": "13",
         "item1": {
           "description": "Grilled chicken with tomato chili salsa and a 330ml Coke.",
-          "image": "Store/taco/el-sabroso-mexican-food/quesadilla-combo.jpg",
+          "image": "stores/taco/el-sabroso-mexican-food/quesadilla-combo.jpg",
           "name": "Quesadilla Combo",
           "price": "NT$315"
         },
         "item2": {
           "description": "A piñata hanging from the ceiling.",
-          "image": "Store/taco/el-sabroso-mexican-food/pinata.jpg",
+          "image": "stores/taco/el-sabroso-mexican-food/pinata.jpg",
           "name": "Piñata",
           "price": ""
         },
@@ -1540,12 +1555,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/taco/el-sabroso-mexican-food/storefront-day.jpg",
-          "night": "Store/taco/el-sabroso-mexican-food/storefront-night.jpg"
+          "day": "stores/taco/el-sabroso-mexican-food/storefront-day.jpg",
+          "night": "stores/taco/el-sabroso-mexican-food/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "El Sabroso Mexican Food",
-        "type": "taco"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -1555,8 +1568,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Teotihuacan Mexican Restaurant",
+        "type": "taco",
         "address": "No. 9, Lane 21, Section 1, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
         "auid": "3475026617689486784",
+        "placeid": "ChIJ8VNyWSqqQjQRz_rrWE4OhkI",
         "businesshour": [
           {
             "24hr": false,
@@ -1626,22 +1642,22 @@
         ],
         "description": "Mexican restaurant located in the Eastern District, yet it offers spacious seating unlike other crowded small restaurants nearby. The staff is friendly and eager to introduce the dishes, and they enjoy chatting with customers. The tacos and sauce boast authentic Mexican flavors.",
         "icon": {
-          "active": "Button/Marker/taco-active.png",
-          "default": "Button/Marker/taco-default.png",
-          "larger": "Button/Marker/taco-larger.png",
-          "mini": "Button/Marker/taco-mini.png",
-          "withFriends": "Button/Marker/taco-withFriends.png"
+          "active": "button/marker/taco-active.png",
+          "default": "button/marker/taco-default.png",
+          "larger": "button/marker/taco-larger.png",
+          "mini": "button/marker/taco-mini.png",
+          "withFriends": "button/marker/taco-withFriends.png"
         },
         "id": "14",
         "item1": {
           "description": "4 Tacos set + 1 drink. <br> Prices only valid for lunch set offer Monday - Friday 11:30 - 1430",
-          "image": "Store/taco/teotihuacan-mexican-restaurant/lunch-special-set-a.jpg",
+          "image": "stores/taco/teotihuacan-mexican-restaurant/lunch-special-set-a.jpg",
           "name": "Lunch Special - Set A",
           "price": "NT$399"
         },
         "item2": {
           "description": "Cocktails",
-          "image": "Store/taco/teotihuacan-mexican-restaurant/mojito.jpg",
+          "image": "stores/taco/teotihuacan-mexican-restaurant/mojito.jpg",
           "name": "Mojito",
           "price": "NT$280"
         },
@@ -1665,12 +1681,10 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/taco/teotihuacan-mexican-restaurant/storefront-day.jpg",
-          "night": "Store/taco/teotihuacan-mexican-restaurant/storefront-night.jpg"
+          "day": "stores/taco/teotihuacan-mexican-restaurant/storefront-day.jpg",
+          "night": "stores/taco/teotihuacan-mexican-restaurant/storefront-night.jpg"
         },
-        "tag": "[]",
-        "title": "Teotihuacan Mexican Restaurant",
-        "type": "taco"
+        "tag": "[]"
       },
       "type": "Feature"
     },
@@ -1680,8 +1694,11 @@
         "type": "Point"
       },
       "properties": {
+        "title": "Odd One Out - Dunnan Shop",
+        "type": "icecream",
         "address": "No. 48, Lane 187, Section 1, Dunhua S Rd, Da’an District, Taipei City, Taiwan 106",
         "auid": "14510735417314001215",
+        "placeid": "ChIJOdHWx6yrQjQRnb88OVTWvxo",
         "businesshour": [
           {
             "24hr": false,
@@ -1751,22 +1768,22 @@
         ],
         "description": "An internet-famous milk tea shop known for its 4 flavors gelato offerings. The original store was established in L.A., and this is the inaugural branch in Taiwan.",
         "icon": {
-          "active": "Button/Marker/icecream-active.png",
-          "default": "Button/Marker/icecream-default.png",
-          "larger": "Button/Marker/icecream-larger.png",
-          "mini": "Button/Marker/icecream-mini.png",
-          "withFriends": "Button/Marker/icecream-withFriends.png"
+          "active": "button/marker/icecream-active.png",
+          "default": "button/marker/icecream-default.png",
+          "larger": "button/marker/icecream-larger.png",
+          "mini": "button/marker/icecream-mini.png",
+          "withFriends": "button/marker/icecream-withFriends.png"
         },
         "id": "15",
         "item1": {
           "description": "Earl gray lemongrass and red oolong. <br> NT$120(Single) / NT$180(Double)",
-          "image": "Store/icecream/odd-one-out-dunnan-shop/botanical-gelato.webp",
+          "image": "stores/icecream/odd-one-out-dunnan-shop/botanical-gelato.jpg",
           "name": "Botanical Gelato",
           "price": "NT$180(Double)"
         },
         "item2": {
           "description": "Red oolong milk tea + cream foam <br> NT$100(12oz) / NT$120(16oz)",
-          "image": "Store/icecream/odd-one-out-dunnan-shop/champion-milk-tea.webp",
+          "image": "stores/icecream/odd-one-out-dunnan-shop/champion-milk-tea.jpg",
           "name": "Champion Milk Tea (M)",
           "price": "NT$100(M)"
         },
@@ -1790,12 +1807,381 @@
         },
         "layout": "food",
         "storefront": {
-          "day": "Store/icecream/odd-one-out-dunnan-shop/storefront-day.webp",
-          "night": "Store/icecream/odd-one-out-dunnan-shop/storefront-night.webp"
+          "day": "stores/icecream/odd-one-out-dunnan-shop/storefront-day.jpg",
+          "night": "stores/icecream/odd-one-out-dunnan-shop/storefront-night.jpg"
+        },
+        "tag": "[]"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [121.54480981123537, 25.039215200109936],
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Indulge Experimental Bistro",
+        "type": "bar",
+        "address": "No. 11, Lane 219, Section 1, Fuxing S Rd, Da’an District, Taipei City, 106",
+        "auid": "7217928507319275413",
+        "placeid": "ChIJ5TXg4tCrQjQRNDAoeL3zmoE",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "2500",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2500",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2500",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2500",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2700",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "1700",
+                "Start": "1100"
+              },
+              {
+                "Finish": "2700",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "1700",
+                "Start": "1100"
+              },
+              {
+                "Finish": "2600",
+                "Start": "1800"
+              }
+            ]
+          }
+        ],
+        "description": "Indulge Experimental Bistro is consistently ranked among the World’s 50 Best Bars and remains a top-five favorite in Asia’s 50 Best. Its tea-infused cocktail captures the essence of its subtropical flavors. The chef has meticulously gathered representative ingredients from all over Taiwan to create unique small plates designed to complement the drinks. The staff expertly introduces patrons to the local ingredients, explaining how the chef aims to inspire clients with the vivid imagery of Formosa.",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "id": "16",
+        "item1": {
+          "description": "Botanist Gin <br> William Pear / Lily / Bergamot / Tonic Water",
+          "image": "stores/bar/indulge-experimental-bistro/herbal-flora.jpg",
+          "name": "Herbal Flora",
+          "price": "NT$500"
+        },
+        "item2": {
+          "description": "Don Julio Tequila Blanco. Rose Cherry Liqueur. Rosewood Iron Buddha Tea.",
+          "image": "stores/bar/indulge-experimental-bistro/wood-flora.jpg",
+          "name": "Wood Flora",
+          "price": "NT$450"
+        },
+        "item3": {
+          "description": "Taiwanese gnocchi, also commonly known as 'cloud soft' owes its name to its texture. The inspiration comes from the early morning in the mountains, when the sun rises, and the sky gradually reveals a ruby-like hue between the sea of clouds and the forest. The red onion noodle dumplings represent the sea of clouds, while the chicken fat transformed into powder and tea tree mushrooms represent the mountains and forests. The spicy tomato-braised pork belly with turmeric and Buddha's hand citron pickled daikon represents the various displays of light. This also symbolizes the enticingly diverse flavors!",
+          "image": "stores/bar/indulge-experimental-bistro/gnocchi.jpg",
+          "name": "Gnocchi·Duroc Pork·Spicy Tomato·Mushroom",
+          "price": "NT$480"
+        },
+        "item4": {
+          "description": "Taking a dish we are all too familiar with - Teppan tofu - as a point of discovery, we mix pure shrimp paste into the egg tofu mixture for reshaping, first baking then frying it. It is then combined with the sweetness of caramelized onions, the spiciness of pepper, the sourness of pickled salmon roe in black vinegar, and the freshness of fermented chili, presenting a novel appearance of Taiwanese-style Western cuisine.",
+          "image": "stores/bar/indulge-experimental-bistro/egg-tofu.jpg",
+          "name": "Egg Tofu·Scallop·Salmon-roll·Fermented Chili",
+          "price": "NT$360"
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "stores/bar/indulge-experimental-bistro/storefront-day.jpg",
+          "night": "stores/bar/indulge-experimental-bistro/storefront-night.jpg"
+        },
+        "tag": "[]"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [121.56114707019687, 25.031488137915723],
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Selfish Burger",
+        "type": "burger",
+        "address": "No. 180, Zhuangjing Rd, Xinyi District, Taipei City, 110",
+        "auid": "6224758275121354720",
+        "placeid": "ChIJXW85lbWrQjQRPVyW9WjW_qI",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2130",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2300",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2300",
+                "Start": "1130"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "2200",
+                "Start": "1130"
+              }
+            ]
+          }
+        ],
+        "description": "A reputable burger store meticulously crafts small yet flavorful and juicy burgers. Rather than overeating, try to savor these burgers as fine cuisine. It is located in the Xinyi District, conveniently near Exit 2 of the Taipei 101/World Trade Center MRT station.",
+        "icon": {
+          "active": "button/marker/burger-active.png",
+          "default": "button/marker/burger-default.png",
+          "larger": "button/marker/burger-larger.png",
+          "mini": "button/marker/burger-mini.png",
+          "withFriends": "button/marker/burger-withFriends.png"
+        },
+        "id": "17",
+        "item1": {
+          "description": "Classic burger with a small combo (NT$80 side and NT$80 drink).",
+          "image": "stores/burger/selfish-burger/classic-with-small-combo.jpg",
+          "name": "Classic with Combo",
+          "price": "NT$240+100"
+        },
+        "item2": {
+          "description": "Cod with yuzu tartar sauce and a chilled purple cabbage salad.",
+          "image": "stores/burger/selfish-burger/yuzu-cod.jpg",
+          "name": "Cod Yuzu",
+          "price": "NT$280"
+        },
+        "item3": {
+          "description": "The bear with wheat and black tea flavor.",
+          "image": "stores/burger/selfish-burger/toastea-larger.jpg",
+          "name": "TOASTea Larger",
+          "price": "NT$160"
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "stores/burger/selfish-burger/storefront-day.jpg",
+          "night": "stores/burger/selfish-burger/storefront-night.jpg"
+        },
+        "tag": "[]"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [121.55827059852218, 25.032127495571647],
+        "type": "Point"
+      },
+      "properties": {
+        "address": "No. 12, Jiaxing St, Xinyi District, Taipei City, 110",
+        "auid": "12283437593347315192",
+        "placeid": "ChIJwSO8jsCrQjQRqDmCOu8hCbA",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": false
+          },
+          {
+            "Tuesday": false
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1900",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1900",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1900",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1900",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1900",
+                "Finish": "2500"
+              }
+            ]
+          }
+        ],
+        "description": "The bar is renowned for its unique vegetable-based cocktails.",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "id": "18",
+        "item1": {
+          "description": "GIN/CARROT/HONEY",
+          "image": "stores/bar/carrot/carrot-you-out.jpg",
+          "name": "Carrot You Out",
+          "price": "NT$400"
+        },
+        "item2": {
+          "description": "Choose one of three dips: aioli, salsa, guacamole. Extra dips: +NT$90.",
+          "image": "stores/bar/carrot/tortilla-chips-with-housemade-dips.jpg",
+          "name": "Tortilla Chips with Housemade Dips",
+          "price": "NT$240"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "stores/bar/carrot/storefront-day.jpg",
+          "night": "stores/bar/carrot/storefront-night.jpg"
         },
         "tag": "[]",
-        "title": "Odd One Out - Dunnan Shop",
-        "type": "icecream"
+        "title": "Carrot",
+        "type": "bar"
       },
       "type": "Feature"
     }
