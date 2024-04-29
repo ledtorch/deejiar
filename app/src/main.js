@@ -4,7 +4,7 @@ import App from './App.vue'
 // Plugin
 import router from './router.js'
 
-// Global CSS and Tailwind CSS
+// Global CSS and Tailwind
 import './assets/tailwind.css';
 import './style.css'
 

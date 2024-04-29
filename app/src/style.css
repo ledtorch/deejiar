@@ -41,9 +41,7 @@ html,
 body {
 	/* Disables double-tap to zoom across the entire application */
 	touch-action: manipulation;
-}
 
-body {
 	display: flex;
 	place-items: center;
 	min-width: 320px;
