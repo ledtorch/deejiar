@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Font faces */
 @font-face {
   font-family: 'Be Vietnam Pro';
@@ -22,7 +26,3 @@
   src: url('/src/assets/fonts/BeVietnamPro-Bold.ttf') format('truetype');
   font-weight: 700;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
