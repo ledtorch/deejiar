@@ -2,27 +2,11 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dotenv from 'dotenv';
 
-// CSS dependency
-import autoprefixer from 'autoprefixer';
-
 // HTTPS dependency
 import fs from 'fs';
 
 export default defineConfig({
-  plugins: [
-    vue(),
-  ],
-  css: {
-    preprocessorOptions: {
-      scss: {
-      },
-    },
-    postcss: {
-      plugins: [
-        autoprefixer
-      ],
-    },
-  },
+  plugins: [vue()],
 
   // Local https server
   server: {
