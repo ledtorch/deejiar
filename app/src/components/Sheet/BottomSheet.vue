@@ -1,5 +1,5 @@
 <template>
-  <div class="bottom-sheet" :style="{ height: bottomSheetHeight }" ref="bottomSheet">
+  <div class="bottom-sheet flex-col" :style="{ height: bottomSheetHeight }" ref="bottomSheet">
     <div class="control-area" ref="controlArea">
       <div class="control-bar"></div>
     </div>
@@ -246,7 +246,6 @@ export default {
 
 <style lang="scss" scoped>
 .bottom-sheet {
-  flex-direction: column;
   gap: 0px;
   width: 390px;
   height: auto;
@@ -329,7 +328,6 @@ export default {
 }
 
 .button-set {
-  display: flex;
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
@@ -394,7 +392,6 @@ export default {
 }
 
 .learn-more-frame {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;

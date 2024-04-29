@@ -293,7 +293,6 @@ export default {
   overflow: hidden;
 
   position: relative;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
 }

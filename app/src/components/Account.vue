@@ -40,18 +40,12 @@
 
 <script>
 export default {
-  setup() {
-    useHead({
-      title: 'Tītsia - Account',
-    })
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 .body {
   position: relative;
-  display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
@@ -65,7 +59,6 @@ export default {
 
 .body-section {
   // width: 100vw;
-  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
@@ -80,7 +73,6 @@ export default {
 }
 
 .btn-frame {
-  display: flex;
   justify-content: space-between;
   align-items: flex-start;
   align-self: stretch;
