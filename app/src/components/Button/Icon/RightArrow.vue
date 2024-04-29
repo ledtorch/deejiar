@@ -13,8 +13,6 @@ export default {
   cursor: pointer;
   width: 32px;
   height: 32px;
-  border: none;
-  padding: 0;
   background: no-repeat center/contain;
   background-image: url("/button/icon/with-base/right-arrow-default.png");
 

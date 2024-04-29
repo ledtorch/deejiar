@@ -45,8 +45,6 @@ export default {
   cursor: pointer;
   width: 36px;
   height: 36px;
-  border: none;
-  padding: 0;
   background: no-repeat center/contain;
   transition: transform 0.2s ease;
 }
