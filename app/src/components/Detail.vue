@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body flex-col">
     <!-- Carousel Content -->
     <div v-if="currentPage === 0" class="cover" :style="{ 'backgroundImage': storeFrontImage }">
       <LeftArrow @click="previousPage" class="left-arrow" />
@@ -14,8 +14,8 @@
     </div>
 
     <!-- Cover Page -->
-    <div v-if="currentPage === 0" class="content">
-      <div class=" items-frame">
+    <div v-if="currentPage === 0" class="content flex-col">
+      <div class="items-frame">
         <div class="leftImage" :style="{ 'backgroundImage': item1 }"></div>
         <div class="rightImage" :style="{ 'backgroundImage': item2 }"></div>
       </div>
@@ -37,10 +37,12 @@
       <div class="splitline"></div>
       <GetDirection variant="apple" :appleAUID="appleAUID"></GetDirection>
       <GetDirection variant="google" :storeTitle="storeTitle"></GetDirection>
+      <!-- // 🏗️ TODO -->
+      <!-- <GetDirection variant="google" :googlePlaceid="googlePlaceid"></GetDirection> -->
     </div>
 
     <!-- Product Page -->
-    <div v-else class="content">
+    <div v-else class="content flex-col">
       <div class="title-block">
         <h2 class="stretch">{{ currentItem.name }}</h2>
         <h2>{{ currentItem.price }}</h2>
@@ -49,6 +51,8 @@
       <p class="state" v-html="currentItem.description"></p>
       <GetDirection variant="apple" :appleAUID="appleAUID"></GetDirection>
       <GetDirection variant="google" :storeTitle="storeTitle"></GetDirection>
+      <!-- // 🏗️ TODO -->
+      <!-- <GetDirection variant="google" :googlePlaceid="googlePlaceid", ></GetDirection> -->
     </div>
 
   </div>
@@ -78,7 +82,12 @@ export default {
       // The data from the JSON file
       data: '',
       appleAUID: '',
+      googlePlaceid: '',
+      geoData: '',
       currentPage: 0,
+
+      // Lazy loading
+      lazyloadingImage: '/images/loading-placeholder.webp'
     }
   },
 
@@ -89,7 +98,8 @@ export default {
     // Define root: https://root.com
     const rootURL = `${window.location.protocol}//${window.location.host}`;
 
-    const response = await fetch(`${rootURL}/stores.json`);
+    // const response = await fetch(`${rootURL}/stores.json`);
+    const response = await fetch(`${rootURL}/stores.json?v=${new Date().getTime()}`);
     const stores = await response.json();
     console.log("Fetched JSON data: ", stores);
 
@@ -97,8 +107,15 @@ export default {
     const storeData = stores.features.find(store => store.properties.title === urlTitle);
     console.log("The storeData: ", storeData);
 
+    // Testing
+    const geoData = storeData.geometry.coordinates;
+    const formattedCoordinates = `${geoData[1]}%2C${geoData[0]}`;
+    console.log('formattedCoordinates', formattedCoordinates);
+    // Testing
+
     this.data = storeData.properties;
     this.appleAUID = storeData.properties.auid;
+    this.googlePlaceid = storeData.properties.placeid;
     this.storeTitle = this.data.title;
     this.description = this.data.description;
     this.storeType = this.data.type;
@@ -117,7 +134,6 @@ export default {
       // return this.rootUrl(this.data?.storefront.day);
     },
     item1() {
-      // const item1Data = this.data?.item1?.image || '';
       return this.rootUrl(this.data?.item1.image);
     },
     item2() {
@@ -137,7 +153,8 @@ export default {
     },
 
     totalPages() {
-      let count = 1;  // Start with 1 for the DetailHomePage
+      // Start with 1 for the DetailHomePage
+      let count = 1;
       for (let i = 1; i <= 5; i++) {
         if (this.data[`item${i}`]?.name) {
           count++;
@@ -147,8 +164,6 @@ export default {
     },
     // Define the pages
     currentItem() {
-      // 🏗️ TODO: Make a debug console to print totalPages
-
       // If currentPage is 0 or the item doesn't exist, return an empty object
       if (this.currentPage === 0 || !this.data[`item${this.currentPage}`]) {
         return {};
@@ -187,8 +202,6 @@ export default {
 // Frame
 .body {
   position: relative;
-  display: flex;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
@@ -200,7 +213,6 @@ export default {
 }
 
 .content {
-  flex-direction: column;
   align-items: flex-start;
   width: 100%;
   padding: 20px;

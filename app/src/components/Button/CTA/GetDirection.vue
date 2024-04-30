@@ -1,5 +1,5 @@
 <template>
-  <button @click="openDirections" class="btton-frame">
+  <button @click="openDirections" class="flex button-frame">
     <div class="title-frame">
       <div :class="iconClass"></div>
       <h2 class="m-button-text">Get Direction</h2>
@@ -15,8 +15,11 @@ export default {
       type: String,
       required: true,
     },
-    appleAUID: String,
     storeTitle: String,
+
+    appleAUID: String,
+    // 🏗️ TODO
+    googlePlaceid: String,
   },
   computed: {
     iconClass() {
@@ -32,8 +35,17 @@ export default {
          */
         return `https://maps.apple.com/?auid=${this.appleAUID}&dirflg=d`;
       } else if (this.variant === 'google') {
+        // 🏗️ TODO
         // 🐞 Debug console
-        console.log('storeTitle:', this.storeTitle)
+        // console.log('googlePlaceID:', this.googlePlaceid)
+        // console.log('v1:', `https://www.google.com/maps/dir/?api=1&destination=place_id:${this.googlePlaceid}&travelmode=flying`)
+        // console.log('v2:', `https://www.google.com/maps/dir/?api=1&destination=place_id:${this.googlePlaceid}`)
+        // https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJwSO8jsCrQjQRqDmCOu8hCbA
+        // https://www.google.com/maps/dir/?api=1&origin=Taipei+101+Shopping+center&destination_place_id=ChIJwSO8jsCrQjQRqDmCOu8hCbA
+        // console.log('place only:', `https://www.google.com/maps/place/?q=place_id:${this.googlePlaceid}`)
+        // console.log('place with encodeURI:', `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(this.googlePlaceid)}`)
+        // console.log('id+geo:', `https://www.google.com/maps/search/?api=1&query=${this.geoData}&query_place_id=${this.googlePlaceid}`)
+
         /** 
          * https://developers.google.com/maps/documentation/urls/get-started
          * If the title is Mandarin, convert the data before (
@@ -43,11 +55,19 @@ export default {
 
         // Default travel mode is flying but Google Maps will convert to driving if it's not international
         return `https://www.google.com/maps/dir/?api=1&destination=${title}&travelmode=flying`;
+
+
+        // 🏗️ TODO
+        // return `https://www.google.com/maps/dir/?api=1&destination=destination_place_id:${this.googlePlaceid}&travelmode=flying`;
+        // return `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(this.googlePlaceid)}`;
+        // return `https://www.google.com/maps/place/?q=place_id:${this.googlePlaceid}`;
+        // https://www.google.com/maps/place/?q=place_id:ChIJwSO8jsCrQjQRqDmCOu8hCbA
       }
     },
   },
   methods: {
     openDirections() {
+      console.log('Opening URL:', this.directionUrl);
       window.open(this.directionUrl);
     }
   }
@@ -55,8 +75,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btton-frame {
-  display: flex;
+.button-frame {
   height: 48px;
   width: 100%;
   padding: 12px;
@@ -75,8 +94,6 @@ input[type="submit"] {
   background: none;
   color: inherit;
   /* Use the text color of the element the button is inside */
-  border: none;
-  padding: 0;
   font: inherit;
   /* Use the font settings of the element the button is inside */
   cursor: pointer;
@@ -85,7 +102,6 @@ input[type="submit"] {
 }
 
 .title-frame {
-  display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
