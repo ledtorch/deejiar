@@ -148,3 +148,9 @@ p {
 	min-height: 1px;
 	background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
 }
+
+
+/* Global Utility Classes */
+._stretch {
+	flex: 1 0 0;
+}

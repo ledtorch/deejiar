@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <div class="body-section">
+    <div class="frame flex-col">
       <h2 class="strech-attri">Profile</h2>
       <!-- <div class="account-section"></div> -->
       <div class="splitline"></div>
@@ -22,18 +22,21 @@
       <div class="page-card">
         <p>Help</p>
       </div> -->
-      <a href="https://twitter.com/naivebara" class="button">Author</a>
-      <a href="https://x.com/deejiar" class="button">X</a>
-      <a href="https://instagram.com/deejiar" class="button">Instagram</a>
-      <p>Version 2 (2024.02.25)</p>
 
-      <div class="bottom-section">
-        <!-- <div class="btn-frame">
-          <button>Log out</button>
-          <div class="btn-set"></div>
-        </div> -->
-        <!-- <p>Version 2 (2024.02.25)</p> -->
-      </div>
+      <footer class="footer">
+        <div class="btn-frame">
+          <!-- <button>Log out</button> -->
+          <div class="button-set">
+            <a href="https://twitter.com/deejiar" style="text-decoration: none; color: inherit;">
+              <img class="social-button" src="/icon/social/twitter.png" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com/deejiar" style="text-decoration: none; color: inherit;">
+              <img class="social-button" src="/icon/social/instagram.png" alt="Instagram">
+            </a>
+          </div>
+        </div>
+        <p>Version 4 (2024.04.30)</p>
+      </footer>
     </div>
   </div>
 </template>
@@ -57,9 +60,8 @@ export default {
   }
 }
 
-.body-section {
+.frame {
   // width: 100vw;
-  flex-direction: column;
   align-items: center;
   gap: 24px;
   width: 100%;
@@ -79,8 +81,7 @@ export default {
   padding-left: 0px;
 }
 
-.bottom-section {
-  flex-direction: column;
+.footer {
   align-items: flex-start;
   align-self: stretch;
   gap: 24px;
@@ -102,5 +103,16 @@ export default {
 // Fonts
 .strech-attri {
   width: 100%;
+}
+
+.social-button {
+  width: 24px;
+  height: 24px;
+}
+
+.button-set {
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 12px;
 }
 </style>

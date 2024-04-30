@@ -13,7 +13,7 @@
           src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=deejiar&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff"
           alt="Buy Me a Coffee" />
       </a>
-      <div class="learn-more-frame">
+      <div class="frame_learn-more">
         <h4>Learn more on:</h4>
         <div class="button-set">
           <a href="https://twitter.com/deejiar" style="text-decoration: none; color: inherit;">
@@ -38,7 +38,7 @@
       <template v-if="storeLayout === 'food'">
         <div class="nav">
           <div class="title-block">
-            <h2 class="stretch">{{ store ? store.title : "" }}</h2>
+            <h2 class="_stretch">{{ store ? store.title : "" }}</h2>
             <TagShopType :store="store" />
           </div>
           <Close :state="buttonState" @close="closeBottomSheet" />
@@ -62,7 +62,7 @@
       <template v-if="storeLayout === 'view'">
         <div class="nav">
           <div class="title-block">
-            <h2 class="stretch">{{ store ? store.title : "" }}</h2>
+            <h2 class="_stretch">{{ store ? store.title : "" }}</h2>
             <TagShopType :store="store" />
           </div>
           <Close :state="buttonState" @close="closeBottomSheet" />
@@ -329,8 +329,8 @@ export default {
 
 .button-set {
   align-items: flex-start;
-  gap: 12px;
   align-self: stretch;
+  gap: 12px;
 }
 
 .social-button {
@@ -383,15 +383,11 @@ export default {
   gap: 12px;
 }
 
-.stretch {
-  flex: 1 0 0;
-}
-
 .businesshour-frame {
   gap: 4px;
 }
 
-.learn-more-frame {
+.frame_learn-more {
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
