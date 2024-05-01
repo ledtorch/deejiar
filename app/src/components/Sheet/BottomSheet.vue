@@ -290,7 +290,6 @@ export default {
 }
 
 .title-block {
-  align-items: flex-start;
   justify-content: flex-start;
   align-content: flex-start;
   align-self: stretch;
@@ -378,7 +377,6 @@ export default {
 
 .key-info-div {
   flex-direction: column;
-  align-items: flex-start;
   align-self: stretch;
   gap: 12px;
 }
@@ -389,7 +387,6 @@ export default {
 
 .frame_learn-more {
   flex-direction: column;
-  align-items: flex-start;
   gap: 12px;
   align-self: stretch;
 }

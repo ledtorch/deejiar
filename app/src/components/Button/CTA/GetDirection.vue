@@ -81,7 +81,6 @@ export default {
   padding: 12px;
   justify-content: space-between;
   align-items: center;
-  flex: 1 0 0;
   border-radius: var(--Border-Button-Round, 8px);
   background: rgba(255, 255, 255, 0.07);
 }
@@ -102,8 +101,6 @@ input[type="submit"] {
 }
 
 .title-frame {
-  justify-content: center;
-  align-items: center;
   gap: 4px;
 }
 
