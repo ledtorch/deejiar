@@ -21,10 +21,10 @@
       </div>
       <div class="content-frame">
         <div class="title-block">
-          <h2 class="stretch">{{ storeTitle }}</h2>
+          <h2 class="_stretch">{{ storeTitle }}</h2>
           <TagShopType :store="data" />
         </div>
-        <p class="state">{{ description }}</p>
+        <p class="frame-intro">{{ description }}</p>
       </div>
       <Businesshour :bizTime="data.businesshour" viewMode="overview" />
       <div class="splitline"></div>
@@ -44,11 +44,11 @@
     <!-- Product Page -->
     <div v-else class="content flex-col">
       <div class="title-block">
-        <h2 class="stretch">{{ currentItem.name }}</h2>
+        <h2 class="_stretch">{{ currentItem.name }}</h2>
         <h2>{{ currentItem.price }}</h2>
       </div>
       <!-- Use v-html to render <br> -->
-      <p class="state" v-html="currentItem.description"></p>
+      <p class="frame-intro" v-html="currentItem.description"></p>
       <GetDirection variant="apple" :appleAUID="appleAUID"></GetDirection>
       <GetDirection variant="google" :storeTitle="storeTitle"></GetDirection>
       <!-- // 🏗️ TODO -->
@@ -224,8 +224,6 @@ export default {
   justify-content: flex-start;
   align-content: flex-start;
   align-self: stretch;
-  flex-wrap: wrap;
-  flex: 1 0 0;
   gap: 12px;
 }
 
@@ -268,10 +266,6 @@ export default {
   background-repeat: no-repeat;
 }
 
-.stretch {
-  flex: 1 0 0;
-}
-
 .content-frame {
   flex-direction: column;
   gap: 12px;
@@ -283,8 +277,7 @@ export default {
   gap: 12px;
 }
 
-.state {
-  flex-direction: column;
+.frame-intro {
   align-items: flex-start;
   align-self: stretch;
   padding: 12px;
