@@ -1,7 +1,6 @@
 <template>
   <div class="tag-shop-frame">
     <div class="icon-image" :style="icon"></div>
-    <!-- <h2>{{ store ? store.type : "" }}</h2> -->
   </div>
 </template>
 
