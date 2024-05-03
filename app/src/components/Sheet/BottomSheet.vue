@@ -30,7 +30,6 @@
           </a>
         </div>
       </div>
-
     </div>
 
     <div class="bottom-sheet-content" v-if="storeState">
@@ -81,7 +80,7 @@
 </template>
 
 <script>
-// Vue Dependencies
+// Vue dependencies
 import { ref, onMounted, watch, toRefs } from "vue";
 import { useRouter } from "vue-router";
 
