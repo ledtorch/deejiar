@@ -17,6 +17,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 # Modules
 from og import og_bp
+import reader
 
 # Env setting
 env_file = '.env.production' if os.getenv('FLASK_ENV') == 'production' else '.env.local'
@@ -100,6 +101,12 @@ def get_stores():
         return jsonify(stores_data)
     else:
         return jsonify({"error": "stores.json not found"}), 404
+
+# Working
+@app.route('/json-files', methods=['GET'])
+def get_json_files():
+    json_files = reader.list_json_files()
+    return jsonify(json_files)
 
 if __name__ == '__main__':
     app.run(debug=True)
