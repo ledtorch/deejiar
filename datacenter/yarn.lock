@@ -249,6 +249,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@headlessui/vue@npm:^1.7.21":
+  version: 1.7.21
+  resolution: "@headlessui/vue@npm:1.7.21"
+  dependencies:
+    "@tanstack/vue-virtual": "npm:^3.0.0-beta.60"
+  peerDependencies:
+    vue: ^3.2.0
+  checksum: 10c0/600b13457c83715d7997e927cbebca299daa8876633dd44d2fd21fa822614b05ea7e5cb70c083d0db56a6a06a823802bfc4157f6f88b0eb19834febef08d84f0
+  languageName: node
+  linkType: hard
+
+"@heroicons/vue@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@heroicons/vue@npm:2.1.3"
+  peerDependencies:
+    vue: ">= 3"
+  checksum: 10c0/af0b1336409aa054c22c572f9214009042aec163131c1de58b995fbec1dd4508b768500614100ed750e8911ca8a695e43efc87a8627c86a8c2387422fe2f6dd4
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -509,6 +529,24 @@ __metadata:
   version: 1.10.2
   resolution: "@rushstack/eslint-patch@npm:1.10.2"
   checksum: 10c0/3712b8994bfed0968d4c4f21ff10bf5f2abb47f47d65d4e616de4311d2f372f2528b03b1d4e0dcaa7392f8626ccdf114e753db4f790e92436fc5a4e52195d181
+  languageName: node
+  linkType: hard
+
+"@tanstack/virtual-core@npm:3.5.0":
+  version: 3.5.0
+  resolution: "@tanstack/virtual-core@npm:3.5.0"
+  checksum: 10c0/21a12049df81ce282054e8406cb74dd21d867aac077f31568ffdb08acd9aa171ae0666ceb43654895e73907acf5db02c7d651a66960da8acceeb2e034885e605
+  languageName: node
+  linkType: hard
+
+"@tanstack/vue-virtual@npm:^3.0.0-beta.60":
+  version: 3.5.0
+  resolution: "@tanstack/vue-virtual@npm:3.5.0"
+  dependencies:
+    "@tanstack/virtual-core": "npm:3.5.0"
+  peerDependencies:
+    vue: ^2.7.0 || ^3.0.0
+  checksum: 10c0/4e6f1a5cce660e42c822b34c24325d85c9ab6adb2c0acd7aea75821f25466de9338d84a4258732ede14d9ee538b45d2150a3f21d1c65a38ff3b88333dae67c5f
   languageName: node
   linkType: hard
 
@@ -2438,6 +2476,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "datacenter@workspace:."
   dependencies:
+    "@headlessui/vue": "npm:^1.7.21"
+    "@heroicons/vue": "npm:^2.1.3"
     "@rushstack/eslint-patch": "npm:^1.3.3"
     "@turf/flatten": "npm:^6.5.0"
     "@turf/turf": "npm:^6.5.0"
