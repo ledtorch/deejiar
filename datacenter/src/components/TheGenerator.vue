@@ -4,6 +4,15 @@
       <button class="temp-button" @click="updateJSON">Update JSON</button>
       <Dropdown class="" :files="jsonFiles" @selected="handleFileSelection" />
     </nav>
+
+    <div v-if="selectedData">
+      <!-- Display the features from the selected JSON file -->
+      <div v-for="item in selectedData" :key="item.id">
+        <h3>{{ item.title }} ({{ item.type }})</h3>
+        <p>Address: {{ item.address }}</p>
+        <p>Coordinates: {{ item.latitude }}, {{ item.longitude }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,10 +24,10 @@ export default {
   components: { Dropdown },
   data() {
     return {
-      // 🧱 Buidling
       jsonRaw: import.meta.env.VITE_TEST_NAME,
       API: import.meta.env.VITE_DATACENTER_API,
-      jsonFiles: []
+      jsonFiles: [],
+      selectedData: []
     };
   },
   created() {
@@ -35,12 +44,18 @@ export default {
         });
     },
     handleFileSelection(file) {
-      this.selectedFile = file;
-      // Optionally, load the selected JSON file here
-      console.log('Selected file:', file);
+      axios.get(`${this.API}/json-data/${file}`)
+        .then(response => {
+          this.selectedData = response.data;
+        })
+        .catch(error => {
+          console.error('Error fetching JSON data for file:', file, error);
+        });
     }
   },
 };
+// 🐞 Debug console
+// console.log('Selected file:', file);
 </script>
 
 <style lang="scss" scoped>

@@ -102,11 +102,22 @@ def get_stores():
     else:
         return jsonify({"error": "stores.json not found"}), 404
 
-# Working
+# 🧱 Working
 @app.route('/json-files', methods=['GET'])
 def get_json_files():
     json_files = reader.list_json_files()
     return jsonify(json_files)
+
+@app.route('/json-data/<filename>', methods=['GET'])
+def get_json_data(filename):
+    simplified_data = reader.flatten_features(f'{filename}.json')
+    if simplified_data is not None:
+        return jsonify(simplified_data)
+    else:
+        return jsonify({"error": "File not found"}), 404
+# 🧱🧱🧱
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
