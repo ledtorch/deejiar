@@ -10,7 +10,7 @@ This is Deejiar's user-facing front-end, created with Vue 3.4 and Vite 5.2 It se
 This application provides a front-end UI for administrative tasks and management of the back-end. It's available at deejiar.com/admin.
 
 ## Flask
-This is the server-side component, developed with Python3 and Flask framework, using a PostgreSQL database. It handles the server logic and database operations for both the 'App' and the 'Datacenter'.
+> This is the server-side component, developed with Python3 and Flask framework, using a PostgreSQL database. It handles the server logic and database operations for both the 'App' and the 'Datacenter'.
 
 ## Data directory
 The directory that stores static files like stores.json
