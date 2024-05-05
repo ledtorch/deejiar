@@ -30,7 +30,7 @@ def flatten_features(filename):
                 'address': props.get('address'),
                 'auid': props.get('auid'),
                 'placeid': props.get('placeid'),
-                'latitude': geometry.get('coordinates', [])[1],
-                'longitude': geometry.get('coordinates', [])[0]
+                'longitude': geometry.get('coordinates', [])[0],
+                'latitude': geometry.get('coordinates', [])[1]
             })
     return simplified_data
