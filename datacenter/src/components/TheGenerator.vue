@@ -1,10 +1,13 @@
 <template>
   <div class="body">
-    <nav class="nav flex">
+    <nav class="nav">
       <button class="temp-button" @click="updateJSON">Update JSON</button>
       <Dropdown class="" :files="jsonFiles" @selected="handleFileSelection" />
     </nav>
     <section v-if="selectedData">
+      <nav class="nav">
+        <h2>Number of Features: {{ selectedData.length }}</h2>
+      </nav>
       <div v-for="item in selectedData" :key="item.id" class="flex-col">
         <FormString :key="prop" :value="item" :property="prop" v-for="prop in editableProperties"
           @update="updateFeature(item.id, $event)" />
@@ -74,6 +77,7 @@ export default {
 }
 
 .nav {
+  display: flex;
   width: 920px;
   justify-content: space-between;
   align-items: flex-start;
