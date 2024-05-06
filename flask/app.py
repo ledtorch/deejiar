@@ -1,21 +1,21 @@
-# Flask framework
-from flask import Flask, request, jsonify
-
-# Environment settings
-from dotenv import load_dotenv
-
 # Standard libraries
 import os
 import json
 from datetime import datetime, timedelta
 
-# Security, authentication, and route handling
+# Environment settings
+from dotenv import load_dotenv
+
+# Flask framework
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity, create_access_token
+
+# Security and utilities
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-# Modules
+# Local modules
 from og import og_bp
 import reader
 
@@ -24,6 +24,7 @@ env_file = '.env.production' if os.getenv('FLASK_ENV') == 'production' else '.en
 load_dotenv(env_file)
 
 # Files and sources
+# STORES_JSON_PATH = '../data/stores.json'
 STORES_JSON_PATH = '../data/stores.json'
 DATACENTER_API_BASE_URL = os.getenv('DATACENTER_API_BASE_URL')
 
@@ -78,29 +79,29 @@ def dashboard():
     return jsonify(logged_in_as=current_user), 200
 
 # JSON
-@app.route('/stores', methods=['POST'])
-def update_json():
-    # Make a backup of the current stores.json
-    if os.path.exists(STORES_JSON_PATH):
-        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-        backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{timestamp}.json')
-        os.rename(STORES_JSON_PATH, backup_path)
+# @app.route('/stores', methods=['POST'])
+# def update_json():
+#     # Make a backup of the current stores.json
+#     if os.path.exists(STORES_JSON_PATH):
+#         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+#         backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{timestamp}.json')
+#         os.rename(STORES_JSON_PATH, backup_path)
 
-    # Save the new JSON data
-    data = request.json
-    with open(STORES_JSON_PATH, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+#     # Save the new JSON data
+#     data = request.json
+#     with open(STORES_JSON_PATH, 'w', encoding='utf-8') as f:
+#         json.dump(data, f, ensure_ascii=False, indent=4)
 
-    return jsonify({"message": "JSON data updated successfully"}), 200
+#     return jsonify({"message": "JSON data updated successfully"}), 200
 
-@app.route('/stores', methods=['GET'])
-def get_stores():
-    if os.path.exists(STORES_JSON_PATH):
-        with open(STORES_JSON_PATH, 'r', encoding='utf-8') as file:
-            stores_data = json.load(file)
-        return jsonify(stores_data)
-    else:
-        return jsonify({"error": "stores.json not found"}), 404
+# @app.route('/stores', methods=['GET'])
+# def get_stores():
+#     if os.path.exists(STORES_JSON_PATH):
+#         with open(STORES_JSON_PATH, 'r', encoding='utf-8') as file:
+#             stores_data = json.load(file)
+#         return jsonify(stores_data)
+#     else:
+#         return jsonify({"error": "stores.json not found"}), 404
 
 # 🧱 Working
 @app.route('/json-files', methods=['GET'])
@@ -115,8 +116,23 @@ def get_json_data(filename):
         return jsonify(simplified_data)
     else:
         return jsonify({"error": "File not found"}), 404
-# 🧱🧱🧱
 
+# Save a new json
+@app.route('/save', methods=['POST'])
+def update_json():
+    # Make a backup of the current stores.json
+    if os.path.exists(STORES_JSON_PATH):
+        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+        backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{timestamp}.json')
+        os.rename(STORES_JSON_PATH, backup_path)
+
+    # Save the new JSON data
+    data = request.json
+    with open(STORES_JSON_PATH, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+    return jsonify({"message": "JSON data updated successfully"}), 200
+# 🧱🧱🧱
 
 
 if __name__ == '__main__':
