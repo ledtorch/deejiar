@@ -11,6 +11,7 @@ def list_json_files():
     json_files = [file for file in files if file.endswith('.json')]
     return json_files
 
+# Extract features as single layer objects in an array
 def flatten_features(filename):
     path = os.path.join(JSON_PATH, filename)
     if not os.path.exists(path):
@@ -27,6 +28,7 @@ def flatten_features(filename):
                 'title': props.get('title'),
                 'type': props.get('type'),
                 'layout': props.get('layout'),
+                'description': props.get('description'),
                 'address': props.get('address'),
                 'auid': props.get('auid'),
                 'placeid': props.get('placeid'),
