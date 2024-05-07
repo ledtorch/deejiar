@@ -25,7 +25,7 @@ load_dotenv(env_file)
 
 # Files and sources
 # STORES_JSON_PATH = '../data/stores.json'
-STORES_JSON_PATH = '../data/stores.json'
+STORES_JSON_PATH = '../data/'
 DATACENTER_API_BASE_URL = os.getenv('DATACENTER_API_BASE_URL')
 
 # User account
@@ -118,20 +118,27 @@ def get_json_data(filename):
         return jsonify({"error": "File not found"}), 404
 
 # Save a new json
-@app.route('/save', methods=['POST'])
-def update_json():
-    # Make a backup of the current stores.json
-    if os.path.exists(STORES_JSON_PATH):
+@app.route('/save/<filename>', methods=['POST'])
+def update_json(filename):
+    # Define the path to the JSON file
+    base_directory = '../data/'
+    json_file_path = os.path.join(base_directory, f"{filename}.json")
+
+    # Make a backup of the current JSON file
+    if os.path.exists(json_file_path):
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-        backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{timestamp}.json')
-        os.rename(STORES_JSON_PATH, backup_path)
+        backup_path = json_file_path.replace('.json', f'_backup_{timestamp}.json')
+        os.rename(json_file_path, backup_path)
+    else:
+        # If the file does not exist, we should not proceed
+        return jsonify({"error": "File not found"}), 404
 
     # Save the new JSON data
     data = request.json
-    with open(STORES_JSON_PATH, 'w', encoding='utf-8') as f:
+    with open(json_file_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
-    return jsonify({"message": "JSON data updated successfully"}), 200
+    return jsonify({"message": f"{filename} updated successfully"}), 200
 # 🧱🧱🧱
 
 
