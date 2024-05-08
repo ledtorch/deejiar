@@ -117,29 +117,60 @@ def get_json_data(filename):
     else:
         return jsonify({"error": "File not found"}), 404
 
-# Save a new json
+# # Save a new json
+# @app.route('/save/<filename>', methods=['POST'])
+# def update_json(filename):
+#     # Define the path to the JSON file
+#     base_directory = '../data/'
+#     json_file_path = os.path.join(base_directory, f"{filename}.json")
+
+#     # Make a backup of the current JSON file
+#     if os.path.exists(json_file_path):
+#         timestamp = datetime.now().strftime('%m%d%H%M%S')
+#         backup_path = json_file_path.replace('.json', f'_backup_{timestamp}.json')
+#         os.rename(json_file_path, backup_path)
+#     else:
+#         # If the file does not exist, we should not proceed
+#         return jsonify({"error": "File not found"}), 404
+
+#     # Save the new JSON data
+#     data = request.json
+#     with open(json_file_path, 'w', encoding='utf-8') as f:
+#         json.dump(data, f, ensure_ascii=False, indent=4)
+
+#     return jsonify({"message": f"{filename} updated successfully"}), 200
+# # 🧱🧱🧱
 @app.route('/save/<filename>', methods=['POST'])
 def update_json(filename):
-    # Define the path to the JSON file
     base_directory = '../data/'
     json_file_path = os.path.join(base_directory, f"{filename}.json")
 
     # Make a backup of the current JSON file
     if os.path.exists(json_file_path):
-        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+        timestamp = datetime.now().strftime('%H%M%S')
         backup_path = json_file_path.replace('.json', f'_backup_{timestamp}.json')
         os.rename(json_file_path, backup_path)
     else:
-        # If the file does not exist, we should not proceed
+        # If the file does not exist, do not proceed
         return jsonify({"error": "File not found"}), 404
 
-    # Save the new JSON data
-    data = request.json
-    with open(json_file_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+    # Get the edited data from the request
+    edited_data = request.json
 
+    try:
+        # Use the reconstruct_json function to rebuild the JSON structure
+        reconstructed_data = reader.reconstruct_json(edited_data)
+
+        # Save the new JSON data
+        with open(json_file_path, 'w', encoding='utf-8') as f:
+            json.dump(reconstructed_data, f, ensure_ascii=False, indent=4)
+
+    except ValueError as e:
+        # Handle the error by returning an error response
+        return jsonify({"error": str(e)}), 400  # Bad request due to data error
+
+    # If everything went well
     return jsonify({"message": f"{filename} updated successfully"}), 200
-# 🧱🧱🧱
 
 
 if __name__ == '__main__':
