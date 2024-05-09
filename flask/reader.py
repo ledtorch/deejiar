@@ -35,12 +35,16 @@ def flatten_features(filename):
                 'description': props.get('description'),
                 'storefront-day': storefront.get('day', ''),
                 'storefront-night': storefront.get('night', ''),
+                
                 # geoProperties
                 'address': props.get('address'),
                 'auid': props.get('auid'),
                 'placeid': props.get('placeid'),
                 'longitude': geometry.get('coordinates', [])[0],
                 'latitude': geometry.get('coordinates', [])[1],
+                
+                # Tags
+                'tag': props.get('tag', [])
                 
                 
             })
@@ -89,10 +93,14 @@ def reconstruct_json(features):
                     "day": feature.get('storefront-day'),
                     "night": feature.get('storefront-night')
                 },
+                
                 # geoProperties
                 "address": feature.get('address'),
                 "auid": feature.get('auid'),
                 "placeid": feature.get('placeid'),
+
+                # Tags
+                'tag': feature.get('tag', [])
             }
         }
         # productProperties
