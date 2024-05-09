@@ -4,6 +4,7 @@
       <h1>Datacenter</h1>
 
       <form class="submit-frame" @submit.prevent="submitLogin">
+
         <div class="form-frame">
           <div class="nav">
             <p class="headline">Account</p>
@@ -21,8 +22,8 @@
         </div>
 
         <button type="submit">Login</button>
-
       </form>
+
     </div>
   </div>
 </template>
