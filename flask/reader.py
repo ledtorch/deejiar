@@ -24,24 +24,32 @@ def flatten_features(filename):
             props = feature.get('properties', {})
             geometry = feature.get('geometry', {})
             icon = props.get('icon', {}).get('active', '').split('/')[-1].replace('-active.png', '')
-            simplified_data.append({
+            storefront = props.get('storefront', {})
+            feature_dict = ({
                 # basicProperties
                 'id': props.get('id'),
                 'title': props.get('title'),
                 'type': props.get('type'),
                 'layout': props.get('layout'),
-                'description': props.get('description'),
                 'icon': icon,
-                'storefront': storefront,
+                'description': props.get('description'),
+                'storefront-day': storefront.get('day', ''),
+                'storefront-night': storefront.get('night', ''),
                 # geoProperties
                 'address': props.get('address'),
                 'auid': props.get('auid'),
                 'placeid': props.get('placeid'),
                 'longitude': geometry.get('coordinates', [])[0],
                 'latitude': geometry.get('coordinates', [])[1],
-                # productProperties
-                # timeProperties
+                
+                
             })
+            # productProperties
+            for i in range(1, 6):
+                feature_dict[f'item{i}'] = props.get(f'item{i}', {})
+
+            simplified_data.append(feature_dict)
+            # timeProperties
     return simplified_data
 
 # Rebuild the nested JSON structure from the flattened data
@@ -69,7 +77,6 @@ def reconstruct_json(features):
                 "title": feature.get('title'),
                 "type": feature.get('type'),
                 "layout": feature.get('layout'),
-                "description": feature.get('description'),
                 "icon": {
                     "active": f"button/marker/{icon}-active.png",
                     "default": f"button/marker/{icon}-default.png",
@@ -77,17 +84,22 @@ def reconstruct_json(features):
                     "mini": f"button/marker/{icon}-mini.png",
                     "withFriends": f"button/marker/{icon}-withFriends.png"
                 },
-
+                "description": feature.get('description'),
+                "storefront": {
+                    "day": feature.get('storefront-day'),
+                    "night": feature.get('storefront-night')
+                },
                 # geoProperties
                 "address": feature.get('address'),
                 "auid": feature.get('auid'),
                 "placeid": feature.get('placeid'),
-                
-                # productProperties
-                
-                # timeProperties
             }
         }
+        # productProperties
+        for i in range(1, 6):
+            reconstructed_feature['properties'][f'item{i}'] = feature.get(f'item{i}', {})
+
         reconstructed['features'].append(reconstructed_feature)
+        # timeProperties
     return reconstructed
 
