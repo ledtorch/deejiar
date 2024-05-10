@@ -1,48 +1,29 @@
 <template>
-  <div class="form-frame">
-    <div class="nav">
-      <p class="headline">{{ capitalizedProperty }}</p>
-      <!-- Only show the Edit button when editing is false -->
-      <button class="text-button" v-if="!editing" @click="startEditing(property)">
-        Edit
-      </button>
-      <!-- Only show the Save button when editing is true -->
-      <button class="text-button" v-if="editing" @click="save">Save</button>
+  <div>
+    <div v-for="prop in properties" :key="prop">
+      <label>{{ prop }}:</label>
+      <input v-model="item[prop]" @blur="emitUpdate" />
     </div>
-    <input :class="{ input: !editing, 'input-on': editing }" v-model="editingValue" />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["value", "property"],
+  props: {
+    itemId: String,
+    item: Object
+  },
   data() {
     return {
-      editing: false,
-      editingValue: "",
+      properties: ['name', 'image', 'price', 'description']
     };
   },
-  computed: {
-    capitalizedProperty() {
-      return this.property.charAt(0).toUpperCase() + this.property.slice(1);
-    },
-  },
   methods: {
-    startEditing() {
-      this.editing = true;
-      // Join the array into a string for editing
-      this.editingValue = this.value.join(", ");
-    },
-    save() {
-      // Split the string back into an array
-      const newValue = this.editingValue.split(',').map(item => item.trim());
-
-      // Emitting the update event with the new array
-      this.$emit("update", { property: this.property, value: newValue });
-      this.editing = false;
+    emitUpdate() {
+      this.$emit('updateItem', this.itemId, this.item);
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>

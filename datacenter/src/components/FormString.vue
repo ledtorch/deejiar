@@ -66,7 +66,8 @@ export default {
 }
 
 .form-frame {
-  display: flex;
+  width: 200px;
+  min-width: 200px;
   flex-grow: 1;
   flex-direction: column;
   align-items: flex-start;
