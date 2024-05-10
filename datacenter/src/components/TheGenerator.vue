@@ -2,17 +2,33 @@
   <div class="body">
     <nav class="nav">
       <button class="temp-button" @click="updateJSON">Update JSON</button>
-      <Dropdown class="" :files="jsonFiles" @selected="handleFileSelection" />
+      <Dropdown class="" :files="jsonList" @selected="handleFileSelection" />
     </nav>
     <section v-if="selectedData">
       <h2>Number of Features: {{ selectedData.length }}</h2>
       <div class="data-section flex-col" v-for="item in selectedData" :key="item.id">
-        <div class="form-set flex-wrap">
+
+        <h4 class="green">Basic</h4>
+        <div class="frame-set flex-wrap">
           <FormString :key="prop" :value="item" :property="prop" v-for="prop in basicProperties"
             @update="updateFeature(item.id, $event)" />
+        </div>
+        <div class="splitline" />
+
+        <h4 class="green">Geo</h4>
+        <div class="frame-set flex-wrap">
           <FormString :key="prop" :value="item" :property="prop" v-for="prop in geoProperties"
             @update="updateFeature(item.id, $event)" />
         </div>
+        <div class="splitline" />
+
+        <div v-for="(productKey, index) in productProperties" :key="'product-' + item.id + '-' + productKey">
+          <h4>{{ productKey.toUpperCase() }}</h4>
+          <FormString v-for="(prop, idx) in ['name', 'description', 'image', 'price']"
+            :key="'prop-' + item.id + '-' + productKey + '-' + idx" :property="prop" :value="item[productKey][prop]"
+            @update="updateFeature(item.id, [`${productKey}.${prop}`, $event])" />
+        </div>
+
       </div>
     </section>
   </div>
@@ -21,28 +37,31 @@
 <script>
 import Dropdown from "./Button/Dropdown.vue";
 import FormString from "./FormString.vue";
+import FormArray from "./FormArray.vue";
 import axios from 'axios';
 
 export default {
-  components: { Dropdown, FormString },
+  components: { Dropdown, FormString, FormArray },
   data() {
     return {
       API: import.meta.env.VITE_DATACENTER_API,
-      jsonFiles: [],
+      jsonList: [],
       selectedData: [],
       currentFile: '',
-      basicProperties: ['id', 'title', 'type', 'layout'],
-      geoProperties: ['address', 'latitude', 'longitude', 'auid', 'placeid']
+      basicProperties: ['id', 'title', 'type', 'layout', 'icon', 'description', 'storefront-day', 'storefront-night'],
+      geoProperties: ['address', 'latitude', 'longitude', 'auid', 'placeid'],
+      timeProperties: [],
+      productProperties: ['item1', 'item2', 'item3', 'item4', 'item5']
     };
   },
   created() {
-    this.fetchJsonFiles();
+    this.fetchJsonList();
   },
   methods: {
-    async fetchJsonFiles() {
+    async fetchJsonList() {
       axios.get(`${this.API}/json-files`)
         .then(response => {
-          this.jsonFiles = response.data.map(file => file.replace(/\.json$/, ''));
+          this.jsonList = response.data.map(file => file.replace(/\.json$/, ''));
         })
         .catch(error => {
           console.error('Error fetching JSON files:', file, error);
@@ -51,6 +70,8 @@ export default {
     handleFileSelection(file) {
       axios.get(`${this.API}/json-data/${file}`)
         .then(response => {
+          // 🐞 Debug console
+          console.log(this.selectedData);
           this.selectedData = response.data;
           this.currentFile = file;
         })
@@ -60,19 +81,29 @@ export default {
     },
 
 
-
     updateFeature(featureId, [prop, value]) {
       let feature = this.selectedData.find(f => f.id === featureId);
       if (feature) {
         feature[prop] = value;
       }
     },
+    // updateFeature(featureId, propPath, value) {
+    //   let feature = this.selectedData.find(f => f.id === featureId);
+    //   if (feature) {
+    //     // Handle nested paths, e.g., 'item1.name'
+    //     const props = propPath.split('.');
+    //     if (props.length === 2) {
+    //       feature[props[0]][props[1]] = value;
+    //     } else {
+    //       feature[propPath] = value;
+    //     }
+    //   }
+    // },
     async updateJSON() {
       try {
-        const filename = this.currentFile; // Ensure this is the correct filename
+        const filename = this.currentFile;
         const response = await axios.post(`${this.API}/save/${filename}`, this.selectedData);
-        console.log("Current file to be updated:", this.currentFile);
-
+        // 🐞 Debug console
         console.log(response.data.message);
       } catch (error) {
         console.error('Failed to update JSON:', error.response ? error.response.data : error);
@@ -81,8 +112,7 @@ export default {
 
   },
 };
-// 🐞 Debug console
-// console.log('Selected file:', file);
+
 </script>
 
 <style lang="scss" scoped>
@@ -138,6 +168,14 @@ export default {
 .form-set {
   align-self: stretch;
   align-items: flex-start;
+  gap: 24px;
+}
+
+.green {
+  color: var(--1-system-green, #3DC363);
+}
+
+.frame-set {
   gap: 24px;
 }
 </style>
