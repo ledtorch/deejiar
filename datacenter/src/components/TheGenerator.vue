@@ -6,28 +6,28 @@
     </nav>
     <section v-if="selectedData">
       <h2>Number of Features: {{ selectedData.length }}</h2>
-      <div class="data-section flex-col" v-for="item in selectedData" :key="item.id">
+      <div class="data-section flex-col" v-for="feature in selectedData" :key="feature.id">
 
         <h4 class="green">Basic</h4>
         <div class="frame-set flex-wrap">
-          <FormString :key="prop" :value="item" :property="prop" v-for="prop in basicProperties"
-            @update="updateFeature(item.id, $event)" />
+          <FormString :key="prop" :value="feature" :property="prop" v-for="prop in basicProperties"
+            @update="updateFeature(feature.id, $event)" />
         </div>
         <div class="splitline" />
 
         <h4 class="green">Geo</h4>
         <div class="frame-set flex-wrap">
-          <FormString :key="prop" :value="item" :property="prop" v-for="prop in geoProperties"
-            @update="updateFeature(item.id, $event)" />
+          <FormString :key="prop" :value="feature" :property="prop" v-for="prop in geoProperties"
+            @update="updateFeature(feature.id, $event)" />
         </div>
         <div class="splitline" />
 
-        <div v-for="(productKey, index) in productProperties" :key="'product-' + item.id + '-' + productKey">
+        <!-- <div v-for="(productKey, index) in products" :key="'product-' + item.id + '-' + productKey">
           <h4>{{ productKey.toUpperCase() }}</h4>
-          <FormString v-for="(prop, idx) in ['name', 'description', 'image', 'price']"
-            :key="'prop-' + item.id + '-' + productKey + '-' + idx" :property="prop" :value="item[productKey][prop]"
+          <FormString v-for="(prop, idx) in productProperties" :key="'prop-' + item.id + '-' + productKey + '-' + idx"
+            :property="prop" :value="item[productKey][prop]"
             @update="updateFeature(item.id, [`${productKey}.${prop}`, $event])" />
-        </div>
+        </div> -->
 
       </div>
     </section>
@@ -51,12 +51,17 @@ export default {
       basicProperties: ['id', 'title', 'type', 'layout', 'icon', 'description', 'storefront-day', 'storefront-night'],
       geoProperties: ['address', 'latitude', 'longitude', 'auid', 'placeid'],
       timeProperties: [],
-      productProperties: ['item1', 'item2', 'item3', 'item4', 'item5']
+      products: ['item1', 'item2', 'item3', 'item4', 'item5'],
+      productProperties: ['name', 'description', 'image', 'price']
     };
   },
   created() {
     this.fetchJsonList();
   },
+  mounted() {
+    console.log('Mounted FormString with props:', this.$props);
+  },
+
   methods: {
     async fetchJsonList() {
       axios.get(`${this.API}/json-files`)
