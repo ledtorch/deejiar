@@ -18,5 +18,12 @@ The directory that stores static files like stores.json
 ## Server
 The entire system is set up on an Ubuntu 22.04.2 LTS server with Nginx 1.18.
 
+### Git Commit Message Convention
+> This is adapted from [Vue's commit convention](https://github.com/vuejs/core/blob/main/.github/commit-convention.md).
+All commits should be matched by the following regex:
+```regexp
+feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip
+```
+
 ## License
 Copyright (c) 2023-present, Jerry
