@@ -60,25 +60,24 @@ export default {
       var(--token-secondary-text, rgba(255, 255, 255, 0.75)));
 }
 
-.input {
-  width: auto;
-  padding: 12px;
-  border: 0px;
-  border-radius: var(--border-content, 6px);
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-}
-
+.input,
 .input-on {
   width: auto;
   padding: 12px;
-  border: 1px solid var(--baseline-green, #3dc363);
+  border: 1px solid transparent;
+  /* Ensures border width is included in height calculations */
   border-radius: var(--border-content, 6px);
   box-sizing: border-box;
+  /* Includes padding and border in the element's total width and height */
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  height: 50px;
+  /* Explicitly setting the height */
+}
+
+.input-on {
+  border: 1px solid var(--baseline-green, #3dc363);
 }
 
 // Temp
