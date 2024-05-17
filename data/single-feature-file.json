@@ -136,7 +136,7 @@
           "day": "stores/cafe/big-bear-cafe/storefront-day.jpg",
           "night": "stores/cafe/big-bear-cafe/storefront-night.jpg"
         },
-        "tag": "[]"
+        "tag": "[a, b]"
       },
       "type": "Feature"
     }
