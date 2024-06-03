@@ -16,7 +16,7 @@ from passlib.context import CryptContext
 
 # Local modules
 from . import json_utils
-from .og import og_router
+# from .og import og_router
 
 # Load environment variables
 env_file = '.env.production' if os.getenv('FASTAPI_ENV') == 'production' else '.env.local'
@@ -48,7 +48,7 @@ app.add_middleware(
 )
 
 # Register the blueprint for OG image feature
-app.include_router(og_router)
+# app.include_router(og_router)
 
 # Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
