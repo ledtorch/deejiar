@@ -3,9 +3,7 @@
     <div class="nav">
       <p class="headline">{{ capitalizedProperty }}</p>
       <!-- Only show the Edit button when editing is false -->
-      <button class="text-button" v-if="!editing" @click="startEditing(property)">
-        Edit
-      </button>
+      <button class="text-button" v-if="!editing" @click="startEditing(property)">Edit</button>
       <!-- Only show the Save button when editing is true -->
       <button class="text-button" v-if="editing" @click="save">Save</button>
     </div>
