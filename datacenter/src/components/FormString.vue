@@ -17,7 +17,8 @@ export default {
   data() {
     return {
       editing: false,
-      editingValue: "",
+      editingValue: this.value,
+      // editingValue: this.value ? this.value[this.property] || '' : '',
     };
   },
   computed: {
@@ -36,13 +37,15 @@ export default {
       console.log('Value: ' + this.value[property])
 
       this.editing = true;
-      this.editingValue = this.value[property].toString();
+      // this.editingValue = this.value[property].toString();
+      this.editingValue = this.value ? this.value[this.property] || '' : '';
     },
     save() {
       let valueToEmit;
 
       valueToEmit = this.variant === 'number' ? parseFloat(this.editingValue) : this.editingValue;
 
+      console.log('Save!')
       this.$emit("update", [this.property, valueToEmit]);
       this.editing = false;
     }
