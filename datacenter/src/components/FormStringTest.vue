@@ -1,7 +1,7 @@
 <template>
   <div class="form-frame">
     <div class="nav">
-      <p class="headline">{{ capitalizedProperty }}</p>
+      <p class="headline">Head {{ capitalizedProperty }}</p>
       <!-- Only show the Edit button when editing is false -->
       <button class="text-button" v-if="!editing" @click="startEditing(property)">Edit</button>
       <!-- Only show the Save button when editing is true -->
@@ -13,7 +13,8 @@
 
 <script>
 export default {
-  props: ["value", "property"],
+
+  props: ['value', 'property'],
   data() {
     return {
       editing: false,
@@ -24,8 +25,8 @@ export default {
     // Convert the key to the title
     capitalizedProperty() {
       // // 🐞 Debug console
-      // console.log('The value: ' + this.value);
-      // console.log('The property: ' + this.property);
+      console.log('The value: ' + this.value);
+      console.log('The property: ' + this.property);
 
       return this.property.charAt(0).toUpperCase() + this.property.slice(1);
     },
