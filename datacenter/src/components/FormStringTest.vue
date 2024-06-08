@@ -1,7 +1,7 @@
 <template>
   <div class="form-frame">
     <div class="nav">
-      <p class="headline">Head {{ capitalizedProperty }}</p>
+      <p class="headline">{{ capitalizedProperty }}</p>
       <!-- Only show the Edit button when editing is false -->
       <button class="text-button" v-if="!editing" @click="startEditing(property)">Edit</button>
       <!-- Only show the Save button when editing is true -->
@@ -11,44 +11,61 @@
   </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import { ref, computed, watch, defineModel, defineProps } from 'vue';
 
-  props: ['value', 'property'],
-  data() {
-    return {
-      editing: false,
-      editingValue: this.value,
-    };
-  },
-  computed: {
-    // Convert the key to the title
-    capitalizedProperty() {
-      // // 🐞 Debug console
-      console.log('The value: ' + this.value);
-      console.log('The property: ' + this.property);
+// Define the model value for v-model
+const model = defineModel({
+  name: 'modelValue',
+  type: String,
+  required: true
+});
 
-      return this.property.charAt(0).toUpperCase() + this.property.slice(1);
-    },
-  },
-  methods: {
-    startEditing(property) {
-      // 🐞 Debug console
-      console.log('Value: ' + this.value[property])
+// Define other props
+const props = defineProps({
+  property: {
+    type: String,
+    required: true
+  }
+});
 
-      this.editing = true;
-      this.editingValue = this.value[property].toString();
-    },
-    save() {
-      let valueToEmit;
 
-      valueToEmit = this.variant === 'number' ? parseFloat(this.editingValue) : this.editingValue;
+// export default {
+//   props: ['value', 'property'],
+//   data() {
+//     return {
+//       editing: false,
+//       editingValue: this.value,
+//     };
+//   },
+//   computed: {
+//     // Convert the key to the title
+//     capitalizedProperty() {
+//       // // 🐞 Debug console
+//       console.log('The value: ' + this.value);
+//       console.log('The property: ' + this.property);
 
-      this.$emit("update", [this.property, valueToEmit]);
-      this.editing = false;
-    }
-  },
-};
+//       return this.property.charAt(0).toUpperCase() + this.property.slice(1);
+//     },
+//   },
+//   methods: {
+//     startEditing(property) {
+//       // 🐞 Debug console
+//       console.log('Value: ' + this.value[property])
+
+//       this.editing = true;
+//       this.editingValue = this.value[property].toString();
+//     },
+//     save() {
+//       let valueToEmit;
+
+//       valueToEmit = this.variant === 'number' ? parseFloat(this.editingValue) : this.editingValue;
+
+//       this.$emit("update", [this.property, valueToEmit]);
+//       this.editing = false;
+//     }
+//   },
+// };
 </script>
 
 <style lang="scss" scoped>
