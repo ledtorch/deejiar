@@ -1,0 +1,48 @@
+[
+  {
+    "id": "1",
+    "title": "Big Bear Cafe",
+    "type": "cafe",
+    "layout": "food",
+    "icon": "cafe",
+    "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
+    "storefront-day": "stores/cafe/big-bear-cafe/storefront-day.jpg",
+    "storefront-night": "stores/cafe/big-bear-cafe/storefront-night.jpg",
+    "address": "1201 S St NW, Washington, DC 20009",
+    "auid": "1141545104174516841",
+    "placeid": "ChIJWbmml_e3t4kRDzgyQ5HJP_c",
+    "longitude": -77.01243920316357,
+    "latitude": 38.91286090122076,
+    "tag": ["a", "b"],
+    "item1": {
+      "description": "Cold whole or oat milk drink with flavored syrup. No coffee! Enjoy with a classic chai or vanilla syrup, or ask our baristas about our seasonal syrup options.",
+      "image": "stores/cafe/big-bear-cafe/iced-steamer.jpg",
+      "name": "Iced Steamer",
+      "price": "$3.8"
+    },
+    "item2": {
+      "description": "Enjoy your chewy shrimp with sour salsa, but the original taste is awesome as well.",
+      "image": "stores/cafe/big-bear-cafe/shrimp-taco.jpg",
+      "name": "Shrimp Taco",
+      "price": "$12"
+    },
+    "item3": {
+      "description": "",
+      "image": "",
+      "name": "",
+      "price": ""
+    },
+    "item4": {
+      "description": "",
+      "image": "",
+      "name": "",
+      "price": ""
+    },
+    "item5": {
+      "description": "",
+      "image": "",
+      "name": "",
+      "price": ""
+    }
+  }
+]
