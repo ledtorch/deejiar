@@ -3,7 +3,7 @@
     <div class="nav">
       <p class="headline">{{ capitalizedProperty }}</p>
       <!-- Only show the Edit button when editing is false -->
-      <button class="text-button" v-if="!editing" @click="startEditing(property)">Edit</button>
+      <button class="text-button" v-if="!editing" @click="edit(property)">Edit</button>
       <!-- Only show the Save button when editing is true -->
       <button class="text-button" v-if="editing" @click="save">Save</button>
     </div>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  props: ["value", "property"],
+  props: ['value', 'property'],
   data() {
     return {
       editing: false,
@@ -31,9 +31,9 @@ export default {
     },
   },
   methods: {
-    startEditing(property) {
+    edit(property) {
       // 🐞 Debug console
-      console.log('Value: ' + this.value[property])
+      console.log('Value[property]: ' + this.value[property])
 
       this.editing = true;
       this.editingValue = this.value[property].toString();
