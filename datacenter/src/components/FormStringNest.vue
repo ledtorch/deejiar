@@ -3,7 +3,7 @@
     <div class="nav">
       <p class="headline">{{ capitalizedProperty }}</p>
       <!-- Only show the Edit button when editing is false -->
-      <button class="text-button" v-if="!editing" @click="startEditing(property)">Edit</button>
+      <button class="text-button" v-if="!editing" @click="edit(property)">Edit</button>
       <!-- Only show the Save button when editing is true -->
       <button class="text-button" v-if="editing" @click="save">Save</button>
     </div>
@@ -11,61 +11,47 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, watch, defineModel, defineProps } from 'vue';
+<script>
+export default {
+  props: ['value', 'property'],
+  data() {
+    return {
+      editing: false,
+      editingValue: this.value,
+    };
+  },
+  computed: {
+    // Convert the key to the title
+    capitalizedProperty() {
+      // // 🐞 Debug console
+      // console.log('The value: ' + this.value);
+      // console.log('The property: ' + this.property);
 
-// Define the model value for v-model
-const model = defineModel({
-  name: 'modelValue',
-  type: String,
-  required: true
-});
+      return this.property.charAt(0).toUpperCase() + this.property.slice(1);
+    },
+  },
+  methods: {
+    edit() {
+      // // 🐞 Debug console
+      // console.log('Start editing');
+      // console.log('value:', this.value);
+      // console.log('property:', this.property);
+      // console.log('editingValue:', this.editingValue);
 
-// Define other props
-const props = defineProps({
-  property: {
-    type: String,
-    required: true
-  }
-});
+      this.editing = true;
+      this.editingValue = this.value;
+    },
+    save() {
+      let valueToEmit;
+      valueToEmit = this.editingValue;
+      this.$emit("update", [this.property, valueToEmit]);
+      this.editing = false;
 
-
-// export default {
-//   props: ['value', 'property'],
-//   data() {
-//     return {
-//       editing: false,
-//       editingValue: this.value,
-//     };
-//   },
-//   computed: {
-//     // Convert the key to the title
-//     capitalizedProperty() {
-//       // // 🐞 Debug console
-//       console.log('The value: ' + this.value);
-//       console.log('The property: ' + this.property);
-
-//       return this.property.charAt(0).toUpperCase() + this.property.slice(1);
-//     },
-//   },
-//   methods: {
-//     startEditing(property) {
-//       // 🐞 Debug console
-//       console.log('Value: ' + this.value[property])
-
-//       this.editing = true;
-//       this.editingValue = this.value[property].toString();
-//     },
-//     save() {
-//       let valueToEmit;
-
-//       valueToEmit = this.variant === 'number' ? parseFloat(this.editingValue) : this.editingValue;
-
-//       this.$emit("update", [this.property, valueToEmit]);
-//       this.editing = false;
-//     }
-//   },
-// };
+      // 🐞 Debug console 
+      console.log('valueToEmit:', valueToEmit);
+    }
+  },
+};
 </script>
 
 <style lang="scss" scoped>

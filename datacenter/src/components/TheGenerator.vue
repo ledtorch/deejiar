@@ -9,25 +9,29 @@
       <div class="data-section flex-col" v-for="feature in selectedData" :key="feature.id">
 
         <h4 class="green">Basic</h4>
-        <div class="frame-set flex-wrap">
+        <div class="flex-wrap wrapper">
           <FormString :key="prop" :value="feature" :property="prop" v-for="prop in basicProperties"
             @update="updateFeature(feature.id, $event)" />
         </div>
         <div class="splitline" />
 
         <h4 class="green">Geo</h4>
-        <div class="frame-set flex-wrap">
+        <div class="flex-wrap wrapper">
           <FormString :key="prop" :value="feature" :property="prop" v-for="prop in geoProperties"
             @update="updateFeature(feature.id, $event)" />
         </div>
         <div class="splitline" />
 
-        <!-- <div v-for="(productKey, index) in products" :key="'product-' + item.id + '-' + productKey">
-          <h4>{{ productKey.toUpperCase() }}</h4>
-          <FormString v-for="(prop, idx) in productProperties" :key="'prop-' + item.id + '-' + productKey + '-' + idx"
-            :property="prop" :value="item[productKey][prop]"
-            @update="updateFeature(item.id, [`${productKey}.${prop}`, $event])" />
-        </div> -->
+        <div v-for="product in products" class="flex-col wrapper">
+          <h4 class="green">{{ product }}</h4>
+
+          <div class="flex-wrap wrapper">
+            <div v-for="prop in productProperties">
+              <FormStringNest :key="prop" :value="feature[product][prop]" :property="prop"
+                @update="updateNestedObj(feature.id, product, $event)" />
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>
@@ -37,11 +41,11 @@
 <script>
 import Dropdown from "./Button/Dropdown.vue";
 import FormString from "./FormString.vue";
-import FormArray from "./FormArray.vue";
+import FormStringNest from "./FormStringNest.vue";
 import axios from 'axios';
 
 export default {
-  components: { Dropdown, FormString, FormArray },
+  components: { Dropdown, FormString, FormStringNest },
   data() {
     return {
       API: import.meta.env.VITE_DATACENTER_API,
@@ -85,25 +89,26 @@ export default {
         });
     },
 
-
     updateFeature(featureId, [prop, value]) {
       let feature = this.selectedData.find(f => f.id === featureId);
       if (feature) {
         feature[prop] = value;
       }
     },
-    // updateFeature(featureId, propPath, value) {
-    //   let feature = this.selectedData.find(f => f.id === featureId);
-    //   if (feature) {
-    //     // Handle nested paths, e.g., 'item1.name'
-    //     const props = propPath.split('.');
-    //     if (props.length === 2) {
-    //       feature[props[0]][props[1]] = value;
-    //     } else {
-    //       feature[propPath] = value;
-    //     }
-    //   }
-    // },
+
+    /** 
+    *  In Vue, when updating a value inside a nested object, the entire object should be updated
+    *  to ensure reactivity. This function updates a specific property within a nested object 
+    *  (like 'item1', 'item2', etc.) of a feature in the `selectedData` array. Even though only 
+    *  a single property value is being updated, we modify the whole nested object to maintain Vue's reactivity.
+    */
+    updateNestedObj(featureId, product, [prop, value]) {
+      let feature = this.selectedData.find(f => f.id === featureId);
+      if (feature && feature[product]) {
+        feature[product][prop] = value;
+      }
+    },
+
     async updateJSON() {
       try {
         const filename = this.currentFile;
@@ -180,7 +185,7 @@ export default {
   color: var(--1-system-green, #3DC363);
 }
 
-.frame-set {
+.wrapper {
   gap: 24px;
 }
 </style>
