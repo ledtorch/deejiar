@@ -2,6 +2,7 @@
   <div class="body">
     <nav class="nav">
       <button class="temp-button" @click="updateJSON">Update JSON</button>
+      <button class="temp-button" @click="addNewFeature">Add New Feature</button>
       <Dropdown class="" :files="jsonList" @selected="handleFileSelection" />
     </nav>
     <section v-if="selectedData">
@@ -109,12 +110,29 @@ export default {
       }
     },
 
+    addNewFeature() {
+      if (this.selectedData.length === 0) {
+        console.warn('No features available to duplicate.');
+        return;
+      }
+
+      // Clone the latest feature
+      const latestFeature = this.selectedData[this.selectedData.length - 1];
+      const newFeature = JSON.parse(JSON.stringify(latestFeature));
+
+      // Generate a new unique ID for the new feature
+      newFeature.id = this.selectedData.length + 1;
+
+      // Add the new feature to the selectedData array
+      this.selectedData.push(newFeature);
+    },
+
     async updateJSON() {
       try {
         const filename = this.currentFile;
         const response = await axios.post(`${this.API}/save/${filename}`, this.selectedData);
         // 🐞 Debug console
-        console.log(response.data.message);
+        // console.log(response.data.message);
       } catch (error) {
         console.error('Failed to update JSON:', error.response ? error.response.data : error);
       }
