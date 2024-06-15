@@ -5,10 +5,17 @@
       <button class="temp-button" @click="addNewFeature">Add New Feature</button>
       <Dropdown class="" :files="jsonList" @selected="handleFileSelection" />
     </nav>
-    <section v-if="selectedData">
-      <h2>Number of Features: {{ selectedData.length }}</h2>
-      <div class="data-section flex-col" v-for="feature in selectedData" :key="feature.id">
-
+    <section v-if="selectedData" class="flex flex-col wrapper">
+      <nav class="nav">
+        <h2>Number of Features: {{ selectedData.length }}</h2>
+        <div class="button-set">
+          <LeftArrow @click="prevPage" :disabled="currentPage === 1" />
+          <span>{{ currentPage }} / {{ totalPages }}</span>
+          <RightArrow @click="nextPage" :disabled="currentPage === totalPages" />
+        </div>
+      </nav>
+      <div class="data-section flex-col" v-for="feature in paginatedFeatures" :key="feature.id">
+        <h3>{{ feature.title }}</h3>
         <h4 class="green">Basic</h4>
         <div class="flex-wrap wrapper">
           <FormString :key="prop" :value="feature" :property="prop" v-for="prop in basicProperties"
@@ -34,6 +41,10 @@
           </div>
         </div>
 
+        <div>
+          <FormBusinessHour />
+        </div>
+
       </div>
     </section>
   </div>
@@ -41,12 +52,15 @@
 
 <script>
 import Dropdown from "./Button/Dropdown.vue";
+import RightArrow from "./Button/RightArrow.vue";
+import LeftArrow from "./Button/LeftArrow.vue";
 import FormString from "./FormString.vue";
 import FormStringNest from "./FormStringNest.vue";
+import FormBusinessHour from "./FormBusinessHour.vue";
 import axios from 'axios';
 
 export default {
-  components: { Dropdown, FormString, FormStringNest },
+  components: { Dropdown, RightArrow, LeftArrow, FormString, FormStringNest, FormBusinessHour },
   data() {
     return {
       API: import.meta.env.VITE_DATACENTER_API,
@@ -57,7 +71,11 @@ export default {
       geoProperties: ['address', 'latitude', 'longitude', 'auid', 'placeid'],
       timeProperties: [],
       products: ['item1', 'item2', 'item3', 'item4', 'item5'],
-      productProperties: ['name', 'description', 'image', 'price']
+      productProperties: ['name', 'description', 'image', 'price'],
+
+      // Page data
+      currentPage: 1,
+      featuresPerPage: 10,
     };
   },
   created() {
@@ -65,6 +83,18 @@ export default {
   },
   mounted() {
     console.log('Mounted FormString with props:', this.$props);
+  },
+
+  // Pagination
+  computed: {
+    totalPages() {
+      return Math.ceil(this.selectedData.length / this.featuresPerPage);
+    },
+    paginatedFeatures() {
+      let start = (this.currentPage - 1) * this.featuresPerPage;
+      let end = start + this.featuresPerPage;
+      return this.selectedData.slice(start, end);
+    }
   },
 
   methods: {
@@ -90,6 +120,7 @@ export default {
         });
     },
 
+    // Editing data
     updateFeature(featureId, [prop, value]) {
       let feature = this.selectedData.find(f => f.id === featureId);
       if (feature) {
@@ -125,6 +156,18 @@ export default {
 
       // Add the new feature to the selectedData array
       this.selectedData.push(newFeature);
+    },
+
+    // Pagination
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
     },
 
     async updateJSON() {
@@ -190,7 +233,7 @@ export default {
   gap: 24px;
   padding: 24px;
   border-radius: 12px;
-  border: 1px solid var(--token-secondary-text, rgba(255, 255, 255, 0.75));
+  background: #171C28;
 }
 
 .form-set {
@@ -204,6 +247,11 @@ export default {
 }
 
 .wrapper {
+  gap: 24px;
+}
+
+.button-set {
+  align-items: flex-start;
   gap: 24px;
 }
 </style>
