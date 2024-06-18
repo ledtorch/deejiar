@@ -114,4 +114,3 @@ def reconstruct_json(features):
         reconstructed['features'].append(reconstructed_feature)
         # timeProperties
     return reconstructed
-
