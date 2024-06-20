@@ -42,10 +42,10 @@
           </div>
         </div>
 
-        <div>
-          <h4>Business Hours</h4>
-          <div>{{ feature.businesshour }}</div>
-        </div>
+        <h4 class="green">Business Hour</h4>
+        <!--
+          <div>{{ feature.businesshour }}</div> -->
+        <FormBusinessHour :businesshour="feature.businesshour" @update="updateBusinessHour(feature.id, $event)" />
 
       </div>
     </section>
@@ -148,31 +148,10 @@ export default {
     /** 
     *  wip: edit time
     */
-    updateBusinessHour(featureId, [dayIndex, dayKey, value]) {
+    updateBusinessHour(featureId, newBusinessHour) {
       let feature = this.selectedData.find(f => f.id === featureId);
       if (feature) {
-        feature.businesshour[dayIndex][dayKey] = value;
-      }
-    },
-
-    updateBusinessHourSlot(featureId, [dayIndex, dayKey, slotIndex, slotKey, value]) {
-      let feature = this.selectedData.find(f => f.id === featureId);
-      if (feature) {
-        feature.businesshour[dayIndex][dayKey][slotIndex][slotKey] = value;
-      }
-    },
-
-    addBusinessHourSlot(featureId, [dayIndex, dayKey]) {
-      let feature = this.selectedData.find(f => f.id === featureId);
-      if (feature) {
-        feature.businesshour[dayIndex][dayKey].push({ Start: '', Finish: '' });
-      }
-    },
-
-    removeBusinessHourSlot(featureId, [dayIndex, dayKey, slotIndex]) {
-      let feature = this.selectedData.find(f => f.id === featureId);
-      if (feature) {
-        feature.businesshour[dayIndex][dayKey].splice(slotIndex, 1);
+        feature.businesshour = newBusinessHour;
       }
     },
 

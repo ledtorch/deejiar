@@ -1,30 +1,17 @@
 <template>
-  <div class="business-hours">
-    <h4>Business Hours</h4>
-    <div v-for="(day, index) in businesshour" :key="index" class="day-entry">
-      <div v-for="(value, key) in day" :key="key" class="day-wrapper">
-        <h5>{{ key }}</h5>
-        <div v-if="Array.isArray(value)">
-          <div v-for="(slot, slotIndex) in value" :key="slotIndex" class="slot-entry">
-            <label>Start</label>
-            <input type="time" v-model="slot.Start"
-              @input="updateBusinessHour(index, key, slotIndex, 'Start', slot.Start)">
-            <label>Finish</label>
-            <input type="time" v-model="slot.Finish"
-              @input="updateBusinessHour(index, key, slotIndex, 'Finish', slot.Finish)">
-            <button @click="removeSlot(index, key, slotIndex)">Remove Slot</button>
-          </div>
-          <button @click="addSlot(index, key)">Add Slot</button>
-        </div>
-        <div v-else>
-          <input type="checkbox" v-model="day[key]" @change="updateBusinessHour(index, key, null, null, day[key])">
-        </div>
-      </div>
+  <div class="flex-col form-frame-businesshour">
+    <div class="nav">
+      <p class="headline">JSON data</p>
+      <button class="text-button" v-if="!editing" @click="edit(property)">Edit</button>
+      <button class="text-button" v-if="editing" @click="save">Save</button>
     </div>
+    <textarea v-model="businesshourString" class="full-size"></textarea>
   </div>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue';
+
 const props = defineProps({
   businesshour: {
     type: Array,
@@ -32,21 +19,76 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['update', 'update-slot', 'add-slot', 'remove-slot']);
+const emit = defineEmits(['update']);
+const businesshourString = ref(JSON.stringify(props.businesshour, null, 2));
+const editing = ref(false);
 
-const updateBusinessHour = (dayIndex, dayKey, slotIndex, slotKey, value) => {
-  if (slotIndex === null) {
-    emit('update', [dayIndex, dayKey, value]);
-  } else {
-    emit('update-slot', [dayIndex, dayKey, slotIndex, slotKey, value]);
+watch(() => props.businesshour, (newVal) => {
+  if (!editing.value) {
+    businesshourString.value = JSON.stringify(newVal, null, 2);
   }
+});
+
+const edit = () => {
+  editing.value = true;
 };
 
-const addSlot = (dayIndex, dayKey) => {
-  emit('add-slot', [dayIndex, dayKey]);
-};
-
-const removeSlot = (dayIndex, dayKey, slotIndex) => {
-  emit('remove-slot', [dayIndex, dayKey, slotIndex]);
+const save = () => {
+  let updatedBusinessHour;
+  try {
+    updatedBusinessHour = JSON.parse(businesshourString.value);
+  } catch (e) {
+    console.error('Invalid JSON:', e);
+    return;
+  }
+  emit('update', updatedBusinessHour);
+  editing.value = false;
 };
 </script>
+
+<style lang="scss" scoped>
+.form-frame-businesshour {
+  width: 100%;
+  height: 400px;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 4px;
+}
+
+.full-size {
+  width: 100%;
+  height: 100%;
+
+  /* Optional: Disables the resize handle */
+  resize: none;
+}
+
+.text-button {
+  cursor: pointer;
+  color: var(--2-brand-gray, #808cab);
+  background-color: transparent;
+  padding: 0px;
+
+  font-family: Be Vietnam Pro;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.headline {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  color: var(--3-text-dark-2nd-white,
+      var(--token-secondary-text, rgba(255, 255, 255, 0.75)));
+}
+
+.nav {
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+</style>
