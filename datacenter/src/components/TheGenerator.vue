@@ -14,6 +14,7 @@
           <RightArrow @click="nextPage" :disabled="currentPage === totalPages" />
         </div>
       </nav>
+      <!-- Extract features in the json -->
       <div class="data-section flex-col" v-for="feature in paginatedFeatures" :key="feature.id">
         <h3>{{ feature.title }}</h3>
         <h4 class="green">Basic</h4>
@@ -42,7 +43,8 @@
         </div>
 
         <div>
-          <FormBusinessHour />
+          <h4>Business Hours</h4>
+          <div>{{ feature.businesshour }}</div>
         </div>
 
       </div>
@@ -51,13 +53,15 @@
 </template>
 
 <script>
+import axios from 'axios';
+// Button
 import Dropdown from "./Button/Dropdown.vue";
 import RightArrow from "./Button/RightArrow.vue";
 import LeftArrow from "./Button/LeftArrow.vue";
+// Components
 import FormString from "./FormString.vue";
 import FormStringNest from "./FormStringNest.vue";
 import FormBusinessHour from "./FormBusinessHour.vue";
-import axios from 'axios';
 
 export default {
   components: { Dropdown, RightArrow, LeftArrow, FormString, FormStringNest, FormBusinessHour },
@@ -140,6 +144,38 @@ export default {
         feature[product][prop] = value;
       }
     },
+
+    /** 
+    *  wip: edit time
+    */
+    updateBusinessHour(featureId, [dayIndex, dayKey, value]) {
+      let feature = this.selectedData.find(f => f.id === featureId);
+      if (feature) {
+        feature.businesshour[dayIndex][dayKey] = value;
+      }
+    },
+
+    updateBusinessHourSlot(featureId, [dayIndex, dayKey, slotIndex, slotKey, value]) {
+      let feature = this.selectedData.find(f => f.id === featureId);
+      if (feature) {
+        feature.businesshour[dayIndex][dayKey][slotIndex][slotKey] = value;
+      }
+    },
+
+    addBusinessHourSlot(featureId, [dayIndex, dayKey]) {
+      let feature = this.selectedData.find(f => f.id === featureId);
+      if (feature) {
+        feature.businesshour[dayIndex][dayKey].push({ Start: '', Finish: '' });
+      }
+    },
+
+    removeBusinessHourSlot(featureId, [dayIndex, dayKey, slotIndex]) {
+      let feature = this.selectedData.find(f => f.id === featureId);
+      if (feature) {
+        feature.businesshour[dayIndex][dayKey].splice(slotIndex, 1);
+      }
+    },
+
 
     addNewFeature() {
       if (this.selectedData.length === 0) {
