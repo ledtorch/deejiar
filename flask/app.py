@@ -42,8 +42,6 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 jwt = JWTManager(app)
 
-
-
 # Register the blueprint for OG image feature
 app.register_blueprint(og_bp)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
@@ -117,29 +115,6 @@ def get_json_data(filename):
     else:
         return jsonify({"error": "File not found"}), 404
 
-# # Save a new json
-# @app.route('/save/<filename>', methods=['POST'])
-# def update_json(filename):
-#     # Define the path to the JSON file
-#     base_directory = '../data/'
-#     json_file_path = os.path.join(base_directory, f"{filename}.json")
-
-#     # Make a backup of the current JSON file
-#     if os.path.exists(json_file_path):
-#         timestamp = datetime.now().strftime('%m%d%H%M%S')
-#         backup_path = json_file_path.replace('.json', f'_backup_{timestamp}.json')
-#         os.rename(json_file_path, backup_path)
-#     else:
-#         # If the file does not exist, we should not proceed
-#         return jsonify({"error": "File not found"}), 404
-
-#     # Save the new JSON data
-#     data = request.json
-#     with open(json_file_path, 'w', encoding='utf-8') as f:
-#         json.dump(data, f, ensure_ascii=False, indent=4)
-
-#     return jsonify({"message": f"{filename} updated successfully"}), 200
-# # 🧱🧱🧱
 @app.route('/save/<filename>', methods=['POST'])
 def update_json(filename):
     base_directory = '../data/'
@@ -171,7 +146,6 @@ def update_json(filename):
 
     # If everything went well
     return jsonify({"message": f"{filename} updated successfully"}), 200
-
 
 if __name__ == '__main__':
     app.run(debug=True)
