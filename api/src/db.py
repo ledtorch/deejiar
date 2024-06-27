@@ -1,30 +1,17 @@
-import psycopg2
-import json
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-# Database connection parameters
-dbname = 'stores'
-user = 'jerrylin'
-host = 'localhost'
+from src.config import DATABASE_URL
 
-# Function to connect to the database
-def get_db_connection():
-    conn = psycopg2.connect(dbname=dbname, user=user, host=host)
-    return conn
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
 
-# Function to insert JSON data
-def insert_json_data(json_data):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("INSERT INTO json_data (data) VALUES (%s)", [json.dumps(json_data)])
-    conn.commit()
-    cur.close()
-    conn.close()
-
-# Function to update JSON data
-def update_json_data(id, json_data):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("UPDATE json_data SET data = %s WHERE id = %s", [json.dumps(json_data), id])
-    conn.commit()
-    cur.close()
-    conn.close()
+# Dependency to get DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

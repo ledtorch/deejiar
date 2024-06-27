@@ -1,10 +1,9 @@
-# src/main.py
-
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_jwt_auth import AuthJWT
 from dotenv import load_dotenv
+from src.router import auth_router  # Import your auth router
 
 # Load environment variables
 env_file = '.env.production' if os.getenv('FASTAPI_ENV') == 'production' else '.env.local'
@@ -28,6 +27,9 @@ class Settings:
 @AuthJWT.load_config
 def get_config():
     return Settings()
+
+# Register routers
+app.include_router(auth_router, prefix="/auth")  # Assuming you have auth_router
 
 # Root route
 @app.get("/")

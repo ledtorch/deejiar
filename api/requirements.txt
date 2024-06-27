@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+python-dotenv
+passlib[bcrypt]
+fastapi-jwt-auth
+pydantic<2.0.0

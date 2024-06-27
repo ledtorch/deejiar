@@ -44,9 +44,10 @@ def flatten_features(filename):
                 'latitude': geometry.get('coordinates', [])[1],
                 
                 # Tags
-                'tag': props.get('tag', [])
-                
-                
+                'tag': props.get('tag', []),
+
+                # Business Hours
+                'businesshour': props.get('businesshour', [])
             })
             # productProperties
             for i in range(1, 6):
@@ -100,7 +101,10 @@ def reconstruct_json(features):
                 "placeid": feature.get('placeid'),
 
                 # Tags
-                'tag': feature.get('tag', [])
+                'tag': feature.get('tag', []),
+
+                # Business Hours
+                'businesshour': feature.get('businesshour', [])
             }
         }
         # productProperties
@@ -110,4 +114,3 @@ def reconstruct_json(features):
         reconstructed['features'].append(reconstructed_feature)
         # timeProperties
     return reconstructed
-
