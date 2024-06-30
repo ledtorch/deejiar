@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 pydantic
+pyjwt
 passlib[bcrypt]
-python-jose[cryptography]
 python-dotenv
 fastapi-cors
