@@ -2278,8 +2278,8 @@
                     {
                         "Monday": [
                             {
-                                "Start": "1030",
-                                "Finish": "1800"
+                                "Finish": "1800",
+                                "Start": "1030"
                             }
                         ]
                     },
@@ -2289,40 +2289,40 @@
                     {
                         "Wednesday": [
                             {
-                                "Start": "1030",
-                                "Finish": "1800"
+                                "Finish": "1800",
+                                "Start": "1030"
                             }
                         ]
                     },
                     {
                         "Thursday": [
                             {
-                                "Start": "1030",
-                                "Finish": "1800"
+                                "Finish": "1800",
+                                "Start": "1030"
                             }
                         ]
                     },
                     {
                         "Friday": [
                             {
-                                "Start": "1030",
-                                "Finish": "1800"
+                                "Finish": "1800",
+                                "Start": "1030"
                             }
                         ]
                     },
                     {
                         "Saturday": [
                             {
-                                "Start": "1030",
-                                "Finish": "1900"
+                                "Finish": "1900",
+                                "Start": "1030"
                             }
                         ]
                     },
                     {
                         "Sunday": [
                             {
-                                "Start": "1030",
-                                "Finish": "1900"
+                                "Finish": "1900",
+                                "Start": "1030"
                             }
                         ]
                     }
@@ -2349,6 +2349,249 @@
                     "description": "",
                     "image": "",
                     "name": "",
+                    "price": ""
+                },
+                "item5": {
+                    "description": "",
+                    "image": "",
+                    "name": "",
+                    "price": ""
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    "121.52433170301717",
+                    "25.0549379800363"
+                ]
+            },
+            "properties": {
+                "id": 20,
+                "title": "Tsubaki Salon Taipei",
+                "type": "cafe",
+                "layout": "food",
+                "icon": {
+                    "active": "button/marker/cafe-active.png",
+                    "default": "button/marker/cafe-default.png",
+                    "larger": "button/marker/cafe-larger.png",
+                    "mini": "button/marker/cafe-mini.png",
+                    "withFriends": "button/marker/cafe-withFriends.png"
+                },
+                "description": "Hokkaido-born café Tsubaki Salon serves fresh pancakes and this is the only store in Taiwan. Although this branch is not as elegant as the Ginza store, you can still enjoy their beautiful tableware and Hokkaido items. Please be patient, as the chef spends around 20 minutes preparing your pancake.",
+                "storefront": {
+                    "day": "stores/cafe/tsubaki-salon-taipei/storefront-day.jpg",
+                    "night": "stores/cafe/tsubaki-salon-taipei/storefront-night.jpg"
+                },
+                "address": "B2, No. 3, Lane 39, Section 2, Zhongshan N Rd, Zhongshan District, Taipei City 104",
+                "auid": "11189073664346799366",
+                "placeid": "ChIJGzthks-pQjQRQxGAngSF5rw",
+                "tag": "[]",
+                "businesshour": [
+                    {
+                        "24hr": false,
+                        "Holiday": []
+                    },
+                    {
+                        "Monday": [
+                            {
+                                "Finish": "2030",
+                                "Start": "1200"
+                            }
+                        ]
+                    },
+                    {
+                        "Tuesday": [
+                            {
+                                "Finish": "2030",
+                                "Start": "1200"
+                            }
+                        ]
+                    },
+                    {
+                        "Wednesday": [
+                            {
+                                "Finish": "2030",
+                                "Start": "1200"
+                            }
+                        ]
+                    },
+                    {
+                        "Thursday": [
+                            {
+                                "Finish": "2030",
+                                "Start": "1200"
+                            }
+                        ]
+                    },
+                    {
+                        "Friday": [
+                            {
+                                "Finish": "2030",
+                                "Start": "1200"
+                            }
+                        ]
+                    },
+                    {
+                        "Saturday": [
+                            {
+                                "Finish": "2030",
+                                "Start": "1200"
+                            }
+                        ]
+                    },
+                    {
+                        "Sunday": [
+                            {
+                                "Finish": "2030",
+                                "Start": "1200"
+                            }
+                        ]
+                    }
+                ],
+                "item1": {
+                    "description": "Basic toppings: Hokkaido Fresh Cream, Beet Syrup <br>  Optional Toppings: TOKACHI Red Bean, Cultured Butter, Hokkaido Cheese <br>  Choosing two out of three toppings is NT$400, and choosing all three toppings is NT$430.",
+                    "image": "stores/cafe/tsubaki-salon-taipei/hokkaido-hotcake-premium.jpg",
+                    "name": "Hokkaido Hotcake Premium",
+                    "price": "NT$430"
+                },
+                "item2": {
+                    "description": "(Hot/Iced)",
+                    "image": "stores/cafe/tsubaki-salon-taipei/hokkaido-milk.jpg",
+                    "name": "Hokkaido Milk",
+                    "price": "NT$200"
+                },
+                "item3": {
+                    "description": "",
+                    "image": "",
+                    "name": "",
+                    "price": ""
+                },
+                "item4": {
+                    "description": "",
+                    "image": "",
+                    "name": "",
+                    "price": ""
+                },
+                "item5": {
+                    "description": "",
+                    "image": "",
+                    "name": "",
+                    "price": ""
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    "121.57119997942961",
+                    "25.03941312132497"
+                ]
+            },
+            "properties": {
+                "id": 21,
+                "title": "Fubon Art Museum",
+                "type": "landscape",
+                "layout": "food",
+                "icon": {
+                    "active": "button/marker/landscape-active.png",
+                    "default": "button/marker/landscape-default.png",
+                    "larger": "button/marker/landscape-larger.png",
+                    "mini": "button/marker/landscape-mini.png",
+                    "withFriends": "button/marker/landscape-withFriends.png"
+                },
+                "description": "The CEO of Fubon Art Foundation, Maggie Weng, has been preparing for this museum for 10 years. She invited Renzo Piano to design the building, and the theme of this building is “light.” This 10,000 square meter museum is the first work of Renzo Piano in Taiwan and the first museum in the Xinyi district. The three glass curtain walls of the “Water Exhibition Hall” on the first floor and the skylight designs of the “Sun Gallery” and “Star Gallery” on the third floor ingeniously infuse the space with nature, achieving harmony with the environment.  Although the first floor exhibition area is rough, using low-resolution printed wallpaper for the artworks, the third floor is a true modern art museum, offering perfect spatial planning for audiences to immerse themselves in the artworks.",
+                "storefront": {
+                    "day": "stores/museum/fubon-art-museum/storefront-day.jpg",
+                    "night": "stores/museum/fubon-art-museum/storefront-night.jpg"
+                },
+                "address": "No. 79, Songgao Rd., Xinyi Dist., Taipei City, 110",
+                "auid": "220671381606855783",
+                "placeid": "ChIJs_BDd7urQjQR8_WWa7P_v8I",
+                "tag": "[]",
+                "businesshour": [
+                    {
+                        "24hr": false,
+                        "Holiday": []
+                    },
+                    {
+                        "Monday": [
+                            {
+                                "Start": "1100",
+                                "Finish": "1800"
+                            }
+                        ]
+                    },
+                    {
+                        "Tuesday": false
+                    },
+                    {
+                        "Wednesday": [
+                            {
+                                "Start": "1100",
+                                "Finish": "1800"
+                            }
+                        ]
+                    },
+                    {
+                        "Thursday": [
+                            {
+                                "Start": "1100",
+                                "Finish": "1800"
+                            }
+                        ]
+                    },
+                    {
+                        "Friday": [
+                            {
+                                "Start": "1100",
+                                "Finish": "1800"
+                            }
+                        ]
+                    },
+                    {
+                        "Saturday": [
+                            {
+                                "Start": "1100",
+                                "Finish": "1800"
+                            }
+                        ]
+                    },
+                    {
+                        "Sunday": [
+                            {
+                                "Start": "1100",
+                                "Finish": "1800"
+                            }
+                        ]
+                    }
+                ],
+                "item1": {
+                    "description": "May 04 - Sep 23, 2024 <br> The Fubon Art Museum is honored to present its landmark debut inaugural exhibition, 'True Nature: Rodin and the Age of Impressionism,' during the lively spring season of 2024. This extraordinary showcase not only features the awe-inspiring sculptures, both monumental and intimate, by Rodin himself, but also presents a collection of Impressionist paintings from his contemporaries.",
+                    "image": "stores/museum/fubon-art-museum/true-nature.jpg",
+                    "name": "True Nature: Rodin and the Age of Impressionism",
+                    "price": "NT$500"
+                },
+                "item2": {
+                    "description": "Auguste Rodin <br> First modeled 1897, this cast 1967 <br> Bronze <br> 120 x 120 x 297 cm <br> Gift B. Gerald Cantor Art Foundation",
+                    "image": "stores/museum/fubon-art-museum/monument-to-Honore-de-balzac.jpg",
+                    "name": "Monument to Honoré de Balzac",
+                    "price": ""
+                },
+                "item3": {
+                    "description": "Auguste Rodin <br> First modeled 1890-1897 or 1901-1902, this cast 1967 <br> Bronze <br> 88 × 61 x 71 cm <br> Gift of the B. Gerald Cantor Art Foundation",
+                    "image": "stores/museum/fubon-art-museum/heroic-bust-of-victor-hugo.jpg",
+                    "name": "Heroic Bust of Victor Hugo",
+                    "price": ""
+                },
+                "item4": {
+                    "description": "Auguste Rodin <br> c. 1960-1970 <br> Bronze <br> 12 × 36 x 25 cm",
+                    "image": "stores/museum/fubon-art-museum/large-right-hand.jpg",
+                    "name": "Large Right Hand",
                     "price": ""
                 },
                 "item5": {
