@@ -34,8 +34,9 @@ h2 {
 .tag-shop-frame {
   align-items: center;
   gap: 4px;
-  /* padding: 4px 12px 4px 8px; */
   padding: 2px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--border-button-round, 8px);
   background: var(--token-theme, #fafafa);
 }
