@@ -55,7 +55,7 @@ export default {
         console.log('Session expired');
         localStorage.removeItem('access_token');
         this.router.push('/');
-      }, 600000); // 10min
+      }, 3600000); // 60min
     },
 
     async submitLogin() {
