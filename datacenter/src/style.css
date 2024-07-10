@@ -1,3 +1,10 @@
+/* Romove the watermark */
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-bottom-right {
+	display: none !important;
+}
+
+/* Default: Dark mode */
 :root {
 	font-weight: 400;
 	color-scheme: light dark;
@@ -8,122 +15,139 @@
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
 
-	/* Color System */
-	--dark-primary-text: 255, 255, 255, 0.95;
-	--dark-secondary-text: 255, 255, 255, 0.7;
+	/* Content */
+	--primary-text: rgba(255, 255, 255, 0.95);
+	--secondary-text: rgba(255, 255, 255, 0.75);
+	--tertiary-text: rgba(255, 255, 255, 0.5);
+	--invert-primary: rgba(14, 13, 15);
 
-	--system-dark-midnight-blue: #07080a;
-	--system-dark-2nd-white: #f2f2f5;
+	/* Base */
+	--base: rgba(255, 255, 255, 0.09);
+	--invert-base: rgba(0, 0, 0, 0.6);
+	--button-base: rgba(255, 255, 255, 0.07);
+	--solid-base: rgba(242, 242, 242);
+	--invert-solid-base: rgba(14, 13, 15);
 
+	/* Neutral color */
+	--silver: rgba(185, 184, 215);
 	--color-gray: #878280;
 	--color-light-gray: #D1D7EB;
 	--color-green: #24ad6e;
 	--color-red: #f46060;
-	--color-base: 255, 255, 255, 0.7;
 }
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	font-family: 'Be Vietnam Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
+/* Light mode */
+.light {
+	/* Content */
+	--primary-text: rgba(0, 0, 0, 0.95);
+	--secondary-text: rgba(0, 0, 0, 0.75);
+	--tertiary-text: rgba(0, 0, 0, 0.5);
+	--invert-primary: rgba(250, 250, 250);
+
+	/* Base */
+	--base: rgba(0, 0, 0, 0.09);
+	--invert-base: rgba(255, 255, 255, 0.6);
+	--button-base: rgba(0, 0, 0, 0.07);
+	--solid-base: rgba(30, 30, 30);
+	--invert-solid-base: rgba(250, 250, 250);
 }
 
+html,
 body {
+	/* Disables double-tap to zoom across the entire application */
+	touch-action: manipulation;
+
 	display: flex;
 	place-items: center;
+	min-width: 320px;
+	min-height: 100%;
+	width: 100%;
+
+	/* Hide scroll */
 	overflow-x: hidden;
-	/* Hide horizontal scroll */
+	overflow-y: hidden;
+
+	/* Font Family */
+	font-family: 'Be Vietnam Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 div {
 	display: flex;
 }
 
-button {
-	border: 0px;
-	padding: 10px 16px;
-	justify-content: center;
-	align-items: center;
-	border-radius: var(--border-button-round, 8px);
-	background: var(--token-theme, #fafafa);
-	color: var(--token-invert, #0E0D0F);
-	font-family: Be Vietnam Pro;
-	font-size: 15px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 24px;
-}
-
-button:hover {
-	border-color: #fff;
-}
-
-button:focus,
-button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
-}
-
 /* Font */
 h1 {
-	color: var(--3-text-dark-1st-white, rgba(255, 255, 255, 0.95));
+	color: var(--primary-text);
 	font-size: 27px;
 	font-weight: 500;
 	line-height: 36px;
 }
 
 h2 {
-	color: var(--3-text-dark-1st-white, rgba(255, 255, 255, 0.95));
+	color: var(--primary-text);
 	font-size: 21px;
 	font-weight: 500;
 	line-height: 32px;
 }
 
 h3 {
+	color: var(--primary-text);
 	font-size: 19px;
 	font-weight: 500;
 	line-height: 24px;
 }
 
+h4 {
+	color: var(--primary-text);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 21px;
+}
+
 p {
+	color: var(--primary-text);
 	font-size: 15px;
 	font-weight: 300;
 	line-height: 24px;
 }
 
-.button-text {
+.m-button-text {
+	color: var(--primary-text);
 	font-size: 15px;
 	font-weight: 700;
 	line-height: 24px;
 }
 
 .headline {
+	color: var(--primary-text);
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 21px;
 }
 
 .subhead {
+	color: var(--primary-text);
 	font-size: 14px;
 	font-weight: 500;
-	line-height: 19px;
+	line-height: 24px;
 }
 
 .footnote {
+	color: var(--primary-text);
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 16px;
 }
 
 .caption1 {
+	color: var(--primary-text);
 	font-size: 10px;
 	font-weight: 400;
 	line-height: 14px;
 }
 
 .caption2 {
+	color: var(--primary-text);
 	font-size: 9px;
 	font-weight: 400;
 	line-height: 12px;
@@ -133,9 +157,8 @@ p {
 .splitline {
 	width: 100%;
 	min-height: 1px;
-	background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
+	background: var(--base);
 }
-
 
 /* Global Utility Classes */
 ._stretch {
