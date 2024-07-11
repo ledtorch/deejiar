@@ -35,7 +35,7 @@
             </a>
           </div>
         </div>
-        <p>Version 4 (2024.04.30)</p>
+        <p class="caption2">Version 4 (2024.04.30)</p>
       </footer>
     </div>
   </div>
