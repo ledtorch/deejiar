@@ -79,169 +79,147 @@
   </div>
 </template>
 
-<script>
-// Vue dependencies
-import { ref, onMounted, watch, toRefs } from "vue";
-import { useRouter } from "vue-router";
+<script setup>
+import { ref, computed, watch, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+// Button
+import Avatar from "./Avatar.vue";
+import TagShopType from "../Button/TagShopType.vue";
+import Close from "../Button/Icon/Close.vue";
 
 // Components
-import Close from "../Button/Icon/Close.vue";
-import TagShopType from "../Button/TagShopType.vue";
-import Avatar from "./Avatar.vue";
-import Review from "./Review.vue";
 import Businesshour from "./Businesshour.vue";
+import Review from "./Review.vue";
 
-export default {
-  components: { Close, TagShopType, Avatar, Review, Businesshour },
-  data() {
-    return {
-      buttonState: "default"
-    };
-  },
-  name: "BottomSheet",
-  props: {
-    store: Object
-  },
+// Props
+const props = defineProps({
+  store: Object
+});
 
-  setup(props) {
-    const router = useRouter();
+// Constants
+const minHeight = "32px";
+const maxHeight = "100%";
+const withStoreHeight = "467px";
 
-    // Use ref to bound to DOM
-    const isDragging = ref(false);
-    const bottomSheetHeight = ref("32px");
-    const bottomSheet = ref(null);
-    const controlArea = ref(null);
+// Refs
+const isDragging = ref(false);
+const bottomSheetHeight = ref("32px");
+const bottomSheet = ref(null);
+const controlArea = ref(null);
+const buttonState = ref("default");
 
-    // Initialize values for dragging fn'
-    let startY = 0;
-    let startHeight = 0;
-    const minHeight = `32px`;
-    const withStoreHeight = `467px`;
-    const maxHeight = `100%`;
-
-    // Convert props to reactive references
-    const { store } = toRefs(props);
-
-    // Watch the store value for changes
-    watch(store, newStore => {
-      if (newStore !== null) {
-        bottomSheetHeight.value = withStoreHeight;
-      }
-    });
-
-    const updateSheetHeight = height => {
-      bottomSheetHeight.value = `${height}`;
-    };
-
-    const dragStart = event => {
-      console.log("dragStart");
-
-      // Assign startY to pageY(mouse) or pageY(touch screen)
-      isDragging.value = true;
-      startY = event.pageY || event.touches?.[0].pageY;
-
-      startHeight = parseInt(bottomSheetHeight.value);
-      bottomSheet.value.classList.add("dragging");
-      // // 🐞 Debug console
-      // console.log("startHeight: " + startHeight + " & " + "startY: " + startY);
-
-      // Add listener
-      document.addEventListener("mousemove", dragging);
-      document.addEventListener("mouseup", dragStop);
-      document.addEventListener("touchmove", dragging);
-      document.addEventListener("touchend", dragStop);
-    };
-
-    const dragStop = () => {
-      console.log("dragStop");
-      isDragging.value = false;
-      bottomSheet.value.classList.remove("dragging");
-      const sheetHeight = parseInt(bottomSheet.value.style.height);
-
-      // Navigate to detail.vue
-      if (sheetHeight >= 600) {
-        if (store && props.store.title) {
-          // Make the dynamic url with title
-          router.push({
-            name: "detail",
-            params: {
-              title: props.store.title,
-            }
-          });
-        }
-        sheetHeight < 150
-          ? updateSheetHeight(minHeight)
-          : sheetHeight > 500
-            ? updateSheetHeight(maxHeight)
-            : updateSheetHeight(withStoreHeight);
-      }
-
-      // Remove listener
-      document.removeEventListener("mousemove", dragging);
-      document.removeEventListener("touchmove", dragging);
-      document.removeEventListener("mouseup", dragStop);
-      document.removeEventListener("touchend", dragStop);
-    };
-
-    const dragging = event => {
-      console.log("Dragging");
-
-      if (!isDragging.value) return;
-      const delta = startY - (event.pageY || event.touches?.[0].pageY);
-      const newHeight = startHeight + delta;
-
-      updateSheetHeight(newHeight + `px`);
-      // // 🐞 Debug console
-      // console.log("newHeight: " + newHeight + " & " + "delta: " + delta);
-    };
-
-    onMounted(() => {
-      controlArea.value.addEventListener("mousedown", dragStart);
-      controlArea.value.addEventListener("touchstart", dragStart);
-    });
-    return {
-      controlArea,
-      bottomSheet,
-      bottomSheetHeight
-    };
-  },
-
-  methods: {
-    // Utility Methods
-    rootUrl(imagePath) {
-      const baseUrl = `${window.location.protocol}//${window.location.host}`;
-      return `url('${baseUrl}/${imagePath}')`;
-    },
-    // Event Handlers
-    closeBottomSheet() {
-      this.$emit("reset");
-    }
-  },
-
-  computed: {
-    storeState() {
-      return this.store;
-    },
-    storeLayout() {
-      // // 🐞 Debug console
-      // console.log("Compute storeLayout: " + this.store?.layout);
-      return this.store?.layout;
-    },
-    storefrontImage() {
-      // // 🐞 Debug console
-      // console.log("URL function: " + this.rootUrl(this.store?.storefront.day));
-      return this.rootUrl(this.store.storefront.day);
-    },
-    item1() {
-      return this.rootUrl(this.store?.item1.image);
-    },
-    item2() {
-      return this.rootUrl(this.store?.item2.image);
-    }
-  }
+// Render store properties
+const rootUrl = (imagePath) => {
+  const baseUrl = `${window.location.protocol}//${window.location.host}`;
+  return `url('${baseUrl}/${imagePath}')`;
 };
-</script>
 
+const storeState = computed(() => props.store);
+const storeLayout = computed(() => props.store?.layout);
+const storefrontImage = computed(() => rootUrl(props.store?.storefront?.day));
+const item1 = computed(() => rootUrl(props.store?.item1?.image));
+const item2 = computed(() => rootUrl(props.store?.item2?.image));
+
+
+// Expand BottomSheet when user clicks store marker
+watch(() => props.store, (newStore) => {
+  if (newStore !== null) {
+    bottomSheetHeight.value = withStoreHeight;
+    // // 🐞 Debug console
+    // console.log("json: " + JSON.stringify(props.store, null, 2));
+    // console.log("layout: " + props.store?.layout);
+    // console.log("storefront image URL: " + rootUrl(props.store?.storefront.day));
+    // console.log("item1 image URL: " + rootUrl(props.store?.item1?.image));
+    // console.log("item2 image URL: " + rootUrl(props.store?.item2?.image));
+  }
+});
+
+// Dragging logic
+const router = useRouter();
+let startY = 0;
+let startHeight = 0;
+
+const updateSheetHeight = (height) => {
+  bottomSheetHeight.value = `${height}`;
+};
+
+const dragStart = (event) => {
+  // // 🐞 Debug console
+  // console.log("dragStart");
+
+  // Assign startY to pageY(mouse / touch screen)
+  isDragging.value = true;
+  startY = event.pageY || event.touches?.[0].pageY;
+  startHeight = parseInt(bottomSheetHeight.value);
+  bottomSheet.value.classList.add("dragging");
+  // // 🐞 Debug console
+  // console.log("startHeight: " + startHeight + " & " + "startY: " + startY);
+
+  // Add listener
+  document.addEventListener("mousemove", dragging);
+  document.addEventListener("mouseup", dragStop);
+  document.addEventListener("touchmove", dragging);
+  document.addEventListener("touchend", dragStop);
+};
+
+const dragStop = () => {
+  // // 🐞 Debug console
+  // console.log("dragStop");
+
+  isDragging.value = false;
+  bottomSheet.value.classList.remove("dragging");
+  const sheetHeight = parseInt(bottomSheet.value.style.height);
+
+  // Navigate to detail.vue
+  if (sheetHeight >= 600 && props.store?.title) {
+    router.push({
+      name: "detail",
+      params: {
+        title: props.store.title,
+      }
+    });
+  }
+
+  if (sheetHeight < 150) {
+    updateSheetHeight(minHeight);
+  } else if (sheetHeight > 500) {
+    updateSheetHeight(maxHeight);
+  } else {
+    updateSheetHeight(withStoreHeight);
+  }
+
+  // Remove listener
+  document.removeEventListener("mousemove", dragging);
+  document.removeEventListener("touchmove", dragging);
+  document.removeEventListener("mouseup", dragStop);
+  document.removeEventListener("touchend", dragStop);
+};
+
+const dragging = (event) => {
+  // // 🐞 Debug console
+  // console.log("Dragging");
+
+  if (!isDragging.value) return;
+  const delta = startY - (event.pageY || event.touches?.[0].pageY);
+  const newHeight = startHeight + delta;
+  updateSheetHeight(newHeight + "px");
+  // // 🐞 Debug console
+  // console.log("newHeight: " + newHeight + " & " + "delta: " + delta);
+};
+
+// Close BottomSheet
+const emit = defineEmits(['reset']);
+const closeBottomSheet = () => {
+  emit("reset");
+};
+
+// Lifecycle hooks
+onMounted(() => {
+  controlArea.value.addEventListener("mousedown", dragStart);
+  controlArea.value.addEventListener("touchstart", dragStart);
+});
+</script>
 
 <style lang="scss" scoped>
 .bottom-sheet {
