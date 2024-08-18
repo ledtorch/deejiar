@@ -37,3 +37,7 @@ This component fetches store data directly from a JSON file by decoding the URL.
 
 ### Account.vue
 This page allows users to manage their settings and provides contact information for the author, along with links to related social media profiles.
+
+```regexp
+feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip
+```
