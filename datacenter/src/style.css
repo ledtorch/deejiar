@@ -63,10 +63,6 @@ body {
 	min-height: 100%;
 	width: 100%;
 
-	/* Hide scroll */
-	overflow-x: hidden;
-	overflow-y: hidden;
-
 	/* Font Family */
 	font-family: 'Be Vietnam Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
