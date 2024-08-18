@@ -1,3 +1,15 @@
+## [5](https://deejiar.com) (2024-08-18)
+### Feature
+* Author's Pick
+
+### Bug Fixes
+* Color of text
+### Refactoring
+* CSS
+* Refactored with Composition API:
+  * Map.vue
+  * BottomSheet.vue
+
 ## [4](https://deejiar.com) (2024-04-04)
 ### Feature
 * Dynamic og:image
@@ -11,4 +23,4 @@
 * Share on Twitter
 
 ## [1](https://deejiar.com) (2023-08-06)
-### Kick off
+### Kick off 🚀
