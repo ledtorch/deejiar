@@ -5,13 +5,20 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
 export default {
   props: {
     address: String
   }
 };
+</script> -->
+
+<script setup>
+defineProps({
+  address: String
+});
 </script>
+
 
 <style lang="scss" scoped>
 /* .review-frame {
