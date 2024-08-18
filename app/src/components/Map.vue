@@ -6,285 +6,222 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import Locate from "./Button/Icon/Locate.vue";
 
-export default {
-  components: {
-    BottomSheet,
-    Locate
-  },
-  data() {
-    return {
-      map: null,
-      mapboxgl: null,
-      selectedStore: null,
-      locate: null,
+const map = ref(null);
+const mapboxgl = ref(null);
+const selectedStore = ref(null);
+const locate = ref(null);
+const tempMarker = ref(null);
 
-      // Register the data for using out of the render layer
-      storeData: null,
-      districtData: null,
+// stores json
+const storeData = ref(null);
+const promoStore = ref(null);
 
-      // Register the temporary marker
-      tempMarker: null
-    };
-  },
-
-  // Asynchronously import the Mapbox to separate Mapbox and main js
-  async mounted() {
-    await import('mapbox-gl/dist/mapbox-gl.css');
-    const mapboxgl = await import("mapbox-gl");
-    this.mapboxgl = mapboxgl.default;
-
-    this.mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
-
-    this.locate = new this.mapboxgl.GeolocateControl({
-      positionOptions: { enableHighAccuracy: true },
-      trackUserLocation: true,
-      showUserHeading: true
-    });
-
-    // Initialize stored position
-    const markerLatitude = localStorage.getItem('markerLatitude');
-    const markerLongitude = localStorage.getItem('markerLongitude');
-    console.log("markerLatitude: " + markerLatitude)
-
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        if (markerLatitude && markerLongitude) {
-          this.map.setCenter([
-            markerLatitude,
-            markerLongitude
-          ]);
-        } else {
-          this.map.setCenter([
-            position.coords.longitude,
-            position.coords.latitude
-          ]);
-        }
-
-        console.log(
-          "📍 User's current position: " +
-          "(" +
-          position.coords.latitude +
-          "," +
-          position.coords.longitude +
-          ")"
-        );
-      },
-      error => {
-        console.error("Geolocation error: ", error);
-
-        // If error, direct the user to the White House
-        this.map.setCenter([-77.0364976166554, 38.897684621644885]);
-      }
-    );
-
-    this.map = new this.mapboxgl.Map({
-      container: "map",
-      // style: "mapbox://styles/naivebara/clkyvh09v00m701me403i1svm",
-      // Test for removing pedestrain layer
-      style: "mapbox://styles/naivebara/cluvh6drq000001q11cezdkgl",
-
-      // White House
-      center: [-77.0364976166554, 38.897684621644885],
-      zoom: 12.5,
-      minZoom: 4,
-      maxZoom: 18
-    });
-
-    this.map.on("load", () => {
-      this.addStores();
-      // this.addDistricts();
-    });
-  },
-
-  methods: {
-    // Stores
-    addStores() {
-      // Add timestamp to ensure to fetch the latest json
-      const url = `/stores.json?v=${new Date().getTime()}`;
-      // // 🐞 Debug console
-      // console.log("Fetching JSON from:", url);
-
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          this.map.addSource("stores", {
-            type: "geojson",
-            data: data
-          });
-
-          // Define the source
-          this.storeData = data;
-
-          // Extract the data from json
-          data.features.forEach(feature => {
-            ["mini", "default", "larger", "active"].forEach(size => {
-              const iconPath =
-                "/button/marker/" +
-                feature.properties.type +
-                "-" +
-                size +
-                ".png";
-              this.map.loadImage(iconPath, (error, image) => {
-                if (error) throw error;
-                this.map.addImage(feature.properties.title + "-" + size, image);
-                // // ↓ 🐞 Debug console
-                // console.log(
-                //   "Marker's Icon:",
-                //   feature.properties.type + "-" + size + ".png"
-                // );
-              });
-            });
-          });
-
-          // Setup the text of the stores' marker
-          this.map.on("zoom", () => {
-            const zoomLevel = this.map.getZoom();
-
-            if (zoomLevel >= 14.5) {
-              this.map.setLayoutProperty("stores", "text-offset", [1, 0]);
-            } else if (zoomLevel >= 12.4) {
-              this.map.setLayoutProperty("stores", "text-offset", [0.8, 0]);
-            } else {
-              this.map.setLayoutProperty("stores", "text-offset", [0, 0]);
-            }
-          });
-
-          // Render the stores' marker as a layer
-          this.map.addLayer({
-            id: "stores",
-            type: "symbol",
-            source: "stores",
-
-            layout: {
-              "icon-image": [
-                "step",
-                ["zoom"],
-                "",
-                10, ["concat", ["get", "title"], "-mini"],
-                12.4, ["concat", ["get", "title"], "-default"],
-                14.5, ["concat", ["get", "title"], "-larger"]
-              ],
-
-              // Import higher resolution and compress to normal size
-              "icon-size": 0.25,
-
-              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-              "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
-              "text-anchor": "left"
-            },
-            paint: {
-              "text-color": "#FFFFFF"
-            }
-          });
-
-          // Pass the data to clickMarker
-          this.map.on("click", "stores", event => this.clickMarker(event));
-
-          // If click the map, reset the active stores' marker
-          this.map.on("click", event => {
-            // Check if the click event occurred on the stores layer
-            const features = this.map.queryRenderedFeatures(event.point, {
-              // assuming "stores" is the layer id where markers are
-              layers: ["stores"]
-            });
-
-            // If the click event did not occur on the stores layer, remove the temporary marker
-            if (!features.length && this.tempMarker) {
-              this.tempMarker.remove();
-              this.tempMarker = null;
-            }
-          });
-        });
-    },
-
-    // Create a temp marker and move the center when click it
-    clickMarker(event) {
-      if (this.tempMarker) {
-        this.tempMarker.remove();
-      }
-
-      const title = event.features[0].properties.title;
-      /** 
-       * When the event pass to clickMarker(), the Mapbox makes a new "features" that packages the data of the event
-       * which means this "features" is a new features instead of the stores.json
-       */
-      const coordinates = event.features[0].geometry.coordinates;
-      const iconString = event.features[0].properties.icon;
-      const iconObject = JSON.parse(iconString);
-      const activeIcon = iconObject.active;
-
-      this.selectedStore = this.storeData.features.find(
-        store => store.properties.title === title
-      ).properties;
-
-      // Create a temporary marker
-      const el = document.createElement("div");
-      el.className = "marker-active";
-      el.style.backgroundImage = `url(${activeIcon})`;
-      el.style.backgroundPosition = "center";
-      el.style.backgroundRepeat = "no-repeat";
-      el.style.backgroundSize = "contain";
-      el.style.width = "52px";
-      el.style.height = "79px";
-
-      // // 🐞 Debug console
-      // console.log("Icon: ", activeIcon);
-
-      this.tempMarker = new this.mapboxgl.Marker(el, { offset: [0, -24] })
-        .setLngLat(coordinates)
-        .addTo(this.map);
-
-      this.map.flyTo({
-        center: [coordinates[0], coordinates[1]],
-        offset: [0, -200],
-        duration: 500,
+// Buttons
+const locateUser = () => {
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      map.value.flyTo({
+        center: [position.coords.longitude, position.coords.latitude],
+        zoom: 12.5,
+        speed: 2,
         curve: 1
       });
-
-      // Store latitude and longitude in local storage
-      localStorage.setItem('markerLatitude', coordinates[0]);
-      localStorage.setItem('markerLongitude', coordinates[1]);
-
       // // 🐞 Debug console
-      // console.log("⬇️ Clicked the Marker");
-      // console.log("title: " + title);
-      // console.log("Selected Store:", this.selectedStore);
-      // console.log("center: " + coordinates[0] + ", " + coordinates[1]);
+      // console.log(
+      //   "Locate the user to current position: " +
+      //   "(" + position.coords.latitude + "," + position.coords.longitude + ")"
+      // );
     },
+    error => {
+      // // 🐞 Debug console
+      // console.error("Geolocation error: ", error);
 
-    // Locate
-    locateUser() {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          this.map.flyTo({
-            center: [position.coords.longitude, position.coords.latitude],
-            zoom: 12.5, // optional zoom level
-            speed: 2, // make the flying slow
-            curve: 1 // change the speed at which it zooms out
+      // White House as default location
+      map.value.setCenter([-77.0364976166554, 38.897684621644885]);
+    }
+  );
+};
+
+const resetSelectedStore = () => {
+  // remove marker and its data
+  tempMarker.value.remove();
+  tempMarker.value = null;
+
+  // remove selected store data
+  selectedStore.value = null;
+};
+
+// Render stores logic
+const addStores = () => {
+  const url = `/stores.json?v=${new Date().getTime()}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      map.value.addSource("stores", {
+        type: "geojson",
+        data: data
+      });
+
+      storeData.value = data;
+
+      data.features.forEach(feature => {
+        ["mini", "default", "larger", "active"].forEach(size => {
+          const iconPath = `/button/marker/${feature.properties.type}-${size}.png`;
+          map.value.loadImage(iconPath, (error, image) => {
+            if (error) throw error;
+            map.value.addImage(feature.properties.title + "-" + size, image);
           });
-          console.log(
-            "Locate the user to current position: "
-            + "(" + position.coords.latitude + "," + position.coords.longitude + ")"
-          );
-        },
-        error => {
-          console.error("Geolocation error: ", error);
-          // White House as default location
-          this.map.setCenter([-77.0364976166554, 38.897684621644885]);
+        });
+      });
+
+      map.value.on("zoom", () => {
+        const zoomLevel = map.value.getZoom();
+
+        if (zoomLevel >= 14.5) {
+          map.value.setLayoutProperty("stores", "text-offset", [1, 0]);
+        } else if (zoomLevel >= 12.4) {
+          map.value.setLayoutProperty("stores", "text-offset", [0.8, 0]);
+        } else {
+          map.value.setLayoutProperty("stores", "text-offset", [0, 0]);
         }
+      });
+
+      map.value.addLayer({
+        id: "stores",
+        type: "symbol",
+        source: "stores",
+        layout: {
+          "icon-image": [
+            "step",
+            ["zoom"],
+            "",
+            10, ["concat", ["get", "title"], "-mini"],
+            12.4, ["concat", ["get", "title"], "-default"],
+            14.5, ["concat", ["get", "title"], "-larger"]
+          ],
+          "icon-size": 0.25,
+          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+          "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
+          "text-anchor": "left"
+        },
+        paint: {
+          "text-color": "#FFFFFF"
+        }
+      });
+
+      map.value.on("click", "stores", event => clickMarker(event));
+
+      map.value.on("click", event => {
+        const features = map.value.queryRenderedFeatures(event.point, {
+          layers: ["stores"]
+        });
+
+        if (!features.length && tempMarker.value) {
+          tempMarker.value.remove();
+          tempMarker.value = null;
+        }
+      });
+    });
+};
+
+const clickMarker = (event) => {
+  if (tempMarker.value) {
+    tempMarker.value.remove();
+  }
+
+  const title = event.features[0].properties.title;
+  const coordinates = event.features[0].geometry.coordinates;
+  const iconString = event.features[0].properties.icon;
+  const iconObject = JSON.parse(iconString);
+  const activeIcon = iconObject.active;
+
+  selectedStore.value = storeData.value.features.find(
+    store => store.properties.title === title
+  ).properties;
+
+  const el = document.createElement("div");
+  el.className = "marker-active";
+  el.style.backgroundImage = `url(${activeIcon})`;
+  el.style.backgroundPosition = "center";
+  el.style.backgroundRepeat = "no-repeat";
+  el.style.backgroundSize = "contain";
+  el.style.width = "52px";
+  el.style.height = "79px";
+
+  tempMarker.value = new mapboxgl.value.Marker(el, { offset: [0, -24] })
+    .setLngLat(coordinates)
+    .addTo(map.value);
+
+  map.value.flyTo({
+    center: [coordinates[0], coordinates[1]],
+    offset: [0, -200],
+    duration: 500,
+    curve: 1
+  });
+
+  localStorage.setItem('markerLatitude', coordinates[0]);
+  localStorage.setItem('markerLongitude', coordinates[1]);
+};
+
+// Initialize map
+onMounted(async () => {
+  await import('mapbox-gl/dist/mapbox-gl.css');
+  mapboxgl.value = (await import("mapbox-gl")).default;
+  mapboxgl.value.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+
+  locate.value = new mapboxgl.value.GeolocateControl({
+    positionOptions: { enableHighAccuracy: true },
+    trackUserLocation: true,
+    showUserHeading: true
+  });
+
+  const markerLatitude = localStorage.getItem('markerLatitude');
+  const markerLongitude = localStorage.getItem('markerLongitude');
+
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      if (markerLatitude && markerLongitude) {
+        map.value.setCenter([
+          markerLatitude,
+          markerLongitude
+        ]);
+      } else {
+        map.value.setCenter([
+          position.coords.longitude,
+          position.coords.latitude
+        ]);
+      }
+
+      console.log(
+        "📍 User's current position: " +
+        "(" + position.coords.latitude + "," + position.coords.longitude + ")"
       );
     },
-
-    resetSelectedStore() {
-      this.selectedStore = null;
-      this.tempMarker.remove();
+    error => {
+      console.error("Geolocation error: ", error);
+      map.value.setCenter([-77.0364976166554, 38.897684621644885]);
     }
-  }
-};
+  );
+
+  map.value = new mapboxgl.value.Map({
+    container: "map",
+    style: "mapbox://styles/naivebara/cluvh6drq000001q11cezdkgl",
+    center: [-77.0364976166554, 38.897684621644885],
+    zoom: 12.5,
+    minZoom: 4,
+    maxZoom: 18
+  });
+
+  map.value.on("load", () => {
+    addStores();
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -295,6 +232,12 @@ export default {
   position: relative;
   width: 100vw;
   height: 100vh;
+}
+
+#pickscard {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
 }
 
 #bottomsheet {
