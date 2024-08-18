@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="map"></div>
+    <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" />
     <Locate id="button-locate" @locate="locateUser" />
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
@@ -10,6 +11,7 @@
 import { ref, onMounted } from 'vue';
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import Locate from "./Button/Icon/Locate.vue";
+import PicksByAuthor from "./Card/PicksByAuthor.vue";
 
 const map = ref(null);
 const mapboxgl = ref(null);
@@ -19,7 +21,6 @@ const tempMarker = ref(null);
 
 // stores json
 const storeData = ref(null);
-const promoStore = ref(null);
 
 // Buttons
 const locateUser = () => {
@@ -135,10 +136,11 @@ const clickMarker = (event) => {
     tempMarker.value.remove();
   }
 
-  const title = event.features[0].properties.title;
-  const coordinates = event.features[0].geometry.coordinates;
-  const iconString = event.features[0].properties.icon;
-  const iconObject = JSON.parse(iconString);
+  const feature = event.features ? event.features[0] : event;
+  const title = feature.properties.title;
+  const coordinates = feature.geometry.coordinates;
+  const iconString = feature.properties.icon;
+  const iconObject = typeof iconString === 'string' ? JSON.parse(iconString) : iconString;
   const activeIcon = iconObject.active;
 
   selectedStore.value = storeData.value.features.find(
@@ -167,6 +169,21 @@ const clickMarker = (event) => {
 
   localStorage.setItem('markerLatitude', coordinates[0]);
   localStorage.setItem('markerLongitude', coordinates[1]);
+};
+
+const handleSelectBar = (bar) => {
+  const event = {
+    features: [{
+      properties: bar.properties,
+      geometry: bar.geometry
+    }]
+  };
+  clickMarker(event);
+  // Hide PicksByAuthor component
+  const picksCard = document.getElementById('pickscard');
+  if (picksCard) {
+    picksCard.style.display = 'none';
+  }
 };
 
 // Initialize map

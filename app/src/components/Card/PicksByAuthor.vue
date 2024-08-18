@@ -7,10 +7,12 @@
       <div v-else key="list" class="thumbnail-container flex-col">
         <div class="marquee-wrapper" ref="marqueeWrapper" @mousedown="handleMouseDown" @click="handleClick">
           <div class="marquee">
-            <Thumbnail v-for="(thumbnail, index) in thumbnails" :key="index" style="min-width: 120px;" />
+            <Thumbnail v-for="bar in barsList" :key="bar.properties.id" :bar="bar" @click="goToBarOnMap(bar)" />
           </div>
         </div>
-        <h4>Asia's 100 Best Bars in Taipei City</h4>
+
+        <h4>Asia's 50 Best Bars </h4>
+        <!-- <h4>Asia's 100 Best Bars in Taipei City</h4> -->
       </div>
     </transition>
   </div>
@@ -20,13 +22,24 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import Minimize from "../Button/Icon/Minimize.vue";
 import Thumbnail from './Thumbnail.vue';
+import barListData from '../../assets/lists/test-asias-50-best-bars.json';
 
 const isVisible = ref(true);
 const mode = ref('cover');
 let intervalId = null;
 const marqueeWrapper = ref(null);
 
-const thumbnails = ref(Array(10).fill(null));
+const barsList = ref([]);
+
+const fetchBarsList = async () => {
+  try {
+    barsList.value = barListData.features.filter(feature => feature.properties.type === "bar");
+    console.log('Fetched bars:', barsList.value); // Debugging line
+  } catch (error) {
+    console.error('Error processing bars list:', error);
+  }
+};
+
 
 const minimizeCard = () => {
   isVisible.value = false;
@@ -74,7 +87,14 @@ const handleClick = (event) => {
   }
 };
 
+const emit = defineEmits(['selectBar']);
+
+const goToBarOnMap = (bar) => {
+  emit('selectBar', bar);
+};
+
 onMounted(() => {
+  fetchBarsList();
   intervalId = setTimeout(switchMode, 4000);
 });
 
