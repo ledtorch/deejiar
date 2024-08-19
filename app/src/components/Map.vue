@@ -132,9 +132,11 @@ const addStores = () => {
 };
 
 const clickMarker = (event) => {
+  // Initialize map
   if (tempMarker.value) {
     tempMarker.value.remove();
   }
+  hidePicksByAuthor();
 
   const feature = event.features ? event.features[0] : event;
   const title = feature.properties.title;
@@ -179,7 +181,9 @@ const handleSelectBar = (bar) => {
     }]
   };
   clickMarker(event);
-  // Hide PicksByAuthor component
+};
+
+const hidePicksByAuthor = () => {
   const picksCard = document.getElementById('pickscard');
   if (picksCard) {
     picksCard.style.display = 'none';
