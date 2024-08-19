@@ -10,8 +10,8 @@
             <Thumbnail v-for="bar in barsList" :key="bar.properties.id" :bar="bar" @click="goToBarOnMap(bar)" />
           </div>
         </div>
-
-        <h4>Asia's 50 Best Bars </h4>
+        <h4>Top Bars Chosen by Deejiar </h4>
+        <!-- <h4>Asia's 50 Best Bars</h4> -->
         <!-- <h4>Asia's 100 Best Bars in Taipei City</h4> -->
       </div>
     </transition>
@@ -40,11 +40,11 @@ const fetchBarsList = async () => {
   }
 };
 
-
 const minimizeCard = () => {
   isVisible.value = false;
 };
 
+// 🏗️ TODO: Only render once to improve performance
 const switchMode = () => {
   mode.value = mode.value === 'cover' ? 'list' : 'cover';
   clearTimeout(intervalId);
