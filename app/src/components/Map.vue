@@ -2,7 +2,7 @@
   <div>
     <div id="map"></div>
     <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" />
-    <Locate id="button-locate" @locate="locateUser" />
+    <Locate id="button-locate" @locate="locateUser" aria-label="locate user" />
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
 </template>
