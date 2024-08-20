@@ -20,7 +20,7 @@ const locate = ref(null);
 const tempMarker = ref(null);
 
 // stores json
-const storeData = ref(null);
+let storeData = null;
 
 // Buttons
 const locateUser = () => {
@@ -64,14 +64,14 @@ const addStores = () => {
   fetch(url)
     .then(response => response.json())
     .then(data => {
+      storeData = data;
+
       map.value.addSource("stores", {
         type: "geojson",
-        data: data
+        data: storeData
       });
 
-      storeData.value = data;
-
-      data.features.forEach(feature => {
+      storeData.features.forEach(feature => {
         ["mini", "default", "larger", "active"].forEach(size => {
           const iconPath = `/button/marker/${feature.properties.type}-${size}.png`;
           map.value.loadImage(iconPath, (error, image) => {
@@ -145,7 +145,7 @@ const clickMarker = (event) => {
   const iconObject = typeof iconString === 'string' ? JSON.parse(iconString) : iconString;
   const activeIcon = iconObject.active;
 
-  selectedStore.value = storeData.value.features.find(
+  selectedStore.value = storeData.features.find(
     store => store.properties.title === title
   ).properties;
 
