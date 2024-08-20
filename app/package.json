@@ -13,10 +13,11 @@
     "caniuse-lite": "^1.0.30001608",
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
-    "mapbox-gl": "^3.3.0",
+    "mapbox-gl": "^3.6.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "vue": "^3.4.35",
+    "vue-lazyload": "^3.0.0",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
