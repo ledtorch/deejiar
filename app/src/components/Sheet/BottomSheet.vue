@@ -4,7 +4,8 @@
       <div class="control-bar"></div>
     </div>
 
-    <div class="bottom-sheet-content" v-if="!storeState">
+    <!-- v-show for static content -->
+    <div class="bottom-sheet-content" v-show="!storeState">
       <Avatar />
       <h4>Wanna get the premium list and advanced features before they launch on Deejiar? Or simply want to leave your
         feedback? =)</h4>
@@ -43,10 +44,10 @@
           <Close :state="buttonState" @close="closeBottomSheet" />
         </div>
         <div class="image-div">
-          <div class="main-column" :style="{ 'backgroundImage': storefrontImage }"></div>
+          <div class="main-column" :style="{ 'backgroundImage': storeImages.storefront }"></div>
           <div class="secondary-column">
-            <div class="image" :style="{ 'backgroundImage': item1 }"></div>
-            <div class="image" :style="{ 'backgroundImage': item2 }"></div>
+            <div class="image" :style="{ 'backgroundImage': storeImages.item1 }"></div>
+            <div class="image" :style="{ 'backgroundImage': storeImages.item2 }"></div>
           </div>
         </div>
         <div class="state">
@@ -67,7 +68,7 @@
           <Close :state="buttonState" @close="closeBottomSheet" />
         </div>
         <div class="image-div">
-          <div class="main-column--view" :style="{ 'backgroundImage': storefrontImage }"></div>
+          <div class="main-column--view" :style="{ 'backgroundImage': storeImages.storefront }"></div>
         </div>
         <div class="state">
           <p class="text-limited">{{ store ? store.description : "" }}</p>
@@ -80,17 +81,17 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch, onMounted, defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 
 // Button
-import Avatar from "./Avatar.vue";
-import TagShopType from "../Button/TagShopType.vue";
-import Close from "../Button/Icon/Close.vue";
+const Avatar = defineAsyncComponent(() => import("./Avatar.vue"));
+const TagShopType = defineAsyncComponent(() => import("../Button/TagShopType.vue"));
+const Close = defineAsyncComponent(() => import("../Button/Icon/Close.vue"));
 
 // Components
-import Businesshour from "./Businesshour.vue";
-import Review from "./Review.vue";
+const Businesshour = defineAsyncComponent(() => import("./Businesshour.vue"));
+// const Review = defineAsyncComponent(() => import("./Review.vue"));
 
 // Props
 const props = defineProps({
@@ -117,9 +118,11 @@ const rootUrl = (imagePath) => {
 
 const storeState = computed(() => props.store);
 const storeLayout = computed(() => props.store?.layout);
-const storefrontImage = computed(() => rootUrl(props.store?.storefront?.day));
-const item1 = computed(() => rootUrl(props.store?.item1?.image));
-const item2 = computed(() => rootUrl(props.store?.item2?.image));
+const storeImages = computed(() => ({
+  storefront: rootUrl(props.store.storefront.day),
+  item1: rootUrl(props.store.item1.image),
+  item2: rootUrl(props.store.item2.image)
+}));
 
 
 // Expand BottomSheet when user clicks store marker
