@@ -75,79 +75,83 @@ div {
 	display: flex;
 }
 
-/* Font */
-h1 {
+/* Font color */
+h1,
+h2,
+h3,
+h4,
+p,
+.m-button-text,
+.headline,
+.subhead,
+.footnote,
+.caption1,
+.caption2 {
 	color: var(--primary-text);
+}
+
+/* Font Styling */
+h1 {
 	font-size: 27px;
 	font-weight: 500;
 	line-height: 36px;
 }
 
 h2 {
-	color: var(--primary-text);
 	font-size: 21px;
 	font-weight: 500;
 	line-height: 32px;
 }
 
 h3 {
-	color: var(--primary-text);
 	font-size: 19px;
 	font-weight: 500;
 	line-height: 24px;
 }
 
 h4 {
-	color: var(--primary-text);
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 21px;
 }
 
 p {
-	color: var(--primary-text);
 	font-size: 15px;
 	font-weight: 300;
 	line-height: 24px;
 }
 
 .m-button-text {
-	color: var(--primary-text);
 	font-size: 15px;
 	font-weight: 700;
 	line-height: 24px;
 }
 
 .headline {
-	color: var(--primary-text);
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 21px;
 }
 
 .subhead {
-	color: var(--primary-text);
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 24px;
 }
 
 .footnote {
-	color: var(--primary-text);
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 16px;
 }
 
 .caption1 {
-	color: var(--primary-text);
 	font-size: 10px;
 	font-weight: 400;
 	line-height: 14px;
 }
 
 .caption2 {
-	color: var(--primary-text);
 	font-size: 9px;
 	font-weight: 400;
 	line-height: 12px;
