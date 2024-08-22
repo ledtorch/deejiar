@@ -21,7 +21,7 @@
             v-model="credentials.password" />
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit" class="temp-button">Login</button>
       </form>
 
     </div>
@@ -95,13 +95,11 @@ export default {
   height: 100%;
 }
 
-
 .dashboard-frame {
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
 }
-
 
 .nav {
   justify-content: space-between;
@@ -154,5 +152,23 @@ export default {
 
 .hide {
   display: none;
+}
+
+.temp-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0px;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-button-round, 8px);
+  background: var(--token-theme, #fafafa);
+  color: var(--token-invert, #0e0d0f);
+
+  font-family: Be Vietnam Pro;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
 }
 </style>
