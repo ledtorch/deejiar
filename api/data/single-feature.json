@@ -1,0 +1,145 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [-77.01243920316357, 38.91286090122076],
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Big Bear Cafe",
+        "type": "cafe",
+        "address": "1201 S St NW, Washington, DC 20009",
+        "auid": "1141545104174516841",
+        "placeid": "ChIJWbmml_e3t4kRDzgyQ5HJP_c",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": false
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "1500",
+                "Start": "0800"
+              },
+              {
+                "Finish": "2200",
+                "Start": "1600"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "1500",
+                "Start": "0800"
+              },
+              {
+                "Finish": "2200",
+                "Start": "1600"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "1500",
+                "Start": "0800"
+              },
+              {
+                "Finish": "2200",
+                "Start": "1600"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "1500",
+                "Start": "0800"
+              },
+              {
+                "Finish": "2200",
+                "Start": "1600"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "1500",
+                "Start": "0800"
+              },
+              {
+                "Finish": "2200",
+                "Start": "1600"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "1500",
+                "Start": "0800"
+              },
+              {
+                "Finish": "2200",
+                "Start": "1600"
+              }
+            ]
+          }
+        ],
+        "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
+        "icon": {
+          "active": "button/marker/cafe-active.png",
+          "default": "button/marker/cafe-default.png",
+          "larger": "button/marker/cafe-larger.png",
+          "mini": "button/marker/cafe-mini.png",
+          "withFriends": "button/marker/cafe-withFriends.png"
+        },
+        "id": "1",
+        "item1": {
+          "description": "Cold whole or oat milk drink with flavored syrup. No coffee! Enjoy with a classic chai or vanilla syrup, or ask our baristas about our seasonal syrup options.",
+          "image": "stores/cafe/big-bear-cafe/iced-steamer.jpg",
+          "name": "Iced Steamer",
+          "price": "$3.8"
+        },
+        "item2": {
+          "description": "Enjoy your chewy shrimp with sour salsa, but the original taste is awesome as well.",
+          "image": "stores/cafe/big-bear-cafe/shrimp-taco.jpg",
+          "name": "Shrimp Taco",
+          "price": "$12"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "layout": "food",
+        "storefront": {
+          "day": "stores/cafe/big-bear-cafe/storefront-day.jpg",
+          "night": "stores/cafe/big-bear-cafe/storefront-night.jpg"
+        },
+        "tag": "[a, b]"
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}

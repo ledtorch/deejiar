@@ -1,15 +1,23 @@
 import os
 import json
 from fastapi import HTTPException
+from pathlib import Path
 
-# Files and sources
-JSON_PATH = '../data'
+# Load environment variables
+from dotenv import load_dotenv
+load_dotenv('../.env.local')
+
+# Define JSON_PATH relative to this file
+JSON_PATH = Path(__file__).parent.parent / 'data'
+print(f"JSON_PATH: {JSON_PATH}")
+
 
 def list_json_files():
     # List all files in the directory
     files = os.listdir(JSON_PATH)
     # Filter out files to only include .json files
-    json_files = [file.replace('.json', '') for file in files if file.endswith('.json')]
+    json_files = [file for file in files if file.endswith('.json')]
+    print(f"json_files: {json_files}")
     return json_files
 
 # Extract features as single layer objects in an array
