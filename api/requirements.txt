@@ -4,4 +4,3 @@ pydantic
 pyjwt
 passlib[bcrypt]
 python-dotenv
-fastapi-cors
