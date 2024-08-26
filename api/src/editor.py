@@ -2,6 +2,7 @@ import os
 import json
 from fastapi import HTTPException
 from pathlib import Path
+from datetime import datetime
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -121,3 +122,34 @@ def reconstruct_json(features):
 
         reconstructed['features'].append(reconstructed_feature)
     return reconstructed
+
+def save_reconstructed_features(filename: str, features):
+    try:
+        result = reconstruct_json(features)
+        
+        # Add .json extension if it's missing
+        if not filename.lower().endswith('.json'):
+            filename += '.json'
+        
+        timestamp = datetime.utcnow().strftime("_%m%dT%H:%M:%S")
+        
+        # Check if filename already has a timestamp and replace it, or add a new one
+        base_name, extension = os.path.splitext(filename)
+        if '_' in base_name:
+            parts = base_name.rsplit('_', 1)
+            # 13 is the length of "MMDDTHH:MM:SS"
+            if len(parts) == 2 and len(parts[1]) == 13:
+                new_filename = f"{parts[0]}{timestamp}{extension}"
+            else:
+                new_filename = f"{base_name}{timestamp}{extension}"
+        else:
+            new_filename = f"{base_name}{timestamp}{extension}"
+        
+        # Save the reconstructed JSON to a file
+        full_path = os.path.join(JSON_PATH, new_filename)
+        with open(full_path, 'w', encoding='utf-8') as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        
+        return new_filename
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
