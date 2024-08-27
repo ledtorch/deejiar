@@ -27,17 +27,24 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 
 const emit = defineEmits(['selected']);
 
 const props = defineProps({
-  files: Array
+  files: Array,
+  modelValue: String,
 });
 
-const selectedFile = ref('');
+const selectedFile = ref(props.modelValue || 'Select a file');
+
+watch(() => props.modelValue, (newValue) => {
+  if (newValue) {
+    selectedFile.value = newValue;
+  }
+});
 
 function selectFile(file) {
   selectedFile.value = file;
@@ -53,6 +60,12 @@ function selectFile(file) {
   align-self: stretch;
   border-radius: var(--Border-Button-Round, 8px);
   background: #FFF;
+
+  // 🏗️ TODO: Use the var of style.css
+  color: rgba(0, 0, 0, 0.95);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 .menu-items {
