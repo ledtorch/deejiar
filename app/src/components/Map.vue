@@ -2,16 +2,19 @@
   <div>
     <div id="map"></div>
     <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" />
+    <TheUserMarker v-if="userPosition" :position="userPosition" />
     <Locate id="button-locate" @locate="locateUser" aria-label="locate user" />
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, reactive, onMounted, onUnmounted } from 'vue';
+import { useUserLocation } from '../utils/useUserLocation.js';
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import Locate from "./Button/Icon/Locate.vue";
 import PicksByAuthor from "./Card/PicksByAuthor.vue";
+import TheUserMarker from "./Marker/TheUserMarker.vue";
 
 const map = ref(null);
 const mapboxgl = ref(null);
@@ -19,33 +22,24 @@ const selectedStore = ref(null);
 const locate = ref(null);
 const tempMarker = ref(null);
 
+const { userPosition, startWatching, stopWatching } = useUserLocation();
+
 // stores json
 let storeData = null;
 
 // Buttons
 const locateUser = () => {
-  navigator.geolocation.getCurrentPosition(
-    position => {
-      map.value.flyTo({
-        center: [position.coords.longitude, position.coords.latitude],
-        zoom: 12.5,
-        speed: 2,
-        curve: 1
-      });
-      // // 🐞 Debug console
-      // console.log(
-      //   "Locate the user to current position: " +
-      //   "(" + position.coords.latitude + "," + position.coords.longitude + ")"
-      // );
-    },
-    error => {
-      // // 🐞 Debug console
-      // console.error("Geolocation error: ", error);
-
-      // White House as default location
-      map.value.setCenter([-77.0364976166554, 38.897684621644885]);
-    }
-  );
+  if (userPosition.latitude && userPosition.longitude) {
+    map.value.flyTo({
+      center: [userPosition.longitude, userPosition.latitude],
+      zoom: 12.5,
+      speed: 2,
+      curve: 1
+    });
+    console.log("📍 Flying to user position: ", userPosition);
+  } else {
+    console.log("User position not available yet");
+  }
 };
 
 const resetSelectedStore = () => {
@@ -191,6 +185,7 @@ const hidePicksByAuthor = () => {
 };
 
 // Initialize map
+// TODO: Refactor location logic
 onMounted(async () => {
   await import('mapbox-gl/dist/mapbox-gl.css');
   mapboxgl.value = (await import("mapbox-gl")).default;
@@ -205,6 +200,7 @@ onMounted(async () => {
   const markerLatitude = localStorage.getItem('markerLatitude');
   const markerLongitude = localStorage.getItem('markerLongitude');
 
+  // TODO: Refactor this
   navigator.geolocation.getCurrentPosition(
     position => {
       if (markerLatitude && markerLongitude) {
@@ -242,6 +238,12 @@ onMounted(async () => {
   map.value.on("load", () => {
     addStores();
   });
+
+  startWatching();
+});
+
+onUnmounted(() => {
+  stopWatching();
 });
 </script>
 
@@ -259,6 +261,14 @@ onMounted(async () => {
   position: absolute;
   z-index: 1;
   width: 100%;
+}
+
+#user-marker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 #bottomsheet {
