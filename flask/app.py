@@ -76,31 +76,6 @@ def dashboard():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
 
-# JSON
-# @app.route('/stores', methods=['POST'])
-# def update_json():
-#     # Make a backup of the current stores.json
-#     if os.path.exists(STORES_JSON_PATH):
-#         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-#         backup_path = STORES_JSON_PATH.replace('.json', f'_backup_{timestamp}.json')
-#         os.rename(STORES_JSON_PATH, backup_path)
-
-#     # Save the new JSON data
-#     data = request.json
-#     with open(STORES_JSON_PATH, 'w', encoding='utf-8') as f:
-#         json.dump(data, f, ensure_ascii=False, indent=4)
-
-#     return jsonify({"message": "JSON data updated successfully"}), 200
-
-# @app.route('/stores', methods=['GET'])
-# def get_stores():
-#     if os.path.exists(STORES_JSON_PATH):
-#         with open(STORES_JSON_PATH, 'r', encoding='utf-8') as file:
-#             stores_data = json.load(file)
-#         return jsonify(stores_data)
-#     else:
-#         return jsonify({"error": "stores.json not found"}), 404
-
 # 🧱 Working
 @app.route('/json-files', methods=['GET'])
 def get_json_files():
