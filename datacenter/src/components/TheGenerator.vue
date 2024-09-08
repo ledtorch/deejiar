@@ -190,7 +190,7 @@ export default {
         const filename = this.currentFile;
         const response = await axios.post(`${this.API}/save/${filename}`, this.selectedData);
         // 🐞 Debug console
-        // console.log(response.data.message);
+        console.log(response.data.message);
       } catch (error) {
         console.error('Failed to update JSON:', error.response ? error.response.data : error);
       }
