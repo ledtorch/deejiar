@@ -2,14 +2,14 @@
   <div>
     <div id="map"></div>
     <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" />
-    <TheUserMarker v-if="userPosition" :position="userPosition" />
+    <!-- <TheUserMarker id="user-marker" /> -->
     <Locate id="button-locate" @locate="locateUser" aria-label="locate user" />
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useUserLocation } from '../utils/useUserLocation.js';
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import Locate from "./Button/Icon/Locate.vue";
@@ -19,15 +19,17 @@ import TheUserMarker from "./Marker/TheUserMarker.vue";
 const map = ref(null);
 const mapboxgl = ref(null);
 const selectedStore = ref(null);
-const locate = ref(null);
 const tempMarker = ref(null);
 
 const { userPosition, startWatching, stopWatching } = useUserLocation();
 
+// // 🏗️ WIP
+// const userLocation = ref(null);
+
 // stores json
 let storeData = null;
 
-// Buttons
+// Locate user
 const locateUser = () => {
   if (userPosition.latitude && userPosition.longitude) {
     map.value.flyTo({
@@ -42,6 +44,7 @@ const locateUser = () => {
   }
 };
 
+// Reset selected store
 const resetSelectedStore = () => {
   // remove marker and its data
   tempMarker.value.remove();
@@ -125,6 +128,7 @@ const addStores = () => {
     });
 };
 
+// Click marker
 const clickMarker = (event) => {
   // Initialize map
   if (tempMarker.value) {
@@ -163,10 +167,12 @@ const clickMarker = (event) => {
     curve: 1
   });
 
+  // Save store marker position
   localStorage.setItem('markerLatitude', coordinates[0]);
   localStorage.setItem('markerLongitude', coordinates[1]);
 };
 
+// PicksByAuthor logic
 const handleSelectBar = (bar) => {
   const event = {
     features: [{
@@ -184,24 +190,30 @@ const hidePicksByAuthor = () => {
   }
 };
 
+
 // Initialize map
-// TODO: Refactor location logic
 onMounted(async () => {
+  // Initialize mapboxgl
   await import('mapbox-gl/dist/mapbox-gl.css');
   mapboxgl.value = (await import("mapbox-gl")).default;
   mapboxgl.value.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
-  locate.value = new mapboxgl.value.GeolocateControl({
-    positionOptions: { enableHighAccuracy: true },
-    trackUserLocation: true,
-    showUserHeading: true
+  // Initialize map canvas
+  map.value = new mapboxgl.value.Map({
+    container: "map",
+    style: "mapbox://styles/naivebara/cluvh6drq000001q11cezdkgl",
+    zoom: 12.5,
+    minZoom: 4,
+    maxZoom: 18
   });
 
+  // Get stored marker position
   const markerLatitude = localStorage.getItem('markerLatitude');
   const markerLongitude = localStorage.getItem('markerLongitude');
 
-  // TODO: Refactor this
+  // Map center logic
   navigator.geolocation.getCurrentPosition(
+    // Use stored marker position if available, otherwise use current position
     position => {
       if (markerLatitude && markerLongitude) {
         map.value.setCenter([
@@ -214,26 +226,41 @@ onMounted(async () => {
           position.coords.latitude
         ]);
       }
-
-      console.log(
-        "📍 User's current position: " +
-        "(" + position.coords.latitude + "," + position.coords.longitude + ")"
-      );
+      // // 🐞 Debug console
+      // console.log(
+      //   "📍 User's current position: " +
+      //   "(" + position.coords.latitude + "," + position.coords.longitude + ")"
+      // );
     },
+    // If user denies geolocation, set map center to White House
     error => {
       console.error("Geolocation error: ", error);
       map.value.setCenter([-77.0364976166554, 38.897684621644885]);
     }
   );
 
-  map.value = new mapboxgl.value.Map({
-    container: "map",
-    style: "mapbox://styles/naivebara/cluvh6drq000001q11cezdkgl",
-    center: [-77.0364976166554, 38.897684621644885],
-    zoom: 12.5,
-    minZoom: 4,
-    maxZoom: 18
-  });
+  // 🏗️ WIP
+  // // Add user location dot logic
+  // userLocation.value = new mapboxgl.value.GeolocateControl({
+  //   positionOptions: {
+  //     enableHighAccuracy: true
+  //   },
+  //   trackUserLocation: true,
+  //   showUserHeading: false
+  // });
+
+  // map.value.addControl(userLocation.value);
+
+  // // WIP: Listen for position updates
+  // userLocation.value.on('userLocation', (e) => {
+  //   const lon = e.coords.longitude;
+  //   const lat = e.coords.latitude;
+  //   userPosition.latitude = lat;
+  //   userPosition.longitude = lon;
+  //   console.log("📍📍📍 User's current position:", [lon, lat]);
+  // });
+
+  // userLocation.value.trigger(); // This will get the user's location
 
   map.value.on("load", () => {
     addStores();
