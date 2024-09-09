@@ -20,71 +20,14 @@ const selectedStore = ref(null);
 const tempMarker = ref(null);
 const userLocationControl = ref(null);
 
+// utils
 const { userPosition, startWatching, stopWatching } = useUserLocation();
 
 // stores json
 let storeData = null;
 
 // Locate user
-// const locateUser = () => {
-//   if (userLocationControl.value) {
-//     console.log("userLocationControl.value: " + userLocationControl.value);
-//     userLocationControl.value.trigger();
-//   } else {
-//     console.log("GeolocateControl not available");
-//   }
-// };
-
-// // v2
-// const locateUser = () => {
-//   if (userLocationControl.value) {
-//     if (!userLocationControl.value._watchState) {
-//       // If not actively watching, trigger the control
-//       userLocationControl.value.trigger();
-//     } else {
-//       // If already watching, center the map on the user's location
-//       if (userPosition.latitude && userPosition.longitude) {
-//         map.value.flyTo({
-//           center: [userPosition.longitude, userPosition.latitude],
-//           zoom: 15,
-//           speed: 2,
-//           curve: 1
-//         });
-//         userLocationControl.value.trigger();
-//       } else {
-//         console.log("User position not available yet");
-//       }
-//     }
-//     console.log("GeolocateControl triggered or map centered on user location");
-//   } else {
-//     console.log("GeolocateControl not available");
-//   }
-// };
-
-// // v3
-// const locateUser = () => {
-//   if (userLocationControl.value) {
-//     if (userPosition.latitude && userPosition.longitude) {
-//       map.value.flyTo({
-//         center: [userPosition.longitude, userPosition.latitude],
-//         zoom: 15,
-//         speed: 2,
-//         curve: 1
-//       });
-//       userLocationControl.value.trigger();
-//       console.log("📍 Flying to user position: ", userPosition);
-//     } else {
-//       userLocationControl.value.trigger();
-//       console.log("Triggering GeolocateControl");
-//     }
-//   } else {
-//     console.log("GeolocateControl not available");
-//   }
-// };
-
-// v4
 const locateUser = () => {
-  // if (userPosition.latitude && userPosition.longitude) {
   map.value.flyTo({
     center: [userPosition.longitude, userPosition.latitude],
     zoom: 15,
@@ -92,11 +35,8 @@ const locateUser = () => {
     curve: 1
   });
   userLocationControl.value.trigger();
-  console.log("📍 Flying to user position: ", userPosition);
-  // } else {
-  //   userLocationControl.value.trigger();
-  //   console.log("Triggering GeolocateControl");
-  // }
+  // // 🐞 Debug console
+  // console.log("📍 Fly to user position: ", userPosition);
 };
 
 // Reset selected store
@@ -266,7 +206,7 @@ onMounted(async () => {
   const markerLatitude = localStorage.getItem('markerLatitude');
   const markerLongitude = localStorage.getItem('markerLongitude');
 
-
+  // After map load, add stores and initialize user location control
   map.value.on("load", () => {
     addStores();
 
@@ -298,7 +238,7 @@ onMounted(async () => {
       }
       // // 🐞 Debug console
       // console.log(
-      //   "📍 User's current position: " +
+      //   "📍 Current position: " +
       //   "(" + position.coords.latitude + "," + position.coords.longitude + ")"
       // );
     },
@@ -337,14 +277,6 @@ onUnmounted(() => {
   width: 100%;
 }
 
-#user-marker {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
 #bottomsheet {
   position: absolute;
   bottom: 0;
@@ -364,31 +296,5 @@ onUnmounted(() => {
 .marker-active {
   background: no-repeat center/contain;
   background-color: aliceblue;
-}
-
-.location-indicator {
-  width: 24px;
-  height: 24px;
-  padding: 2px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-.inner-ball {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-  border-radius: 16px;
-  background-color: var(--token-theme, #fafafa);
-}
-
-.ring {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  border: 1px dashed var(--token-theme, #fafafa);
 }
 </style>

@@ -4,6 +4,23 @@
 	display: none !important;
 }
 
+/* The user location dot */
+.mapboxgl-ctrl,
+.mapboxgl-user-location-accuracy-circle {
+	display: none !important;
+}
+
+.mapboxgl-user-location-dot,
+.mapboxgl-user-location-dot::before,
+.mapboxgl-user-location-dot::after {
+	height: 12px !important;
+	width: 12px !important;
+	left: 0 !important;
+	top: 0 !important;
+	background-color: var(--Color-Primary, rgba(255, 255, 255, 0.95)) !important;
+	border: 0px !important;
+}
+
 /* Default: Dark mode */
 :root {
 	font-weight: 400;
