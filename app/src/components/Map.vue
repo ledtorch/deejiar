@@ -2,7 +2,6 @@
   <div>
     <div id="map"></div>
     <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" />
-    <!-- <TheUserMarker id="user-marker" /> -->
     <Locate id="button-locate" @locate="locateUser" aria-label="locate user" />
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
   </div>
@@ -14,12 +13,12 @@ import { useUserLocation } from '../utils/useUserLocation.js';
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import Locate from "./Button/Icon/Locate.vue";
 import PicksByAuthor from "./Card/PicksByAuthor.vue";
-import TheUserMarker from "./Marker/TheUserMarker.vue";
 
 const map = ref(null);
 const mapboxgl = ref(null);
 const selectedStore = ref(null);
 const tempMarker = ref(null);
+const userLocationControl = ref(null);
 
 const { userPosition, startWatching, stopWatching } = useUserLocation();
 
@@ -27,18 +26,77 @@ const { userPosition, startWatching, stopWatching } = useUserLocation();
 let storeData = null;
 
 // Locate user
+// const locateUser = () => {
+//   if (userLocationControl.value) {
+//     console.log("userLocationControl.value: " + userLocationControl.value);
+//     userLocationControl.value.trigger();
+//   } else {
+//     console.log("GeolocateControl not available");
+//   }
+// };
+
+// // v2
+// const locateUser = () => {
+//   if (userLocationControl.value) {
+//     if (!userLocationControl.value._watchState) {
+//       // If not actively watching, trigger the control
+//       userLocationControl.value.trigger();
+//     } else {
+//       // If already watching, center the map on the user's location
+//       if (userPosition.latitude && userPosition.longitude) {
+//         map.value.flyTo({
+//           center: [userPosition.longitude, userPosition.latitude],
+//           zoom: 15,
+//           speed: 2,
+//           curve: 1
+//         });
+//         userLocationControl.value.trigger();
+//       } else {
+//         console.log("User position not available yet");
+//       }
+//     }
+//     console.log("GeolocateControl triggered or map centered on user location");
+//   } else {
+//     console.log("GeolocateControl not available");
+//   }
+// };
+
+// // v3
+// const locateUser = () => {
+//   if (userLocationControl.value) {
+//     if (userPosition.latitude && userPosition.longitude) {
+//       map.value.flyTo({
+//         center: [userPosition.longitude, userPosition.latitude],
+//         zoom: 15,
+//         speed: 2,
+//         curve: 1
+//       });
+//       userLocationControl.value.trigger();
+//       console.log("📍 Flying to user position: ", userPosition);
+//     } else {
+//       userLocationControl.value.trigger();
+//       console.log("Triggering GeolocateControl");
+//     }
+//   } else {
+//     console.log("GeolocateControl not available");
+//   }
+// };
+
+// v4
 const locateUser = () => {
-  if (userPosition.latitude && userPosition.longitude) {
-    map.value.flyTo({
-      center: [userPosition.longitude, userPosition.latitude],
-      zoom: 12.5,
-      speed: 2,
-      curve: 1
-    });
-    console.log("📍 Flying to user position: ", userPosition);
-  } else {
-    console.log("User position not available yet");
-  }
+  // if (userPosition.latitude && userPosition.longitude) {
+  map.value.flyTo({
+    center: [userPosition.longitude, userPosition.latitude],
+    zoom: 15,
+    speed: 2,
+    curve: 1
+  });
+  userLocationControl.value.trigger();
+  console.log("📍 Flying to user position: ", userPosition);
+  // } else {
+  //   userLocationControl.value.trigger();
+  //   console.log("Triggering GeolocateControl");
+  // }
 };
 
 // Reset selected store
@@ -208,6 +266,24 @@ onMounted(async () => {
   const markerLatitude = localStorage.getItem('markerLatitude');
   const markerLongitude = localStorage.getItem('markerLongitude');
 
+
+  map.value.on("load", () => {
+    addStores();
+
+    // Initialize GeolocateControl only if it doesn't exist
+    userLocationControl.value = new mapboxgl.value.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true,
+      showUserLocation: true,
+      showUserHeading: false
+    });
+
+    map.value.addControl(userLocationControl.value);
+
+  });
+
   // Map center logic
   navigator.geolocation.getCurrentPosition(
     // Use stored marker position if available, otherwise use current position
@@ -218,10 +294,7 @@ onMounted(async () => {
           markerLongitude
         ]);
       } else {
-        map.value.setCenter([
-          position.coords.longitude,
-          position.coords.latitude
-        ]);
+        userLocationControl.value.trigger();
       }
       // // 🐞 Debug console
       // console.log(
@@ -236,15 +309,15 @@ onMounted(async () => {
     }
   );
 
-  map.value.on("load", () => {
-    addStores();
-  });
-
   startWatching();
 });
 
 onUnmounted(() => {
   stopWatching();
+  if (map.value && userLocationControl.value) {
+    map.value.removeControl(userLocationControl.value);
+    userLocationControl.value = null;
+  }
 });
 </script>
 
