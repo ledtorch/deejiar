@@ -23,9 +23,6 @@ const tempMarker = ref(null);
 
 const { userPosition, startWatching, stopWatching } = useUserLocation();
 
-// // 🏗️ WIP
-// const userLocation = ref(null);
-
 // stores json
 let storeData = null;
 
@@ -239,29 +236,6 @@ onMounted(async () => {
     }
   );
 
-  // 🏗️ WIP
-  // // Add user location dot logic
-  // userLocation.value = new mapboxgl.value.GeolocateControl({
-  //   positionOptions: {
-  //     enableHighAccuracy: true
-  //   },
-  //   trackUserLocation: true,
-  //   showUserHeading: false
-  // });
-
-  // map.value.addControl(userLocation.value);
-
-  // // WIP: Listen for position updates
-  // userLocation.value.on('userLocation', (e) => {
-  //   const lon = e.coords.longitude;
-  //   const lat = e.coords.latitude;
-  //   userPosition.latitude = lat;
-  //   userPosition.longitude = lon;
-  //   console.log("📍📍📍 User's current position:", [lon, lat]);
-  // });
-
-  // userLocation.value.trigger(); // This will get the user's location
-
   map.value.on("load", () => {
     addStores();
   });
@@ -295,7 +269,7 @@ onUnmounted(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 2;
 }
 
 #bottomsheet {
