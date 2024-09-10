@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       credentials: {
+        // 🏗️ TODO: should update "account" to "username"
         account: '',
         password: ''
       },
