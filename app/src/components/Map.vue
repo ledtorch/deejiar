@@ -202,11 +202,7 @@ onMounted(async () => {
     maxZoom: 18
   });
 
-  // Get stored marker position
-  const markerLatitude = localStorage.getItem('markerLatitude');
-  const markerLongitude = localStorage.getItem('markerLongitude');
-
-  // After map load, add stores and initialize user location control
+  // After map load, add stores and initialize user location control for position dot
   map.value.on("load", () => {
     addStores();
 
@@ -225,6 +221,9 @@ onMounted(async () => {
   });
 
   // Map center logic
+  // Get stored marker position
+  const markerLatitude = localStorage.getItem('markerLatitude');
+  const markerLongitude = localStorage.getItem('markerLongitude');
   navigator.geolocation.getCurrentPosition(
     // Use stored marker position if available, otherwise use current position
     position => {
