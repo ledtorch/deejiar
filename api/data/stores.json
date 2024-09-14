@@ -5,7 +5,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.01243920316357, 38.91286090122076]
+        "coordinates": [
+          -77.01243920316357,
+          38.91286090122076
+        ]
       },
       "properties": {
         "id": "1",
@@ -145,7 +148,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.02328634317668, 38.89548380468532]
+        "coordinates": [
+          -77.02328634317668,
+          38.89548380468532
+        ]
       },
       "properties": {
         "id": "2",
@@ -266,7 +272,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.03162544459492, 38.9132761409135]
+        "coordinates": [
+          -77.03162544459492,
+          38.9132761409135
+        ]
       },
       "properties": {
         "id": "3",
@@ -387,7 +396,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.03217263705724, 38.911501815280616]
+        "coordinates": [
+          -77.03217263705724,
+          38.911501815280616
+        ]
       },
       "properties": {
         "id": "4",
@@ -508,7 +520,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-73.95725715767244, 40.77092171697179]
+        "coordinates": [
+          -73.95725715767244,
+          40.77092171697179
+        ]
       },
       "properties": {
         "id": "5",
@@ -649,7 +664,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.04963686614573, 38.794590717782455]
+        "coordinates": [
+          -77.04963686614573,
+          38.794590717782455
+        ]
       },
       "properties": {
         "id": "6",
@@ -714,7 +732,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-122.39415586213765, 37.79615016210502]
+        "coordinates": [
+          -122.39415586213765,
+          37.79615016210502
+        ]
       },
       "properties": {
         "id": "7",
@@ -835,7 +856,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-122.07874960703995, 37.393664872080464]
+        "coordinates": [
+          -122.07874960703995,
+          37.393664872080464
+        ]
       },
       "properties": {
         "id": "8",
@@ -951,7 +975,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.56618994603467, 25.059403726374924]
+        "coordinates": [
+          121.56618994603467,
+          25.059403726374924
+        ]
       },
       "properties": {
         "id": "9",
@@ -1057,7 +1084,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55315955767247, 25.035623014231852]
+        "coordinates": [
+          121.55315955767247,
+          25.035623014231852
+        ]
       },
       "properties": {
         "id": "10",
@@ -1168,7 +1198,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55288446528934, 25.032059162354336]
+        "coordinates": [
+          121.55288446528934,
+          25.032059162354336
+        ]
       },
       "properties": {
         "id": "11",
@@ -1294,7 +1327,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55375763761656, 25.032931060296708]
+        "coordinates": [
+          121.55375763761656,
+          25.032931060296708
+        ]
       },
       "properties": {
         "id": "12",
@@ -1422,7 +1458,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.52976830972298, 25.017195212353954]
+        "coordinates": [
+          121.52976830972298,
+          25.017195212353954
+        ]
       },
       "properties": {
         "id": "13",
@@ -1567,7 +1606,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55046504508994, 25.039727905632322]
+        "coordinates": [
+          121.55046504508994,
+          25.039727905632322
+        ]
       },
       "properties": {
         "id": "14",
@@ -1693,7 +1735,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55164116754744, 25.04269480315472]
+        "coordinates": [
+          121.55164116754744,
+          25.04269480315472
+        ]
       },
       "properties": {
         "id": "15",
@@ -1819,7 +1864,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.54480981123537, 25.039215200109936]
+        "coordinates": [
+          121.54480981123537,
+          25.039215200109936
+        ]
       },
       "properties": {
         "id": "16",
@@ -1953,7 +2001,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.56114707019687, 25.031488137915723]
+        "coordinates": [
+          121.56114707019687,
+          25.031488137915723
+        ]
       },
       "properties": {
         "id": "17",
@@ -2079,7 +2130,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55827059852218, 25.032127495571647]
+        "coordinates": [
+          121.55827059852218,
+          25.032127495571647
+        ]
       },
       "properties": {
         "id": "18",
@@ -2190,7 +2244,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.47374341245873", "25.254438504746673"]
+        "coordinates": [
+          "121.47374341245873",
+          "25.254438504746673"
+        ]
       },
       "properties": {
         "id": 19,
@@ -2306,24 +2363,27 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.52433170301717", "25.0549379800363"]
+        "coordinates": [
+          "121.52433170301717",
+          "25.0549379800363"
+        ]
       },
       "properties": {
         "id": 20,
         "title": "Tsubaki Salon Taipei",
-        "type": "cafe",
+        "type": "pancake",
         "layout": "food",
         "icon": {
-          "active": "button/marker/cafe-active.png",
-          "default": "button/marker/cafe-default.png",
-          "larger": "button/marker/cafe-larger.png",
-          "mini": "button/marker/cafe-mini.png",
-          "withFriends": "button/marker/cafe-withFriends.png"
+          "active": "button/marker/pancake-active.png",
+          "default": "button/marker/pancake-default.png",
+          "larger": "button/marker/pancake-larger.png",
+          "mini": "button/marker/pancake-mini.png",
+          "withFriends": "button/marker/pancake-withFriends.png"
         },
         "description": "Hokkaido-born café Tsubaki Salon serves fresh pancakes and this is the only store in Taiwan. Although this branch is not as elegant as the Ginza store, you can still enjoy their beautiful tableware and Hokkaido items. Please be patient, as the chef spends around 20 minutes preparing your pancake.",
         "storefront": {
-          "day": "stores/cafe/tsubaki-salon-taipei/storefront-day.jpg",
-          "night": "stores/cafe/tsubaki-salon-taipei/storefront-night.jpg"
+          "day": "stores/pancake/tsubaki-salon-taipei/storefront-day.jpg",
+          "night": "stores/pancake/tsubaki-salon-taipei/storefront-night.jpg"
         },
         "address": "B2, No. 3, Lane 39, Section 2, Zhongshan N Rd, Zhongshan District, Taipei City 104",
         "auid": "11189073664346799366",
@@ -2393,13 +2453,13 @@
         ],
         "item1": {
           "description": "Basic toppings: Hokkaido Fresh Cream, Beet Syrup <br>  Optional Toppings: TOKACHI Red Bean, Cultured Butter, Hokkaido Cheese <br>  Choosing two out of three toppings is NT$400, and choosing all three toppings is NT$430.",
-          "image": "stores/cafe/tsubaki-salon-taipei/hokkaido-hotcake-premium.jpg",
+          "image": "stores/pancake/tsubaki-salon-taipei/hokkaido-hotcake-premium.jpg",
           "name": "Hokkaido Hotcake Premium",
           "price": "NT$430"
         },
         "item2": {
           "description": "(Hot/Iced)",
-          "image": "stores/cafe/tsubaki-salon-taipei/hokkaido-milk.jpg",
+          "image": "stores/pancake/tsubaki-salon-taipei/hokkaido-milk.jpg",
           "name": "Hokkaido Milk",
           "price": "NT$200"
         },
@@ -2427,7 +2487,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.57119997942961", "25.03941312132497"]
+        "coordinates": [
+          "121.57119997942961",
+          "25.03941312132497"
+        ]
       },
       "properties": {
         "id": "21",
@@ -2543,24 +2606,27 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.51168606200733", "25.05508181549003"]
+        "coordinates": [
+          "121.51168606200733",
+          "25.05508181549003"
+        ]
       },
       "properties": {
         "id": "22",
         "title": "Fú Dàu Pastry Studio",
-        "type": "cafe",
+        "type": "pancake",
         "layout": "food",
         "icon": {
-          "active": "button/marker/cafe-active.png",
-          "default": "button/marker/cafe-default.png",
-          "larger": "button/marker/cafe-larger.png",
-          "mini": "button/marker/cafe-mini.png",
-          "withFriends": "button/marker/cafe-withFriends.png"
+          "active": "button/marker/pancake-active.png",
+          "default": "button/marker/pancake-default.png",
+          "larger": "button/marker/pancake-larger.png",
+          "mini": "button/marker/pancake-mini.png",
+          "withFriends": "button/marker/pancake-withFriends.png"
         },
         "description": "The best soufflé shop in Dadaocheng offers delicious and attractive Taiwanese-flavored soufflés. The shop is located in a traditional Taiwanese two-story house with a shrine hall table in this café. Enjoying a fluffy soufflé in this incense-filled, classical space is a unique experience in this ancient city.",
         "storefront": {
-          "day": "stores/cafe/fu-dau-pastry-studio/storefront-day.jpg",
-          "night": "stores/cafe/fu-dau-pastry-studio/storefront-night.jpg"
+          "day": "stores/pancake/fu-dau-pastry-studio/storefront-day.jpg",
+          "night": "stores/pancake/fu-dau-pastry-studio/storefront-night.jpg"
         },
         "address": "1F, No. 25, Section 2, Yanping N Rd, Datong District, Taipei City, 10344",
         "auid": "8070135016609459861",
@@ -2625,25 +2691,25 @@
         ],
         "item1": {
           "description": "Original soufflé pancake, Taiwan oolong tea whipping cream, peanuts.",
-          "image": "stores/cafe/fu-dau-pastry-studio/fu-dau-oolong-tea-souffle-pancake.jpg",
+          "image": "stores/pancake/fu-dau-pastry-studio/fu-dau-oolong-tea-souffle-pancake.jpg",
           "name": "Fú Dàu Oolong Tea Soufflé Pancake",
           "price": "NT$380"
         },
         "item2": {
           "description": "Original soufflé pancake, mullet roe with rice wine, salted egg yolk, mix nuts with gold leaf.",
-          "image": "stores/cafe/fu-dau-pastry-studio/mullet-roe-with-salted-egg-yolk-souffle-pancake.jpg",
+          "image": "stores/pancake/fu-dau-pastry-studio/mullet-roe-with-salted-egg-yolk-souffle-pancake.jpg",
           "name": "Mullet Roe with Salted Egg Yolk Soufflé Pancake",
           "price": "NT$380"
         },
         "item3": {
           "description": "Iced NT$160, Hot NT$180",
-          "image": "stores/cafe/fu-dau-pastry-studio/tieh-kuan-yin-milk-tea.jpg",
+          "image": "stores/pancake/fu-dau-pastry-studio/tieh-kuan-yin-milk-tea.jpg",
           "name": "Tieh Kuan Yin Milk Tea",
           "price": "NT$160"
         },
         "item4": {
           "description": "Iced NT$160, Hot NT$180",
-          "image": "stores/cafe/fu-dau-pastry-studio/ice-drip-coffee-latte.jpg",
+          "image": "stores/pancake/fu-dau-pastry-studio/ice-drip-coffee-latte.jpg",
           "name": "Ice Drip Coffee Latte",
           "price": "NT$160"
         },
