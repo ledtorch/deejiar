@@ -5,10 +5,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.5465962846551",
-          "25.044498051045757"
-        ]
+        "coordinates": ["121.5465962846551", "25.044498051045757"]
       },
       "properties": {
         "id": "37",
@@ -129,10 +126,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.03162544459492,
-          38.9132761409135
-        ]
+        "coordinates": [-77.03162544459492, 38.9132761409135]
       },
       "properties": {
         "id": "3",
@@ -253,10 +247,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55315955767247,
-          25.035623014231852
-        ]
+        "coordinates": [121.55315955767247, 25.035623014231852]
       },
       "properties": {
         "id": "10",
@@ -367,10 +358,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55288446528934,
-          25.032059162354336
-        ]
+        "coordinates": [121.55288446528934, 25.032059162354336]
       },
       "properties": {
         "id": "11",
@@ -496,10 +484,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.54480981123537,
-          25.039215200109936
-        ]
+        "coordinates": [121.54480981123537, 25.039215200109936]
       },
       "properties": {
         "id": "16",
@@ -633,10 +618,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55827059852218,
-          25.032127495571647
-        ]
+        "coordinates": [121.55827059852218, 25.032127495571647]
       },
       "properties": {
         "id": "18",
@@ -747,13 +729,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55827059852218,
-          25.032127495571647
-        ]
+        "coordinates": ["103.84358318262083", "1.2752250699431034"]
       },
       "properties": {
-        "id": "3",
+        "id": 24,
         "title": "Jigger & Pony",
         "type": "bar",
         "layout": "food",
@@ -764,14 +743,14 @@
           "mini": "button/marker/bar-mini.png",
           "withFriends": "button/marker/bar-withFriends.png"
         },
-        "description": "",
+        "description": "Located in Amara Hotel, Jigger & Pony offers friendly bartenders, inviting you to enjoy the atmosphere and share stories at the bar. Ranked in Asia’s 50 Best Bars, its creative ‘menuzines’ feature inventive cocktails like Strawberry Fields and fun punches. Pair drinks with tasty bar snacks for a lively experience.",
         "storefront": {
           "day": "stores/bar/jigger-and-pony/storefront-day.jpg",
           "night": "stores/bar/jigger-and-pony/storefront-night.jpg"
         },
-        "address": "No. 12, Jiaxing St, Xinyi District, Taipei City, 110",
-        "auid": "12283437593347315192",
-        "placeid": "ChIJwSO8jsCrQjQRqDmCOu8hCbA",
+        "address": "165 Tg Pagar Rd, Amara Hotel, Singapore 088539",
+        "auid": "1829641397555543956",
+        "placeid": "ChIJ36AdBg0Z2jERvFl0QFoqZ0E",
         "tag": "[]",
         "businesshour": [
           {
@@ -779,67 +758,77 @@
             "Holiday": []
           },
           {
-            "Monday": false
+            "Monday": [
+              {
+                "Start": "1800",
+                "Finish": "2400"
+              }
+            ]
           },
           {
-            "Tuesday": false
+            "Tuesday": [
+              {
+                "Start": "1800",
+                "Finish": "2400"
+              }
+            ]
           },
           {
             "Wednesday": [
               {
-                "Finish": "2500",
-                "Start": "1900"
+                "Start": "1800",
+                "Finish": "2500"
               }
             ]
           },
           {
             "Thursday": [
               {
-                "Finish": "2500",
-                "Start": "1900"
+                "Start": "1800",
+                "Finish": "2500"
               }
             ]
           },
           {
             "Friday": [
               {
-                "Finish": "2500",
-                "Start": "1900"
+                "Start": "1800",
+                "Finish": "2600"
               }
             ]
           },
           {
             "Saturday": [
               {
-                "Finish": "2500",
-                "Start": "1900"
+                "Start": "1800",
+                "Finish": "2400"
               }
             ]
           },
           {
             "Sunday": [
               {
-                "Finish": "2500",
-                "Start": "1900"
+                "Start": "1800",
+                "Finish": "2400"
               }
             ]
           }
         ],
         "item1": {
-          "description": "GIN/CARROT/HONEY",
-          "image": "stores/bar/carrot/carrot-you-out.jpg",
-          "name": "Carrot You Out",
-          "price": "NT$400"
+          "description": "Happy hour item <br> Haku Vodka, passion fruit, apricot, lemon, Cointreau, Sauvignon Black, chocolate bitters",
+          "image": "stores/bar/jigger-and-pony/porn-star-martini.jpg",
+          "name": "Porn Star Martini",
+          "price": "S$19"
         },
         "item2": {
-          "description": "Choose one of three dips: aioli, salsa, guacamole. Extra dips: +NT$90.",
-          "image": "stores/bar/carrot/tortilla-chips-with-housemade-dips.jpg",
-          "name": "Tortilla Chips with Housemade Dips",
-          "price": "NT$240"
+          "description": "",
+          "image": "stores/bar/jigger-and-pony/",
+          "name": "",
+          "price": ""
         },
         "item3": {
           "description": "",
-          "image": "",
+          "image": "stores/bar/jigger-and-pony/",
           "name": "",
           "price": ""
         },
