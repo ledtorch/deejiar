@@ -5,7 +5,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.01243920316357, 38.91286090122076]
+        "coordinates": [
+          -77.01243920316357,
+          38.91286090122076
+        ]
       },
       "properties": {
         "id": "1",
@@ -145,7 +148,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.02328634317668, 38.89548380468532]
+        "coordinates": [
+          -77.02328634317668,
+          38.89548380468532
+        ]
       },
       "properties": {
         "id": "2",
@@ -266,7 +272,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.03162544459492, 38.9132761409135]
+        "coordinates": [
+          -77.03162544459492,
+          38.9132761409135
+        ]
       },
       "properties": {
         "id": "3",
@@ -387,7 +396,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.03217263705724, 38.911501815280616]
+        "coordinates": [
+          -77.03217263705724,
+          38.911501815280616
+        ]
       },
       "properties": {
         "id": "4",
@@ -508,7 +520,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-73.95725715767244, 40.77092171697179]
+        "coordinates": [
+          -73.95725715767244,
+          40.77092171697179
+        ]
       },
       "properties": {
         "id": "5",
@@ -649,7 +664,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.04963686614573, 38.794590717782455]
+        "coordinates": [
+          -77.04963686614573,
+          38.794590717782455
+        ]
       },
       "properties": {
         "id": "6",
@@ -714,7 +732,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-122.39415586213765, 37.79615016210502]
+        "coordinates": [
+          -122.39415586213765,
+          37.79615016210502
+        ]
       },
       "properties": {
         "id": "7",
@@ -835,7 +856,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-122.07874960703995, 37.393664872080464]
+        "coordinates": [
+          -122.07874960703995,
+          37.393664872080464
+        ]
       },
       "properties": {
         "id": "8",
@@ -951,7 +975,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.56618994603467, 25.059403726374924]
+        "coordinates": [
+          121.56618994603467,
+          25.059403726374924
+        ]
       },
       "properties": {
         "id": "9",
@@ -1057,7 +1084,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55315955767247, 25.035623014231852]
+        "coordinates": [
+          121.55315955767247,
+          25.035623014231852
+        ]
       },
       "properties": {
         "id": "10",
@@ -1168,7 +1198,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55288446528934, 25.032059162354336]
+        "coordinates": [
+          121.55288446528934,
+          25.032059162354336
+        ]
       },
       "properties": {
         "id": "11",
@@ -1294,7 +1327,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55375763761656, 25.032931060296708]
+        "coordinates": [
+          121.55375763761656,
+          25.032931060296708
+        ]
       },
       "properties": {
         "id": "12",
@@ -1422,7 +1458,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.52976830972298, 25.017195212353954]
+        "coordinates": [
+          121.52976830972298,
+          25.017195212353954
+        ]
       },
       "properties": {
         "id": "13",
@@ -1567,7 +1606,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55046504508994, 25.039727905632322]
+        "coordinates": [
+          121.55046504508994,
+          25.039727905632322
+        ]
       },
       "properties": {
         "id": "14",
@@ -1693,7 +1735,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55164116754744, 25.04269480315472]
+        "coordinates": [
+          121.55164116754744,
+          25.04269480315472
+        ]
       },
       "properties": {
         "id": "15",
@@ -1819,7 +1864,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.54480981123537, 25.039215200109936]
+        "coordinates": [
+          121.54480981123537,
+          25.039215200109936
+        ]
       },
       "properties": {
         "id": "16",
@@ -1953,7 +2001,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.56114707019687, 25.031488137915723]
+        "coordinates": [
+          121.56114707019687,
+          25.031488137915723
+        ]
       },
       "properties": {
         "id": "17",
@@ -2079,7 +2130,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [121.55827059852218, 25.032127495571647]
+        "coordinates": [
+          121.55827059852218,
+          25.032127495571647
+        ]
       },
       "properties": {
         "id": "18",
@@ -2190,7 +2244,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.47374341245873", "25.254438504746673"]
+        "coordinates": [
+          "121.47374341245873",
+          "25.254438504746673"
+        ]
       },
       "properties": {
         "id": "19",
@@ -2306,7 +2363,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.52433170301717", "25.0549379800363"]
+        "coordinates": [
+          "121.52433170301717",
+          "25.0549379800363"
+        ]
       },
       "properties": {
         "id": "20",
@@ -2427,7 +2487,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.57119997942961", "25.03941312132497"]
+        "coordinates": [
+          "121.57119997942961",
+          "25.03941312132497"
+        ]
       },
       "properties": {
         "id": "21",
@@ -2543,7 +2606,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.51168606200733", "25.05508181549003"]
+        "coordinates": [
+          "121.51168606200733",
+          "25.05508181549003"
+        ]
       },
       "properties": {
         "id": "22",
@@ -2659,7 +2725,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["121.5465962846551", "25.044498051045757"]
+        "coordinates": [
+          "121.5465962846551",
+          "25.044498051045757"
+        ]
       },
       "properties": {
         "id": "23",
@@ -2780,7 +2849,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": ["103.84358318262083", "1.2752250699431034"]
+        "coordinates": [
+          "103.84358318262083",
+          "1.2752250699431034"
+        ]
       },
       "properties": {
         "id": 24,
@@ -2880,6 +2952,130 @@
         "item3": {
           "description": "",
           "image": "stores/bar/jigger-and-pony/",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "103.8386253704992",
+          "1.2917278115996622"
+        ]
+      },
+      "properties": {
+        "id": "25",
+        "title": "Common Man Coffee Roasters - Martin Road",
+        "type": "cafe",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/cafe-active.png",
+          "default": "button/marker/cafe-default.png",
+          "larger": "button/marker/cafe-larger.png",
+          "mini": "button/marker/cafe-mini.png",
+          "withFriends": "button/marker/cafe-withFriends.png"
+        },
+        "description": "The flagship Martin Rd café, opened in 2013, introduced specialty coffee to Singapore’s Robertson Quay. This laid-back, greenery-surrounded space offers all-day brunch, coffee, and retail beans. The second floor’s alfresco coffee bar, Grounded by CMCR, features a wellness-focused menu, perfect for gathering and unwinding over quality coffee and snacks.",
+        "storefront": {
+          "day": "stores/cafe/common-man-coffee-roasters-martin-road/storefront-day.jpg",
+          "night": "stores/cafe/common-man-coffee-roasters-martin-road/storefront-night.jpg"
+        },
+        "address": "22 Martin Rd, #01-00, Singapore 239058",
+        "auid": "2726859010058013622",
+        "placeid": "ChIJT3fdLZwZ2jERJx-QGgPAoac",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Reg. S$7, Large S$8.5 <br> Whole milk / low fat milk / outside oat / nobody coconut / bonsai soy",
+          "image": "stores/cafe/common-man-coffee-roasters-martin-road/iced-chai-latte.jpg",
+          "name": "Iced Chai Latte",
+          "price": "S$7"
+        },
+        "item2": {
+          "description": "Crispy chickpeas, honey, pita bread.",
+          "image": "stores/cafe/common-man-coffee-roasters-martin-road/green-hummus.jpg",
+          "name": "Green Hummus",
+          "price": "S$14"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
           "name": "",
           "price": ""
         },
