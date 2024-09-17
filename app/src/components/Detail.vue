@@ -194,6 +194,22 @@ export default {
       const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
       window.open(twitterUrl, '_blank');
     },
+    // Default share function
+    // share() {
+    //   if (navigator.share) {
+    //     navigator.share({
+    //       title: this.storeTitle,
+    //       text: `Check out ${this.storeTitle} with Deejiar!`,
+    //       url: window.location.href
+    //     }).then(() => {
+    //       console.log('Successfully shared');
+    //     }).catch((error) => {
+    //       console.error('Error sharing:', error);
+    //     });
+    //   } else {
+    //     alert('Sharing is not supported on this browser');
+    //   }
+    // },
   },
 };
 </script>
