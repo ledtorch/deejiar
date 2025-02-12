@@ -1,0 +1,861 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "121.5465962846551",
+          "25.044498051045757"
+        ]
+      },
+      "properties": {
+        "id": "37",
+        "title": "Bar Mood Taipei",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "Bar Mood, one of Taiwan’s first craft cocktail bars, opened in Taipei in 2017. Owner Nick Wu’s bartop garden features locally foraged garnishes, highlighting Taiwan’s biodiversity. Using ingredients like oolong tea and soy milk, Wu blends traditional and modern techniques, earning Bar Mood a spot on Asia’s 50 Best Bars list.",
+        "storefront": {
+          "day": "stores/bar/bar-mood-taipei/storefront-day.jpg",
+          "night": "stores/bar/bar-mood-taipei/storefront-night.jpg"
+        },
+        "address": "No. 53, Lane 160, Section 1, Dunhua S Rd, Taipei City, 106",
+        "auid": "8700250495158565716",
+        "placeid": "ChIJgbsg4tqrQjQRNTNaBAUYOfA",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1800",
+                "Finish": "2600"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1800",
+                "Finish": "2600"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Crisp sweetness of elderflower from late spring; rounded sweetness of grapes from mid-summer; scents of jasmine tea from early autumn, plus the unique fresh citrus of Roku Gin - beauty of all seasons blooming on the palate.",
+          "image": "stores/bar/bar-mood-taipei/season-of-flower.jpg",
+          "name": "Season of Flower",
+          "price": "NT$400"
+        },
+        "item2": {
+          "description": "Fresh citrus notes from the tequila, with warming spiciness of pepper and unique sweetness of pandan gently dance on the palate. Subtle scents of tropical fruit appear in the end, making you feel clean and smooth.",
+          "image": "stores/bar/bar-mood-taipei/spice-raft.jpg",
+          "name": "Spice Raft",
+          "price": "NT$450"
+        },
+        "item3": {
+          "description": "Chicken Thigh | Nuts",
+          "image": "stores/bar/bar-mood-taipei/grill-satay-chicken.jpg",
+          "name": "Grill Satay Chicken",
+          "price": "NT$220"
+        },
+        "item4": {
+          "description": "Truffle Crème Fraiche NT$50 <br> Fries | Fresh Mashed Garlic",
+          "image": "stores/bar/bar-mood-taipei/garlic-fries.jpg",
+          "name": "Garlic Fries",
+          "price": "NT$250"
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03162544459492,
+          38.9132761409135
+        ]
+      },
+      "properties": {
+        "id": "3",
+        "title": "Jane Jane",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
+        "storefront": {
+          "day": "stores/bar/jane-jane/storefront-day.jpg",
+          "night": "stores/bar/jane-jane/storefront-night.jpg"
+        },
+        "address": "1705 14th St NW, Washington, DC 20009",
+        "auid": "3689846720665772135",
+        "placeid": "ChIJbwUdjH63t4kR9_gS9lEMU8A",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "2400",
+                "Start": "1700"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2400",
+                "Start": "1700"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2400",
+                "Start": "1700"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2500",
+                "Start": "1700"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2600",
+                "Start": "1700"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2600",
+                "Start": "1400"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "2400",
+                "Start": "1400"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
+          "image": "stores/bar/jane-jane/onion-dip.jpg",
+          "name": "Onion Dip",
+          "price": "$12"
+        },
+        "item2": {
+          "description": "Pisco, Aperol, Maraschino Liqueur, Grapefruit Juice, Lemon Juice, Simple Syrup",
+          "image": "stores/bar/jane-jane/cusco.jpg",
+          "name": "Cusco",
+          "price": "$15"
+        },
+        "item3": {
+          "description": "Scotch, Irish Whiskey, Orgeat, Lemon Juice",
+          "image": "stores/bar/jane-jane/camerons-kick.jpg",
+          "name": "Cameron's Kick",
+          "price": "$15"
+        },
+        "item4": {
+          "description": "Gin, Benedictine, Cointreau, Heering Cherry Liqueur, Pineapple Juice, Lime Juice, Angostura, Soda Water",
+          "image": "stores/bar/jane-jane/singapore-sling.jpg",
+          "name": "Singapore Sling",
+          "price": "$16"
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55315955767247,
+          25.035623014231852
+        ]
+      },
+      "properties": {
+        "id": "10",
+        "title": "Ole Rum Bar & Tapas",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "This is a Rum bar that offers a variety of Rums and Spanish cuisine. The staff is passionate about introducing their products.",
+        "storefront": {
+          "day": "stores/bar/ole-rum-bar-and-tapas/storefront-day.jpg",
+          "night": "stores/bar/ole-rum-bar-and-tapas/storefront-night.jpg"
+        },
+        "address": "1F, No.4,  Lane 109, Section 1, Anhe Rd, Da’an District, Taipei City 106",
+        "auid": "7131535993595000173",
+        "placeid": "ChIJN-4uPaWuQjQRl5vzIpBxpFM",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": false
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2400",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2400",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2400",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2400",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2400",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Sunday": false
+          }
+        ],
+        "item1": {
+          "description": "The rum =)",
+          "image": "stores/bar/ole-rum-bar-and-tapas/selection.jpg",
+          "name": "Walls of Rum",
+          "price": ""
+        },
+        "item2": {
+          "description": "Region: Belize and Australia, 69.4% ABV <br> Cyberpunk series from French bottler Zn09 Zero Nine Spirits. Selected with passion by Grégory and Alain, this Belize rum, aged for 12 years in the tropics, is an invitation to discovery.",
+          "image": "stores/bar/ole-rum-bar-and-tapas/cyberpunk-belize-2007-rum.jpg",
+          "name": "Zn09 Cyberpunk Series Rh02 Belize 2007",
+          "price": "NT$600"
+        },
+        "item3": {
+          "description": "Region: Martinique, 60,8° ABV <br> A 100% pure cane juice rum from the French West Indies, aged for 5 years in bourbon barrels (3 years on site and 2 years in Europe).",
+          "image": "stores/bar/ole-rum-bar-and-tapas/martinique-rhum.jpg",
+          "name": "Zn09 So Rum Rh07 Pure Juice Cask Strength",
+          "price": "NT$400"
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55288446528934,
+          25.032059162354336
+        ]
+      },
+      "properties": {
+        "id": "11",
+        "title": "Larriere-cour",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "A professional whiskey bar, where bartenders possess a wealth of knowledge about whiskey and offer friendly service, is designed to help you find the whiskey that best suits your taste.",
+        "storefront": {
+          "day": "stores/bar/larriere-cour/storefront-day.jpg",
+          "night": "stores/bar/larriere-cour/storefront-night.jpg"
+        },
+        "address": "No. 4, Lane 23, Section 2, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
+        "auid": "4323237897240854204",
+        "placeid": "ChIJjY4zZ8yrQjQRO9r-32pw-eg",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Region: Cuba, 45° ABV <br> A 1998 vintage Cuban rum from an unnamed distillery.  It is not stated which of the distilleries or stills this rum came from, but American oak cask #8 was bottled in Scotland.",
+          "image": "stores/bar/larriere-cour/samaroli.jpg",
+          "name": "Cuba Rum 1998 Samaroli Single Cask #8",
+          "price": "NT$720"
+        },
+        "item2": {
+          "description": "The cocktail is made by a waiter who will follow your mood and tastes.",
+          "image": "stores/bar/larriere-cour/cocktail.jpg",
+          "name": "Personalized Cocktail",
+          "price": "NT$400"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.54480981123537,
+          25.039215200109936
+        ]
+      },
+      "properties": {
+        "id": "16",
+        "title": "Indulge Experimental Bistro",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "Indulge Experimental Bistro is consistently ranked among the World’s 50 Best Bars and remains a top-five favorite in Asia’s 50 Best. Its tea-infused cocktail captures the essence of its subtropical flavors. The chef has meticulously gathered representative ingredients from all over Taiwan to create unique small plates designed to complement the drinks. The staff expertly introduces patrons to the local ingredients, explaining how the chef aims to inspire clients with the vivid imagery of Formosa.",
+        "storefront": {
+          "day": "stores/bar/indulge-experimental-bistro/storefront-day.jpg",
+          "night": "stores/bar/indulge-experimental-bistro/storefront-night.jpg"
+        },
+        "address": "No. 11, Lane 219, Section 1, Fuxing S Rd, Da’an District, Taipei City, 106",
+        "auid": "7217928507319275413",
+        "placeid": "ChIJ5TXg4tCrQjQRNDAoeL3zmoE",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": [
+              {
+                "Finish": "2600",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Monday": [
+              {
+                "Finish": "2500",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Finish": "2500",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2500",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2500",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2700",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "1700",
+                "Start": "1100"
+              },
+              {
+                "Finish": "2700",
+                "Start": "1800"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "1700",
+                "Start": "1100"
+              },
+              {
+                "Finish": "2600",
+                "Start": "1800"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Botanist Gin <br> William Pear / Lily / Bergamot / Tonic Water",
+          "image": "stores/bar/indulge-experimental-bistro/herbal-flora.jpg",
+          "name": "Herbal Flora",
+          "price": "NT$500"
+        },
+        "item2": {
+          "description": "Don Julio Tequila Blanco. Rose Cherry Liqueur. Rosewood Iron Buddha Tea.",
+          "image": "stores/bar/indulge-experimental-bistro/wood-flora.jpg",
+          "name": "Wood Flora",
+          "price": "NT$450"
+        },
+        "item3": {
+          "description": "Taiwanese gnocchi, also commonly known as 'cloud soft' owes its name to its texture. The inspiration comes from the early morning in the mountains, when the sun rises, and the sky gradually reveals a ruby-like hue between the sea of clouds and the forest. The red onion noodle dumplings represent the sea of clouds, while the chicken fat transformed into powder and tea tree mushrooms represent the mountains and forests. The spicy tomato-braised pork belly with turmeric and Buddha's hand citron pickled daikon represents the various displays of light. This also symbolizes the enticingly diverse flavors!",
+          "image": "stores/bar/indulge-experimental-bistro/gnocchi.jpg",
+          "name": "Gnocchi·Duroc Pork·Spicy Tomato·Mushroom",
+          "price": "NT$480"
+        },
+        "item4": {
+          "description": "Taking a dish we are all too familiar with - Teppan tofu - as a point of discovery, we mix pure shrimp paste into the egg tofu mixture for reshaping, first baking then frying it. It is then combined with the sweetness of caramelized onions, the spiciness of pepper, the sourness of pickled salmon roe in black vinegar, and the freshness of fermented chili, presenting a novel appearance of Taiwanese-style Western cuisine.",
+          "image": "stores/bar/indulge-experimental-bistro/egg-tofu.jpg",
+          "name": "Egg Tofu·Scallop·Salmon-roll·Fermented Chili",
+          "price": "NT$360"
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55827059852218,
+          25.032127495571647
+        ]
+      },
+      "properties": {
+        "id": "18",
+        "title": "Carrot",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "The bar is renowned for its unique vegetable-based cocktails.",
+        "storefront": {
+          "day": "stores/bar/carrot/storefront-day.jpg",
+          "night": "stores/bar/carrot/storefront-night.jpg"
+        },
+        "address": "No. 12, Jiaxing St, Xinyi District, Taipei City, 110",
+        "auid": "12283437593347315192",
+        "placeid": "ChIJwSO8jsCrQjQRqDmCOu8hCbA",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": false
+          },
+          {
+            "Tuesday": false
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "GIN/CARROT/HONEY",
+          "image": "stores/bar/carrot/carrot-you-out.jpg",
+          "name": "Carrot You Out",
+          "price": "NT$400"
+        },
+        "item2": {
+          "description": "Choose one of three dips: aioli, salsa, guacamole. Extra dips: +NT$90.",
+          "image": "stores/bar/carrot/tortilla-chips-with-housemade-dips.jpg",
+          "name": "Tortilla Chips with Housemade Dips",
+          "price": "NT$240"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55827059852218,
+          25.032127495571647
+        ]
+      },
+      "properties": {
+        "id": "3",
+        "title": "Jigger & Pony",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "",
+        "storefront": {
+          "day": "stores/bar/jigger-and-pony/storefront-day.jpg",
+          "night": "stores/bar/jigger-and-pony/storefront-night.jpg"
+        },
+        "address": "No. 12, Jiaxing St, Xinyi District, Taipei City, 110",
+        "auid": "12283437593347315192",
+        "placeid": "ChIJwSO8jsCrQjQRqDmCOu8hCbA",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": false
+          },
+          {
+            "Tuesday": false
+          },
+          {
+            "Wednesday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Finish": "2500",
+                "Start": "1900"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "GIN/CARROT/HONEY",
+          "image": "stores/bar/carrot/carrot-you-out.jpg",
+          "name": "Carrot You Out",
+          "price": "NT$400"
+        },
+        "item2": {
+          "description": "Choose one of three dips: aioli, salsa, guacamole. Extra dips: +NT$90.",
+          "image": "stores/bar/carrot/tortilla-chips-with-housemade-dips.jpg",
+          "name": "Tortilla Chips with Housemade Dips",
+          "price": "NT$240"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    }
+  ]
+}

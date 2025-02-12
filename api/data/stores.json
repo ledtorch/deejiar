@@ -5,10 +5,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.01243920316357,
-          38.91286090122076
-        ]
+        "coordinates": [-77.01243920316357, 38.91286090122076]
       },
       "properties": {
         "id": "1",
@@ -148,10 +145,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.02328634317668,
-          38.89548380468532
-        ]
+        "coordinates": [-77.02328634317668, 38.89548380468532]
       },
       "properties": {
         "id": "2",
@@ -272,10 +266,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.03162544459492,
-          38.9132761409135
-        ]
+        "coordinates": [-77.03162544459492, 38.9132761409135]
       },
       "properties": {
         "id": "3",
@@ -396,10 +387,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.03217263705724,
-          38.911501815280616
-        ]
+        "coordinates": [-77.03217263705724, 38.911501815280616]
       },
       "properties": {
         "id": "4",
@@ -520,10 +508,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -73.95725715767244,
-          40.77092171697179
-        ]
+        "coordinates": [-73.95725715767244, 40.77092171697179]
       },
       "properties": {
         "id": "5",
@@ -664,10 +649,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.04963686614573,
-          38.794590717782455
-        ]
+        "coordinates": [-77.04963686614573, 38.794590717782455]
       },
       "properties": {
         "id": "6",
@@ -732,10 +714,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -122.39415586213765,
-          37.79615016210502
-        ]
+        "coordinates": [-122.39415586213765, 37.79615016210502]
       },
       "properties": {
         "id": "7",
@@ -856,10 +835,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -122.07874960703995,
-          37.393664872080464
-        ]
+        "coordinates": [-122.07874960703995, 37.393664872080464]
       },
       "properties": {
         "id": "8",
@@ -975,10 +951,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.56618994603467,
-          25.059403726374924
-        ]
+        "coordinates": [121.56618994603467, 25.059403726374924]
       },
       "properties": {
         "id": "9",
@@ -1084,10 +1057,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55315955767247,
-          25.035623014231852
-        ]
+        "coordinates": [121.55315955767247, 25.035623014231852]
       },
       "properties": {
         "id": "10",
@@ -1198,10 +1168,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55288446528934,
-          25.032059162354336
-        ]
+        "coordinates": [121.55288446528934, 25.032059162354336]
       },
       "properties": {
         "id": "11",
@@ -1327,10 +1294,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55375763761656,
-          25.032931060296708
-        ]
+        "coordinates": [121.55375763761656, 25.032931060296708]
       },
       "properties": {
         "id": "12",
@@ -1458,10 +1422,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.52976830972298,
-          25.017195212353954
-        ]
+        "coordinates": [121.52976830972298, 25.017195212353954]
       },
       "properties": {
         "id": "13",
@@ -1606,10 +1567,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55046504508994,
-          25.039727905632322
-        ]
+        "coordinates": [121.55046504508994, 25.039727905632322]
       },
       "properties": {
         "id": "14",
@@ -1735,10 +1693,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55164116754744,
-          25.04269480315472
-        ]
+        "coordinates": [121.55164116754744, 25.04269480315472]
       },
       "properties": {
         "id": "15",
@@ -1864,10 +1819,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.54480981123537,
-          25.039215200109936
-        ]
+        "coordinates": [121.54480981123537, 25.039215200109936]
       },
       "properties": {
         "id": "16",
@@ -2001,10 +1953,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.56114707019687,
-          25.031488137915723
-        ]
+        "coordinates": [121.56114707019687, 25.031488137915723]
       },
       "properties": {
         "id": "17",
@@ -2130,10 +2079,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55827059852218,
-          25.032127495571647
-        ]
+        "coordinates": [121.55827059852218, 25.032127495571647]
       },
       "properties": {
         "id": "18",
@@ -2244,13 +2190,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.47374341245873",
-          "25.254438504746673"
-        ]
+        "coordinates": ["121.47374341245873", "25.254438504746673"]
       },
       "properties": {
-        "id": 19,
+        "id": "19",
         "title": "Ocean Kitchen & Cafe Shop",
         "type": "cafe",
         "layout": "food",
@@ -2363,13 +2306,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.52433170301717",
-          "25.0549379800363"
-        ]
+        "coordinates": ["121.52433170301717", "25.0549379800363"]
       },
       "properties": {
-        "id": 20,
+        "id": "20",
         "title": "Tsubaki Salon Taipei",
         "type": "pancake",
         "layout": "food",
@@ -2487,27 +2427,24 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.57119997942961",
-          "25.03941312132497"
-        ]
+        "coordinates": ["121.57119997942961", "25.03941312132497"]
       },
       "properties": {
         "id": "21",
         "title": "Fubon Art Museum",
-        "type": "landscape",
+        "type": "modern-museum",
         "layout": "food",
         "icon": {
-          "active": "button/marker/landscape-active.png",
-          "default": "button/marker/landscape-default.png",
-          "larger": "button/marker/landscape-larger.png",
-          "mini": "button/marker/landscape-mini.png",
-          "withFriends": "button/marker/landscape-withFriends.png"
+          "active": "button/marker/modern-museum-active.png",
+          "default": "button/marker/modern-museum-default.png",
+          "larger": "button/marker/modern-museum-larger.png",
+          "mini": "button/marker/modern-museum-mini.png",
+          "withFriends": "button/marker/modern-museum-withFriends.png"
         },
         "description": "The CEO of Fubon Art Foundation, Maggie Weng, has been preparing for this museum for 10 years. She invited Renzo Piano to design the building, and the theme of this building is “light.” This 10,000 square meter museum is the first work of Renzo Piano in Taiwan and the first museum in the Xinyi district. The three glass curtain walls of the “Water Exhibition Hall” on the first floor and the skylight designs of the “Sun Gallery” and “Star Gallery” on the third floor ingeniously infuse the space with nature, achieving harmony with the environment.  Although the first floor exhibition area is rough, using low-resolution printed wallpaper for the artworks, the third floor is a true modern art museum, offering perfect spatial planning for audiences to immerse themselves in the artworks.",
         "storefront": {
-          "day": "stores/museum/fubon-art-museum/storefront-day.jpg",
-          "night": "stores/museum/fubon-art-museum/storefront-night.jpg"
+          "day": "stores/modern-museum/fubon-art-museum/storefront-day.jpg",
+          "night": "stores/modern-museum/fubon-art-museum/storefront-night.jpg"
         },
         "address": "No. 79, Songgao Rd., Xinyi Dist., Taipei City, 110",
         "auid": "220671381606855783",
@@ -2572,25 +2509,25 @@
         ],
         "item1": {
           "description": "May 04 - Sep 23, 2024 <br> The Fubon Art Museum is honored to present its landmark debut inaugural exhibition, 'True Nature: Rodin and the Age of Impressionism,' during the lively spring season of 2024. This extraordinary showcase not only features the awe-inspiring sculptures, both monumental and intimate, by Rodin himself, but also presents a collection of Impressionist paintings from his contemporaries.",
-          "image": "stores/museum/fubon-art-museum/true-nature.jpg",
+          "image": "stores/modern-museum/fubon-art-museum/true-nature.jpg",
           "name": "True Nature: Rodin and the Age of Impressionism",
           "price": "NT$500"
         },
         "item2": {
           "description": "Auguste Rodin <br> First modeled 1897, this cast 1967 <br> Bronze <br> 120 x 120 x 297 cm <br> Gift B. Gerald Cantor Art Foundation",
-          "image": "stores/museum/fubon-art-museum/monument-to-Honore-de-balzac.jpg",
+          "image": "stores/modern-museum/fubon-art-museum/monument-to-Honore-de-balzac.jpg",
           "name": "Monument to Honoré de Balzac",
           "price": ""
         },
         "item3": {
           "description": "Auguste Rodin <br> First modeled 1890-1897 or 1901-1902, this cast 1967 <br> Bronze <br> 88 × 61 x 71 cm <br> Gift of the B. Gerald Cantor Art Foundation",
-          "image": "stores/museum/fubon-art-museum/heroic-bust-of-victor-hugo.jpg",
+          "image": "stores/modern-museum/fubon-art-museum/heroic-bust-of-victor-hugo.jpg",
           "name": "Heroic Bust of Victor Hugo",
           "price": ""
         },
         "item4": {
           "description": "Auguste Rodin <br> c. 1960-1970 <br> Bronze <br> 12 × 36 x 25 cm",
-          "image": "stores/museum/fubon-art-museum/large-right-hand.jpg",
+          "image": "stores/modern-museum/fubon-art-museum/large-right-hand.jpg",
           "name": "Large Right Hand",
           "price": ""
         },
@@ -2606,10 +2543,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.51168606200733",
-          "25.05508181549003"
-        ]
+        "coordinates": ["121.51168606200733", "25.05508181549003"]
       },
       "properties": {
         "id": "22",
@@ -2712,6 +2646,634 @@
           "image": "stores/pancake/fu-dau-pastry-studio/ice-drip-coffee-latte.jpg",
           "name": "Ice Drip Coffee Latte",
           "price": "NT$160"
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": ["121.5465962846551", "25.044498051045757"]
+      },
+      "properties": {
+        "id": "23",
+        "title": "Bar Mood Taipei",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "Bar Mood, one of Taiwan’s first craft cocktail bars, opened in Taipei in 2017. Owner Nick Wu’s bartop garden features locally foraged garnishes, highlighting Taiwan’s biodiversity. Using ingredients like oolong tea and soy milk, Wu blends traditional and modern techniques, earning Bar Mood a spot on Asia’s 50 Best Bars list.",
+        "storefront": {
+          "day": "stores/bar/bar-mood-taipei/storefront-day.jpg",
+          "night": "stores/bar/bar-mood-taipei/storefront-night.jpg"
+        },
+        "address": "No. 53, Lane 160, Section 1, Dunhua S Rd, Taipei City, 106",
+        "auid": "8700250495158565716",
+        "placeid": "ChIJgbsg4tqrQjQRNTNaBAUYOfA",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1800",
+                "Finish": "2600"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1800",
+                "Finish": "2600"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Crisp sweetness of elderflower from late spring; rounded sweetness of grapes from mid-summer; scents of jasmine tea from early autumn, plus the unique fresh citrus of Roku Gin - beauty of all seasons blooming on the palate.",
+          "image": "stores/bar/bar-mood-taipei/season-of-flower.jpg",
+          "name": "Season of Flower",
+          "price": "NT$400"
+        },
+        "item2": {
+          "description": "Fresh citrus notes from the tequila, with warming spiciness of pepper and unique sweetness of pandan gently dance on the palate. Subtle scents of tropical fruit appear in the end, making you feel clean and smooth.",
+          "image": "stores/bar/bar-mood-taipei/spice-raft.jpg",
+          "name": "Spice Raft",
+          "price": "NT$450"
+        },
+        "item3": {
+          "description": "Chicken Thigh | Nuts",
+          "image": "stores/bar/bar-mood-taipei/grill-satay-chicken.jpg",
+          "name": "Grill Satay Chicken",
+          "price": "NT$220"
+        },
+        "item4": {
+          "description": "Truffle Crème Fraiche NT$50 <br> Fries | Fresh Mashed Garlic",
+          "image": "stores/bar/bar-mood-taipei/garlic-fries.jpg",
+          "name": "Garlic Fries",
+          "price": "NT$250"
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": ["103.84358318262083", "1.2752250699431034"]
+      },
+      "properties": {
+        "id": 24,
+        "title": "Jigger & Pony",
+        "type": "bar",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/bar-active.png",
+          "default": "button/marker/bar-default.png",
+          "larger": "button/marker/bar-larger.png",
+          "mini": "button/marker/bar-mini.png",
+          "withFriends": "button/marker/bar-withFriends.png"
+        },
+        "description": "Located in Amara Hotel, Jigger & Pony offers friendly bartenders, inviting you to enjoy the atmosphere and share stories at the bar. Ranked in Asia’s 50 Best Bars, its creative ‘menuzines’ feature inventive cocktails like Strawberry Fields and fun punches. Pair drinks with tasty bar snacks for a lively experience.",
+        "storefront": {
+          "day": "stores/bar/jigger-and-pony/storefront-day.jpg",
+          "night": "stores/bar/jigger-and-pony/storefront-night.jpg"
+        },
+        "address": "165 Tg Pagar Rd, Amara Hotel, Singapore 088539",
+        "auid": "1829641397555543956",
+        "placeid": "ChIJ36AdBg0Z2jERvFl0QFoqZ0E",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Start": "1800",
+                "Finish": "2400"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "1800",
+                "Finish": "2400"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "1800",
+                "Finish": "2500"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "1800",
+                "Finish": "2600"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "1800",
+                "Finish": "2400"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "1800",
+                "Finish": "2400"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Happy hour item <br> Haku Vodka, passion fruit, apricot, lemon, Cointreau, Sauvignon Black, chocolate bitters",
+          "image": "stores/bar/jigger-and-pony/porn-star-martini.jpg",
+          "name": "Porn Star Martini",
+          "price": "S$19"
+        },
+        "item2": {
+          "description": "Fords Gin, Campari, Cocchi Vermouth di Torino, orange",
+          "image": "stores/bar/jigger-and-pony/velvet-negroni.jpg",
+          "name": "Velvet Negroni",
+          "price": "S$19"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": ["103.8386253704992", "1.2917278115996622"]
+      },
+      "properties": {
+        "id": "25",
+        "title": "Common Man Coffee Roasters - Martin Road",
+        "type": "cafe",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/cafe-active.png",
+          "default": "button/marker/cafe-default.png",
+          "larger": "button/marker/cafe-larger.png",
+          "mini": "button/marker/cafe-mini.png",
+          "withFriends": "button/marker/cafe-withFriends.png"
+        },
+        "description": "The flagship Martin Rd café, opened in 2013, introduced specialty coffee to Singapore’s Robertson Quay. This laid-back, greenery-surrounded space offers all-day brunch, coffee, and retail beans. The second floor’s alfresco coffee bar, Grounded by CMCR, features a wellness-focused menu, perfect for gathering and unwinding over quality coffee and snacks.",
+        "storefront": {
+          "day": "stores/cafe/common-man-coffee-roasters-martin-road/storefront-day.jpg",
+          "night": "stores/cafe/common-man-coffee-roasters-martin-road/storefront-night.jpg"
+        },
+        "address": "22 Martin Rd, #01-00, Singapore 239058",
+        "auid": "2726859010058013622",
+        "placeid": "ChIJT3fdLZwZ2jERJx-QGgPAoac",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "0730",
+                "Finish": "1800"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Reg. S$7, Large S$8.5 <br> Whole milk / low fat milk / outside oat / nobody coconut / bonsai soy",
+          "image": "stores/cafe/common-man-coffee-roasters-martin-road/iced-chai-latte.jpg",
+          "name": "Iced Chai Latte",
+          "price": "S$7"
+        },
+        "item2": {
+          "description": "Crispy chickpeas, honey, pita bread.",
+          "image": "stores/cafe/common-man-coffee-roasters-martin-road/green-hummus.jpg",
+          "name": "Green Hummus",
+          "price": "S$14"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": ["103.84308257112916", "1.2777883018813458"]
+      },
+      "properties": {
+        "id": "26",
+        "title": "Great Nanyang Heritage Cafe",
+        "type": "cafe",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/cafe-active.png",
+          "default": "button/marker/cafe-default.png",
+          "larger": "button/marker/cafe-larger.png",
+          "mini": "button/marker/cafe-mini.png",
+          "withFriends": "button/marker/cafe-withFriends.png"
+        },
+        "description": "Great Nanyang Heritage Cafe offers traditional Singaporean dishes like kaya toast and nasi lemak, located near the CBD. Step into this nostalgic kopitiam for authentic flavors and a classic dining experience.",
+        "storefront": {
+          "day": "stores/cafe/great-nanyang-heritage-cafe/storefront-day.jpg",
+          "night": "stores/cafe/great-nanyang-heritage-cafe/storefront-night.jpg"
+        },
+        "address": "5 Craig Rd, Singapore 089665",
+        "auid": "5197297805038116271",
+        "placeid": "ChIJL1s64ccZ2jERWJa6Ep5wrdw",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Start": "0730",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2030"
+              }
+            ]
+          },
+          {
+            "Tuesday": [
+              {
+                "Start": "0730",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2030"
+              }
+            ]
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "0730",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2030"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "0730",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2030"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "0730",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2030"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "0730",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2030"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "0730",
+                "Finish": "1500"
+              },
+              {
+                "Start": "1700",
+                "Finish": "2030"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "Poh (Lighter) / Gao (Think)",
+          "image": "stores/cafe/great-nanyang-heritage-cafe/hot-hor-ka-sai.jpg",
+          "name": "Hot Hor Ka Sai",
+          "price": "S$3"
+        },
+        "item2": {
+          "description": "N/A",
+          "image": "stores/cafe/great-nanyang-heritage-cafe/soft-boiled-kampung-eggs.jpg",
+          "name": "Soft Boiled Kampung Eggs",
+          "price": "S$3"
+        },
+        "item3": {
+          "description": "Traditional Toast + S$0 <br> Thick Toast + S$0.2 <br> Wholemeat + S$0.5",
+          "image": "stores/cafe/great-nanyang-heritage-cafe/kaya-butter-toast.jpg",
+          "name": "Kaya Butter Toast",
+          "price": "S$2.5"
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item5": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": ["103.84308257112916", "1.2777883018813458"]
+      },
+      "properties": {
+        "id": "27",
+        "title": "Beach Road Prawn Noodle House",
+        "type": "cafe",
+        "layout": "food",
+        "icon": {
+          "active": "button/marker/cafe-active.png",
+          "default": "button/marker/cafe-default.png",
+          "larger": "button/marker/cafe-larger.png",
+          "mini": "button/marker/cafe-mini.png",
+          "withFriends": "button/marker/cafe-withFriends.png"
+        },
+        "description": "Great Nanyang Heritage Cafe offers traditional Singaporean dishes like kaya toast and nasi lemak, located near the CBD. Step into this nostalgic kopitiam for authentic flavors and a classic dining experience.",
+        "storefront": {
+          "day": "stores/cafe/great-nanyang-heritage-cafe/storefront-day.jpg",
+          "night": "stores/cafe/great-nanyang-heritage-cafe/storefront-night.jpg"
+        },
+        "address": "5 Craig Rd, Singapore 089665",
+        "auid": "5197297805038116271",
+        "placeid": "ChIJL1s64ccZ2jERWJa6Ep5wrdw",
+        "tag": "[]",
+        "businesshour": [
+          {
+            "24hr": false,
+            "Holiday": []
+          },
+          {
+            "Monday": [
+              {
+                "Start": "0700",
+                "Finish": "1600"
+              }
+            ]
+          },
+          {
+            "Tuesday": false
+          },
+          {
+            "Wednesday": [
+              {
+                "Start": "0700",
+                "Finish": "1600"
+              }
+            ]
+          },
+          {
+            "Thursday": [
+              {
+                "Start": "0700",
+                "Finish": "1600"
+              }
+            ]
+          },
+          {
+            "Friday": [
+              {
+                "Start": "0700",
+                "Finish": "1600"
+              }
+            ]
+          },
+          {
+            "Saturday": [
+              {
+                "Start": "0700",
+                "Finish": "1600"
+              }
+            ]
+          },
+          {
+            "Sunday": [
+              {
+                "Start": "0700",
+                "Finish": "1600"
+              }
+            ]
+          }
+        ],
+        "item1": {
+          "description": "",
+          "image": "stores/cafe/great-nanyang-heritage-cafe/hot-hor-ka-sai.jpg",
+          "name": "Prawn Mee",
+          "price": "S$6.5"
+        },
+        "item2": {
+          "description": "",
+          "image": "stores/cafe/great-nanyang-heritage-cafe/soft-boiled-kampung-eggs.jpg",
+          "name": "Iced Lemon Tea",
+          "price": "S$2.6"
+        },
+        "item3": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
+        },
+        "item4": {
+          "description": "",
+          "image": "",
+          "name": "",
+          "price": ""
         },
         "item5": {
           "description": "",
