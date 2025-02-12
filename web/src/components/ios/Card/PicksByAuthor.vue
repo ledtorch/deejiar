@@ -22,7 +22,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import Minimize from "../Button/Icon/Minimize.vue";
 import Thumbnail from './Thumbnail.vue';
-import barListData from '../../assets/lists/test-asias-50-best-bars.json';
+import barListData from '@/assets/lists/test-asias-50-best-bars.json';
 
 const isVisible = ref(true);
 const mode = ref('cover');
@@ -131,7 +131,7 @@ onUnmounted(() => {
 }
 
 .card {
-  background-image: url('../../assets/images/asia-top-50-bars.jpg');
+  background-image: url('@/assets/images/asia-top-50-bars.jpg');
   background-size: cover;
   background-position: top;
 }

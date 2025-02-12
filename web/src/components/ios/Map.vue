@@ -9,7 +9,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useUserLocation } from '../utils/useUserLocation.js';
+import { useUserLocation } from '@/utils/useUserLocation.js';
 import BottomSheet from "./Sheet/BottomSheet.vue";
 import Locate from "./Button/Icon/Locate.vue";
 import PicksByAuthor from "./Card/PicksByAuthor.vue";
