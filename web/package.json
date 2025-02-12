@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/cli": "^7.0.1",
+    "@capacitor/core": "^7.0.1",
+    "@capacitor/ios": "^7.0.1",
     "autoprefixer": "^10.4.19",
     "caniuse-lite": "^1.0.30001608",
     "dotenv": "^16.3.1",
