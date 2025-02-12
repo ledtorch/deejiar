@@ -34,7 +34,10 @@ const barsList = ref([]);
 const fetchBarsList = async () => {
   try {
     barsList.value = barListData.features.filter(feature => feature.properties.type === "bar");
-    console.log('Fetched bars:', barsList.value); // Debugging line
+    // 🐞 Debug console
+    console.log('Total features:', barListData.features.length);
+    console.log('Filtered bars:', barsList.value.length);
+    console.log('Fetched bars:', barsList.value);
   } catch (error) {
     console.error('Error processing bars list:', error);
   }
