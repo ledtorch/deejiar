@@ -240,6 +240,7 @@ onMounted(() => {
 .bottom-sheet-content {
   flex-direction: column;
   gap: 12px;
+  background-color: #000;
 }
 
 .control-area {
