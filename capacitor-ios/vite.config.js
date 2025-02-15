@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'
 import path from 'path'
 
 // HTTPS dependency
-import fs from 'fs';
+import fs from 'fs'
 
 export default defineConfig({
   plugins: [vue()],
