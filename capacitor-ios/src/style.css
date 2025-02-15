@@ -51,6 +51,12 @@
 	--color-light-gray: #D1D7EB;
 	--color-green: #24ad6e;
 	--color-red: #f46060;
+
+	/* Safe area */
+	--safe-area-top: env(safe-area-inset-top);
+	--safe-area-bottom: env(safe-area-inset-bottom);
+	--safe-area-left: env(safe-area-inset-left);
+	--safe-area-right: env(safe-area-inset-right);
 }
 
 /* Light mode */
@@ -184,4 +190,9 @@ p {
 /* Global Utility Classes */
 ._stretch {
 	flex: 1 0 0;
+}
+
+/* Then in your components you can use: */
+.body {
+	top: var(--header-height);
 }

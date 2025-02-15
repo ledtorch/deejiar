@@ -227,8 +227,8 @@ onMounted(() => {
 <style lang="scss" scoped>
 .bottom-sheet {
   gap: 0px;
-  width: 390px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   min-height: 32px;
   max-height: 100%;
   padding: 0px 16px 16px 16px;
@@ -240,6 +240,7 @@ onMounted(() => {
 .bottom-sheet-content {
   flex-direction: column;
   gap: 12px;
+  background-color: #000;
 }
 
 .control-area {

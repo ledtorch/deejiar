@@ -274,6 +274,9 @@ onUnmounted(() => {
   position: absolute;
   z-index: 1;
   width: 100%;
+
+  /* 📱 Account for top safe area */
+  top: env(safe-area-inset-top);
 }
 
 #bottomsheet {
@@ -282,6 +285,9 @@ onUnmounted(() => {
   z-index: 1;
   width: 100%;
   height: auto;
+
+  /* 📱 Account for bottom safe area */
+  bottom: env(safe-area-inset-bottom);
 }
 
 #button-locate {
@@ -290,6 +296,9 @@ onUnmounted(() => {
   right: 16px;
   z-index: 1;
   transition: transform 0.3s ease;
+
+  /* 📱 Account for bottom safe area */
+  bottom: env(safe-area-inset-bottom);
 }
 
 .marker-active {

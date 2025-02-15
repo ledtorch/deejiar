@@ -226,6 +226,9 @@ export default {
   @media (max-width: 430px) {
     padding-bottom: 99px;
   }
+
+  /* 📱 Account for top safe area */
+  top: env(safe-area-inset-top);
 }
 
 .content {
