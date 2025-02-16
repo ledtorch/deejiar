@@ -16,8 +16,8 @@ export default {
 <style lang="scss" scoped>
 .icon-button {
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   background: no-repeat center/contain;
   background-image: url("/button/icon/with-base/locate-default.png");
 
