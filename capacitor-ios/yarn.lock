@@ -103,6 +103,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@capacitor/status-bar@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@capacitor/status-bar@npm:7.0.0"
+  peerDependencies:
+    "@capacitor/core": ">=7.0.0"
+  checksum: 10/c04cca182271792d20d353fe530ffa10c246bf815176711930f8db4cc67d18709a15e8ae5d298c87028f67da66bf40ead9fbc437c53b295bf4634f2cb4c5bf1b
+  languageName: node
+  linkType: hard
+
 "@esbuild/aix-ppc64@npm:0.21.5":
   version: 0.21.5
   resolution: "@esbuild/aix-ppc64@npm:0.21.5"
@@ -915,6 +924,7 @@ __metadata:
     "@capacitor/core": "npm:^7.0.1"
     "@capacitor/device": "npm:^7.0.0"
     "@capacitor/ios": "npm:^7.0.1"
+    "@capacitor/status-bar": "npm:^7.0.0"
     "@vitejs/plugin-vue": "npm:^5.0.4"
     autoprefixer: "npm:^10.4.19"
     caniuse-lite: "npm:^1.0.30001608"
