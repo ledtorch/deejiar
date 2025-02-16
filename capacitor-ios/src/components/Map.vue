@@ -287,7 +287,6 @@ onUnmounted(() => {
   background-color: #000;
 
   /* 📱 Account for bottom safe area */
-  // bottom: env(safe-area-inset-bottom);
   bottom: 0;
   padding-bottom: calc(32px + env(safe-area-inset-bottom));
 }
