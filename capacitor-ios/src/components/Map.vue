@@ -281,24 +281,25 @@ onUnmounted(() => {
 
 #bottomsheet {
   position: absolute;
-  bottom: 0;
   z-index: 1;
   width: 100%;
   height: auto;
+  background-color: #000;
 
   /* 📱 Account for bottom safe area */
-  bottom: env(safe-area-inset-bottom);
+  // bottom: env(safe-area-inset-bottom);
+  bottom: 0;
+  padding-bottom: calc(32px + env(safe-area-inset-bottom));
 }
 
 #button-locate {
   position: absolute;
-  bottom: 48px;
   right: 16px;
   z-index: 1;
   transition: transform 0.3s ease;
 
-  /* 📱 Account for bottom safe area */
-  bottom: env(safe-area-inset-bottom);
+  /* 📱 Account for bottom safe area plus 48px spacing */
+  bottom: calc(48px + env(safe-area-inset-bottom));
 }
 
 .marker-active {

@@ -222,13 +222,14 @@ export default {
   height: 100vh;
   overflow-y: auto;
 
+  /* 📱 Account for top safe area */
+  top: env(safe-area-inset-top);
+
   /* Media query for screen widths 430px and below */
   @media (max-width: 430px) {
     padding-bottom: 99px;
   }
 
-  /* 📱 Account for top safe area */
-  top: env(safe-area-inset-top);
 }
 
 .content {

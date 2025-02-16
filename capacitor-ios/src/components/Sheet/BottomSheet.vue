@@ -102,6 +102,7 @@ const props = defineProps({
 const minHeight = "32px";
 const maxHeight = "100%";
 const withStoreHeight = "467px";
+const deviceHeight = `calc(100vh - env(safe-area-inset-top))`
 
 // Refs
 const isDragging = ref(false);
@@ -182,9 +183,10 @@ const dragStop = () => {
         title: props.store.title,
       }
     });
-  }
-
-  if (sheetHeight < 150) {
+  } else if (sheetHeight >= 600 && !props.store?.title) {
+    console.log("deviceHeight: " + deviceHeight);
+    updateSheetHeight(deviceHeight);
+  } else if (sheetHeight < 150) {
     updateSheetHeight(minHeight);
   } else if (sheetHeight > 500) {
     updateSheetHeight(maxHeight);
