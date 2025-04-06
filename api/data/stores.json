@@ -3,6 +3,7 @@
   "features": [
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [-77.01243920316357, 38.91286090122076]
@@ -143,6 +144,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [-77.02328634317668, 38.89548380468532]
@@ -264,6 +266,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [-77.03162544459492, 38.9132761409135]
@@ -385,6 +388,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [-77.03217263705724, 38.911501815280616]
@@ -506,6 +510,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [-73.95725715767244, 40.77092171697179]
@@ -647,6 +652,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [-77.04963686614573, 38.794590717782455]
@@ -712,6 +718,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [-122.39415586213765, 37.79615016210502]
@@ -833,6 +840,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [-122.07874960703995, 37.393664872080464]
@@ -949,6 +957,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.56618994603467, 25.059403726374924]
@@ -1055,6 +1064,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.55315955767247, 25.035623014231852]
@@ -1076,7 +1086,7 @@
           "day": "stores/bar/ole-rum-bar-and-tapas/storefront-day.jpg",
           "night": "stores/bar/ole-rum-bar-and-tapas/storefront-night.jpg"
         },
-        "address": "1F, No.4,  Lane 109, Section 1, Anhe Rd, Da’an District, Taipei City 106",
+        "address": "1F, No.4,  Lane 109, Section 1, Anhe Rd, Da'an District, Taipei City 106",
         "auid": "7131535993595000173",
         "placeid": "ChIJN-4uPaWuQjQRl5vzIpBxpFM",
         "tag": "[]",
@@ -1166,6 +1176,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.55288446528934, 25.032059162354336]
@@ -1187,7 +1198,7 @@
           "day": "stores/bar/larriere-cour/storefront-day.jpg",
           "night": "stores/bar/larriere-cour/storefront-night.jpg"
         },
-        "address": "No. 4, Lane 23, Section 2, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
+        "address": "No. 4, Lane 23, Section 2, Anhe Rd, Da'an District, Taipei City, Taiwan 106",
         "auid": "4323237897240854204",
         "placeid": "ChIJjY4zZ8yrQjQRO9r-32pw-eg",
         "tag": "[]",
@@ -1292,6 +1303,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.55375763761656, 25.032931060296708]
@@ -1313,7 +1325,7 @@
           "day": "stores/taco/pang-taqueria/storefront-day.jpg",
           "night": "stores/taco/pang-taqueria/storefront-night.jpg"
         },
-        "address": "No. 181, Wenchang St, Da’an District, Taipei City, Taiwan 106",
+        "address": "No. 181, Wenchang St, Da'an District, Taipei City, Taiwan 106",
         "auid": "9155073419001978017",
         "placeid": "ChIJ3Z4HxHurQjQRnx4_tgoRhjU",
         "tag": "[]",
@@ -1420,6 +1432,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.52976830972298, 25.017195212353954]
@@ -1565,6 +1578,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.55046504508994, 25.039727905632322]
@@ -1586,7 +1600,7 @@
           "day": "stores/taco/teotihuacan-mexican-restaurant/storefront-day.jpg",
           "night": "stores/taco/teotihuacan-mexican-restaurant/storefront-night.jpg"
         },
-        "address": "No. 9, Lane 21, Section 1, Anhe Rd, Da’an District, Taipei City, Taiwan 106",
+        "address": "No. 9, Lane 21, Section 1, Anhe Rd, Da'an District, Taipei City, Taiwan 106",
         "auid": "3475026617689486784",
         "placeid": "ChIJ8VNyWSqqQjQRz_rrWE4OhkI",
         "tag": "[]",
@@ -1691,6 +1705,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.55164116754744, 25.04269480315472]
@@ -1712,7 +1727,7 @@
           "day": "stores/icecream/odd-one-out-dunnan-shop/storefront-day.jpg",
           "night": "stores/icecream/odd-one-out-dunnan-shop/storefront-night.jpg"
         },
-        "address": "No. 48, Lane 187, Section 1, Dunhua S Rd, Da’an District, Taipei City, Taiwan 106",
+        "address": "No. 48, Lane 187, Section 1, Dunhua S Rd, Da'an District, Taipei City, Taiwan 106",
         "auid": "14510735417314001215",
         "placeid": "ChIJOdHWx6yrQjQRnb88OVTWvxo",
         "tag": "[]",
@@ -1817,6 +1832,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.54480981123537, 25.039215200109936]
@@ -1833,12 +1849,12 @@
           "mini": "button/marker/bar-mini.png",
           "withFriends": "button/marker/bar-withFriends.png"
         },
-        "description": "Indulge Experimental Bistro is consistently ranked among the World’s 50 Best Bars and remains a top-five favorite in Asia’s 50 Best. Its tea-infused cocktail captures the essence of its subtropical flavors. The chef has meticulously gathered representative ingredients from all over Taiwan to create unique small plates designed to complement the drinks. The staff expertly introduces patrons to the local ingredients, explaining how the chef aims to inspire clients with the vivid imagery of Formosa.",
+        "description": "Indulge Experimental Bistro is consistently ranked among the World's 50 Best Bars and remains a top-five favorite in Asia's 50 Best. Its tea-infused cocktail captures the essence of its subtropical flavors. The chef has meticulously gathered representative ingredients from all over Taiwan to create unique small plates designed to complement the drinks. The staff expertly introduces patrons to the local ingredients, explaining how the chef aims to inspire clients with the vivid imagery of Formosa.",
         "storefront": {
           "day": "stores/bar/indulge-experimental-bistro/storefront-day.jpg",
           "night": "stores/bar/indulge-experimental-bistro/storefront-night.jpg"
         },
-        "address": "No. 11, Lane 219, Section 1, Fuxing S Rd, Da’an District, Taipei City, 106",
+        "address": "No. 11, Lane 219, Section 1, Fuxing S Rd, Da'an District, Taipei City, 106",
         "auid": "7217928507319275413",
         "placeid": "ChIJ5TXg4tCrQjQRNDAoeL3zmoE",
         "tag": "[]",
@@ -1951,6 +1967,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.56114707019687, 25.031488137915723]
@@ -2077,6 +2094,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": [121.55827059852218, 25.032127495571647]
@@ -2188,6 +2206,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["121.47374341245873", "25.254438504746673"]
@@ -2204,7 +2223,7 @@
           "mini": "button/marker/cafe-mini.png",
           "withFriends": "button/marker/cafe-withFriends.png"
         },
-        "description": " A coffee shop facing Qianshuiwan in Tamsui. Although it’s scorching in Taiwan during summer, enjoying the view of Qianshuiwan is a comfortable way to spend your afternoon.",
+        "description": " A coffee shop facing Qianshuiwan in Tamsui. Although it's scorching in Taiwan during summer, enjoying the view of Qianshuiwan is a comfortable way to spend your afternoon.",
         "storefront": {
           "day": "stores/cafe/ocean-kitchen-and-cafe-shop/storefront-day.jpg",
           "night": "stores/cafe/ocean-kitchen-and-cafe-shop/storefront-night.jpg"
@@ -2304,6 +2323,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["121.52433170301717", "25.0549379800363"]
@@ -2425,6 +2445,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["121.57119997942961", "25.03941312132497"]
@@ -2441,7 +2462,7 @@
           "mini": "button/marker/modern-museum-mini.png",
           "withFriends": "button/marker/modern-museum-withFriends.png"
         },
-        "description": "The CEO of Fubon Art Foundation, Maggie Weng, has been preparing for this museum for 10 years. She invited Renzo Piano to design the building, and the theme of this building is “light.” This 10,000 square meter museum is the first work of Renzo Piano in Taiwan and the first museum in the Xinyi district. The three glass curtain walls of the “Water Exhibition Hall” on the first floor and the skylight designs of the “Sun Gallery” and “Star Gallery” on the third floor ingeniously infuse the space with nature, achieving harmony with the environment.  Although the first floor exhibition area is rough, using low-resolution printed wallpaper for the artworks, the third floor is a true modern art museum, offering perfect spatial planning for audiences to immerse themselves in the artworks.",
+        "description": "The CEO of Fubon Art Foundation, Maggie Weng, has been preparing for this museum for 10 years. She invited Renzo Piano to design the building, and the theme of this building is "light." This 10,000 square meter museum is the first work of Renzo Piano in Taiwan and the first museum in the Xinyi district. The three glass curtain walls of the "Water Exhibition Hall" on the first floor and the skylight designs of the "Sun Gallery" and "Star Gallery" on the third floor ingeniously infuse the space with nature, achieving harmony with the environment.  Although the first floor exhibition area is rough, using low-resolution printed wallpaper for the artworks, the third floor is a true modern art museum, offering perfect spatial planning for audiences to immerse themselves in the artworks.",
         "storefront": {
           "day": "stores/modern-museum/fubon-art-museum/storefront-day.jpg",
           "night": "stores/modern-museum/fubon-art-museum/storefront-night.jpg"
@@ -2541,6 +2562,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["121.51168606200733", "25.05508181549003"]
@@ -2657,6 +2679,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["121.5465962846551", "25.044498051045757"]
@@ -2673,7 +2696,7 @@
           "mini": "button/marker/bar-mini.png",
           "withFriends": "button/marker/bar-withFriends.png"
         },
-        "description": "Bar Mood, one of Taiwan’s first craft cocktail bars, opened in Taipei in 2017. Owner Nick Wu’s bartop garden features locally foraged garnishes, highlighting Taiwan’s biodiversity. Using ingredients like oolong tea and soy milk, Wu blends traditional and modern techniques, earning Bar Mood a spot on Asia’s 50 Best Bars list.",
+        "description": "Bar Mood, one of Taiwan's first craft cocktail bars, opened in Taipei in 2017. Owner Nick Wu's bartop garden features locally foraged garnishes, highlighting Taiwan's biodiversity. Using ingredients like oolong tea and soy milk, Wu blends traditional and modern techniques, earning Bar Mood a spot on Asia's 50 Best Bars list.",
         "storefront": {
           "day": "stores/bar/bar-mood-taipei/storefront-day.jpg",
           "night": "stores/bar/bar-mood-taipei/storefront-night.jpg"
@@ -2778,6 +2801,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["103.84358318262083", "1.2752250699431034"]
@@ -2794,7 +2818,7 @@
           "mini": "button/marker/bar-mini.png",
           "withFriends": "button/marker/bar-withFriends.png"
         },
-        "description": "Located in Amara Hotel, Jigger & Pony offers friendly bartenders, inviting you to enjoy the atmosphere and share stories at the bar. Ranked in Asia’s 50 Best Bars, its creative ‘menuzines’ feature inventive cocktails like Strawberry Fields and fun punches. Pair drinks with tasty bar snacks for a lively experience.",
+        "description": "Located in Amara Hotel, Jigger & Pony offers friendly bartenders, inviting you to enjoy the atmosphere and share stories at the bar. Ranked in Asia's 50 Best Bars, its creative 'menuzines' feature inventive cocktails like Strawberry Fields and fun punches. Pair drinks with tasty bar snacks for a lively experience.",
         "storefront": {
           "day": "stores/bar/jigger-and-pony/storefront-day.jpg",
           "night": "stores/bar/jigger-and-pony/storefront-night.jpg"
@@ -2899,6 +2923,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["103.8386253704992", "1.2917278115996622"]
@@ -2915,7 +2940,7 @@
           "mini": "button/marker/cafe-mini.png",
           "withFriends": "button/marker/cafe-withFriends.png"
         },
-        "description": "The flagship Martin Rd café, opened in 2013, introduced specialty coffee to Singapore’s Robertson Quay. This laid-back, greenery-surrounded space offers all-day brunch, coffee, and retail beans. The second floor’s alfresco coffee bar, Grounded by CMCR, features a wellness-focused menu, perfect for gathering and unwinding over quality coffee and snacks.",
+        "description": "The flagship Martin Rd café, opened in 2013, introduced specialty coffee to Singapore's Robertson Quay. This laid-back, greenery-surrounded space offers all-day brunch, coffee, and retail beans. The second floor's alfresco coffee bar, Grounded by CMCR, features a wellness-focused menu, perfect for gathering and unwinding over quality coffee and snacks.",
         "storefront": {
           "day": "stores/cafe/common-man-coffee-roasters-martin-road/storefront-day.jpg",
           "night": "stores/cafe/common-man-coffee-roasters-martin-road/storefront-night.jpg"
@@ -3020,6 +3045,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["103.84308257112916", "1.2777883018813458"]
@@ -3169,6 +3195,7 @@
     },
     {
       "type": "Feature",
+      "license": "owned",
       "geometry": {
         "type": "Point",
         "coordinates": ["103.84308257112916", "1.2777883018813458"]
