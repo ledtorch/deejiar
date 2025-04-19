@@ -9,13 +9,14 @@ from dotenv import load_dotenv
 load_dotenv('../.env.local')
 
 # Define JSON_PATH relative to this file
-JSON_PATH = Path(__file__).parent.parent / 'data'
+JSON_PATH = Path(__file__).parent.parent.parent / 'data'
 print(f"JSON_PATH: {JSON_PATH}")
 
 
 def list_json_files():
     # List all files in the directory
     files = os.listdir(JSON_PATH)
+    
     # Filter out files to only include .json files
     json_files = [file for file in files if file.endswith('.json')]
     print(f"json_files: {json_files}")
@@ -43,11 +44,11 @@ def flatten_features(filename: str):
                 'layout': props.get('layout'),
                 'icon': icon,
                 'description': props.get('description'),
-                'storefront-day': storefront.get('day', ''),
                 'storefront-night': storefront.get('night', ''),
                 
                 # geoProperties
                 'address': props.get('address'),
+                'storefront-day': storefront.get('day', ''),
                 'auid': props.get('auid'),
                 'placeid': props.get('placeid'),
                 'longitude': geometry.get('coordinates', [])[0],

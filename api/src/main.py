@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI, HTTPException, status, Request
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from editor import list_json_files, flatten_features, save_reconstructed_features
+from routes.editor import list_json_files, flatten_features, save_reconstructed_features
 
 # Load environment settings
 env_file = '../.env.production' if os.getenv('FASTAPI_ENV') == 'production' else '../.env.local'
@@ -43,7 +43,7 @@ async def root():
 @app.post("/login")
 async def login(request: Request):
     form = await request.json()
-    username = form.get("account")
+    username = form.get("username")
     password = form.get("password")
     if username != USER_ACCOUNT["username"] or password != USER_ACCOUNT["password"]:
         raise HTTPException(
@@ -87,6 +87,6 @@ async def reconstruct_features(filename: str, request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Run with "python app.py" with full uvicorn features
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=5000, reload=True)
+    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
