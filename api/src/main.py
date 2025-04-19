@@ -2,13 +2,13 @@ import os
 import uvicorn
 from fastapi import FastAPI, HTTPException, status, Request
 from fastapi.middleware.cors import CORSMiddleware
+# Environment
 from dotenv import load_dotenv
+# Modules
 from routes.editor import list_json_files, flatten_features, save_reconstructed_features
 
-# Load environment settings
-env_file = '../.env.production' if os.getenv('FASTAPI_ENV') == 'production' else '../.env.local'
-load_dotenv(env_file)
-print(f"ENV file URL: {env_file}")
+
+app = FastAPI()
 
 # User account details
 USER_ACCOUNT = {
@@ -16,17 +16,17 @@ USER_ACCOUNT = {
     "password": "0000"
 }
 
-app = FastAPI()
+# Load environment settings
+env_file = '../.env.production' if os.getenv('ENV') == 'production' else '../.env.local'
+load_dotenv(env_file)
+print(f"ENV file URL: {env_file}")
 
-# Enable CORS
-if os.getenv('ENV') == 'development':
-    origins = [
-        "http://localhost:5173"
-    ]
+# CORS config
+env = os.getenv('ENV', 'development')
+if env == 'development':
+    origins = ["http://localhost:5173"]
 else:
-    origins = [
-        "https://deejiar.com/api"
-    ]
+    origins = ["https://deejiar.com/api"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -36,10 +36,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Pages
 @app.get("/")
 async def root():
     return {"FastAPI is running"}
 
+@app.get("/dashboard")
+async def dashboard():
+    return {"message": "Login successful"}
+
+# Authentication
 @app.post("/login")
 async def login(request: Request):
     form = await request.json()
@@ -56,10 +62,7 @@ async def login(request: Request):
         "redirect": "/dashboard"
     }
 
-@app.get("/dashboard")
-async def dashboard():
-    return {"message": "Login successful"}
-
+# Editor
 @app.get("/json-files")
 async def get_json_files():
     return list_json_files()
