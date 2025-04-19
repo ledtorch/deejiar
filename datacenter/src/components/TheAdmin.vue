@@ -10,7 +10,7 @@
             <p class="headline">Account</p>
           </div>
           <input :class="{ input: !editing, 'input-on': editing }" id="account" type="text"
-            v-model="credentials.account" />
+            v-model="credentials.username" />
         </div>
 
         <div class="form-frame">
@@ -38,7 +38,7 @@ export default {
     return {
       credentials: {
         // 🏗️ TODO: should update "account" to "username"
-        account: '',
+        username: '',
         password: ''
       },
       // Initially not in editing mode for css
