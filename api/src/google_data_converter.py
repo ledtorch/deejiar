@@ -81,31 +81,19 @@ def get_place_details(place_id: str) -> Dict[str, Any]:
 
 def convert_to_deejiar_format(google_places: List[Dict[str, Any]], place_type: str, layout: str) -> Dict[str, Any]:
     """
-    Convert Google Places data to Deejiar JSON format
-    
-    Args:
-        google_places: List of places from Google Places API
-        place_type: Type of place (e.g., "cafe", "restaurant")
-        layout: Layout type (e.g., "food", "shopping")
-    
-    Returns:
-        Dictionary in Deejiar FeatureCollection format
+    Convert Google Places data to Deejiar JSON format matching the single-feature.json example.
     """
     features = []
-    
     for i, place in enumerate(google_places):
-        # Generate a unique ID for the place
-        place_id = str(i + 1)
-        
-        # Extract coordinates
-        location = place.get("geometry", {}).get("location", {})
-        lng = location.get("lng")
-        lat = location.get("lat")
-        
-        if not (lng and lat):
+        # Try geometry.location (old format), else location (current format)
+        location = place.get("geometry", {}).get("location")
+        if not location:
+            location = place.get("location", {})
+        lng = location.get("lng") or location.get("longitude")
+        lat = location.get("lat") or location.get("latitude")
+        if lng is None or lat is None:
             continue
-        
-        # Create a feature for this place
+        # Compose feature
         feature = {
             "type": "Feature",
             "geometry": {
@@ -113,10 +101,13 @@ def convert_to_deejiar_format(google_places: List[Dict[str, Any]], place_type: s
                 "coordinates": [lng, lat]
             },
             "properties": {
-                "id": place_id,
-                "title": place.get("name", ""),
+                "title": place.get("name") or place.get("displayName", {}).get("text", ""),
                 "type": place_type,
-                "layout": layout,
+                "address": place.get("formatted_address", ""),
+                "auid": str(uuid.uuid4()),
+                "placeid": place.get("place_id") or place.get("id", ""),
+                "businesshour": extract_business_hours(place),
+                "description": place.get("vicinity", "") or place.get("formatted_address", ""),
                 "icon": {
                     "active": f"button/marker/{place_type}-active.png",
                     "default": f"button/marker/{place_type}-default.png",
@@ -124,30 +115,18 @@ def convert_to_deejiar_format(google_places: List[Dict[str, Any]], place_type: s
                     "mini": f"button/marker/{place_type}-mini.png",
                     "withFriends": f"button/marker/{place_type}-withFriends.png"
                 },
-                "description": place.get("vicinity", "") or place.get("formatted_address", ""),
-                "storefront": {
-                    "day": "",  # These would need to be populated with actual images
-                    "night": ""
-                },
-                "address": place.get("formatted_address", ""),
-                "auid": str(uuid.uuid4()),
-                "placeid": place.get("place_id", ""),
-                "tag": extract_tags_from_place(place),
-                "businesshour": extract_business_hours(place)
+                "id": str(i + 1),
+                "item1": {"name": "", "description": "", "image": "", "price": ""},
+                "item2": {"name": "", "description": "", "image": "", "price": ""},
+                "item3": {"name": "", "description": "", "image": "", "price": ""},
+                "item4": {"name": "", "description": "", "image": "", "price": ""},
+                "item5": {"name": "", "description": "", "image": "", "price": ""},
+                "layout": layout,
+                "storefront": {"day": "", "night": ""},
+                "tag": str(extract_tags_from_place(place))
             }
         }
-        
-        # Add empty item placeholders
-        for i in range(1, 6):
-            feature["properties"][f"item{i}"] = {
-                "name": "",
-                "description": "",
-                "image": "",
-                "price": ""
-            }
-        
         features.append(feature)
-    
     return {
         "type": "FeatureCollection",
         "features": features
@@ -295,4 +274,4 @@ def save_filtered_places(filename: str, data: Dict[str, Any]) -> str:
     with open(full_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     
-    return new_filename 
+    return new_filename
