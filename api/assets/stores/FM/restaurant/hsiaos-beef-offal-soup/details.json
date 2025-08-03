@@ -1,0 +1,80 @@
+{
+  "description": "Minsheng Community's cuisine, operating for over 30 years since its start in 1985.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": false
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "1930",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "1930",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "1930",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "1930",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Saturday": false
+    },
+    {
+      "Sunday": false
+    }
+  ],
+  "item1": {
+    "description": "Beef and chow mein",
+    "image": "stores/restaurant/hsiaos-beef-offal-soup/beef-chow-mein.jpg",
+    "name": "牛肉炒麵(Beef Chow Mein)",
+    "price": "NT$120"
+  },
+  "item2": {
+    "description": "Beef and fried rice noodles",
+    "image": "stores/restaurant/hsiaos-beef-offal-soup/beef-fried-rice-noodles.jpg",
+    "name": "牛肉炒米粉(Beef Fried Rice Noodles)",
+    "price": "NT$120"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

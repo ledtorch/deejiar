@@ -1,0 +1,100 @@
+{
+  "description": "Mexican restaurant located in the Eastern District, yet it offers spacious seating unlike other crowded small restaurants nearby. The staff is friendly and eager to introduce the dishes, and they enjoy chatting with customers. The tacos and sauce boast authentic Mexican flavors.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": [
+        {
+          "Finish": "2600",
+          "Start": "1900"
+        }
+      ]
+    },
+    {
+      "Monday": [
+        {
+          "Finish": "2130",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "2130",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "2130",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "2130",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "2300",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "2300",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "2200",
+          "Start": "1130"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "4 Tacos set + 1 drink. <br> Prices only valid for lunch set offer Monday - Friday 11:30 - 1430",
+    "image": "stores/taco/teotihuacan-mexican-restaurant/lunch-special-set-a.jpg",
+    "name": "Lunch Special - Set A",
+    "price": "NT$399"
+  },
+  "item2": {
+    "description": "Cocktails",
+    "image": "stores/taco/teotihuacan-mexican-restaurant/mojito.jpg",
+    "name": "Mojito",
+    "price": "NT$280"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

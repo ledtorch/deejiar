@@ -1,0 +1,100 @@
+{
+  "description": "An internet-famous milk tea shop known for its 4 flavors gelato offerings. The original store was established in L.A., and this is the inaugural branch in Taiwan.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": [
+        {
+          "Finish": "2600",
+          "Start": "1900"
+        }
+      ]
+    },
+    {
+      "Monday": [
+        {
+          "Finish": "2130",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "2130",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "2130",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "2130",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "2300",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "2300",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "2200",
+          "Start": "1130"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Earl gray lemongrass and red oolong. <br> NT$120(Single) / NT$180(Double)",
+    "image": "stores/icecream/odd-one-out-dunnan-shop/botanical-gelato.jpg",
+    "name": "Botanical Gelato",
+    "price": "NT$180(Double)"
+  },
+  "item2": {
+    "description": "Red oolong milk tea + cream foam <br> NT$100(12oz) / NT$120(16oz)",
+    "image": "stores/icecream/odd-one-out-dunnan-shop/champion-milk-tea.jpg",
+    "name": "Champion Milk Tea (M)",
+    "price": "NT$100(M)"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "description": "A cozy restaurant is situated on 14th Street, offering delicious Thai cuisine; its Japanese fare is also commendable. Upon entering the restaurant, don't miss the Rice Market—simply head downstairs to the basement of the same building. It offers a variety of Asian seasonings and ingredients, along with Japanese kitchenware and tableware.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Finish": "2200",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "2200",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "2200",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "2200",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "2230",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "2230",
+          "Start": "1130"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "2200",
+          "Start": "1130"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Takoyaki",
+    "image": "stores/restaurant/rice-restaurant/takoyaki.jpg",
+    "name": "Takoyaki",
+    "price": "$8"
+  },
+  "item2": {
+    "description": "Fire Fly Vodka, Sour mix, Lime juice.",
+    "image": "stores/restaurant/rice-restaurant/sweet-tea-lemonade.jpg",
+    "name": "Sweet Tea Lemonade",
+    "price": "$10"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

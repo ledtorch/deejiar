@@ -1,0 +1,95 @@
+{
+  "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Finish": "2400",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "2400",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "2400",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "2500",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "2600",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "2600",
+          "Start": "1400"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "2400",
+          "Start": "1400"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
+    "image": "stores/bar/jane-jane/onion-dip.jpg",
+    "name": "Onion Dip",
+    "price": "$12"
+  },
+  "item2": {
+    "description": "Pisco, Aperol, Maraschino Liqueur, Grapefruit Juice, Lemon Juice, Simple Syrup",
+    "image": "stores/bar/jane-jane/cusco.jpg",
+    "name": "Cusco",
+    "price": "$15"
+  },
+  "item3": {
+    "description": "Scotch, Irish Whiskey, Orgeat, Lemon Juice",
+    "image": "stores/bar/jane-jane/camerons-kick.jpg",
+    "name": "Cameron's Kick",
+    "price": "$15"
+  },
+  "item4": {
+    "description": "Gin, Benedictine, Cointreau, Heering Cherry Liqueur, Pineapple Juice, Lime Juice, Angostura, Soda Water",
+    "image": "stores/bar/jane-jane/singapore-sling.jpg",
+    "name": "Singapore Sling",
+    "price": "$16"
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

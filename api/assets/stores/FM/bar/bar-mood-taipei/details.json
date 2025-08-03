@@ -1,0 +1,95 @@
+{
+  "description": "Bar Mood, one of Taiwan’s first craft cocktail bars, opened in Taipei in 2017. Owner Nick Wu’s bartop garden features locally foraged garnishes, highlighting Taiwan’s biodiversity. Using ingredients like oolong tea and soy milk, Wu blends traditional and modern techniques, earning Bar Mood a spot on Asia’s 50 Best Bars list.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Start": "1800",
+          "Finish": "2500"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Start": "1800",
+          "Finish": "2500"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Start": "1800",
+          "Finish": "2500"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Start": "1800",
+          "Finish": "2500"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Start": "1800",
+          "Finish": "2600"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Start": "1800",
+          "Finish": "2600"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Start": "1800",
+          "Finish": "2500"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Crisp sweetness of elderflower from late spring; rounded sweetness of grapes from mid-summer; scents of jasmine tea from early autumn, plus the unique fresh citrus of Roku Gin - beauty of all seasons blooming on the palate.",
+    "image": "stores/bar/bar-mood-taipei/season-of-flower.jpg",
+    "name": "Season of Flower",
+    "price": "NT$400"
+  },
+  "item2": {
+    "description": "Fresh citrus notes from the tequila, with warming spiciness of pepper and unique sweetness of pandan gently dance on the palate. Subtle scents of tropical fruit appear in the end, making you feel clean and smooth.",
+    "image": "stores/bar/bar-mood-taipei/spice-raft.jpg",
+    "name": "Spice Raft",
+    "price": "NT$450"
+  },
+  "item3": {
+    "description": "Chicken Thigh | Nuts",
+    "image": "stores/bar/bar-mood-taipei/grill-satay-chicken.jpg",
+    "name": "Grill Satay Chicken",
+    "price": "NT$220"
+  },
+  "item4": {
+    "description": "Truffle Crème Fraiche NT$50 <br> Fries | Fresh Mashed Garlic",
+    "image": "stores/bar/bar-mood-taipei/garlic-fries.jpg",
+    "name": "Garlic Fries",
+    "price": "NT$250"
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "description": "A taco restaurant operated by a Taiwanese sous chef from ZEA, with his unique understanding of Mexican food. It offers corn-based tacos in a clean environment, albeit at a slightly higher price than regular taco restaurants.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": [
+        {
+          "Finish": "2600",
+          "Start": "1900"
+        }
+      ]
+    },
+    {
+      "Monday": false
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "1400",
+          "Start": "1200"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "1400",
+          "Start": "1200"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "1400",
+          "Start": "1200"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Sunday": false
+    }
+  ],
+  "item1": {
+    "description": "Chorizo, Pollo asado and Baja fish. <br> Add any drinks +NT$90",
+    "image": "stores/taco/pang-taqueria/any-3-tacos-combo.jpg",
+    "name": "Any 3 Tacos Combo",
+    "price": "NT$330"
+  },
+  "item2": {
+    "description": "Burrito",
+    "image": "stores/taco/pang-taqueria/burrito.jpg",
+    "name": "Burrito",
+    "price": "NT$260"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

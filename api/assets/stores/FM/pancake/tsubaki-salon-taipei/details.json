@@ -1,0 +1,95 @@
+{
+  "description": "Hokkaido-born café Tsubaki Salon serves fresh pancakes and this is the only store in Taiwan. Although this branch is not as elegant as the Ginza store, you can still enjoy their beautiful tableware and Hokkaido items. Please be patient, as the chef spends around 20 minutes preparing your pancake.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Finish": "2030",
+          "Start": "1200"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "2030",
+          "Start": "1200"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "2030",
+          "Start": "1200"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "2030",
+          "Start": "1200"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "2030",
+          "Start": "1200"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "2030",
+          "Start": "1200"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "2030",
+          "Start": "1200"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Basic toppings: Hokkaido Fresh Cream, Beet Syrup <br>  Optional Toppings: TOKACHI Red Bean, Cultured Butter, Hokkaido Cheese <br>  Choosing two out of three toppings is NT$400, and choosing all three toppings is NT$430.",
+    "image": "stores/pancake/tsubaki-salon-taipei/hokkaido-hotcake-premium.jpg",
+    "name": "Hokkaido Hotcake Premium",
+    "price": "NT$430"
+  },
+  "item2": {
+    "description": "(Hot/Iced)",
+    "image": "stores/pancake/tsubaki-salon-taipei/hokkaido-milk.jpg",
+    "name": "Hokkaido Milk",
+    "price": "NT$200"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

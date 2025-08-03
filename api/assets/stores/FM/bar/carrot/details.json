@@ -1,0 +1,85 @@
+{
+  "description": "The bar is renowned for its unique vegetable-based cocktails.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": false
+    },
+    {
+      "Tuesday": false
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "2500",
+          "Start": "1900"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "2500",
+          "Start": "1900"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "2500",
+          "Start": "1900"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "2500",
+          "Start": "1900"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "2500",
+          "Start": "1900"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "GIN/CARROT/HONEY",
+    "image": "stores/bar/carrot/carrot-you-out.jpg",
+    "name": "Carrot You Out",
+    "price": "NT$400"
+  },
+  "item2": {
+    "description": "Choose one of three dips: aioli, salsa, guacamole. Extra dips: +NT$90.",
+    "image": "stores/bar/carrot/tortilla-chips-with-housemade-dips.jpg",
+    "name": "Tortilla Chips with Housemade Dips",
+    "price": "NT$240"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

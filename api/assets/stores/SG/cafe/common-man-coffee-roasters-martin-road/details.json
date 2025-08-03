@@ -1,0 +1,95 @@
+{
+  "description": "The flagship Martin Rd café, opened in 2013, introduced specialty coffee to Singapore’s Robertson Quay. This laid-back, greenery-surrounded space offers all-day brunch, coffee, and retail beans. The second floor’s alfresco coffee bar, Grounded by CMCR, features a wellness-focused menu, perfect for gathering and unwinding over quality coffee and snacks.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Start": "0730",
+          "Finish": "1800"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Start": "0730",
+          "Finish": "1800"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Start": "0730",
+          "Finish": "1800"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Start": "0730",
+          "Finish": "1800"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Start": "0730",
+          "Finish": "1800"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Start": "0730",
+          "Finish": "1800"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Start": "0730",
+          "Finish": "1800"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Reg. S$7, Large S$8.5 <br> Whole milk / low fat milk / outside oat / nobody coconut / bonsai soy",
+    "image": "stores/cafe/common-man-coffee-roasters-martin-road/iced-chai-latte.jpg",
+    "name": "Iced Chai Latte",
+    "price": "S$7"
+  },
+  "item2": {
+    "description": "Crispy chickpeas, honey, pita bread.",
+    "image": "stores/cafe/common-man-coffee-roasters-martin-road/green-hummus.jpg",
+    "name": "Green Hummus",
+    "price": "S$14"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

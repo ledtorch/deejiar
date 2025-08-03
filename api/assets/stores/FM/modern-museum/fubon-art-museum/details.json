@@ -1,0 +1,90 @@
+{
+  "description": "The CEO of Fubon Art Foundation, Maggie Weng, has been preparing for this museum for 10 years. She invited Renzo Piano to design the building, and the theme of this building is “light.” This 10,000 square meter museum is the first work of Renzo Piano in Taiwan and the first museum in the Xinyi district. The three glass curtain walls of the “Water Exhibition Hall” on the first floor and the skylight designs of the “Sun Gallery” and “Star Gallery” on the third floor ingeniously infuse the space with nature, achieving harmony with the environment.  Although the first floor exhibition area is rough, using low-resolution printed wallpaper for the artworks, the third floor is a true modern art museum, offering perfect spatial planning for audiences to immerse themselves in the artworks.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Tuesday": false
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "May 04 - Sep 23, 2024 <br> The Fubon Art Museum is honored to present its landmark debut inaugural exhibition, 'True Nature: Rodin and the Age of Impressionism,' during the lively spring season of 2024. This extraordinary showcase not only features the awe-inspiring sculptures, both monumental and intimate, by Rodin himself, but also presents a collection of Impressionist paintings from his contemporaries.",
+    "image": "stores/modern-museum/fubon-art-museum/true-nature.jpg",
+    "name": "True Nature: Rodin and the Age of Impressionism",
+    "price": "NT$500"
+  },
+  "item2": {
+    "description": "Auguste Rodin <br> First modeled 1897, this cast 1967 <br> Bronze <br> 120 x 120 x 297 cm <br> Gift B. Gerald Cantor Art Foundation",
+    "image": "stores/modern-museum/fubon-art-museum/monument-to-Honore-de-balzac.jpg",
+    "name": "Monument to Honoré de Balzac",
+    "price": ""
+  },
+  "item3": {
+    "description": "Auguste Rodin <br> First modeled 1890-1897 or 1901-1902, this cast 1967 <br> Bronze <br> 88 × 61 x 71 cm <br> Gift of the B. Gerald Cantor Art Foundation",
+    "image": "stores/modern-museum/fubon-art-museum/heroic-bust-of-victor-hugo.jpg",
+    "name": "Heroic Bust of Victor Hugo",
+    "price": ""
+  },
+  "item4": {
+    "description": "Auguste Rodin <br> c. 1960-1970 <br> Bronze <br> 12 × 36 x 25 cm",
+    "image": "stores/modern-museum/fubon-art-museum/large-right-hand.jpg",
+    "name": "Large Right Hand",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

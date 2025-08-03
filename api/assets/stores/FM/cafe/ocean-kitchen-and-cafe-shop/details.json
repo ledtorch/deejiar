@@ -1,0 +1,90 @@
+{
+  "description": " A coffee shop facing Qianshuiwan in Tamsui. Although it’s scorching in Taiwan during summer, enjoying the view of Qianshuiwan is a comfortable way to spend your afternoon.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Finish": "1800",
+          "Start": "1030"
+        }
+      ]
+    },
+    {
+      "Tuesday": false
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "1800",
+          "Start": "1030"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "1800",
+          "Start": "1030"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "1800",
+          "Start": "1030"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "1900",
+          "Start": "1030"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "1900",
+          "Start": "1030"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "The view from the outdoor seating area.",
+    "image": "stores/cafe/ocean-kitchen-and-cafe-shop/the-view-of-outdoor-seat.jpg",
+    "name": " The View of Outdoor Seat",
+    "price": ""
+  },
+  "item2": {
+    "description": "The tea with a milky aroma is the recommended item for summer vacation. <br> Could be re-steeped (it is recommended to retain half of the original tea to prevent the flavor from becoming too weak).",
+    "image": "stores/cafe/ocean-kitchen-and-cafe-shop/alishan-jin-xuan-tea.jpg",
+    "name": "Alishan Jin Xuan Tea",
+    "price": "NT$180"
+  },
+  "item3": {
+    "description": "",
+    "image": "stores/cafe/ocean-kitchen-and-cafe-shop/onion-rings.jpg",
+    "name": "Onion Rings",
+    "price": "NT$180"
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

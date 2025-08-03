@@ -1,0 +1,95 @@
+{
+  "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "1800",
+          "Start": "1100"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Hot Chai Indian spices with milk & sugar",
+    "image": "stores/cafe/teaism-penn-quarter/chai.jpg",
+    "name": "Chai",
+    "price": "$4.75"
+  },
+  "item2": {
+    "description": "2 Vegan Ginger Scones",
+    "image": "stores/cafe/teaism-penn-quarter/vegan-ginger-scones.jpg",
+    "name": "Vegan Ginger Scones",
+    "price": "$4"
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

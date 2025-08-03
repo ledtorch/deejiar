@@ -1,0 +1,123 @@
+{
+  "description": "Great Nanyang Heritage Cafe offers traditional Singaporean dishes like kaya toast and nasi lemak, located near the CBD. Step into this nostalgic kopitiam for authentic flavors and a classic dining experience.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": []
+    },
+    {
+      "Monday": [
+        {
+          "Start": "0730",
+          "Finish": "1500"
+        },
+        {
+          "Start": "1700",
+          "Finish": "2030"
+        }
+      ]
+    },
+    {
+      "Tuesday": [
+        {
+          "Start": "0730",
+          "Finish": "1500"
+        },
+        {
+          "Start": "1700",
+          "Finish": "2030"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Start": "0730",
+          "Finish": "1500"
+        },
+        {
+          "Start": "1700",
+          "Finish": "2030"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Start": "0730",
+          "Finish": "1500"
+        },
+        {
+          "Start": "1700",
+          "Finish": "2030"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Start": "0730",
+          "Finish": "1500"
+        },
+        {
+          "Start": "1700",
+          "Finish": "2030"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Start": "0730",
+          "Finish": "1500"
+        },
+        {
+          "Start": "1700",
+          "Finish": "2030"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Start": "0730",
+          "Finish": "1500"
+        },
+        {
+          "Start": "1700",
+          "Finish": "2030"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Poh (Lighter) / Gao (Think)",
+    "image": "stores/cafe/great-nanyang-heritage-cafe/hot-hor-ka-sai.jpg",
+    "name": "Hot Hor Ka Sai",
+    "price": "S$3"
+  },
+  "item2": {
+    "description": "N/A",
+    "image": "stores/cafe/great-nanyang-heritage-cafe/soft-boiled-kampung-eggs.jpg",
+    "name": "Soft Boiled Kampung Eggs",
+    "price": "S$3"
+  },
+  "item3": {
+    "description": "Traditional Toast + S$0 <br> Thick Toast + S$0.2 <br> Wholemeat + S$0.5",
+    "image": "stores/cafe/great-nanyang-heritage-cafe/kaya-butter-toast.jpg",
+    "name": "Kaya Butter Toast",
+    "price": "S$2.5"
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}

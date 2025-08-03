@@ -1,0 +1,119 @@
+{
+  "description": "A traditional Mexican food restaurant located in the Gongguan business district.",
+  "businesshour": [
+    {
+      "24hr": false,
+      "Holiday": [
+        {
+          "Finish": "2600",
+          "Start": "1900"
+        }
+      ]
+    },
+    {
+      "Monday": false
+    },
+    {
+      "Tuesday": [
+        {
+          "Finish": "1400",
+          "Start": "1200"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Wednesday": [
+        {
+          "Finish": "1400",
+          "Start": "1200"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Thursday": [
+        {
+          "Finish": "1400",
+          "Start": "1100"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Friday": [
+        {
+          "Finish": "1400",
+          "Start": "1100"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Saturday": [
+        {
+          "Finish": "1400",
+          "Start": "1100"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    },
+    {
+      "Sunday": [
+        {
+          "Finish": "1400",
+          "Start": "1100"
+        },
+        {
+          "Finish": "2100",
+          "Start": "1700"
+        }
+      ]
+    }
+  ],
+  "item1": {
+    "description": "Grilled chicken with tomato chili salsa and a 330ml Coke.",
+    "image": "stores/taco/el-sabroso-mexican-food/quesadilla-combo.jpg",
+    "name": "Quesadilla Combo",
+    "price": "NT$315"
+  },
+  "item2": {
+    "description": "A piñata hanging from the ceiling.",
+    "image": "stores/taco/el-sabroso-mexican-food/pinata.jpg",
+    "name": "Piñata",
+    "price": ""
+  },
+  "item3": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item4": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  },
+  "item5": {
+    "description": "",
+    "image": "",
+    "name": "",
+    "price": ""
+  }
+}
