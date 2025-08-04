@@ -9,8 +9,18 @@ from dotenv import load_dotenv
 # Modules
 from routes.editor import list_json_files, flatten_features, save_reconstructed_features
 
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 
+# ─── Initialize FastAPI ────────────────────────────────
 app = FastAPI(debug=True)
+
+# Mount static assets for CDN-like access
+app.mount(
+    "/cdn",
+    StaticFiles(directory=Path(__file__).parent.parent / "assets"),
+    name="cdn"
+)
 
 # User account details
 USER_ACCOUNT = {
@@ -47,39 +57,41 @@ async def root():
 async def dashboard():
     return {"message": "Login successful"}
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_NEWPLACE_API_KEY")  # or just hardcode for test
 
-def fix_mojibake(s):
-    try:
-        return s.encode('latin1').decode('utf8')
-    except Exception:
-        return s
+# ─── Test Google API ────────────────────────────────────
+# GOOGLE_API_KEY = os.getenv("GOOGLE_NEWPLACE_API_KEY")  # or just hardcode for test
 
-@app.get("/test_GoogleAPI")
-async def test_GoogleAPI(place_id: str = Query(...)):
-    url = "https://places.googleapis.com/v1/places/" + place_id
-    headers = {
-        "X-Goog-Api-Key": GOOGLE_API_KEY,
-        "X-Goog-FieldMask": "id,displayName,formattedAddress,location,photos,websiteUri,rating,userRatingCount"
-    }
+# def fix_mojibake(s):
+#     try:
+#         return s.encode('latin1').decode('utf8')
+#     except Exception:
+#         return s
 
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url, headers=headers)
-        data = response.json()
+# @app.get("/test_GoogleAPI")
+# async def test_GoogleAPI(place_id: str = Query(...)):
+#     url = "https://places.googleapis.com/v1/places/" + place_id
+#     headers = {
+#         "X-Goog-Api-Key": GOOGLE_API_KEY,
+#         "X-Goog-FieldMask": "id,displayName,formattedAddress,location,photos,websiteUri,rating,userRatingCount"
+#     }
 
-    # Recursively fix all strings in the response
-    def recursive_fix(obj):
-        if isinstance(obj, dict):
-            return {k: recursive_fix(v) for k, v in obj.items()}
-        elif isinstance(obj, list):
-            return [recursive_fix(i) for i in obj]
-        elif isinstance(obj, str):
-            return fix_mojibake(obj)
-        else:
-            return obj
+#     async with httpx.AsyncClient() as client:
+#         response = await client.get(url, headers=headers)
+#         data = response.json()
 
-    data = recursive_fix(data)
-    return data
+#     # Recursively fix all strings in the response
+#     def recursive_fix(obj):
+#         if isinstance(obj, dict):
+#             return {k: recursive_fix(v) for k, v in obj.items()}
+#         elif isinstance(obj, list):
+#             return [recursive_fix(i) for i in obj]
+#         elif isinstance(obj, str):
+#             return fix_mojibake(obj)
+#         else:
+#             return obj
+
+#     data = recursive_fix(data)
+#     return data
 
 # Authentication
 @app.post("/login")
