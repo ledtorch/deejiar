@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import TheAdmin from '@/components/TheAdmin.vue'
-import TheGenerator from '@/components/TheGenerator.vue'
+import TheDashboard from '@/components/TheDashboard.vue'
 
 const routes = [
   {
@@ -11,7 +11,7 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: TheGenerator,
+    component: TheDashboard,
     meta: { requiresAuth: true }
   }
 ];

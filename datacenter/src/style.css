@@ -8,13 +8,12 @@
 :root {
 	font-weight: 400;
 	color-scheme: light dark;
-	background-color: #242424;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
-
+	background: #FBFBFB;
 	/* Content */
 	--primary-text: rgba(255, 255, 255, 0.95);
 	--secondary-text: rgba(255, 255, 255, 0.75);
@@ -78,12 +77,12 @@ h3,
 h4,
 p,
 .m-button-text,
-.headline,
-.subhead,
+.subtitle1,
+.subtitle2,
 .footnote,
 .caption1,
 .caption2 {
-	color: var(--primary-text);
+	/* color: var(--primary-text); */
 }
 
 /* Font Styling */
@@ -123,16 +122,28 @@ p {
 	line-height: 24px;
 }
 
-.headline {
-	font-size: 16px;
-	font-weight: 500;
-	line-height: 21px;
-}
-
-.subhead {
-	font-size: 14px;
+.subtitle1 {
+	font-size: 17px;
 	font-weight: 500;
 	line-height: 24px;
+}
+
+.subtitle2 {
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 22px;
+}
+
+.body1 {
+	font-size: 17px;
+	font-weight: 300;
+	line-height: 24px;
+}
+
+.body2 {
+	font-size: 15px;
+	font-weight: 300;
+	line-height: 22px;
 }
 
 .footnote {
@@ -163,4 +174,24 @@ p {
 /* Global Utility Classes */
 ._stretch {
 	flex: 1 0 0;
+}
+
+._color-primary {
+	color: rgba(0, 0, 0, 0.95);
+}
+
+._color-secondary {
+	color: rgba(0, 0, 0, 0.75);
+}
+
+._color-tertiary {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+._base-button {
+	color: rgba(0, 0, 0, 0.07);
+}
+
+._base-button-hover {
+	color: rgba(0, 0, 0, 0.14);
 }

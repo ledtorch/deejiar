@@ -1,10 +1,14 @@
 <template>
   <Menu as="div" class="relative inline-block text-left">
-
     <div>
-      <MenuButton class="menu-button flex">
-        {{ selectedFile || 'Select a file' }}
-        <ChevronDownIcon class="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+      <MenuButton class="menu-button flex flex-col">
+        <div class="header">
+          <span class="subtitle2 _color-secondary">{{ label }}</span>
+          <ChevronDownIcon class="ChevronDownIcon _color-primary" />
+        </div>
+        <div class="input-box">
+          {{ selectedFile || placeholder }}
+        </div>
       </MenuButton>
     </div>
 
@@ -15,8 +19,14 @@
 
         <!-- The container of items -->
         <div class="py-1 flex flex-col w-full">
-          <MenuItem v-for="file in files" :key="file" @click="selectFile(file)">
-          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ file }}</a>
+          <MenuItem v-for="file in files" :key="file" v-slot="{ active }">
+          <button @click="selectFile(file)" :class="[
+            'block w-full text-left px-4 py-2 text-sm',
+            active ?
+              '._color-primary' : 'text-gray-700',
+            file === selectedFile ? 'font-semibold' : ''
+          ]"> {{ file }}
+          </button>
           </MenuItem>
         </div>
 
@@ -36,6 +46,11 @@ const emit = defineEmits(['selected']);
 const props = defineProps({
   files: Array,
   modelValue: String,
+  label: String,
+  placeholder: {
+    type: String,
+    default: 'Select an option',
+  },
 });
 
 const selectedFile = ref(props.modelValue || 'Select a file');
@@ -53,8 +68,14 @@ function selectFile(file) {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  justify-content: space-between;
+  align-self: stretch;
+}
+
 .menu-button {
-  padding: 10px 12px;
+  width: 200px;
+  gap: 8px;
   align-items: center;
   justify-content: space-between;
   align-self: stretch;
@@ -73,6 +94,22 @@ function selectFile(file) {
   align-items: flex-start;
   align-self: stretch;
   border-radius: var(--Border-Button-Round, 8px);
-  background: var(--Base-Solid-base, #F2F2F2);
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+.input-box {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #EDEDED;
+  color: #7A7A7A;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.ChevronDownIcon {
+  width: 24px;
+  height: 24px;
 }
 </style>
