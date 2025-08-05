@@ -1,8 +1,10 @@
 # Cache
 __pycache__/
 
-# Env
+# Environment and sensitive data
 .env*
+localhost.crt
+localhost.key
 
 # venv
 venv
