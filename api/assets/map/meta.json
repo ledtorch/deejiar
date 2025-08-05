@@ -3,13 +3,10 @@
   "features": [
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.01243920316357,
-          38.91286090122076
-        ]
+        "coordinates": [-77.01243920316357, 38.91286090122076]
       },
       "properties": {
         "id": "US_R8lFSmbSDdAJwLq5",
@@ -17,18 +14,16 @@
         "placeid": "ChIJWbmml_e3t4kRDzgyQ5HJP_c",
         "title": "Big Bear Cafe",
         "type": "cafe",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.02328634317668,
-          38.89548380468532
-        ]
+        "coordinates": [-77.02328634317668, 38.89548380468532]
       },
       "properties": {
         "id": "US_O6b5XD0Nm5wWMTHu",
@@ -36,18 +31,16 @@
         "placeid": "ChIJFRD8DZC3t4kRSmKIq6kkdXc",
         "title": "Teaism Penn Quarter",
         "type": "cafe",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.03162544459492,
-          38.9132761409135
-        ]
+        "coordinates": [-77.03162544459492, 38.9132761409135]
       },
       "properties": {
         "id": "US_Fd1uDD6Msv8RMyqh",
@@ -55,18 +48,16 @@
         "placeid": "ChIJbwUdjH63t4kR9_gS9lEMU8A",
         "title": "Jane Jane",
         "type": "bar",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.03217263705724,
-          38.911501815280616
-        ]
+        "coordinates": [-77.03217263705724, 38.911501815280616]
       },
       "properties": {
         "id": "US_5ekD3Bz2Qq4wPk3i",
@@ -74,18 +65,16 @@
         "placeid": "ChIJMTUzjem3t4kRvTmjKsl04Rc",
         "title": "Rice Restaurant",
         "type": "thai",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -73.95725715767244,
-          40.77092171697179
-        ]
+        "coordinates": [-73.95725715767244, 40.77092171697179]
       },
       "properties": {
         "id": "US_O2A6zUeCh6bA0Vnq",
@@ -93,18 +82,16 @@
         "placeid": "ChIJz6VeesBYwokRNBYu4Sar8lw",
         "title": "THEP Thai Restaurant",
         "type": "thai",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -77.04963686614573,
-          38.794590717782455
-        ]
+        "coordinates": [-77.04963686614573, 38.794590717782455]
       },
       "properties": {
         "id": "US_wTzgR7uoiA1LHy3I",
@@ -112,18 +99,16 @@
         "placeid": "ChIJQ0gH4lGwt4kRs_K1XzDY7SY",
         "title": "Contrabands and Freedmen Cemetery Memorial",
         "type": "landscape",
-        "layout": "view"
+        "layout": "view",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -122.39415586213765,
-          37.79615016210502
-        ]
+        "coordinates": [-122.39415586213765, 37.79615016210502]
       },
       "properties": {
         "id": "US_vGFAcQX1p7g2QEX8",
@@ -131,18 +116,16 @@
         "placeid": "ChIJVVWVjGaAhYARH_4JjCTVBz8",
         "title": "Gott's Roadside",
         "type": "burger",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -122.07874960703995,
-          37.393664872080464
-        ]
+        "coordinates": [-122.07874960703995, 37.393664872080464]
       },
       "properties": {
         "id": "US_txwLYr9tFsNJtApN",
@@ -150,18 +133,16 @@
         "placeid": "ChIJF8VqETS3j4ARxmLCuGE7dzk",
         "title": "Red Rock Coffee",
         "type": "cafe",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.56618994603467,
-          25.059403726374924
-        ]
+        "coordinates": [121.56618994603467, 25.059403726374924]
       },
       "properties": {
         "id": "FM_pRbgoOvl4naD4YCH",
@@ -169,18 +150,16 @@
         "placeid": "ChIJUahmDo6rQjQRf2NTI5JdeZ4",
         "title": "蕭家牛雜湯(Hsiao's Beef Offal Soup)",
         "type": "formosan-noodles",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55315955767247,
-          25.035623014231852
-        ]
+        "coordinates": [121.55315955767247, 25.035623014231852]
       },
       "properties": {
         "id": "FM_1dn21IwDy06t9UuG",
@@ -188,18 +167,16 @@
         "placeid": "ChIJN-4uPaWuQjQRl5vzIpBxpFM",
         "title": "Ole Rum Bar & Tapas",
         "type": "bar",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55288446528934,
-          25.032059162354336
-        ]
+        "coordinates": [121.55288446528934, 25.032059162354336]
       },
       "properties": {
         "id": "FM_9La0WSXUub3LTKza",
@@ -207,18 +184,16 @@
         "placeid": "ChIJjY4zZ8yrQjQRO9r-32pw-eg",
         "title": "Larriere-cour",
         "type": "bar",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55375763761656,
-          25.032931060296708
-        ]
+        "coordinates": [121.55375763761656, 25.032931060296708]
       },
       "properties": {
         "id": "FM_oSL0vwinzladbF4D",
@@ -226,18 +201,16 @@
         "placeid": "ChIJ3Z4HxHurQjQRnx4_tgoRhjU",
         "title": "Pàng Taqueria",
         "type": "taco",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.52976830972298,
-          25.017195212353954
-        ]
+        "coordinates": [121.52976830972298, 25.017195212353954]
       },
       "properties": {
         "id": "FM_QPa2Oa3hdsFvFgCU",
@@ -245,18 +218,16 @@
         "placeid": "ChIJxZPxQYypQjQRmP3Fw5cvpZc",
         "title": "El Sabroso Mexican Food",
         "type": "taco",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55046504508994,
-          25.039727905632322
-        ]
+        "coordinates": [121.55046504508994, 25.039727905632322]
       },
       "properties": {
         "id": "FM_QP7aT53UJ4x9ntiE",
@@ -264,18 +235,16 @@
         "placeid": "ChIJ8VNyWSqqQjQRz_rrWE4OhkI",
         "title": "Teotihuacan Mexican Restaurant",
         "type": "taco",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55164116754744,
-          25.04269480315472
-        ]
+        "coordinates": [121.55164116754744, 25.04269480315472]
       },
       "properties": {
         "id": "FM_OmBhzr6BbJWTJzfx",
@@ -283,18 +252,16 @@
         "placeid": "ChIJOdHWx6yrQjQRnb88OVTWvxo",
         "title": "Odd One Out - Dunnan Shop",
         "type": "icecream",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.54480981123537,
-          25.039215200109936
-        ]
+        "coordinates": [121.54480981123537, 25.039215200109936]
       },
       "properties": {
         "id": "FM_pvHvX4BQTkIZg7Bo",
@@ -302,18 +269,16 @@
         "placeid": "ChIJ5TXg4tCrQjQRNDAoeL3zmoE",
         "title": "Indulge Experimental Bistro",
         "type": "bar",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.56114707019687,
-          25.031488137915723
-        ]
+        "coordinates": [121.56114707019687, 25.031488137915723]
       },
       "properties": {
         "id": "FM_nt2oJqIrHkUKrrbs",
@@ -321,18 +286,16 @@
         "placeid": "ChIJXW85lbWrQjQRPVyW9WjW_qI",
         "title": "Selfish Burger",
         "type": "burger",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          121.55827059852218,
-          25.032127495571647
-        ]
+        "coordinates": [121.55827059852218, 25.032127495571647]
       },
       "properties": {
         "id": "FM_8nxRzwEJcCkOtmLm",
@@ -340,18 +303,16 @@
         "placeid": "ChIJwSO8jsCrQjQRqDmCOu8hCbA",
         "title": "Carrot",
         "type": "bar",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.47374341245873",
-          "25.254438504746673"
-        ]
+        "coordinates": ["121.47374341245873", "25.254438504746673"]
       },
       "properties": {
         "id": "FM_dAAs5mx8WOSR2fAj",
@@ -359,18 +320,16 @@
         "placeid": "ChIJawie5qqxQjQRmJBg0ShMBOc",
         "title": "Ocean Kitchen & Cafe Shop",
         "type": "cafe",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.52433170301717",
-          "25.0549379800363"
-        ]
+        "coordinates": ["121.52433170301717", "25.0549379800363"]
       },
       "properties": {
         "id": "FM_3lNAzoGWUu74sIHN",
@@ -378,18 +337,16 @@
         "placeid": "ChIJGzthks-pQjQRQxGAngSF5rw",
         "title": "Tsubaki Salon Taipei",
         "type": "pancake",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.57119997942961",
-          "25.03941312132497"
-        ]
+        "coordinates": ["121.57119997942961", "25.03941312132497"]
       },
       "properties": {
         "id": "FM_7uQeK5JkybQBYc90",
@@ -397,18 +354,16 @@
         "placeid": "ChIJs_BDd7urQjQR8_WWa7P_v8I",
         "title": "Fubon Art Museum",
         "type": "modern-museum",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.51168606200733",
-          "25.05508181549003"
-        ]
+        "coordinates": ["121.51168606200733", "25.05508181549003"]
       },
       "properties": {
         "id": "FM_5zdxVNBha0kUwpn8",
@@ -416,18 +371,16 @@
         "placeid": "ChIJb60C59GpQjQRqYxtu0IA9dI",
         "title": "Fú Dàu Pastry Studio",
         "type": "pancake",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "121.5465962846551",
-          "25.044498051045757"
-        ]
+        "coordinates": ["121.5465962846551", "25.044498051045757"]
       },
       "properties": {
         "id": "FM_DwGTMp5m4vt4efxT",
@@ -435,18 +388,16 @@
         "placeid": "ChIJgbsg4tqrQjQRNTNaBAUYOfA",
         "title": "Bar Mood Taipei",
         "type": "bar",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "103.84358318262083",
-          "1.2752250699431034"
-        ]
+        "coordinates": ["103.84358318262083", "1.2752250699431034"]
       },
       "properties": {
         "id": "SG_qsV0rMckNiJ3eDcm",
@@ -454,18 +405,16 @@
         "placeid": "ChIJ36AdBg0Z2jERvFl0QFoqZ0E",
         "title": "Jigger & Pony",
         "type": "bar",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "103.8386253704992",
-          "1.2917278115996622"
-        ]
+        "coordinates": ["103.8386253704992", "1.2917278115996622"]
       },
       "properties": {
         "id": "SG_Sk9E5eLY8SeSCn8p",
@@ -473,18 +422,16 @@
         "placeid": "ChIJT3fdLZwZ2jERJx-QGgPAoac",
         "title": "Common Man Coffee Roasters - Martin Road",
         "type": "cafe",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     },
     {
       "type": "Feature",
-      "license": "owned",
+      "license": true,
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          "103.84308257112916",
-          "1.2777883018813458"
-        ]
+        "coordinates": ["103.84308257112916", "1.2777883018813458"]
       },
       "properties": {
         "id": "SG_LOgUoXR4oajJPOJL",
@@ -492,7 +439,8 @@
         "placeid": "ChIJL1s64ccZ2jERWJa6Ep5wrdw",
         "title": "Great Nanyang Heritage Cafe",
         "type": "cafe",
-        "layout": "food"
+        "layout": "food",
+        "tag": []
       }
     }
   ]
