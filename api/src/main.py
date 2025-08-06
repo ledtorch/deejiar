@@ -41,9 +41,10 @@ if env == 'development':
             "https://localhost:5174",  # iOS Map app
             "https://192.168.50.85:5174",  # iOS Map app
             "https://localhost:5173",  # Dashboard app
+            "capacitor://localhost"
     ]
 else:
-    origins = ["https://deejiar.com", "https://qa.deejiar.com"]
+    origins = ["https://deejiar.com", "https://qa.deejiar.com", "capacitor://localhost"]
 
 app.add_middleware(
     CORSMiddleware,

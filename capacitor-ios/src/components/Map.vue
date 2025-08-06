@@ -56,7 +56,6 @@ const addStores = () => {
   const url = `${import.meta.env.VITE_API_URL}/map/meta.json?v=${Date.now()}`;
   console.log("📡 Fetching from", url);
 
-
   fetch(url)
     .then(response => response.json())
     .then(data => {
