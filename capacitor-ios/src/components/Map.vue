@@ -48,10 +48,14 @@ const resetSelectedStore = () => {
   // remove selected store data
   selectedStore.value = null;
 };
-
+// const API = import.meta.env.VITE_DATACENTER_API;
 // Render stores logic
 const addStores = () => {
-  const url = `/stores.json?v=${new Date().getTime()}`;
+  // const url = `/stores.json?v=${new Date().getTime()}`;
+  // 🏗️ Testing FastAPI endpoint
+  const url = `${import.meta.env.VITE_API_URL}/map/meta.json?v=${Date.now()}`;
+  console.log("📡 Fetching from", url);
+
 
   fetch(url)
     .then(response => response.json())

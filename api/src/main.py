@@ -8,6 +8,7 @@ import json
 from dotenv import load_dotenv
 # Modules
 from routes.editor import list_json_files, flatten_features, save_reconstructed_features
+from routes.map import get_map_json
 
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
@@ -36,9 +37,13 @@ print(f"ENV file URL: {env_file}")
 # CORS config
 env = os.getenv('ENV', 'development')
 if env == 'development':
-    origins = ["http://localhost:5173"]
+        origins = [
+            "https://localhost:5174",  # iOS Map app
+            "https://192.168.50.85:5174",  # iOS Map app
+            "https://localhost:5173",  # Dashboard app
+    ]
 else:
-    origins = ["https://deejiar.com/api"]
+    origins = ["https://deejiar.com", "https://qa.deejiar.com"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -110,7 +115,17 @@ async def login(request: Request):
         "redirect": "/dashboard"
     }
 
-# Editor
+# ─── App API ────────────────────────────────────
+@app.get("/map/{filename}")
+async def serve_map_data(filename: str):
+    try:
+        return get_map_json(filename)
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# ─── Dashboard API ────────────────────────────────────
 @app.get("/json-files")
 async def get_json_files():
     return list_json_files()
