@@ -47,9 +47,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@capacitor/cli@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@capacitor/cli@npm:7.0.1"
+"@capacitor/cli@npm:^7.4.2":
+  version: 7.4.2
+  resolution: "@capacitor/cli@npm:7.4.2"
   dependencies:
     "@ionic/cli-framework-output": "npm:^2.2.8"
     "@ionic/utils-subprocess": "npm:^3.0.1"
@@ -71,16 +71,16 @@ __metadata:
   bin:
     cap: bin/capacitor
     capacitor: bin/capacitor
-  checksum: 10/e38585a6828f1bdea31ee7e3a78e6e8be9531a1c92ebd45ab11ba305c9c8dcd4a9d0fb8e2947503d15fb43c499eb48f4b6eb158e409e44b3f6f63a64a1a7eb0b
+  checksum: 10/f9e417de59412a679ae8d2813e43508e2fe68b9d72aeaf4886b4a8379882639bef1e1d9552536a25737a97ba8c279691ef77d41e6d6f9c70dd2f1113677b372b
   languageName: node
   linkType: hard
 
-"@capacitor/core@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@capacitor/core@npm:7.0.1"
+"@capacitor/core@npm:^7.4.2":
+  version: 7.4.2
+  resolution: "@capacitor/core@npm:7.4.2"
   dependencies:
     tslib: "npm:^2.1.0"
-  checksum: 10/3442d41e769c719fd9efb16e06454af12c85f7cd25840f7870f5882c3c7f98e7fe836297eac83d1d6d126015f948e6004ad5a5347aea3db8ed14cf4f23268fbd
+  checksum: 10/07a3e81ee6dd7c5e9fcdbcc5b93de8b84c5092ec495b18fa43408f13fd4a9bbd15ab7907cf9c129e1eb2532914b32235f439c1b3af1deee5904dfc9c45056513
   languageName: node
   linkType: hard
 
@@ -93,12 +93,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@capacitor/ios@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@capacitor/ios@npm:7.0.1"
+"@capacitor/ios@npm:^7.4.2":
+  version: 7.4.2
+  resolution: "@capacitor/ios@npm:7.4.2"
   peerDependencies:
-    "@capacitor/core": ^7.0.0
-  checksum: 10/68ae5e1dd9ffae9db471bd7de40553f1b1514adce0d6b7a796e12f154cdd7d6c05bfd45d38c34be87be8a3a56ce8ac37849227c2ea8d9142961ce93c6511ce7a
+    "@capacitor/core": ^7.4.0
+  checksum: 10/beeac34ae7aafa6b15099a4854f3082dbc06ab5a1d186060980050b50b2211906ac9d8dfdba6f2ee0cb4f1f6d0720bc9a93aa7017ac50c3bc8e0d0695f62b7b6
   languageName: node
   linkType: hard
 
@@ -977,10 +977,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:."
   dependencies:
-    "@capacitor/cli": "npm:^7.0.1"
-    "@capacitor/core": "npm:^7.0.1"
+    "@capacitor/cli": "npm:^7.4.2"
+    "@capacitor/core": "npm:^7.4.2"
     "@capacitor/device": "npm:^7.0.0"
-    "@capacitor/ios": "npm:^7.0.1"
+    "@capacitor/ios": "npm:^7.4.2"
     "@capacitor/status-bar": "npm:^7.0.0"
     "@vitejs/plugin-vue": "npm:^6.0.0"
     autoprefixer: "npm:^10.4.19"
