@@ -23,8 +23,14 @@ const userLocationControl = ref(null);
 // utils
 const { userPosition, startWatching, stopWatching } = useUserLocation();
 
-// stores json
+// Store JSON sources
 let storeData = null;
+
+// JSON Endpoints
+const mapEndpoint = (path) => {
+  return `${import.meta.env.VITE_API_URL}/map/${path}`;
+};
+
 
 // Locate user
 const locateUser = () => {
@@ -53,7 +59,7 @@ const resetSelectedStore = () => {
 const addStores = () => {
   // const url = `/stores.json?v=${new Date().getTime()}`;
   // 🏗️ Testing FastAPI endpoint
-  const url = `${import.meta.env.VITE_API_URL}/map/meta.json?v=${Date.now()}`;
+  const url = mapEndpoint("meta.json?v=${Date.now()}");
   console.log("📡 Fetching from", url);
 
   fetch(url)
@@ -135,15 +141,12 @@ const clickMarker = (event) => {
   hidePicksByAuthor();
 
   const feature = event.features ? event.features[0] : event;
-  const title = feature.properties.title;
   const coordinates = feature.geometry.coordinates;
-  const iconString = feature.properties.icon;
-  const iconObject = typeof iconString === 'string' ? JSON.parse(iconString) : iconString;
-  const activeIcon = iconObject.active;
+  const type = feature.properties.type;
+  const activeIcon = `/button/marker/${type}-active.png`;
 
-  selectedStore.value = storeData.features.find(
-    store => store.properties.title === title
-  ).properties;
+  // Store the properties of clicked store and pass to BottomSheet
+  selectedStore.value = feature.properties;
 
   const el = document.createElement("div");
   el.className = "marker-active";
