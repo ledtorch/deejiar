@@ -64,7 +64,7 @@
         "auid": "14472969398923707248",
         "placeid": "ChIJMTUzjem3t4kRvTmjKsl04Rc",
         "title": "Rice Restaurant",
-        "type": "thai",
+        "type": "restaurant",
         "layout": "food",
         "tag": []
       }
@@ -250,7 +250,7 @@
         "id": "FM_OmBhzr6BbJWTJzfx",
         "auid": "14510735417314001215",
         "placeid": "ChIJOdHWx6yrQjQRnb88OVTWvxo",
-        "title": "Odd One Out - Dunnan Shop",
+        "title": "Odd One Out Dunnan Shop",
         "type": "icecream",
         "layout": "food",
         "tag": []

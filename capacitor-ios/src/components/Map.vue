@@ -59,7 +59,7 @@ const resetSelectedStore = () => {
 const addStores = () => {
   // const url = `/stores.json?v=${new Date().getTime()}`;
   // 🏗️ Testing FastAPI endpoint
-  const url = mapEndpoint("meta.json?v=${Date.now()}");
+  const url = mapEndpoint(`meta.json?v=${Date.now()}`);
   console.log("📡 Fetching from", url);
 
   fetch(url)

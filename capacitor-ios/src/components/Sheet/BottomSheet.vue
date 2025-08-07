@@ -115,7 +115,14 @@ const buttonState = ref("default");
 const storeDetailsEndpoint = () => {
   const { id, type, title } = props.store;
   const country = id.split('_')[0];
-  const safeTitle = title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+  const safeTitle = title
+    .replace(/&/g, 'and')               // Convert & to "and"
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, '')    // Remove diacritics
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')           // Remove punctuation
+    .replace(/\s+/g, '-')               // Replace spaces with hyphens
+    ;
   return `${import.meta.env.VITE_CDN_URL}/stores/${country}/${type}/${safeTitle}`;
 };
 
@@ -146,9 +153,12 @@ const storeImages = computed(() => {
     const name = product?.name;
     return name
       ? name
+        .replace(/&/g, 'and')               // Convert & to "and"
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, '')    // Remove diacritics
         .toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
+        .replace(/[^\w\s-]/g, '')           // Remove punctuation
+        .replace(/\s+/g, '-')               // Replace spaces with hyphens
       : null;
   };
 
