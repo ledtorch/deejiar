@@ -62,33 +62,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "The California flavor hamburger with below ingredients: Fried egg, Cowgirl Creamery's Wagon Wheel cheese, Zoe's bacon, arugula, balsamic onions & mayo on a toasted sesame brioche bun.",
-    "image": "stores/burger/gotts-roadside/california-burger.jpg",
     "name": "California Burger",
     "price": "$16.99"
   },
-  "item2": {
+  "product2": {
     "description": "Fried crisp & lightly salted.",
-    "image": "stores/burger/gotts-roadside/fries.jpg",
     "name": "Fries",
     "price": "$4.49"
   },
-  "item3": {
+  "product3": {
     "description": "Add Flavors: Vanilla, Cherry with $0.99",
-    "image": "stores/burger/gotts-roadside/coke.jpg",
     "name": "Coke",
     "price": "$2.99(16oz) / $3.99(24oz)"
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

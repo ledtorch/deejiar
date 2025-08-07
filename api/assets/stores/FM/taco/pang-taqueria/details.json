@@ -69,33 +69,28 @@
       "Sunday": false
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Chorizo, Pollo asado and Baja fish. <br> Add any drinks +NT$90",
-    "image": "stores/taco/pang-taqueria/any-3-tacos-combo.jpg",
     "name": "Any 3 Tacos Combo",
     "price": "NT$330"
   },
-  "item2": {
+  "product2": {
     "description": "Burrito",
-    "image": "stores/taco/pang-taqueria/burrito.jpg",
     "name": "Burrito",
     "price": "NT$260"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

@@ -57,33 +57,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Original soufflé pancake, Taiwan oolong tea whipping cream, peanuts.",
-    "image": "stores/pancake/fu-dau-pastry-studio/fu-dau-oolong-tea-souffle-pancake.jpg",
     "name": "Fú Dàu Oolong Tea Soufflé Pancake",
     "price": "NT$380"
   },
-  "item2": {
+  "product2": {
     "description": "Original soufflé pancake, mullet roe with rice wine, salted egg yolk, mix nuts with gold leaf.",
-    "image": "stores/pancake/fu-dau-pastry-studio/mullet-roe-with-salted-egg-yolk-souffle-pancake.jpg",
     "name": "Mullet Roe with Salted Egg Yolk Soufflé Pancake",
     "price": "NT$380"
   },
-  "item3": {
+  "product3": {
     "description": "Iced NT$160, Hot NT$180",
-    "image": "stores/pancake/fu-dau-pastry-studio/tieh-kuan-yin-milk-tea.jpg",
     "name": "Tieh Kuan Yin Milk Tea",
     "price": "NT$160"
   },
-  "item4": {
+  "product4": {
     "description": "Iced NT$160, Hot NT$180",
-    "image": "stores/pancake/fu-dau-pastry-studio/ice-drip-coffee-latte.jpg",
     "name": "Ice Drip Coffee Latte",
     "price": "NT$160"
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

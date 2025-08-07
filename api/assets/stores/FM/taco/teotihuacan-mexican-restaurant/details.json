@@ -67,33 +67,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "4 Tacos set + 1 drink. <br> Prices only valid for lunch set offer Monday - Friday 11:30 - 1430",
-    "image": "stores/taco/teotihuacan-mexican-restaurant/lunch-special-set-a.jpg",
-    "name": "Lunch Special - Set A",
+    "name": "Lunch Special Set A",
     "price": "NT$399"
   },
-  "item2": {
+  "product2": {
     "description": "Cocktails",
-    "image": "stores/taco/teotihuacan-mexican-restaurant/mojito.jpg",
     "name": "Mojito",
     "price": "NT$280"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

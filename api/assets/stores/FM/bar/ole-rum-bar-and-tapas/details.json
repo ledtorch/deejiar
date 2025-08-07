@@ -52,33 +52,28 @@
       "Sunday": false
     }
   ],
-  "item1": {
+  "product1": {
     "description": "The rum =)",
-    "image": "stores/bar/ole-rum-bar-and-tapas/selection.jpg",
     "name": "Walls of Rum",
     "price": ""
   },
-  "item2": {
+  "product2": {
     "description": "Region: Belize and Australia, 69.4% ABV <br> Cyberpunk series from French bottler Zn09 Zero Nine Spirits. Selected with passion by Grégory and Alain, this Belize rum, aged for 12 years in the tropics, is an invitation to discovery.",
-    "image": "stores/bar/ole-rum-bar-and-tapas/cyberpunk-belize-2007-rum.jpg",
     "name": "Zn09 Cyberpunk Series Rh02 Belize 2007",
     "price": "NT$600"
   },
-  "item3": {
+  "product3": {
     "description": "Region: Martinique, 60,8° ABV <br> A 100% pure cane juice rum from the French West Indies, aged for 5 years in bourbon barrels (3 years on site and 2 years in Europe).",
-    "image": "stores/bar/ole-rum-bar-and-tapas/martinique-rhum.jpg",
-    "name": "Zn09 So Rum Rh07 Pure Juice Cask Strength",
+    "name": "Martinique Rhum",
     "price": "NT$400"
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

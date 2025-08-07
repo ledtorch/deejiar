@@ -57,33 +57,28 @@
       ]
     }
   ],
-  "item1": {
-    "description": "Chai latte. <br> $5.75(10oz) / $7.5(16oz)",
-    "image": "stores/cafe/red-rock-coffee/chai-latte.jpg",
-    "name": "Chai Latte (S)",
+  "product1": {
+    "description": "Chai latte(S). <br> $5.75(10oz) / $7.5(16oz)",
+    "name": "Chai Latte",
     "price": "$5.75"
   },
-  "item2": {
+  "product2": {
     "description": "The croissant filled with ham and cheese. Feel free to ask the staff to heat it up for you.",
-    "image": "stores/cafe/red-rock-coffee/ham-and-cheese-croissant.jpg",
-    "name": "Ham & Cheese Croissant",
+    "name": "Ham and Cheese Croissant",
     "price": "$7.25"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

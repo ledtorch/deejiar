@@ -57,33 +57,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "The view from the outdoor seating area.",
-    "image": "stores/cafe/ocean-kitchen-and-cafe-shop/the-view-of-outdoor-seat.jpg",
     "name": " The View of Outdoor Seat",
     "price": ""
   },
-  "item2": {
+  "product2": {
     "description": "The tea with a milky aroma is the recommended item for summer vacation. <br> Could be re-steeped (it is recommended to retain half of the original tea to prevent the flavor from becoming too weak).",
-    "image": "stores/cafe/ocean-kitchen-and-cafe-shop/alishan-jin-xuan-tea.jpg",
     "name": "Alishan Jin Xuan Tea",
     "price": "NT$180"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "stores/cafe/ocean-kitchen-and-cafe-shop/onion-rings.jpg",
     "name": "Onion Rings",
     "price": "NT$180"
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

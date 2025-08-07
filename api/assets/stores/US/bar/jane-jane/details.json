@@ -62,33 +62,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
-    "image": "stores/bar/jane-jane/onion-dip.jpg",
     "name": "Onion Dip",
     "price": "$12"
   },
-  "item2": {
+  "product2": {
     "description": "Pisco, Aperol, Maraschino Liqueur, Grapefruit Juice, Lemon Juice, Simple Syrup",
-    "image": "stores/bar/jane-jane/cusco.jpg",
     "name": "Cusco",
     "price": "$15"
   },
-  "item3": {
+  "product3": {
     "description": "Scotch, Irish Whiskey, Orgeat, Lemon Juice",
-    "image": "stores/bar/jane-jane/camerons-kick.jpg",
     "name": "Cameron's Kick",
     "price": "$15"
   },
-  "item4": {
+  "product4": {
     "description": "Gin, Benedictine, Cointreau, Heering Cherry Liqueur, Pineapple Juice, Lime Juice, Angostura, Soda Water",
-    "image": "stores/bar/jane-jane/singapore-sling.jpg",
     "name": "Singapore Sling",
     "price": "$16"
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

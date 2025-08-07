@@ -62,33 +62,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Reg. S$7, Large S$8.5 <br> Whole milk / low fat milk / outside oat / nobody coconut / bonsai soy",
-    "image": "stores/cafe/common-man-coffee-roasters-martin-road/iced-chai-latte.jpg",
     "name": "Iced Chai Latte",
     "price": "S$7"
   },
-  "item2": {
+  "product2": {
     "description": "Crispy chickpeas, honey, pita bread.",
-    "image": "stores/cafe/common-man-coffee-roasters-martin-road/green-hummus.jpg",
     "name": "Green Hummus",
     "price": "S$14"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

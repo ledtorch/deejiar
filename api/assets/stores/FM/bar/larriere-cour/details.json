@@ -67,33 +67,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Region: Cuba, 45° ABV <br> A 1998 vintage Cuban rum from an unnamed distillery.  It is not stated which of the distilleries or stills this rum came from, but American oak cask #8 was bottled in Scotland.",
-    "image": "stores/bar/larriere-cour/samaroli.jpg",
     "name": "Cuba Rum 1998 Samaroli Single Cask #8",
     "price": "NT$720"
   },
-  "item2": {
+  "product2": {
     "description": "The cocktail is made by a waiter who will follow your mood and tastes.",
-    "image": "stores/bar/larriere-cour/cocktail.jpg",
     "name": "Personalized Cocktail",
     "price": "NT$400"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

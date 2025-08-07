@@ -62,33 +62,29 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Basic toppings: Hokkaido Fresh Cream, Beet Syrup <br>  Optional Toppings: TOKACHI Red Bean, Cultured Butter, Hokkaido Cheese <br>  Choosing two out of three toppings is NT$400, and choosing all three toppings is NT$430.",
-    "image": "stores/pancake/tsubaki-salon-taipei/hokkaido-hotcake-premium.jpg",
+
     "name": "Hokkaido Hotcake Premium",
     "price": "NT$430"
   },
-  "item2": {
+  "product2": {
     "description": "(Hot/Iced)",
-    "image": "stores/pancake/tsubaki-salon-taipei/hokkaido-milk.jpg",
     "name": "Hokkaido Milk",
     "price": "NT$200"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

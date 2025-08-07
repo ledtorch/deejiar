@@ -90,33 +90,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Poh (Lighter) / Gao (Think)",
-    "image": "stores/cafe/great-nanyang-heritage-cafe/hot-hor-ka-sai.jpg",
     "name": "Hot Hor Ka Sai",
     "price": "S$3"
   },
-  "item2": {
+  "product2": {
     "description": "N/A",
-    "image": "stores/cafe/great-nanyang-heritage-cafe/soft-boiled-kampung-eggs.jpg",
     "name": "Soft Boiled Kampung Eggs",
     "price": "S$3"
   },
-  "item3": {
+  "product3": {
     "description": "Traditional Toast + S$0 <br> Thick Toast + S$0.2 <br> Wholemeat + S$0.5",
-    "image": "stores/cafe/great-nanyang-heritage-cafe/kaya-butter-toast.jpg",
     "name": "Kaya Butter Toast",
     "price": "S$2.5"
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

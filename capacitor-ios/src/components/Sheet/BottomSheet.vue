@@ -46,12 +46,12 @@
         <div class="image-div">
           <div class="main-column" :style="{ 'backgroundImage': storeImages.storefront }"></div>
           <div class="secondary-column">
-            <div class="image" :style="{ 'backgroundImage': storeImages.item1 }"></div>
-            <div class="image" :style="{ 'backgroundImage': storeImages.item2 }"></div>
+            <div class="image" :style="{ 'backgroundImage': storeImages.product1 }"></div>
+            <div class="image" :style="{ 'backgroundImage': storeImages.product2 }"></div>
           </div>
         </div>
         <div class="state">
-          <p class="text-limited">{{ store ? store.description : "" }}</p>
+          <p class="text-limited">{{ detailsJSON.description || "The description is missing 😢" }}</p>
         </div>
         <!-- <Review /> -->
         <Businesshour :bizTime="store.businesshour" viewMode="overview" />
@@ -111,31 +111,62 @@ const bottomSheet = ref(null);
 const controlArea = ref(null);
 const buttonState = ref("default");
 
-// Render store properties
-const rootUrl = (imagePath) => {
-  const baseUrl = `${window.location.protocol}//${window.location.host}`;
-  return `url('${baseUrl}/${imagePath}')`;
+// Store Details Endpoint
+const storeDetailsEndpoint = () => {
+  const { id, type, title } = props.store;
+  const country = id.split('_')[0];
+  const safeTitle = title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+  return `${import.meta.env.VITE_CDN_URL}/stores/${country}/${type}/${safeTitle}`;
 };
+
+// Store Details JSON
+const detailsJSON = ref(null);
+watch(() => props.store, async (newStore) => {
+  if (newStore) {
+    try {
+      const url = `${storeDetailsEndpoint()}/details.json`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Failed to load details.json');
+      detailsJSON.value = await res.json();
+    } catch (err) {
+      console.error('❌ Failed to fetch details.json:', err);
+      detailsJSON.value = null;
+    }
+  } else {
+    detailsJSON.value = null;
+  }
+});
 
 const storeState = computed(() => props.store);
 const storeLayout = computed(() => props.store?.layout);
-const storeImages = computed(() => ({
-  storefront: rootUrl(props.store.storefront.day),
-  item1: rootUrl(props.store.item1.image),
-  item2: rootUrl(props.store.item2.image)
-}));
+
+const storeImages = computed(() => {
+  const base = storeDetailsEndpoint();
+  const safe = (product) => {
+    const name = product?.name;
+    return name
+      ? name
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+      : null;
+  };
+
+  const safeName1 = safe(detailsJSON.value?.product1);
+  const safeName2 = safe(detailsJSON.value?.product2);
+
+  return {
+    storefront: `url("${base}/storefront-day.jpg")`,
+    product1: safeName1 ? `url("${base}/${safeName1}.jpg")` : null,
+    product2: safeName2 ? `url("${base}/${safeName2}.jpg")` : null
+  };
+});
 
 
 // Expand BottomSheet when user clicks store marker
 watch(() => props.store, (newStore) => {
   if (newStore !== null) {
     bottomSheetHeight.value = withStoreHeight;
-    // // 🐞 Debug console
-    // console.log("json: " + JSON.stringify(props.store, null, 2));
-    // console.log("layout: " + props.store?.layout);
-    // console.log("storefront image URL: " + rootUrl(props.store?.storefront.day));
-    // console.log("item1 image URL: " + rootUrl(props.store?.item1?.image));
-    // console.log("item2 image URL: " + rootUrl(props.store?.item2?.image));
   }
 });
 

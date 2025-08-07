@@ -67,33 +67,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Earl gray lemongrass and red oolong. <br> NT$120(Single) / NT$180(Double)",
-    "image": "stores/icecream/odd-one-out-dunnan-shop/botanical-gelato.jpg",
     "name": "Botanical Gelato",
     "price": "NT$180(Double)"
   },
-  "item2": {
-    "description": "Red oolong milk tea + cream foam <br> NT$100(12oz) / NT$120(16oz)",
-    "image": "stores/icecream/odd-one-out-dunnan-shop/champion-milk-tea.jpg",
-    "name": "Champion Milk Tea (M)",
+  "product2": {
+    "description": "(M) Red oolong milk tea + cream foam <br> NT$100(12oz) / NT$120(16oz)",
+    "name": "Champion Milk Tea",
     "price": "NT$100(M)"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

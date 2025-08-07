@@ -6,33 +6,28 @@
       "Holiday": []
     }
   ],
-  "item1": {
+  "product1": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item2": {
+  "product2": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

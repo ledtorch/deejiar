@@ -81,33 +81,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Cold whole or oat milk drink with flavored syrup. No coffee! Enjoy with a classic chai or vanilla syrup, or ask our baristas about our seasonal syrup options.",
-    "image": "stores/cafe/big-bear-cafe/iced-steamer.jpg",
     "name": "Iced Steamer",
     "price": "$3.8"
   },
-  "item2": {
+  "product2": {
     "description": "Enjoy your chewy shrimp with sour salsa, but the original taste is awesome as well.",
-    "image": "stores/cafe/big-bear-cafe/shrimp-taco.jpg",
     "name": "Shrimp Taco",
     "price": "$12"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

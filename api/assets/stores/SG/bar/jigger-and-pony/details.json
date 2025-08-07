@@ -62,33 +62,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Happy hour item <br> Haku Vodka, passion fruit, apricot, lemon, Cointreau, Sauvignon Black, chocolate bitters",
-    "image": "stores/bar/jigger-and-pony/porn-star-martini.jpg",
     "name": "Porn Star Martini",
     "price": "S$19"
   },
-  "item2": {
+  "product2": {
     "description": "Fords Gin, Campari, Cocchi Vermouth di Torino, orange",
-    "image": "stores/bar/jigger-and-pony/velvet-negroni.jpg",
     "name": "Velvet Negroni",
     "price": "S$19"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

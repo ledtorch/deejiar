@@ -62,33 +62,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Hot Chai Indian spices with milk & sugar",
-    "image": "stores/cafe/teaism-penn-quarter/chai.jpg",
     "name": "Chai",
     "price": "$4.75"
   },
-  "item2": {
+  "product2": {
     "description": "2 Vegan Ginger Scones",
-    "image": "stores/cafe/teaism-penn-quarter/vegan-ginger-scones.jpg",
     "name": "Vegan Ginger Scones",
     "price": "$4"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

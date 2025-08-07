@@ -67,33 +67,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Classic burger with a small combo (NT$80 side and NT$80 drink).",
-    "image": "stores/burger/selfish-burger/classic-with-small-combo.jpg",
-    "name": "Classic with Combo",
+    "name": "Classic with Small Combo",
     "price": "NT$240+100"
   },
-  "item2": {
+  "product2": {
     "description": "Cod with yuzu tartar sauce and a chilled purple cabbage salad.",
-    "image": "stores/burger/selfish-burger/yuzu-cod.jpg",
-    "name": "Cod Yuzu",
+    "name": "Yuzu Cod",
     "price": "NT$280"
   },
-  "item3": {
+  "product3": {
     "description": "The bear with wheat and black tea flavor.",
-    "image": "stores/burger/selfish-burger/toastea-larger.jpg",
     "name": "TOASTea Larger",
     "price": "NT$160"
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

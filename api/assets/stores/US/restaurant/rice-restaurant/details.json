@@ -62,33 +62,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Takoyaki",
-    "image": "stores/restaurant/rice-restaurant/takoyaki.jpg",
     "name": "Takoyaki",
     "price": "$8"
   },
-  "item2": {
+  "product2": {
     "description": "Fire Fly Vodka, Sour mix, Lime juice.",
-    "image": "stores/restaurant/rice-restaurant/sweet-tea-lemonade.jpg",
     "name": "Sweet Tea Lemonade",
     "price": "$10"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

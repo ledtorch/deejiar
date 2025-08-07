@@ -75,33 +75,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Botanist Gin <br> William Pear / Lily / Bergamot / Tonic Water",
-    "image": "stores/bar/indulge-experimental-bistro/herbal-flora.jpg",
     "name": "Herbal Flora",
     "price": "NT$500"
   },
-  "item2": {
+  "product2": {
     "description": "Don Julio Tequila Blanco. Rose Cherry Liqueur. Rosewood Iron Buddha Tea.",
-    "image": "stores/bar/indulge-experimental-bistro/wood-flora.jpg",
     "name": "Wood Flora",
     "price": "NT$450"
   },
-  "item3": {
-    "description": "Taiwanese gnocchi, also commonly known as 'cloud soft' owes its name to its texture. The inspiration comes from the early morning in the mountains, when the sun rises, and the sky gradually reveals a ruby-like hue between the sea of clouds and the forest. The red onion noodle dumplings represent the sea of clouds, while the chicken fat transformed into powder and tea tree mushrooms represent the mountains and forests. The spicy tomato-braised pork belly with turmeric and Buddha's hand citron pickled daikon represents the various displays of light. This also symbolizes the enticingly diverse flavors!",
-    "image": "stores/bar/indulge-experimental-bistro/gnocchi.jpg",
-    "name": "Gnocchi·Duroc Pork·Spicy Tomato·Mushroom",
+  "product3": {
+    "description": "Gnocchi·Duroc Pork·Spicy Tomato·Mushroom | Taiwanese gnocchi, also commonly known as 'cloud soft' owes its name to its texture. The inspiration comes from the early morning in the mountains, when the sun rises, and the sky gradually reveals a ruby-like hue between the sea of clouds and the forest. The red onion noodle dumplings represent the sea of clouds, while the chicken fat transformed into powder and tea tree mushrooms represent the mountains and forests. The spicy tomato-braised pork belly with turmeric and Buddha's hand citron pickled daikon represents the various displays of light. This also symbolizes the enticingly diverse flavors!",
+    "name": "Gnocchi",
     "price": "NT$480"
   },
-  "item4": {
-    "description": "Taking a dish we are all too familiar with - Teppan tofu - as a point of discovery, we mix pure shrimp paste into the egg tofu mixture for reshaping, first baking then frying it. It is then combined with the sweetness of caramelized onions, the spiciness of pepper, the sourness of pickled salmon roe in black vinegar, and the freshness of fermented chili, presenting a novel appearance of Taiwanese-style Western cuisine.",
-    "image": "stores/bar/indulge-experimental-bistro/egg-tofu.jpg",
-    "name": "Egg Tofu·Scallop·Salmon-roll·Fermented Chili",
+  "product4": {
+    "description": "Egg Tofu·Scallop·Salmon-roll·Fermented Chili | Taking a dish we are all too familiar with - Teppan tofu - as a point of discovery, we mix pure shrimp paste into the egg tofu mixture for reshaping, first baking then frying it. It is then combined with the sweetness of caramelized onions, the spiciness of pepper, the sourness of pickled salmon roe in black vinegar, and the freshness of fermented chili, presenting a novel appearance of Taiwanese-style Western cuisine.",
+    "name": "Egg Tofu",
     "price": "NT$360"
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

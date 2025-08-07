@@ -57,33 +57,28 @@
       ]
     }
   ],
-  "item1": {
-    "description": "May 04 - Sep 23, 2024 <br> The Fubon Art Museum is honored to present its landmark debut inaugural exhibition, 'True Nature: Rodin and the Age of Impressionism,' during the lively spring season of 2024. This extraordinary showcase not only features the awe-inspiring sculptures, both monumental and intimate, by Rodin himself, but also presents a collection of Impressionist paintings from his contemporaries.",
-    "image": "stores/modern-museum/fubon-art-museum/true-nature.jpg",
-    "name": "True Nature: Rodin and the Age of Impressionism",
+  "product1": {
+    "description": "May 04 - Sep 23, 2024 <br> Rodin and the Age of Impressionism <br> The Fubon Art Museum is honored to present its landmark debut inaugural exhibition, 'True Nature: Rodin and the Age of Impressionism,' during the lively spring season of 2024. This extraordinary showcase not only features the awe-inspiring sculptures, both monumental and intimate, by Rodin himself, but also presents a collection of Impressionist paintings from his contemporaries.",
+    "name": "True Nature",
     "price": "NT$500"
   },
-  "item2": {
+  "product2": {
     "description": "Auguste Rodin <br> First modeled 1897, this cast 1967 <br> Bronze <br> 120 x 120 x 297 cm <br> Gift B. Gerald Cantor Art Foundation",
-    "image": "stores/modern-museum/fubon-art-museum/monument-to-Honore-de-balzac.jpg",
     "name": "Monument to Honoré de Balzac",
     "price": ""
   },
-  "item3": {
+  "product3": {
     "description": "Auguste Rodin <br> First modeled 1890-1897 or 1901-1902, this cast 1967 <br> Bronze <br> 88 × 61 x 71 cm <br> Gift of the B. Gerald Cantor Art Foundation",
-    "image": "stores/modern-museum/fubon-art-museum/heroic-bust-of-victor-hugo.jpg",
     "name": "Heroic Bust of Victor Hugo",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "Auguste Rodin <br> c. 1960-1970 <br> Bronze <br> 12 × 36 x 25 cm",
-    "image": "stores/modern-museum/fubon-art-museum/large-right-hand.jpg",
     "name": "Large Right Hand",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

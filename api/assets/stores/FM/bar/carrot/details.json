@@ -52,33 +52,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "GIN/CARROT/HONEY",
-    "image": "stores/bar/carrot/carrot-you-out.jpg",
     "name": "Carrot You Out",
     "price": "NT$400"
   },
-  "item2": {
+  "product2": {
     "description": "Choose one of three dips: aioli, salsa, guacamole. Extra dips: +NT$90.",
-    "image": "stores/bar/carrot/tortilla-chips-with-housemade-dips.jpg",
     "name": "Tortilla Chips with Housemade Dips",
     "price": "NT$240"
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }

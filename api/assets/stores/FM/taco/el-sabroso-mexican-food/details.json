@@ -86,33 +86,28 @@
       ]
     }
   ],
-  "item1": {
+  "product1": {
     "description": "Grilled chicken with tomato chili salsa and a 330ml Coke.",
-    "image": "stores/taco/el-sabroso-mexican-food/quesadilla-combo.jpg",
     "name": "Quesadilla Combo",
     "price": "NT$315"
   },
-  "item2": {
+  "product2": {
     "description": "A piñata hanging from the ceiling.",
-    "image": "stores/taco/el-sabroso-mexican-food/pinata.jpg",
     "name": "Piñata",
     "price": ""
   },
-  "item3": {
+  "product3": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item4": {
+  "product4": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   },
-  "item5": {
+  "product5": {
     "description": "",
-    "image": "",
     "name": "",
     "price": ""
   }
