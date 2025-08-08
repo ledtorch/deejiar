@@ -84,12 +84,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@capacitor/device@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "@capacitor/device@npm:7.0.0"
+"@capacitor/device@npm:^7.0.2":
+  version: 7.0.2
+  resolution: "@capacitor/device@npm:7.0.2"
   peerDependencies:
     "@capacitor/core": ">=7.0.0"
-  checksum: 10/9a4d92616be3b65092dcbbbde25150cbeb022a0dd5bded72c6f9fc0207f7595a824693401459d0c59bab60a50343eb330a52eee4ebc52dfb2ce8a253c45c8813
+  checksum: 10/473cf1f3fed55d28f4179dc42ecdad1379dd24825c5493dc6425c8dff8664d152d75693b8ceeecb50d0674ed9dfcec672cded8b4251e9c17a410f4bb55326457
   languageName: node
   linkType: hard
 
@@ -979,7 +979,7 @@ __metadata:
   dependencies:
     "@capacitor/cli": "npm:^7.4.2"
     "@capacitor/core": "npm:^7.4.2"
-    "@capacitor/device": "npm:^7.0.0"
+    "@capacitor/device": "npm:^7.0.2"
     "@capacitor/ios": "npm:^7.4.2"
     "@capacitor/status-bar": "npm:^7.0.0"
     "@vitejs/plugin-vue": "npm:^6.0.0"

@@ -2,7 +2,7 @@ PODS:
   - Capacitor (7.4.2):
     - CapacitorCordova
   - CapacitorCordova (7.4.2)
-  - CapacitorDevice (7.0.0):
+  - CapacitorDevice (7.0.2):
     - Capacitor
   - CapacitorStatusBar (7.0.0):
     - Capacitor
@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Capacitor: 9d9e481b79ffaeacaf7a85d6a11adec32bd33b59
   CapacitorCordova: 5e58d04631bc5094894ac106e2bf1da18a9e6151
-  CapacitorDevice: 069faf433b3a99c3d5f0e500fbe634f60a8c6a84
+  CapacitorDevice: 81ae78d5d1942707caad79276badd458bf6ec603
   CapacitorStatusBar: a8c4c83ed2e973bdafb979e80e4b00d027832cb7
 
 PODFILE CHECKSUM: 8423c24bfe96da37376f8497666e879f8c562293
