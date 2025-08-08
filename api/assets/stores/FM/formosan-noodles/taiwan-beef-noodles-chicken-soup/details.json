@@ -1,0 +1,43 @@
+{
+  "description": "It’s always crowded from half an hour before opening. The tender beef and rich, flavorful broth win people’s hearts, drawing a line of customers as steady and certain as the setting sun.",
+  "address": "No. 164, Section 1, Dunhua South Road, Da’an District, Taipei City 106",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "18:00", "end": "03:30" }],
+      "Tuesday": [{ "start": "18:00", "end": "03:30" }],
+      "Wednesday": [{ "start": "18:00", "end": "03:30" }],
+      "Thursday": [{ "start": "18:00", "end": "03:30" }],
+      "Friday": [{ "start": "18:00", "end": "03:30" }],
+      "Saturday": [{ "start": "18:00", "end": "03:30" }],
+      "Sunday": [{ "start": "18:00", "end": "03:30" }]
+    }
+  },
+  "product1": {
+    "description": "紅燒牛肉麵 半碗 刀削麵 <br> You can choose from three portion sizes — half bowl (半碗), small bowl (小碗), and large bowl (大碗) — as well as two noodle types: thin noodles (細麵) or knife-cut noodles (刀切麵).",
+    "name": "Taiwanese Braised Beef Noodle",
+    "price": "NT$180"
+  },
+  "product2": {
+    "description": "You’ll find this machine by the entrance. Take a number and wait for the staff to call you and guide you to your seat.",
+    "name": "Queue Number Machine",
+    "price": ""
+  },
+  "product3": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product4": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product5": {
+    "description": "",
+    "name": "",
+    "price": ""
+  }
+}

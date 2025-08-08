@@ -442,6 +442,23 @@
         "layout": "food",
         "tag": []
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": ["121.54854480423349", "25.043631783109024"]
+      },
+      "properties": {
+        "id": "FM_MnP8vYw2kQrTxFzH",
+        "auid": "IC9F5C437A09ACB3F",
+        "placeid": "ChIJL5QjRNurQjQRajrNGFKdLyM",
+        "title": "Taiwan Beef Noodles Chicken Soup",
+        "type": "formosan-noodles",
+        "layout": "food",
+        "tag": ["cashonly", "takeaway"]
+      }
     }
   ]
 }
