@@ -1,67 +1,20 @@
 {
   "description": "Gott's Roadside, established by brothers Joel and Duncan Gott in St. Helena in 1999, offers a diverse menu that includes meals, tacos, beer, and ice cream. It is celebrated for its contemporary California-inspired dishes, crafted with locally sourced ingredients. The store is situated on the left side of the Ferry Building, featuring a roadside restaurant and a walk-through ice cream store inside.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "2100",
-          "Start": "1000"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "2100",
-          "Start": "1000"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2100",
-          "Start": "1000"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "2100",
-          "Start": "1000"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "2200",
-          "Start": "1000"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "2200",
-          "Start": "1000"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "2030",
-          "Start": "1000"
-        }
-      ]
+  "address": "One Ferry Building, The Embarcadero S, San Francisco, CA 94111",
+  "businesshour": {
+    "timezone": "America/Los_Angeles",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "10:00", "end": "21:00" }],
+      "Tuesday": [{ "start": "10:00", "end": "21:00" }],
+      "Wednesday": [{ "start": "10:00", "end": "21:00" }],
+      "Thursday": [{ "start": "10:00", "end": "21:00" }],
+      "Friday": [{ "start": "10:00", "end": "22:00" }],
+      "Saturday": [{ "start": "10:00", "end": "22:00" }],
+      "Sunday": [{ "start": "10:00", "end": "20:30" }]
     }
-  ],
+  },
   "product1": {
     "description": "The California flavor hamburger with below ingredients: Fried egg, Cowgirl Creamery's Wagon Wheel cheese, Zoe's bacon, arugula, balsamic onions & mayo on a toasted sesame brioche bun.",
     "name": "California Burger",

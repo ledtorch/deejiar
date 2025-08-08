@@ -1,67 +1,20 @@
 {
   "description": "Bar Mood, one of Taiwan’s first craft cocktail bars, opened in Taipei in 2017. Owner Nick Wu’s bartop garden features locally foraged garnishes, highlighting Taiwan’s biodiversity. Using ingredients like oolong tea and soy milk, Wu blends traditional and modern techniques, earning Bar Mood a spot on Asia’s 50 Best Bars list.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Start": "1800",
-          "Finish": "2500"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Start": "1800",
-          "Finish": "2500"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Start": "1800",
-          "Finish": "2500"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Start": "1800",
-          "Finish": "2500"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Start": "1800",
-          "Finish": "2600"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Start": "1800",
-          "Finish": "2600"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Start": "1800",
-          "Finish": "2500"
-        }
-      ]
+  "address": "No. 53, Lane 160, Section 1, Dunhua S Rd, Taipei City, 106",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "1800", "end": "0100" }],
+      "Tuesday": [{ "start": "1800", "end": "0100" }],
+      "Wednesday": [{ "start": "1800", "end": "0100" }],
+      "Thursday": [{ "start": "1800", "end": "0100" }],
+      "Friday": [{ "start": "1800", "end": "0200" }],
+      "Saturday": [{ "start": "1800", "end": "0200" }],
+      "Sunday": [{ "start": "1800", "end": "0100" }]
     }
-  ],
+  },
   "product1": {
     "description": "Crisp sweetness of elderflower from late spring; rounded sweetness of grapes from mid-summer; scents of jasmine tea from early autumn, plus the unique fresh citrus of Roku Gin - beauty of all seasons blooming on the palate.",
     "name": "Season of Flower",

@@ -1,86 +1,38 @@
 {
   "description": "Boston ivy covers the building, setting the café apart from the bustle of the city. There's not only coffee available, but also tacos and pizza. It's a comfortable place where you should slow down and relax.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": false
-    },
-    {
+  "address": "1201 S St NW, Washington, DC 20009",
+  "businesshour": {
+    "timezone": "America/New_York",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [],
       "Tuesday": [
-        {
-          "Finish": "1500",
-          "Start": "0800"
-        },
-        {
-          "Finish": "2200",
-          "Start": "1600"
-        }
-      ]
-    },
-    {
+        { "start": "08:00", "end": "15:00" },
+        { "start": "16:00", "end": "22:00" }
+      ],
       "Wednesday": [
-        {
-          "Finish": "1500",
-          "Start": "0800"
-        },
-        {
-          "Finish": "2200",
-          "Start": "1600"
-        }
-      ]
-    },
-    {
+        { "start": "08:00", "end": "15:00" },
+        { "start": "16:00", "end": "22:00" }
+      ],
       "Thursday": [
-        {
-          "Finish": "1500",
-          "Start": "0800"
-        },
-        {
-          "Finish": "2200",
-          "Start": "1600"
-        }
-      ]
-    },
-    {
+        { "start": "08:00", "end": "15:00" },
+        { "start": "16:00", "end": "22:00" }
+      ],
       "Friday": [
-        {
-          "Finish": "1500",
-          "Start": "0800"
-        },
-        {
-          "Finish": "2200",
-          "Start": "1600"
-        }
-      ]
-    },
-    {
+        { "start": "08:00", "end": "15:00" },
+        { "start": "16:00", "end": "22:00" }
+      ],
       "Saturday": [
-        {
-          "Finish": "1500",
-          "Start": "0800"
-        },
-        {
-          "Finish": "2200",
-          "Start": "1600"
-        }
-      ]
-    },
-    {
+        { "start": "08:00", "end": "15:00" },
+        { "start": "16:00", "end": "22:00" }
+      ],
       "Sunday": [
-        {
-          "Finish": "1500",
-          "Start": "0800"
-        },
-        {
-          "Finish": "2200",
-          "Start": "1600"
-        }
+        { "start": "08:00", "end": "15:00" },
+        { "start": "16:00", "end": "22:00" }
       ]
     }
-  ],
+  },
   "product1": {
     "description": "Cold whole or oat milk drink with flavored syrup. No coffee! Enjoy with a classic chai or vanilla syrup, or ask our baristas about our seasonal syrup options.",
     "name": "Iced Steamer",

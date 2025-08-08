@@ -1,67 +1,20 @@
 {
   "description": "The flagship Martin Rd café, opened in 2013, introduced specialty coffee to Singapore’s Robertson Quay. This laid-back, greenery-surrounded space offers all-day brunch, coffee, and retail beans. The second floor’s alfresco coffee bar, Grounded by CMCR, features a wellness-focused menu, perfect for gathering and unwinding over quality coffee and snacks.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Start": "0730",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Start": "0730",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Start": "0730",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Start": "0730",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Start": "0730",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Start": "0730",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Start": "0730",
-          "Finish": "1800"
-        }
-      ]
+  "address": "22 Martin Rd, #01-00, Singapore 239058",
+  "businesshour": {
+    "timezone": "Asia/Singapore",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "07:30", "end": "18:00" }],
+      "Tuesday": [{ "start": "07:30", "end": "18:00" }],
+      "Wednesday": [{ "start": "07:30", "end": "18:00" }],
+      "Thursday": [{ "start": "07:30", "end": "18:00" }],
+      "Friday": [{ "start": "07:30", "end": "18:00" }],
+      "Saturday": [{ "start": "07:30", "end": "18:00" }],
+      "Sunday": [{ "start": "07:30", "end": "18:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Reg. S$7, Large S$8.5 <br> Whole milk / low fat milk / outside oat / nobody coconut / bonsai soy",
     "name": "Iced Chai Latte",

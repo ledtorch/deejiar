@@ -1,11 +1,20 @@
 {
   "description": "It was established in February 1864 by the Union military commander of the Alexandria District for use as a cemetery for the burial of African Americans who had escaped slavery, known as contrabands and freedmen.",
-  "businesshour": [
-    {
-      "24hr": true,
-      "Holiday": []
+  "address": "1001 S Washington St, Alexandria, VA 22314",
+  "businesshour": {
+    "timezone": "America/New_York",
+    "24hr": true,
+    "holiday": [],
+    "hours": {
+      "Monday": [],
+      "Tuesday": [],
+      "Wednesday": [],
+      "Thursday": [],
+      "Friday": [],
+      "Saturday": [],
+      "Sunday": []
     }
-  ],
+  },
   "product1": {
     "description": "",
     "name": "",

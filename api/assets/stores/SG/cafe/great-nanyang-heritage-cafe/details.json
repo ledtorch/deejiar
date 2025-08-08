@@ -1,95 +1,38 @@
 {
   "description": "Great Nanyang Heritage Cafe offers traditional Singaporean dishes like kaya toast and nasi lemak, located near the CBD. Step into this nostalgic kopitiam for authentic flavors and a classic dining experience.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
+  "address": "5 Craig Rd, Singapore 089665",
+  "businesshour": {
+    "timezone": "Asia/Singapore",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
       "Monday": [
-        {
-          "Start": "0730",
-          "Finish": "1500"
-        },
-        {
-          "Start": "1700",
-          "Finish": "2030"
-        }
-      ]
-    },
-    {
+        { "start": "07:30", "end": "15:00" },
+        { "start": "17:00", "end": "20:30" }
+      ],
       "Tuesday": [
-        {
-          "Start": "0730",
-          "Finish": "1500"
-        },
-        {
-          "Start": "1700",
-          "Finish": "2030"
-        }
-      ]
-    },
-    {
+        { "start": "07:30", "end": "15:00" },
+        { "start": "17:00", "end": "20:30" }
+      ],
       "Wednesday": [
-        {
-          "Start": "0730",
-          "Finish": "1500"
-        },
-        {
-          "Start": "1700",
-          "Finish": "2030"
-        }
-      ]
-    },
-    {
+        { "start": "07:30", "end": "15:00" },
+        { "start": "17:00", "end": "20:30" }
+      ],
       "Thursday": [
-        {
-          "Start": "0730",
-          "Finish": "1500"
-        },
-        {
-          "Start": "1700",
-          "Finish": "2030"
-        }
-      ]
-    },
-    {
+        { "start": "07:30", "end": "15:00" },
+        { "start": "17:00", "end": "20:30" }
+      ],
       "Friday": [
-        {
-          "Start": "0730",
-          "Finish": "1500"
-        },
-        {
-          "Start": "1700",
-          "Finish": "2030"
-        }
-      ]
-    },
-    {
+        { "start": "07:30", "end": "15:00" },
+        { "start": "17:00", "end": "20:30" }
+      ],
       "Saturday": [
-        {
-          "Start": "0730",
-          "Finish": "1500"
-        },
-        {
-          "Start": "1700",
-          "Finish": "2030"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Start": "0730",
-          "Finish": "1500"
-        },
-        {
-          "Start": "1700",
-          "Finish": "2030"
-        }
-      ]
+        { "start": "07:30", "end": "15:00" },
+        { "start": "17:00", "end": "20:30" }
+      ],
+      "Sunday": [{ "start": "07:30", "end": "15:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Poh (Lighter) / Gao (Think)",
     "name": "Hot Hor Ka Sai",

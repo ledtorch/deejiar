@@ -1,67 +1,20 @@
 {
   "description": "A cozy restaurant is situated on 14th Street, offering delicious Thai cuisine; its Japanese fare is also commendable. Upon entering the restaurant, don't miss the Rice Market—simply head downstairs to the basement of the same building. It offers a variety of Asian seasonings and ingredients, along with Japanese kitchenware and tableware.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "2200",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "2200",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2200",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "2200",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "2230",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "2230",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "2200",
-          "Start": "1130"
-        }
-      ]
+  "address": "1608 14th St NW, Washington, DC 20009",
+  "businesshour": {
+    "timezone": "America/New_York",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [],
+      "Tuesday": [{ "start": "1130", "end": "2200" }],
+      "Wednesday": [{ "start": "1130", "end": "2200" }],
+      "Thursday": [{ "start": "1130", "end": "2200" }],
+      "Friday": [{ "start": "1130", "end": "2230" }],
+      "Saturday": [{ "start": "1130", "end": "2230" }],
+      "Sunday": [{ "start": "1130", "end": "2200" }]
     }
-  ],
+  },
   "product1": {
     "description": "Takoyaki",
     "name": "Takoyaki",

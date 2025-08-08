@@ -1,57 +1,20 @@
 {
   "description": "The bar is renowned for its unique vegetable-based cocktails.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": false
-    },
-    {
-      "Tuesday": false
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2500",
-          "Start": "1900"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "2500",
-          "Start": "1900"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "2500",
-          "Start": "1900"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "2500",
-          "Start": "1900"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "2500",
-          "Start": "1900"
-        }
-      ]
+  "address": "No. 12, Jiaxing St, Xinyi District, Taipei City, 110",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [],
+      "Tuesday": [],
+      "Wednesday": [{ "start": "19:00", "end": "01:00" }],
+      "Thursday": [{ "start": "19:00", "end": "01:00" }],
+      "Friday": [{ "start": "19:00", "end": "01:00" }],
+      "Saturday": [{ "start": "19:00", "end": "01:00" }],
+      "Sunday": [{ "start": "19:00", "end": "01:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "GIN/CARROT/HONEY",
     "name": "Carrot You Out",

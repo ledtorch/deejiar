@@ -1,74 +1,29 @@
 {
   "description": "A taco restaurant operated by a Taiwanese sous chef from ZEA, with his unique understanding of Mexican food. It offers corn-based tacos in a clean environment, albeit at a slightly higher price than regular taco restaurants.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": [
-        {
-          "Finish": "2600",
-          "Start": "1900"
-        }
-      ]
-    },
-    {
-      "Monday": false
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "2100",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2100",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
+  "address": "No. 181, Wenchang St, Da'an District, Taipei City, Taiwan 106",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [],
+      "Tuesday": [{ "start": "17:00", "end": "21:00" }],
+      "Wednesday": [{ "start": "17:00", "end": "21:00" }],
       "Thursday": [
-        {
-          "Finish": "1400",
-          "Start": "1200"
-        },
-        {
-          "Finish": "2100",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
+        { "start": "12:00", "end": "14:00" },
+        { "start": "17:00", "end": "21:00" }
+      ],
       "Friday": [
-        {
-          "Finish": "1400",
-          "Start": "1200"
-        },
-        {
-          "Finish": "2100",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
+        { "start": "12:00", "end": "14:00" },
+        { "start": "17:00", "end": "21:00" }
+      ],
       "Saturday": [
-        {
-          "Finish": "1400",
-          "Start": "1200"
-        },
-        {
-          "Finish": "2100",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
-      "Sunday": false
+        { "start": "12:00", "end": "14:00" },
+        { "start": "17:00", "end": "21:00" }
+      ],
+      "Sunday": []
     }
-  ],
+  },
   "product1": {
     "description": "Chorizo, Pollo asado and Baja fish. <br> Add any drinks +NT$90",
     "name": "Any 3 Tacos Combo",

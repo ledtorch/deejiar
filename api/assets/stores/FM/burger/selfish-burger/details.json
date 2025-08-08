@@ -1,72 +1,20 @@
 {
   "description": "A reputable burger store meticulously crafts small yet flavorful and juicy burgers. Rather than overeating, try to savor these burgers as fine cuisine. It is located in the Xinyi District, conveniently near Exit 2 of the Taipei 101/World Trade Center MRT station.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": [
-        {
-          "Finish": "2600",
-          "Start": "1900"
-        }
-      ]
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "2130",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "2130",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2130",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "2130",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "2300",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "2300",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "2200",
-          "Start": "1130"
-        }
-      ]
+  "address": "No. 180, Zhuangjing Rd, Xinyi District, Taipei City, 110",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "11:30", "end": "22:00" }],
+      "Tuesday": [{ "start": "11:30", "end": "22:00" }],
+      "Wednesday": [{ "start": "11:30", "end": "22:00" }],
+      "Thursday": [{ "start": "11:30", "end": "22:00" }],
+      "Friday": [{ "start": "11:30", "end": "22:00" }],
+      "Saturday": [{ "start": "11:30", "end": "22:00" }],
+      "Sunday": [{ "start": "11:30", "end": "22:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Classic burger with a small combo (NT$80 side and NT$80 drink).",
     "name": "Classic with Small Combo",

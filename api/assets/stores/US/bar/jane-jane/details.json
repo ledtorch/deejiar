@@ -1,67 +1,20 @@
 {
   "description": "Step into a lively ambiance at Jane Jane. The chic counter clerk immediately evokes memories of San Francisco. Jane Jane located in the heart of 14th Street NW. This cocktail bar is perfect for drinks pre or post dinner drinks, complemented by its well-balanced yet unobtrusive drunk food.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "2400",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "2400",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2400",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "2500",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "2600",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "2600",
-          "Start": "1400"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "2400",
-          "Start": "1400"
-        }
-      ]
+  "address": "1705 14th St NW, Washington, DC 20009",
+  "businesshour": {
+    "timezone": "America/New_York",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "17:00", "end": "00:00" }],
+      "Tuesday": [{ "start": "17:00", "end": "00:00" }],
+      "Wednesday": [{ "start": "17:00", "end": "00:00" }],
+      "Thursday": [{ "start": "17:00", "end": "01:00" }],
+      "Friday": [{ "start": "17:00", "end": "02:00" }],
+      "Saturday": [{ "start": "14:00", "end": "02:00" }],
+      "Sunday": [{ "start": "14:00", "end": "00:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Caramelized Onions, Cream Cheese, Sour Cream, Mayonnaise, Spices",
     "name": "Onion Dip",

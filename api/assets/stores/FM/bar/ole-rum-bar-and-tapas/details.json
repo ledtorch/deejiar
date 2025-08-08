@@ -1,57 +1,20 @@
 {
   "description": "This is a Rum bar that offers a variety of Rums and Spanish cuisine. The staff is passionate about introducing their products.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": false
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "2400",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2400",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "2400",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "2400",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "2400",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Sunday": false
+  "address": "1F, No.4,  Lane 109, Section 1, Anhe Rd, Da'an District, Taipei City 106",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [],
+      "Tuesday": [{ "start": "18:00", "end": "00:00" }],
+      "Wednesday": [{ "start": "18:00", "end": "00:00" }],
+      "Thursday": [{ "start": "18:00", "end": "00:00" }],
+      "Friday": [{ "start": "18:00", "end": "00:00" }],
+      "Saturday": [{ "start": "18:00", "end": "00:00" }],
+      "Sunday": []
     }
-  ],
+  },
   "product1": {
     "description": "The rum =)",
     "name": "Walls of Rum",

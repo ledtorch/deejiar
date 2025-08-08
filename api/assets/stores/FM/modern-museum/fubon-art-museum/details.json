@@ -1,62 +1,20 @@
 {
   "description": "The CEO of Fubon Art Foundation, Maggie Weng, has been preparing for this museum for 10 years. She invited Renzo Piano to design the building, and the theme of this building is “light.” This 10,000 square meter museum is the first work of Renzo Piano in Taiwan and the first museum in the Xinyi district. The three glass curtain walls of the “Water Exhibition Hall” on the first floor and the skylight designs of the “Sun Gallery” and “Star Gallery” on the third floor ingeniously infuse the space with nature, achieving harmony with the environment.  Although the first floor exhibition area is rough, using low-resolution printed wallpaper for the artworks, the third floor is a true modern art museum, offering perfect spatial planning for audiences to immerse themselves in the artworks.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Tuesday": false
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
+  "address": "No. 79, Songgao Rd., Xinyi Dist., Taipei City, 110",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "11:00", "end": "18:00" }],
+      "Tuesday": [],
+      "Wednesday": [{ "start": "11:00", "end": "18:00" }],
+      "Thursday": [{ "start": "11:00", "end": "18:00" }],
+      "Friday": [{ "start": "11:00", "end": "18:00" }],
+      "Saturday": [{ "start": "11:00", "end": "18:00" }],
+      "Sunday": [{ "start": "11:00", "end": "18:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "May 04 - Sep 23, 2024 <br> Rodin and the Age of Impressionism <br> The Fubon Art Museum is honored to present its landmark debut inaugural exhibition, 'True Nature: Rodin and the Age of Impressionism,' during the lively spring season of 2024. This extraordinary showcase not only features the awe-inspiring sculptures, both monumental and intimate, by Rodin himself, but also presents a collection of Impressionist paintings from his contemporaries.",
     "name": "True Nature",

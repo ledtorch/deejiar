@@ -1,62 +1,20 @@
 {
   "description": "The coffee shop, located in Silicon Valley and featuring a two-floor space, recently became the venue for an interview with Y-Combinator CEO Garry Tan by Bloomberg.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "1600",
-          "Start": "0730"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "1600",
-          "Start": "0730"
-        }
-      ]
-    },
-    {
-      "Wednesday": false
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "1600",
-          "Start": "0730"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "1600",
-          "Start": "0730"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "1600",
-          "Start": "0730"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "1600",
-          "Start": "0800"
-        }
-      ]
+  "address": "201 Castro St, Mountain View, CA 94041",
+  "businesshour": {
+    "timezone": "America/Los_Angeles",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "07:30", "end": "16:00" }],
+      "Tuesday": [{ "start": "07:30", "end": "16:00" }],
+      "Wednesday": [],
+      "Thursday": [{ "start": "07:30", "end": "16:00" }],
+      "Friday": [{ "start": "07:30", "end": "16:00" }],
+      "Saturday": [{ "start": "07:30", "end": "16:00" }],
+      "Sunday": [{ "start": "08:30", "end": "16:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Chai latte(S). <br> $5.75(10oz) / $7.5(16oz)",
     "name": "Chai Latte",

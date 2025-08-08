@@ -1,72 +1,20 @@
 {
   "description": "An internet-famous milk tea shop known for its 4 flavors gelato offerings. The original store was established in L.A., and this is the inaugural branch in Taiwan.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": [
-        {
-          "Finish": "2600",
-          "Start": "1900"
-        }
-      ]
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "2130",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "2130",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2130",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "2130",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "2300",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "2300",
-          "Start": "1130"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "2200",
-          "Start": "1130"
-        }
-      ]
+  "address": "No. 48, Lane 187, Section 1, Dunhua S Rd, Da'an District, Taipei City, Taiwan 106",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "11:30", "end": "21:30" }],
+      "Tuesday": [{ "start": "11:30", "end": "21:30" }],
+      "Wednesday": [{ "start": "11:30", "end": "21:30" }],
+      "Thursday": [{ "start": "11:30", "end": "21:30" }],
+      "Friday": [{ "start": "11:30", "end": "23:00" }],
+      "Saturday": [{ "start": "11:30", "end": "23:00" }],
+      "Sunday": [{ "start": "11:30", "end": "22:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Earl gray lemongrass and red oolong. <br> NT$120(Single) / NT$180(Double)",
     "name": "Botanical Gelato",

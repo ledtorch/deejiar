@@ -1,67 +1,20 @@
 {
   "description": "Located in Amara Hotel, Jigger & Pony offers friendly bartenders, inviting you to enjoy the atmosphere and share stories at the bar. Ranked in Asia’s 50 Best Bars, its creative ‘menuzines’ feature inventive cocktails like Strawberry Fields and fun punches. Pair drinks with tasty bar snacks for a lively experience.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Start": "1800",
-          "Finish": "2400"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Start": "1800",
-          "Finish": "2400"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Start": "1800",
-          "Finish": "2500"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Start": "1800",
-          "Finish": "2500"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Start": "1800",
-          "Finish": "2600"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Start": "1800",
-          "Finish": "2400"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Start": "1800",
-          "Finish": "2400"
-        }
-      ]
+  "address": "165 Tg Pagar Rd, Amara Hotel, Singapore 088539",
+  "businesshour": {
+    "timezone": "Asia/Singapore",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "18:00", "end": "00:00" }],
+      "Tuesday": [{ "start": "18:00", "end": "00:00" }],
+      "Wednesday": [{ "start": "18:00", "end": "01:00" }],
+      "Thursday": [{ "start": "18:00", "end": "01:00" }],
+      "Friday": [{ "start": "18:00", "end": "02:00" }],
+      "Saturday": [{ "start": "18:00", "end": "00:00" }],
+      "Sunday": [{ "start": "18:00", "end": "00:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Happy hour item <br> Haku Vodka, passion fruit, apricot, lemon, Cointreau, Sauvignon Black, chocolate bitters",
     "name": "Porn Star Martini",

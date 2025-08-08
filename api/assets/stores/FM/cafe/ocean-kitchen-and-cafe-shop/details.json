@@ -1,62 +1,20 @@
 {
   "description": " A coffee shop facing Qianshuiwan in Tamsui. Although it’s scorching in Taiwan during summer, enjoying the view of Qianshuiwan is a comfortable way to spend your afternoon.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "1800",
-          "Start": "1030"
-        }
-      ]
-    },
-    {
-      "Tuesday": false
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "1800",
-          "Start": "1030"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "1800",
-          "Start": "1030"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "1800",
-          "Start": "1030"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "1900",
-          "Start": "1030"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "1900",
-          "Start": "1030"
-        }
-      ]
+  "address": "No.19-1, Beishizi, Sanzhi District, New Taipei City, 252",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "10:30", "end": "18:00" }],
+      "Tuesday": [],
+      "Wednesday": [{ "start": "10:30", "end": "18:00" }],
+      "Thursday": [{ "start": "10:30", "end": "18:00" }],
+      "Friday": [{ "start": "10:30", "end": "18:00" }],
+      "Saturday": [{ "start": "10:30", "end": "19:00" }],
+      "Sunday": [{ "start": "10:30", "end": "19:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "The view from the outdoor seating area.",
     "name": "The View of Outdoor Seat",

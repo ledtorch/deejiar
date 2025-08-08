@@ -1,62 +1,20 @@
 {
   "description": "The best soufflé shop in Dadaocheng offers delicious and attractive Taiwanese-flavored soufflés. The shop is located in a traditional Taiwanese two-story house with a shrine hall table in this café. Enjoying a fluffy soufflé in this incense-filled, classical space is a unique experience in this ancient city.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Start": "1000",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Tuesday": false
-    },
-    {
-      "Wednesday": [
-        {
-          "Start": "1000",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Start": "1000",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Start": "1000",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Start": "1000",
-          "Finish": "1800"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Start": "1000",
-          "Finish": "1800"
-        }
-      ]
+  "address": "1F, No. 25, Section 2, Yanping N Rd, Datong District, Taipei City, 10344",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "10:00", "end": "18:00" }],
+      "Tuesday": [],
+      "Wednesday": [{ "start": "10:00", "end": "18:00" }],
+      "Thursday": [{ "start": "10:00", "end": "18:00" }],
+      "Friday": [{ "start": "10:00", "end": "18:00" }],
+      "Saturday": [{ "start": "10:00", "end": "18:00" }],
+      "Sunday": [{ "start": "10:00", "end": "18:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Original soufflé pancake, Taiwan oolong tea whipping cream, peanuts.",
     "name": "Fú Dàu Oolong Tea Soufflé Pancake",

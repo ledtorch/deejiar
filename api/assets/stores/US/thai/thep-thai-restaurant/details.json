@@ -1,87 +1,35 @@
 {
   "description": "Located at the corner of 77th Street on the Upper East Side, this restaurant offers generous portions that allow you to sample various dishes in one sitting. The slightly strong seasoning is enough to evoke memories of your travels in Southeast Asia. The only downside is that during peak hours, the busy kitchen may serve you slightly overcooked octopus tentacles.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
+  "address": "1439 2nd Ave, New York, NY 10021",
+  "businesshour": {
+    "timezone": "America/New_York",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
       "Monday": [
-        {
-          "Finish": "1530",
-          "Start": "1130"
-        },
-        {
-          "Finish": "2230",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
+        { "start": "1130", "end": "1530" },
+        { "start": "1700", "end": "2230" }
+      ],
       "Tuesday": [
-        {
-          "Finish": "1530",
-          "Start": "1130"
-        },
-        {
-          "Finish": "2230",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
+        { "start": "1130", "end": "1530" },
+        { "start": "1700", "end": "2230" }
+      ],
       "Wednesday": [
-        {
-          "Finish": "1530",
-          "Start": "1130"
-        },
-        {
-          "Finish": "2230",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
+        { "start": "1130", "end": "1530" },
+        { "start": "1700", "end": "2230" }
+      ],
       "Thursday": [
-        {
-          "Finish": "1530",
-          "Start": "1130"
-        },
-        {
-          "Finish": "2230",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
+        { "start": "1130", "end": "1530" },
+        { "start": "1700", "end": "2230" }
+      ],
       "Friday": [
-        {
-          "Finish": "1530",
-          "Start": "1130"
-        },
-        {
-          "Finish": "2330",
-          "Start": "1700"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "2330",
-          "Start": "1200"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "2230",
-          "Start": "1200"
-        }
-      ]
+        { "start": "1130", "end": "1530" },
+        { "start": "1700", "end": "2230" }
+      ],
+      "Saturday": [{ "start": "1200", "end": "2330" }],
+      "Sunday": [{ "start": "1200", "end": "2230" }]
     }
-  ],
+  },
   "product1": {
     "description": "Grilled octopus tentacle, grape tomato, chickpea, cilantro, mint, basil, fried onion.",
     "name": "Muk Yarng",

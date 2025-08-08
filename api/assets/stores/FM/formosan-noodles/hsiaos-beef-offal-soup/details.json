@@ -1,52 +1,20 @@
 {
   "description": "蕭家牛雜湯 Minsheng Community's cuisine, operating for over 30 years since its start in 1985.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": false
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "1930",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "1930",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "1930",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "1930",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Saturday": false
-    },
-    {
-      "Sunday": false
+  "address": "No. 1, Lane 26, Xindong St, Songshan District, Taipei City, 105",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [],
+      "Tuesday": [{ "start": "11:00", "end": "19:30" }],
+      "Wednesday": [{ "start": "11:00", "end": "19:30" }],
+      "Thursday": [{ "start": "11:00", "end": "19:30" }],
+      "Friday": [{ "start": "11:00", "end": "19:30" }],
+      "Saturday": [],
+      "Sunday": []
     }
-  ],
+  },
   "product1": {
     "description": "牛肉炒麵(Beef Chow Mein)",
     "name": "Beef Chow Mein",

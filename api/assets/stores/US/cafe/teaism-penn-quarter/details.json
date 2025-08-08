@@ -1,67 +1,20 @@
 {
   "description": "The Penn Quarter store, a branch of Teaism, is located on the corner of 8th and D Streets NW. It's visible from the Archives/Navy Memorial metro stop and is part of a set of DC-based teahouses and Asian-inspired restaurants.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": []
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "1800",
-          "Start": "1100"
-        }
-      ]
+  "address": "400 8th St NW, Washington, DC 20004",
+  "businesshour": {
+    "timezone": "America/New_York",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [],
+      "Tuesday": [{ "start": "1100", "end": "1800" }],
+      "Wednesday": [{ "start": "1100", "end": "1800" }],
+      "Thursday": [{ "start": "1100", "end": "1800" }],
+      "Friday": [{ "start": "1100", "end": "1800" }],
+      "Saturday": [{ "start": "1100", "end": "1800" }],
+      "Sunday": [{ "start": "1100", "end": "1800" }]
     }
-  ],
+  },
   "product1": {
     "description": "Hot Chai Indian spices with milk & sugar",
     "name": "Chai",

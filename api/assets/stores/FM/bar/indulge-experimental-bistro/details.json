@@ -1,80 +1,20 @@
 {
   "description": "Indulge Experimental Bistro is consistently ranked among the World’s 50 Best Bars and remains a top-five favorite in Asia’s 50 Best. Its tea-infused cocktail captures the essence of its subtropical flavors. The chef has meticulously gathered representative ingredients from all over Taiwan to create unique small plates designed to complement the drinks. The staff expertly introduces patrons to the local ingredients, explaining how the chef aims to inspire clients with the vivid imagery of Formosa.",
-  "businesshour": [
-    {
-      "24hr": false,
-      "Holiday": [
-        {
-          "Finish": "2600",
-          "Start": "1900"
-        }
-      ]
-    },
-    {
-      "Monday": [
-        {
-          "Finish": "2500",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Tuesday": [
-        {
-          "Finish": "2500",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Wednesday": [
-        {
-          "Finish": "2500",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Thursday": [
-        {
-          "Finish": "2500",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Friday": [
-        {
-          "Finish": "2700",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Saturday": [
-        {
-          "Finish": "1700",
-          "Start": "1100"
-        },
-        {
-          "Finish": "2700",
-          "Start": "1800"
-        }
-      ]
-    },
-    {
-      "Sunday": [
-        {
-          "Finish": "1700",
-          "Start": "1100"
-        },
-        {
-          "Finish": "2600",
-          "Start": "1800"
-        }
-      ]
+  "address": "No. 11, Lane 219, Section 1, Fuxing S Rd, Da'an District, Taipei City, 106",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "18:00", "end": "01:00" }],
+      "Tuesday": [{ "start": "18:00", "end": "01:00" }],
+      "Wednesday": [{ "start": "18:00", "end": "01:00" }],
+      "Thursday": [{ "start": "18:00", "end": "01:00" }],
+      "Friday": [{ "start": "18:00", "end": "03:00" }],
+      "Saturday": [{ "start": "18:00", "end": "03:00" }],
+      "Sunday": [{ "start": "18:00", "end": "02:00" }]
     }
-  ],
+  },
   "product1": {
     "description": "Botanist Gin <br> William Pear / Lily / Bergamot / Tonic Water",
     "name": "Herbal Flora",
