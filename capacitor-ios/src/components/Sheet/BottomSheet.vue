@@ -54,7 +54,7 @@
           <p class="text-limited">{{ detailsJSON.description || "The description is missing 😢" }}</p>
         </div>
         <!-- <Review /> -->
-        <Businesshour :bizTime="store.businesshour" viewMode="overview" />
+        <Businesshour :bizTime="detailsJSON.businesshour" viewMode="overview" />
         <div class="key-info-div"></div>
       </template>
 
@@ -71,9 +71,9 @@
           <div class="main-column--view" :style="{ 'backgroundImage': storeImages.storefront }"></div>
         </div>
         <div class="state">
-          <p class="text-limited">{{ store ? store.description : "" }}</p>
+          <p class="text-limited">{{ detailsJSON.description || "The description is missing 😢" }}</p>
         </div>
-        <Businesshour :bizTime="store.businesshour" viewMode="overview" />
+        <Businesshour :bizTime="detailsJSON.businesshour" viewMode="overview" />
         <div class="key-info-div"></div>
       </template>
     </div>
@@ -131,7 +131,8 @@ const detailsJSON = ref(null);
 watch(() => props.store, async (newStore) => {
   if (newStore) {
     try {
-      const url = `${storeDetailsEndpoint()}/details.json`;
+      // const version = 'v=1'; // Force refresh
+      const url = `${storeDetailsEndpoint()}/details.json?${version}`;
       const res = await fetch(url);
       if (!res.ok) throw new Error('Failed to load details.json');
       detailsJSON.value = await res.json();
@@ -193,6 +194,7 @@ const dragStart = (event) => {
   // // 🐞 Debug console
   // console.log("dragStart");
 
+  event.preventDefault();
   // Assign startY to pageY(mouse / touch screen)
   isDragging.value = true;
   startY = event.pageY || event.touches?.[0].pageY;
@@ -246,6 +248,8 @@ const dragging = (event) => {
   // // 🐞 Debug console
   // console.log("Dragging");
 
+  event.preventDefault();
+
   if (!isDragging.value) return;
   const delta = startY - (event.pageY || event.touches?.[0].pageY);
   const newHeight = startHeight + delta;
@@ -261,10 +265,20 @@ const closeBottomSheet = () => {
 };
 
 // Lifecycle hooks
-onMounted(() => {
-  controlArea.value.addEventListener("mousedown", dragStart);
-  controlArea.value.addEventListener("touchstart", dragStart);
-});
+// onMounted(() => {
+//   controlArea.value.addEventListener("mousedown", dragStart);
+//   controlArea.value.addEventListener("touchstart", dragStart);
+// });
+watch(
+  () => controlArea.value,
+  (el) => {
+    if (el) {
+      el.addEventListener("mousedown", dragStart);
+      el.addEventListener("touchstart", dragStart, { passive: false });
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style lang="scss" scoped>
@@ -294,6 +308,7 @@ onMounted(() => {
   align-self: stretch;
   height: 32px;
   padding: 16px 0px 12px 0px;
+  touch-action: none; // Prevent default touch actions for iOS
 }
 
 .control-area:active {
