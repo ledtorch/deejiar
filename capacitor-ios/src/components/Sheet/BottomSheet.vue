@@ -131,8 +131,10 @@ const detailsJSON = ref(null);
 watch(() => props.store, async (newStore) => {
   if (newStore) {
     try {
-      // const version = 'v=1'; // Force refresh
-      const url = `${storeDetailsEndpoint()}/details.json?${version}`;
+      // Force refresh code
+      // const version = 'v=1';
+      // const url = `${storeDetailsEndpoint()}/details.json?${version}`;
+      const url = `${storeDetailsEndpoint()}/details.json?`;
       const res = await fetch(url);
       if (!res.ok) throw new Error('Failed to load details.json');
       detailsJSON.value = await res.json();
