@@ -3,182 +3,258 @@
     <template v-if="viewMode === 'overview'">
       <div>
         <p :class="['subhead', bizHr.stateClass]">{{ bizHr.state }}</p>
-        <p :class="['subhead', bizHr.timeClass]" v-if="bizHr.isTime">&nbsp; · &nbsp;{{ bizHr.time }}</p>
-        <p :class="['subhead', bizHr.nextTimeClass]" v-if="bizHr.isNextTime">&nbsp; · &nbsp;{{ bizHr.nextTime }}</p>
+        <p class="_color-secondary subhead" v-if="bizHr.isTime">&nbsp;·&nbsp;{{ bizHr.time }}</p>
+        <p :class="['subhead', bizHr.nextTimeClass]" v-if="bizHr.isNextTime">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
       </div>
     </template>
-
     <template v-if="viewMode === 'detail'">
       <div class="frame">
         <div class="icon"></div>
-        <p class="subhead">{{ bizHr.currentDayName }}</p>
+        <p :class="['subhead', bizHr.stateClass]">{{ bizHr.state }}</p>
+        <p class="_color-secondary subhead" v-if="bizHr.isTime">&nbsp;·&nbsp;{{ bizHr.time }}</p>
+        <p :class="['subhead', bizHr.nextTimeClass]" v-if="bizHr.isNextTime">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
+        <p class="subhead font-semibold">{{ bizHr.currentDayName }}</p>
         <p class="subhead">{{ bizHr.formattedBusinessHours }}</p>
       </div>
     </template>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    // DEBUG: It's obj when it's passed by BottomSheet.vue but array when it's passed by Detail.vue
-    bizTime: '',
-    viewMode: String
-  },
-  computed: {
-    bizHr() {
-      // Define time
-      const currentTime = new Date();
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
-      // If Sunday, make it 7 instead of 0
-      let currentDay = currentTime.getDay();
-      if (currentDay === 0) currentDay = 7;
+const props = defineProps({
+  bizTime: { type: Object, default: () => ({}) },
+  viewMode: { type: String, default: 'overview' }
+});
 
-      const currentDate = currentTime.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' }).replace('/', '');
-      const currentHour = String(currentTime.getHours());
-      const currentMinute = String(currentTime.getMinutes());
-      const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-      const currentDayName = daysOfWeek[currentDay - 1];
-      // let timeRanges = [];
-      let formattedTimeRanges = [];
-      let displayStartHour = "";
-      let displayStartMinute = "";
-      let displayFinishHour = "";
-      let displayFinishMinute = "";
+// Reactive current time
+const currentTime = ref(new Date());
 
-      // Initialization
-      let state = "";
-      let time = "";
-      let isTime = false;
-      let nextTime = "";
-      let isNextTime = false;
-      let stateClass = "";
-      let timeClass = "";
-      let nextTimeClass = "";
+// Update time every minute
+let timeUpdateInterval = null;
+onMounted(() => {
+  timeUpdateInterval = setInterval(() => {
+    currentTime.value = new Date();
+  }, 60000);
+});
 
-      // // 🐞 Debug console
-      // console.log("Day: " + currentDay)
-      // console.log("currentDayName: " + currentDayName)
-      // console.log("MMDD: " + currentDate)
-      // console.log("Hour: " + currentHour)
-      // console.log("Minute: " + currentMinute)
+onUnmounted(() => {
+  if (timeUpdateInterval) clearInterval(timeUpdateInterval);
+});
 
-      if (this.bizTime[0]?.['24hr']) {
-        state = "Open 24H";
-        stateClass = "isOpen";
-      }
+// User's timezone
+const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-      // Check for holiday
-      else if (this.bizTime[0]?.['Holiday']?.includes(currentDate)) {
-        state = "Closed for Holiday";
-        stateClass = "isHoliday";
-        // 🏗️ TODO:
-        // Next Time
-      }
+// Derived user time values
+const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const currentDayName = computed(() => daysOfWeek[currentTime.value.getDay()]);
+const currentTimeInMinutes = computed(() => currentTime.value.getHours() * 60 + currentTime.value.getMinutes());
 
-      else if (this.bizTime[currentDay] === false) {
-        state = "Closed";
-        stateClass = "isClose";
+// DST-safe offset calculation
+function getOffsetMinutesForZone(tz, at = new Date()) {
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    hour12: false,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit'
+  });
+  const parts = Object.fromEntries(fmt.formatToParts(at).map(p => [p.type, p.value]));
+  const asUTC = Date.UTC(+parts.year, +parts.month - 1, +parts.day, +parts.hour, +parts.minute);
+  return Math.round((asUTC - at.getTime()) / 60000);
+}
 
-        // 🏗️ TODO:
-        // Next Time
-      }
+function timezoneGapMinutes(userTz, shopTz, at = new Date()) {
+  return getOffsetMinutesForZone(shopTz, at) - getOffsetMinutesForZone(userTz, at);
+}
 
-      else {
-        // Access the object containing the business hours for the current day
-        const currentBizHrObj = this.bizTime[currentDay];
+// Get local day name, time in minutes, and MMDD in a specific timezone
+function getLocalDayName(tz, at) {
+  return new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'long' }).format(at);
+}
 
-        if (currentBizHrObj !== false && currentBizHrObj[currentDayName]) {
-          const currentBizHr = currentBizHrObj[currentDayName];
-          // // 🐞 Debug console
-          // console.log('currentBizHr: ', currentBizHr);
+function getLocalTimeInMinutes(tz, at) {
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+  const parts = fmt.formatToParts(at).reduce((acc, p) => ({ ...acc, [p.type]: p.value }), {});
+  return Number(parts.hour) * 60 + Number(parts.minute);
+}
 
-          /* 
-            Get the current time in minutes and convert to minutes to calculate
-            For example, 0602 = 6*60(minutes) + 2 = 362
-          */
-          const currentTimeInMinutes = parseInt(currentHour) * 60 + parseInt(currentMinute);
-          // 🐞 Debug console
-          console.log('currentTimeInMinutes', currentTimeInMinutes);
+function getLocalMMDD(tz, at) {
+  const fmt = new Intl.DateTimeFormat('en-US', { timeZone: tz, month: '2-digit', day: '2-digit' });
+  const parts = fmt.formatToParts(at);
+  const mm = parts.find(p => p.type === 'month').value;
+  const dd = parts.find(p => p.type === 'day').value;
+  return `${mm}${dd}`;
+}
 
-          // Initialize a variable to keep track of the closest opening time
-          let closestOpeningTimeInMinutes = Infinity;
+// Parse "HH:mm" to minutes
+function parseHHmm(str) {
+  const [h, m] = str.split(':').map(Number);
+  return h * 60 + m;
+}
 
-          // Iterate through the time ranges for the current day
-          for (let i = 0; i < currentBizHr.length; i++) {
-            const timeRange = currentBizHr[i];
-            const startHourMinute = timeRange.Start;
-            const finishHourMinute = timeRange.Finish;
+// Format minutes to "HH:mm"
+function formatTime(totalMinutes) {
+  const m = ((totalMinutes % 1440) + 1440) % 1440;
+  const h = Math.floor(m / 60);
+  const mm = m % 60;
+  return `${h.toString().padStart(2, '0')}:${mm.toString().padStart(2, '0')}`;
+}
 
-            // Convert start and finish times to Int
-            const startHour = parseInt(startHourMinute.slice(0, 2));
-            const startMinute = parseInt(startHourMinute.slice(2));
-            const finishHour = parseInt(finishHourMinute.slice(0, 2));
-            const finishMinute = parseInt(finishHourMinute.slice(2));
-            // Convert above value to minutes
-            const startTimeInMinutes = startHour * 60 + startMinute;
-            const finishTimeInMinutes = finishHour * 60 + finishMinute;
+// Collect ranges for a specific day name
+function collectRangesForDay(biz, dayName) {
+  const raw = biz?.hours?.[dayName] || [];
+  return raw
+    .filter(r => r && r.start && r.end)
+    .map(r => {
+      let start = parseHHmm(r.start);
+      let end = parseHHmm(r.end);
+      if (end <= start) end += 1440;
+      return { start, end };
+    })
+    .sort((a, b) => a.start - b.start);
+}
 
-            // Create a time range object
-            let timeRangeObj = {
-              displayStartHour: startHourMinute.slice(0, 2),
-              displayStartMinute: startHourMinute.slice(2),
-              displayFinishHour: finishHourMinute.slice(0, 2),
-              displayFinishMinute: finishHourMinute.slice(2)
-            };
+const bizHr = computed(() => {
+  const biz = props.bizTime || {};
+  const shopTimezone = biz.timezone || 'UTC';
 
-            // Format the current time range
-            let formattedTimeRange = `${timeRangeObj.displayStartHour}:${timeRangeObj.displayStartMinute} - ${timeRangeObj.displayFinishHour}:${timeRangeObj.displayFinishMinute}`;
+  // Timezone offset (shop - user)
+  const tzOffset = timezoneGapMinutes(userTimezone.value, shopTimezone, currentTime.value);
 
+  // Shop-local values for logic
+  const shopDayName = getLocalDayName(shopTimezone, currentTime.value);
+  const shopTimeInMinutes = getLocalTimeInMinutes(shopTimezone, currentTime.value);
+  const shopMMDD = getLocalMMDD(shopTimezone, currentTime.value);
 
-            // Add the formatted time range to the formattedTimeRanges array
-            formattedTimeRanges.push(formattedTimeRange);
+  // Next/prev day for shop
+  const nextDayAt = new Date(currentTime.value.getTime() + 86400000);
+  const prevDayAt = new Date(currentTime.value.getTime() - 86400000);
+  const nextShopDayName = getLocalDayName(shopTimezone, nextDayAt);
+  const prevShopDayName = getLocalDayName(shopTimezone, prevDayAt);
 
-            // Check if the current time is within this time range
-            if (currentTimeInMinutes >= startTimeInMinutes && currentTimeInMinutes <= finishTimeInMinutes) {
-              state = "Opening";
-              time = finishTimeInMinutes - currentTimeInMinutes;  // Time remaining until closing
-              stateClass = "isOpen";
-              break;  // Exit the loop as the current time is within the business hours
-            }
+  // UI defaults
+  let state = '';
+  let time = '';
+  let isTime = false;
+  let nextTime = '';
+  let isNextTime = false;
+  let stateClass = '';
+  let nextTimeClass = '';
+  let formattedBusinessHours = '';
 
-            // Update the closest opening time if the current time is before this time range
-            if (currentTimeInMinutes < startTimeInMinutes) {
-              closestOpeningTimeInMinutes = Math.min(closestOpeningTimeInMinutes, startTimeInMinutes);
-            }
-          }
+  // 1) 24H short-circuit
+  const isHoliday = Array.isArray(biz?.holiday) && biz.holiday.includes(shopMMDD);
+  if (biz?.['24hr'] === true) {
+    state = isHoliday ? 'Closed for Holiday' : 'Open 24H';
+    stateClass = isHoliday ? 'isHoliday' : 'isOpen';
+    return { state, time, isTime, nextTime, isNextTime, stateClass, nextTimeClass, currentDayName: currentDayName.value, formattedBusinessHours };
+  }
 
-          // If the state hasn't been set to "Opening", the business is closed
-          if (!state) {
-            state = "Closed";
-            stateClass = "isClose";
+  // 2) Holiday
+  if (isHoliday) {
+    state = 'Closed for Holiday';
+    stateClass = 'isHoliday';
+    return { state, time, isTime, nextTime, isNextTime, stateClass, nextTimeClass, currentDayName: currentDayName.value, formattedBusinessHours };
+  }
 
-            // 🏗️ TODO:
-            // Next Time
-          }
-        } else {
-          // Handle the case where business hours for the current day are not found
-          state = "Closed";
-          stateClass = "isClose";
-        }
-      }
-      let formattedBusinessHours = formattedTimeRanges.join(', ');
-      return {
-        state: state,
-        time: time,
-        isTime: isTime,
-        nextTime: nextTime,
-        isNextTime: isNextTime,
-        stateClass: stateClass,
-        timeClass: timeClass,
-        nextTimeClass: nextTimeClass,
-        currentDayName: currentDayName,
-        // timeRanges: timeRanges,
-        formattedBusinessHours: formattedBusinessHours
-      };
+  // 3) Regular schedule
+  const todayRanges = collectRangesForDay(biz, shopDayName);
+  const nextDayRanges = collectRangesForDay(biz, nextShopDayName);
+
+  // Adjust today's ranges to user time for display
+  const adjustedRanges = todayRanges.map(r => ({
+    start: ((r.start - tzOffset) % 1440 + 1440) % 1440,
+    end: ((r.end - tzOffset) % 1440 + 1440) % 1440
+  }));
+  formattedBusinessHours = adjustedRanges.map(r => `${formatTime(r.start)}–${formatTime(r.end)}`).join(', ') || 'Closed';
+
+  // Check open now (in shop time)
+  let openNow = false;
+  let closingTime = null; // shop local
+  for (const r of todayRanges) {
+    if (shopTimeInMinutes >= r.start && shopTimeInMinutes < r.end) {
+      openNow = true;
+      closingTime = r.end;
+      break;
     }
   }
-};
+
+  // Spillover from prev day
+  if (!openNow) {
+    const prevRanges = collectRangesForDay(biz, prevShopDayName);
+    for (const r of prevRanges) {
+      if (r.end > 1440 && shopTimeInMinutes < (r.end - 1440)) {
+        openNow = true;
+        closingTime = r.end - 1440;
+        break;
+      }
+    }
+  }
+
+  if (openNow && closingTime !== null) {
+    const adjustedClosingTime = ((closingTime - tzOffset) % 1440 + 1440) % 1440;
+    const minutesToClose = (adjustedClosingTime - currentTimeInMinutes.value + 1440) % 1440;
+    if (minutesToClose < 30) {
+      state = `Closes at ${formatTime(adjustedClosingTime)}`;
+      stateClass = 'isOpen';
+    } else {
+      state = 'Open';
+      time = `Closes at ${formatTime(adjustedClosingTime)}`;
+      isTime = true;
+      stateClass = 'isOpen';
+    }
+  } else {
+    // Next open today?
+    let foundToday = false;
+    for (const r of todayRanges) {
+      if (shopTimeInMinutes < r.start) {
+        const adjustedStart = ((r.start - tzOffset) % 1440 + 1440) % 1440;
+        const minutesToOpen = (r.start - shopTimeInMinutes + 1440) % 1440;
+        if (minutesToOpen <= 30) {
+          state = 'Opens soon';
+          nextTime = `Opens at ${formatTime(adjustedStart)}`;
+          isNextTime = true;
+          stateClass = 'isClose';
+          nextTimeClass = 'isOpen';
+        } else {
+          state = `Opens at ${formatTime(adjustedStart)}`;
+          stateClass = 'isClose';
+        }
+        foundToday = true;
+        break;
+      }
+    }
+
+    if (!foundToday) {
+      // Earliest next day
+      let earliestShop = Infinity;
+      for (const r of nextDayRanges) earliestShop = Math.min(earliestShop, r.start);
+      if (earliestShop !== Infinity) {
+        const adjustedEarliest = ((earliestShop - tzOffset) % 1440 + 1440) % 1440;
+        state = 'Closed';
+        let dayLabel = '';
+        if (adjustedEarliest < currentTimeInMinutes.value) {
+          dayLabel = 'tomorrow';
+        }
+        nextTime = `Opens at ${formatTime(adjustedEarliest)}${dayLabel ? ` ${dayLabel}` : ''}`;
+        isNextTime = true;
+        stateClass = 'isClose';
+        nextTimeClass = 'isOpen';
+      } else {
+        state = 'Closed';
+        stateClass = 'isClose';
+      }
+    }
+  }
+
+  return { state, time, isTime, nextTime, isNextTime, stateClass, nextTimeClass, currentDayName: currentDayName.value, formattedBusinessHours };
+});
 </script>
 
 <style lang="scss" scoped>
@@ -193,6 +269,14 @@ export default {
 .isOpen {
   color: #3dc363;
   font-weight: 700;
+}
+
+.isBetween {
+  color: #F8BA1B;
+}
+
+.isDefault {
+  color: var(--primary-text);
 }
 
 .frame {
