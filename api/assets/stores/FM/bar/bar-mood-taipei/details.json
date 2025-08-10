@@ -6,13 +6,13 @@
     "24hr": false,
     "holiday": [],
     "hours": {
-      "Monday": [{ "start": "1800", "end": "0100" }],
-      "Tuesday": [{ "start": "1800", "end": "0100" }],
-      "Wednesday": [{ "start": "1800", "end": "0100" }],
-      "Thursday": [{ "start": "1800", "end": "0100" }],
-      "Friday": [{ "start": "1800", "end": "0200" }],
-      "Saturday": [{ "start": "1800", "end": "0200" }],
-      "Sunday": [{ "start": "1800", "end": "0100" }]
+      "Monday": [{ "start": "18:00", "end": "01:00" }],
+      "Tuesday": [{ "start": "18:00", "end": "01:00" }],
+      "Wednesday": [{ "start": "18:00", "end": "01:00" }],
+      "Thursday": [{ "start": "18:00", "end": "01:00" }],
+      "Friday": [{ "start": "18:00", "end": "02:00" }],
+      "Saturday": [{ "start": "18:00", "end": "02:00" }],
+      "Sunday": [{ "start": "18:00", "end": "01:00" }]
     }
   },
   "product1": {
