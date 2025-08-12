@@ -457,7 +457,24 @@
         "title": "Taiwan Beef Noodles Chicken Soup",
         "type": "formosan-noodles",
         "layout": "food",
-        "tag": ["cashonly", "takeaway"]
+        "tag": ["cashonly", "takeaway", "crowded"]
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": ["139.75204295438456", "35.65734730712575"]
+      },
+      "properties": {
+        "id": "JP_r8K5tX2wLm7QpV3z",
+        "auid": "IEFD2E83B9E791847",
+        "placeid": "ChIJlYi3eB6LGGARZMtOLl2BEqg",
+        "title": "Kurogi Japanese Sweets Lab",
+        "type": "shaved-ice",
+        "layout": "food",
+        "tag": []
       }
     }
   ]

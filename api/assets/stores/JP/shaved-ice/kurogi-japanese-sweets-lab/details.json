@@ -1,0 +1,43 @@
+{
+  "description": "くろぎ甘味研究所 Kurogi Japanese Sweets Lab serves refined shaved ice in generous portions—save room after dinner, or you’ll miss the full delight.",
+  "address": "1st Floor, GRANDLUXE Shibadaimon, 1-7-16 Shibakoen, Minato City, Tokyo 105-0011",
+  "businesshour": {
+    "timezone": "Asia/Tokyo",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "10:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "10:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "10:00", "end": "20:00" }],
+      "Thursday": [{ "start": "10:00", "end": "20:00" }],
+      "Friday": [{ "start": "10:00", "end": "20:00" }],
+      "Saturday": [{ "start": "10:00", "end": "20:00" }],
+      "Sunday": [{ "start": "10:00", "end": "20:00" }]
+    }
+  },
+  "product1": {
+    "name": "Black Sesame",
+    "description": "(vegan)",
+    "price": "¥3,200"
+  },
+  "product2": {
+    "name": "Matcha",
+    "description": "(vegan)",
+    "price": "¥3,200"
+  },
+  "product3": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product4": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product5": {
+    "description": "",
+    "name": "",
+    "price": ""
+  }
+}
