@@ -132,7 +132,6 @@ const bizHr = computed(() => {
   const adjustedUserTimeInMinutes = computed(() => adjustedUserTime.value.getHours() * 60 + adjustedUserTime.value.getMinutes());
   const shopBusinessHoursInMinutes = computed(() => processShopBusinessHours(biz, daysOfWeek[adjustedUserTime.value.getDay()]));
   const previousShopBusinessHoursInMinutes = computed(() => processShopBusinessHours(biz, daysOfWeek[(adjustedUserTime.value.getDay() + 6) % 7]));
-  const nextShopBusinessHoursInMinutes = computed(() => processShopBusinessHours(biz, daysOfWeek[(adjustedUserTime.value.getDay() + 1) % 7]));
 
   // Build "MMDD" from the adjusted (shop-local) time
   const adjustedUserMMDD =
@@ -146,24 +145,18 @@ const bizHr = computed(() => {
   const isHoliday = holidays.includes(adjustedUserMMDD);
 
   // Yesterday's business hours
-  const isOpenFromYesterday = (() => {
-    // move "now" into yesterday's extended frame
-    const shiftedNow = adjustedUserTimeInMinutes.value + 1440;
-    console.log("shiftedNow", shiftedNow);
-    console.log("previousShopBusinessHoursInMinutes", previousShopBusinessHoursInMinutes.value);
+  const isOpenFromYesterday = computed(() => {
     for (const r of previousShopBusinessHoursInMinutes.value) {
-      // Only consider ranges that cross midnight (normalized end > 1440)
-      if (r.end <= 1440) continue;
-      if (shiftedNow >= r.start && shiftedNow < r.end) {
-        const minsToClose = r.end - shiftedNow;
-        const status = minsToClose < 30 ? 'closeSoon' : 'open';
-        return { status, end: r.end, endFormatted: formatTime(r.end) };
+      if (r.end - r.start <= 0) continue;
+      if (r.end - r.start > 0) {
+        const status = (r.end - adjustedUserTimeInMinutes.value < 30) ? 'closeSoon' : 'open';
+        return { status, endFormatted: formatTime(r.end) };
       }
     }
-    return { status: 'closed' };
-  })();
+    return { status: 'closed' }
+  })
 
-  // // 🐞 Debug console
+  // 🐞 Debug console
   console.log("userTimezone:", userTimezone);
   console.log("shopTimezone:", shopTimezone);
   console.log("userTime:", currentTime.value);
@@ -253,11 +246,11 @@ const bizHr = computed(() => {
   }
 
   if (isHoliday && previousShopBusinessHoursInMinutes.value.length > 0) {
-    console.log("isOpenFromYesterday", isOpenFromYesterday);
-    if (isOpenFromYesterday.status === 'open') {
+    console.log("isOpenFromYesterday", isOpenFromYesterday.value);
+    if (isOpenFromYesterday.value.status === 'open') {
       state = 'Open';
       stateClass = 'isOpen';
-      nextTime = 'Closes at ' + isOpenFromYesterday.endFormatted;
+      nextTime = 'Closes at ' + isOpenFromYesterday.value.endFormatted;
       nextTimeClass = 'isDefault';
       return {
         state,
@@ -265,10 +258,10 @@ const bizHr = computed(() => {
         nextTime,
         nextTimeClass,
       };
-    } else if (isOpenFromYesterday.status === 'closeSoon') {
+    } else if (isOpenFromYesterday.value.status === 'closeSoon') {
       state = 'Close Soon';
       stateClass = 'isBetween';
-      nextTime = 'Close at ' + isOpenFromYesterday.endFormatted;
+      nextTime = 'Close at ' + isOpenFromYesterday.value.endFormatted;
       nextTimeClass = 'isDefault';
       return {
         state,
@@ -312,10 +305,10 @@ const bizHr = computed(() => {
 
   // 3) General logic
   if (!isHoliday && shopBusinessHoursInMinutes.value.length > 0) {
-    if (isOpenFromYesterday.status === 'open') {
+    if (isOpenFromYesterday.value.status === 'open') {
       state = 'Open';
       stateClass = 'isOpen';
-      nextTime = 'Closes at ' + isOpenFromYesterday.endFormatted;
+      nextTime = 'Closes at ' + isOpenFromYesterday.value.endFormatted;
       nextTimeClass = 'isDefault';
       return {
         state,
@@ -323,10 +316,10 @@ const bizHr = computed(() => {
         nextTime,
         nextTimeClass,
       };
-    } else if (isOpenFromYesterday.status === 'closeSoon') {
+    } else if (isOpenFromYesterday.value.status === 'closeSoon') {
       state = 'Close Soon';
       stateClass = 'isBetween';
-      nextTime = 'Close at ' + isOpenFromYesterday.endFormatted;
+      nextTime = 'Close at ' + isOpenFromYesterday.value.endFormatted;
       nextTimeClass = 'isDefault';
       return {
         state,
@@ -367,112 +360,17 @@ const bizHr = computed(() => {
       };
     }
   } else {
-    state = 'OPNNNNNNN!';
+    for (const r of shopBusinessHoursInMinutes.value) {
+      if (r.end - r.start <= 0) {
 
-    // for (const r of previousShopBusinessHoursInMinutes.value) {
-    //   if (adjustedUserTimeInMinutes.value < (r.end + 1440)) {
-    //     state = 'Open';
-    //     stateClass = 'isOpen';
-
-    //     // 🐞 Debug console
-    //     console.log("state in for loop", state);
-    //     console.log("stateClass in for loop", stateClass);
-    //     console.log("adjustedUserTimeInMinutes", adjustedUserTimeInMinutes.value);
-    //     console.log("shopBusinessHoursInMinutes", shopBusinessHoursInMinutes.value);
-
-    //     break;
-    //   } else {
-    //     state = 'Closed';
-    //     stateClass = 'isClosed';
-    //   }
-    // }
-
+      };
+      const status = (r.end - adjustedUserTimeInMinutes.value < 30) ? 'closeSoon' : 'open';
+      return { status, endFormatted: formatTime(r.end) };
+    }
+    return { status: 'closed' }
   }
-  // // If no business hours today and yesterday
-  // const noHoursAnywhere = [
-  //   shopBusinessHoursInMinutes.value,
-  //   previousShopBusinessHoursInMinutes.value,
-  // ].every(r => r.length === 0);
-
-  // if (!previousShopBusinessHoursInMinutes.value.length) {
 
 
-
-  //   state = 'Closed';
-  //   stateClass = 'isClosed';
-  //   return {
-  //     state,
-  //     stateClass,
-  //     nextTime,
-  //     nextTimeClass,
-  //     // 🏗️ Not yet
-  //     // 🐞 Debug console
-  //     userTimezone: userTimezone,
-  //     shopTimezone: shopTimezone,
-  //     userTime: currentTime.value,
-  //     adjustedUserTime: adjustedUserTime.value
-  //   };
-  // }
-
-
-  // for (let i = 1; i <= 365; i++) {
-  //       const checkDate = new Date(adjustedUserTime.value);
-  //       checkDate.setDate(checkDate.getDate() + i);
-
-  //       const checkMMDD =
-  //         String(checkDate.getMonth() + 1).padStart(2, '0') +
-  //         String(checkDate.getDate()).padStart(2, '0');
-
-  //       if (!holidays.includes(checkMMDD)) {
-  //         // Found a non-holiday
-  //         nextOpenDate = checkMMDD;
-  //         nextOpenDate_formatted = formatMMDDToMonthDay(nextOpenDate);
-  //         nextOpenDay = daysOfWeek[checkDate.getDay()];
-  //         nextOpenDay_formatted = daysOfWeekFormatted[checkDate.getDay()];
-  //         const ranges = processShopBusinessHours(biz, nextOpenDay);
-  //         if (ranges.length > 0) {
-  //           nextOpenTime = formatTime(ranges[0].start);
-  //         }
-  //         nextTime = 'Opens ' + nextOpenDay_formatted + ', ' + nextOpenDate_formatted + ' at ' + nextOpenTime;
-  //         nextTimeClass = 'isDefault';
-  //         break;
-  //       }
-  //     }
-
-
-
-
-  // // Check if open now
-  // for (const r of shopBusinessHoursInMinutes.value) {
-  //   if (adjustedUserTimeInMinutes.value >= r.start && adjustedUserTimeInMinutes.value < r.end) {
-  //     state = 'Open';
-  //     stateClass = 'isOpen';
-
-  //     // 🐞 Debug console
-  //     console.log("state in for loop", state);
-  //     console.log("stateClass in for loop", stateClass);
-  //     console.log("adjustedUserTimeInMinutes", adjustedUserTimeInMinutes.value);
-  //     console.log("shopBusinessHoursInMinutes", shopBusinessHoursInMinutes.value);
-
-  //     break;
-  //   } else {
-  //     state = 'Closed';
-  //     stateClass = 'isClosed';
-  //   }
-  // }
-
-
-  return {
-    state,
-    nextTime: '',
-    stateClass,
-    nextTimeClass: 'isDefault',
-    // Debug
-    userTimezone: userTimezone,
-    shopTimezone: shopTimezone,
-    userTime: currentTime.value,
-    adjustedUserTime: adjustedUserTime.value
-  }
 });
 </script>
 
