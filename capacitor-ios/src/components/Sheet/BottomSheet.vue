@@ -225,7 +225,7 @@ const dragStop = () => {
     router.push({
       name: "detail",
       params: {
-        title: props.store.title,
+        id: props.store.id,
       }
     });
   } else if (sheetHeight >= 600 && !props.store?.title) {

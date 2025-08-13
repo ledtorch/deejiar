@@ -6,7 +6,7 @@ const routes = [
     component: () => import("./components/Map.vue")
   },
   {
-    path: "/detail/:title",
+    path: "/detail/:id",
     name: "detail",
     component: () => import("./components/Detail.vue")
   },
