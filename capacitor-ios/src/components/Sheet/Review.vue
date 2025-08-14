@@ -5,8 +5,10 @@
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+const props = defineProps({
+  rate: String
+});
 </script>
 
 <style lang="scss" scoped>

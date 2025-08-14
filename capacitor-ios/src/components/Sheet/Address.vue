@@ -5,16 +5,8 @@
   </div>
 </template>
 
-<!-- <script>
-export default {
-  props: {
-    address: String
-  }
-};
-</script> -->
-
 <script setup>
-defineProps({
+const props = defineProps({
   address: String
 });
 </script>
