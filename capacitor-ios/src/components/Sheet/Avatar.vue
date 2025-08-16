@@ -1,46 +1,21 @@
 <template>
-  <div class="frame">
-    <h1>Deejiar</h1>
-    <button class="icon-button" @click="loginWithTwitter" :style="buttonStyle"></button>
-  </div>
+  <button class="icon-button" @click="loginWithTwitter" :style="buttonStyle" />
 </template>
 
-<script>
-// import firebase from "firebase/app";
-// import "firebase/auth";
+<script setup>
+import { computed } from 'vue'
 
-export default {
-  // methods: {
-  //   loginWithTwitter() {
-  //     const provider = new firebase.auth.TwitterAuthProvider();
-  //     firebase
-  //       .auth()
-  //       .signInWithPopup(provider)
-  //       .then((result) => {
-  //         console.log("User signed in with Twitter:", result.user);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error logging in with Twitter:", error);
-  //       });
-  //   },
-  // },
-  computed: {
-    buttonStyle() {
-      return {
-        backgroundImage: "url('/icon/avatar.png')",
-      };
-    },
-  },
-};
+const buttonStyle = computed(() => ({
+  backgroundImage: "url('/icon/avatar.png')",
+}))
+
+const loginWithTwitter = () => {
+  // Implement auth or replace with desired behavior
+  console.log('Login with Twitter clicked')
+}
 </script>
 
 <style lang="scss" scoped>
-.frame {
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-}
-
 .icon-button {
   cursor: pointer;
   width: 36px;
