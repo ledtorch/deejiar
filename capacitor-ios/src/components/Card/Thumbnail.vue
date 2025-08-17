@@ -22,8 +22,8 @@ const ranking = props.bar.properties.id;
 const title = props.bar.properties.title;
 
 const backgroundStyle = computed(() => {
-  // 🐞 debug console
-  console.log(props.bar);
+  // // 🐞 debug console
+  // console.log(props.bar);
   const imagePath = props.bar.properties.item1.image;
   return {
     backgroundImage: imagePath ? `url(/${imagePath})` : 'none',
