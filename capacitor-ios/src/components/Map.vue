@@ -54,6 +54,7 @@ const resetSelectedStore = () => {
   // remove selected store data
   selectedStore.value = null;
 };
+
 // const API = import.meta.env.VITE_DATACENTER_API;
 // Render stores logic
 const addStores = () => {
@@ -290,11 +291,10 @@ onUnmounted(() => {
   z-index: 1;
   width: 100%;
   height: auto;
-  background-color: #000;
 
   /* 📱 Account for bottom safe area */
   bottom: 0;
-  padding-bottom: calc(32px + env(safe-area-inset-bottom));
+  padding-bottom: calc(60px + env(safe-area-inset-bottom));
 }
 
 #button-locate {
@@ -304,7 +304,7 @@ onUnmounted(() => {
   transition: transform 0.3s ease;
 
   /* 📱 Account for bottom safe area plus 48px spacing */
-  bottom: calc(48px + env(safe-area-inset-bottom));
+  bottom: calc(76px + env(safe-area-inset-bottom));
 }
 
 .marker-active {
