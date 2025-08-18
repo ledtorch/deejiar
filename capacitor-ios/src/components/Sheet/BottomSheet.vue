@@ -4,9 +4,11 @@
       <div class="control-bar"></div>
     </div>
 
-    <!-- v-show for static content -->
     <div class="bottom-sheet-content" v-show="!storeState">
-      <Avatar />
+      <div class="search-wrapper">
+        <TheSearch />
+        <Avatar />
+      </div>
       <h4>Wanna get the premium list and advanced features before they launch on Deejiar? Or simply want to leave your
         feedback? =)</h4>
       <a href="https://www.buymeacoffee.com/deejiar" alt="Buy Me a Coffee" class="buy-me-a-coffee-button">
@@ -90,6 +92,7 @@ const TagShopType = defineAsyncComponent(() => import("../Button/TagShopType.vue
 const Close = defineAsyncComponent(() => import("../Button/Icon/Close.vue"));
 
 // Components
+const TheSearch = defineAsyncComponent(() => import("../TheSearch.vue"));
 const Businesshour = defineAsyncComponent(() => import("./Businesshour.vue"));
 // const Review = defineAsyncComponent(() => import("./Review.vue"));
 
@@ -129,6 +132,7 @@ const storeDetailsEndpoint = () => {
 // Store Details JSON
 const detailsJSON = ref(null);
 watch(() => props.store, async (newStore) => {
+  console.log('props.store', props.store)
   if (newStore) {
     try {
       // Force refresh code
@@ -288,19 +292,21 @@ watch(
   gap: 0px;
   width: 100%;
   height: 100%;
-  min-height: 32px;
+  min-height: 60px;
   max-height: 100%;
   padding: 0px 16px 16px 16px;
   border-radius: 12px 12px 0px 0px;
-  background-color: #000;
   transition: height 0.3s ease;
+  background-color: #0a090b;
 }
 
 .bottom-sheet-content {
   flex-direction: column;
   gap: 12px;
-  background-color: #000;
+  // background-color: #000;
 }
+
+
 
 .control-area {
   cursor: grab;
@@ -436,5 +442,12 @@ watch(
   width: 235px;
   height: 50px;
   display: block;
+}
+
+.search-wrapper {
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  gap: 12px;
 }
 </style>
