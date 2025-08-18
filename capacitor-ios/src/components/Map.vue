@@ -202,7 +202,7 @@ onMounted(async () => {
   // Initialize map canvas
   map.value = new mapboxgl.value.Map({
     container: "map",
-    style: "mapbox://styles/naivebara/cluvh6drq000001q11cezdkgl",
+    style: "mapbox://styles/naivebara/clkyvh09v00m701me403i1svm",
     zoom: 12.5,
     minZoom: 4,
     maxZoom: 18
