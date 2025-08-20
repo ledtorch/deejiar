@@ -21,6 +21,12 @@
 	border: 0px !important;
 }
 
+/* Initialization */
+*:focus {
+	outline: none;
+	box-shadow: none;
+}
+
 /* Default: Dark mode */
 :root {
 	font-weight: 400;
@@ -169,15 +175,15 @@ p {
 }
 
 .caption1 {
-	font-size: 10px;
-	font-weight: 400;
-	line-height: 14px;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 16px;
 }
 
 .caption2 {
-	font-size: 9px;
-	font-weight: 400;
-	line-height: 12px;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 13px;
 }
 
 /* Global Symbols */
@@ -196,3 +202,19 @@ p {
 .body {
 	top: var(--header-height);
 }
+
+._color-primary {
+	color: rgba(255, 255, 255, 0.95);
+}
+
+._color-secondary {
+	color: rgba(255, 255, 255, 0.75);
+}
+
+._color-tertiary {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+/* ._background-color {
+	color: #0A090B;
+} */

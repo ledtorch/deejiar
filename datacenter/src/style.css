@@ -4,6 +4,12 @@
 	display: none !important;
 }
 
+/* Initialization */
+*:focus {
+	outline: none;
+	box-shadow: none;
+}
+
 /* Default: Dark mode */
 :root {
 	font-weight: 400;
