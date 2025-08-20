@@ -71,11 +71,12 @@ function selectFile(file) {
 .header {
   justify-content: space-between;
   align-self: stretch;
+  padding-left: 4px;
 }
 
 .menu-button {
   width: 200px;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   justify-content: space-between;
   align-self: stretch;
@@ -99,6 +100,7 @@ function selectFile(file) {
 
 .input-box {
   width: 100%;
+  height: 48px;
   padding: 12px;
   border-radius: 6px;
   background-color: #EDEDED;
