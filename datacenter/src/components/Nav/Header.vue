@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container flex-row">
     <h4 class="_color-primary">{{ title }}</h4>
     <Primary label="Update" />
   </div>

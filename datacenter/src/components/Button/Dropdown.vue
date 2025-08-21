@@ -3,7 +3,7 @@
     <div>
       <MenuButton class="menu-button flex flex-col">
         <div class="header">
-          <span class="subtitle2 _color-secondary">{{ label }}</span>
+          <span class="_subtitle _color-secondary">{{ label }}</span>
           <ChevronDownIcon class="ChevronDownIcon _color-primary" />
         </div>
         <div class="input-box">
@@ -18,7 +18,7 @@
       <MenuItems class="menu-items flex flex-col absolute right-0 origin-top-right">
 
         <!-- The container of items -->
-        <div class="py-1 flex flex-col w-full">
+        <div class="py-1 flex-col w-full">
           <MenuItem v-for="file in files" :key="file" v-slot="{ active }">
           <button @click="selectFile(file)" :class="[
             'block w-full text-left px-4 py-2 text-sm',
