@@ -119,7 +119,7 @@ div {
 		--font-h1: 52px;
 		--font-h2: 48px;
 		--font-h3: 40px;
-		--font-h4: 32px;
+		--font-h4: 28px;
 
 		--font-1st: 17px;
 		--font-2nd: 16px;
@@ -137,7 +137,7 @@ div {
 		--font-h1: 64px;
 		--font-h2: 56px;
 		--font-h3: 44px;
-		--font-h4: 38px;
+		--font-h4: 32px;
 
 		--font-1st: 18px;
 		--font-2nd: 16px;
@@ -152,70 +152,70 @@ div {
 	font-size: var(--font-hero);
 	font-style: normal;
 	font-weight: 600;
-	line-height: normal;
+	line-height: 1;
 }
 
 h1 {
 	font-size: var(--font-h1);
 	font-weight: 600;
-	line-height: normal;
+	line-height: 1;
 }
 
 h2 {
 	font-size: var(--font-h2);
 	font-weight: 600;
-	line-height: normal;
+	line-height: 1;
 }
 
 h3 {
 	font-size: var(--font-h3);
 	font-weight: 600;
-	line-height: normal;
+	line-height: 1;
 }
 
 h4 {
 	font-size: var(--font-h4);
 	font-weight: 600;
-	line-height: normal;
+	line-height: 1;
 }
 
 title {
 	font-size: var(--font-1st);
-	font-weight: 500;
-	line-height: normal;
+	font-weight: 600;
+	line-height: 1;
 }
 
 ._subtitle {
 	font-size: var(--font-2nd);
-	font-weight: 500;
-	line-height: normal;
+	font-weight: 600;
+	line-height: 1;
 }
 
 /* Body1 */
 p {
 	font-size: var(--font-1st);
-	font-style: normal;
+	font-style: 1;
 	font-weight: 500;
 	line-height: 24px;
 }
 
 ._body2 {
 	font-size: var(--font-2nd);
-	font-style: normal;
+	font-style: 1;
 	font-weight: 500;
 	line-height: 22px;
 }
 
 ._button-primary {
 	font-size: var(--font-1st);
-	font-style: normal;
+	font-style: 1;
 	font-weight: 700;
 	line-height: 24px;
 }
 
 ._button-secondary {
 	font-size: var(--font-2nd);
-	font-style: normal;
+	font-style: 1;
 	font-weight: 700;
 	line-height: 22px;
 }
@@ -224,21 +224,21 @@ p {
 	font-size: var(--font-4th);
 	font-style: normal;
 	font-weight: 400;
-	line-height: normal;
+	line-height: 1;
 }
 
 ._caption1 {
 	font-size: var(--font-4th);
 	font-style: normal;
 	font-weight: 500;
-	line-height: normal;
+	line-height: 1;
 }
 
 ._caption2 {
 	font-size: var(--font-5th);
 	font-style: normal;
 	font-weight: 500;
-	line-height: normal;
+	line-height: 1;
 }
 
 /* ---------- Global Utility Tokens ---------- */
