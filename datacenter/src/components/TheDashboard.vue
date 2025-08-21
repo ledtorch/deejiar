@@ -15,12 +15,20 @@
       </div>
     </section>
 
-    <section class="board">
-      <Dropdown class="" :files="jsonList" :label="'Store'" :placeholder="'No file selected'"
-        @selected="handleFileSelection" />
-
+    <section class="board flex">
       <div v-if="selectedData" class="flex flex-col wrapper">
+        <div class="flex-col container">
+          <Header :title="currentFile || 'No File Selected'" />
+          <Switch />
+        </div>
+        <div class="flex-col container">
+          <Header title="Store" />
+        </div>
       </div>
+      <Dropdown class="" :files="jsonList" :label="'json'" :placeholder="'No file selected'"
+        @selected="handleJsonSelection" />
+      <Dropdown class="" :files="storeList" :label="'store'" :placeholder="'No store loaded'"
+        @selected="handleStoreSelection" />
     </section>
 
 
@@ -32,17 +40,21 @@ import { ref, reactive, computed, onMounted } from 'vue';
 import axios from 'axios';
 // Button
 import Dropdown from "./Button/Dropdown.vue";
+import Switch from "./Button/Switch.vue";
 import RightArrow from "./Button/RightArrow.vue";
 import LeftArrow from "./Button/LeftArrow.vue";
 // Components
 import FormString from "./FormString.vue";
 import FormStringNest from "./FormStringNest.vue";
 import FormBusinessHour from "./FormBusinessHour.vue";
+import Header from './Nav/Header.vue';
 
 const API = import.meta.env.VITE_DATACENTER_API;
 const jsonList = ref([]);
 const selectedData = ref([]);
 const currentFile = ref('');
+const storeList = ref([]);
+const currentStore = ref('');
 const basicProperties = [
   'id', 'title', 'type', 'layout', 'icon', 'description', 'storefront-day', 'storefront-night'
 ];
@@ -84,17 +96,31 @@ async function fetchJsonList() {
   }
 }
 
-function handleFileSelection(file) {
+function handleJsonSelection(file) {
   axios.get(`${API}/json-data/${file}`)
     .then(response => {
       // 🐞 Debug console
-      console.log(selectedData.value);
-      selectedData.value = response.data;
+      const data = response.data;
+      // Normalize: use FeatureCollection.features if present; else assume array
+      const features = Array.isArray(data?.features) ? data.features : Array.isArray(data) ? data : [];
+      selectedData.value = features;
       currentFile.value = file;
+      // Build store list from properties.title when available
+      storeList.value = features
+        .map(f => (f?.properties?.title) || f?.title)
+        .filter(Boolean);
+      currentStore.value = '';
     })
     .catch(error => {
       console.error('Error fetching JSON data for file:', file, error);
+      selectedData.value = [];
+      storeList.value = [];
+      currentStore.value = '';
     });
+}
+
+function handleStoreSelection(store) {
+  currentStore.value = store;
 }
 
 function updateFeature(featureId, [prop, value]) {
@@ -185,8 +211,13 @@ onMounted(() => {
 .board {
   flex-direction: row;
   align-items: flex-start;
+  width: 928px;
   padding: 36px;
   gap: 36px
+}
+
+.container {
+  gap: 12px;
 }
 
 .nav {
@@ -240,6 +271,7 @@ onMounted(() => {
 }
 
 .wrapper {
+  width: 100%;
   gap: 24px;
 }
 
