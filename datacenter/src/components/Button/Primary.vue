@@ -1,5 +1,5 @@
 <template>
-  <button class="icon-button _color-primary">{{ label }}</button>
+  <button class="container _button-secondary">{{ label }}</button>
 </template>
 
 <script setup>
@@ -9,25 +9,15 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.icon-button {
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  background: no-repeat center/contain;
-  background-image: url("/button/icon/contral-data/right-arrow-default.png");
-
-  // 🏗️ TODO: Doesn't work
-  &:active {
-    background-image: url("/button/icon/contral-data/right-arrow-click.png");
-  }
-
-  &:hover {
-    background-image: url("/button/icon/contral-data/right-arrow-hover.png");
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    background-image: url("/button/icon/contral-data/right-arrow-inactive.png");
-  }
+.container {
+  display: flex;
+  width: auto;
+  height: 42px;
+  padding: 10px 16px;
+  justify-content: center;
+  gap: 4px;
+  align-self: stretch;
+  border-radius: var(--Round-M, 8px);
+  background: rgba(0, 0, 0, 0.95);
 }
 </style>
