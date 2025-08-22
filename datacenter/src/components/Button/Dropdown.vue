@@ -1,9 +1,9 @@
 <template>
-  <Menu as="div" class="relative inline-block text-left">
+  <Menu as="div" class="dropdown-container relative inline-block text-left">
     <div>
       <MenuButton class="menu-button flex flex-col">
         <div class="header">
-          <span class="_subtitle _color-secondary">{{ label }}</span>
+          <span class="_subtitle _color-secondary">{{ title }}</span>
           <ChevronDownIcon class="ChevronDownIcon _color-primary" />
         </div>
         <div class="input-box">
@@ -15,7 +15,7 @@
     <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95"
       enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75"
       leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-      <MenuItems class="menu-items flex flex-col absolute right-0 origin-top-right">
+      <MenuItems class="menu-items flex flex-col absolute right-0 origin-top-right" :style="{ zIndex: 2 }">
 
         <!-- The container of items -->
         <div class="py-1 flex-col w-full">
@@ -46,11 +46,11 @@ const emit = defineEmits(['selected']);
 const props = defineProps({
   files: Array,
   modelValue: String,
-  label: String,
   placeholder: {
     type: String,
     default: 'Select an option',
   },
+  title: { type: String, default: '' }
 });
 
 const selectedFile = ref(props.modelValue || 'Select a file');
@@ -91,16 +91,18 @@ function selectFile(file) {
 }
 
 .menu-items {
+  width: 100%;
+  margin-top: 4px;
   justify-content: center;
   align-items: flex-start;
   align-self: stretch;
   border-radius: var(--Border-Button-Round, 8px);
-  background-color: rgba(0, 0, 0, 0.07);
+  background: #E9E9E9;
 }
 
 .input-box {
   width: 100%;
-  height: 48px;
+  height: 46px;
   padding: 12px;
   border-radius: 6px;
   background-color: #EDEDED;
@@ -113,5 +115,9 @@ function selectFile(file) {
 .ChevronDownIcon {
   width: 24px;
   height: 24px;
+}
+
+.dropdown-container {
+  width: auto;
 }
 </style>
