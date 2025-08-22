@@ -17,18 +17,36 @@
 
     <section class="board flex">
       <div v-if="selectedData" class="flex flex-col wrapper">
-        <div class="flex-col container">
-          <Header :title="currentFile || 'No File Selected'" />
-          <Switch />
+        <div class="flex-col basic-data-section">
+          <Header :title="currentStore || 'No Store Selected'" />
+          <div class="basic-data-container flex-row">
+            <div class="left-col flex-col">
+              <FormString :title="'The Name of the Store'" />
+              <div class="type-data">
+                <Switch :title="'Layout'" />
+                <Dropdown :title="'Type'" />
+              </div>
+              <div class="geo-data">
+                <FormString :title="'Lat'" />
+                <FormString :title="'Lon'" />
+              </div>
+            </div>
+            <div class="right-col id-data flex-col">
+              <FormString :title="'id'" />
+              <FormString :title="'auid'" />
+              <FormString :title="'placeid'" />
+            </div>
+          </div>
         </div>
-        <div class="flex-col container">
-          <Header title="Store" />
+        <div v-if="currentStore" class="flex-col container">
+          <Header title="Detail" />
         </div>
       </div>
-      <Dropdown class="" :files="jsonList" :label="'json'" :placeholder="'No file selected'"
-        @selected="handleJsonSelection" />
-      <Dropdown class="" :files="storeList" :label="'store'" :placeholder="'No store loaded'"
-        @selected="handleStoreSelection" />
+      <div class="file-container flex-col">
+        <MainDropdown v-model="selectedJsonFile" :files="jsonList" @update:modelValue="handleJsonSelection" />
+        <Dropdown class="" :files="storeList" :label="'store'" @selected="handleStoreSelection" />
+      </div>
+
     </section>
 
 
@@ -39,10 +57,9 @@
 import { ref, reactive, computed, onMounted } from 'vue';
 import axios from 'axios';
 // Button
+import MainDropdown from "./Button/MainDropdown.vue";
 import Dropdown from "./Button/Dropdown.vue";
 import Switch from "./Button/Switch.vue";
-import RightArrow from "./Button/RightArrow.vue";
-import LeftArrow from "./Button/LeftArrow.vue";
 // Components
 import FormString from "./FormString.vue";
 import FormStringNest from "./FormStringNest.vue";
@@ -220,6 +237,20 @@ onMounted(() => {
   gap: 12px;
 }
 
+
+.basic-data-section {
+  gap: 12px;
+}
+
+.basic-data-container {
+  gap: 24px;
+}
+
+
+.file-container {
+  gap: 12px;
+}
+
 .nav {
   display: flex;
   width: 920px;
@@ -277,6 +308,23 @@ onMounted(() => {
 
 .button-set {
   align-items: flex-start;
+  gap: 24px;
+}
+
+.type-data {
+  gap: 24px;
+}
+
+.geo-data {
+  gap: 24px;
+}
+
+.right-col {
+  gap: 24px;
+  width: 360px
+}
+
+.left-col {
   gap: 24px;
 }
 </style>
