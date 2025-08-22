@@ -1,5 +1,5 @@
 <template>
-  <button class="container _button-secondary">{{ label }}</button>
+  <button class="button-container _button-secondary">{{ label }}</button>
 </template>
 
 <script setup>
@@ -9,7 +9,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.container {
+.button-container {
   display: flex;
   width: auto;
   height: 42px;
