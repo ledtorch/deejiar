@@ -1,29 +1,30 @@
 <template>
   <div class="body">
 
-    <section class="sidebar flex flex-col">
-      <div class="flex-col">
+    <aside class="sidebar flex flex-col">
+      <section class="flex-col">
         <p class="subtitle1 _color-secondary">Total Stores: {{ selectedData.length }}</p>
         <p class="subtitle1 _color-tertiary">United States: {{ countryCounts.US }}</p>
         <p class="subtitle1 _color-tertiary">Formosa: {{ countryCounts.FM }}</p>
         <p class="subtitle1 _color-tertiary">Singapore: {{ countryCounts.SG }}</p>
         <p class="subtitle1 _color-tertiary">Japan: {{ countryCounts.JP }}</p>
-      </div>
-      <div class="flex-col">
+      </section>
+      <section class="flex-col">
         <p class="subtitle1 _color-secondary">Latest Updated Time</p>
         <p class="subtitle1 _color-tertiary">{{ new Date().toLocaleString() }}</p>
-      </div>
-    </section>
+      </section>
+    </aside>
 
-    <section class="board flex">
-      <div v-if="selectedData" class="flex flex-col wrapper">
+    <main class="board flex">
+      <section v-if="selectedData" class="flex flex-col wrapper">
         <div class="flex-col basic-data-section">
           <Header :title="currentStore || 'No Store Selected'" />
           <div class="basic-data-container flex-row">
             <div class="left-col flex-col">
-              <FormString :title="'The Name of the Store'" />
+              <FormString :title="'The Name of the Store'" :value="selectedFeature?.properties?.title || ''"
+                @update="val => updateProperty('title', val)" />
               <div class="type-data">
-                <Switch :title="'Layout'" />
+                <Switch :title="'Layout'" :leftText="'food'" :rightText="'view'" />
                 <Dropdown :title="'Type'" />
               </div>
               <div class="geo-data">
@@ -32,23 +33,24 @@
               </div>
             </div>
             <div class="right-col id-data flex-col">
-              <FormString :title="'id'" />
-              <FormString :title="'auid'" />
-              <FormString :title="'placeid'" />
+              <FormString :title="'id'" :value="selectedFeature?.properties?.id || ''"
+                @update="val => updateProperty('id', val)" />
+              <FormString :title="'auid'" :value="selectedFeature?.properties?.auid || ''"
+                @update="val => updateProperty('auid', val)" />
+              <FormString :title="'placeid'" :value="selectedFeature?.properties?.placeid || ''"
+                @update="val => updateProperty('placeid', val)" />
             </div>
           </div>
         </div>
         <div v-if="currentStore" class="flex-col container">
           <Header title="Detail" />
         </div>
-      </div>
-      <div class="file-container flex-col">
+      </section>
+      <section class="file-container flex flex-col">
         <MainDropdown v-model="selectedJsonFile" :files="jsonList" @update:modelValue="handleJsonSelection" />
-        <Dropdown class="" :files="storeList" :label="'store'" @selected="handleStoreSelection" />
-      </div>
-
-    </section>
-
+        <Dropdown class="" :files="storeList" :title="'Store'" @selected="handleStoreSelection" />
+      </section>
+    </main>
 
   </div>
 </template>
@@ -62,8 +64,6 @@ import Dropdown from "./Button/Dropdown.vue";
 import Switch from "./Button/Switch.vue";
 // Components
 import FormString from "./FormString.vue";
-import FormStringNest from "./FormStringNest.vue";
-import FormBusinessHour from "./FormBusinessHour.vue";
 import Header from './Nav/Header.vue';
 
 const API = import.meta.env.VITE_DATACENTER_API;
@@ -72,26 +72,10 @@ const selectedData = ref([]);
 const currentFile = ref('');
 const storeList = ref([]);
 const currentStore = ref('');
-const basicProperties = [
-  'id', 'title', 'type', 'layout', 'icon', 'description', 'storefront-day', 'storefront-night'
-];
-const geoProperties = [
-  'address', 'latitude', 'longitude', 'auid', 'placeid'
-];
-const timeProperties = ref([]);
-const products = ['item1', 'item2', 'item3', 'item4', 'item5'];
-const productProperties = ['name', 'description', 'image', 'price'];
-const currentPage = ref(1);
-const featuresPerPage = ref(10);
 
-const totalPages = computed(() =>
-  Math.ceil(selectedData.value.length / featuresPerPage.value)
-);
-const paginatedFeatures = computed(() => {
-  const start = (currentPage.value - 1) * featuresPerPage.value;
-  const end = start + featuresPerPage.value;
-  return selectedData.value.slice(start, end);
-});
+const businesshour = ref([]);
+
+// Overview of the data
 const countryCounts = computed(() => {
   const counts = { US: 0, FM: 0, SG: 0, JP: 0 };
   for (const item of selectedData.value) {
@@ -104,7 +88,8 @@ const countryCounts = computed(() => {
   return counts;
 });
 
-async function fetchJsonList() {
+// Initial files and store
+async function fetchJsonFiles() {
   try {
     const response = await axios.get(`${API}/json-files`);
     jsonList.value = response.data.map(file => file.replace(/\.json$/, ''));
@@ -112,6 +97,18 @@ async function fetchJsonList() {
     console.error('Error fetching JSON files:', error);
   }
 }
+
+// Selected store
+const selectedIndex = computed(() =>
+  selectedData.value.findIndex(f => (f?.properties?.title || f?.title) === currentStore.value)
+);
+
+const selectedFeature = computed(() =>
+  selectedIndex.value >= 0 ? selectedData.value[selectedIndex.value] : null
+);
+
+
+
 
 function handleJsonSelection(file) {
   axios.get(`${API}/json-data/${file}`)
@@ -140,11 +137,24 @@ function handleStoreSelection(store) {
   currentStore.value = store;
 }
 
-function updateFeature(featureId, [prop, value]) {
-  let feature = selectedData.value.find(f => f.id === featureId);
-  if (feature) {
-    feature[prop] = value;
+function updateProperty(key, val) {
+  const idx = selectedIndex.value;
+  if (idx < 0 || !selectedFeature.value) return;
+
+  if (!selectedFeature.value.properties) selectedFeature.value.properties = {};
+
+  // for title we also keep UI lists in sync
+  if (key === 'title') {
+    const prevTitle = selectedFeature.value.properties.title || currentStore.value || '';
+    selectedFeature.value.properties.title = val;
+    currentStore.value = val;
+    const listIdx = storeList.value.findIndex(t => t === prevTitle);
+    if (listIdx >= 0) storeList.value.splice(listIdx, 1, val);
+    return;
   }
+
+  // generic property write-back
+  selectedFeature.value.properties[key] = val;
 }
 
 function updateNestedObj(featureId, product, [prop, value]) {
@@ -175,17 +185,6 @@ function addNewFeature() {
   selectedData.value.push(newFeature);
 }
 
-function nextPage() {
-  if (currentPage.value < totalPages.value) {
-    currentPage.value++;
-  }
-}
-function prevPage() {
-  if (currentPage.value > 1) {
-    currentPage.value--;
-  }
-}
-
 async function updateJSON() {
   try {
     const filename = currentFile.value;
@@ -198,9 +197,7 @@ async function updateJSON() {
 }
 
 onMounted(() => {
-  fetchJsonList();
-  // There is no direct equivalent of `this.$props` in <script setup>, so omit console for props
-  // If needed, define props via defineProps.
+  fetchJsonFiles();
 });
 </script>
 

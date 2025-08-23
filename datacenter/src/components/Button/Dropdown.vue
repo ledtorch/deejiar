@@ -71,6 +71,7 @@ function selectFile(file) {
 .header {
   justify-content: space-between;
   align-self: stretch;
+  align-items: center;
   padding-left: 4px;
 }
 

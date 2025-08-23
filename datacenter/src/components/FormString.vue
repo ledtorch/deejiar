@@ -2,9 +2,7 @@
   <div class="form-frame">
     <div class="nav">
       <p class="_subtitle the-title">{{ title }}</p>
-      <!-- Only show the Edit button when editing is false -->
-      <button class="text-button" v-if="!editing" @click="edit(property)">Edit</button>
-      <!-- Only show the Save button when editing is true -->
+      <button class="text-button" v-if="!editing" @click="edit">Edit</button>
       <button class="text-button" v-if="editing" @click="save">Save</button>
     </div>
     <input :class="['input-base', { input: !editing, 'input-on': editing }]" v-model="editingValue"
@@ -13,44 +11,35 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 const emit = defineEmits(['update']);
 
 const props = defineProps({
-  value: { type: [Object, String, Number, Boolean, Array, null], default: null },
-  property: { type: String, required: true },
-  // used in original save() but not declared; keep for compatibility
-  variant: { type: String, default: '' },
-  title: { type: String, default: '' }
+  title: { type: String, default: '' },
+  value: { type: [String, Number], default: '' },
+  placeholder: { type: String, default: '' },
+  variant: { type: String, default: '' }
 });
 
 const editing = ref(false);
-const editingValue = ref(props.value);
+const editingValue = ref(String(props.value ?? ''));
 
 // keep input in sync when parent value changes (only when not editing)
 watch(
   () => props.value,
   (val) => {
-    if (!editing.value) editingValue.value = val;
-  },
-  { deep: true }
+    if (!editing.value) editingValue.value = String(val ?? '');
+  }
 );
 
-function edit(prop) {
-  // 🐞 Debug console (kept from original)
-  console.log('Value[property]: ' + (props.value && typeof props.value === 'object' ? props.value[prop] : props.value));
-
+function edit() {
   editing.value = true;
-  const val = (props.value && typeof props.value === 'object' && prop in props.value)
-    ? props.value[prop]
-    : props.value;
-  editingValue.value = (val ?? '').toString();
 }
 
 function save() {
-  const valueToEmit = props.variant === 'number' ? parseFloat(editingValue.value) : editingValue.value;
-  emit('update', [props.property, valueToEmit]);
+  const out = props.variant === 'number' ? Number(editingValue.value) : editingValue.value;
+  emit('update', out);
   editing.value = false;
 }
 </script>

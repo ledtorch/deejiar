@@ -1,13 +1,11 @@
 <template>
-  <Menu as="div" class="relative inline-block text-left">
-    <div>
-      <MenuButton class="menu-button flex flex-row">
-        <p class="_button-secondary button-text">
-          {{ selectedLabel || placeholder }}
-        </p>
-        <ChevronDownIcon class="ChevronDownIcon _color-primary" />
-      </MenuButton>
-    </div>
+  <Menu as="div" class="relative inline-block">
+    <MenuButton class="menu-button flex flex-row">
+      <p class="_button-secondary button-text">
+        {{ selectedLabel || placeholder }}
+      </p>
+      <ChevronDownIcon class="ChevronDownIcon _color-primary" />
+    </MenuButton>
 
     <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95"
       enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75"
@@ -91,8 +89,8 @@ watch(() => props.files, () => {
 .menu-button {
   min-width: 200px;
   width: auto;
-  height: 48px;
-  padding: 12px;
+  height: auto;
+  padding: 9px;
   align-items: center;
   justify-content: space-between;
   align-self: stretch;
@@ -108,7 +106,7 @@ watch(() => props.files, () => {
 
 .menu-items {
   width: 100%;
-  margin-top: 4px;
+  margin-top: 10px;
   padding: 8px 10px;
   justify-content: center;
   align-items: flex-start;

@@ -1,37 +1,55 @@
 <template>
-  <div class="switch-container flex-col">
-    <div class="nav">
-      <p class="_subtitle the-title">{{ title }}</p>
-    </div>
-    <div class="dj-switch-group" role="tablist" aria-label="binary toggle">
-      <button role="tab" :aria-selected="isLeft.toString()" class="seg" :class="{ active: isLeft }" @click="selectLeft"
-        @keydown.enter.prevent="selectLeft" @keydown.space.prevent="selectLeft">
+  <section class="switch-container flex-col" aria-labelledby="switch-title">
+    <header class="nav">
+      <p id="switch-title" class="_subtitle the-title">{{ title }}</p>
+    </header>
+
+    <div class="button-set-container" role="tablist" :aria-label="title || 'binary toggle'">
+      <button type="button" role="tab" :aria-selected="isLeft.toString()" :tabindex="isLeft ? 0 : -1" class="seg"
+        :class="{ active: isLeft }" @click="selectLeft" @keydown.enter.prevent="selectLeft"
+        @keydown.space.prevent="selectLeft">
         {{ leftText }}
       </button>
 
-      <button role="tab" :aria-selected="(!isLeft).toString()" class="seg" :class="{ active: !isLeft }"
-        @click="selectRight" @keydown.enter.prevent="selectRight" @keydown.space.prevent="selectRight">
+      <button type="button" role="tab" :aria-selected="(!isLeft).toString()" :tabindex="!isLeft ? 0 : -1" class="seg"
+        :class="{ active: !isLeft }" @click="selectRight" @keydown.enter.prevent="selectRight"
+        @keydown.space.prevent="selectRight">
         {{ rightText }}
       </button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const emit = defineEmits(['update:modelValue', 'change', 'left', 'right'])
 
 const props = defineProps({
-  modelValue: { type: Boolean, default: true }, // true => left active, false => right active
+  modelValue: { type: Boolean, default: undefined },
   leftText: { type: String, default: 'food' },
   rightText: { type: String, default: 'view' },
   title: { type: String, default: '?' },
 })
 
+// Local fallback state for uncontrolled usage
+const inner = ref(typeof props.modelValue === 'boolean' ? props.modelValue : true)
+
+// If parent controls it (v-model), mirror changes into local state for visual consistency
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (typeof val === 'boolean') inner.value = val
+  }
+)
+
 const isLeft = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val),
+  get: () => (typeof props.modelValue === 'boolean' ? props.modelValue : inner.value),
+  set: (val) => {
+    inner.value = val
+    // Notify parent if they are controlling it
+    emit('update:modelValue', val)
+  },
 })
 
 function selectLeft() {
@@ -52,18 +70,20 @@ function selectRight() {
 </script>
 
 <style scoped lang="scss">
-.dj-switch-group {
-  height: 46px;
+.button-set-container {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  height: 46px;
+  width: 100%;
   padding: 4px;
   border-radius: 6px;
   background: var(--base);
 }
 
 .seg {
-  appearance: none;
+  flex: 1 0 0;
+  width: 100%;
   border: 0;
   cursor: pointer;
   padding: 8px 14px;
@@ -73,13 +93,29 @@ function selectRight() {
   line-height: 1;
   background: transparent;
   color: var(--secondary-text);
+
 }
 
 .seg.active {
-  background: #000;
-  /* active background */
+  display: flex;
+  justify-content: center;
+  /* Center text horizontally */
+  align-items: center;
+  /* Center text vertically */
+  flex: 1 0 0;
+  height: 38px;
+  width: 100%;
+
+  padding: 7px var(--Layout-Block, 12px);
+
+  border-radius: var(--Round-S, 4px);
+
+  background: var(--Color-Primary, rgba(0, 0, 0, 0.95));
+
   color: #fff;
-  /* active text */
+  font-weight: 700;
+
+  cursor: pointer;
 }
 
 /* Focus ring for accessibility */
