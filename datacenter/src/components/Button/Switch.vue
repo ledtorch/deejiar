@@ -1,77 +1,35 @@
 <template>
-  <section class="switch-container flex-col" aria-labelledby="switch-title">
-    <header class="nav">
-      <p id="switch-title" class="_subtitle the-title">{{ title }}</p>
-    </header>
+  <main class="switch-container flex flex-col">
+    <div class="nav">
+      <p class="_subtitle the-title">{{ title }}</p>
+    </div>
 
-    <div class="button-set-container" role="tablist" :aria-label="title || 'binary toggle'">
-      <button type="button" role="tab" :aria-selected="isLeft.toString()" :tabindex="isLeft ? 0 : -1" class="seg"
-        :class="{ active: isLeft }" @click="selectLeft" @keydown.enter.prevent="selectLeft"
-        @keydown.space.prevent="selectLeft">
+    <div class="button-set-container">
+      <button type="button" class="seg" :class="{ active: value === leftText }" @click="emit('update', leftText)">
         {{ leftText }}
       </button>
 
-      <button type="button" role="tab" :aria-selected="(!isLeft).toString()" :tabindex="!isLeft ? 0 : -1" class="seg"
-        :class="{ active: !isLeft }" @click="selectRight" @keydown.enter.prevent="selectRight"
-        @keydown.space.prevent="selectRight">
+      <button type="button" class="seg" :class="{ active: value === rightText }" @click="emit('update', rightText)">
         {{ rightText }}
       </button>
     </div>
-  </section>
+  </main>
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
-
-const emit = defineEmits(['update:modelValue', 'change', 'left', 'right'])
-
 const props = defineProps({
-  modelValue: { type: Boolean, default: undefined },
   leftText: { type: String, default: 'food' },
   rightText: { type: String, default: 'view' },
   title: { type: String, default: '?' },
-})
+  value: { type: String, default: '' },
+});
 
-// Local fallback state for uncontrolled usage
-const inner = ref(typeof props.modelValue === 'boolean' ? props.modelValue : true)
-
-// If parent controls it (v-model), mirror changes into local state for visual consistency
-watch(
-  () => props.modelValue,
-  (val) => {
-    if (typeof val === 'boolean') inner.value = val
-  }
-)
-
-const isLeft = computed({
-  get: () => (typeof props.modelValue === 'boolean' ? props.modelValue : inner.value),
-  set: (val) => {
-    inner.value = val
-    // Notify parent if they are controlling it
-    emit('update:modelValue', val)
-  },
-})
-
-function selectLeft() {
-  if (!isLeft.value) {
-    isLeft.value = true
-    emit('change', true)
-    emit('left') // function1 hook
-  }
-}
-
-function selectRight() {
-  if (isLeft.value) {
-    isLeft.value = false
-    emit('change', false)
-    emit('right') // function2 hook
-  }
-}
+const emit = defineEmits(['update']);
 </script>
+
 
 <style scoped lang="scss">
 .button-set-container {
-  display: inline-flex;
   align-items: center;
   gap: 6px;
   height: 46px;
@@ -82,46 +40,28 @@ function selectRight() {
 }
 
 .seg {
-  flex: 1 0 0;
-  width: 100%;
+  flex: 1;
   border: 0;
-  cursor: pointer;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: var(--Round-S, 4px);
   font-weight: 700;
   font-size: 14px;
-  line-height: 1;
   background: transparent;
   color: var(--secondary-text);
-
-}
-
-.seg.active {
-  display: flex;
-  justify-content: center;
-  /* Center text horizontally */
-  align-items: center;
-  /* Center text vertically */
-  flex: 1 0 0;
-  height: 38px;
-  width: 100%;
-
-  padding: 7px var(--Layout-Block, 12px);
-
-  border-radius: var(--Round-S, 4px);
-
-  background: var(--Color-Primary, rgba(0, 0, 0, 0.95));
-
-  color: #fff;
-  font-weight: 700;
-
   cursor: pointer;
-}
+  transition: all 0.2s ease;
 
-/* Focus ring for accessibility */
-.seg:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, .45);
+  &.active {
+    height: 38px;
+    border-radius: var(--Round-S, 4px);
+    background: var(--Color-Primary, rgba(0, 0, 0, 0.95));
+    color: #fff;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+  }
 }
 
 .nav {
@@ -132,6 +72,8 @@ function selectRight() {
 }
 
 .the-title {
+  height: 22px;
+  line-height: 22px;
   padding: 0px 4px;
   color: var(--secondary-text);
 }
