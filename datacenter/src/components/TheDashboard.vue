@@ -3,20 +3,20 @@
 
     <aside class="sidebar flex flex-col">
       <section class="flex-col">
-        <p class="subtitle1 _color-secondary">Total Stores: {{ selectedData.length }}</p>
-        <p class="subtitle1 _color-tertiary">United States: {{ countryCounts.US }}</p>
-        <p class="subtitle1 _color-tertiary">Formosa: {{ countryCounts.FM }}</p>
-        <p class="subtitle1 _color-tertiary">Singapore: {{ countryCounts.SG }}</p>
-        <p class="subtitle1 _color-tertiary">Japan: {{ countryCounts.JP }}</p>
+        <p class="title _color-secondary">Total Stores: {{ featureCollection?.features?.length || 0 }}</p>
+        <p class="title _color-tertiary">United States: {{ countryCounts.US }}</p>
+        <p class="title _color-tertiary">Formosa: {{ countryCounts.FM }}</p>
+        <p class="title _color-tertiary">Singapore: {{ countryCounts.SG }}</p>
+        <p class="title _color-tertiary">Japan: {{ countryCounts.JP }}</p>
       </section>
       <section class="flex-col">
-        <p class="subtitle1 _color-secondary">Latest Updated Time</p>
-        <p class="subtitle1 _color-tertiary">{{ new Date().toLocaleString() }}</p>
+        <p class="title _color-secondary">Latest Updated Time</p>
+        <p class="title _color-tertiary">{{ new Date().toLocaleString() }}</p>
       </section>
     </aside>
 
     <main class="board flex">
-      <section v-if="selectedData" class="flex flex-col wrapper">
+      <section class="flex flex-col wrapper">
         <div class="flex-col basic-data-section">
           <Header :title="currentStore || 'No Store Selected'" />
           <div class="basic-data-container flex-row">
@@ -24,18 +24,25 @@
               <FormString :title="'The Name of the Store'" :value="currentStore || ''"
                 @update="val => updateProperty('title', val)" />
               <div class="type-data">
-                <Switch :title="'Layout'" :leftText="'food'" :rightText="'view'" />
-                <Dropdown :title="'Type'" />
+                <Switch :title="'Layout'" :leftText="'food'" :rightText="'view'"
+                  :value="selectedFeature?.properties?.layout" @update="val => updateProperty('layout', val)" />
+                <Dropdown :title="'Type'" :value="selectedFeature?.properties?.type"
+                  :options="['restaurant', 'museum', 'shop', 'cafe', 'landmark']"
+                  @update="val => updateProperty('type', val)" />
               </div>
               <div class="geo-data">
-                <FormString :title="'Lat'" :value="selectedFeature?.geometry?.coordinates[1] || ''" />
-                <FormString :title="'Lon'" :value="selectedFeature?.geometry?.coordinates[0] || ''" />
+                <FormString :title="'Lat'" :value="selectedFeature?.geometry?.coordinates[1]?.toString() || ''"
+                  @update="val => updateCoordinate('lat', val)" />
+                <FormString :title="'Lon'" :value="selectedFeature?.geometry?.coordinates[0]?.toString() || ''"
+                  @update="val => updateCoordinate('lon', val)" />
               </div>
             </div>
             <div class="right-col id-data flex-col">
-              <FormString :title="'id'" :value="currentStoreId" @update="val => updateProperty('id', val)" />
-              <FormString :title="'auid'" :value="currentStoreAuid" @update="val => updateProperty('auid', val)" />
-              <FormString :title="'placeid'" :value="currentStorePlaceid"
+              <FormString :title="'id'" :value="selectedFeature?.properties?.id || ''"
+                @update="val => updateProperty('id', val)" />
+              <FormString :title="'auid'" :value="selectedFeature?.properties?.auid || ''"
+                @update="val => updateProperty('auid', val)" />
+              <FormString :title="'placeid'" :value="selectedFeature?.properties?.placeid || ''"
                 @update="val => updateProperty('placeid', val)" />
             </div>
           </div>
@@ -45,8 +52,8 @@
         </div>
       </section>
       <section class="file-container flex flex-col">
-        <MainDropdown v-model="selectedJsonFile" :files="jsonList" @update:modelValue="handleJsonSelection" />
-        <Dropdown class="" :files="storeList" :title="'Store'" @selected="handleStoreSelection" />
+        <MainDropdown v-model="selectedJsonFile" :options="jsonList" @update:modelValue="handleJsonSelection" />
+        <Dropdown :title="'Store'" :options="storeList" @selected="handleStoreSelection" />
       </section>
     </main>
 
@@ -54,26 +61,31 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue';
+import { ref, reactive, computed, onMounted, watch } from 'vue';
 import axios from 'axios';
 // Button
 import MainDropdown from "./Button/MainDropdown.vue";
 import Dropdown from "./Button/Dropdown.vue";
 import Switch from "./Button/Switch.vue";
 // Components
-import FormString from "./FormString.vue";
 import Header from './Nav/Header.vue';
+import FormString from "./FormString.vue";
 
 const API = import.meta.env.VITE_DATACENTER_API;
+
+// Data
 const jsonList = ref([]);
-const selectedData = ref([]);
+const selectedJsonFile = ref('');
+const featureCollection = ref(null);  // Full GeoJSON structure
+const originalData = ref(null);       // For change tracking
+
 const storeList = ref([]);
 const currentStore = ref('');
-const currentStoreId = ref('');
-const currentStoreAuid = ref('');
-const currentStorePlaceid = ref('');
 
-const businesshour = ref([]);
+// 🏗️🏗️🏗️
+const hasChanges = ref(false);
+const saveMessage = ref('');
+const saveError = ref(false);
 
 // List all files
 async function fetchJsonFiles() {
@@ -84,40 +96,50 @@ async function fetchJsonFiles() {
     console.error('Error fetching JSON files:', error);
   }
 }
+
 onMounted(() => {
   fetchJsonFiles();
 });
 
 // Process json data
-function handleJsonSelection(file) {
-  axios.get(`${API}/json-data/${file}`)
-    .then(response => {
-      const data = response.data;
-      selectedData.value = data;
+async function handleJsonSelection(file) {
+  try {
+    selectedJsonFile.value = file;
+    const response = await axios.get(`${API}/json-data/${file}`);
+    const data = response.data;
 
-      // // 🐞 Debug console
-      // console.log('features:', data);
-      // console.log('selectedData.value:', selectedData.value);
+    // Store working copy and original for change tracking
+    featureCollection.value = data;
+    originalData.value = JSON.parse(JSON.stringify(data)); // ❓ Deep copy
+    hasChanges.value = false;
+    saveMessage.value = '';
 
-      // Retrieve and list the titles of all stores
-      storeList.value = data
+    // Retrieve and list the titles of all stores
+    if (data?.features) {
+      storeList.value = data.features
         .map(f => (f?.properties?.title) || f?.title)
         .filter(Boolean);
-      currentStore.value = '';
-    })
-    .catch(error => {
-      console.error('Error fetching JSON data for file:', file, error);
-      selectedData.value = [];
+    } else {
       storeList.value = [];
-      currentStore.value = '';
-    });
+    }
+
+    currentStore.value = '';
+  } catch (error) {
+    console.error('Error fetching JSON data for file:', file, error);
+    featureCollection.value = null;
+    originalData.value = null;
+    storeList.value = [];
+    currentStore.value = '';
+  }
 }
 
 // Overview of the data
 const countryCounts = computed(() => {
   const counts = { US: 0, FM: 0, SG: 0, JP: 0 };
-  for (const item of selectedData.value) {
-    const id = item.id || (item.properties && item.properties.id) || '';
+  if (!featureCollection.value?.features) return counts;
+
+  for (const feature of featureCollection.value.features) {
+    const id = feature?.properties?.id || '';
     const prefix = id.split('_')[0];
     if (counts[prefix] !== undefined) {
       counts[prefix]++;
@@ -127,29 +149,25 @@ const countryCounts = computed(() => {
 });
 
 // Selected store
-const selectedIndex = computed(() =>
-  selectedData.value.findIndex(f => (f?.properties?.title || f?.title) === currentStore.value)
-);
+const selectedIndex = computed(() => {
+  if (!featureCollection.value?.features || !currentStore.value) return -1;
+  return featureCollection.value.features.findIndex(
+    f => f?.properties?.title === currentStore.value
+  );
+});
 
-const selectedFeature = computed(() =>
-  selectedIndex.value >= 0 ? selectedData.value[selectedIndex.value] : null
-);
+const selectedFeature = computed(() => {
+  if (selectedIndex.value >= 0 && featureCollection.value?.features) {
+    return featureCollection.value.features[selectedIndex.value];
+  }
+  return null;
+});
 
 function handleStoreSelection(store) {
   currentStore.value = store;
-  const idx = selectedData.value.findIndex(f =>
-    (f?.properties?.title || f?.title) === store
-  );
-
-  if (idx >= 0) {
-    const selectedStore = selectedData.value[idx];
-
-    currentStoreId.value = selectedStore?.id || '?';
-    currentStoreAuid.value = selectedStore?.auid || '?';
-    currentStorePlaceid.value = selectedStore?.placeid || '?';
-  }
 }
 
+// Update functions
 function updateProperty(key, val) {
   const idx = selectedIndex.value;
   if (idx < 0 || !selectedFeature.value) return;
@@ -185,6 +203,15 @@ function updateProperty(key, val) {
     selectedFeature.value[key] = val;
   }
 }
+
+watch(selectedFeature, (newVal) => {
+  console.log('selectedFeature changed:', newVal);
+  if (newVal) {
+    console.log('Properties:', newVal.properties);
+    console.log('Layout:', newVal.properties?.layout);
+  }
+});
+
 </script>
 
 <style lang="scss" scoped>
@@ -247,24 +274,6 @@ function updateProperty(key, val) {
   gap: 24px;
 }
 
-.temp-button {
-  cursor: pointer;
-  background-color: transparent;
-  border: 0px;
-  padding: 10px 16px;
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--border-button-round, 8px);
-  background: var(--token-theme, #fafafa);
-  color: var(--token-invert, #0e0d0f);
-
-  font-family: Be Vietnam Pro;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 24px;
-}
-
 .data-section {
   max-width: 996px;
   align-items: flex-start;
@@ -278,10 +287,6 @@ function updateProperty(key, val) {
   align-self: stretch;
   align-items: flex-start;
   gap: 24px;
-}
-
-.green {
-  color: var(--1-system-green, #3DC363);
 }
 
 .wrapper {
