@@ -18,7 +18,7 @@
     <main class="board flex">
       <section class="flex flex-col wrapper">
         <div class="flex-col basic-data-section">
-          <Header :title="currentStore || 'No Store Selected'" />
+          <Header :title="currentStore || 'No Store Selected'" @update="saveChanges" />
           <div class="basic-data-container flex-row">
             <div class="left-col flex-col">
               <FormString :title="'The Name of the Store'" :value="currentStore || ''"
@@ -53,7 +53,7 @@
       </section>
       <section class="file-container flex flex-col">
         <MainDropdown v-model="selectedJsonFile" :options="jsonList" @update:modelValue="handleJsonSelection" />
-        <Dropdown :title="'Store'" :options="storeList" @selected="handleStoreSelection" />
+        <Dropdown :title="'Store'" :options="storeList" @selected="selectStore" />
       </section>
     </main>
 
@@ -76,8 +76,8 @@ const API = import.meta.env.VITE_DATACENTER_API;
 // Data
 const jsonList = ref([]);
 const selectedJsonFile = ref('');
-const featureCollection = ref(null);  // Full GeoJSON structure
-const originalData = ref(null);       // For change tracking
+const featureCollection = ref(null);
+const originalData = ref(null);
 
 const storeList = ref([]);
 const currentStore = ref('');
@@ -163,11 +163,82 @@ const selectedFeature = computed(() => {
   return null;
 });
 
-function handleStoreSelection(store) {
+function selectStore(store) {
   currentStore.value = store;
 }
 
-// Update functions
+// Edit functions
+function updateCoordinate(type, val) {
+  if (!selectedFeature.value) return;
+
+  const numVal = parseFloat(val);
+  if (isNaN(numVal)) return;
+
+  // Ensure geometry exists
+  if (!selectedFeature.value.geometry) {
+    selectedFeature.value.geometry = { type: 'Point', coordinates: [0, 0] };
+  }
+
+  if (type === 'lon') {
+    selectedFeature.value.geometry.coordinates[0] = numVal;
+  } else if (type === 'lat') {
+    selectedFeature.value.geometry.coordinates[1] = numVal;
+  }
+
+  checkForChanges();
+}
+
+// Add change detection
+function checkForChanges() {
+  hasChanges.value = JSON.stringify(featureCollection.value) !== JSON.stringify(originalData.value);
+}
+
+// Add save function
+async function saveChanges() {
+  if (!selectedJsonFile.value || !featureCollection.value) {
+    console.error('No file selected or no data to save');
+    return;
+  }
+
+  try {
+    saveMessage.value = 'Saving...';
+    saveError.value = false;
+
+    const response = await axios.post(
+      `${API}/save/${selectedJsonFile.value}`,
+      featureCollection.value
+    );
+
+    saveMessage.value = `Saved successfully as ${response.data.filename}`;
+    saveError.value = false;
+
+    // Update the original data to match saved state
+    originalData.value = JSON.parse(JSON.stringify(featureCollection.value));
+    hasChanges.value = false;
+
+    // Update the selected file to the new filename (without extension)
+    const newFilename = response.data.filename.replace(/\.json$/, '');
+    selectedJsonFile.value = newFilename;
+
+    // Refresh the file list
+    await fetchJsonFiles();
+
+    // Show success message
+    alert(`File saved successfully as ${response.data.filename}`);
+
+    // Clear message after 3 seconds
+    setTimeout(() => {
+      saveMessage.value = '';
+    }, 3000);
+  } catch (error) {
+    console.error('Error saving changes:', error);
+    saveMessage.value = error.response?.data?.detail || 'Error saving changes';
+    saveError.value = true;
+    alert('Error saving changes: ' + (error.response?.data?.detail || error.message));
+  }
+}
+
+// Update the updateProperty function to include change detection
 function updateProperty(key, val) {
   const idx = selectedIndex.value;
   if (idx < 0 || !selectedFeature.value) return;
@@ -192,25 +263,28 @@ function updateProperty(key, val) {
     // Update the store list
     const listIdx = storeList.value.findIndex(t => t === prevTitle);
     if (listIdx >= 0) storeList.value.splice(listIdx, 1, val);
-    return;
+  } else {
+    // For other properties, prioritize the GeoJSON structure
+    if (selectedFeature.value.properties) {
+      selectedFeature.value.properties[key] = val;
+    } else {
+      // Fallback to direct property if no properties object
+      selectedFeature.value[key] = val;
+    }
   }
 
-  // For other properties, prioritize the GeoJSON structure
-  if (selectedFeature.value.properties) {
-    selectedFeature.value.properties[key] = val;
-  } else {
-    // Fallback to direct property if no properties object
-    selectedFeature.value[key] = val;
-  }
+  // Check for changes after any update
+  checkForChanges();
 }
 
-watch(selectedFeature, (newVal) => {
-  console.log('selectedFeature changed:', newVal);
-  if (newVal) {
-    console.log('Properties:', newVal.properties);
-    console.log('Layout:', newVal.properties?.layout);
-  }
-});
+// // 🐞 Debug console
+// watch(selectedFeature, (newVal) => {
+//   console.log('selectedFeature changed:', newVal);
+//   if (newVal) {
+//     console.log('Properties:', newVal.properties);
+//     console.log('Layout:', newVal.properties?.layout);
+//   }
+// });
 
 </script>
 

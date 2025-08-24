@@ -1,8 +1,9 @@
 import os
 import json
-from fastapi import HTTPException
+from fastapi import HTTPException, UploadFile, File
 from pathlib import Path
 from datetime import datetime
+from typing import Dict, Any, List
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -12,144 +13,72 @@ load_dotenv('../.env.local')
 JSON_PATH = Path(__file__).parent.parent.parent / 'assets/map'
 print(f"JSON_PATH: {JSON_PATH}")
 
-def list_json_files():
-    # List all files in the directory
-    files = os.listdir(JSON_PATH)
-    
-    # Filter out files to only include .json files
-    json_files = [file for file in files if file.endswith('.json')]
-    print(f"json_files: {json_files}")
-    return json_files
-
-# Extract features as single layer objects in an array
-def flatten_features(filename: str):
-    path = os.path.join(JSON_PATH, f"{filename}.json")
-    if not os.path.exists(path):
-        raise HTTPException(status_code=404, detail="File not found")
-
-    with open(path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-        simplified_data = []
-        for feature in data.get('features', []):
-            props = feature.get('properties', {})
-            geometry = feature.get('geometry', {})
-            icon = props.get('icon', {}).get('active', '').split('/')[-1].replace('-active.png', '')
-            storefront = props.get('storefront', {})
-            feature_dict = ({
-                # basicProperties
-                'id': props.get('id'),
-                'title': props.get('title'),
-                'type': props.get('type'),
-                'layout': props.get('layout'),
-                'icon': icon,
-                'description': props.get('description'),
-                'storefront-night': storefront.get('night', ''),
-                
-                # geoProperties
-                'address': props.get('address'),
-                'storefront-day': storefront.get('day', ''),
-                'auid': props.get('auid'),
-                'placeid': props.get('placeid'),
-                'longitude': geometry.get('coordinates', [])[0],
-                'latitude': geometry.get('coordinates', [])[1],
-                
-                # Tags
-                'tag': props.get('tag', []),
-
-                # Business Hours
-                'businesshour': props.get('businesshour', [])
-            })
-            # productProperties
-            for i in range(1, 6):
-                feature_dict[f'item{i}'] = props.get(f'item{i}', {})
-
-            simplified_data.append(feature_dict)
-    return simplified_data
-
-# Rebuild the nested JSON structure from the flattened data
-def reconstruct_json(features):
-    reconstructed = {
-        "type": "FeatureCollection",
-        "features": []
-    }
-    for feature in features:
-        # If an icon is missing, stopping the entire process
-        icon = feature.get('icon')
-        if not icon:
-            raise HTTPException(status_code=400, detail=f"Missing icon name for feature ID: {feature.get('id')}")
-        
-        reconstructed_feature = {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                # geoProperties
-                "coordinates": [feature.get('longitude'), feature.get('latitude')]
-            },
-            "properties": {
-                # basicProperties
-                "id": feature.get('id'),
-                "title": feature.get('title'),
-                "type": feature.get('type'),
-                "layout": feature.get('layout'),
-                "icon": {
-                    "active": f"button/marker/{icon}-active.png",
-                    "default": f"button/marker/{icon}-default.png",
-                    "larger": f"button/marker/{icon}-larger.png",
-                    "mini": f"button/marker/{icon}-mini.png",
-                    "withFriends": f"button/marker/{icon}-withFriends.png"
-                },
-                "description": feature.get('description'),
-                "storefront": {
-                    "day": feature.get('storefront-day'),
-                    "night": feature.get('storefront-night')
-                },
-                
-                # geoProperties
-                "address": feature.get('address'),
-                "auid": feature.get('auid'),
-                "placeid": feature.get('placeid'),
-
-                # Tags
-                'tag': feature.get('tag', []),
-
-                # Business Hours
-                'businesshour': feature.get('businesshour', [])
-            }
-        }
-        # productProperties
-        for i in range(1, 6):
-            reconstructed_feature['properties'][f'item{i}'] = feature.get(f'item{i}', {})
-
-        reconstructed['features'].append(reconstructed_feature)
-    return reconstructed
-
-def save_reconstructed_features(filename: str, features):
+def list_json_files() -> List[str]:
+    """List all JSON files in the map directory"""
     try:
-        result = reconstruct_json(features)
+        # Ensure directory exists
+        if not JSON_PATH.exists():
+            JSON_PATH.mkdir(parents=True, exist_ok=True)
+            return []
         
-        # Add .json extension if it's missing
-        if not filename.lower().endswith('.json'):
-            filename += '.json'
+        # List all files in the directory
+        files = os.listdir(JSON_PATH)
         
-        timestamp = datetime.utcnow().strftime("_%m%dT%H:%M:%S")
-        
-        # Check if filename already has a timestamp and replace it, or add a new one
-        base_name, extension = os.path.splitext(filename)
-        if '_' in base_name:
-            parts = base_name.rsplit('_', 1)
-            # 13 is the length of "MMDDTHH:MM:SS"
-            if len(parts) == 2 and len(parts[1]) == 13:
-                new_filename = f"{parts[0]}{timestamp}{extension}"
-            else:
-                new_filename = f"{base_name}{timestamp}{extension}"
-        else:
-            new_filename = f"{base_name}{timestamp}{extension}"
-        
-        # Save the reconstructed JSON to a file
-        full_path = os.path.join(JSON_PATH, new_filename)
-        with open(full_path, 'w', encoding='utf-8') as f:
-            json.dump(result, f, ensure_ascii=False, indent=2)
-        
-        return new_filename
+        # Filter out files to only include .json files
+        json_files = [file for file in files if file.endswith('.json')]
+        print(f"json_files: {json_files}")
+        return json_files
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Error listing files: {str(e)}")
+
+def get_json_data(filename: str) -> Dict[str, Any]:
+    """Get the raw JSON data from a file"""
+    # Remove .json extension if present
+    if filename.endswith('.json'):
+        filename = filename[:-5]
+    
+    path = JSON_PATH / f"{filename}.json"
+    
+    if not path.exists():
+        raise HTTPException(status_code=404, detail=f"File not found: {filename}.json")
+    
+    try:
+        with open(path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            return data
+    except json.JSONDecodeError as e:
+        raise HTTPException(status_code=400, detail=f"Invalid JSON file: {str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error reading file: {str(e)}")
+
+def save_json_data(filename: str, data: Dict[str, Any]) -> str:
+    """Save JSON data directly without reconstruction"""
+    try:
+        # Remove .json extension if present
+        if filename.endswith('.json'):
+            filename = filename[:-5]
+        
+        # Generate timestamp
+        timestamp = datetime.utcnow().strftime("_%m%dT%H%M%S")
+        
+        # Handle existing timestamps in filename
+        base_name = filename
+        if '_' in filename:
+            parts = filename.rsplit('_', 1)
+            # Check if the last part looks like a timestamp (11 characters: MMDDTHHMMSS)
+            if len(parts) == 2 and len(parts[1]) == 11 and parts[1][4] == 'T':
+                base_name = parts[0]
+        
+        # Create new filename with timestamp
+        new_filename = f"{base_name}{timestamp}.json"
+        
+        # Save the JSON to a file
+        full_path = JSON_PATH / new_filename
+        with open(full_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        
+        print(f"Saved file: {new_filename}")
+        return new_filename
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error saving file: {str(e)}")

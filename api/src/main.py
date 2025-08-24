@@ -7,7 +7,7 @@ import json
 # Environment
 from dotenv import load_dotenv
 # Modules
-from routes.editor import list_json_files, flatten_features, save_reconstructed_features
+from routes.editor import list_json_files, get_json_data, save_json_data
 from routes.map import get_map_json
 
 from fastapi.staticfiles import StaticFiles
@@ -132,19 +132,19 @@ async def get_json_files():
     return list_json_files()
 
 @app.get("/json-data/{filename}")
-async def get_features(filename: str):
+async def get_json_data_endpoint(filename: str):
     try:
-        return flatten_features(filename)
+        return get_json_data(filename)
     except HTTPException as e:
         raise e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/save/{filename}")
-async def reconstruct_features(filename: str, request: Request):
+async def save_json_endpoint(filename: str, request: Request):
     try:
-        features = await request.json()
-        new_filename = save_reconstructed_features(filename, features)
+        data = await request.json()
+        new_filename = save_json_data(filename, data)
         return {
             "message": "JSON file updated successfully",
             "filename": new_filename
