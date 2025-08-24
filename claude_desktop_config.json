@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "filesystem-deejiar": {
+      "command": "yarn",
+      "args": ["mcp-server"],
+      "cwd": "/Users/jerrylin/Desktop/localBox/Workspace/Deejiar",
+      "env": {}
+    }
+  }
+}

@@ -102,26 +102,6 @@ function save() {
   background: var(--base);
 }
 
-// Temp
-
-.temp-button {
-  cursor: pointer;
-  background-color: transparent;
-  border: 0px;
-  padding: 10px 16px;
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--border-button-round, 8px);
-  background: var(--token-theme, #fafafa);
-  color: var(--token-invert, #0e0d0f);
-
-  font-family: Be Vietnam Pro;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 24px;
-}
-
 .text-button {
   cursor: pointer;
   color: var(--2-brand-gray, #808cab);

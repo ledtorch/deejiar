@@ -19,5 +19,13 @@ const props = defineProps({
   align-self: stretch;
   border-radius: var(--Round-M, 8px);
   background: rgba(0, 0, 0, 0.95);
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.95);
+}
+
+.button-container:hover {
+  color: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0);
+  border: 2px solid rgba(0, 0, 0, 0.95);
 }
 </style>
