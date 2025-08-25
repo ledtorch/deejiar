@@ -2,7 +2,7 @@
   <button @click="openDirections" class="flex button-frame">
     <div class="title-frame">
       <div :class="iconClass"></div>
-      <h2 class="m-button-text">Get Direction</h2>
+      <p class="_button-secondary">Get Direction</p>
     </div>
     <div class="outer-link"></div>
   </button>
@@ -101,6 +101,7 @@ input[type="submit"] {
 }
 
 .title-frame {
+  align-items: center;
   gap: 4px;
 }
 

@@ -1,10 +1,10 @@
 <template>
   <div class="thumbnail-frame flex-col" :style="backgroundStyle">
     <div class="base">
-      <p class="caption2">No.{{ ranking }}</p>
+      <p class="_caption2">No.{{ ranking }}</p>
     </div>
     <div class="base">
-      <p class="caption1">{{ title }}</p>
+      <p class="_caption1">{{ title }}</p>
     </div>
   </div>
 </template>

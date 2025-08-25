@@ -9,26 +9,27 @@
         <TheSearch />
         <Avatar />
       </div>
-      <h4>Wanna get the premium list and advanced features before they launch on Deejiar? Or simply want to leave your
-        feedback? =)</h4>
+      <p class="_body2">Wanna get the premium list and advanced features before they launch on Deejiar? Or simply want
+        to leave your
+        feedback? =)</p>
       <a href="https://www.buymeacoffee.com/deejiar" alt="Buy Me a Coffee" class="buy-me-a-coffee-button">
         <img
           src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=deejiar&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff"
           alt="Buy Me a Coffee" />
       </a>
       <div class="frame_learn-more">
-        <h4>Learn more on:</h4>
+        <p class="_subtitle">Learn more on:</p>
         <div class="button-set">
           <a href="https://twitter.com/deejiar" style="text-decoration: none; color: inherit;">
             <div>
               <img class="social-button" src="/icon/social/twitter.png" alt="Twitter">
-              <p>@deejiar</p>
+              <p class="_button-secondary">@deejiar</p>
             </div>
           </a>
           <a href="https://www.instagram.com/deejiar" style="text-decoration: none; color: inherit;">
             <div>
               <img class="social-button" src="/icon/social/instagram.png" alt="Instagram">
-              <p>@deejiar</p>
+              <p class="_button-secondary">@deejiar</p>
             </div>
           </a>
         </div>
@@ -40,7 +41,7 @@
       <template v-if="storeLayout === 'food'">
         <div class="nav">
           <div class="title-block">
-            <h2 class="_stretch">{{ store ? store.title : "" }}</h2>
+            <h4 class="_stretch">{{ store ? store.title : "" }}</h4>
             <TagShopType :store="store" />
           </div>
           <Close :state="buttonState" @close="closeBottomSheet" />
@@ -64,7 +65,7 @@
       <template v-if="storeLayout === 'view'">
         <div class="nav">
           <div class="title-block">
-            <h2 class="_stretch">{{ store ? store.title : "" }}</h2>
+            <h4 class="_stretch">{{ store ? store.title : "" }}</h4>
             <TagShopType :store="store" />
           </div>
           <Close :state="buttonState" @close="closeBottomSheet" />
@@ -340,6 +341,7 @@ watch(
   justify-content: flex-start;
   align-content: flex-start;
   align-self: stretch;
+  align-items: center;
   flex-wrap: wrap;
   flex: 1 0 0;
   gap: 12px;

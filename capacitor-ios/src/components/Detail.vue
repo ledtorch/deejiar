@@ -33,7 +33,7 @@
         </div>
         <div class="content-frame">
           <div class="title-block">
-            <h2 class="_stretch">{{ storeProperties.title }}</h2>
+            <h4 class="_stretch">{{ storeProperties.title }}</h4>
             <TagShopType :store="storeProperties" />
           </div>
           <p class="frame-intro">{{ detailsJSON.description }}</p>
@@ -57,8 +57,8 @@
     <!-- Product Page -->
     <div v-else class="content flex-col">
       <div v-if="currentProduct" class="title-block">
-        <h2 class="_stretch">{{ currentProduct.name }}</h2>
-        <h2>{{ currentProduct.price }}</h2>
+        <h4 class="_stretch">{{ currentProduct.name }}</h4>
+        <h4>{{ currentProduct.price }}</h4>
       </div>
       <!-- Use v-html to render <br> -->
       <p v-if="currentProduct" class="frame-intro" v-html="currentProduct.description"></p>
@@ -336,6 +336,7 @@ onMounted(async () => {
 
 .title-block {
   align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   align-content: flex-start;
   align-self: stretch;

@@ -2,15 +2,15 @@
   <div>
     <template v-if="viewMode === 'overview'">
       <div>
-        <p :class="['subhead', bizHr.stateClass]">{{ bizHr.state }}</p>
-        <p :class="['subhead', bizHr.nextTimeClass]">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
+        <p :class="[bizHr.stateClass]">{{ bizHr.state }}</p>
+        <p :class="[bizHr.nextTimeClass]">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
       </div>
     </template>
     <!-- 🏗️ TODO: Detail View -->
     <template v-if="viewMode === 'detail'">
       <div>
-        <p :class="['subhead', bizHr.stateClass]">{{ bizHr.state }}</p>
-        <p :class="['subhead', bizHr.nextTimeClass]">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
+        <p :class="[bizHr.stateClass]">{{ bizHr.state }}</p>
+        <p :class="[bizHr.nextTimeClass]">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
       </div>
     </template>
   </div>

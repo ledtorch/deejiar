@@ -1,7 +1,7 @@
 <template>
   <div class="frame">
     <div class="icon"></div>
-    <p class="subhead">{{ address }}</p>
+    <p>{{ address }}</p>
   </div>
 </template>
 

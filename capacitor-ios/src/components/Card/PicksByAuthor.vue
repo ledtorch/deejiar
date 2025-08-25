@@ -10,7 +10,7 @@
             <Thumbnail v-for="bar in barsList" :key="bar.properties.id" :bar="bar" @click="goToBarOnMap(bar)" />
           </div>
         </div>
-        <h4>Top Bars Chosen by Deejiar </h4>
+        <p class="_subtitle">Top Bars Chosen by Deejiar </p>
         <!-- <h4>Asia's 50 Best Bars</h4> -->
         <!-- <h4>Asia's 100 Best Bars in Taipei City</h4> -->
       </div>

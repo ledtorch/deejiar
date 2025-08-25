@@ -3,7 +3,7 @@
     <div class="search-field" :class="{ focused: isFocused }">
       <div class="search-icon"></div>
 
-      <input class="search-input caption1" :placeholder="placeholder" type="search" :autofocus="autofocus"
+      <input class="search-input _caption1" :placeholder="placeholder" type="search" :autofocus="autofocus"
         :value="localValue" @input="onInput" @focus="isFocused = true" @blur="isFocused = false"
         @keydown.enter="emit('submit', localValue)" aria-label="Search" />
     </div>
