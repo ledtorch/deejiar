@@ -229,14 +229,14 @@ title {
 p {
 	font-size: var(--font-1st);
 	font-style: 1;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 24px;
 }
 
 ._body2 {
 	font-size: var(--font-2nd);
 	font-style: 1;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 22px;
 }
 
