@@ -168,7 +168,7 @@ const previousPage = () => {
 };
 
 const toHomePage = () => {
-  router.push('/');
+  router.push('/map');
 };
 
 const toDetailHomePage = () => {
