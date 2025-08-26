@@ -1,5 +1,10 @@
 <template>
   <div class="body flex-col">
+    <!-- Loading Ani -->
+    <div v-if="isLoading" class="image-loading-overlay">
+      <LoadingAni />
+    </div>
+
     <!-- Carousel Content -->
     <div v-if="currentPage === 0" class="cover" :style="{ 'backgroundImage': storeFrontImage }">
       <LeftArrow @click="previousPage" class="left-arrow" />
@@ -15,19 +20,8 @@
 
     <!-- Cover Page -->
     <div v-if="currentPage === 0" class="content flex-col">
-
-      <!-- Loading state -->
-      <div v-if="isLoading" class="image-loading-overlay">
-        <LoadingAni />
-      </div>
-
-      <!-- Error state -->
-      <div v-else-if="error" class="content-frame">
-        <p>Error: {{ error }}</p>
-      </div>
-
       <!-- Store data loaded -->
-      <div v-else-if="storeProperties" class="content-frame">
+      <div v-if="storeProperties" class="content-frame">
         <div class="items-frame">
           <div class="leftImage" :style="{ 'backgroundImage': storeImages.product1 }"></div>
           <div class="rightImage" :style="{ 'backgroundImage': storeImages.product2 }"></div>
@@ -432,15 +426,16 @@ onMounted(async () => {
 }
 
 .image-loading-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: 242424;
+  width: 100vw;
+  height: 100vh;
+  background-color: #242424;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
+  backdrop-filter: blur(8px);
 }
 </style>
