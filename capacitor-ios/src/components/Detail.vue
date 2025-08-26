@@ -15,9 +15,10 @@
 
     <!-- Cover Page -->
     <div v-if="currentPage === 0" class="content flex-col">
+
       <!-- Loading state -->
-      <div v-if="isLoading" class="content-frame">
-        <p>Loading store information...</p>
+      <div v-if="isLoading" class="image-loading-overlay">
+        <LoadingAni />
       </div>
 
       <!-- Error state -->
@@ -77,6 +78,7 @@ import TagShopType from "./Button/TagShopType.vue";
 import Review from "./Sheet/Review.vue";
 import Businesshour from "./Sheet/Businesshour.vue";
 import Address from "./Sheet/Address.vue";
+import LoadingAni from "./common/LoadingAni.vue";
 // Buttons
 import Home from "./Button/Icon/Home.vue";
 import HomeToDetail from "./Button/Icon/HomeToDetail.vue";
@@ -427,5 +429,18 @@ onMounted(async () => {
   position: absolute;
   right: 12px;
   top: 12px;
+}
+
+.image-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 </style>
