@@ -2,7 +2,12 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: "/",
+    path: '/',
+    name: 'launch',
+    component: () => import('./components/common/LaunchScreen.vue')
+  },
+  {
+    path: "/map",
     component: () => import("./components/Map.vue")
   },
   {
@@ -12,7 +17,7 @@ const routes = [
   },
   {
     path: "/account",
-    name: "Account",
+    name: "account",
     component: () => import("./components/Account.vue")
   },
 ];
