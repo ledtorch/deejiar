@@ -18,7 +18,7 @@ const routes = [
   {
     path: "/account",
     name: "account",
-    component: () => import("./components/Account.vue")
+    component: () => import("./views/Account.vue")
   },
 ];
 
