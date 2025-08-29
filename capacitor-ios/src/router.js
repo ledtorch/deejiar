@@ -16,9 +16,19 @@ const routes = [
     component: () => import("./components/Detail.vue")
   },
   {
+    path: "/plaza",
+    name: "plaza",
+    component: () => import("./views/Plaza.vue")
+  },
+  {
     path: "/account",
     name: "account",
     component: () => import("./views/Account.vue")
+  },
+  {
+    path: "/profile/:uid",
+    name: "profile",
+    component: () => import("./views/Profile.vue")
   },
 ];
 
