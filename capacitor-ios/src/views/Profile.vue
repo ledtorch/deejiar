@@ -8,6 +8,7 @@
 
 <style lang="scss" scoped>
 .body {
+  display: flex;
   position: relative;
   flex-direction: column;
   width: 100vw;

@@ -1,5 +1,5 @@
 <template>
-  <div class="body flex-col">
+  <main class="body flex-col">
     <!-- Loading Ani -->
     <div v-if="isLoading" class="image-loading-overlay">
       <LoadingAni />
@@ -63,7 +63,7 @@
       <!-- <GetDirection variant="google" :googlePlaceid="googlePlaceid", ></GetDirection> -->
     </div>
 
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -308,6 +308,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 // Frame
 .body {
+  display: flex;
   position: relative;
   width: 100vw;
   height: 100vh;

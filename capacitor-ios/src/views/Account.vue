@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <main class="body">
     <div class="frame flex-col">
       <h2 class="strech-attri">Profile</h2>
       <!-- <div class="account-section"></div> -->
@@ -38,7 +38,7 @@
         <p class="_caption2">Version 4 (2024.04.30)</p>
       </footer>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -46,6 +46,7 @@
 
 <style lang="scss" scoped>
 .body {
+  display: flex;
   position: relative;
   flex-direction: column;
   width: 100vw;
