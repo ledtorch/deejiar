@@ -7,15 +7,15 @@
 
     <!-- Carousel Content -->
     <div v-if="currentPage === 0" class="cover" :style="{ 'backgroundImage': storeFrontImage }">
-      <LeftArrow @click="previousPage" class="left-arrow" />
+      <LeftArrowRound @click="previousPage" class="left-arrow" />
       <Home @click="toHomePage" class="home-btn" />
       <Share @click="share" class="share-btn" />
-      <RightArrow @click="nextPage" class="right-arrow" />
+      <RightArrowRound @click="nextPage" class="right-arrow" />
     </div>
     <div v-else class="cover" :style="{ 'backgroundImage': currentItem }">
-      <LeftArrow @click="previousPage" class="left-arrow" />
+      <LeftArrowRound @click="previousPage" class="left-arrow" />
       <HomeToDetail @click="toDetailHomePage" class="home-btn" />
-      <RightArrow @click="nextPage" class="right-arrow" />
+      <RightArrowRound @click="nextPage" class="right-arrow" />
     </div>
 
     <!-- Cover Page -->
@@ -77,8 +77,8 @@ import LoadingAni from "./common/LoadingAni.vue";
 import Home from "./Button/Icon/Home.vue";
 import HomeToDetail from "./Button/Icon/HomeToDetail.vue";
 import Share from "./Button/Icon/Share.vue";
-import LeftArrow from "./Button/Icon/LeftArrow.vue";
-import RightArrow from "./Button/Icon/RightArrow.vue";
+import LeftArrowRound from "./Button/Icon/LeftArrowRound.vue";
+import RightArrowRound from "./Button/Icon/RightArrowRound.vue";
 import GetDirection from "./Button/CTA/GetDirection.vue";
 
 import { ref, watch, computed, onMounted } from 'vue';
