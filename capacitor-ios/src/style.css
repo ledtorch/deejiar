@@ -27,6 +27,47 @@
 	box-shadow: none;
 }
 
+/* Font Declarations */
+@font-face {
+	font-family: 'Geist';
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+	src: url('./assets/fonts/Geist-Light.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Geist';
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	src: url('./assets/fonts/Geist-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Geist';
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+	src: url('./assets/fonts/Geist-Medium.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Geist';
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+	src: url('./assets/fonts/Geist-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Geist';
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	src: url('./assets/fonts/Geist-Bold.woff2') format('woff2');
+}
+
 /* Default: Dark mode */
 :root {
 	font-weight: 400;
@@ -97,7 +138,7 @@ body {
 	overflow-y: hidden;
 
 	/* Font Family */
-	font-family: 'Be Vietnam Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 div {
@@ -137,8 +178,8 @@ div {
 		--font-h3: 36px;
 		--font-h4: 24px;
 
-		--font-1st: 17px;
-		--font-2nd: 15px;
+		--font-1st: 16px;
+		--font-2nd: 14px;
 		--font-3rd: 13px;
 		--font-4th: 12px;
 		--font-5th: 11px;
