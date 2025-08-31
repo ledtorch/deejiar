@@ -6,80 +6,64 @@
     </div>
 
     <!-- Carousel Content -->
-    <div v-if="currentPage === 0" class="cover" :style="{ 'backgroundImage': storeFrontImage }">
+    <div v-if="currentPage === 0" class="hero-container" :style="{ 'backgroundImage': storeFrontImage }">
       <LeftArrowRound @click="previousPage" class="left-arrow" />
       <Home @click="toHomePage" class="home-btn" />
       <Share @click="share" class="share-btn" />
       <RightArrowRound @click="nextPage" class="right-arrow" />
     </div>
-    <div v-else class="cover" :style="{ 'backgroundImage': currentItem }">
+    <div v-else class="hero-container" :style="{ 'backgroundImage': currentItem }">
       <LeftArrowRound @click="previousPage" class="left-arrow" />
       <HomeToDetail @click="toDetailHomePage" class="home-btn" />
       <RightArrowRound @click="nextPage" class="right-arrow" />
     </div>
 
     <!-- Cover Page -->
-    <div v-if="currentPage === 0" class="content flex-col">
+    <section v-if="currentPage === 0 && storeProperties" class="content-section">
       <!-- Store data loaded -->
-      <div v-if="storeProperties" class="content-frame">
-        <div class="items-frame">
-          <div class="leftImage" :style="{ 'backgroundImage': storeImages.product1 }"></div>
-          <div class="rightImage" :style="{ 'backgroundImage': storeImages.product2 }"></div>
-        </div>
-        <div class="content-frame">
-          <div class="title-block">
-            <h4 class="_stretch">{{ storeProperties.title }}</h4>
-            <TagShopType :store="storeProperties" />
-          </div>
-          <p class="frame-intro">{{ detailsJSON.description }}</p>
-        </div>
-        <Businesshour :bizTime="detailsJSON.businesshour" viewMode="overview" />
-        <div class="splitline"></div>
-        <div class="content-frame">
-          <!-- <Businesshour :bizTime="detailsJSON.businesshour" viewMode="detail" /> -->
-        </div>
-        <div class="content-frame">
-          <Address :address="detailsJSON.address" />
-        </div>
-        <div class="splitline"></div>
-        <GetDirection variant="apple" :appleAUID="storeProperties.auid"></GetDirection>
-        <GetDirection variant="google" :storeTitle="storeProperties.title"></GetDirection>
-        <!-- // 🏗️ TODO -->
-        <!-- <GetDirection variant="google" :googlePlaceid="googlePlaceid"></GetDirection> -->
+      <div class="products-shortcut">
+        <div class="leftImage" :style="{ 'backgroundImage': storeImages.product1 }"></div>
+        <div class="rightImage" :style="{ 'backgroundImage': storeImages.product2 }"></div>
       </div>
-    </div>
+      <div class="key-info-container">
+        <HeaderStore :store="storeProperties" />
+        <p class="store-description">{{ detailsJSON.description }}</p>
+      </div>
+      <Businesshour :bizTime="detailsJSON.businesshour" viewMode="overview" />
+      <div class="splitline"></div>
+      <!-- <Businesshour :bizTime="detailsJSON.businesshour" viewMode="detail" /> -->
+      <Address :address="detailsJSON.address" />
+      <div class="splitline"></div>
+      <GetDirection variant="apple" :appleAUID="storeProperties.auid"></GetDirection>
+      <GetDirection variant="google" :storeTitle="storeProperties.title"></GetDirection>
+    </section>
 
     <!-- Product Page -->
-    <div v-else class="content flex-col">
+    <section v-else class="content-section">
       <div v-if="currentProduct" class="title-block">
         <h4 class="_stretch">{{ currentProduct.name }}</h4>
         <h4>{{ currentProduct.price }}</h4>
       </div>
       <!-- Use v-html to render <br> -->
-      <p v-if="currentProduct" class="frame-intro" v-html="currentProduct.description"></p>
-      <!-- <GetDirection variant="apple" :appleAUID="appleAUID"></GetDirection>
-      <GetDirection variant="google" :storeTitle="storeTitle"></GetDirection> -->
-      <!-- // 🏗️ TODO -->
-      <!-- <GetDirection variant="google" :googlePlaceid="googlePlaceid", ></GetDirection> -->
-    </div>
+      <p v-if="currentProduct" class="store-description" v-html="currentProduct.description"></p>
+    </section>
 
   </main>
 </template>
 
 <script setup>
 // Components
-import TagShopType from "./Button/TagShopType.vue";
-import Review from "./Sheet/Review.vue";
-import Businesshour from "./Sheet/Businesshour.vue";
-import Address from "./Sheet/Address.vue";
+import Businesshour from "./sheet/Businesshour.vue";
+import Address from "./sheet/Address.vue";
 import LoadingAni from "./common/LoadingAni.vue";
+import HeaderStore from "./nav/HeaderStore.vue";
 // Buttons
-import Home from "./Button/Icon/Home.vue";
-import HomeToDetail from "./Button/Icon/HomeToDetail.vue";
-import Share from "./Button/Icon/Share.vue";
-import LeftArrowRound from "./Button/Icon/LeftArrowRound.vue";
-import RightArrowRound from "./Button/Icon/RightArrowRound.vue";
-import GetDirection from "./Button/CTA/GetDirection.vue";
+import Home from "./button/Icon/Home.vue";
+import HomeToDetail from "./button/Icon/HomeToDetail.vue";
+import Share from "./button/Icon/Share.vue";
+import LeftArrowRound from "./button/Icon/LeftArrowRound.vue";
+import RightArrowRound from "./button/Icon/RightArrowRound.vue";
+import GetDirection from "./button/CTA/GetDirection.vue";
 
 import { ref, watch, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -177,24 +161,6 @@ const share = () => {
   const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
   window.open(twitterUrl, '_blank');
 };
-
-// Default share function
-// const share = () => {
-//   if (navigator.share) {
-//     navigator.share({
-//       title: storeTitle.value,
-//       text: `Check out ${storeTitle.value} with Deejiar!`,
-//       url: window.location.href
-//     }).then(() => {
-//       console.log('Successfully shared');
-//     }).catch((error) => {
-//       console.error('Error sharing:', error);
-//     });
-//   } else {
-//     alert('Sharing is not supported on this browser');
-//   }
-// };
-
 
 // JSON Endpoints
 const mapEndpoint = (path) => {
@@ -306,41 +272,33 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-// Frame
-.body {
+.image-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
   display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+
+.body {
   position: relative;
+
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
 
-  /* 📱 Account for top safe area */
-  top: env(safe-area-inset-top);
-
-  /* Media query for screen widths 430px and below */
-  @media (max-width: 430px) {
-    padding-bottom: 99px;
-  }
-
+  background-color: var(--background);
 }
 
-.content {
-  align-items: flex-start;
-  width: 100%;
-  padding: 20px;
-  gap: 24px;
-}
-
-.title-block {
-  align-items: flex-start;
-  align-items: center;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-self: stretch;
-  gap: 12px;
-}
-
-.cover {
+.hero-container {
   position: relative;
   width: 100%;
 
@@ -351,6 +309,57 @@ onMounted(async () => {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  border-radius: 0 0 var(--round-xl) var(--round-xl);
+}
+
+// Buttons on hero image
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left-arrow {
+  left: var(--block);
+}
+
+.right-arrow {
+  right: var(--block);
+}
+
+.home-btn {
+  position: absolute;
+  left: var(--block);
+  top: var(--block);
+}
+
+.share-btn {
+  position: absolute;
+  right: var(--block);
+  top: var(--block);
+}
+
+// Store title and description
+.key-info-container {
+  flex-direction: column;
+  gap: var(--block);
+}
+
+.store-description {
+  align-items: flex-start;
+  align-self: stretch;
+  padding: var(--block);
+  border-radius: var(--round-m);
+  background: var(--content);
+  color: var(--primary-content);
+}
+
+.products-shortcut {
+  align-items: flex-start;
+  width: 100%;
+  gap: var(--block);
 }
 
 .leftImage {
@@ -358,9 +367,7 @@ onMounted(async () => {
   // width: 100px;
   width: 66%;
   height: 100px;
-  border-radius: 12px;
-
-  // Image setting
+  border-radius: var(--round-l);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -371,72 +378,27 @@ onMounted(async () => {
   // width: 100px;
   width: 34%;
   height: 100px;
-  border-radius: 12px;
-
-  // Image setting
+  border-radius: var(--round-l); // Image setting
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.content-frame {
+.content-section {
+  display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-
-.items-frame {
   align-items: flex-start;
   width: 100%;
-  gap: 12px;
+  padding: var(--wrapper);
+  gap: var(--container)
 }
 
-.frame-intro {
+.title-block {
   align-items: flex-start;
-  align-self: stretch;
-  padding: 12px;
-  border-radius: var(--border-button-round, 8px);
-  background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
-}
-
-// Button
-.left-arrow,
-.right-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.left-arrow {
-  left: 12px;
-}
-
-.right-arrow {
-  right: 12px;
-}
-
-.home-btn {
-  position: absolute;
-  left: 12px;
-  top: 12px;
-}
-
-.share-btn {
-  position: absolute;
-  right: 12px;
-  top: 12px;
-}
-
-.image-loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #242424;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 2;
-  backdrop-filter: blur(8px);
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-self: stretch;
+  gap: var(--block);
 }
 </style>
