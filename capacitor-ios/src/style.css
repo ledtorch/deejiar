@@ -317,12 +317,6 @@ p {
 }
 
 /* ---------- Global Utility Tokens ---------- */
-._divider {
-	width: 100%;
-	min-height: 1px;
-	background: var(--base);
-}
-
 ._stretch {
 	flex: 1 0 0;
 }
