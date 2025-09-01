@@ -53,18 +53,18 @@
 
 <script setup>
 // Components
-import Businesshour from "./sheet/Businesshour.vue";
-import Address from "./sheet/Address.vue";
-import LoadingAni from "./common/LoadingAni.vue";
-import HeaderStore from "./nav/HeaderStore.vue";
-import Divider from "./common/Divider.vue";
+import Businesshour from "../components/sheet/Businesshour.vue";
+import Address from "../components/sheet/Address.vue";
+import LoadingAni from "../components/common/LoadingAni.vue";
+import HeaderStore from "../components/nav/HeaderStore.vue";
+import Divider from "../components/common/Divider.vue";
 // Buttons
-import Home from "./button/Icon/Home.vue";
-import HomeToDetail from "./button/Icon/HomeToDetail.vue";
-import Share from "./button/Icon/Share.vue";
-import LeftArrowRound from "./button/Icon/LeftArrowRound.vue";
-import RightArrowRound from "./button/Icon/RightArrowRound.vue";
-import GetDirection from "./button/CTA/GetDirection.vue";
+import Home from "../components/button/Icon/Home.vue";
+import HomeToDetail from "../components/button/Icon/HomeToDetail.vue";
+import Share from "../components/button/Icon/Share.vue";
+import LeftArrowRound from "../components/button/Icon/LeftArrowRound.vue";
+import RightArrowRound from "../components/button/Icon/RightArrowRound.vue";
+import GetDirection from "../components/button/CTA/GetDirection.vue";
 
 import { ref, watch, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';

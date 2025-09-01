@@ -10,9 +10,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useUserLocation } from '@/utils/useUserLocation.js';
-import BottomSheet from "./Sheet/BottomSheet.vue";
-import Locate from "./Button/Icon/Locate.vue";
-import PicksByAuthor from "./Card/PicksByAuthor.vue";
+import BottomSheet from "../components/sheet/BottomSheet.vue";
+import Locate from "../components/button/Icon/Locate.vue";
+import PicksByAuthor from "../components/card/PicksByAuthor.vue";
 
 const map = ref(null);
 const mapboxgl = ref(null);

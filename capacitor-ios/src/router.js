@@ -8,12 +8,12 @@ const routes = [
   },
   {
     path: "/map",
-    component: () => import("./components/Map.vue")
+    component: () => import("./views/Map.vue")
   },
   {
     path: "/detail/:id",
     name: "detail",
-    component: () => import("./components/Detail.vue")
+    component: () => import("./views/Detail.vue")
   },
   {
     path: "/plaza",
@@ -29,6 +29,11 @@ const routes = [
     path: "/profile/:uid",
     name: "profile",
     component: () => import("./views/Profile.vue")
+  },
+  {
+    path: "/subscription",
+    name: "subscription",
+    component: () => import("./views/Subscription.vue")
   },
 ];
 
