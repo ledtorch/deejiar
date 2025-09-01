@@ -30,12 +30,12 @@
         <p class="store-description">{{ detailsJSON.description }}</p>
       </div>
       <Businesshour :bizTime="detailsJSON.businesshour" viewMode="overview" />
-      <div class="splitline"></div>
+      <Divider />
       <!-- <Businesshour :bizTime="detailsJSON.businesshour" viewMode="detail" /> -->
       <Address :address="detailsJSON.address" />
-      <div class="splitline"></div>
-      <GetDirection variant="apple" :appleAUID="storeProperties.auid"></GetDirection>
-      <GetDirection variant="google" :storeTitle="storeProperties.title"></GetDirection>
+      <Divider />
+      <GetDirection variant="apple" :appleAUID="storeProperties.auid" />
+      <GetDirection variant="google" :storeTitle="storeProperties.title" />
     </section>
 
     <!-- Product Page -->
@@ -57,6 +57,7 @@ import Businesshour from "./sheet/Businesshour.vue";
 import Address from "./sheet/Address.vue";
 import LoadingAni from "./common/LoadingAni.vue";
 import HeaderStore from "./nav/HeaderStore.vue";
+import Divider from "./common/Divider.vue";
 // Buttons
 import Home from "./button/Icon/Home.vue";
 import HomeToDetail from "./button/Icon/HomeToDetail.vue";
@@ -82,9 +83,6 @@ const appleAUID = ref('');
 const googlePlaceid = ref('');
 const geoData = ref('');
 const currentPage = ref(0);
-
-
-
 
 // Updated computed properties for new data structure
 const storeFrontImage = computed(() => {
@@ -296,6 +294,7 @@ onMounted(async () => {
   overflow-y: auto;
 
   background-color: var(--background);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .hero-container {
@@ -317,7 +316,7 @@ onMounted(async () => {
 .left-arrow,
 .right-arrow {
   position: absolute;
-  top: 50%;
+  top: calc(40% + env(safe-area-inset-top));
   transform: translateY(-50%);
 }
 
@@ -332,13 +331,15 @@ onMounted(async () => {
 .home-btn {
   position: absolute;
   left: var(--block);
-  top: var(--block);
+  // top: var(--block);
+  top: env(safe-area-inset-top);
 }
 
 .share-btn {
   position: absolute;
   right: var(--block);
-  top: var(--block);
+  // top: var(--block);
+  top: env(safe-area-inset-top);
 }
 
 // Store title and description
@@ -364,7 +365,6 @@ onMounted(async () => {
 
 .leftImage {
   align-items: center;
-  // width: 100px;
   width: 66%;
   height: 100px;
   border-radius: var(--round-l);
@@ -375,10 +375,9 @@ onMounted(async () => {
 
 .rightImage {
   align-items: center;
-  // width: 100px;
   width: 34%;
   height: 100px;
-  border-radius: var(--round-l); // Image setting
+  border-radius: var(--round-l);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
