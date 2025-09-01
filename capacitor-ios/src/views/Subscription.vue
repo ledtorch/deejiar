@@ -10,7 +10,7 @@
       </div>
       <SubscriptionRadioCard />
     </section>
-    <PrimaryButton action="Start Free Trial" />
+    <PrimaryButton action="Start Free Trial" default />
   </main>
 </template>
 

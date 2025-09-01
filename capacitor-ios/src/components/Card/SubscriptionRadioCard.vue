@@ -13,11 +13,9 @@
           </div>
           <span class="_title price">$4.99/mo</span>
         </div>
-
-
       </div>
 
-      <div class="_divider-horizontal" />
+      <Divider />
 
       <!-- Yearly Plan -->
       <div class="plan-card" :class="{ 'selected': selectedPlan === 'yearly' }" @click="selectedPlan = 'yearly'">
@@ -29,14 +27,10 @@
             </div>
           </div>
 
-
           <span class="_title price">$49/yr</span>
           <p class="_footnote savings">
             Save over <span class="_footnote savings-highlight">20%</span> with the yearly plan.
           </p>
-
-
-
 
         </div>
       </div>
@@ -60,6 +54,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import Divider from '../common/Divider.vue'
 
 // State
 const selectedPlan = ref('yearly') // Default to yearly as shown in the design
@@ -102,10 +97,6 @@ watch(selectedPlan, (newPlan) => {
   /* Interaction */
   cursor: pointer;
   transition: all 0.2s ease;
-
-  &:active {
-    transform: scale(0.98);
-  }
 }
 
 .plan-content {
@@ -222,16 +213,5 @@ watch(selectedPlan, (newPlan) => {
   width: 100%;
   padding: 0 var(--box);
   gap: var(--box);
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 390px) {
-  .subscription-section {
-    padding: 0 var(--division);
-  }
-
-  .plan-card {
-    padding: var(--division);
-  }
 }
 </style>
