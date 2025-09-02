@@ -1,11 +1,8 @@
 <template>
   <main class="launch-screen">
-    <div class="logo-container">
-      <lottie-player v-if="!useFallback" ref="lottiePlayerRef" autoplay mode="normal" :src="animationSrc"
-        class="loading-animation" @error="handleError" />
-      <img v-else src="/icon/logo/loading.gif" alt="Loading..." class="loading-animation" />
-      <h4 class="app-name">Deejiar</h4>
-    </div>
+    <lottie-player v-if="!useFallback" ref="lottiePlayerRef" autoplay mode="normal" :src="animationSrc"
+      class="loading-animation" @error="handleError" />
+    <img v-else src="/icon/logo/loading.gif" alt="Loading..." class="loading-animation" />
   </main>
 </template>
 
@@ -44,20 +41,8 @@ onMounted(() => {
   align-items: center;
 }
 
-.logo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
 .loading-animation {
   width: 90px;
   height: 90px;
-}
-
-.app-name {
-  color: #fff;
-  margin: 0;
 }
 </style>
