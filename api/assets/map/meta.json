@@ -15,7 +15,8 @@
         "title": "Big Bear Cafe",
         "type": "cafe",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -32,7 +33,8 @@
         "title": "Teaism Penn Quarter",
         "type": "cafe",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -49,7 +51,8 @@
         "title": "Jane Jane",
         "type": "bar",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -66,7 +69,8 @@
         "title": "Rice Restaurant",
         "type": "restaurant",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -83,7 +87,8 @@
         "title": "THEP Thai Restaurant",
         "type": "thai",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -100,7 +105,8 @@
         "title": "Contrabands and Freedmen Cemetery Memorial",
         "type": "landscape",
         "layout": "view",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -117,7 +123,8 @@
         "title": "Gott's Roadside",
         "type": "burger",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -134,7 +141,8 @@
         "title": "Red Rock Coffee",
         "type": "cafe",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -151,7 +159,8 @@
         "title": "Hsiao's Beef Offal Soup",
         "type": "formosan-noodles",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -168,7 +177,8 @@
         "title": "Ole Rum Bar & Tapas",
         "type": "bar",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -185,7 +195,8 @@
         "title": "Larriere-cour",
         "type": "bar",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -202,7 +213,8 @@
         "title": "Pàng Taqueria",
         "type": "taco",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -219,7 +231,8 @@
         "title": "El Sabroso Mexican Food",
         "type": "taco",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -236,7 +249,8 @@
         "title": "Teotihuacan Mexican Restaurant",
         "type": "taco",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -253,7 +267,8 @@
         "title": "Odd One Out Dunnan Shop",
         "type": "icecream",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -270,7 +285,8 @@
         "title": "Indulge Experimental Bistro",
         "type": "bar",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -287,7 +303,8 @@
         "title": "Selfish Burger",
         "type": "burger",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -304,7 +321,8 @@
         "title": "Carrot",
         "type": "bar",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -321,7 +339,8 @@
         "title": "Ocean Kitchen & Cafe Shop",
         "type": "cafe",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -338,7 +357,8 @@
         "title": "Tsubaki Salon Taipei",
         "type": "pancake",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -355,7 +375,8 @@
         "title": "Fubon Art Museum",
         "type": "modern-museum",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -372,7 +393,8 @@
         "title": "Fú Dàu Pastry Studio",
         "type": "pancake",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -389,7 +411,8 @@
         "title": "Bar Mood Taipei",
         "type": "bar",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -406,7 +429,8 @@
         "title": "Jigger & Pony",
         "type": "bar",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -423,7 +447,8 @@
         "title": "Common Man Coffee Roasters - Martin Road",
         "type": "cafe",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -440,7 +465,8 @@
         "title": "Great Nanyang Heritage Cafe",
         "type": "cafe",
         "layout": "food",
-        "tag": []
+        "storetag": [],
+        "producttag": []
       }
     },
     {
@@ -457,7 +483,8 @@
         "title": "Taiwan Beef Noodles Chicken Soup",
         "type": "formosan-noodles",
         "layout": "food",
-        "tag": ["cashonly", "takeaway", "crowded"]
+        "storetag": ["cashonly", "takeaway", "crowded"],
+        "producttag": []
       }
     },
     {
@@ -474,7 +501,8 @@
         "title": "Kurogi Japanese Sweets Lab",
         "type": "shaved-ice",
         "layout": "food",
-        "tag": ["dessert"]
+        "storetag": [],
+        "producttag": ["dessert"]
       }
     }
   ]
