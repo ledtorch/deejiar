@@ -1,455 +1,256 @@
 <template>
-  <div class="bottom-sheet flex-col" :style="{ height: bottomSheetHeight }" ref="bottomSheet">
+  <div class="bottom-sheet" :style="{ height: bottomSheetHeight }" ref="bottomSheet">
+    <!-- Drag Control Bar -->
     <div class="control-area" ref="controlArea">
       <div class="control-bar"></div>
     </div>
 
-    <div class="bottom-sheet-content" v-show="!storeState">
-      <div class="search-wrapper">
-        <TheSearch />
-        <Avatar />
-      </div>
-      <p class="_body2">Wanna get the premium list and advanced features before they launch on Deejiar? Or simply want
-        to leave your
-        feedback? =)</p>
-      <a href="https://www.buymeacoffee.com/deejiar" alt="Buy Me a Coffee" class="buy-me-a-coffee-button">
-        <img
-          src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=deejiar&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff"
-          alt="Buy Me a Coffee" />
-      </a>
-      <div class="frame_learn-more">
-        <p class="_subtitle">Learn more on:</p>
-        <div class="button-set">
-          <a href="https://twitter.com/deejiar" style="text-decoration: none; color: inherit;">
-            <div>
-              <img class="social-button" src="/icon/social/twitter.png" alt="Twitter">
-              <p class="_button-secondary">@deejiar</p>
-            </div>
-          </a>
-          <a href="https://www.instagram.com/deejiar" style="text-decoration: none; color: inherit;">
-            <div>
-              <img class="social-button" src="/icon/social/instagram.png" alt="Instagram">
-              <p class="_button-secondary">@deejiar</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="bottom-sheet-content" v-if="storeState">
-      <!-- Template Food -->
-      <template v-if="storeLayout === 'food'">
-        <div class="nav">
-          <div class="title-block">
-            <h4 class="_stretch">{{ store ? store.title : "" }}</h4>
-            <TagShopType :store="store" />
-          </div>
-          <Close :state="buttonState" @close="closeBottomSheet" />
-        </div>
-        <div class="image-div">
-          <div class="main-column" :style="{ 'backgroundImage': storeImages.storefront }"></div>
-          <div class="secondary-column">
-            <div class="image" :style="{ 'backgroundImage': storeImages.product1 }"></div>
-            <div class="image" :style="{ 'backgroundImage': storeImages.product2 }"></div>
-          </div>
-        </div>
-        <div class="state">
-          <p class="text-limited">{{ detailsJSON.description || "The description is missing 😢" }}</p>
-        </div>
-        <!-- <Review /> -->
-        <Businesshour :bizTime="detailsJSON.businesshour" viewMode="overview" />
-        <div class="key-info-div"></div>
-      </template>
-
-      <!-- Template View -->
-      <template v-if="storeLayout === 'view'">
-        <div class="nav">
-          <div class="title-block">
-            <h4 class="_stretch">{{ store ? store.title : "" }}</h4>
-            <TagShopType :store="store" />
-          </div>
-          <Close :state="buttonState" @close="closeBottomSheet" />
-        </div>
-        <div class="image-div">
-          <div class="main-column--view" :style="{ 'backgroundImage': storeImages.storefront }"></div>
-        </div>
-        <div class="state">
-          <p class="text-limited">{{ detailsJSON.description || "The description is missing 😢" }}</p>
-        </div>
-        <Businesshour :bizTime="detailsJSON.businesshour" viewMode="overview" />
-        <div class="key-info-div"></div>
-      </template>
-    </div>
+    <!-- Dynamic Panel Content -->
+    <component :is="currentPanelComponent" v-bind="panelProps" @close="handlePanelClose"
+      @height-change="updateSheetHeight" @navigate="handleNavigation" />
   </div>
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, defineAsyncComponent } from 'vue';
+import { ref, computed, watch, provide } from 'vue';
 import { useRouter } from 'vue-router';
 
-// Button
-const Avatar = defineAsyncComponent(() => import("./Avatar.vue"));
-const TagShopType = defineAsyncComponent(() => import("../Button/TagShopType.vue"));
-const Close = defineAsyncComponent(() => import("../Button/Icon/Close.vue"));
+// Import all panels
+import PanelSearch from './panel/PanelSearch.vue';
+import PanelStore from './panel/PanelStore.vue';
+import PanelAuth from './panel/PanelAuth.vue';
 
-// Components
-const TheSearch = defineAsyncComponent(() => import("../TheSearch.vue"));
-const Businesshour = defineAsyncComponent(() => import("./Businesshour.vue"));
-// const Review = defineAsyncComponent(() => import("./Review.vue"));
+const router = useRouter();
 
-// Props
+// Props from Map.vue
 const props = defineProps({
-  store: Object
+  store: Object,
+  initialPanel: {
+    type: String,
+    default: 'search'
+  }
 });
 
-// Constants
-const minHeight = "32px";
-const maxHeight = "100%";
-const withStoreHeight = "467px";
-const deviceHeight = `calc(100vh - env(safe-area-inset-top))`
+// Emits
+const emit = defineEmits(['reset', 'panel-change']);
 
-// Refs
-const isDragging = ref(false);
-const bottomSheetHeight = ref("32px");
+// Sheet height management
+const bottomSheetHeight = ref('60px');
 const bottomSheet = ref(null);
 const controlArea = ref(null);
-const buttonState = ref("default");
 
-// Store Details Endpoint
-const storeDetailsEndpoint = () => {
-  const { id, type, title } = props.store;
-  const country = id.split('_')[0];
-  const safeTitle = title
-    .replace(/&/g, 'and')               // Convert & to "and"
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, '')    // Remove diacritics
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')           // Remove punctuation
-    .replace(/\s+/g, '-')               // Replace spaces with hyphens
-    ;
-  return `${import.meta.env.VITE_CDN_URL}/stores/${country}/${type}/${safeTitle}`;
+// Panel state management
+const currentPanel = ref(props.initialPanel);
+const panelComponents = {
+  search: PanelSearch,
+  store: PanelStore,
+  auth: PanelAuth
 };
 
-// Store Details JSON
-const detailsJSON = ref(null);
-watch(() => props.store, async (newStore) => {
-  console.log('props.store', props.store)
-  if (newStore) {
-    try {
-      // Force refresh code
-      // const version = 'v=1';
-      // const url = `${storeDetailsEndpoint()}/details.json?${version}`;
-      const url = `${storeDetailsEndpoint()}/details.json?`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('Failed to load details.json');
-      detailsJSON.value = await res.json();
-    } catch (err) {
-      console.error('❌ Failed to fetch details.json:', err);
-      detailsJSON.value = null;
-    }
-  } else {
-    detailsJSON.value = null;
+// Default panel is PanelSearch
+const currentPanelComponent = computed(() => {
+  return panelComponents[currentPanel.value] || PanelSearch;
+});
+
+// Panel props to pass down
+const panelProps = computed(() => {
+  const baseProps = {
+    isActive: true
+  };
+
+  // Add specific props based on panel type
+  if (currentPanel.value === 'store' && props.store) {
+    return { ...baseProps, store: props.store };
   }
+
+  return baseProps;
 });
 
-const storeState = computed(() => props.store);
-const storeLayout = computed(() => props.store?.layout);
+// Height presets
+const HEIGHTS = {
+  MIN: '32px',
+  STORE: '467px',
+  SEARCH: '400px',
+  AUTH: '396px',
+  FULL: `calc(100vh - env(safe-area-inset-top))`,
+};
 
-const storeImages = computed(() => {
-  const base = storeDetailsEndpoint();
-  const safe = (product) => {
-    const name = product?.name;
-    return name
-      ? name
-        .replace(/&/g, 'and')               // Convert & to "and"
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, '')    // Remove diacritics
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '')           // Remove punctuation
-        .replace(/\s+/g, '-')               // Replace spaces with hyphens
-      : null;
-  };
-
-  const safeName1 = safe(detailsJSON.value?.product1);
-  const safeName2 = safe(detailsJSON.value?.product2);
-
-  return {
-    storefront: `url("${base}/storefront-day.jpg")`,
-    product1: safeName1 ? `url("${base}/${safeName1}.jpg")` : null,
-    product2: safeName2 ? `url("${base}/${safeName2}.jpg")` : null
-  };
+const flexiblePanels = ['store', 'auth']; // Configurable list
+const isCurrentPanelFlexible = computed(() => {
+  return flexiblePanels.includes(currentPanel.value);
 });
 
-
-// Expand BottomSheet when user clicks store marker
+// Watch for store selection from Map.vue
 watch(() => props.store, (newStore) => {
-  if (newStore !== null) {
-    bottomSheetHeight.value = withStoreHeight;
+  if (newStore) {
+    currentPanel.value = 'store';
+    bottomSheetHeight.value = HEIGHTS.STORE;
+  } else {
+    currentPanel.value = 'search';
+    bottomSheetHeight.value = HEIGHTS.SEARCH;
   }
 });
 
-// Dragging logic
-const router = useRouter();
+// Panel management methods
+const switchPanel = (panelName) => {
+  if (!panelComponents[panelName]) {
+    console.warn(`Panel "${panelName}" not found`);
+    return;
+  }
+
+  currentPanel.value = panelName;
+
+  // Set appropriate height for each panel
+  switch (panelName) {
+    case 'store':
+      bottomSheetHeight.value = HEIGHTS.STORE;
+      break;
+    case 'auth':
+      bottomSheetHeight.value = HEIGHTS.AUTH;
+      break;
+    default:
+      bottomSheetHeight.value = HEIGHTS.SEARCH;
+  }
+
+  emit('panel-change', panelName);
+};
+
+// Handle panel events
+const handlePanelClose = () => {
+  if (currentPanel.value === 'store') {
+    emit('reset'); // Tell Map.vue to remove marker
+  }
+
+  currentPanel.value = 'search';
+  bottomSheetHeight.value = HEIGHTS.MIN;
+};
+
+const updateSheetHeight = (height) => {
+  bottomSheetHeight.value = height;
+};
+
+const handleNavigation = (route) => {
+  router.push(route);
+};
+
+// Dragging functionality
+const isDragging = ref(false);
 let startY = 0;
 let startHeight = 0;
 
-const updateSheetHeight = (height) => {
-  bottomSheetHeight.value = `${height}`;
-};
-
 const dragStart = (event) => {
-  // // 🐞 Debug console
-  // console.log("dragStart");
-
   event.preventDefault();
-  // Assign startY to pageY(mouse / touch screen)
   isDragging.value = true;
   startY = event.pageY || event.touches?.[0].pageY;
   startHeight = parseInt(bottomSheetHeight.value);
-  bottomSheet.value.classList.add("dragging");
-  // // 🐞 Debug console
-  // console.log("startHeight: " + startHeight + " & " + "startY: " + startY);
+  bottomSheet.value.classList.add('dragging');
 
-  // Add listener
-  document.addEventListener("mousemove", dragging);
-  document.addEventListener("mouseup", dragStop);
-  document.addEventListener("touchmove", dragging);
-  document.addEventListener("touchend", dragStop);
-};
-
-const dragStop = () => {
-  // // 🐞 Debug console
-  // console.log("dragStop");
-
-  isDragging.value = false;
-  bottomSheet.value.classList.remove("dragging");
-  const sheetHeight = parseInt(bottomSheet.value.style.height);
-
-  // Navigate to detail.vue
-  if (sheetHeight >= 600 && props.store?.title) {
-    router.push({
-      name: "detail",
-      params: {
-        id: props.store.id,
-      }
-    });
-  } else if (sheetHeight >= 600 && !props.store?.title) {
-    console.log("deviceHeight: " + deviceHeight);
-    updateSheetHeight(deviceHeight);
-  } else if (sheetHeight < 150) {
-    updateSheetHeight(minHeight);
-  } else if (sheetHeight > 500) {
-    updateSheetHeight(maxHeight);
-  } else {
-    updateSheetHeight(withStoreHeight);
-  }
-
-  // Remove listener
-  document.removeEventListener("mousemove", dragging);
-  document.removeEventListener("touchmove", dragging);
-  document.removeEventListener("mouseup", dragStop);
-  document.removeEventListener("touchend", dragStop);
+  document.addEventListener('mousemove', dragging);
+  document.addEventListener('mouseup', dragStop);
+  document.addEventListener('touchmove', dragging, { passive: false });
+  document.addEventListener('touchend', dragStop);
 };
 
 const dragging = (event) => {
-  // // 🐞 Debug console
-  // console.log("Dragging");
+  if (!isDragging.value) return;
 
   event.preventDefault();
+  const currentY = event.pageY || event.touches?.[0].pageY;
+  const delta = startY - currentY;
+  const newHeight = Math.max(32, Math.min(window.innerHeight, startHeight + delta));
 
-  if (!isDragging.value) return;
-  const delta = startY - (event.pageY || event.touches?.[0].pageY);
-  const newHeight = startHeight + delta;
-  updateSheetHeight(newHeight + "px");
-  // // 🐞 Debug console
-  // console.log("newHeight: " + newHeight + " & " + "delta: " + delta);
+  bottomSheetHeight.value = `${newHeight}px`;
 };
 
-// Close BottomSheet
-const emit = defineEmits(['reset']);
-const closeBottomSheet = () => {
-  emit("reset");
+const dragStop = () => {
+  isDragging.value = false;
+  bottomSheet.value.classList.remove('dragging');
+
+  const currentHeight = parseInt(bottomSheetHeight.value);
+
+  // Snap to nearest preset height
+  if (currentHeight < 100) {
+    bottomSheetHeight.value = HEIGHTS.MIN;
+  } else if (currentHeight > 600 && currentPanel.value === 'store' && props.store) {
+    // Navigate to detail view if dragged high enough
+    router.push({
+      name: 'detail',
+      params: { id: props.store.id }
+    });
+  } else if (currentHeight > 500) {
+    bottomSheetHeight.value = HEIGHTS.FULL;
+  } else {
+    // Return to panel's default height
+    const defaultHeight = HEIGHTS[currentPanel.value.toUpperCase()] || HEIGHTS.SEARCH;
+    bottomSheetHeight.value = defaultHeight;
+  }
+
+  document.removeEventListener('mousemove', dragging);
+  document.removeEventListener('touchmove', dragging);
+  document.removeEventListener('mouseup', dragStop);
+  document.removeEventListener('touchend', dragStop);
 };
 
-// Lifecycle hooks
-// onMounted(() => {
-//   controlArea.value.addEventListener("mousedown", dragStart);
-//   controlArea.value.addEventListener("touchstart", dragStart);
-// });
-watch(
-  () => controlArea.value,
-  (el) => {
-    if (el) {
-      el.addEventListener("mousedown", dragStart);
-      el.addEventListener("touchstart", dragStart, { passive: false });
-    }
-  },
-  { immediate: true }
-);
+// Setup drag listeners
+watch(controlArea, (el) => {
+  if (el) {
+    el.addEventListener('mousedown', dragStart);
+    el.addEventListener('touchstart', dragStart, { passive: false });
+  }
+}, { immediate: true });
+
+// Expose methods for parent component
+defineExpose({
+  switchPanel,
+  updateSheetHeight
+});
+
+provide('bottomSheetControls', {
+  switchPanel,
+  updateSheetHeight,
+  getCurrentPanel: () => currentPanel.value,
+  closePanel: handlePanelClose
+});
 </script>
 
 <style lang="scss" scoped>
 .bottom-sheet {
-  gap: 0px;
-  width: 100%;
-  height: 100%;
-  min-height: 60px;
-  max-height: 100%;
-  padding: 0px 16px 16px 16px;
-  border-radius: 12px 12px 0px 0px;
-  transition: height 0.3s ease;
-  background-color: #0a090b;
-}
-
-.bottom-sheet-content {
+  position: relative;
+  display: flex;
   flex-direction: column;
-  gap: 12px;
-  // background-color: #000;
+  width: 100%;
+  min-height: 32px;
+  max-height: 100vh;
+  padding: 0;
+  border-radius: var(--round-xl) var(--round-xl) 0 0;
+  background-color: var(--base);
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &.dragging {
+    transition: none;
+  }
 }
-
-
 
 .control-area {
   cursor: grab;
-  flex-direction: column;
+  display: flex;
   justify-content: center;
   align-items: center;
-  align-self: stretch;
   height: 32px;
-  padding: 16px 0px 12px 0px;
-  touch-action: none; // Prevent default touch actions for iOS
-}
+  padding: 12px 0;
+  touch-action: none;
+  flex-shrink: 0;
 
-.control-area:active {
-  cursor: grabbing;
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .control-bar {
-  cursor: grab;
-  flex-shrink: 0;
   width: 48px;
   height: 4px;
   border-radius: 4px;
   background-color: #808cab;
-}
-
-.nav {
-  gap: 12px;
-}
-
-.title-block {
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-self: stretch;
-  align-items: center;
-  flex-wrap: wrap;
-  flex: 1 0 0;
-  gap: 12px;
-}
-
-.image-div {
-  align-items: flex-end;
-  align-self: stretch;
-  gap: 8px;
-}
-
-.main-column {
-  width: 180px;
-  height: 180px;
-  border-radius: 12px;
-
-  // Image setting
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.main-column--view {
-  width: 100%;
-  height: 260px;
-  border-radius: 12px;
-
-  // Image setting
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.button-set {
-  align-items: flex-start;
-  align-self: stretch;
-  gap: 12px;
-}
-
-.social-button {
-  width: 24px;
-  height: 24px;
-}
-
-.image {
-  align-self: stretch;
-  height: 86px;
-  border-radius: 12px;
-
-  // Image setting
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.secondary-column {
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  flex: 1 0 0;
-  gap: 8px;
-}
-
-.state {
-  flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
-  padding: 12px;
-  border-radius: var(--border-button-round, 8px);
-  background: var(--4-base-dark-base, rgba(255, 255, 255, 0.07));
-}
-
-.text-limited {
-  max-height: 48px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  /* Adjust to the number of lines you want to display */
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-}
-
-.key-info-div {
-  flex-direction: column;
-  align-self: stretch;
-  gap: 12px;
-}
-
-.businesshour-frame {
-  gap: 4px;
-}
-
-.frame_learn-more {
-  flex-direction: column;
-  gap: 12px;
-  align-self: stretch;
-}
-
-.buy-me-a-coffee-button img {
-  width: 235px;
-  height: 50px;
-  display: block;
-}
-
-.search-wrapper {
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-  gap: 12px;
 }
 </style>

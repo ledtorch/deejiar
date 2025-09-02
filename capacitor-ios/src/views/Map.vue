@@ -3,7 +3,7 @@
     <div id="map"></div>
     <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" />
     <Locate id="button-locate" @locate="locateUser" aria-label="locate user" />
-    <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" />
+    <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" ref="bottomSheetRef" />
   </div>
 </template>
 
@@ -19,6 +19,7 @@ const mapboxgl = ref(null);
 const selectedStore = ref(null);
 const tempMarker = ref(null);
 const userLocationControl = ref(null);
+const bottomSheetRef = ref(null);
 
 // utils
 const { userPosition, startWatching, stopWatching } = useUserLocation();
