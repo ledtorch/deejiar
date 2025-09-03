@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "0.0.0",
+  "version": "0.01.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,7 @@
     "@capacitor/status-bar": "^7.0.0",
     "@lottiefiles/lottie-player": "^2.0.12",
     "autoprefixer": "^10.4.19",
-    "caniuse-lite": "^1.0.30001608",
+    "caniuse-lite": "^1.0.30001737",
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
     "mapbox-gl": "^3.6.0",

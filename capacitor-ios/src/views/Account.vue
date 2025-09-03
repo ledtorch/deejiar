@@ -1,117 +1,82 @@
 <template>
   <main class="body">
-    <div class="frame flex-col">
-      <h2 class="strech-attri">Profile</h2>
-      <!-- <div class="account-section"></div> -->
-      <div class="splitline"></div>
-      <!-- <div class="page-card">
-        <p>Quick Guide</p>
+    <section v-if="!isSubscribed" class="main-container">
+      <HeaderPage :pagetitle="'Account'" />
+      <div class="account-overview">
+        <TheAvatar userState="active" class="avatar-layout" />
+        <img src="/icon/subscription-medal/none.svg" class="level-icon">
       </div>
-      <div class="page-card">
-        <p>Invite your friends</p>
-      </div>
-      <div class="page-card">
-        <p>Taste Book</p>
-      </div>
-      <div class="page-card">
-        <p>Settings</p>
-      </div>
-      <div class="page-card">
-        <p>Contact Us</p>
-      </div>
-      <div class="page-card">
-        <p>Help</p>
-      </div> -->
+      <Divider />
+      <Divider or />
+      <Divider vertical />
+      <PrimaryButton action="Start Free Trial" default />
+    </section>
 
-      <footer class="footer">
-        <div class="btn-frame">
-          <!-- <button>Log out</button> -->
-          <div class="button-set">
-            <a href="https://twitter.com/deejiar" style="text-decoration: none; color: inherit;">
-              <img class="social-button" src="/icon/social/twitter.png" alt="Twitter">
-            </a>
-            <a href="https://www.instagram.com/deejiar" style="text-decoration: none; color: inherit;">
-              <img class="social-button" src="/icon/social/instagram.png" alt="Instagram">
-            </a>
-          </div>
-        </div>
-        <p class="_caption2">Version 4 (2024.04.30)</p>
-      </footer>
-    </div>
+    <section v-else class="main-container">
+      <HeaderPage :pagetitle="'Account'" />
+      <div class="account-overview">
+        <TheAvatar userState="active" class="avatar-layout" />
+        <img src="/icon/subscription-medal/none.svg" class="level-icon">
+      </div>
+      <Divider />
+      <Divider or />
+      <Divider vertical />
+      <PrimaryButton action="Share Your Feedback" default />
+    </section>
   </main>
 </template>
 
 <script setup>
+import HeaderPage from '../components/nav/HeaderPage.vue'
+import TheAvatar from '../components/button/TheAvatar.vue'
+import Divider from '../components/common/Divider.vue'
+import PrimaryButton from '../components/button/CTA/PrimaryButton.vue'
 </script>
 
 <style lang="scss" scoped>
 .body {
-  display: flex;
+  /* Positioning */
   position: relative;
+
+  /* Layout */
+  display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100vw;
   height: 100vh;
-  overflow-y: auto;
+  padding: var(--safe-area-top) var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
 
-  /* Media query for screen widths 430px and below */
-  @media (max-width: 430px) {
-    padding-bottom: 99px;
-  }
+  /* Visual & Colors */
+  background-color: var(--background);
 }
 
-.frame {
-  // width: 100vw;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  width: 100%;
-  padding: 0px 24px;
+  gap: var(--division);
+}
+
+.account-overview {
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.level-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.avatar-layout {
+  width: 60px;
+  height: 60px;
 }
 
 .account-section {
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
-}
-
-.btn-frame {
-  justify-content: space-between;
-  align-items: flex-start;
-  align-self: stretch;
-  padding-left: 0px;
-}
-
-.footer {
-  align-items: flex-start;
-  align-self: stretch;
-  gap: 24px;
-  padding: 24px 12px 0px 0px;
-}
-
-.btn-set {
-  align-items: flex-start;
-  gap: 24px;
-}
-
-.page-card {
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-  padding: 12px;
-}
-
-// Fonts
-.strech-attri {
-  width: 100%;
-}
-
-.social-button {
-  width: 24px;
-  height: 24px;
-}
-
-.button-set {
-  align-items: flex-start;
-  align-self: stretch;
-  gap: 12px;
 }
 </style>

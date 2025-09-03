@@ -504,6 +504,24 @@
         "storetag": [],
         "producttag": ["dessert"]
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.7637808724047, 35.6695895040987]
+      },
+      "properties": {
+        "id": "JP_YuDrpIq6JIyDnDnZ",
+        "auid": "ICFAB20C56DAD9A4E",
+        "placeid": "ChIJJc6zy7uLGGARJuxjs8jttuw",
+        "title": "Ginza Tsukiya",
+        "type": "ramen",
+        "layout": "food",
+        "storetag": [],
+        "producttag": ["ramen", "ddd"]
+      }
     }
   ]
 }

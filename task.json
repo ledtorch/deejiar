@@ -1,0 +1,30 @@
+{
+  "task": "Reinterpret the uploaded object into a consistent 3D product render using a locked minimal design system",
+  "style_reference": "Clean, modular product visuals inspired by modern tech objects. All renders follow the same visual system — not a direct copy of the uploaded object, but a reinterpretation of its function.",
+  "render_style": {
+    "materials": {
+      "main_body": "Matte anodized aluminum in accent color. Always use this for the object frame.",
+      "accents": "Only 1 accent color element per object (e.g. the core). No additional colors allowed.",
+      "screens/lights": "Frosted translucent acrylic for display or light zones. Glow only when needed — in soft white or orange tone.",
+      "texture": "Low poly metal."
+    },
+    "shapes": "Minimalist modular forms — rounded rectangles, square buttons, clean edges, subtle chamfers.",
+    "accent color": "#F4CF85",
+    "colors": "Fixed palette: light gold(#FAEDA0), dark gold(#E59F66), gold core(#FAF6DF). No additional colors.",
+    "lighting": "Soft top-left studio lighting in Cinema4D/Redshift style. Full white-balance, no warmth. Use soft, diffused highlights.",
+    "background": "Flat white or light grey background only — clean, matte, and distraction-free. No textures or props.",
+    "glow_effect": "Optional and subtle — used only if the original object has screens or LED indicators. Glow should feel realistic and minimal.",
+    "shadows": "Use a very soft, diffused floor shadow to lightly ground the object. It should be subtle, almost like ambient occlusion — not harsh or direct.",
+    "camera": {
+      "angle": "Fixed 45° isometric",
+      "perspective": "Mild perspective with no distortion",
+      "lens": "35mm equivalent",
+      "framing": "Always center the object in the frame. Object must be optically balanced with equal padding on all four sides. Consistent across all renders."
+    },
+    "composition": "Single object centered. Never cropped. Use consistent visual spacing. If modular, arrange components in a floating grid with soft even gaps.",
+    "finishing": "High-resolution render with clean edges, anti-aliased. No noise, grain, bloom, depth-of-field, or visual effects. Do not add any text, branding, or UI overlays."
+  },
+  "file_format": "High-resolution PNG with transparent background or white JPG (minimum 2048×2048)",
+  "aspect_ratio": "Strict 1:1 square format only",
+  "output_intent": "Create a modular system of future-facing product icons that fit seamlessly together. Every render must follow the same camera, lighting, material, shape language, and spatial layout — regardless of input."
+}

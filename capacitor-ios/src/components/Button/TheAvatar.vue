@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 import { useRouter } from 'vue-router';
 
 const props = defineProps({
@@ -45,11 +45,13 @@ const avatarContainerClass = computed(() => ({
 
 const clickAvatar = () => {
   if (props.userState === 'default') {
-    router.push({ name: "subscription" });
+    bottomSheetControls.switchPanel('auth');
   } else {
     router.push({ name: "account" });
   }
 };
+
+const bottomSheetControls = inject('bottomSheetControls');
 </script>
 
 <style lang="scss" scoped>

@@ -1,0 +1,64 @@
+{
+  "description": ".",
+  "address": "6F, 6 Chome-10-1 Ginza, Chuo City, Tokyo 104-0061",
+  "businesshour": {
+    "timezone": "Asia/Tokyo",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [
+        { "start": "11:00", "end": "15:30" },
+        { "start": "17:00", "end": "21:30" }
+      ],
+      "Tuesday": [
+        { "start": "11:00", "end": "15:30" },
+        { "start": "17:00", "end": "21:30" }
+      ],
+      "Wednesday": [
+        { "start": "11:00", "end": "15:30" },
+        { "start": "17:00", "end": "21:30" }
+      ],
+      "Thursday": [
+        { "start": "11:00", "end": "15:30" },
+        { "start": "17:00", "end": "21:30" }
+      ],
+      "Friday": [
+        { "start": "11:00", "end": "15:30" },
+        { "start": "17:00", "end": "21:30" }
+      ],
+      "Saturday": [
+        { "start": "11:00", "end": "15:30" },
+        { "start": "17:00", "end": "21:30" }
+      ],
+      "Sunday": [
+        { "start": "11:00", "end": "15:30" },
+        { "start": "17:00", "end": "21:30" }
+      ]
+    }
+  },
+  "product1": {
+    "name": "",
+    "description": "",
+    "price": ""
+  },
+  "product2": {
+    "name": "",
+    "description": "",
+    "price": ""
+  },
+  "product3": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product4": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product5": {
+    "description": "",
+    "name": "",
+    "price": ""
+  }
+}

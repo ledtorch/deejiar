@@ -1,5 +1,5 @@
 <template>
-  <div class="search-wrapper _stretch" :style="wrapperStyle">
+  <div class="search-wrapper" :style="wrapperStyle">
     <div class="search-field" :class="{ focused: isFocused }">
       <div class="search-icon"></div>
 
@@ -48,6 +48,7 @@ const wrapperStyle = computed(() => ({
 <style lang="scss" scoped>
 .search-wrapper {
   width: 100%;
+  flex: 1 0 0;
 }
 
 .search-field {
@@ -56,7 +57,7 @@ const wrapperStyle = computed(() => ({
   height: 36px;
   padding: 6px 8px;
   border-radius: 8px;
-  background: var(--button-base);
+  background-color: var(--content);
   align-items: center;
   gap: 4px;
   transition: background 120ms ease, box-shadow 120ms ease;
@@ -90,8 +91,10 @@ const wrapperStyle = computed(() => ({
 }
 
 .search-input {
-  flex: 1 1 auto;
+  // Remove the background color
   background: transparent;
+
+  flex: 1 1 auto;
   border: none;
   outline: none;
   color: var(--secondary-text);

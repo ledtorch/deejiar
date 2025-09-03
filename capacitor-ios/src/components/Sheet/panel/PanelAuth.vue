@@ -12,7 +12,8 @@
     <SocialAuthButton action="Continue with Instagram" instagram />
     <SocialAuthButton action="Continue with X" x />
     <Divider or />
-    <InputMail title="Email" placeholder="Unlock advance features with mail" />
+    <InputMail ref="emailInputRef" v-model="emailValue" placeholder="Enter your email address" :autoFocus="true"
+      @editing-start="handleEmailEditingStart" @editing-end="handleEmailEditingEnd" @submit="handleEmailSubmit" />
     <p class="consent-notice _caption2">By continuing, you agree to Deejiar’s Comsumer Terms and Usage Policy, and
       acknowledge their Privacy Policy.</p>
   </section>
