@@ -125,3 +125,7 @@ claude_desktop_config.json
 # Static assets that shouldn't be tracked (uncomment if needed)
 # /public/uploads/
 # /static/uploads/
+
+
+# Script Folder
+Script
