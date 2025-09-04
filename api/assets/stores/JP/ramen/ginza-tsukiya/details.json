@@ -1,5 +1,5 @@
 {
-  "description": ".",
+  "description": "The clear pork soup noodles set is a must-try. The shop, with its 19-seat fashion-store-style interior in Ginza, offers a lighter and smoother soup compared to traditional pork-based ramen. At Ginza Tsukiya, the broth is refreshing and smooth, without being greasy.",
   "address": "6F, 6 Chome-10-1 Ginza, Chuo City, Tokyo 104-0061",
   "businesshour": {
     "timezone": "Asia/Tokyo",
@@ -37,28 +37,28 @@
     }
   },
   "product1": {
-    "name": "",
-    "description": "",
-    "price": ""
+    "name": "Clear Pork Soup Noodles Set",
+    "description": "Clear pork bone Ramen\n클리어 돈고츠\n清晰的猪骨",
+    "price": "¥1,320(Tax included)"
   },
   "product2": {
-    "name": "",
-    "description": "",
-    "price": ""
+    "name": "Fukuoka Craft Beer Pale Ale",
+    "description": "Fukuoka Craft Beer Pale Ale\n후쿠오카 크래프트 맥주 페일 에일\n福冈精酿啤酒淡色艾尔啤酒",
+    "price": "¥1,100(Tax included)"
   },
   "product3": {
-    "description": "",
     "name": "",
+    "description": "",
     "price": ""
   },
   "product4": {
-    "description": "",
     "name": "",
+    "description": "",
     "price": ""
   },
   "product5": {
-    "description": "",
     "name": "",
+    "description": "",
     "price": ""
   }
 }
