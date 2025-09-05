@@ -7,8 +7,9 @@ import json
 # Environment
 from dotenv import load_dotenv
 # Modules
-from routes.editor import list_json_files, get_json_data, save_json_data
-from routes.map import get_map_json
+from app.routes.editor import list_json_files, get_json_data, save_json_data
+from app.routes.editor import list_json_files, get_json_data, save_json_data
+from app.routes.map import get_map_json
 
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
@@ -62,42 +63,6 @@ async def root():
 @app.get("/dashboard")
 async def dashboard():
     return {"message": "Login successful"}
-
-
-# ─── Test Google API ────────────────────────────────────
-# GOOGLE_API_KEY = os.getenv("GOOGLE_NEWPLACE_API_KEY")  # or just hardcode for test
-
-# def fix_mojibake(s):
-#     try:
-#         return s.encode('latin1').decode('utf8')
-#     except Exception:
-#         return s
-
-# @app.get("/test_GoogleAPI")
-# async def test_GoogleAPI(place_id: str = Query(...)):
-#     url = "https://places.googleapis.com/v1/places/" + place_id
-#     headers = {
-#         "X-Goog-Api-Key": GOOGLE_API_KEY,
-#         "X-Goog-FieldMask": "id,displayName,formattedAddress,location,photos,websiteUri,rating,userRatingCount"
-#     }
-
-#     async with httpx.AsyncClient() as client:
-#         response = await client.get(url, headers=headers)
-#         data = response.json()
-
-#     # Recursively fix all strings in the response
-#     def recursive_fix(obj):
-#         if isinstance(obj, dict):
-#             return {k: recursive_fix(v) for k, v in obj.items()}
-#         elif isinstance(obj, list):
-#             return [recursive_fix(i) for i in obj]
-#         elif isinstance(obj, str):
-#             return fix_mojibake(obj)
-#         else:
-#             return obj
-
-#     data = recursive_fix(data)
-#     return data
 
 # Authentication
 @app.post("/login")
