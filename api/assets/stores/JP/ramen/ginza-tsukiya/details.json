@@ -39,12 +39,12 @@
   "product1": {
     "name": "Clear Pork Soup Noodles Set",
     "description": "Clear pork bone Ramen\n클리어 돈고츠\n清晰的猪骨",
-    "price": "¥1,320(Tax included)"
+    "price": "¥1,320(Taxed)"
   },
   "product2": {
     "name": "Fukuoka Craft Beer Pale Ale",
     "description": "Fukuoka Craft Beer Pale Ale\n후쿠오카 크래프트 맥주 페일 에일\n福冈精酿啤酒淡色艾尔啤酒",
-    "price": "¥1,100(Tax included)"
+    "price": "¥1,100(Taxed)"
   },
   "product3": {
     "name": "",
