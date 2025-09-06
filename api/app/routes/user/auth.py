@@ -48,39 +48,81 @@ async def get_current_user(
     
     return user
 
-# ─── Public Routes ─────────────────────────────────────
+# ─── Registration Flow ──────────────────────────────────────────────
 
-@router.post("/register")
-async def register(request: UserRegisterRequest):
+@router.post("/register/send-otp")
+async def send_registration_otp(request: UserRegisterRequest):
     """
-    Register a new user by sending OTP to email
+    Step 1: Send OTP for new user registration
+    - Checks if user already exists
+    - If exists, returns error asking user to login
+    - If not exists, sends 4-digit OTP to email
     """
-    result = await auth_service.send_otp(request.email)
+    result = await auth_service.send_registration_otp(request.email)
     return result
 
-@router.post("/verify-otp")
-async def verify_otp(request: VerifyOTPRequest) -> AuthResponse:
+@router.post("/register/verify-otp")
+async def verify_registration_otp(request: VerifyOTPRequest) -> AuthResponse:
     """
-    Verify OTP and complete registration/login
+    Step 2: Verify OTP and complete registration
+    - Verifies the 4-digit OTP
+    - Creates new user account in Supabase
+    - Creates user profile in database
+    - Returns access token and user info
     """
-    result = await auth_service.verify_otp(request.email, request.otp)
+    result = await auth_service.verify_registration_otp(request.email, request.otp)
     return result
 
-@router.post("/login")
-async def login(request: UserRegisterRequest):
+# ─── Login Flow ─────────────────────────────────────────────────────
+
+@router.post("/login/send-otp")
+async def send_login_otp(request: UserRegisterRequest):
     """
-    Login existing user by sending OTP to email
-    (Same as register - Supabase handles both)
+    Step 1: Send OTP for existing user login
+    - Checks if user exists
+    - If not exists, returns error asking user to register
+    - If exists, sends 4-digit OTP to email
     """
-    result = await auth_service.send_otp(request.email)
+    result = await auth_service.send_login_otp(request.email)
     return result
+
+@router.post("/login/verify-otp")
+async def verify_login_otp(request: VerifyOTPRequest) -> AuthResponse:
+    """
+    Step 2: Verify OTP and complete login
+    - Verifies the 4-digit OTP
+    - Updates last login timestamp
+    - Returns access token and user info
+    """
+    result = await auth_service.verify_login_otp(request.email, request.otp)
+    return result
+
+# ─── Common Auth Routes ─────────────────────────────────────────────
+
+@router.post("/check-email")
+async def check_email_exists(request: UserRegisterRequest):
+    """
+    Check if email exists in system
+    - Returns user_exists: true/false
+    - Frontend can use this to show appropriate flow
+    """
+    user_exists = await auth_service.check_user_exists(request.email)
+    return {
+        "email": request.email,
+        "user_exists": user_exists,
+        "suggested_action": "login" if user_exists else "register"
+    }
 
 @router.post("/resend-otp")
 async def resend_otp(request: ResendOTPRequest):
     """
     Resend OTP to email
+    - Can be used for both registration and login flows
+    - Frontend should specify which flow this is for
     """
-    result = await auth_service.send_otp(request.email)
+    # You might want to track whether this is for login or register
+    # For now, treating as login OTP
+    result = await auth_service.send_login_otp(request.email)
     return result
 
 @router.post("/refresh")
@@ -91,7 +133,7 @@ async def refresh_token(request: TokenRefreshRequest) -> AuthResponse:
     result = await auth_service.refresh_token(request.refresh_token)
     return result
 
-# ─── Protected Routes ─────────────────────────────────
+# ─── Protected Routes ───────────────────────────────────────────────
 
 @router.get("/me")
 async def get_current_user_profile(

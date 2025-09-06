@@ -7,12 +7,13 @@ import json
 # Environment
 from dotenv import load_dotenv
 # Modules
-from app.routes.user import auth as user_auth
-from app.routes.admin import auth as admin_auth
+from app.routes.user.auth import router as user_auth_router
+from app.routes.admin.auth import router as admin_auth_router
 from app.routes.map import get_map_json
 from app.routes.editor import list_json_files, get_json_data, save_json_data
 
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import Response
 from pathlib import Path
 
 # ─── Initialize FastAPI ────────────────────────────────
@@ -50,7 +51,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Pages
+# ─── Routers ────────────────────────────────────
+app.include_router(user_auth_router, prefix="/api/user")
+app.include_router(admin_auth_router, prefix="/api/admin")
+
+# ─── Pages ────────────────────────────────────────────
 @app.get("/")
 async def root():
     return {"FastAPI is running"}
@@ -70,8 +75,6 @@ async def serve_map_data(filename: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 # ─── Dashboard API ────────────────────────────────────
-# Authentication
-# User account details
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 
