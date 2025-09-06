@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Depends, Header
 from typing import Optional
 
-from models.user import (
+from app.models.user import (
     UserRegisterRequest,
     VerifyOTPRequest,
     ResendOTPRequest,
@@ -9,7 +9,7 @@ from models.user import (
     UserResponse,
     TokenRefreshRequest
 )
-from services.auth_service import auth_service
+from app.services.auth_service import auth_service
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 

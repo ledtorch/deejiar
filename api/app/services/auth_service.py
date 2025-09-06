@@ -5,8 +5,8 @@ from fastapi import HTTPException, status
 from supabase import Client
 from gotrue.errors import AuthError
 
-from config.supabase import get_supabase_client, get_supabase_admin_client
-from models.user import (
+from app.db.supabase import get_supabase_client, get_supabase_admin_client
+from app.models.user import (
     UserProfile, 
     UserResponse, 
     AuthResponse,
