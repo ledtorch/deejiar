@@ -7,9 +7,10 @@ import json
 # Environment
 from dotenv import load_dotenv
 # Modules
-from app.routes.editor import list_json_files, get_json_data, save_json_data
-from app.routes.editor import list_json_files, get_json_data, save_json_data
+from app.routes.user import auth as user_auth
+from app.routes.admin import auth as admin_auth
 from app.routes.map import get_map_json
+from app.routes.editor import list_json_files, get_json_data, save_json_data
 
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
@@ -23,12 +24,6 @@ app.mount(
     StaticFiles(directory=Path(__file__).parent.parent / "assets"),
     name="cdn"
 )
-
-# User account details
-USER_ACCOUNT = {
-    "username": "jerry",
-    "password": "0000"
-}
 
 # Load environment settings
 env_file = '../.env.production' if os.getenv('ENV') == 'production' else '../.env.local'
@@ -64,23 +59,6 @@ async def root():
 async def dashboard():
     return {"message": "Login successful"}
 
-# Authentication
-@app.post("/login")
-async def login(request: Request):
-    form = await request.json()
-    username = form.get("username")
-    password = form.get("password")
-    if username != USER_ACCOUNT["username"] or password != USER_ACCOUNT["password"]:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    return {
-        "message": "Login successful",
-        "redirect": "/dashboard"
-    }
-
 # ─── App API ────────────────────────────────────
 @app.get("/map/{filename}")
 async def serve_map_data(filename: str):
@@ -92,6 +70,27 @@ async def serve_map_data(filename: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 # ─── Dashboard API ────────────────────────────────────
+# Authentication
+# User account details
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+
+@app.post("/login")
+async def login(request: Request):
+    form = await request.json()
+    username = form.get("username")
+    password = form.get("password")
+    if username != ADMIN_USERNAME or password != ADMIN_PASSWORD:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return {
+        "message": "Login successful",
+        "redirect": "/dashboard"
+    }
+
 @app.get("/json-files")
 async def get_json_files():
     return list_json_files()
