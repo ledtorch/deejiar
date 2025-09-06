@@ -54,7 +54,7 @@ async function submitLogin() {
   try {
     // Link to the FastAPI
     const apiUrl = import.meta.env.VITE_DATACENTER_API
-    const response = await axios.post(`${apiUrl}/login`, credentials.value)
+    const response = await axios.post(`${apiUrl}/admin/login`, credentials.value)
     localStorage.setItem('access_token', response.data.access_token)
 
 

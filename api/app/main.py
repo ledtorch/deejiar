@@ -75,25 +75,6 @@ async def serve_map_data(filename: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 # ─── Dashboard API ────────────────────────────────────
-ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
-
-@app.post("/login")
-async def login(request: Request):
-    form = await request.json()
-    username = form.get("username")
-    password = form.get("password")
-    if username != ADMIN_USERNAME or password != ADMIN_PASSWORD:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    return {
-        "message": "Login successful",
-        "redirect": "/dashboard"
-    }
-
 @app.get("/json-files")
 async def get_json_files():
     return list_json_files()

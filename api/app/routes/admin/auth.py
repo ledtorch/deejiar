@@ -9,8 +9,8 @@ load_dotenv()
 router = APIRouter()
 security = HTTPBasic()
 
-ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "jerry")
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "0000")
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 
 def verify_admin(credentials: HTTPBasicCredentials = Depends(security)):
     """Verify admin credentials"""
