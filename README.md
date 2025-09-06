@@ -19,7 +19,7 @@ The entire system is set up on an Ubuntu 22.04.2 LTS server with Nginx 1.18.
 > This is adapted from [Vue's commit convention](https://github.com/vuejs/core/blob/main/.github/commit-convention.md).
 All commits should be matched by the following regex:
 ```regexp
-feat|ui|fix|docs|style|refact|perf|test|build|ci|chore
+feat|ui|fix|docs|style|refactor|perf|test|build|ci|chore
 ```
 Use conventional commit format: `type(scope): description`
 Types:
