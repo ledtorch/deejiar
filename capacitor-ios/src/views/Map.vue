@@ -106,8 +106,7 @@ const addStores = () => {
             ["zoom"],
             "",
             10, ["concat", ["get", "title"], "-mini"],
-            12.4, ["concat", ["get", "title"], "-default"],
-            14.5, ["concat", ["get", "title"], "-larger"]
+            12.4, ["concat", ["get", "title"], "-default"]
           ],
           "icon-size": 0.25,
           "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
