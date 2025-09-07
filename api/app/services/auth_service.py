@@ -19,17 +19,20 @@ class AuthService:
         self.admin_supabase = get_supabase_admin_client()
     
     async def check_user_exists(self, email: str) -> bool:
-        """
-        Check if user already exists in Supabase Auth
-        """
+        """Check if user exists in both Supabase Auth AND your users table"""
         try:
-            # Query the users table to see if email exists
-            result = self.admin_supabase.auth.admin.list_users()
+            # Check in your users table first (more reliable)
+            result = self.supabase.table('users').select('uid').eq('email', email).execute()
             
-            # Check if any user has this email
-            for user in result:
+            if result.data and len(result.data) > 0:
+                return True
+            
+            # Fallback: check Supabase Auth
+            admin_result = self.admin_supabase.auth.admin.list_users()
+            for user in admin_result:
                 if user.email == email and user.email_confirmed_at is not None:
                     return True
+            
             return False
             
         except Exception as e:
@@ -37,11 +40,9 @@ class AuthService:
             return False
     
     async def send_registration_otp(self, email: str) -> Dict[str, str]:
-        """
-        Send OTP for new user registration
-        """
+        """Send 6-digit OTP for new user registration"""
         try:
-            # First check if user already exists
+            # Check if user already exists
             user_exists = await self.check_user_exists(email)
             if user_exists:
                 raise HTTPException(
@@ -49,23 +50,23 @@ class AuthService:
                     detail="User with this email already exists. Please use login instead."
                 )
             
-            # Send OTP for registration
+            # Send OTP using Supabase's sign_in_with_otp
             response = self.supabase.auth.sign_in_with_otp({
                 "email": email,
                 "options": {
                     "should_create_user": True,
                     "data": {
                         "provider": AuthProvider.EMAIL.value,
-                        "registered_at": datetime.utcnow().isoformat(),
                         "registration_flow": True
                     }
                 }
             })
             
             return {
-                "message": "Registration OTP sent successfully",
+                "message": "6-digit verification code sent to your email",
                 "email": email,
-                "action": "register"
+                "action": "register",
+                "expires_in": 600  # 10 minutes
             }
             
         except HTTPException:
@@ -73,7 +74,7 @@ class AuthService:
         except AuthError as e:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Failed to send registration OTP: {str(e)}"
+                detail=f"Failed to send verification code: {str(e)}"
             )
         except Exception as e:
             raise HTTPException(
@@ -82,9 +83,7 @@ class AuthService:
             )
     
     async def send_login_otp(self, email: str) -> Dict[str, str]:
-        """
-        Send OTP for existing user login
-        """
+        """Send 6-digit OTP for existing user login"""
         try:
             # Check if user exists
             user_exists = await self.check_user_exists(email)
@@ -94,11 +93,11 @@ class AuthService:
                     detail="No account found with this email. Please register first."
                 )
             
-            # Send OTP for login
+            # Send OTP for existing user
             response = self.supabase.auth.sign_in_with_otp({
                 "email": email,
                 "options": {
-                    "should_create_user": False,  # Don't create new user
+                    "should_create_user": False,
                     "data": {
                         "login_flow": True
                     }
@@ -106,9 +105,10 @@ class AuthService:
             })
             
             return {
-                "message": "Login OTP sent successfully",
+                "message": "6-digit verification code sent to your email",
                 "email": email,
-                "action": "login"
+                "action": "login",
+                "expires_in": 600  # 10 minutes
             }
             
         except HTTPException:
@@ -116,7 +116,7 @@ class AuthService:
         except AuthError as e:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Failed to send login OTP: {str(e)}"
+                detail=f"Failed to send verification code: {str(e)}"
             )
         except Exception as e:
             raise HTTPException(
@@ -125,27 +125,25 @@ class AuthService:
             )
     
     async def verify_registration_otp(self, email: str, otp: str) -> AuthResponse:
-        """
-        Verify OTP for registration and create new user profile
-        """
+        """Verify 6-digit OTP for registration and create user profile"""
         try:
             # Verify OTP with Supabase
             response = self.supabase.auth.verify_otp({
                 "email": email,
                 "token": otp,
-                "type": "email"
+                "type": "email"  # This is for email OTP verification
             })
             
-            if not response.user:
+            if not response.user or not response.session:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Invalid OTP"
+                    detail="Invalid verification code"
                 )
             
-            # Generate custom UID for new user
+            # Generate custom UID
             custom_uid = self._generate_uid()
             
-            # Update user metadata with custom UID
+            # Update user metadata in Supabase Auth
             user_metadata = {
                 "uid": custom_uid,
                 "provider": AuthProvider.EMAIL.value,
@@ -153,12 +151,16 @@ class AuthService:
                 "is_new_user": True
             }
             
-            update_response = self.admin_supabase.auth.admin.update_user_by_id(
-                response.user.id,
-                {"user_metadata": user_metadata}
-            )
+            # Update user metadata
+            try:
+                self.admin_supabase.auth.admin.update_user_by_id(
+                    response.user.id,
+                    {"user_metadata": user_metadata}
+                )
+            except Exception as e:
+                print(f"Warning: Failed to update user metadata: {str(e)}")
             
-            # Create user profile in database
+            # Create user profile in YOUR database table
             await self._create_user_profile(
                 response.user.id,
                 custom_uid,
@@ -166,7 +168,6 @@ class AuthService:
                 AuthProvider.EMAIL
             )
             
-            # Build response
             return AuthResponse(
                 access_token=response.session.access_token,
                 refresh_token=response.session.refresh_token,
@@ -184,20 +185,18 @@ class AuthService:
         except AuthError as e:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail=f"Registration OTP verification failed: {str(e)}"
+                detail=f"Invalid verification code: {str(e)}"
             )
         except HTTPException:
             raise
         except Exception as e:
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"An error occurred: {str(e)}"
+                detail=f"Registration failed: {str(e)}"
             )
     
     async def verify_login_otp(self, email: str, otp: str) -> AuthResponse:
-        """
-        Verify OTP for login and return existing user
-        """
+        """Verify 6-digit OTP for login"""
         try:
             # Verify OTP with Supabase
             response = self.supabase.auth.verify_otp({
@@ -206,35 +205,35 @@ class AuthService:
                 "type": "email"
             })
             
-            if not response.user:
+            if not response.user or not response.session:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Invalid OTP"
+                    detail="Invalid verification code"
                 )
             
-            # Get existing user metadata
-            user_metadata = response.user.user_metadata or {}
+            # Get user from YOUR database
+            user_data = await self._get_user_profile(email)
             
-            if not user_metadata.get("uid"):
+            if not user_data:
                 raise HTTPException(
-                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                    detail="User profile incomplete. Please contact support."
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="User profile not found. Please contact support."
                 )
             
             # Update last login
-            await self._update_last_login(user_metadata.get("uid"))
+            await self._update_last_login(user_data['uid'])
             
-            # Build response
             return AuthResponse(
                 access_token=response.session.access_token,
                 refresh_token=response.session.refresh_token,
                 user=UserResponse(
-                    uid=user_metadata.get("uid"),
+                    uid=user_data['uid'],
                     email=email,
-                    display_name=user_metadata.get("display_name"),
-                    avatar_url=user_metadata.get("avatar_url"),
-                    provider=AuthProvider(user_metadata.get("provider", "email")),
-                    is_new_user=False
+                    display_name=user_data.get('display_name'),
+                    avatar_url=user_data.get('avatar_url'),
+                    provider=AuthProvider.EMAIL,
+                    is_new_user=False,
+                    premium=user_data.get('premium', False)
                 ),
                 expires_in=response.session.expires_in
             )
@@ -242,98 +241,18 @@ class AuthService:
         except AuthError as e:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail=f"Login OTP verification failed: {str(e)}"
+                detail=f"Invalid verification code: {str(e)}"
             )
         except HTTPException:
             raise
         except Exception as e:
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"An error occurred: {str(e)}"
-            )
-    
-    async def refresh_token(self, refresh_token: str) -> AuthResponse:
-        """
-        Refresh access token using refresh token
-        """
-        try:
-            response = self.supabase.auth.refresh_session(refresh_token)
-            
-            if not response.user:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Invalid refresh token"
-                )
-            
-            user_metadata = response.user.user_metadata or {}
-            
-            return AuthResponse(
-                access_token=response.session.access_token,
-                refresh_token=response.session.refresh_token,
-                user=UserResponse(
-                    uid=user_metadata.get("uid"),
-                    email=response.user.email,
-                    display_name=user_metadata.get("display_name"),
-                    avatar_url=user_metadata.get("avatar_url"),
-                    provider=AuthProvider(user_metadata.get("provider", "email")),
-                    is_new_user=False
-                ),
-                expires_in=response.session.expires_in
-            )
-            
-        except AuthError as e:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail=f"Token refresh failed: {str(e)}"
-            )
-        except Exception as e:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"An error occurred: {str(e)}"
-            )
-    
-    async def get_user_by_token(self, access_token: str) -> Optional[UserResponse]:
-        """
-        Get user information from access token
-        """
-        try:
-            response = self.supabase.auth.get_user(access_token)
-            
-            if not response.user:
-                return None
-            
-            user_metadata = response.user.user_metadata or {}
-            
-            return UserResponse(
-                uid=user_metadata.get("uid"),
-                email=response.user.email,
-                display_name=user_metadata.get("display_name"),
-                avatar_url=user_metadata.get("avatar_url"),
-                provider=AuthProvider(user_metadata.get("provider", "email")),
-                is_new_user=user_metadata.get("is_new_user", False)
-            )
-            
-        except Exception:
-            return None
-    
-    async def logout(self, access_token: str) -> Dict[str, str]:
-        """
-        Logout user (invalidate session)
-        """
-        try:
-            self.supabase.auth.sign_out(access_token)
-            return {"message": "Logged out successfully"}
-        except Exception as e:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Logout failed: {str(e)}"
+                detail=f"Login failed: {str(e)}"
             )
     
     def _generate_uid(self) -> str:
-        """
-        Generate a unique user ID
-        Format: dj_<timestamp>_<random>
-        """
+        """Generate unique user ID: dj_YYYYMMDD_8chars"""
         timestamp = datetime.utcnow().strftime("%Y%m%d")
         random_part = str(uuid.uuid4())[:8]
         return f"dj_{timestamp}_{random_part}"
@@ -345,33 +264,51 @@ class AuthService:
         email: str,
         provider: AuthProvider
     ):
-        """
-        Create new user profile in database
-        """
+        """Create user profile in YOUR database"""
         try:
-            self.supabase.table('users').insert({
+            profile_data = {
                 'uid': uid,
                 'email': email,
-                'premium': False,  # Default to non-premium
+                'premium': False,
                 'created_at': datetime.utcnow().isoformat(),
-                'language': [],  # Empty array for languages
+                'language': [],
                 'age': None,
                 'gender': None,
                 'x_account': None,
-                'ig_account': None
-            }).execute()
+                'ig_account': None,
+                'supabase_id': supabase_id  # Link to Supabase Auth user
+            }
+            
+            result = self.supabase.table('users').insert(profile_data).execute()
+            
+            if not result.data:
+                raise Exception("Failed to insert user profile")
                 
+            print(f"✅ User profile created successfully: {uid}")
+            
         except Exception as e:
-            print(f"Failed to create user profile: {str(e)}")
+            print(f"❌ Failed to create user profile: {str(e)}")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="Failed to create user profile"
             )
     
+    async def _get_user_profile(self, email: str) -> Optional[Dict]:
+        """Get user profile from YOUR database"""
+        try:
+            result = self.supabase.table('users').select('*').eq('email', email).execute()
+            
+            if result.data and len(result.data) > 0:
+                return result.data[0]
+            
+            return None
+            
+        except Exception as e:
+            print(f"Error getting user profile: {str(e)}")
+            return None
+    
     async def _update_last_login(self, uid: str):
-        """
-        Update user's last login timestamp
-        """
+        """Update user's last login timestamp"""
         try:
             self.supabase.table('users').update({
                 'last_login': datetime.utcnow().isoformat()

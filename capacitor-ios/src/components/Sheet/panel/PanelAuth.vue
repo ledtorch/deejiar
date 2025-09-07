@@ -32,7 +32,7 @@
     <template v-if="isEnteringEmail">
       <div class="button-set">
         <NeutralButton action="Back" type="icon-left" icon="arrow-left" @click="handleBack" />
-        <PrimaryButton action="Next" type="icon-right" icon="arrow-right" @click="handleNext" />
+        <PrimaryButton action="Next" type="icon-right" icon="arrow-right" @click="submitMail" />
       </div>
     </template>
 
@@ -60,6 +60,9 @@ const MAX_HEIGHT_OFFSET = 100;
 
 const isEnteringEmail = ref(false);
 const emailValue = ref('');
+const emailInputRef = ref(null);
+
+const API_ENDPOINT = import.meta.env.VITE_API_URL;
 
 const calculateAndEmitHeight = async () => {
   await nextTick();
@@ -111,9 +114,40 @@ const handleBack = () => {
   emit('height-change', '450px');
 };
 
-const handleNext = () => {
-  isEnteringEmail.value = true;
-  emit('height-change', '354px');
+const submitMail = async () => {
+  // Get the email value from InputMail component
+  const email = emailInputRef.value?.getCurrentValue() || emailValue.value;
+
+  if (!email) {
+    console.error('No email provided');
+    return;
+  }
+
+  console.log('Submitting email:', email);
+
+  try {
+    const response = await fetch(`${API_ENDPOINT}/api/user/auth/register/send-otp`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log('OTP sent successfully:', data);
+      // Keep the current UI state
+      isEnteringEmail.value = true;
+      emit('height-change', '354px');
+    } else {
+      console.error('Failed to send OTP:', data);
+    }
+
+  } catch (error) {
+    console.error('Network error:', error);
+  }
 };
 </script>
 
