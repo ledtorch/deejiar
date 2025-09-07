@@ -1,16 +1,18 @@
 <template>
-  <input ref="inputRef" :class="['form-input', { 'form-input--on': editing }]" v-model="editingValue"
-    :readonly="!editing" :placeholder="editing ? placeholder : ''" type=" email" @click="startEditing"
-    @blur="handleBlur" @keyup.enter="handleSubmit" @keyup.escape="cancelEditing" />
+  <input ref="inputRef" :class="['form-input', { 'form-input--on': editing }, '_caption1']" v-model="editingValue"
+    :readonly="!editing" :placeholder="editing ? placeholder : 'Unlock advance features with mail'" type="email"
+    inputmode="email" autocomplete="email" @click="handleClick" @blur="handleBlur" @keyup.enter="handleSubmit"
+    @keyup.escape="cancelEditing" />
 </template>
 
 <script setup>
 import { ref, watch, nextTick } from 'vue';
+import { Capacitor } from '@capacitor/core';
 
 // Props
 const props = defineProps({
   value: { type: String, default: '' },
-  placeholder: { type: String, default: 'Unlock advance features with mail' },
+  placeholder: { type: String, default: '' },
   autoFocus: { type: Boolean, default: false }
 });
 
@@ -22,6 +24,10 @@ const inputRef = ref(null);
 const editing = ref(false);
 const editingValue = ref(props.value || '');
 const originalValue = ref(props.value || '');
+
+// Platform detection
+const isIOS = Capacitor.getPlatform() === 'ios';
+const isCapacitor = Capacitor.isNativePlatform();
 
 // Keep input in sync when parent value changes (only when not editing)
 watch(
@@ -44,22 +50,55 @@ watch(
   }
 );
 
+// Simple iOS keyboard fix - only use when necessary
+const focusAndOpenKeyboard = (el) => {
+  if (!el) return;
+
+  if (isIOS && isCapacitor) {
+    // Create temporary input for iOS keyboard trigger
+    const tempEl = document.createElement('input');
+    tempEl.style.position = 'absolute';
+    tempEl.style.top = (el.offsetTop + 7) + 'px';
+    tempEl.style.left = el.offsetLeft + 'px';
+    tempEl.style.height = '0';
+    tempEl.style.opacity = '0';
+    tempEl.style.pointerEvents = 'none';
+    tempEl.style.fontSize = '16px';
+
+    document.body.appendChild(tempEl);
+    tempEl.focus();
+
+    setTimeout(() => {
+      el.focus();
+      el.click();
+      document.body.removeChild(tempEl);
+    }, 100);
+  } else {
+    // Standard focus for web/Android
+    el.focus();
+  }
+};
+
+// Enhanced click handler
+const handleClick = async (event) => {
+  event.preventDefault();
+  await startEditing();
+};
+
 // Methods
 const startEditing = async () => {
   if (!editing.value) {
     editing.value = true;
     originalValue.value = editingValue.value;
 
-    // Focus the input after DOM update
     await nextTick();
-    inputRef.value?.focus();
+    focusAndOpenKeyboard(inputRef.value);
 
     emit('editing-start');
   }
 };
 
 const handleBlur = () => {
-  // Don't auto-save on blur, let parent control when to save
   if (editing.value) {
     emit('editing-end', editingValue.value);
   }
@@ -121,8 +160,8 @@ defineExpose({
   background: var(--invert-content);
   color: var(--tertiary-text);
 
+  text-align: center;
   font-family: inherit;
-  font-size: 16px;
   outline: none;
   transition: all 0.2s ease;
 
@@ -146,11 +185,6 @@ defineExpose({
       border-color: var(--baseline-green, #3dc363);
       box-shadow: 0 0 0 2px rgba(61, 195, 99, 0.2);
     }
-  }
-
-  // iOS zoom prevention
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
   }
 }
 </style>

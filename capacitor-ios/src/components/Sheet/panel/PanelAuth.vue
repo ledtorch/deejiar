@@ -1,32 +1,53 @@
 <template>
   <section class="auth-container">
-
-    <div class="nav">
-      <div class="brand-logo-block">
-        <img src="/icon/logo/logo-app.png" class="app-logo">
-        <h4>Deejiar</h4>
+    <template v-if="!isEnteringEmail">
+      <div class="nav">
+        <div class="brand-logo-block">
+          <img src="/icon/logo/logo-app.png" class="app-logo">
+          <h4>Deejiar</h4>
+        </div>
+        <Close @close="closeBottomSheet" />
       </div>
-      <Close @close="closeBottomSheet" />
-    </div>
-    <h4 class="promo-text">Map for Taste Adventurers to Explore without Boundaries</h4>
-    <SocialAuthButton action="Continue with Instagram" instagram />
-    <SocialAuthButton action="Continue with X" x />
-    <Divider or />
+      <h4 class="auth-tagline">Map for Taste Adventurers to Explore without Boundaries</h4>
+      <SocialAuthButton action="Continue with Instagram" instagram />
+      <SocialAuthButton action="Continue with X" x />
+      <Divider or />
+    </template>
+
+    <template v-if="isEnteringEmail">
+      <div class="mail-input-container">
+        <div class="brand-logo-block">
+          <img src="/icon/logo/logo-app.png" class="app-logo">
+          <h4>Deejiar</h4>
+        </div>
+        <h4 class="auth-email-heading">Register your account with your email address</h4>
+      </div>
+    </template>
+
     <InputMail ref="emailInputRef" v-model="emailValue" placeholder="Enter your email address" :autoFocus="true"
       @editing-start="handleEmailEditingStart" @editing-end="handleEmailEditingEnd" @submit="handleEmailSubmit" />
     <p class="consent-notice _caption2">By continuing, you agree to Deejiar’s Comsumer Terms and Usage Policy, and
       acknowledge their Privacy Policy.</p>
+
+    <template v-if="isEnteringEmail">
+      <div class="button-set">
+        <NeutralButton action="Back" type="icon-left" icon="arrow-left" @click="handleBack" />
+        <PrimaryButton action="Next" type="icon-right" icon="arrow-right" @click="handleNext" />
+      </div>
+    </template>
+
   </section>
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue';
+import { ref, nextTick, watch } from 'vue';
 
 import Close from '../../button/Icon/Close.vue';
 import Divider from '../../common/Divider.vue';
 import SocialAuthButton from '../../button/CTA/SocialAuthButton.vue';
 import InputMail from '../../form/InputMail.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
+import NeutralButton from '../../button/CTA/NeutralButton.vue';
 
 const emit = defineEmits(['close', 'height-change']);
 const closeBottomSheet = () => {
@@ -36,6 +57,9 @@ const closeBottomSheet = () => {
 const panelContainer = ref(null);
 const DEFAULT_HEIGHT = 396;
 const MAX_HEIGHT_OFFSET = 100;
+
+const isEnteringEmail = ref(false);
+const emailValue = ref('');
 
 const calculateAndEmitHeight = async () => {
   await nextTick();
@@ -56,6 +80,41 @@ const calculateAndEmitHeight = async () => {
 
   emit('height-change', newHeight);
 };
+
+// Watch email value to determine if user is entering email
+watch(emailValue, (newValue) => {
+  if (newValue && newValue.length > 0) {
+    isEnteringEmail.value = true;
+  }
+});
+
+// Email handlers
+const handleEmailEditingStart = () => {
+  isEnteringEmail.value = true;
+  // Expand to full height for keyboard
+  // emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
+  emit('height-change', '354px');
+};
+
+const handleEmailEditingEnd = () => {
+  // Keep expanded if email has value
+  if (emailValue.value) {
+    emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
+  } else {
+    isEnteringEmail.value = false;
+    emit('height-change', '450px');
+  }
+};
+
+const handleBack = () => {
+  isEnteringEmail.value = false;
+  emit('height-change', '450px');
+};
+
+const handleNext = () => {
+  isEnteringEmail.value = true;
+  emit('height-change', '354px');
+};
 </script>
 
 <style lang="scss" scoped>
@@ -63,8 +122,7 @@ const calculateAndEmitHeight = async () => {
   display: flex;
   flex-direction: column;
   gap: var(--block);
-  // width: 100%;
-  padding: 0 var(--container);
+  padding: var(--container) var(--container) 0 var(--container);
 }
 
 .nav {
@@ -82,12 +140,30 @@ const calculateAndEmitHeight = async () => {
   height: 32px;
 }
 
-.promo-text {
+.auth-tagline {
+  color: var(--tertiary-text);
+}
+
+.auth-email-heading {
+  text-align: center;
   color: var(--tertiary-text);
 }
 
 .consent-notice {
   text-align: center;
   color: var(--tertiary-text);
+}
+
+.mail-input-container {
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--block);
+  gap: var(--block);
+}
+
+.button-set {
+  width: 100%;
+  padding-top: var(--wrapper);
+  justify-content: space-between;
 }
 </style>
