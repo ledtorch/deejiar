@@ -1,34 +1,75 @@
 <template>
-  <button v-if="default" :class="['button-container', '_button-secondary', { 'is-pressed': isPressed }]"
-    @pointerdown="onPressStart" @pointerup="onPressEnd">{{ action }}</button>
+  <button :class="[
+    'button-container',
+    '_button-secondary',
+    {
+      'is-pressed': isPressed,
+      'is-disabled': disabled,
+      'has-icon-left': type === 'icon-left' && iconSrc,
+      'has-icon-right': type === 'icon-right' && iconSrc
+    }
+  ]" :disabled="disabled" @pointerdown="onPressStart" @pointerup="onPressEnd" @click="handleClick">
+    <!-- Left icon -->
+    <img v-if="type === 'icon-left' && iconSrc" :src="iconSrc" class="action-icon" />
 
-  <button v-else-if="iconLeft" :class="['button-container', '_button-secondary', { 'is-pressed': isPressed }]"
-    @pointerdown="onPressStart" @pointerup="onPressEnd"><img src="/icon/social/instagram-color.png"
-      class="action-icon" />{{ action }}</button>
+    <!-- Button text -->
+    <span class="button-text">{{ action }}</span>
 
-  <button v-else-if="iconRight" :class="['button-container', '_button-secondary', { 'is-pressed': isPressed }]"
-    @pointerdown="onPressStart" @pointerup="onPressEnd">{{ action }}<img src="/icon/social/instagram-color.png"
-      class="action-icon" /></button>
+    <!-- Right icon -->
+    <img v-if="type === 'icon-right' && iconSrc" :src="iconSrc" class="action-icon" />
+  </button>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   action: { type: String, default: '' },
-  default: { type: Boolean, default: false },
-  iconLeft: { type: Boolean, default: false },
-  iconRight: { type: Boolean, default: false },
+  type: {
+    type: String,
+    default: 'default',
+    validator: (value) => ['default', 'icon-left', 'icon-right'].includes(value)
+  },
+  icon: { type: String, default: '' }, // Icon name: 'arrow-left', 'arrow-right', 'instagram', etc.
+  disabled: { type: Boolean, default: false }
 })
+
+const emit = defineEmits(['click'])
 
 const isPressed = ref(false)
 
+// Icon mapping
+const iconMap = {
+  'arrow-left': '/button/icon/control-data/arrow-left.svg',
+  'arrow-right': '/button/icon/control-data/arrow-right.svg',
+  'instagram': '/icon/social/instagram-color.png',
+  'x': '/icon/social/x-color.png',
+  // Add more icons as needed
+}
+
+// Computed icon source
+const iconSrc = computed(() => {
+  if (props.icon && iconMap[props.icon]) {
+    return iconMap[props.icon]
+  }
+  return ''
+})
+
 const onPressStart = (e) => {
-  isPressed.value = true;
-};
+  if (!props.disabled) {
+    isPressed.value = true
+  }
+}
+
 const onPressEnd = () => {
-  isPressed.value = false;
-};
+  isPressed.value = false
+}
+
+const handleClick = (event) => {
+  if (!props.disabled) {
+    emit('click', event)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -39,11 +80,27 @@ const onPressEnd = () => {
   justify-content: center;
   width: auto;
   min-height: 44px;
-  padding: 0 var(--division);
   gap: var(--atom);
   border-radius: var(--round-m);
   background: var(--gray-button);
   color: var(--primary-text);
+  border: none;
+  cursor: pointer;
+
+  /* Default padding (no icon) */
+  padding: 0 var(--division);
+
+  /* Icon left: extra padding on left side */
+  &.has-icon-left {
+    padding-left: var(--box);
+    padding-right: var(--division);
+  }
+
+  /* Icon right: extra padding on right side */
+  &.has-icon-right {
+    padding-left: var(--division);
+    padding-right: var(--box);
+  }
 
   /* Interactions */
   transition: all 0.3s ease;
@@ -51,10 +108,25 @@ const onPressEnd = () => {
   &.is-pressed {
     background: var(--tertiary-text);
   }
+
+  &.is-disabled {
+    background: var(--tertiary-text);
+    color: var(--secondary-text);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
 
 .action-icon {
   width: 24px;
   height: 24px;
+}
+
+.has-icon-left {
+  padding: 0 var(--division) 0 var(--block);
+}
+
+.has-icon-right {
+  padding: 0 var(--block) 0 var(--division);
 }
 </style>
