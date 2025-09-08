@@ -10,8 +10,7 @@
         <span class="_footnote email-display">We sent your code to</span>
         <span class="_footnote user-email">{{ userEmail }}</span>
         <InputCode ref="codeInputRef" v-model="otpCode" :autoFocus="true" :hasError="hasCodeError"
-          :errorMessage="codeErrorMessage" @complete="handleCodeComplete" @editing-start="handleCodeEditingStart"
-          @editing-end="handleCodeEditingEnd" />
+          :errorMessage="codeErrorMessage" @complete="handleCodeComplete" @editing-start="handleCodeEditingStart" />
       </div>
 
       <!-- Resend Helper -->
@@ -31,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref, computed, nextTick, onMounted, onUnmounted } from 'vue';
+import { ref, computed, nextTick, inject, onMounted, onUnmounted } from 'vue';
 
 import InputCode from '../../form/InputCode.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
@@ -48,11 +47,12 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['close', 'height-change', 'back-to-email', 'auth-success']);
+const emit = defineEmits(['close', 'auth-success']);
 
 // Refs
 const panelContainer = ref(null);
 const codeInputRef = ref(null);
+const bottomSheetControls = inject('bottomSheetControls');
 
 // State
 const otpCode = ref('');
@@ -72,38 +72,9 @@ const isCodeComplete = computed(() => {
   return otpCode.value.length === 6;
 });
 
-// Height management
-const DEFAULT_HEIGHT = 420;
-const MAX_HEIGHT_OFFSET = 100;
-
-const calculateAndEmitHeight = async () => {
-  await nextTick();
-  await new Promise(resolve => setTimeout(resolve, 50));
-
-  const measuredHeight = panelContainer.value?.scrollHeight || DEFAULT_HEIGHT;
-  const maxAllowedHeight = window.innerHeight - 100;
-
-  let newHeight;
-
-  if (measuredHeight <= DEFAULT_HEIGHT) {
-    newHeight = `${DEFAULT_HEIGHT}px`;
-  } else if (measuredHeight >= maxAllowedHeight - MAX_HEIGHT_OFFSET) {
-    newHeight = `calc(100vh - env(safe-area-inset-top) - ${MAX_HEIGHT_OFFSET}px)`;
-  } else {
-    newHeight = `${Math.min(measuredHeight + 20, maxAllowedHeight - MAX_HEIGHT_OFFSET)}px`;
-  }
-
-  emit('height-change', newHeight);
-};
-
 // Event handlers
 const handleCodeEditingStart = () => {
   clearErrors();
-  emit('height-change', '380px'); // Compact height for keyboard
-};
-
-const handleCodeEditingEnd = () => {
-  emit('height-change', `${DEFAULT_HEIGHT}px`);
 };
 
 const handleCodeComplete = (code) => {
@@ -114,7 +85,7 @@ const handleCodeComplete = (code) => {
 };
 
 const handleBack = () => {
-  emit('back-to-email');
+  bottomSheetControls.switchPanel('auth');
 };
 
 const clearErrors = () => {
@@ -167,6 +138,7 @@ const submitCode = async () => {
       emit('close');
 
       console.log('Authentication successful:', data.user);
+      bottomSheetControls.switchPanel('search');
     } else {
       // Handle different error types
       if (response.status === 401) {
@@ -256,7 +228,6 @@ const resendColor = computed(() =>
 
 // Lifecycle
 onMounted(() => {
-  calculateAndEmitHeight();
   startResendCooldown(); // Start initial cooldown
 });
 
@@ -276,7 +247,6 @@ defineExpose({
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   gap: var(--section);
   padding: var(--section) var(--wrapper) var(--section) var(--wrapper);
 }
