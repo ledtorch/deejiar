@@ -1,15 +1,8 @@
 <template>
-  <div class="code-input-wrapper">
-    <div class="code-input-container">
-      <input v-for="(digit, index) in codeDigits" :key="index" :ref="el => codeInputs[index] = el"
-        v-model="codeDigits[index]" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="code-digit"
-        :class="{ 'filled': codeDigits[index] !== '', 'error': hasError }" @input="handleCodeInput(index, $event)"
-        @keydown="handleCodeKeydown(index, $event)" @paste="handleCodePaste($event)" @focus="handleFocus(index)"
-        @blur="handleBlur" />
-    </div>
-    <div v-if="hasError" class="error-message">
-      {{ errorMessage }}
-    </div>
+  <div class="code-box" :class="{ 'error': hasError, 'filled': codeValue.length > 0 }">
+    <input ref="codeInput" v-model="codeValue" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="6"
+      placeholder="Code" class="code-input" @input="handleCodeInput" @focus="handleFocus" @blur="handleBlur"
+      @paste="handleCodePaste" @keydown="handleKeydown" />
   </div>
 </template>
 
@@ -28,34 +21,25 @@ const props = defineProps({
   hasError: {
     type: Boolean,
     default: false
-  },
-  errorMessage: {
-    type: String,
-    default: 'Invalid code'
   }
 });
 
 const emit = defineEmits(['update:modelValue', 'complete', 'editing-start', 'editing-end']);
 
 // Refs
-const codeInputs = ref([]);
-const codeDigits = ref(['', '', '', '', '', '']);
+const codeInput = ref(null);
+const codeValue = ref('');
 const isEditing = ref(false);
 
 // Computed
 const isComplete = computed(() => {
-  return codeDigits.value.every(digit => digit !== '');
-});
-
-const codeValue = computed(() => {
-  return codeDigits.value.join('');
+  return codeValue.value.length === 6;
 });
 
 // Watch for external value changes
 watch(() => props.modelValue, (newValue) => {
   if (newValue !== codeValue.value) {
-    const digits = newValue.padEnd(6, '').slice(0, 6).split('');
-    codeDigits.value = digits;
+    codeValue.value = newValue;
   }
 });
 
@@ -69,80 +53,60 @@ watch(codeValue, (newValue) => {
 });
 
 // Methods
-const handleCodeInput = (index, event) => {
-  const value = event.target.value;
-
-  // Only allow single digit
-  if (value.length > 1) {
-    codeDigits.value[index] = value.slice(-1);
-    return;
-  }
+const handleCodeInput = (event) => {
+  let value = event.target.value;
 
   // Only allow numbers
-  if (!/^\d*$/.test(value)) {
-    event.target.value = codeDigits.value[index];
-    return;
+  value = value.replace(/\D/g, '');
+
+  // Limit to 6 digits
+  if (value.length > 6) {
+    value = value.slice(0, 6);
   }
 
-  codeDigits.value[index] = value;
+  codeValue.value = value;
 
-  // Auto-focus next input
-  if (value && index < 5) {
-    codeInputs.value[index + 1]?.focus();
-  }
-};
-
-const handleCodeKeydown = (index, event) => {
-  // Handle backspace
-  if (event.key === 'Backspace') {
-    if (!codeDigits.value[index] && index > 0) {
-      // Move to previous input if current is empty
-      codeInputs.value[index - 1]?.focus();
-    } else if (codeDigits.value[index]) {
-      // Clear current input
-      codeDigits.value[index] = '';
-    }
-  }
-
-  // Handle arrow keys
-  if (event.key === 'ArrowLeft' && index > 0) {
-    codeInputs.value[index - 1]?.focus();
-  }
-
-  if (event.key === 'ArrowRight' && index < 5) {
-    codeInputs.value[index + 1]?.focus();
-  }
-
-  // Handle Enter key
-  if (event.key === 'Enter' && isComplete.value) {
-    emit('complete', codeValue.value);
+  // Auto-complete when 6 digits entered
+  if (value.length === 6) {
+    emit('complete', value);
   }
 };
 
 const handleCodePaste = (event) => {
   event.preventDefault();
   const pastedData = event.clipboardData.getData('text');
-  const digits = pastedData.replace(/\D/g, '').slice(0, 6).split('');
+  const digits = pastedData.replace(/\D/g, '').slice(0, 6);
 
-  // Fill digits
-  digits.forEach((digit, index) => {
-    if (index < 6) {
-      codeDigits.value[index] = digit;
-    }
-  });
+  codeValue.value = digits;
 
-  // Focus appropriate input
-  const lastFilledIndex = Math.min(digits.length - 1, 5);
-  const nextEmptyIndex = codeDigits.value.findIndex(digit => digit === '');
-
-  if (nextEmptyIndex !== -1) {
-    codeInputs.value[nextEmptyIndex]?.focus();
-  } else {
-    codeInputs.value[lastFilledIndex]?.focus();
+  if (digits.length === 6) {
+    emit('complete', digits);
   }
 };
 
-const handleFocus = (index) => {
+const handleKeydown = (event) => {
+  // Handle Enter key
+  if (event.key === 'Enter' && isComplete.value) {
+    emit('complete', codeValue.value);
+  }
+
+  // Allow backspace, delete, tab, escape, enter
+  if ([8, 9, 27, 13, 46].indexOf(event.keyCode) !== -1 ||
+    // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+    (event.keyCode === 65 && event.ctrlKey === true) ||
+    (event.keyCode === 67 && event.ctrlKey === true) ||
+    (event.keyCode === 86 && event.ctrlKey === true) ||
+    (event.keyCode === 88 && event.ctrlKey === true)) {
+    return;
+  }
+
+  // Ensure that it is a number and stop the keypress
+  if ((event.shiftKey || (event.keyCode < 48 || event.keyCode > 57)) && (event.keyCode < 96 || event.keyCode > 105)) {
+    event.preventDefault();
+  }
+};
+
+const handleFocus = () => {
   if (!isEditing.value) {
     isEditing.value = true;
     emit('editing-start');
@@ -150,27 +114,19 @@ const handleFocus = (index) => {
 };
 
 const handleBlur = () => {
-  // Check if focus moved to another code input
-  setTimeout(() => {
-    const activeElement = document.activeElement;
-    const isCodeInputFocused = codeInputs.value.some(input => input === activeElement);
-
-    if (!isCodeInputFocused && isEditing.value) {
-      isEditing.value = false;
-      emit('editing-end');
-    }
-  }, 0);
+  if (isEditing.value) {
+    isEditing.value = false;
+    emit('editing-end');
+  }
 };
 
 const focus = () => {
-  const firstEmptyIndex = codeDigits.value.findIndex(digit => digit === '');
-  const indexToFocus = firstEmptyIndex !== -1 ? firstEmptyIndex : 0;
-  codeInputs.value[indexToFocus]?.focus();
+  codeInput.value?.focus();
 };
 
 const clear = () => {
-  codeDigits.value = ['', '', '', '', '', ''];
-  codeInputs.value[0]?.focus();
+  codeValue.value = '';
+  focus();
 };
 
 const getCurrentValue = () => {
@@ -195,41 +151,19 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-.code-input-wrapper {
-  width: 100%;
-}
-
-.code-input-container {
+.code-box {
+  background: var(--content);
   display: flex;
+  height: 44px;
+  padding: var(--unit) var(--block);
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
+  align-items: center;
+  border-radius: var(--round-m);
+  border: 0.5px solid var(--tertiary-text);
 
-.code-digit {
-  width: 48px;
-  height: 56px;
-  border: 2px solid var(--border-light);
-  border-radius: var(--round-lg);
-  text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  background: var(--input-background, #ffffff);
-  color: var(--primary-text);
   transition: all 0.2s ease;
 
-  // Remove default input styling
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  &:focus {
-    outline: none;
+  &:focus-within {
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
   }
@@ -243,19 +177,37 @@ defineExpose({
     border-color: var(--error);
     background: var(--error-background, rgba(var(--error-rgb), 0.05));
   }
+}
+
+.code-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-text);
+  letter-spacing: 0.5em;
+
+  // Remove default input styling
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &::placeholder {
+    color: var(--tertiary-text);
+    letter-spacing: normal;
+  }
 
   &:disabled {
-    background: var(--disabled-background);
     color: var(--disabled-text);
     cursor: not-allowed;
   }
-}
-
-.error-message {
-  color: var(--error);
-  font-size: 12px;
-  text-align: center;
-  margin-top: 4px;
-  min-height: 16px;
 }
 </style>

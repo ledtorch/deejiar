@@ -1,52 +1,32 @@
 <template>
   <section class="auth-container" ref="panelContainer">
     <div class="otp-content">
-      <!-- Email Icon Illustration -->
-      <img src="/illustration/inbox.png" class="inbox-icon">
 
-      <!-- Heading and Email Display -->
-      <div class="otp-header">
-        <h4 class="auth-otp-heading">Check your mailbox to finish signing in</h4>
-        <p class="email-display">
-          We sent your code to<br>
-          <strong>{{ userEmail }}</strong>
-        </p>
-      </div>
+      <img src="/illustration/inbox.png" class="inbox-icon">
+      <h4 class="auth-otp-heading">Check your mailbox to finish signing in</h4>
 
       <!-- 6-Digit Code Input -->
       <div class="code-input-section">
+        <span class="_footnote email-display">We sent your code to</span>
+        <span class="_footnote user-email">{{ userEmail }}</span>
         <InputCode ref="codeInputRef" v-model="otpCode" :autoFocus="true" :hasError="hasCodeError"
           :errorMessage="codeErrorMessage" @complete="handleCodeComplete" @editing-start="handleCodeEditingStart"
           @editing-end="handleCodeEditingEnd" />
       </div>
 
-      <!-- Resend Option -->
-      <div class="resend-section">
-        <button class="resend-link" @click="resendCode" :disabled="resendCooldown > 0 || isResending">
-          <template v-if="resendCooldown > 0">
-            Resend code in {{ resendCooldown }}s
-          </template>
-          <template v-else-if="isResending">
-            Sending...
-          </template>
-          <template v-else>
-            Didn't receive a code?
-          </template>
-        </button>
-      </div>
+      <!-- Resend Helper -->
+      <button class="resend-link _button-secondary" @click="resendCode" :disabled="!canResend"
+        :style="{ color: resendColor }">
+        {{ resendText }}
+      </button>
     </div>
 
-    <!-- Action Buttons -->
     <div class="button-set">
       <NeutralButton action="Back" type="icon-left" icon="arrow-left" @click="handleBack" />
       <PrimaryButton action="Verify" type="icon-right" icon="arrow-right" @click="submitCode" :loading="isVerifying"
         :disabled="!isCodeComplete" />
     </div>
 
-    <!-- Error Display -->
-    <div v-if="generalError" class="error-banner">
-      {{ generalError }}
-    </div>
   </section>
 </template>
 
@@ -64,7 +44,7 @@ const props = defineProps({
   },
   action: {
     type: String,
-    default: 'register' // 'register' or 'login'
+    default: 'register'
   }
 });
 
@@ -259,6 +239,21 @@ const startResendCooldown = () => {
   }, 1000);
 };
 
+// Resend code handlers
+const canResend = computed(() => !resendCooldown.value && !isResending.value);
+
+const resendText = computed(() =>
+  resendCooldown.value ? `Resend in ${resendCooldown.value}s` :
+    isResending.value ? 'Sending...' :
+      "Didn't receive a code?"
+);
+
+const resendColor = computed(() =>
+  resendCooldown.value ? 'var(--tertiary-text)' :
+    isResending.value ? 'var(--color-green)' :
+      'var(--color-yellow)'
+);
+
 // Lifecycle
 onMounted(() => {
   calculateAndEmitHeight();
@@ -280,18 +275,16 @@ defineExpose({
 .auth-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: var(--block);
-  padding: var(--container) var(--container) 0 var(--container);
-  min-height: 380px;
+  align-items: center;
+  height: 100%;
+  gap: var(--section);
+  padding: var(--section) var(--wrapper) var(--section) var(--wrapper);
 }
 
 .otp-content {
-  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--block);
-  flex: 1;
+  gap: var(--division);
 }
 
 .inbox-icon {
@@ -305,52 +298,32 @@ defineExpose({
 }
 
 .auth-otp-heading {
-  color: var(--primary-text);
-  margin-bottom: var(--unit);
-  font-weight: 600;
-  line-height: 1.3;
+  color: var(--tertiary-text);
+  text-align: center;
+}
+
+.code-input-section {
+  flex-direction: column;
+  width: 240px;
+  align-items: center;
+  background: var(--invert-content);
+  border-radius: var(--round-l);
+  gap: var(--box);
+  padding: var(--block) var(--wrapper);
+}
+
+.resend-link {
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .email-display {
   color: var(--tertiary-text);
-  font-size: 14px;
-  line-height: 1.4;
-
-  strong {
-    color: var(--primary-text);
-    font-weight: 600;
-  }
 }
 
-.code-input-section {
-  width: 100%;
-  max-width: 320px;
-  margin: var(--unit) 0;
-}
-
-.resend-section {
-  margin-top: var(--unit);
-}
-
-.resend-link {
-  background: none;
-  border: none;
-  color: var(--primary);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover:not(:disabled) {
-    color: var(--primary-dark);
-    text-decoration: underline;
-  }
-
-  &:disabled {
-    color: var(--tertiary-text);
-    cursor: not-allowed;
-  }
+.user-email {
+  font-weight: 600;
+  color: var(--secondary-text);
 }
 
 .button-set {
@@ -366,7 +339,7 @@ defineExpose({
   background: var(--error-background, rgba(239, 68, 68, 0.1));
   color: var(--error, #ef4444);
   padding: 12px 16px;
-  border-radius: var(--round-lg);
+  border-radius: var(--round-l);
   text-align: center;
   font-size: 14px;
   margin-top: var(--unit);

@@ -1,7 +1,8 @@
 <template>
   <div class="bottom-sheet" :style="{ height: bottomSheetHeight }" ref="bottomSheet">
     <!-- Drag Control Bar -->
-    <div class="control-area" ref="controlArea">
+    <div v-if="currentPanelComponent !== PanelAuth && currentPanelComponent !== PanelAuthOTP" class="control-area"
+      ref="controlArea">
       <div class="control-bar"></div>
     </div>
 
@@ -19,6 +20,7 @@ import { useRouter } from 'vue-router';
 import PanelSearch from './panel/PanelSearch.vue';
 import PanelStore from './panel/PanelStore.vue';
 import PanelAuth from './panel/PanelAuth.vue';
+import PanelAuthOTP from './panel/PanelAuthOTP.vue';
 
 const router = useRouter();
 
@@ -41,10 +43,12 @@ const controlArea = ref(null);
 
 // Panel state management
 const currentPanel = ref(props.initialPanel);
+const panelData = ref({});
 const panelComponents = {
   search: PanelSearch,
   store: PanelStore,
-  auth: PanelAuth
+  auth: PanelAuth,
+  authOTP: PanelAuthOTP
 };
 
 // Default panel is PanelSearch
@@ -52,19 +56,24 @@ const currentPanelComponent = computed(() => {
   return panelComponents[currentPanel.value] || PanelSearch;
 });
 
-// Panel props to pass down
 const panelProps = computed(() => {
-  const baseProps = {
-    isActive: true
-  };
-
-  // Add specific props based on panel type
+  // Store panel data
   if (currentPanel.value === 'store' && props.store) {
-    return { ...baseProps, store: props.store };
+    return { store: props.store };
   }
 
-  return baseProps;
+  // Auth panel data
+  if (currentPanel.value === 'authOTP' && panelData.value.email) {
+    return {
+      email: panelData.value.email,
+      action: panelData.value.action || 'register'
+    };
+  }
+
+  return {};
 });
+
+
 
 // Height presets
 const HEIGHTS = {
@@ -75,7 +84,7 @@ const HEIGHTS = {
   FULL: `calc(100vh - env(safe-area-inset-top))`,
 };
 
-const flexiblePanels = ['store', 'auth']; // Configurable list
+const flexiblePanels = ['store', 'auth', 'authOTP'];
 const isCurrentPanelFlexible = computed(() => {
   return flexiblePanels.includes(currentPanel.value);
 });
@@ -92,21 +101,24 @@ watch(() => props.store, (newStore) => {
 });
 
 // Panel management methods
-const switchPanel = (panelName) => {
-  if (!panelComponents[panelName]) {
-    console.warn(`Panel "${panelName}" not found`);
-    return;
-  }
-
+const switchPanel = (panelName, data = null) => {
   currentPanel.value = panelName;
 
-  // Set appropriate height for each panel
+  // Pass data to panel, skip if null
+  if (data) {
+    Object.assign(panelData.value, data);
+  }
+
+  // Set panel height
   switch (panelName) {
     case 'store':
       bottomSheetHeight.value = HEIGHTS.STORE;
       break;
     case 'auth':
       bottomSheetHeight.value = HEIGHTS.AUTH;
+      break;
+    case 'authOTP':
+      bottomSheetHeight.value = HEIGHTS.FULL;
       break;
     default:
       bottomSheetHeight.value = HEIGHTS.SEARCH;

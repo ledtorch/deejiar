@@ -25,22 +25,28 @@
     </template>
 
     <InputMail ref="emailInputRef" v-model="emailValue" placeholder="Enter your email address" :autoFocus="true"
-      @editing-start="handleEmailEditingStart" @editing-end="handleEmailEditingEnd" @submit="handleEmailSubmit" />
+      @editing-start="handleEmailEditingStart" @editing-end="handleEmailEditingEnd" @submit="handleEmailSubmit"
+      :hasError="hasEmailError" :errorMessage="emailErrorMessage" />
+
     <p class="consent-notice _caption2">By continuing, you agree to Deejiar’s Comsumer Terms and Usage Policy, and
       acknowledge their Privacy Policy.</p>
+
+    <!-- Error Display -->
+    <div v-if="generalError" class="error-message">
+      {{ generalError }}
+    </div>
 
     <template v-if="isEnteringEmail">
       <div class="button-set">
         <NeutralButton action="Back" type="icon-left" icon="arrow-left" @click="handleBack" />
-        <PrimaryButton action="Next" type="icon-right" icon="arrow-right" @click="submitMail" />
+        <PrimaryButton action="Next" type="icon-right" icon="arrow-right" @click="submitEmail" />
       </div>
     </template>
-
   </section>
 </template>
 
 <script setup>
-import { ref, nextTick, watch } from 'vue';
+import { ref, nextTick, watch, inject } from 'vue';
 
 import Close from '../../button/Icon/Close.vue';
 import Divider from '../../common/Divider.vue';
@@ -50,19 +56,117 @@ import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
 import NeutralButton from '../../button/CTA/NeutralButton.vue';
 
 const emit = defineEmits(['close', 'height-change']);
-const closeBottomSheet = () => {
-  emit("close");
-};
+const bottomSheetControls = inject('bottomSheetControls');
 
+// Refs
 const panelContainer = ref(null);
 const DEFAULT_HEIGHT = 396;
 const MAX_HEIGHT_OFFSET = 100;
 
+const emailInputRef = ref(null);
 const isEnteringEmail = ref(false);
 const emailValue = ref('');
-const emailInputRef = ref(null);
+
+const hasEmailError = ref(false);
+const emailErrorMessage = ref('');
+const generalError = ref('');
+const userAction = ref(''); // 'register' or 'login'
 
 const API_ENDPOINT = import.meta.env.VITE_API_URL;
+
+
+const closeBottomSheet = () => {
+  emit("close");
+};
+
+
+// Email handlers
+const handleEmailEditingStart = () => {
+  isEnteringEmail.value = true;
+  clearErrors();
+  emit('height-change', '354px');
+};
+
+const handleEmailEditingEnd = () => {
+  // Keep expanded if email has value
+  if (emailValue.value) {
+    emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
+  } else {
+    isEnteringEmail.value = false;
+    emit('height-change', '450px');
+  }
+};
+
+const handleBack = () => {
+  isEnteringEmail.value = false;
+  emailValue.value = '';
+  clearErrors();
+  emit('height-change', '450px');
+};
+
+const handleEmailSubmit = () => {
+  submitEmail();
+};
+
+const clearErrors = () => {
+  hasEmailError.value = false;
+  emailErrorMessage.value = '';
+  generalError.value = '';
+};
+
+const submitEmail = async () => {
+  const email = emailInputRef.value?.getCurrentValue() || emailValue.value;
+
+  // Validate email first
+  if (!email || !email.includes('@')) {
+    hasEmailError.value = true;
+    emailErrorMessage.value = 'Please enter a valid email address';
+    return;
+  }
+
+  try {
+    // Check if user exists first
+    const checkResponse = await fetch(`${API_ENDPOINT}/api/user/auth/check-email`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+
+    if (!checkResponse.ok) {
+      throw new Error('Failed to check email');
+    }
+
+    const checkData = await checkResponse.json();
+    userAction.value = checkData.suggested_action;
+
+    // Send appropriate OTP based on user existence
+    const endpoint = userAction.value === 'login'
+      ? '/api/user/auth/login/send-otp'
+      : '/api/user/auth/register/send-otp';
+
+    const response = await fetch(`${API_ENDPOINT}${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      bottomSheetControls.switchPanel('authOTP', {
+        email: email,
+        action: userAction.value
+      });
+    } else {
+      // Handle API errors
+      handleEmailSubmissionError(response.status, data);
+    }
+
+  } catch (error) {
+    console.error('Email submission error:', error);
+    generalError.value = 'Network error. Please check your connection and try again.';
+  }
+};
 
 const calculateAndEmitHeight = async () => {
   await nextTick();
@@ -91,64 +195,6 @@ watch(emailValue, (newValue) => {
   }
 });
 
-// Email handlers
-const handleEmailEditingStart = () => {
-  isEnteringEmail.value = true;
-  // Expand to full height for keyboard
-  // emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
-  emit('height-change', '354px');
-};
-
-const handleEmailEditingEnd = () => {
-  // Keep expanded if email has value
-  if (emailValue.value) {
-    emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
-  } else {
-    isEnteringEmail.value = false;
-    emit('height-change', '450px');
-  }
-};
-
-const handleBack = () => {
-  isEnteringEmail.value = false;
-  emit('height-change', '450px');
-};
-
-const submitMail = async () => {
-  // Get the email value from InputMail component
-  const email = emailInputRef.value?.getCurrentValue() || emailValue.value;
-
-  if (!email) {
-    console.error('No email provided');
-    return;
-  }
-
-  console.log('Submitting email:', email);
-
-  try {
-    const response = await fetch(`${API_ENDPOINT}/api/user/auth/register/send-otp`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email: email })
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      console.log('OTP sent successfully:', data);
-      // Keep the current UI state
-      isEnteringEmail.value = true;
-      emit('height-change', '354px');
-    } else {
-      console.error('Failed to send OTP:', data);
-    }
-
-  } catch (error) {
-    console.error('Network error:', error);
-  }
-};
 </script>
 
 <style lang="scss" scoped>
@@ -156,7 +202,7 @@ const submitMail = async () => {
   display: flex;
   flex-direction: column;
   gap: var(--block);
-  padding: var(--container) var(--container) 0 var(--container);
+  padding: var(--container) var(--wrapper) 0 var(--wrapper);
 }
 
 .nav {
