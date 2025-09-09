@@ -28,8 +28,12 @@
       @editing-start="handleEmailEditingStart" @editing-end="handleEmailEditingEnd" @submit="handleEmailSubmit"
       :hasError="hasEmailError" :errorMessage="emailErrorMessage" />
 
-    <p class="consent-notice _caption2">By continuing, you agree to Deejiar’s Comsumer Terms and Usage Policy, and
-      acknowledge their Privacy Policy.</p>
+    <p class="consent-notice _caption2">By continuing, you agree to Deejiar’s Comsumer
+      <a href="https://github.com/ledtorch/deejiar/blob/main/capacitor-ios/terms-and-usage-policy.md">Terms and Usage
+        Policy</a>,
+      and acknowledge their
+      <a href="https://github.com/ledtorch/deejiar/blob/main/capacitor-ios/privacy-policy.md">Privacy Policy</a>.
+    </p>
 
     <!-- Error Display -->
     <div v-if="generalError" class="error-message">
@@ -84,13 +88,13 @@ const closeBottomSheet = () => {
 const handleEmailEditingStart = () => {
   isEnteringEmail.value = true;
   clearErrors();
-  emit('height-change', '354px');
+  // Expand to full height once user tabs the email input
+  emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
 };
 
 const handleEmailEditingEnd = () => {
   // Keep expanded if email has value
   if (emailValue.value) {
-    emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
   } else {
     isEnteringEmail.value = false;
     emit('height-change', '450px');
