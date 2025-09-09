@@ -3,8 +3,7 @@ __pycache__/
 
 # Environment and sensitive data
 .env*
-localhost.crt
-localhost.key
+certs/
 
 # venv
 venv
