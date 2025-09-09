@@ -30,7 +30,8 @@
 </template>
 
 <script setup>
-import { ref, computed, nextTick, inject, onMounted, onUnmounted } from 'vue';
+import { ref, computed, inject, onMounted, onUnmounted } from 'vue';
+import { useUserStore } from '../../../stores/userStore';
 
 import InputCode from '../../form/InputCode.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
@@ -48,6 +49,9 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close', 'auth-success']);
+
+// Store
+const userStore = useUserStore();
 
 // Refs
 const panelContainer = ref(null);
@@ -126,19 +130,25 @@ const submitCode = async () => {
     const data = await response.json();
 
     if (response.ok) {
-      // Store authentication tokens
-      localStorage.setItem('access_token', data.access_token);
-      localStorage.setItem('refresh_token', data.refresh_token);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      // Use the user store to handle authentication
+      if (props.action === 'register') {
+        await userStore.register(data);
+      } else {
+        await userStore.login(data);
+      }
 
       // Emit success event
       emit('auth-success', data.user);
 
-      // Close the panel or navigate
+      // Close the panel and switch to search
       emit('close');
-
       console.log('Authentication successful:', data.user);
-      bottomSheetControls.switchPanel('search');
+
+      // Small delay to ensure state updates before panel switch
+      setTimeout(() => {
+        bottomSheetControls.switchPanel('search');
+      }, 100);
+
     } else {
       // Handle different error types
       if (response.status === 401) {

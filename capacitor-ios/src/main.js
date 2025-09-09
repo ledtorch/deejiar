@@ -1,25 +1,42 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-
-// Plugin
-import router from './router.js'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import App from './App.vue';
 
 // Global CSS and Tailwind
 import './assets/tailwind.css'
-import './style.css'
+import './style.css';
 
-// Import VueLazyload plugin
+// Plugin
+import router from './router.js'
+import { useUserStore } from './stores/userStore';
 import VueLazyload from 'vue-lazyload'
 
-// Create the app instance
+// Create Pinia and app instance
+const pinia = createPinia();
 const app = createApp(App)
 
 // Use plugins
-app.use(router)
+app.use(pinia);
+app.use(router);
 app.use(VueLazyload, {
   preLoad: 1.3,
   attempt: 1
 })
 
-// Mount the app
-app.mount('#app')
+// Initialize auth before mounting
+async function initializeApp() {
+  const userStore = useUserStore();
+
+  // Try to restore authentication from localStorage
+  await userStore.loadAuthFromStorage();
+
+  app.mount('#app');
+}
+
+initializeApp();
+
+
+
+
+
+
