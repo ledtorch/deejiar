@@ -1,57 +1,81 @@
 <template>
   <div class="avatar-container" :class="avatarContainerClass" @click="clickAvatar">
     <!-- Default: Icon only -->
-    <div v-if="userState === 'default'" class="default-icon"></div>
+    <div v-if="currentUserState === 'default'" class="default-icon"></div>
 
     <!-- Active: Image only -->
-    <img v-if="userState === 'active'" :src="profileImage" :alt="userName" class="avatar-image avatar-image--active" />
+    <img v-if="currentUserState === 'active'" :src="'/images/default-avatar.jpg'" :alt="displayName"
+      class="avatar-image avatar-image--active" @error="handleImageError" />
 
     <!-- Premium: + Ring & Medal -->
-    <template v-if="userState === 'premium'">
+    <template v-if="currentUserState === 'premium'">
       <div class="avatar-ring"></div>
-      <img :src="profileImage" :alt="userName" class="avatar-image avatar-image--premium" />
+      <img :src="'/images/default-avatar.jpg'" :alt="displayName" class="avatar-image avatar-image--premium"
+        @error="handleImageError" />
       <div class="premium-medal"></div>
     </template>
   </div>
 </template>
 
 <script setup>
-import { computed, inject } from 'vue';
+import { computed, inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '../../stores/userStore';
 
 const props = defineProps({
-  userState: {
+  // Allow override for preview/demo purposes
+  overrideState: {
     type: String,
-    default: 'default',
-    validator: (value) => ['default', 'active', 'premium'].includes(value)
+    default: null,
+    validator: (value) => !value || ['default', 'active', 'premium'].includes(value)
   },
-  profileImage: {
-    type: String,
-    default: '/images/example-avatar.jpg'
-  },
-  userName: {
-    type: String,
-    default: 'User'
+  useBottomSheet: {
+    type: Boolean,
+    default: false
   }
 });
 
 const router = useRouter();
+const userStore = useUserStore();
+const bottomSheetControls = inject('bottomSheetControls', null);
+
+// Use a fallback image if user has no avatar
+const fallbackAvatar = '/images/default-avatar.png';
+const imageLoadError = ref(false);
+
+// Computed properties from user store
+const currentUserState = computed(() => {
+  // Allow override for demo/preview
+  if (props.overrideState) return props.overrideState;
+
+  // Use actual user state from store
+  return userStore.userState;
+});
+
+const displayName = computed(() => userStore.displayName);
 
 // Computed classes for consistent scaling
 const avatarContainerClass = computed(() => ({
-  'avatar-container--default': props.userState === 'default',
-  'avatar-container--logged-in': props.userState !== 'default'
+  'avatar-container--default': currentUserState.value === 'default',
+  'avatar-container--logged-in': currentUserState.value !== 'default'
 }));
 
-const clickAvatar = () => {
-  if (props.userState === 'default') {
-    bottomSheetControls.switchPanel('auth');
-  } else {
-    router.push({ name: "account" });
-  }
+const handleImageError = () => {
+  imageLoadError.value = true;
 };
 
-const bottomSheetControls = inject('bottomSheetControls');
+const clickAvatar = () => {
+  if (currentUserState.value === 'default') {
+    // User is not logged in - show authentication
+    if (props.useBottomSheet && bottomSheetControls) {
+      bottomSheetControls.switchPanel('auth');
+    }
+    return;  // Exit early
+  }
+
+  // User is logged in - navigate to account page
+  router.push({ name: 'account' });
+};
 </script>
 
 <style lang="scss" scoped>
