@@ -10,7 +10,7 @@
         <span class="_footnote email-display">We sent your code to</span>
         <span class="_footnote user-email">{{ userEmail }}</span>
         <InputCode ref="codeInputRef" v-model="otpCode" :autoFocus="true" :hasError="hasCodeError"
-          :errorMessage="codeErrorMessage" @complete="handleCodeComplete" @editing-start="handleCodeEditingStart" />
+          :errorMessage="codeErrorMessage" @editing-start="handleCodeEditingStart" />
       </div>
 
       <!-- Resend Helper -->
@@ -79,13 +79,6 @@ const isCodeComplete = computed(() => {
 // Event handlers
 const handleCodeEditingStart = () => {
   clearErrors();
-};
-
-const handleCodeComplete = (code) => {
-  if (code.length === 6) {
-    // Auto-submit when code is complete
-    submitCode();
-  }
 };
 
 const handleBack = () => {

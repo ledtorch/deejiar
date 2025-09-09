@@ -46,10 +46,6 @@ watch(() => props.modelValue, (newValue) => {
 // Watch for internal changes
 watch(codeValue, (newValue) => {
   emit('update:modelValue', newValue);
-
-  if (isComplete.value) {
-    emit('complete', newValue);
-  }
 });
 
 // Methods
@@ -65,11 +61,6 @@ const handleCodeInput = (event) => {
   }
 
   codeValue.value = value;
-
-  // Auto-complete when 6 digits entered
-  if (value.length === 6) {
-    emit('complete', value);
-  }
 };
 
 const handleCodePaste = (event) => {
@@ -78,10 +69,6 @@ const handleCodePaste = (event) => {
   const digits = pastedData.replace(/\D/g, '').slice(0, 6);
 
   codeValue.value = digits;
-
-  if (digits.length === 6) {
-    emit('complete', digits);
-  }
 };
 
 const handleKeydown = (event) => {
