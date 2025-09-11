@@ -1,12 +1,11 @@
 <template>
   <div class="header-store">
-    <p class="_title product-name">{{ product.name }}</p>
-    <p class="_title product-price">{{ product.price }}</p>
+    <h5 class="product-name">{{ product.name }}</h5>
+    <h5 class="product-price">{{ product.price }}</h5>
   </div>
 </template>
 
 <script setup>
-
 const props = defineProps({
   product: { type: Object, default: () => ({}) }
 })
@@ -15,7 +14,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 .header-store {
   width: 100%;
-  align-items: center;
+  align-items: top;
   justify-content: space-between;
   flex-wrap: wrap;
 }
@@ -24,9 +23,6 @@ const props = defineProps({
   width: 100%;
   align-items: center;
   justify-content: space-between;
-}
-
-.product-price {
   flex: 1 0 0;
 }
 </style>

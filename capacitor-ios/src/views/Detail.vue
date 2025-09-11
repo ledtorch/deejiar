@@ -40,10 +40,7 @@
 
     <!-- Product Page -->
     <section v-else class="content-section">
-      <div v-if="currentProduct" class="title-block">
-        <h4 class="_stretch">{{ currentProduct.name }}</h4>
-        <h4>{{ currentProduct.price }}</h4>
-      </div>
+      <HeaderProduct v-if="currentProduct" :product="currentProduct" />
       <!-- Use v-html to render <br> -->
       <p v-if="currentProduct" class="store-description" v-html="currentProduct.description"></p>
     </section>
@@ -57,6 +54,7 @@ import Businesshour from "../components/sheet/Businesshour.vue";
 import Address from "../components/sheet/Address.vue";
 import LoadingAni from "../components/common/LoadingAni.vue";
 import HeaderStore from "../components/nav/HeaderStore.vue";
+import HeaderProduct from "../components/nav/HeaderProduct.vue";
 import Divider from "../components/common/Divider.vue";
 // Buttons
 import Home from "../components/button/Icon/Home.vue";
