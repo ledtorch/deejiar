@@ -79,8 +79,11 @@ const handleClick = (event) => {
   align-items: center;
   justify-content: center;
   width: auto;
+
+  // Visual balance trick
   min-height: 42px;
   margin: 1 0;
+
   gap: var(--atom);
   border-radius: var(--round-m);
   background: var(--primary-text);
