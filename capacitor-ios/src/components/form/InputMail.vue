@@ -1,5 +1,5 @@
 <template>
-  <input ref="inputRef" :class="['form-input', { 'form-input--on': editing }, '_caption1']" v-model="editingValue"
+  <input ref="inputRef" :class="['form-input', { 'form-input--on': editing }, '_body2']" v-model="editingValue"
     :readonly="!editing" :placeholder="editing ? placeholder : 'Unlock advance features with mail'" type="email"
     inputmode="email" autocomplete="email" @click="handleClick" @blur="handleBlur" @keyup.enter="handleSubmit"
     @keyup.escape="cancelEditing" />
@@ -152,7 +152,7 @@ defineExpose({
 .form-input {
   width: 100%;
   height: 44px;
-  padding: 12px;
+  padding: var(--unit) var(--block);
   border: 1px solid var(--tertiary-text);
   border-radius: var(--round-m);
   box-sizing: border-box;
@@ -177,13 +177,12 @@ defineExpose({
   }
 
   &--on {
-    border-color: var(--baseline-green, #3dc363);
+    border-color: var(--color-green);
     color: var(--primary-text);
     cursor: text;
 
     &:focus {
-      border-color: var(--baseline-green, #3dc363);
-      box-shadow: 0 0 0 2px rgba(61, 195, 99, 0.2);
+      border-color: var(--color-green);
     }
   }
 }
