@@ -21,6 +21,50 @@ export const useUserStore = defineStore('user', () => {
   const displayName = computed(() => user.value?.display_name || user.value?.email?.split('@')[0] || 'User');
   const avatarUrl = computed(() => user.value?.avatar_url || null);
 
+  // New computed properties for social accounts
+  const xAccount = computed(() => user.value?.['x-account'] || null);
+  const instagramAccount = computed(() => user.value?.['ig-account'] || null);
+  const xConnectedDate = computed(() => user.value?.['x-connected'] || null);
+  const instagramConnectedDate = computed(() => user.value?.['ig-connected'] || null);
+  const userCreatedAt = computed(() => user.value?.created_at || null);
+
+  // Helper function to format dates
+  const formatConnectedDate = (dateString) => {
+    if (!dateString) return null;
+    try {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `Connected on ${year}.${month}.${day}`;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  // Helper function to format registration date
+  const formatRegistrationDate = (dateString) => {
+    if (!dateString) return null;
+    try {
+      const date = new Date(dateString);
+      const monthNames = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      ];
+      const month = monthNames[date.getMonth()];
+      const day = date.getDate();
+      const year = date.getFullYear();
+      return `Joined ${month}. ${day}, ${year}`;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  // Formatted date computed properties
+  const formattedXConnectedDate = computed(() => formatConnectedDate(xConnectedDate.value));
+  const formattedInstagramConnectedDate = computed(() => formatConnectedDate(instagramConnectedDate.value));
+  const formattedRegistrationDate = computed(() => formatRegistrationDate(userCreatedAt.value));
+
   // User state for TheAvatar component
   const userState = computed(() => {
     if (!isAuthenticated.value) return 'default';
@@ -236,6 +280,16 @@ export const useUserStore = defineStore('user', () => {
     displayName,
     avatarUrl,
     userState,
+
+    // New social account computed properties
+    xAccount,
+    instagramAccount,
+    xConnectedDate,
+    instagramConnectedDate,
+    userCreatedAt,
+    formattedXConnectedDate,
+    formattedInstagramConnectedDate,
+    formattedRegistrationDate,
 
     // Actions
     setAuth,

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from typing import Optional, List
 from datetime import datetime
 from enum import Enum
@@ -31,6 +31,22 @@ class UserResponse(BaseModel):
     provider: AuthProvider
     is_new_user: Optional[bool] = False
     premium: Optional[bool] = False
+    
+    # Add missing fields that exist in database
+    created_at: Optional[datetime] = None
+    language: Optional[List[str]] = None
+    age: Optional[int] = None
+    gender: Optional[str] = None
+    
+    # Social account fields (using field names that match your database)
+    x_account: Optional[str] = Field(None, alias="x-account")
+    ig_account: Optional[str] = Field(None, alias="ig-account")
+    x_connected: Optional[datetime] = Field(None, alias="x-connected")
+    ig_connected: Optional[datetime] = Field(None, alias="ig-connected")
+    
+    class Config:
+        # Allow field aliases to work
+        allow_population_by_field_name = True
 
 class AuthResponse(BaseModel):
     access_token: str

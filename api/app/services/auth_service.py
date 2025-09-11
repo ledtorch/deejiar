@@ -18,6 +18,26 @@ class AuthService:
         self.supabase = get_supabase_client()
         self.admin_supabase = get_supabase_admin_client()
     
+    def _create_user_response_from_data(self, user_data: Dict) -> UserResponse:
+        """Helper method to create UserResponse from database data"""
+        return UserResponse(
+            uid=user_data.get('uid'),
+            email=user_data.get('email'),
+            display_name=user_data.get('display_name'),
+            avatar_url=user_data.get('avatar_url'),
+            provider=AuthProvider.EMAIL,
+            is_new_user=user_data.get('is_new_user', False),
+            premium=user_data.get('premium', False),
+            created_at=user_data.get('created_at'),
+            language=user_data.get('language', []),
+            age=user_data.get('age'),
+            gender=user_data.get('gender'),
+            x_account=user_data.get('x-account'),
+            ig_account=user_data.get('ig-account'),
+            x_connected=user_data.get('x-connected'),
+            ig_connected=user_data.get('ig-connected')
+        )
+    
     async def check_user_exists(self, email: str) -> bool:
         """Check if user exists in both Supabase Auth AND your users table"""
         try:
@@ -145,7 +165,7 @@ class AuthService:
             
             # Create user profile in YOUR database table
             # We do this FIRST before updating metadata to avoid orphaned auth users
-            await self._create_user_profile(
+            user_data = await self._create_user_profile(
                 response.user.id,
                 custom_uid,
                 email,
@@ -172,15 +192,10 @@ class AuthService:
             return AuthResponse(
                 access_token=response.session.access_token,
                 refresh_token=response.session.refresh_token,
-                user=UserResponse(
-                    uid=custom_uid,
-                    email=email,
-                    display_name=None,
-                    avatar_url=None,
-                    provider=AuthProvider.EMAIL,
-                    is_new_user=True,
-                    premium=False
-                ),
+                user=self._create_user_response_from_data({
+                    **user_data,
+                    'is_new_user': True
+                }),
                 expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
             )
             
@@ -220,13 +235,12 @@ class AuthService:
             if not user_data:
                 # User exists in Auth but not in database - create profile
                 custom_uid = self._generate_uid()
-                await self._create_user_profile(
+                user_data = await self._create_user_profile(
                     response.user.id,
                     custom_uid,
                     email,
                     AuthProvider.EMAIL
                 )
-                user_data = await self._get_user_profile(email)
             
             # Update last login
             await self._update_last_login(user_data['uid'])
@@ -234,15 +248,10 @@ class AuthService:
             return AuthResponse(
                 access_token=response.session.access_token,
                 refresh_token=response.session.refresh_token,
-                user=UserResponse(
-                    uid=user_data['uid'],
-                    email=email,
-                    display_name=user_data.get('display_name'),
-                    avatar_url=user_data.get('avatar_url'),
-                    provider=AuthProvider.EMAIL,
-                    is_new_user=False,
-                    premium=user_data.get('premium', False)
-                ),
+                user=self._create_user_response_from_data({
+                    **user_data,
+                    'is_new_user': False
+                }),
                 expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
             )
             
@@ -274,15 +283,7 @@ class AuthService:
             if not user_data:
                 return None
             
-            return UserResponse(
-                uid=user_data['uid'],
-                email=user_data['email'],
-                display_name=user_data.get('display_name'),
-                avatar_url=user_data.get('avatar_url'),
-                provider=AuthProvider.EMAIL,
-                is_new_user=False,
-                premium=user_data.get('premium', False)
-            )
+            return self._create_user_response_from_data(user_data)
             
         except Exception as e:
             print(f"Error getting user by token: {str(e)}")
@@ -312,15 +313,7 @@ class AuthService:
             return AuthResponse(
                 access_token=response.session.access_token,
                 refresh_token=response.session.refresh_token,
-                user=UserResponse(
-                    uid=user_data['uid'],
-                    email=user_data['email'],
-                    display_name=user_data.get('display_name'),
-                    avatar_url=user_data.get('avatar_url'),
-                    provider=AuthProvider.EMAIL,
-                    is_new_user=False,
-                    premium=user_data.get('premium', False)
-                ),
+                user=self._create_user_response_from_data(user_data),
                 expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
             )
             
@@ -360,8 +353,8 @@ class AuthService:
         uid: str, 
         email: str,
         provider: AuthProvider
-    ):
-        """Create user profile in YOUR database"""
+    ) -> Dict:
+        """Create user profile in YOUR database and return the created data"""
         try:
             profile_data = {
                 'uid': uid,
@@ -372,8 +365,9 @@ class AuthService:
                 'age': None,
                 'gender': None,
                 'x-account': None,
-                'ig-account': None
-                # Note: removed 'supabase_id' as it's not in your table schema
+                'ig-account': None,
+                'x-connected': None,
+                'ig-connected': None
             }
             
             result = self.supabase.table('users').insert(profile_data).execute()
@@ -382,6 +376,7 @@ class AuthService:
                 raise Exception("Failed to insert user profile")
                 
             print(f"✅ User profile created successfully: {uid}")
+            return result.data[0]  # Return the created user data
             
         except Exception as e:
             print(f"❌ Failed to create user profile: {str(e)}")
