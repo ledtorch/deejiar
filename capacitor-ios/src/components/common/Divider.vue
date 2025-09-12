@@ -2,7 +2,7 @@
   <!-- Divider: or -->
   <div v-if="or" class="divider-or-container">
     <div class="divider-horizontal" />
-    <span class="_caption1 _color-secondary">or</span>
+    <span class="_caption1">or</span>
     <div class="divider-horizontal" />
   </div>
 
@@ -50,5 +50,6 @@ const dividerType = computed(() =>
   width: 100%;
   gap: var(--atom);
   padding: 0 var(--atom);
+  color: var(--secondary-text);
 }
 </style>
