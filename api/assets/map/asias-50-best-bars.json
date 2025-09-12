@@ -1,0 +1,152 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "121.5465962846551",
+          "25.044498051045757"
+        ]
+      },
+      "properties": {
+        "id": "FM_DwGTMp5m4vt4efxT",
+        "auid": "8700250495158565716",
+        "placeid": "ChIJgbsg4tqrQjQRNTNaBAUYOfA",
+        "title": "Bar Mood Taipei",
+        "type": "bar",
+        "layout": "food",
+        "storetag": [],
+        "producttag": []
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03162544459492,
+          38.9132761409135
+        ]
+      },
+      "properties": {
+        "id": "US_Fd1uDD6Msv8RMyqh",
+        "auid": "3689846720665772135",
+        "placeid": "ChIJbwUdjH63t4kR9_gS9lEMU8A",
+        "title": "Jane Jane",
+        "type": "bar",
+        "layout": "food",
+        "storetag": [],
+        "producttag": []
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55315955767247,
+          25.035623014231852
+        ]
+      },
+      "properties": {
+        "id": "FM_1dn21IwDy06t9UuG",
+        "auid": "7131535993595000173",
+        "placeid": "ChIJN-4uPaWuQjQRl5vzIpBxpFM",
+        "title": "Ole Rum Bar & Tapas",
+        "type": "bar",
+        "layout": "food",
+        "storetag": [],
+        "producttag": []
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55288446528934,
+          25.032059162354336
+        ]
+      },
+      "properties": {
+        "id": "FM_9La0WSXUub3LTKza",
+        "auid": "4323237897240854204",
+        "placeid": "ChIJjY4zZ8yrQjQRO9r-32pw-eg",
+        "title": "Larriere-cour",
+        "type": "bar",
+        "layout": "food",
+        "storetag": [],
+        "producttag": []
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.54480981123537,
+          25.039215200109936
+        ]
+      },
+      "properties": {
+        "id": "FM_pvHvX4BQTkIZg7Bo",
+        "auid": "7217928507319275413",
+        "placeid": "ChIJ5TXg4tCrQjQRNDAoeL3zmoE",
+        "title": "Indulge Experimental Bistro",
+        "type": "bar",
+        "layout": "food",
+        "storetag": [],
+        "producttag": []
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55827059852218,
+          25.032127495571647
+        ]
+      },
+      "properties": {
+        "id": "FM_8nxRzwEJcCkOtmLm",
+        "auid": "12283437593347315192",
+        "placeid": "ChIJwSO8jsCrQjQRqDmCOu8hCbA",
+        "title": "Carrot",
+        "type": "bar",
+        "layout": "food",
+        "storetag": [],
+        "producttag": []
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55827059852218,
+          25.032127495571647
+        ]
+      },
+      "properties": {
+        "id": "SG_qsV0rMckNiJ3eDcm",
+        "auid": "1829641397555543956",
+        "placeid": "ChIJ36AdBg0Z2jERvFl0QFoqZ0E",
+        "title": "Jigger & Pony",
+        "type": "bar",
+        "layout": "food",
+        "storetag": [],
+        "producttag": []
+      }
+    }
+  ]
+}
