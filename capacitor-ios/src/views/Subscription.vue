@@ -1,12 +1,12 @@
 <template>
-  <main class="body">
+  <main class="page">
     <section class="main-container">
       <HeaderPage :pagetitle="'Join the Deejiar Pioneers'"></HeaderPage>
       <img :src="bannerImage" alt="">
       <div class="promote-feature-container">
-        <TheAvatar userState="active" class="avatar-in-subscription" />
+        <TheAvatar overrideState="active" class="avatar-in-subscription" />
         <img src="/icon/action/arrow-right.svg" class="arrow-right-in-subscription">
-        <TheAvatar userState="premium" class="avatar-in-subscription" />
+        <TheAvatar overrideState="premium" class="avatar-in-subscription" />
       </div>
       <SubscriptionRadioCard />
     </section>
@@ -23,7 +23,7 @@ import SubscriptionRadioCard from '../components/card/SubscriptionRadioCard.vue'
 </script>
 
 <style lang="scss" scoped>
-.body {
+.page {
   /* Positioning */
   position: relative;
 

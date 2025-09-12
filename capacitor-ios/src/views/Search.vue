@@ -1,21 +1,12 @@
 <template>
   <main class="page">
-    <!-- Loading Ani -->
-    <div v-if="isLoading" class="image-loading-overlay">
-      <LoadingAni />
-    </div>
 
     <!-- Carousel Content -->
     <div v-if="currentPage === 0" class="hero-container" :style="{ 'backgroundImage': storeFrontImage }">
       <LeftArrowRound @click="previousPage" class="left-arrow" />
       <Home @click="toHomePage" class="home-btn" />
       <Share @click="share" class="share-btn" />
-      <RightArrowRound @click="nextPage" class="right-arrow" />
-    </div>
-    <div v-else class="hero-container" :style="{ 'backgroundImage': currentItem }">
-      <LeftArrowRound @click="previousPage" class="left-arrow" />
-      <HomeToDetail @click="toDetailHomePage" class="home-btn" />
-      <RightArrowRound @click="nextPage" class="right-arrow" />
+      <Close @click="handleClose" class="close-btn" />
     </div>
 
     <!-- Cover Page -->
@@ -38,13 +29,6 @@
       <GetDirection variant="google" :storeTitle="storeProperties.title" />
     </section>
 
-    <!-- Product Page -->
-    <section v-else class="content-section">
-      <HeaderProduct v-if="currentProduct" :product="currentProduct" />
-      <!-- Use v-html to render <br> -->
-      <p v-if="currentProduct" class="store-description" v-html="currentProduct.description"></p>
-    </section>
-
   </main>
 </template>
 
@@ -52,13 +36,10 @@
 // Components
 import Businesshour from "../components/sheet/Businesshour.vue";
 import Address from "../components/sheet/Address.vue";
-import LoadingAni from "../components/common/LoadingAni.vue";
 import HeaderStore from "../components/nav/HeaderStore.vue";
-import HeaderProduct from "../components/nav/HeaderProduct.vue";
 import Divider from "../components/common/Divider.vue";
 // Buttons
-import Home from "../components/button/Icon/Home.vue";
-import HomeToDetail from "../components/button/Icon/HomeToDetail.vue";
+import Close from "../components/button/Icon/Close.vue";
 import Share from "../components/button/Icon/Share.vue";
 import LeftArrowRound from "../components/button/Icon/LeftArrowRound.vue";
 import RightArrowRound from "../components/button/Icon/RightArrowRound.vue";
@@ -81,6 +62,11 @@ const appleAUID = ref('');
 const googlePlaceid = ref('');
 const geoData = ref('');
 const currentPage = ref(0);
+
+// Methods
+const handleClose = () => {
+  router.push('/map');
+};
 
 // Updated computed properties for new data structure
 const storeFrontImage = computed(() => {
@@ -268,6 +254,19 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+.page {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+
+  background-color: var(--background);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 .image-loading-overlay {
   position: fixed;
   top: 0;
@@ -280,19 +279,6 @@ onMounted(async () => {
   align-items: center;
   z-index: 2;
   backdrop-filter: blur(8px);
-}
-
-.page {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  overflow-y: auto;
-
-  background-color: var(--background);
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .hero-container {

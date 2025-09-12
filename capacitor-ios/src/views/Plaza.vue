@@ -1,5 +1,5 @@
 <template>
-  <main class="body">
+  <main class="page">
   </main>
 </template>
 
@@ -7,7 +7,7 @@
 </script>
 
 <style lang="scss" scoped>
-.body {
+.page {
   display: flex;
   position: relative;
   flex-direction: column;

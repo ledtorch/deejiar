@@ -1,5 +1,5 @@
 <template>
-  <section class="account-container">
+  <main class="page">
     <section v-if="!isSubscribed" class="main-container">
       <div class="upper-container">
         <HeaderPage :pagetitle="'Account'" />
@@ -43,7 +43,7 @@
       <Divider vertical />
       <PrimaryButton action="Share Your Feedback" default />
     </section>
-  </section>
+  </main>
 </template>
 
 <script setup>
@@ -106,7 +106,7 @@ const displayName = computed(() =>
 </script>
 
 <style lang="scss" scoped>
-.account-container {
+.page {
   /* Positioning */
   position: relative;
   /* Layout */
