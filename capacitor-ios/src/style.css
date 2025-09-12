@@ -85,7 +85,7 @@
 	--invert-primary: #0D0D0D;
 
 	/* Base Colors */
-	--gray-button: #262528;
+	--gray-button: #2D2C2E;
 	--content: rgba(255, 255, 255, 0.07);
 	--invert-content: rgba(0, 0, 0, 0.6);
 	--base: #1B1A1C;
@@ -348,29 +348,4 @@ p {
 	font-size: var(--font-5th);
 	line-height: var(--font-4th-height);
 	font-weight: 500;
-}
-
-/* ---------- Global Utility Tokens ---------- */
-._stretch {
-	flex: 1 0 0;
-}
-
-._color-primary {
-	color: rgba(255, 255, 255, 0.95);
-}
-
-._color-secondary {
-	color: rgba(255, 255, 255, 0.75);
-}
-
-._color-tertiary {
-	color: rgba(255, 255, 255, 0.5);
-}
-
-._base-button {
-	color: rgba(0, 0, 0, 0.07);
-}
-
-._base-button-hover {
-	color: rgba(0, 0, 0, 0.14);
 }
