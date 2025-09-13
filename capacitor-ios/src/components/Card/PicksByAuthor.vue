@@ -11,8 +11,7 @@
           </div>
         </div>
         <p class="_subtitle">Top Bars Chosen by Deejiar </p>
-        <!-- <h4>Asia's 50 Best Bars</h4> -->
-        <!-- <h4>Asia's 100 Best Bars in Taipei City</h4> -->
+
       </div>
     </transition>
   </div>
@@ -20,9 +19,9 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import Minimize from "../Button/Icon/Minimize.vue";
+import Minimize from "../button/Icon/Minimize.vue";
 import Thumbnail from './Thumbnail.vue';
-import barListData from '@/assets/lists/test-asias-50-best-bars.json';
+import barListData from '@/assets/lists/asias-50-best-bars.json';
 
 const isVisible = ref(true);
 const mode = ref('cover');
