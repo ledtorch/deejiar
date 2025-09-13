@@ -17,10 +17,11 @@ import { ref, computed, watch, provide } from 'vue';
 import { useRouter } from 'vue-router';
 
 // Import all panels
-import PanelSearch from './panel/PanelSearch.vue';
-import PanelStore from './panel/PanelStore.vue';
+import PanelDefault from './panel/PanelDefault.vue';
 import PanelAuth from './panel/PanelAuth.vue';
 import PanelAuthOTP from './panel/PanelAuthOTP.vue';
+import PanelSearch from './panel/PanelSearch.vue';
+import PanelStore from './panel/PanelStore.vue';
 
 const router = useRouter();
 
@@ -29,7 +30,7 @@ const props = defineProps({
   store: Object,
   initialPanel: {
     type: String,
-    default: 'search'
+    default: 'default'
   }
 });
 
@@ -45,15 +46,16 @@ const controlArea = ref(null);
 const currentPanel = ref(props.initialPanel);
 const panelData = ref({});
 const panelComponents = {
-  search: PanelSearch,
-  store: PanelStore,
+  default: PanelDefault,
   auth: PanelAuth,
-  authOTP: PanelAuthOTP
+  authOTP: PanelAuthOTP,
+  store: PanelStore,
+  search: PanelSearch
 };
 
-// Default panel is PanelSearch
+// Default panel is PanelDefault
 const currentPanelComponent = computed(() => {
-  return panelComponents[currentPanel.value] || PanelSearch;
+  return panelComponents[currentPanel.value] || PanelDefault;
 });
 
 const panelProps = computed(() => {
@@ -78,9 +80,9 @@ const panelProps = computed(() => {
 // Height presets
 const HEIGHTS = {
   MIN: '32px',
-  STORE: '467px',
-  SEARCH: '400px',
+  DEFAULT: '476px',
   AUTH: '396px',
+  STORE: '467px',
   FULL: `calc(100vh - env(safe-area-inset-top))`,
 };
 
@@ -95,8 +97,8 @@ watch(() => props.store, (newStore) => {
     currentPanel.value = 'store';
     bottomSheetHeight.value = HEIGHTS.STORE;
   } else {
-    currentPanel.value = 'search';
-    bottomSheetHeight.value = HEIGHTS.SEARCH;
+    currentPanel.value = 'default';
+    bottomSheetHeight.value = HEIGHTS.DEFAULT;
   }
 });
 
@@ -120,8 +122,11 @@ const switchPanel = (panelName, data = null) => {
     case 'authOTP':
       bottomSheetHeight.value = HEIGHTS.FULL;
       break;
+    case 'search':
+      bottomSheetHeight.value = HEIGHTS.FULL;
+      break;
     default:
-      bottomSheetHeight.value = HEIGHTS.SEARCH;
+      bottomSheetHeight.value = HEIGHTS.DEFAULT;
   }
 
   emit('panel-change', panelName);
@@ -133,7 +138,7 @@ const handlePanelClose = () => {
     emit('reset'); // Tell Map.vue to remove marker
   }
 
-  currentPanel.value = 'search';
+  currentPanel.value = 'default';
   bottomSheetHeight.value = HEIGHTS.MIN;
 };
 
@@ -193,7 +198,7 @@ const dragStop = () => {
     bottomSheetHeight.value = HEIGHTS.FULL;
   } else {
     // Return to panel's default height
-    const defaultHeight = HEIGHTS[currentPanel.value.toUpperCase()] || HEIGHTS.SEARCH;
+    const defaultHeight = HEIGHTS[currentPanel.value.toUpperCase()] || HEIGHTS.DEFAULT;
     bottomSheetHeight.value = defaultHeight;
   }
 
