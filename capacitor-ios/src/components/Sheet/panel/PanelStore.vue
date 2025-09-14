@@ -4,7 +4,7 @@
     <template v-if="storeLayout === 'food'">
       <nav class="store-nav">
         <HeaderStore :store="store" />
-        <Close @close="handleClose" />
+        <Close type="modal" @close="handleClose" />
       </nav>
 
       <div class="image-gallery">
@@ -28,7 +28,7 @@
     <template v-else-if="storeLayout === 'view'">
       <nav class="store-nav">
         <HeaderStore :store="store" />
-        <Close @close="handleClose" />
+        <Close type="modal" @close="handleClose" />
       </nav>
 
       <div class="image-gallery-view">

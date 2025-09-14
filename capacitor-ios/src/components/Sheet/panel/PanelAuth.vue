@@ -6,7 +6,7 @@
           <img src="/icon/logo/logo-app.png" class="app-logo">
           <h4>Deejiar</h4>
         </div>
-        <Close @close="closeBottomSheet" />
+        <Close type="modal" @close="closeBottomSheet" />
       </div>
       <h4 class="auth-tagline">Map for Taste Adventurers to Explore without Boundaries</h4>
       <SocialAuthButton action="Continue with Instagram" instagram />

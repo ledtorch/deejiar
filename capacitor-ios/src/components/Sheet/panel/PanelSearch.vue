@@ -2,7 +2,7 @@
   <section class="search-container">
     <div class="search-component">
       <TheSearch />
-      <Close @close="closeBottomSheet" />
+      <Close type="modal" @close="closeBottomSheet" />
     </div>
   </section>
 </template>
@@ -37,11 +37,6 @@ const closeBottomSheet = () => {
 .search-component {
   justify-content: space-between;
   gap: var(--block);
-}
-
-.avatar-layout {
-  width: 36px;
-  height: 36px;
 }
 
 .collection-container {
