@@ -8,8 +8,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useUserLocation } from '@/utils/useUserLocation.js';
+import { useMapStore } from '@/stores/mapStore.js';
 import BottomSheet from "../components/sheet/BottomSheet.vue";
 import Locate from "../components/button/Icon/Locate.vue";
 import PicksByAuthor from "../components/card/PicksByAuthor.vue";
@@ -21,9 +22,12 @@ const tempMarker = ref(null);
 const userLocationControl = ref(null);
 const bottomSheetRef = ref(null);
 
-// utils
+// Stores and utils
 const { userPosition, startWatching, stopWatching } = useUserLocation();
+const mapStore = useMapStore();
 
+
+// // 🏗️
 // Store JSON sources
 let storeData = null;
 
@@ -31,7 +35,7 @@ let storeData = null;
 const mapEndpoint = (path) => {
   return `${import.meta.env.VITE_API_URL}/map/${path}`;
 };
-
+// // 🏗️
 
 // Locate user
 const locateUser = () => {
@@ -49,14 +53,14 @@ const locateUser = () => {
 // Reset selected store
 const resetSelectedStore = () => {
   // remove marker and its data
-  tempMarker.value.remove();
-  tempMarker.value = null;
-
+  if (tempMarker.value) {
+    tempMarker.value.remove();
+    tempMarker.value = null;
+  }
   // remove selected store data
   selectedStore.value = null;
 };
 
-// const API = import.meta.env.VITE_DATACENTER_API;
 // Render stores logic
 const addStores = () => {
   // const url = `/stores.json?v=${new Date().getTime()}`;
@@ -191,7 +195,6 @@ const hidePicksByAuthor = () => {
     picksCard.style.display = 'none';
   }
 };
-
 
 // Initialize map
 onMounted(async () => {
