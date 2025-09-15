@@ -8,6 +8,7 @@ import './style.css';
 
 // Plugin
 import router from './router.js'
+import { useMapStore } from './stores/mapStore'
 import { useUserStore } from './stores/userStore';
 import VueLazyload from 'vue-lazyload'
 
@@ -25,10 +26,14 @@ app.use(VueLazyload, {
 
 // Initialize auth before mounting
 async function initializeApp() {
+  const mapStore = useMapStore();
   const userStore = useUserStore();
 
-  // Try to restore authentication from localStorage
-  await userStore.loadAuthFromStorage();
+  // Run both operations in parallel
+  await Promise.all([
+    mapStore.initialize(),
+    userStore.loadAuthFromStorage()
+  ]);
 
   app.mount('#app');
 }
