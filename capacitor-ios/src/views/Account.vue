@@ -15,14 +15,16 @@
           <img src="/icon/subscription-medal/none.svg" class="level-icon">
         </div>
         <Divider />
+        <!--  
         <div class="page-buttons">
           <PageButton action="Inbox" inbox />
           <PageButton action="Map" map />
           <PageButton action="Help" help />
         </div>
+        -->
         <ListAccountData email />
-        <ListAccountData x />
-        <ListAccountData instagram />
+        <!-- <ListAccountData x /> -->
+        <!-- <ListAccountData instagram /> -->
         <p class="version-text _caption2">v0.01.1 Release 2025.09.09</p>
       </div>
 

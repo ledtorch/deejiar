@@ -9,8 +9,8 @@
         <Close type="modal" @close="closeBottomSheet" />
       </div>
       <h4 class="auth-tagline">Map for Taste Adventurers to Explore without Boundaries</h4>
-      <SocialAuthButton action="Continue with Instagram" instagram />
-      <SocialAuthButton action="Continue with X" x />
+      <!-- <SocialAuthButton action="Continue with Instagram" instagram /> -->
+      <!-- <SocialAuthButton action="Continue with X" x /> -->
       <Divider or />
     </template>
 
