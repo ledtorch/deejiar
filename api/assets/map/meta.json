@@ -522,6 +522,24 @@
         "storetag": [],
         "producttag": ["ramen", "tonkotsu"]
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.56638687423495, 25.03473159571479]
+      },
+      "properties": {
+        "id": "FM_4017b3baca5c40d4a",
+        "auid": "I5E02E04A0A5DEA68",
+        "placeid": "ChIJx9kLTcCrQjQReOhQ7rph6sY",
+        "title": "YONSHIN Milk Tea Mansion Breeze NanShan Shop",
+        "type": "formosan-bistro",
+        "layout": "food",
+        "storetag": ["friendly", "takeaway", "service-charge"],
+        "producttag": ["milktea", "dessert", "tea"]
+      }
     }
   ]
 }
