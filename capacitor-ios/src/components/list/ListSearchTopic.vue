@@ -1,18 +1,30 @@
 <template>
-  <button class="list-container">
+  <button class="list-container" @click="navigateToTaipei">
     <div class="topic-header">
 
-      <img src="@/assets/images/taipei.jpg" alt="Taipei" class="topic-icon">
+      <img src="@/assets/images/taipei.jpg" class="topic-icon">
       <p class="topic-title _title">Start from Taipei City</p>
     </div>
 
-    <img src="@/assets/button/pin-point.svg" alt="Pin location" class="topic-button-icon" />
+    <img src="@/assets/button/pin-point.svg" class="topic-button-icon" />
   </button>
 </template>
 
 <script setup>
+import { useMapStore } from '@/stores/mapStore.js';
+const mapStore = useMapStore();
 
+const navigateToTaipei = () => {
+  const TAIPEI_COORDINATES = [121.55750335591597, 25.041676750617142]
+
+  // Directly assign to the ref object
+  mapStore.navigateToLocation.value = {
+    coordinates: TAIPEI_COORDINATES,
+    zoomLevel: 13.5
+  }
+}
 </script>
+
 
 <style lang="scss" scoped>
 .list-container {

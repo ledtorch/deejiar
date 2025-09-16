@@ -9,6 +9,14 @@ export const useMapStore = defineStore('map', () => {
   const currentDataSource = ref('meta') // 'meta', 'collectionA', 'collectionB', 'collectionC'
   const mapData = ref(null)
 
+  // ===========================
+  // Navigation Action
+  // ===========================
+  const navigateToLocation = ref({
+    coordinates: null,
+    zoomLevel: null
+  })
+
   // Map render json
   const metaData = ref(null) // Keep reference to original meta.json
   const collectionData = ref({
@@ -216,6 +224,8 @@ export const useMapStore = defineStore('map', () => {
     // Computed Properties
     currentData,
     hasCollectionData,
+
+    navigateToLocation,
 
     // Core Actions
     fetchMetaData,

@@ -39,6 +39,26 @@ const locateUser = () => {
   // console.log("📍 Fly to user position: ", userPosition);
 };
 
+// Navigate to location
+watch(() => mapStore.navigateToLocation.value, (navigationData) => {
+  if (navigationData && navigationData.coordinates && navigationData.zoomLevel && map.value) {
+    console.log('🗺️ Store navigation triggered:', navigationData)
+
+    map.value.flyTo({
+      center: navigationData.coordinates,
+      zoom: navigationData.zoomLevel,
+      speed: 2,
+      curve: 1
+    })
+
+    // Optional: Clear the navigation data after use
+    mapStore.navigateToLocation.value = {
+      coordinates: null,
+      zoomLevel: null
+    }
+  }
+}, { deep: true })
+
 // Reset selected store
 const resetSelectedStore = () => {
   // remove marker and its data
