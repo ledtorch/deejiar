@@ -3,7 +3,9 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
 export const useMapStore = defineStore('map', () => {
-  // State
+  // ===========================
+  // Core Map State
+  // ===========================
   const currentDataSource = ref('meta') // 'meta', 'collectionA', 'collectionB', 'collectionC'
   const mapData = ref(null)
 
@@ -18,12 +20,22 @@ export const useMapStore = defineStore('map', () => {
   const isLoading = ref(false)
   const error = ref(null)
 
-  // JSON Endpoints helper
+  // ===========================
+  // TagFilter State Management
+  // ===========================
+  const showTagFilter = ref(false)
+  const activeCollectionType = ref(null) // 'cocktail', 'icecream', 'taco'
+
+  // ===========================
+  // Utilities
+  // ===========================
   const mapEndpoint = (path) => {
     return `${import.meta.env.VITE_API_URL}/map/${path}?v=${Date.now()}`
   }
 
-  // Getters
+  // ===========================
+  // Computed Properties
+  // ===========================
   const currentData = computed(() => {
     switch (currentDataSource.value) {
       case 'meta':
@@ -43,7 +55,9 @@ export const useMapStore = defineStore('map', () => {
     return Object.values(collectionData.value).some(data => data !== null)
   })
 
-  // Actions
+  // ===========================
+  // Core Map Actions
+  // ===========================
   const fetchMetaData = async () => {
     if (metaData.value) return metaData.value // Return cached data
 
@@ -140,8 +154,25 @@ export const useMapStore = defineStore('map', () => {
     }
   }
 
+  // ===========================
+  // TagFilter Actions
+  // ===========================
+  const setTagFilter = (collectionType) => {
+    activeCollectionType.value = collectionType
+    showTagFilter.value = true
+  }
+
+  const hideTagFilter = () => {
+    showTagFilter.value = false
+    activeCollectionType.value = null
+  }
+
+  // ===========================
+  // Combined Actions
+  // ===========================
   const resetToMeta = async () => {
     await setDataSource('meta')
+    hideTagFilter() // Hide TagFilter when resetting to meta
   }
 
   const loadCollection = async (type) => {
@@ -154,20 +185,23 @@ export const useMapStore = defineStore('map', () => {
     const dataSource = collectionMap[type]
     if (dataSource) {
       await setDataSource(dataSource)
+      setTagFilter(type) // Show TagFilter when loading collection
     }
   }
 
+  // ===========================
+  // Utility Actions
+  // ===========================
   const clearError = () => {
     error.value = null
   }
 
-  // Initialize with meta data
   const initialize = async () => {
     await fetchMetaData()
   }
 
   return {
-    // State
+    // Core State
     currentDataSource,
     mapData,
     metaData,
@@ -175,17 +209,25 @@ export const useMapStore = defineStore('map', () => {
     isLoading,
     error,
 
-    // Getters
+    // TagFilter State
+    showTagFilter,
+    activeCollectionType,
+
+    // Computed Properties
     currentData,
     hasCollectionData,
 
-    // Actions
+    // Core Actions
     fetchMetaData,
     fetchCollectionData,
     setDataSource,
     resetToMeta,
     loadCollection,
     clearError,
-    initialize
+    initialize,
+
+    // TagFilter Actions
+    setTagFilter,
+    hideTagFilter
   }
 })

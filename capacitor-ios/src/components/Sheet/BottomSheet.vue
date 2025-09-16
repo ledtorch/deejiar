@@ -1,5 +1,10 @@
 <template>
   <div class="bottom-sheet" :style="{ height: bottomSheetHeight }" ref="bottomSheet">
+    <!-- Filter Tag - Show when collection is active -->
+    <div v-if="mapStore.showTagFilter" class="filter-tag-container">
+      <TagFilter :icon="tagFilterData.icon" :text="tagFilterData.text" @close="handleTagFilterClose" />
+    </div>
+
     <!-- Drag Control Bar -->
     <div v-if="currentPanelComponent !== PanelAuth && currentPanelComponent !== PanelAuthOTP" class="control-area"
       ref="controlArea">
@@ -8,13 +13,14 @@
 
     <!-- Dynamic Panel Content -->
     <component :is="currentPanelComponent" v-bind="panelProps" @close="handlePanelClose"
-      @height-change="updateSheetHeight" @navigate="handleNavigation" />
+      @height-change="updateSheetHeight" @navigate="handleNavigation" @show-tag-filter="handleShowTagFilter" />
   </div>
 </template>
 
 <script setup>
 import { ref, computed, watch, provide } from 'vue';
 import { useRouter } from 'vue-router';
+import { useMapStore } from '@/stores/mapStore.js';
 
 // Import all panels
 import PanelDefault from './panel/PanelDefault.vue';
@@ -23,7 +29,10 @@ import PanelAuthOTP from './panel/PanelAuthOTP.vue';
 import PanelSearch from './panel/PanelSearch.vue';
 import PanelStore from './panel/PanelStore.vue';
 
+import TagFilter from './../button/tag/TagFilter.vue'
+
 const router = useRouter();
+const mapStore = useMapStore();
 
 // Props from Map.vue
 const props = defineProps({
@@ -53,7 +62,7 @@ const panelComponents = {
   search: PanelSearch
 };
 
-// Default panel is PanelDefault
+// Default panel
 const currentPanelComponent = computed(() => {
   return panelComponents[currentPanel.value] || PanelDefault;
 });
@@ -75,21 +84,30 @@ const panelProps = computed(() => {
   return {};
 });
 
+// ===========================
+// TagFilter State & Handlers
+// ===========================
+const tagFilterData = computed(() => {
+  const collectionTags = {
+    cocktail: { icon: '/icon/collection/cocktail.png', text: 'Best Bars After Dark — Taipei' },
+    icecream: { icon: '/icon/collection/icecream.png', text: 'Ice Cream for a Rainy Day' },
+    taco: { icon: '/icon/collection/taco.png', text: 'Tacos in the Alley' }
+  }
+  return collectionTags[mapStore.activeCollectionType] || { icon: '', text: '' }
+})
 
+const handleTagFilterClose = () => {
+  mapStore.resetToMeta()
+}
 
 // Height presets
 const HEIGHTS = {
   MIN: '32px',
   DEFAULT: '476px',
-  AUTH: '396px',
+  AUTH: '290px',
   STORE: '467px',
   FULL: `calc(100vh - env(safe-area-inset-top))`,
 };
-
-const flexiblePanels = ['store', 'auth', 'authOTP'];
-const isCurrentPanelFlexible = computed(() => {
-  return flexiblePanels.includes(currentPanel.value);
-});
 
 // Watch for store selection from Map.vue
 watch(() => props.store, (newStore) => {
@@ -269,5 +287,17 @@ provide('bottomSheetControls', {
   height: 4px;
   border-radius: 4px;
   background-color: #808cab;
+}
+
+.filter-tag-container {
+  position: fixed;
+  top: calc(var(--wrapper) + env(safe-area-inset-top));
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  padding: var(--block) 0 0 0;
 }
 </style>
