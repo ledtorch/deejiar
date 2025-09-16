@@ -281,8 +281,6 @@ export const useUserStore = defineStore('user', () => {
     login,
     register,
     logout,
-    updateUserProfile,
-    getDeviceId,
-    linkAppleAccount
+    updateUserProfile
   };
 });
