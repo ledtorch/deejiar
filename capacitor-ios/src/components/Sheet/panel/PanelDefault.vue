@@ -38,7 +38,9 @@ const handleCollectionRender = (collectionType) => {
   console.log(`Collection ${collectionType} is now active`);
 };
 
-// Call to Action
+// ===========================
+// Switch panel
+// ===========================
 const CTAButtonText = computed(() => {
   if (userStore.userState === 'default') {
     return 'Log in to Unlock Advanced Features';
@@ -47,7 +49,6 @@ const CTAButtonText = computed(() => {
   }
 });
 
-// Switch panel
 const handleLoginOrRegister = () => {
   if (userStore.userState === 'default') {
     bottomSheetControls.switchPanel('auth');
