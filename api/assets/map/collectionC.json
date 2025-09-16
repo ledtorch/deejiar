@@ -1,0 +1,80 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55375763761656,
+          25.032931060296708
+        ]
+      },
+      "properties": {
+        "id": "FM_oSL0vwinzladbF4D",
+        "auid": "9155073419001978017",
+        "placeid": "ChIJ3Z4HxHurQjQRnx4_tgoRhjU",
+        "title": "Pàng Taqueria",
+        "type": "taco",
+        "layout": "food",
+        "storetag": [
+          "taco"
+        ],
+        "producttag": [
+          "taco"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.52976830972298,
+          25.017195212353954
+        ]
+      },
+      "properties": {
+        "id": "FM_QPa2Oa3hdsFvFgCU",
+        "auid": "14372726423338286649",
+        "placeid": "ChIJxZPxQYypQjQRmP3Fw5cvpZc",
+        "title": "El Sabroso Mexican Food",
+        "type": "taco",
+        "layout": "food",
+        "storetag": [
+          "taco"
+        ],
+        "producttag": [
+          "taco"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.55046504508994,
+          25.039727905632322
+        ]
+      },
+      "properties": {
+        "id": "FM_QP7aT53UJ4x9ntiE",
+        "auid": "3475026617689486784",
+        "placeid": "ChIJ8VNyWSqqQjQRz_rrWE4OhkI",
+        "title": "Teotihuacan Mexican Restaurant",
+        "type": "taco",
+        "layout": "food",
+        "storetag": [
+          "taco"
+        ],
+        "producttag": [
+          "taco"
+        ]
+      }
+    }
+  ]
+}

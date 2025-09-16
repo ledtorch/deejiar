@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.55164116754744, 25.04269480315472]
+      },
+      "properties": {
+        "id": "FM_OmBhzr6BbJWTJzfx",
+        "auid": "14510735417314001215",
+        "placeid": "ChIJOdHWx6yrQjQRnb88OVTWvxo",
+        "title": "Odd One Out Dunnan Shop",
+        "type": "icecream",
+        "layout": "food",
+        "storetag": ["icecream"],
+        "producttag": ["icecream", "milktea"]
+      }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": ["139.75204295438456", "35.65734730712575"]
+      },
+      "properties": {
+        "id": "JP_r8K5tX2wLm7QpV3z",
+        "auid": "IEFD2E83B9E791847",
+        "placeid": "ChIJlYi3eB6LGGARZMtOLl2BEqg",
+        "title": "Kurogi Japanese Sweets Lab",
+        "type": "shaved-ice",
+        "layout": "food",
+        "storetag": [],
+        "producttag": ["dessert"]
+      }
+    }
+  ]
+}

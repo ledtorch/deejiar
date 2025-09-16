@@ -1,5 +1,5 @@
 <template>
-  <section class="list-container">
+  <section class="list-container" @click="renderCollectionStores">
     <img :src="topicData.thumbnail" class="thumbnail">
     <div class="content">
       <p class="list-title _subtitle">{{ topicData.title }}</p>
@@ -11,6 +11,7 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useMapStore } from '../../stores/mapStore.js';
 
 const props = defineProps({
   cocktail: {
@@ -27,23 +28,24 @@ const props = defineProps({
   }
 });
 
+const emit = defineEmits(['render', 'select']);
+const mapStore = useMapStore();
+
+// JSON Endpoints
+const mapEndpoint = (path) => {
+  return `${import.meta.env.VITE_API_URL}/map/${path}`;
+};
+
 // Fixed data for MVP
 const topicData = computed(() => {
   if (props.cocktail) {
     return {
-      title: "TOP 50 Bars in Asia",
+      title: "Best Bars After Dark — Taipei",
       subtitle: "Sip. Savor. Stay out late.",
       thumbnail: "/icon/collection/cocktail.jpg",
-      icon: "/icon/collection/cocktail.png"
-    };
-  }
-
-  if (props.taco) {
-    return {
-      title: "Tacos in the Alley",
-      subtitle: "Hidden flavors locals swear by.",
-      thumbnail: "/icon/collection/taco.jpg",
-      icon: "/icon/collection/taco.png"
+      icon: "/icon/collection/cocktail.png",
+      type: 'cocktail',
+      url: mapEndpoint('collectionA.json'),
     };
   }
 
@@ -52,7 +54,20 @@ const topicData = computed(() => {
       title: "Ice Cream for a Rainy Day",
       subtitle: "Sweet comfort for a cloudy mood.",
       thumbnail: "/icon/collection/icecream.jpg",
-      icon: "/icon/collection/icecream.png"
+      icon: "/icon/collection/icecream.png",
+      type: 'icecream',
+      url: mapEndpoint('collectionB.json')
+    };
+  }
+
+  if (props.taco) {
+    return {
+      title: "Tacos in the Alley",
+      subtitle: "Hidden flavors locals swear by.",
+      thumbnail: "/icon/collection/taco.jpg",
+      icon: "/icon/collection/taco.png",
+      type: 'taco',
+      url: mapEndpoint('collectionC.json')
     };
   }
 
@@ -64,6 +79,27 @@ const topicData = computed(() => {
     icon: ""
   };
 });
+
+// Handle collection click - load data to map store
+const renderCollectionStores = async () => {
+  try {
+    // Load the collection data into the map store
+    await mapStore.loadCollection(topicData.value.type);
+
+    // Emit events for other components to react
+    emit('render', topicData.value.type);
+    emit('select', {
+      type: topicData.value.type,
+      url: topicData.value.url,
+      data: topicData.value
+    });
+
+    console.log(`🎯 Collection ${topicData.value.type} loaded to map`);
+  } catch (error) {
+    console.error(`Failed to load collection ${topicData.value.type}:`, error);
+  }
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -77,6 +113,10 @@ const topicData = computed(() => {
   border-radius: var(--round-m);
   width: 100%;
   overflow: hidden;
+
+  &:active {
+    opacity: 0.7;
+  }
 }
 
 .content {

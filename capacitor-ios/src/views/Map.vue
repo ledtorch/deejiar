@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="map"></div>
-    <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" />
+    <!-- <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" /> -->
     <Locate id="button-locate" @locate="locateUser" aria-label="locate user" />
     <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" ref="bottomSheetRef" />
   </div>
@@ -25,17 +25,6 @@ const bottomSheetRef = ref(null);
 // Stores and utils
 const { userPosition, startWatching, stopWatching } = useUserLocation();
 const mapStore = useMapStore();
-
-
-// // 🏗️
-// Store JSON sources
-let storeData = null;
-
-// JSON Endpoints
-const mapEndpoint = (path) => {
-  return `${import.meta.env.VITE_API_URL}/map/${path}`;
-};
-// // 🏗️
 
 // Locate user
 const locateUser = () => {
@@ -62,32 +51,86 @@ const resetSelectedStore = () => {
 };
 
 // Render stores logic
-const addStores = () => {
-  // const url = `/stores.json?v=${new Date().getTime()}`;
-  // 🏗️ Testing FastAPI endpoint
-  const url = mapEndpoint(`meta.json?v=${Date.now()}`);
-  console.log("📡 Fetching from", url);
+const updateMapData = (newData) => {
+  if (!map.value || !newData) return;
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      storeData = data;
+  console.log('🗺️ Updating map with new data:', mapStore.currentDataSource);
 
-      map.value.addSource("stores", {
-        type: "geojson",
-        data: storeData
-      });
+  // Remove existing source and layer if they exist
+  if (map.value.getSource('stores')) {
+    map.value.removeLayer('stores');
+    map.value.removeSource('stores');
+  }
 
-      storeData.features.forEach(feature => {
-        ["mini", "default", "larger", "active"].forEach(size => {
-          const iconPath = `/button/marker/${feature.properties.type}-${size}.png`;
-          map.value.loadImage(iconPath, (error, image) => {
-            if (error) throw error;
-            map.value.addImage(feature.properties.title + "-" + size, image);
-          });
+  // Add new source
+  map.value.addSource("stores", {
+    type: "geojson",
+    data: newData
+  });
+
+  // Load marker images for new features
+  newData.features.forEach(feature => {
+    ["mini", "default", "active"].forEach(size => {
+      const iconPath = `/button/marker/${feature.properties.type}-${size}.png`;
+      const imageName = feature.properties.title + "-" + size;
+
+      // Check if image already exists to avoid duplicate loading
+      if (!map.value.hasImage(imageName)) {
+        map.value.loadImage(iconPath, (error, image) => {
+          if (error) {
+            console.warn(`Failed to load marker image: ${iconPath}`, error);
+            return;
+          }
+          map.value.addImage(imageName, image);
         });
-      });
+      }
+    });
+  });
 
+  // Re-add the layer
+  map.value.addLayer({
+    id: "stores",
+    type: "symbol",
+    source: "stores",
+    layout: {
+      "icon-image": [
+        "step",
+        ["zoom"],
+        "",
+        10, ["concat", ["get", "title"], "-mini"],
+        12.4, ["concat", ["get", "title"], "-default"]
+      ],
+      "icon-size": 0.25,
+      "text-font": ["Geist", "Arial Unicode MS Bold"],
+      "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
+      "text-anchor": "left"
+    },
+    paint: {
+      "text-color": "#FFFFFF"
+    }
+  });
+
+  // Re-attach click handlers
+  map.value.off("click", "stores", clickMarker); // Remove old handler
+  map.value.on("click", "stores", event => clickMarker(event));
+};
+
+// Watch for changes in map data
+watch(() => mapStore.mapData, (newData) => {
+  if (newData) {
+    updateMapData(newData);
+  }
+}, { deep: true });
+
+// Initial stores setup
+const initializeStores = async () => {
+  try {
+    await mapStore.initialize();
+
+    if (mapStore.mapData) {
+      updateMapData(mapStore.mapData);
+
+      // Setup zoom listener
       map.value.on("zoom", () => {
         const zoomLevel = map.value.getZoom();
 
@@ -100,30 +143,7 @@ const addStores = () => {
         }
       });
 
-      map.value.addLayer({
-        id: "stores",
-        type: "symbol",
-        source: "stores",
-        layout: {
-          "icon-image": [
-            "step",
-            ["zoom"],
-            "",
-            10, ["concat", ["get", "title"], "-mini"],
-            12.4, ["concat", ["get", "title"], "-default"]
-          ],
-          "icon-size": 0.25,
-          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-          "text-field": ["step", ["zoom"], "", 13.5, ["get", "title"]],
-          "text-anchor": "left"
-        },
-        paint: {
-          "text-color": "#FFFFFF"
-        }
-      });
-
-      map.value.on("click", "stores", event => clickMarker(event));
-
+      // Setup click away handler
       map.value.on("click", event => {
         const features = map.value.queryRenderedFeatures(event.point, {
           layers: ["stores"]
@@ -134,7 +154,10 @@ const addStores = () => {
           tempMarker.value = null;
         }
       });
-    });
+    }
+  } catch (error) {
+    console.error('Failed to initialize stores:', error);
+  }
 };
 
 // Click marker
@@ -214,7 +237,7 @@ onMounted(async () => {
 
   // After map load, add stores and initialize user location control for position dot
   map.value.on("load", () => {
-    addStores();
+    initializeStores();
 
     // Initialize GeolocateControl only if it doesn't exist
     userLocationControl.value = new mapboxgl.value.GeolocateControl({
@@ -251,10 +274,11 @@ onMounted(async () => {
       //   "(" + position.coords.latitude + "," + position.coords.longitude + ")"
       // );
     },
-    // If user denies geolocation, set map center to White House
+
+    // If user denies geolocation, set map center to Taipei 101 for MVP version
     error => {
       console.error("Geolocation error: ", error);
-      map.value.setCenter([-77.0364976166554, 38.897684621644885]);
+      map.value.setCenter([121.56456012803592, 25.034029946192703]);
     }
   );
 

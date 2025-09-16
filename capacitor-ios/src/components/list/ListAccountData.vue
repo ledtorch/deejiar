@@ -148,6 +148,7 @@ const subtitleClass = computed(() => ({
 }
 
 .connected-account {
+  text-overflow: ellipsis;
   color: var(--primary-text);
 }
 </style>

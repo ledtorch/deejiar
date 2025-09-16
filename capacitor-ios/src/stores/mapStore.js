@@ -6,18 +6,21 @@ export const useMapStore = defineStore('map', () => {
   // State
   const currentDataSource = ref('meta') // 'meta', 'collectionA', 'collectionB', 'collectionC'
   const mapData = ref(null)
+
+  // Map render json
   const metaData = ref(null) // Keep reference to original meta.json
   const collectionData = ref({
     A: null,
     B: null,
     C: null
   })
+
   const isLoading = ref(false)
   const error = ref(null)
 
   // JSON Endpoints helper
   const mapEndpoint = (path) => {
-    return `${import.meta.env.VITE_API_URL}/map/${path}`
+    return `${import.meta.env.VITE_API_URL}/map/${path}?v=${Date.now()}`
   }
 
   // Getters
@@ -144,8 +147,8 @@ export const useMapStore = defineStore('map', () => {
   const loadCollection = async (type) => {
     const collectionMap = {
       cocktail: 'collectionA',
-      taco: 'collectionB',
-      icecream: 'collectionC'
+      icecream: 'collectionB',
+      taco: 'collectionC'
     }
 
     const dataSource = collectionMap[type]
