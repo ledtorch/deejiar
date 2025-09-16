@@ -246,25 +246,6 @@ export const useUserStore = defineStore('user', () => {
     localStorage.setItem('user', JSON.stringify(user.value));
   };
 
-  // Device ID for future Apple ID integration
-  const getDeviceId = () => {
-    let deviceId = localStorage.getItem('device_id');
-    if (!deviceId) {
-      // Generate a unique device ID
-      deviceId = `dj_device_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      localStorage.setItem('device_id', deviceId);
-    }
-    return deviceId;
-  };
-
-  // Prepare for future Apple Sign In
-  const linkAppleAccount = async (appleAuthData) => {
-    // This will be implemented when Apple Sign In is added
-    // Will link Apple ID to existing Deejiar account using device ID
-    // and email mapping strategy
-    console.log('Apple account linking prepared for future implementation');
-  };
-
   return {
     // State
     user,
