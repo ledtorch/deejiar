@@ -5,13 +5,13 @@
 
       <!-- Monthly Plan -->
       <div class="plan-card" :class="{ 'selected': selectedPlan === 'monthly' }" @click="selectedPlan = 'monthly'">
-        <div class="plan-content">
+        <div class="monthly-container">
           <div class="plan-header">
             <p class="plan-title _subtitle">Trailblazer Monthly</p>
             <div class="radio-button" :class="{ 'checked': selectedPlan === 'monthly' }">
             </div>
           </div>
-          <span class="_title price">$4.99/mo</span>
+          <h5 class="price">$4.99/mo</h5>
         </div>
       </div>
 
@@ -19,36 +19,35 @@
 
       <!-- Yearly Plan -->
       <div class="plan-card" :class="{ 'selected': selectedPlan === 'yearly' }" @click="selectedPlan = 'yearly'">
-        <div class="plan-content">
-
-          <div class="plan-header">
-            <p class="plan-title _subtitle">Trailblazer Yearly</p>
-            <div class="radio-button" :class="{ 'checked': selectedPlan === 'yearly' }">
+        <div class="yearly-container">
+          <div class="yearly-header">
+            <div class="plan-header">
+              <p class="plan-title _subtitle">Trailblazer Yearly</p>
+              <div class="radio-button" :class="{ 'checked': selectedPlan === 'yearly' }">
+              </div>
             </div>
+            <h5 class="price">$49/yr</h5>
           </div>
 
-          <span class="_title price">$49/yr</span>
-          <p class="_footnote savings">
-            Save over <span class="_footnote savings-highlight">20%</span> with the yearly plan.
-          </p>
+          <div class="bonus-container">
+            <img class="bonus-icon" src="@/assets/icons/key.png">
+            <p class="bonus-text _button-secondary">Join <a class="club-link"
+                href="https://x.com/i/communities/1962023966777995432">Deejiar Club</a></p>
+          </div>
+          <div class="bonus-container">
+            <img class="bonus-icon" src="@/assets/icons/discount.png">
+            <p class="bonus-text _button-secondary">Save over 20% with the yearly plan</p>
+          </div>
 
         </div>
       </div>
     </div>
 
-    <!-- Benefits Text -->
-    <div class="note">
-      <p class="_body2 benefits-text">
-        Thank you for being an early supporter. Your subscription unlocks special access to the
-        <span class="club-link">Deejiar Club</span>.
-      </p>
-
-      <!-- Terms Text -->
-      <p class="_caption1 terms-text">
-        Free for 7 days, then {{ selectedPlan === 'monthly' ? '$4.99/month' : '$49/year' }}.
-        Auto-renews until canceled in Settings.
-      </p>
-    </div>
+    <!-- Terms Text -->
+    <p class="_caption1 terms-text">
+      Free for 7 days, then {{ selectedPlan === 'monthly' ? '$4.99/month' : '$49/year' }}.
+      Auto-renews until canceled in Settings.
+    </p>
   </section>
 </template>
 
@@ -91,21 +90,66 @@ watch(selectedPlan, (newPlan) => {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: var(--box) 0;
   gap: var(--unit);
 
   /* Interaction */
   cursor: pointer;
   transition: all 0.2s ease;
+
+  /* Opacity control for unselected plans */
+  &:not(.selected) {
+
+    .price,
+    .bonus-text,
+    .bonus-icon {
+      opacity: 0.4;
+    }
+  }
+
+  /* Full opacity for selected plans */
+  &.selected {
+
+    .price,
+    .bonus-text,
+    .bonus-icon {
+      opacity: 1;
+    }
+  }
 }
 
-.plan-content {
+.monthly-container {
   /* Layout */
-  display: flex;
   flex-direction: column;
-  gap: var(--unit);
   flex: 1;
+  padding: var(--box);
   width: 100%;
+}
+
+.yearly-container {
+  /* Layout */
+  flex-direction: column;
+  gap: var(--atom);
+  flex: 1;
+  padding: var(--box);
+  width: 100%;
+}
+
+.yearly-header {
+  flex-direction: column;
+}
+
+.bonus-text {
+  color: var(--primary-text);
+}
+
+.bonus-container {
+  gap: var(--atom);
+  align-items: center;
+}
+
+.bonus-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .plan-title {
@@ -125,7 +169,7 @@ watch(selectedPlan, (newPlan) => {
 }
 
 .price {
-  color: var(--tertiary-text);
+  color: var(--primary-text);
 }
 
 .period {
@@ -202,16 +246,7 @@ watch(selectedPlan, (newPlan) => {
 
 
 .terms-text {
-  /* Typography */
   color: var(--tertiary-text);
-  margin: 0;
-  line-height: 1.4;
-}
-
-.note {
-  flex-direction: column;
-  width: 100%;
   padding: 0 var(--box);
-  gap: var(--box);
 }
 </style>
