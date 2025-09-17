@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, provide } from 'vue';
+import { ref, computed, watch, provide, reactive, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useMapStore } from '@/stores/mapStore.js';
 

@@ -1,10 +1,10 @@
 <template>
-  <div class="search-wrapper" :style="wrapperStyle">
+  <div class="search-wrapper" :style="wrapperStyle" @click="focusInput">
     <div class="search-field" :class="{ focused: isFocused }">
       <div class="search-icon"></div>
 
-      <input class="search-input _caption1" :placeholder="placeholder" type="search" :autofocus="autofocus"
-        :value="localValue" @input="onInput" @focus="isFocused = true" @blur="isFocused = false"
+      <input ref="searchInput" class="search-input _caption1" :placeholder="placeholder" type="search"
+        :autofocus="autofocus" :value="localValue" @input="onInput" @focus="isFocused = true" @blur="isFocused = false"
         @keydown.enter="emit('submit', localValue)" aria-label="Search" />
     </div>
   </div>
@@ -31,6 +31,15 @@ watch(
     if (val !== localValue.value) localValue.value = val ?? ''
   }
 )
+
+const searchInput = ref(null)
+const focusInput = () => {
+  console.log('focusInput called', searchInput.value)
+  searchInput.value?.focus()
+}
+
+// Allow parent components listen focusInput
+defineExpose({ focusInput })
 
 const onInput = (e) => {
   localValue.value = e.target.value

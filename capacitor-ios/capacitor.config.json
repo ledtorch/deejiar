@@ -1,5 +1,11 @@
 {
   "appId": "com.deejiar.ios",
   "appName": "Deejiar",
-  "webDir": "dist"
+  "webDir": "dist",
+  "plugins": {
+    "Keyboard": {
+      "resize": "none",
+      "resizeOnFullScreen": true
+    }
+  }
 }
