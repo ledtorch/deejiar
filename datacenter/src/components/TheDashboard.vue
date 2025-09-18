@@ -90,7 +90,7 @@ const saveError = ref(false);
 // List all files
 async function fetchJsonFiles() {
   try {
-    const response = await axios.get(`${API}/json-files`);
+    const response = await axios.get(`${API}/admin/auth/json-files`);
     jsonList.value = response.data.map(file => file.replace(/\.json$/, ''));
   } catch (error) {
     console.error('Error fetching JSON files:', error);

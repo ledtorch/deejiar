@@ -41,7 +41,7 @@ if env == 'development':
             "capacitor://localhost"
     ]
 else:
-    origins = ["https://deejiar.com", "https://qa.deejiar.com", "capacitor://localhost"]
+    origins = ["https://deejiar.com", "https://app.deejiar.com", "https://qa.deejiar.com", "capacitor://localhost"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -74,13 +74,13 @@ async def serve_map_data(filename: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# ─── Dashboard API ────────────────────────────────────
-@app.get("/json-files")
-async def get_json_files():
+# ─── TEMPORARY UNPROTECTED ROUTES (REMOVE AFTER TESTING) ─────────────────────
+@app.get("/api/admin/auth/json-files")
+async def temp_get_json_files():
     return list_json_files()
 
-@app.get("/json-data/{filename}")
-async def get_json_data_endpoint(filename: str):
+@app.get("/api/admin/auth/json-data/{filename}")
+async def temp_get_json_data(filename: str):
     try:
         return get_json_data(filename)
     except HTTPException as e:
@@ -88,8 +88,8 @@ async def get_json_data_endpoint(filename: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/save/{filename}")
-async def save_json_endpoint(filename: str, request: Request):
+@app.post("/api/admin/auth/save/{filename}")
+async def temp_save_json_data(filename: str, request: Request):
     try:
         data = await request.json()
         new_filename = save_json_data(filename, data)
