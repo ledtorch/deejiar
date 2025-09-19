@@ -1,0 +1,43 @@
+{
+  "description": "Yonshin takes its name from the Tâigí(Taiwanese) homophone for “serving tea with care.” Founded in 2015 in Kaohsiung, it blends retro-chic style with refined Taiwanese cuisine and tea, and is dedicated to promoting a new wave of teahouse culture. The Nanshan location can be found on the 2nd floor of Breeze Nanshan.",
+  "address": "2F No. 17, Songzhi Rd, Xinyi District, Taipei City 110",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "11:00", "end": "21:30" }],
+      "Tuesday": [{ "start": "11:00", "end": "21:30" }],
+      "Wednesday": [{ "start": "11:00", "end": "21:30" }],
+      "Thursday": [{ "start": "11:00", "end": "22:00" }],
+      "Friday": [{ "start": "11:00", "end": "22:00" }],
+      "Saturday": [{ "start": "11:00", "end": "22:00" }],
+      "Sunday": [{ "start": "11:00", "end": "21:30" }]
+    }
+  },
+  "product1": {
+    "name": "Stir-fried Diced Beef Rice with Scallion Set",
+    "description": "Stir-fried Diced Beef Rice with Scallion <br> Limited Edition Milk Tea(Ice) +NT$180 <br> Red Oolong Caramel Crepe Cake",
+    "price": "NT$830"
+  },
+  "product2": {
+    "name": "Pumpkin Stir-fried Noodles with Shrimp",
+    "description": "金瓜大蝦炒麵",
+    "price": "NT$520"
+  },
+  "product3": {
+    "name": "Milk Foam Lishan Oolong",
+    "description": "(Iced) <br> Add pearls for NT$20 per serving",
+    "price": "NT$160"
+  },
+  "product4": {
+    "name": "Limited Edition Milk Tea",
+    "description": "(Iced) <br> Add pearls for NT$20 per serving",
+    "price": "NT$180"
+  },
+  "product5": {
+    "name": "",
+    "description": "",
+    "price": ""
+  }
+}
