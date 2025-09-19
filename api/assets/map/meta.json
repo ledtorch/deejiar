@@ -15,7 +15,7 @@
         "title": "Big Bear Cafe",
         "type": "cafe",
         "layout": "food",
-        "storetag": [],
+        "storetag": ["cafe"],
         "producttag": []
       }
     },
@@ -33,7 +33,7 @@
         "title": "Teaism Penn Quarter",
         "type": "cafe",
         "layout": "food",
-        "storetag": [],
+        "storetag": ["cafe"],
         "producttag": []
       }
     },
@@ -51,8 +51,8 @@
         "title": "Jane Jane",
         "type": "bar",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["bar"],
+        "producttag": ["cocktail"]
       }
     },
     {
@@ -69,7 +69,7 @@
         "title": "Rice Restaurant",
         "type": "restaurant",
         "layout": "food",
-        "storetag": [],
+        "storetag": ["restaurant"],
         "producttag": []
       }
     },
@@ -87,7 +87,7 @@
         "title": "THEP Thai Restaurant",
         "type": "thai",
         "layout": "food",
-        "storetag": [],
+        "storetag": ["restaurant", "thai"],
         "producttag": []
       }
     },
@@ -123,8 +123,8 @@
         "title": "Gott's Roadside",
         "type": "burger",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["restaurant", "burger"],
+        "producttag": ["burger"]
       }
     },
     {
@@ -141,8 +141,8 @@
         "title": "Red Rock Coffee",
         "type": "cafe",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["cafe"],
+        "producttag": ["coffee"]
       }
     },
     {
@@ -159,8 +159,8 @@
         "title": "Hsiao's Beef Offal Soup",
         "type": "formosan-noodles",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["restaurant"],
+        "producttag": ["noodles"]
       }
     },
     {
@@ -177,7 +177,7 @@
         "title": "Ole Rum Bar & Tapas",
         "type": "bar",
         "layout": "food",
-        "storetag": [],
+        "storetag": ["bar"],
         "producttag": []
       }
     },
@@ -195,8 +195,8 @@
         "title": "Larriere-cour",
         "type": "bar",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["bar"],
+        "producttag": ["cocktail"]
       }
     },
     {
@@ -213,8 +213,8 @@
         "title": "Pàng Taqueria",
         "type": "taco",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["taco"],
+        "producttag": ["taco"]
       }
     },
     {
@@ -231,8 +231,8 @@
         "title": "El Sabroso Mexican Food",
         "type": "taco",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["taco"],
+        "producttag": ["taco"]
       }
     },
     {
@@ -249,8 +249,8 @@
         "title": "Teotihuacan Mexican Restaurant",
         "type": "taco",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["taco"],
+        "producttag": ["taco"]
       }
     },
     {
@@ -267,8 +267,8 @@
         "title": "Odd One Out Dunnan Shop",
         "type": "icecream",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["icecream"],
+        "producttag": ["icecream", "milktea"]
       }
     },
     {
@@ -285,8 +285,8 @@
         "title": "Indulge Experimental Bistro",
         "type": "bar",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["bar"],
+        "producttag": ["cocktail"]
       }
     },
     {
@@ -321,8 +321,8 @@
         "title": "Carrot",
         "type": "bar",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["bar"],
+        "producttag": ["cocktail"]
       }
     },
     {
@@ -411,8 +411,8 @@
         "title": "Bar Mood Taipei",
         "type": "bar",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["bar"],
+        "producttag": ["cocktail"]
       }
     },
     {
@@ -429,8 +429,8 @@
         "title": "Jigger & Pony",
         "type": "bar",
         "layout": "food",
-        "storetag": [],
-        "producttag": []
+        "storetag": ["top50-asia-2025"],
+        "producttag": ["cocktail"]
       }
     },
     {
