@@ -14,6 +14,8 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import mailUsIcon from '@/assets/icons/action/mail-us.svg'
+import followOnXIcon from '@/assets/icons/social/x.svg'
 
 const props = defineProps({
   action: { type: String, default: '' },
@@ -22,7 +24,9 @@ const props = defineProps({
   // Boolean props for different types
   inbox: { type: Boolean, default: false },
   map: { type: Boolean, default: false },
-  help: { type: Boolean, default: false }
+  help: { type: Boolean, default: false },
+  mailUs: { type: Boolean, default: false },
+  followOnX: { type: Boolean, default: false },
 })
 
 const emit = defineEmits(['click'])
@@ -33,7 +37,9 @@ const isPressed = ref(false)
 const iconMap = {
   'inbox': '/icon/action/email.svg',
   'map': '/icon/action/map.svg',
-  'help': '/icon/action/help.svg'
+  'help': '/icon/action/help.svg',
+  'mailUs': mailUsIcon,
+  'followOnX': followOnXIcon
 }
 
 // Computed icon source - check boolean props first, then icon prop
@@ -42,6 +48,8 @@ const iconSrc = computed(() => {
   if (props.inbox) return iconMap.inbox
   if (props.map) return iconMap.map
   if (props.help) return iconMap.help
+  if (props.mailUs) return iconMap.mailUs
+  if (props.followOnX) return iconMap.followOnX
 
   // Fallback to icon prop
   if (props.icon && iconMap[props.icon]) {
@@ -94,12 +102,10 @@ const handleClick = (event) => {
   width: 36px;
   height: 36px;
   object-fit: contain;
-  filter: opacity(0.3);
 }
 
 .button-label {
   color: var(--primary-text);
   text-align: center;
-  filter: opacity(0.3);
 }
 </style>

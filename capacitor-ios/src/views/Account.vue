@@ -15,6 +15,11 @@
           <img :src="MedalIconLevel0" class="level-icon">
         </div>
         <Divider />
+        <!-- For MVP -->
+        <div class="page-buttons">
+          <PageButton action="Mail Us" mailUs @click="mailToDeejiar" />
+          <PageButton action="Follow on X" followOnX @click="openX" />
+        </div>
         <!--  
         <div class="page-buttons">
           <PageButton action="Inbox" inbox />
@@ -108,6 +113,14 @@ const displayName = computed(() =>
   userStore.email?.split('@')[0] ||
   'Mx. Wanderer'
 );
+
+const mailToDeejiar = () => {
+  window.open('mailto:hi@deejiar.com');
+};
+
+const openX = () => {
+  window.open('https://x.com/deejiar');
+};
 </script>
 
 <style lang="scss" scoped>
