@@ -22,6 +22,8 @@ import { computed, inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../../stores/userStore';
 
+import MedalIconLevel1 from '@/assets/icons/subscription-medal/trailblazer.svg';
+
 const props = defineProps({
   // Allow override for preview/demo purposes
   overrideState: {
@@ -172,7 +174,7 @@ const clickAvatar = () => {
   height: 16px;
 
   /* Visual & Colors */
-  background-image: url('/icon/subscription-medal/trailblazer.png');
+  background-image: url('@/assets/icons/subscription-medal/trailblazer.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

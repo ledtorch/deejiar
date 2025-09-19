@@ -12,7 +12,7 @@
               <p class="subscribe-promo-button _title">Join Deejiar Pioneers?</p>
             </div>
           </div>
-          <img src="/icon/subscription-medal/none.svg" class="level-icon">
+          <img :src="MedalIconLevel0" class="level-icon">
         </div>
         <Divider />
         <!--  
@@ -38,7 +38,7 @@
       <HeaderPage :pagetitle="'Account'" />
       <div class="account-overview">
         <TheAvatar userState="active" class="avatar-layout" />
-        <img src="/icon/subscription-medal/none.svg" class="level-icon">
+        <img :src="MedalIconLevel0" class="level-icon">
       </div>
       <Divider />
       <Divider or />
@@ -49,6 +49,9 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '../stores/userStore';
 import HeaderPage from '../components/nav/HeaderPage.vue'
 import TheAvatar from '../components/button/TheAvatar.vue'
 import Divider from '../components/common/Divider.vue'
@@ -57,9 +60,9 @@ import NeutralButton from '../components/button/CTA/NeutralButton.vue'
 import ListAccountData from '../components/list/ListAccountData.vue'
 import PageButton from '../components/button/PageButton.vue'
 
-import { computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { useUserStore } from '../stores/userStore';
+import MedalIconLevel0 from '@/assets/icons/subscription-medal/none.svg';
+
+
 
 const router = useRouter();
 
