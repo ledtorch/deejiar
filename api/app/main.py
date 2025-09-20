@@ -41,7 +41,7 @@ if env == 'development':
             "capacitor://localhost"
     ]
 else:
-    origins = ["https://deejiar.com", "https://app.deejiar.com", "https://qa.deejiar.com", "capacitor://localhost"]
+    origins = ["https://deejiar.com", "https://app.deejiar.com", "https://qa.deejiar.com", "capacitor://localhost", "deejiar://app.deejiar.com"]
 
 app.add_middleware(
     CORSMiddleware,
