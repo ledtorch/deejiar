@@ -6,12 +6,14 @@
       <p class="topic-title _title">Start from Taipei City</p>
     </div>
 
-    <img src="@/assets/button/pin-point.svg" class="topic-button-icon" />
+    <img :src="pinPoint" class="topic-button-icon" />
   </button>
 </template>
 
 <script setup>
 import { useMapStore } from '@/stores/mapStore.js';
+import pinPoint from '@/assets/buttons/pin-point.svg';
+
 const mapStore = useMapStore();
 
 const navigateToTaipei = () => {
