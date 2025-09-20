@@ -2,7 +2,7 @@
   <section class="auth-container" ref="panelContainer">
     <div class="otp-content">
 
-      <img src="/illustration/inbox.png" class="inbox-icon">
+      <img :src="InboxIcon" class="inbox-icon">
       <h4 class="auth-otp-heading">Check your mailbox to finish signing in</h4>
 
       <!-- 6-Digit Code Input -->
@@ -32,10 +32,12 @@
 <script setup>
 import { ref, computed, inject, onMounted, onUnmounted } from 'vue';
 import { useUserStore } from '../../../stores/userStore';
-
 import InputCode from '../../form/InputCode.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
 import NeutralButton from '../../button/CTA/NeutralButton.vue';
+
+// Assets
+import InboxIcon from '@/assets/illustration/inbox.png';
 
 const props = defineProps({
   email: {
