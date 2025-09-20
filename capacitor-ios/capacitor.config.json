@@ -2,6 +2,9 @@
   "appId": "com.deejiar.ios",
   "appName": "Deejiar",
   "webDir": "dist",
+  "ios": {
+    "scheme": "Deejiar"
+  },
   "plugins": {
     "Keyboard": {
       "resize": "none",
