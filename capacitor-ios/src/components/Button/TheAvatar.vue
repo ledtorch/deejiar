@@ -22,8 +22,6 @@ import { computed, inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../../stores/userStore';
 
-import MedalIconLevel1 from '@/assets/icons/subscription-medal/trailblazer.svg';
-
 const props = defineProps({
   // Allow override for preview/demo purposes
   overrideState: {
