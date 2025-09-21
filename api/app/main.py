@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 from app.routes.user.auth import router as user_auth_router
 from app.routes.admin.auth import router as admin_auth_router
 from app.routes.map import get_map_json
+from app.routes.search import router as search_router
+from app.routes.search import search_stores as perform_search_stores
 from app.routes.editor import list_json_files, get_json_data, save_json_data
 
 from fastapi.staticfiles import StaticFiles
@@ -54,6 +56,7 @@ app.add_middleware(
 # ─── Routers ────────────────────────────────────
 app.include_router(user_auth_router, prefix="/api/user")
 app.include_router(admin_auth_router, prefix="/api/admin")
+app.include_router(search_router, prefix="/api/search", tags=["search"])
 
 # ─── Pages ────────────────────────────────────────────
 @app.get("/")
@@ -73,6 +76,14 @@ async def serve_map_data(filename: str):
         raise e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/search")
+async def search_stores(
+    q: str = Query(None, description="Search query"),
+    type: str = Query(None, description="Filter by type"),
+    tags: list[str] = Query(default=[], description="Filter by tags")
+):
+    return await perform_search_stores(q, type, tags)
 
 # ─── TEMPORARY UNPROTECTED ROUTES (REMOVE AFTER TESTING) ─────────────────────
 @app.get("/api/admin/auth/json-files")
