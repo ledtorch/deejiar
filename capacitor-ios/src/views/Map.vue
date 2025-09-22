@@ -1,9 +1,8 @@
 <template>
   <div>
     <div id="map"></div>
-    <!-- <PicksByAuthor id="pickscard" @select-bar="handleSelectBar" /> -->
     <Locate id="button-locate" @locate="locateUser" aria-label="locate user" />
-    <BottomSheet id="bottomsheet" :store="selectedStore" @reset="resetSelectedStore" ref="bottomSheetRef" />
+    <BottomSheet id="bottomsheet" :store="mapStore.selectedStore" @reset="resetSelectedStore" ref="bottomSheetRef" />
   </div>
 </template>
 
@@ -13,11 +12,9 @@ import { useUserLocation } from '@/utils/useUserLocation.js';
 import { useMapStore } from '@/stores/mapStore.js';
 import BottomSheet from "../components/sheet/BottomSheet.vue";
 import Locate from "../components/button/Icon/Locate.vue";
-import PicksByAuthor from "../components/card/PicksByAuthor.vue";
 
 const map = ref(null);
 const mapboxgl = ref(null);
-const selectedStore = ref(null);
 const tempMarker = ref(null);
 const userLocationControl = ref(null);
 const bottomSheetRef = ref(null);
@@ -61,13 +58,14 @@ watch(() => mapStore.navigateToLocation.value, (navigationData) => {
 
 // Reset selected store
 const resetSelectedStore = () => {
+  // Clear selected store data
+  mapStore.resetSelectedStore()
+
   // remove marker and its data
   if (tempMarker.value) {
     tempMarker.value.remove();
     tempMarker.value = null;
   }
-  // remove selected store data
-  selectedStore.value = null;
 };
 
 // Render stores logic
@@ -186,7 +184,6 @@ const clickMarker = (event) => {
   if (tempMarker.value) {
     tempMarker.value.remove();
   }
-  hidePicksByAuthor();
 
   const feature = event.features ? event.features[0] : event;
   const coordinates = feature.geometry.coordinates;
@@ -194,7 +191,8 @@ const clickMarker = (event) => {
   const activeIcon = `/button/marker/${type}-active.png`;
 
   // Store the properties of clicked store and pass to BottomSheet
-  selectedStore.value = feature.properties;
+  mapStore.selectStore(feature.properties);
+  mapStore.showMarker = true;
 
   const el = document.createElement("div");
   el.className = "marker-active";
@@ -219,24 +217,6 @@ const clickMarker = (event) => {
   // Save store marker position
   localStorage.setItem('markerLatitude', coordinates[0]);
   localStorage.setItem('markerLongitude', coordinates[1]);
-};
-
-// PicksByAuthor logic
-const handleSelectBar = (bar) => {
-  const event = {
-    features: [{
-      properties: bar.properties,
-      geometry: bar.geometry
-    }]
-  };
-  clickMarker(event);
-};
-
-const hidePicksByAuthor = () => {
-  const picksCard = document.getElementById('pickscard');
-  if (picksCard) {
-    picksCard.style.display = 'none';
-  }
 };
 
 // Initialize map
