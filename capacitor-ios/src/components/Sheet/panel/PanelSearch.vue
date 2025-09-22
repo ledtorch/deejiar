@@ -6,7 +6,6 @@
     </div>
     <ListSearchTopic v-if="searchResults.length === 0" @click="minimizeBottomSheet" />
 
-
     <div v-if="searchResults.length > 0" class="results-container">
       <ListSearchResult v-for="store in searchResults" :key="store.id" :storeData="store" />
     </div>
@@ -44,6 +43,26 @@ const search = () => {
   state.value = 'searching'
   emit('height-change', 'calc(100vh - env(safe-area-inset-top))')
 }
+
+// Focus search input and show keyboard
+const focusSearchInput = async () => {
+  await nextTick();
+
+  // Focus search input
+  if (searchComponent.value) {
+    const inputElement = searchComponent.value.$el.querySelector('input');
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }
+
+  // Show keyboard for mobile
+  try {
+    await Keyboard.show();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // Perform search
 const performSearch = async (query = '') => {
@@ -86,36 +105,56 @@ const performSearch = async (query = '') => {
     console.log('🔍 Search results stored:', searchResults.value);
 
   } catch (error) {
-    console.error('❌ Search failed:', error);
+    console.error(error);
     searchResults.value = []; // Clear results on error
   }
 };
 
-watch(() => state.value, (newState) => {
+// Watch state changes
+watch(() => state.value, async (newState) => {
   switch (newState) {
     case 'searching':
-      Keyboard.show()
-      emit('height-change', 'calc(100vh - env(safe-area-inset-top))')
-      break
+      await focusSearchInput();
+      emit('height-change', 'calc(100vh - env(safe-area-inset-top))');
+      break;
     case 'reviewing':
-      Keyboard.hide()
-      document.activeElement?.blur()
-      break
+      try {
+        await Keyboard.hide();
+      } catch (error) {
+        console.log(error);
+      }
+      document.activeElement?.blur();
+      break;
     case 'displaying-topic':
-      Keyboard.hide()
-      emit('height-change', '32px')
-      break
+      try {
+        await Keyboard.hide();
+      } catch (error) {
+        console.log(error);
+      }
+      emit('height-change', '32px');
+      break;
   }
-}, { immediate: true })
+}, { immediate: true });
+
+// Also focus when component mounts
+onMounted(async () => {
+  if (state.value === 'searching') {
+    await focusSearchInput();
+  }
+});
 
 // Buttons
 const closeBottomSheet = () => {
   if (state.value === 'searching') {
     emit("close");
-    Keyboard.hide()
+    try {
+      Keyboard.hide();
+    } catch (error) {
+      console.log(error);
+    }
   } else if (state.value === 'displaying-topic') {
     state.value = 'searching';
-    Keyboard.show()
+    focusSearchInput();
   }
 };
 
