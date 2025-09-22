@@ -9,12 +9,9 @@ router = APIRouter()
 # Cache for meta data to improve performance
 _meta_cache: Optional[Dict[str, Any]] = None
 
-
+# ─── Load stores meta data ──────────────────────
 async def load_meta_data() -> Dict[str, Any]:
-    """
-    Load and cache meta.json data for search operations.
-    Returns cached data if available, otherwise loads from file.
-    """
+
     global _meta_cache
     
     if _meta_cache is None:
@@ -44,23 +41,30 @@ async def load_meta_data() -> Dict[str, Any]:
     
     return _meta_cache
 
-
-def calculate_relevance_score(query: str, title: str) -> float:
-    """
-    Calculate relevance score for search results ranking.
-    Higher scores indicate better matches.
-    """
+# ─── Relevance algorithm ────────────────────────
+def calculate_relevance_score(query: str, title: str, store_type: str) -> float:
     query_lower = query.lower()
     title_lower = title.lower()
+    type_lower = store_type.lower()
     
+    # Title > Type > Tag
     if title_lower == query_lower:
-        return 2.0  # Exact match
+        return 2.0  # Exact title match
     elif title_lower.startswith(query_lower):
-        return 1.5  # Starts with query
+        return 1.8  # Title starts with query
     elif query_lower in title_lower:
-        # Partial match - score based on position
+        # Partial title match - score based on position
         position = title_lower.index(query_lower)
-        return 1.0 - (position * 0.01)  # Earlier matches score higher
+        return 1.5 - (position * 0.01)  # Earlier matches score higher
+    
+    # Check type matches (lower priority than title)
+    elif type_lower == query_lower:
+        return 1.3  # Exact type match
+    elif type_lower.startswith(query_lower):
+        return 1.2  # Type starts with query
+    elif query_lower in type_lower:
+        return 1.1  # Partial type match
+    
     return 0.0
 
 
@@ -94,23 +98,11 @@ def filter_by_tags(features: List[Dict], tags: List[str]) -> List[Dict]:
 
 @router.get("")
 async def search_stores(
-    q: Optional[str] = Query(None, description="Search query for store names"),
-    type: Optional[str] = Query(None, description="Filter by store type (e.g., cafe, bar, restaurant)"),
-    tags: Optional[List[str]] = Query(None, description="Filter by store tags (e.g., cashonly, takeaway)"),
-    limit: Optional[int] = Query(50, description="Maximum number of results to return", ge=1, le=100)
+    q: Optional[str] = Query(None),
+    type: Optional[str] = Query(None),
+    tags: Optional[List[str]] = Query(None),
+    limit: Optional[int] = Query(50)
 ) -> Dict[str, Any]:
-    """
-    Search stores by name with optional type and tag filters.
-    
-    Returns:
-        GeoJSON features matching the search criteria with relevance scoring.
-    
-    Examples:
-        - /api/search?q=cafe
-        - /api/search?type=bar
-        - /api/search?q=tea&type=cafe
-        - /api/search?tags=cashonly&tags=takeaway
-    """
     
     # Load search data
     try:
@@ -142,7 +134,8 @@ async def search_stores(
             title = properties.get("title", "")
             
             # Calculate relevance score
-            score = calculate_relevance_score(q, title)
+            store_type = properties.get("type", "")
+            score = calculate_relevance_score(q, title, store_type)
             
             if score > 0:
                 results.append((score, feature))
