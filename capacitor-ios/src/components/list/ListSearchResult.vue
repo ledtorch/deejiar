@@ -1,14 +1,15 @@
 <template>
   <button class="list-container" @click="navigateToStore">
-    <img :src="storeData.icon" class="store-icon">
+    <img :src="storeIcon" class="store-icon">
     <div>
-      <p class="store-name _title">{{ storeData.title }} Test</p>
-      <p class="store-text _body1">· {{ storeData.subtitle }} TestTest</p>
+      <p class="store-name _title">{{ storeData.title }}</p>
+      <p class="store-text _body1">&nbsp;·&nbsp;{{ storeData.type }}</p>
     </div>
   </button>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { useMapStore } from '@/stores/mapStore.js';
 const mapStore = useMapStore();
 
@@ -19,14 +20,22 @@ const props = defineProps({
   }
 })
 
-const navigateToStore = () => {
-  const store_coordinates = [props.storeData.longitude, props.storeData.latitude]
+const storeIcon = computed(() => {
+  const type = props.storeData.type
+  return new URL(`../../assets/icons/types/${type}.png`, import.meta.url).href
+})
 
-  mapStore.navigateToLocation.value = {
-    coordinates: store_coordinates,
-    zoomLevel: 13.5
-  }
+const navigateToStore = () => {
+  console.log('🔍 Search result clicked:', props.storeData.title)
+
+  // Use centralized store selection - data is already in correct format
+  mapStore.selectStore(props.storeData, true)
+
+  // Emit event to parent (PanelSearch) to handle UI state
+  emit('store-selected', props.storeData)
 }
+
+const emit = defineEmits(['store-selected'])
 </script>
 
 
@@ -42,8 +51,8 @@ const navigateToStore = () => {
 }
 
 .store-icon {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 .store-name {

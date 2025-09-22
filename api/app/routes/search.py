@@ -158,10 +158,24 @@ async def search_stores(
     # Step 4: Apply limit
     results = results[:limit]
     
-    # Return response
+    formatted_results = []
+    for feature in results:
+        formatted_results.append({
+            "id": feature["properties"]["id"],
+            "title": feature["properties"]["title"],
+            "type": feature["properties"]["type"],
+            "longitude": feature["geometry"]["coordinates"][0],  # Keep as string
+            "latitude": feature["geometry"]["coordinates"][1],   # Keep as string
+            "tags": feature["properties"].get("storetag", []),
+            "auid": feature["properties"].get("auid"),
+            "placeid": feature["properties"].get("placeid"),
+            "layout": feature["properties"].get("layout"),
+            "producttag": feature["properties"].get("producttag", [])
+        })
+
     return {
-        "results": results,
-        "count": len(results),
+        "results": formatted_results,
+        "count": len(formatted_results),
         "total": len(features),
         "query": q,
         "filters": {
