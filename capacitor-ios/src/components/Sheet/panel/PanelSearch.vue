@@ -12,7 +12,7 @@
       <div class="results-list">
         <ListSearchResult v-for="store in searchResults" :key="store.id" :storeData="store"
           @click="handleStoreSelect(store)" />
-      </div>
+      </div>../../form/TheSearch.vue
     </div> -->
 
     <!-- No Results -->
@@ -28,7 +28,7 @@
 import { ref, inject, onMounted, watch, reactive, nextTick } from 'vue';
 import { Keyboard } from '@capacitor/keyboard'
 import { useMapStore } from '@/stores/mapStore.js';
-import TheSearch from '../../TheSearch.vue';
+import TheSearch from '../../form/TheSearch.vue';
 import Close from '../../button/Icon/Close.vue';
 import ListSearchTopic from '../../list/ListSearchTopic.vue';
 
