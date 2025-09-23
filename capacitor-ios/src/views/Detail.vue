@@ -29,10 +29,10 @@
         <HeaderStore :store="storeProperties" />
         <p class="store-description">{{ detailsJSON.description }}</p>
       </div>
-      <Businesshour :bizTime="detailsJSON.businesshour" viewMode="overview" />
+      <!-- <ListBusinesshour :bizTime="detailsJSON.businesshour" viewMode="overview" /> -->
       <Divider />
-      <!-- <Businesshour :bizTime="detailsJSON.businesshour" viewMode="detail" /> -->
-      <Address :address="detailsJSON.address" />
+      <ListBusinesshour :bizTime="detailsJSON.businesshour" viewMode="detail" />
+      <ListAddress :address="detailsJSON.address" />
       <Divider />
       <GetDirection variant="apple" :appleAUID="storeProperties.auid" />
       <GetDirection variant="google" :storeTitle="storeProperties.title" />
@@ -50,8 +50,8 @@
 
 <script setup>
 // Components
-import Businesshour from "../components/sheet/Businesshour.vue";
-import Address from "../components/sheet/Address.vue";
+import ListBusinesshour from "../components/list/ListBusinessHour.vue";
+import ListAddress from "../components/list/ListAddress.vue";
 import LoadingAni from "../components/common/LoadingAni.vue";
 import HeaderStore from "../components/nav/HeaderStore.vue";
 import HeaderProduct from "../components/nav/HeaderProduct.vue";
@@ -152,8 +152,9 @@ const toDetailHomePage = () => {
 };
 
 const share = () => {
-  const text = encodeURIComponent('I check ' + storeTitle.value + ' with Deejiar!');
-  const url = encodeURIComponent('\n' + window.location.href);
+  const webUrl = `https://app.deejiar.com/detail/${route.params.id}`;
+  const text = `I found ${storeTitle.value} on Deejiar!`;
+  const url = encodeURIComponent('\n' + webUrl);
   const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
   window.open(twitterUrl, '_blank');
 };
