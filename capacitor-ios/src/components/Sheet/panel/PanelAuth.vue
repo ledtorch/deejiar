@@ -11,7 +11,7 @@
       <h4 class="auth-tagline">Map for Taste Adventurers to Explore without Boundaries</h4>
       <!-- <SocialAuthButton action="Continue with Instagram" instagram /> -->
       <!-- <SocialAuthButton action="Continue with X" x /> -->
-      <Divider or />
+      <!-- <Divider or /> -->
     </template>
 
     <template v-if="isEnteringEmail">
@@ -25,14 +25,13 @@
     </template>
 
     <InputMail ref="emailInputRef" v-model="emailValue" placeholder="Enter your email address" :autoFocus="true"
-      @editing-start="handleEmailEditingStart" @editing-end="handleEmailEditingEnd" @submit="handleEmailSubmit"
-      :hasError="hasEmailError" :errorMessage="emailErrorMessage" />
+      @editing-start="handleEmailEditingStart" @submit="handleEmailSubmit" :hasError="hasEmailError"
+      :errorMessage="emailErrorMessage" />
 
     <p class="consent-notice _caption2">By continuing, you agree to Deejiar’s Comsumer
-      <a href="https://github.com/ledtorch/deejiar/blob/main/capacitor-ios/terms-and-usage-policy.md">Terms and Usage
-        Policy</a>,
+      <a href="https://landing.deejiar.com/terms-of-use" class="link-text">Terms of Use Policy</a>,
       and acknowledge their
-      <a href="https://github.com/ledtorch/deejiar/blob/main/capacitor-ios/privacy-policy.md">Privacy Policy</a>.
+      <a href="https://landing.deejiar.com/privacy-policy" class="link-text">Privacy Policy</a>.
     </p>
 
     <!-- Error Display -->
@@ -92,20 +91,8 @@ const handleEmailEditingStart = () => {
   emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
 };
 
-const handleEmailEditingEnd = () => {
-  // Keep expanded if email has value
-  if (emailValue.value) {
-  } else {
-    isEnteringEmail.value = false;
-    emit('height-change', '450px');
-  }
-};
-
 const handleBack = () => {
-  isEnteringEmail.value = false;
-  emailValue.value = '';
-  clearErrors();
-  emit('height-change', '450px');
+  bottomSheetControls.switchPanel('default');
 };
 
 const handleEmailSubmit = () => {
@@ -249,5 +236,10 @@ watch(emailValue, (newValue) => {
   width: 100%;
   padding-top: var(--wrapper);
   justify-content: space-between;
+}
+
+.link-text {
+  color: var(--secondary-text);
+  text-decoration: underline;
 }
 </style>
