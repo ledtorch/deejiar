@@ -1,6 +1,7 @@
 {
   "appId": "com.deejiar.ios",
   "appName": "Deejiar",
+  "version": "0.01.1",
   "webDir": "dist",
   "ios": {
     "scheme": "Deejiar"
