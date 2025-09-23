@@ -25,8 +25,8 @@
     </template>
 
     <InputMail ref="emailInputRef" v-model="emailValue" placeholder="Enter your email address" :autoFocus="true"
-      @editing-start="handleEmailEditingStart" @submit="handleEmailSubmit" :hasError="hasEmailError"
-      :errorMessage="emailErrorMessage" />
+      @blur="handleInputBlur" @focus="handleInputFocus" @editing-start="handleEmailEditingStart"
+      @submit="handleEmailSubmit" :hasError="hasEmailError" :errorMessage="emailErrorMessage" />
 
     <p class="consent-notice _caption2">By continuing, you agree to Deejiar’s Comsumer
       <a href="https://landing.deejiar.com/terms-of-use" class="link-text">Terms of Use Policy</a>,
@@ -50,6 +50,7 @@
 
 <script setup>
 import { ref, nextTick, watch, inject } from 'vue';
+import { Keyboard } from '@capacitor/keyboard'
 
 import Close from '../../button/Icon/Close.vue';
 import Divider from '../../common/Divider.vue';
@@ -58,14 +59,12 @@ import InputMail from '../../form/InputMail.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
 import NeutralButton from '../../button/CTA/NeutralButton.vue';
 
+const API_ENDPOINT = import.meta.env.VITE_API_URL;
 const emit = defineEmits(['close', 'height-change']);
 const bottomSheetControls = inject('bottomSheetControls');
 
 // Refs
-const panelContainer = ref(null);
-const DEFAULT_HEIGHT = 396;
-const MAX_HEIGHT_OFFSET = 100;
-
+const state = ref('default');
 const emailInputRef = ref(null);
 const isEnteringEmail = ref(false);
 const emailValue = ref('');
@@ -75,24 +74,28 @@ const emailErrorMessage = ref('');
 const generalError = ref('');
 const userAction = ref(''); // 'register' or 'login'
 
-const API_ENDPOINT = import.meta.env.VITE_API_URL;
-
-
 const closeBottomSheet = () => {
   emit("close");
 };
 
+const handleBack = () => {
+  // Reset UI state
+  isEnteringEmail.value = false;
+  state.value = 'default';
+  emailValue.value = '';
+  clearErrors();
+
+  bottomSheetControls.switchPanel('default');
+};
 
 // Email handlers
 const handleEmailEditingStart = () => {
   isEnteringEmail.value = true;
+  state.value = 'entering-email';
+  focusEmailInput();
   clearErrors();
   // Expand to full height once user tabs the email input
   emit('height-change', `calc(100vh - env(safe-area-inset-top))`);
-};
-
-const handleBack = () => {
-  bottomSheetControls.switchPanel('default');
 };
 
 const handleEmailSubmit = () => {
@@ -159,33 +162,58 @@ const submitEmail = async () => {
   }
 };
 
-const calculateAndEmitHeight = async () => {
+// Focus search input and show keyboard
+const focusEmailInput = async () => {
   await nextTick();
-  await new Promise(resolve => setTimeout(resolve, 50)); // DOM rendering delay
 
-  const measuredHeight = panelContainer.value.scrollHeight;
-  const maxAllowedHeight = window.innerHeight - 100;
-
-  let newHeight;
-
-  if (measuredHeight <= DEFAULT_HEIGHT) {
-    newHeight = `${DEFAULT_HEIGHT}px`;
-  } else if (measuredHeight >= maxAllowedHeight - MAX_HEIGHT_OFFSET) {
-    newHeight = `calc(100vh - env(safe-area-inset-top) - ${MAX_HEIGHT_OFFSET}px)`;
-  } else {
-    newHeight = `${Math.min(measuredHeight + 20, maxAllowedHeight - MAX_HEIGHT_OFFSET)}px`;
+  if (emailInputRef.value) {
+    const inputElement = emailInputRef.value.$el.querySelector('input');
+    if (inputElement) {
+      inputElement.focus();
+    }
   }
 
-  emit('height-change', newHeight);
+  try {
+    await Keyboard.show();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-// Watch email value to determine if user is entering email
 watch(emailValue, (newValue) => {
   if (newValue && newValue.length > 0) {
+    state.value = 'entering-email';
     isEnteringEmail.value = true;
   }
 });
 
+// Handle state change
+const handleInputBlur = () => {
+  if (isEnteringEmail.value) {
+    state.value = 'not-entering-email';
+  }
+};
+
+const handleInputFocus = () => {
+  if (isEnteringEmail.value) {
+    state.value = 'entering-email';
+  }
+};
+
+// Adjust the sheet height on its state
+watch(() => state.value, async (newState) => {
+  switch (newState) {
+    case 'default':
+      emit('height-change', '290px');
+      break;
+    case 'entering-email':
+      emit('height-change', 'calc(100vh - env(safe-area-inset-top))');
+      break;
+    case 'not-entering-email':
+      emit('height-change', '388px');
+      break;
+  }
+}, { immediate: true });
 </script>
 
 <style lang="scss" scoped>
