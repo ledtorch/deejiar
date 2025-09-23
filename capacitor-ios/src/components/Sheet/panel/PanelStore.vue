@@ -21,7 +21,7 @@
         </p>
       </div>
 
-      <Businesshour v-if="storeDetails?.businesshour" :bizTime="storeDetails.businesshour" viewMode="overview" />
+      <ListBusinesshour v-if="storeDetails?.businesshour" :bizTime="storeDetails.businesshour" viewMode="overview" />
     </template>
 
     <!-- View Layout -->
@@ -41,7 +41,7 @@
         </p>
       </div>
 
-      <Businesshour v-if="storeDetails?.businesshour" :bizTime="storeDetails.businesshour" viewMode="overview" />
+      <ListBusinesshour v-if="storeDetails?.businesshour" :bizTime="storeDetails.businesshour" viewMode="overview" />
     </template>
   </section>
 </template>
@@ -50,7 +50,7 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import HeaderStore from '../../nav/HeaderStore.vue';
 import Close from '../../button/Icon/Close.vue';
-import Businesshour from '../Businesshour.vue';
+import ListBusinesshour from '../../list/ListBusinessHour.vue';
 
 // Props
 const props = defineProps({

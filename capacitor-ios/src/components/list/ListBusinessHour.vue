@@ -2,15 +2,18 @@
   <div>
     <template v-if="viewMode === 'overview'">
       <div>
-        <p :class="[bizHr.stateClass]">{{ bizHr.state }}</p>
-        <p :class="[bizHr.nextTimeClass]">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
+        <p :class="[bizHr.stateClass, '_body2']">{{ bizHr.state }}</p>
+        <p :class="[bizHr.nextTimeClass, '_body2']">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
       </div>
     </template>
     <!-- 🏗️ TODO: Detail View -->
     <template v-if="viewMode === 'detail'">
-      <div>
-        <p :class="[bizHr.stateClass]">{{ bizHr.state }}</p>
-        <p :class="[bizHr.nextTimeClass]">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
+      <div class="list-container">
+        <img :src="iconSrc" class="icon">
+        <div>
+          <p :class="[bizHr.stateClass, '_body2']">{{ bizHr.state }}</p>
+          <p :class="[bizHr.nextTimeClass, '_body2']">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
+        </div>
       </div>
     </template>
   </div>
@@ -18,6 +21,12 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import iconTimeLight from '@/assets/icons/store-info/time-light.svg'
+import iconTimeDark from '@/assets/icons/store-info/time-dark.svg'
+
+const iconSrc = computed(() => {
+  return iconTimeDark
+})
 
 const props = defineProps({
   bizTime: { type: Object, default: () => ({}) },
@@ -458,15 +467,14 @@ const bizHr = computed(() => {
   color: var(--primary-text);
 }
 
-.frame {
+.list-container {
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--unit);
   align-self: stretch;
 }
 
 .icon {
-  min-width: 24px;
-  height: 24px;
-  background: url("/icon/info/time.png") no-repeat center/contain;
+  min-width: 20px;
+  height: 20px;
 }
 </style>
