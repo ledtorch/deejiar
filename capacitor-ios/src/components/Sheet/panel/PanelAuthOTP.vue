@@ -22,8 +22,8 @@
 
     <div class="button-set">
       <NeutralButton action="Back" type="icon-left" icon="arrow-left" @click="handleBack" />
-      <PrimaryButton action="Verify" type="icon-right" icon="arrow-right" @click="submitCode" :loading="isVerifying"
-        :disabled="!isCodeComplete" />
+      <PrimaryButton :action="buttonText" :type="isVerifying ? 'default' : 'icon-right'"
+        :icon="isVerifying ? '' : 'arrow-right'" @click="submitCode" :disabled="isVerifying || !isCodeComplete" />
     </div>
 
   </section>
@@ -63,7 +63,6 @@ const bottomSheetControls = inject('bottomSheetControls');
 // State
 const otpCode = ref('');
 const userEmail = ref(props.email);
-const isVerifying = ref(false);
 const isResending = ref(false);
 const hasCodeError = ref(false);
 const codeErrorMessage = ref('');
@@ -87,6 +86,29 @@ const handleBack = () => {
   bottomSheetControls.switchPanel('auth');
 };
 
+// Button animation
+const isVerifying = ref(false);
+const loadingDots = ref('');
+
+const buttonText = computed(() => {
+  return isVerifying.value ? `Verifying${loadingDots.value}` : 'Verify';
+});
+
+const startLoadingAnimation = () => {
+  console.log('Animation started');
+  let dotCount = 0;
+  const loadingInterval = setInterval(() => {
+    dotCount = (dotCount + 1) % 4; // 0, 1, 2, 3, then repeat
+    loadingDots.value = '.'.repeat(dotCount);
+
+    // Stop animation when no longer submitting
+    if (!isVerifying.value) {
+      clearInterval(loadingInterval);
+      loadingDots.value = '';
+    }
+  }, 500); // Change dots every 500ms
+};
+
 const clearErrors = () => {
   hasCodeError.value = false;
   codeErrorMessage.value = '';
@@ -94,6 +116,7 @@ const clearErrors = () => {
 };
 
 const submitCode = async () => {
+  if (isVerifying.value) return;
   const code = codeInputRef.value?.getCurrentValue() || otpCode.value;
 
   if (!code || code.length !== 6) {
@@ -103,6 +126,7 @@ const submitCode = async () => {
   }
 
   isVerifying.value = true;
+  startLoadingAnimation();
   clearErrors();
 
   try {

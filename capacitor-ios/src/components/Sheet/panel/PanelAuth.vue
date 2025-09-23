@@ -42,14 +42,15 @@
     <template v-if="isEnteringEmail">
       <div class="button-set">
         <NeutralButton action="Back" type="icon-left" icon="arrow-left" @click="handleBack" />
-        <PrimaryButton action="Next" type="icon-right" icon="arrow-right" @click="submitEmail" />
+        <PrimaryButton :action="buttonText" :type="isSubmitting ? 'default' : 'icon-right'"
+          :icon="isSubmitting ? '' : 'arrow-right'" @click="submitEmail" :disabled="isSubmitting" />
       </div>
     </template>
   </section>
 </template>
 
 <script setup>
-import { ref, nextTick, watch, inject } from 'vue';
+import { computed, ref, nextTick, watch, inject } from 'vue';
 import { Keyboard } from '@capacitor/keyboard'
 
 import Close from '../../button/Icon/Close.vue';
@@ -74,6 +75,30 @@ const emailErrorMessage = ref('');
 const generalError = ref('');
 const userAction = ref(''); // 'register' or 'login'
 
+// Button animation
+const isSubmitting = ref(false);
+const loadingDots = ref('');
+
+const buttonText = computed(() => {
+  return isSubmitting.value ? `Sending${loadingDots.value}` : 'Next';
+});
+
+const startLoadingAnimation = () => {
+  let dotCount = 0;
+  const loadingInterval = setInterval(() => {
+    dotCount = (dotCount + 1) % 4; // 0, 1, 2, 3, then repeat
+    loadingDots.value = '.'.repeat(dotCount);
+
+    // Stop animation when no longer submitting
+    if (!isSubmitting.value) {
+      clearInterval(loadingInterval);
+      loadingDots.value = '';
+    }
+  }, 500); // Change dots every 500ms
+};
+
+
+// ------------------------------------
 const closeBottomSheet = () => {
   emit("close");
 };
@@ -109,6 +134,7 @@ const clearErrors = () => {
 };
 
 const submitEmail = async () => {
+  if (isSubmitting.value) return;
   const email = emailInputRef.value?.getCurrentValue() || emailValue.value;
 
   // Validate email first
@@ -118,8 +144,11 @@ const submitEmail = async () => {
     return;
   }
 
+  isSubmitting.value = true;
+  startLoadingAnimation(); // Start the animation
+
   try {
-    // Check if user exists first
+    // Your existing API calls...
     const checkResponse = await fetch(`${API_ENDPOINT}/api/user/auth/check-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -133,7 +162,6 @@ const submitEmail = async () => {
     const checkData = await checkResponse.json();
     userAction.value = checkData.suggested_action;
 
-    // Send appropriate OTP based on user existence
     const endpoint = userAction.value === 'login'
       ? '/api/user/auth/login/send-otp'
       : '/api/user/auth/register/send-otp';
@@ -152,13 +180,14 @@ const submitEmail = async () => {
         action: userAction.value
       });
     } else {
-      // Handle API errors
-      handleEmailSubmissionError(response.status, data);
+      generalError.value = data.message || 'Authentication failed';
     }
 
   } catch (error) {
     console.error('Email submission error:', error);
     generalError.value = 'Network error. Please check your connection and try again.';
+  } finally {
+    isSubmitting.value = false; // This will stop the animation
   }
 };
 
