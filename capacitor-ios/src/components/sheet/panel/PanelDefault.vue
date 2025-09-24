@@ -20,7 +20,7 @@
 import { inject, computed } from 'vue';
 import { useUserStore } from '@/stores/userStore';
 import { useRouter } from 'vue-router';
-import TheSearch from '../../form/TheSearch.vue';
+import TheSearch from '../../TheSearch.vue';
 import TheAvatar from '../../button/TheAvatar.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
 import ListCollection from '../../list/ListCollection.vue';
@@ -30,16 +30,17 @@ const userStore = useUserStore();
 const bottomSheetControls = inject('bottomSheetControls', null);
 
 // Emits for parent component
-const emit = defineEmits(['show-tag-filter', 'height-change']);
+const emit = defineEmits(['show-tag-filter']);
 
 const handleCollectionRender = (collectionType) => {
   // Emit to BottomSheet to show TagFilt
   emit('show-tag-filter', { type: collectionType });
-  emit('height-change', '32px');
   console.log(`Collection ${collectionType} is now active`);
 };
 
-/* Switch panel */
+// ===========================
+// Switch panel
+// ===========================
 const CTAButtonText = computed(() => {
   if (userStore.userState === 'default') {
     return 'Log in to Unlock Advanced Features';
