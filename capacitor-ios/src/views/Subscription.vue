@@ -19,7 +19,7 @@ import HeaderPage from '../components/nav/HeaderPage.vue'
 import PrimaryButton from '../components/button/CTA/PrimaryButton.vue'
 import bannerImage from '@/assets/images/lv1-banner.svg'
 import TheAvatar from '../components/button/TheAvatar.vue'
-import SubscriptionRadioCard from '../components/card/SubscriptionRadioCard.vue'
+import SubscriptionRadioCard from '../components/cards/SubscriptionRadioCard.vue'
 </script>
 
 <style lang="scss" scoped>
