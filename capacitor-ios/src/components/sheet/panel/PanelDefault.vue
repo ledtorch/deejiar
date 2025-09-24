@@ -30,17 +30,16 @@ const userStore = useUserStore();
 const bottomSheetControls = inject('bottomSheetControls', null);
 
 // Emits for parent component
-const emit = defineEmits(['show-tag-filter']);
+const emit = defineEmits(['show-tag-filter', 'height-change']);
 
 const handleCollectionRender = (collectionType) => {
   // Emit to BottomSheet to show TagFilt
   emit('show-tag-filter', { type: collectionType });
+  emit('height-change', '32px');
   console.log(`Collection ${collectionType} is now active`);
 };
 
-// ===========================
-// Switch panel
-// ===========================
+/* Switch panel */
 const CTAButtonText = computed(() => {
   if (userStore.userState === 'default') {
     return 'Log in to Unlock Advanced Features';
