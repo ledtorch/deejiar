@@ -83,8 +83,29 @@ const topicData = computed(() => {
 // Handle collection click - load data to map store
 const renderCollectionStores = async () => {
   try {
-    // Load the collection data into the map store
+
     await mapStore.loadCollection(topicData.value.type);
+
+    // Navigate to collection center
+    if (topicData.value.type === 'cocktail') {
+      const CENTER_COORDINATES = [121.54888782711502, 25.037847790699182];
+      mapStore.navigateToLocation.value = {
+        coordinates: CENTER_COORDINATES,
+        zoomLevel: 13.5
+      }
+    } else if (topicData.value.type === 'icecream') {
+      const CENTER_COORDINATES = [121.55190371072074, 25.042761455408176];
+      mapStore.navigateToLocation.value = {
+        coordinates: CENTER_COORDINATES,
+        zoomLevel: 13.5
+      }
+    } else if (topicData.value.type === 'taco') {
+      const CENTER_COORDINATES = [121.55146353895942, 25.035955918998127];
+      mapStore.navigateToLocation.value = {
+        coordinates: CENTER_COORDINATES,
+        zoomLevel: 13.5
+      }
+    }
 
     // Emit events for other components to react
     emit('render', topicData.value.type);
@@ -99,7 +120,6 @@ const renderCollectionStores = async () => {
     console.error(`Failed to load collection ${topicData.value.type}:`, error);
   }
 };
-
 </script>
 
 <style lang="scss" scoped>
