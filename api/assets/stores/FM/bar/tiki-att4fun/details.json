@@ -1,0 +1,43 @@
+{
+  "description": "Come classy, Leave trashy. Topical drinks on tap, friendly staff, and great music!",
+  "address": "No. 12, Songshou Rd, Xinyi District, Taipei City, Taiwan 110",
+  "businesshour": {
+    "timezone": "Asia/Taipei",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "11:00", "end": "22:00" }],
+      "Tuesday": [{ "start": "11:00", "end": "22:00" }],
+      "Wednesday": [{ "start": "11:00", "end": "03:00" }],
+      "Thursday": [{ "start": "11:00", "end": "03:00" }],
+      "Friday": [{ "start": "11:00", "end": "04:00" }],
+      "Saturday": [{ "start": "11:00", "end": "04:00" }],
+      "Sunday": [{ "start": "11:00", "end": "22:00" }]
+    }
+  },
+  "product1": {
+    "name": "The Hurricane",
+    "price": "NT$250",
+    "description": "This local libation was created with rum at Pat O'Brien's bar during World War II when whiskey was hard to come by. The name for the drink came from the glass it's served in that resembles a hurricane lamp. Light and dark rum blended with passion fruit purée, orange juice & lime. A true slice of heaven. Come try one for yourself!"
+  },
+  "product2": {
+    "description": "Invented in 1957 by Harry Yee, legendary head bartender of the Hilton Hawaiian Village (formerly the Kaiser Hawaiian Village) in Waikiki, Hawaii when a sales representative of Dutch distiller Bols asked him to design a drink that featured their blue color of Curaçao liqueur. The tropics in a glass! See you at the tiki bar in March!",
+    "name": "Blue Hawaii",
+    "price": "NT$250"
+  },
+  "product3": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product4": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product5": {
+    "description": "",
+    "name": "",
+    "price": ""
+  }
+}

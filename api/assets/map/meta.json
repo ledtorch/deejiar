@@ -540,6 +540,24 @@
         "storetag": ["friendly", "takeaway", "service-charge"],
         "producttag": ["milktea", "dessert", "tea"]
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.56610881172837, 25.035546877545357]
+      },
+      "properties": {
+        "id": "FM_a9f2c6b1e8d3f47c5",
+        "auid": "I9544C781BBD59E0D",
+        "placeid": "ChIJBxI9bq2rQjQRB47ueumC_yA",
+        "title": "Tiki Att4Fun",
+        "type": "bar",
+        "layout": "food",
+        "storetag": ["bar"],
+        "producttag": ["cocktail"]
+      }
     }
   ]
 }
