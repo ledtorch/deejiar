@@ -23,6 +23,10 @@
 import { computed } from 'vue';
 import { useUserStore } from '../../stores/userStore';
 
+import emailIcon from '@/assets/icons/action/email-dark.svg'
+import xIcon from '@/assets/icons/social/x.svg'
+import instagramIcon from '@/assets/icons/social/instagram.svg'
+
 const props = defineProps({
   email: {
     type: Boolean,
@@ -44,7 +48,7 @@ const userStore = useUserStore();
 const listData = computed(() => {
   if (props.email) {
     return {
-      icon: '/icon/action/email.svg',
+      icon: emailIcon,
       title: 'Registered Mail',
       account: userStore.userEmail,
       actionText: 'Update',
@@ -54,7 +58,7 @@ const listData = computed(() => {
 
   if (props.x) {
     return {
-      icon: '/icon/social/x.png',
+      icon: xIcon,
       title: 'X(Twitter)',
       account: userStore.xAccount,
       actionText: 'Manage',
@@ -65,7 +69,7 @@ const listData = computed(() => {
 
   if (props.instagram) {
     return {
-      icon: '/icon/social/instagram.png',
+      icon: instagramIcon,
       title: 'Instagram',
       account: userStore.instagramAccount,
       actionText: 'Connect',
@@ -144,6 +148,7 @@ const subtitleClass = computed(() => ({
 }
 
 .connected-date {
+  max-width: 165px;
   color: var(--color-green);
 }
 
