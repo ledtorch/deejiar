@@ -219,6 +219,48 @@ const clickMarker = (event) => {
   localStorage.setItem('markerLongitude', coordinates[1]);
 };
 
+// Execute clickmarker action through mapStore
+watch(() => mapStore.selectedStore, (storeData) => {
+  if (storeData && mapStore.showMarker && storeData.longitude) {
+    console.log('🏪 Creating marker for search result:', storeData.title)
+
+    // Remove existing marker
+    if (tempMarker.value) {
+      tempMarker.value.remove();
+    }
+
+    // Create marker with search result data
+    const coordinates = [parseFloat(storeData.longitude), parseFloat(storeData.latitude)]
+    const type = storeData.type
+    const activeIcon = `/button/marker/${type}-active.png`
+
+    const el = document.createElement("div")
+    el.className = "marker-active"
+    el.style.backgroundImage = `url(${activeIcon})`
+    el.style.backgroundPosition = "center"
+    el.style.backgroundRepeat = "no-repeat"
+    el.style.backgroundSize = "contain"
+    el.style.width = "52px"
+    el.style.height = "79px"
+
+    tempMarker.value = new mapboxgl.value.Marker(el, { offset: [0, -24] })
+      .setLngLat(coordinates)
+      .addTo(map.value)
+
+    map.value.flyTo({
+      center: [coordinates[0], coordinates[1]],
+      offset: [0, -200],
+      duration: 500,
+      curve: 1
+    });
+
+    localStorage.setItem('markerLatitude', coordinates[0])
+    localStorage.setItem('markerLongitude', coordinates[1])
+    console.log('Marker created for:', storeData.title)
+    console.log('coordinates:', coordinates)
+  }
+}, { deep: true })
+
 // Initialize map
 onMounted(async () => {
   // Initialize mapboxgl

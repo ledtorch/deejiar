@@ -3,19 +3,55 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
 export const useMapStore = defineStore('map', () => {
-  // ===========================
   // Core Map State
-  // ===========================
   const currentDataSource = ref('meta') // 'meta', 'collectionA', 'collectionB', 'collectionC'
   const mapData = ref(null)
 
-  // ===========================
   // Navigation Action
-  // ===========================
   const navigateToLocation = ref({
     coordinates: null,
     zoomLevel: null
   })
+
+  // Click Marker Action
+  const selectedStore = ref(null)
+  const showMarker = ref(false)
+
+  const selectStore = (storeData, shouldNavigate = true) => {
+    // Clear previous selection
+    resetSelectedStore()
+
+    // Store selection
+    selectedStore.value = storeData
+    showMarker.value = true
+
+    // Navigation
+    if (shouldNavigate) {
+      navigateToLocation.value = {
+        coordinates: [
+          parseFloat(storeData.longitude),  // Convert to numbers here
+          parseFloat(storeData.latitude)
+        ],
+        zoomLevel: 15,
+        offset: [0, -200]
+      }
+    }
+
+    console.log('🏪 Store selected:', storeData.title)
+  }
+
+  const resetSelectedStore = () => {
+    selectedStore.value = null
+    showMarker.value = false
+
+    // Clear navigation data
+    navigateToLocation.value = {
+      coordinates: null,
+      zoomLevel: null,
+      offset: null
+    }
+  }
+
 
   // Map render json
   const metaData = ref(null) // Keep reference to original meta.json
@@ -28,22 +64,16 @@ export const useMapStore = defineStore('map', () => {
   const isLoading = ref(false)
   const error = ref(null)
 
-  // ===========================
   // TagFilter State Management
-  // ===========================
   const showTagFilter = ref(false)
   const activeCollectionType = ref(null) // 'cocktail', 'icecream', 'taco'
 
-  // ===========================
   // Utilities
-  // ===========================
   const mapEndpoint = (path) => {
     return `${import.meta.env.VITE_API_URL}/map/${path}?v=${Date.now()}`
   }
 
-  // ===========================
   // Computed Properties
-  // ===========================
   const currentData = computed(() => {
     switch (currentDataSource.value) {
       case 'meta':
@@ -63,9 +93,7 @@ export const useMapStore = defineStore('map', () => {
     return Object.values(collectionData.value).some(data => data !== null)
   })
 
-  // ===========================
   // Core Map Actions
-  // ===========================
   const fetchMetaData = async () => {
     if (metaData.value) return metaData.value // Return cached data
 
@@ -162,9 +190,7 @@ export const useMapStore = defineStore('map', () => {
     }
   }
 
-  // ===========================
   // TagFilter Actions
-  // ===========================
   const setTagFilter = (collectionType) => {
     activeCollectionType.value = collectionType
     showTagFilter.value = true
@@ -175,9 +201,7 @@ export const useMapStore = defineStore('map', () => {
     activeCollectionType.value = null
   }
 
-  // ===========================
   // Combined Actions
-  // ===========================
   const resetToMeta = async () => {
     await setDataSource('meta')
     hideTagFilter() // Hide TagFilter when resetting to meta
@@ -197,9 +221,7 @@ export const useMapStore = defineStore('map', () => {
     }
   }
 
-  // ===========================
   // Utility Actions
-  // ===========================
   const clearError = () => {
     error.value = null
   }
@@ -238,6 +260,13 @@ export const useMapStore = defineStore('map', () => {
 
     // TagFilter Actions
     setTagFilter,
-    hideTagFilter
+    hideTagFilter,
+
+    // Click Marker State
+    selectedStore,
+    showMarker,
+    // & the Actions
+    selectStore,
+    resetSelectedStore,
   }
 })
