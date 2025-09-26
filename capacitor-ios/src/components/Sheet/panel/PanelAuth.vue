@@ -56,7 +56,7 @@ import { Keyboard } from '@capacitor/keyboard'
 import Close from '../../button/Icon/Close.vue';
 import Divider from '../../common/Divider.vue';
 import SocialAuthButton from '../../button/CTA/SocialAuthButton.vue';
-import InputMail from '../../form/InputMail.vue';
+import InputMail from '../../forms/InputMail.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
 import NeutralButton from '../../button/CTA/NeutralButton.vue';
 
