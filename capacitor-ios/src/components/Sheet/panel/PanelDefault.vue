@@ -20,7 +20,7 @@
 import { inject, computed } from 'vue';
 import { useUserStore } from '@/stores/userStore';
 import { useRouter } from 'vue-router';
-import TheSearch from '../../form/TheSearch.vue';
+import TheSearch from '../../forms/TheSearch.vue';
 import TheAvatar from '../../button/TheAvatar.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
 import ListCollection from '../../list/ListCollection.vue';

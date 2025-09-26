@@ -23,8 +23,9 @@
 import { ref, inject, onMounted, watch, reactive, nextTick } from 'vue';
 import { Keyboard } from '@capacitor/keyboard'
 import { useMapStore } from '@/stores/mapStore.js';
-import TheSearch from '../../form/TheSearch.vue';
+import TheSearch from '../../forms/TheSearch.vue';
 import Close from '../../button/Icon/Close.vue';
+import TagFilter from '../../button/tags/TagFilter.vue';
 import ListSearchTopic from '../../list/ListSearchTopic.vue';
 import ListSearchResult from '../../list/ListSearchResult.vue';
 
@@ -192,5 +193,6 @@ const minimizeBottomSheet = () => {
   flex-direction: column;
   gap: var(--block);
   padding: var(--division) 0 0 0;
+  // overflow: scroll;
 }
 </style>
