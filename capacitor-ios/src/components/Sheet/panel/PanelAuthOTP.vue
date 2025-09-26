@@ -32,7 +32,7 @@
 <script setup>
 import { ref, computed, inject, onMounted, onUnmounted } from 'vue';
 import { useUserStore } from '../../../stores/userStore';
-import InputCode from '../../form/InputCode.vue';
+import InputCode from '../../forms/InputCode.vue';
 import PrimaryButton from '../../button/CTA/PrimaryButton.vue';
 import NeutralButton from '../../button/CTA/NeutralButton.vue';
 
