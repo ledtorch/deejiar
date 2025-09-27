@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue';
-import { useUserLocation } from '@/utils/useUserLocation.js';
+import { useUserLocation } from '@/composables/useUserLocation.js';
 import { useMapStore } from '@/stores/mapStore.js';
 import BottomSheet from "../components/sheet/BottomSheet.vue";
 import Locate from "../components/button/Icon/Locate.vue";
