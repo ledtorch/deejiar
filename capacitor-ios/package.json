@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "0.01.1",
+  "version": "0.01.2",
   "private": true,
   "type": "module",
   "scripts": {
