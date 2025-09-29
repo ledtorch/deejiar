@@ -29,7 +29,7 @@ import PanelAuthOTP from './panel/PanelAuthOTP.vue';
 import PanelSearch from './panel/PanelSearch.vue';
 import PanelStore from './panel/PanelStore.vue';
 
-import TagFilter from './../button/tag/TagFilter.vue'
+import TagFilter from './../button/tags/TagFilter.vue'
 
 const router = useRouter();
 const mapStore = useMapStore();
