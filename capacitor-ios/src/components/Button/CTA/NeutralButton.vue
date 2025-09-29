@@ -22,6 +22,12 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import iconArrowLeftDark from '@/assets/icons/control-data/arrow-left-dark.svg'
+// import iconArrowLeftLight from '@/assets/icons/control-data/arrow-left-light.svg'
+import iconArrowRightDark from '@/assets/icons/control-data/arrow-right-dark.svg'
+// import iconArrowRightLight from '@/assets/icons/control-data/arrow-right-light.svg'
+import iconX from '@/assets/icons/social/x.svg'
+import iconInstagram from '@/assets/icons/social/instagram.svg'
 
 const props = defineProps({
   action: { type: String, default: '' },
@@ -30,7 +36,7 @@ const props = defineProps({
     default: 'default',
     validator: (value) => ['default', 'icon-left', 'icon-right'].includes(value)
   },
-  icon: { type: String, default: '' }, // Icon name: 'arrow-left', 'arrow-right', 'instagram', etc.
+  icon: { type: String, default: '' },
   disabled: { type: Boolean, default: false }
 })
 
@@ -40,11 +46,14 @@ const isPressed = ref(false)
 
 // Icon mapping
 const iconMap = {
-  'arrow-left': '/button/icon/control-data/arrow-left.svg',
-  'arrow-right': '/button/icon/control-data/arrow-right.svg',
-  'instagram': '/icon/social/instagram-color.png',
-  'x': '/icon/social/x-color.png',
-  // Add more icons as needed
+  // 'arrow-left-dark': iconArrowLeftDark,
+  // 'arrow-left-light': iconArrowLeftLight,
+  // 'arrow-right-dark': iconArrowRightDark,
+  // 'arrow-right-light': iconArrowRightLight,
+  'arrow-left': iconArrowLeftDark,
+  'arrow-right': iconArrowRightDark,
+  'x': iconX,
+  'instagram': iconInstagram
 }
 
 // Computed icon source
