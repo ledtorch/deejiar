@@ -29,7 +29,7 @@ import PanelAuthOTP from './panel/PanelAuthOTP.vue';
 import PanelSearch from './panel/PanelSearch.vue';
 import PanelStore from './panel/PanelStore.vue';
 
-import TagFilter from './../button/tags/TagFilter.vue'
+import TagFilter from './../button/tag/TagFilter.vue'
 
 const router = useRouter();
 const mapStore = useMapStore();
@@ -259,7 +259,7 @@ provide('bottomSheetControls', {
   padding: 0;
   border-radius: var(--round-xl) var(--round-xl) 0 0;
   background-color: var(--base);
-  transition: height 0.45s cubic-bezier(0.4, 0.6, 0.24, 1.04);
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 
   &.dragging {
