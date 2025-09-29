@@ -10,7 +10,7 @@
       </div>
       <SubscriptionRadioCard />
     </section>
-    <PrimaryButton action="Start Free Trial" default />
+    <PrimaryButton action="Start Free Trial for 7 days" default />
   </main>
 </template>
 
@@ -42,7 +42,6 @@ import SubscriptionRadioCard from '../components/cards/SubscriptionRadioCard.vue
 .main-container {
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
   justify-content: flex-start;
   height: 100%;
   align-items: center;
