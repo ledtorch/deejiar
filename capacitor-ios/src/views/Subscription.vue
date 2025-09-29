@@ -42,7 +42,9 @@ import SubscriptionRadioCard from '../components/cards/SubscriptionRadioCard.vue
 .main-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: flex-start;
+  height: 100%;
   align-items: center;
   gap: var(--division);
 }

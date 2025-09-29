@@ -45,8 +45,8 @@
 
     <!-- Terms Text -->
     <p class="_caption1 terms-text">
-      Free for 7 days, then {{ selectedPlan === 'monthly' ? '$4.99/month' : '$49/year' }}.
-      Auto-renews until canceled in Settings.
+      Free 7 days, then {{ selectedPlan === 'monthly' ? '$4.99/month' : '$49/year' }}. Renews automatically until
+      canceled.
     </p>
   </section>
 </template>
@@ -74,6 +74,7 @@ watch(selectedPlan, (newPlan) => {
   flex-direction: column;
   gap: var(--division);
   width: 100%;
+  height: 100%;
 }
 
 .plans-container {
@@ -248,5 +249,8 @@ watch(selectedPlan, (newPlan) => {
 .terms-text {
   color: var(--tertiary-text);
   padding: 0 var(--box);
+  margin-top: auto;
+  padding-bottom: var(--block);
+  text-align: center;
 }
 </style>
