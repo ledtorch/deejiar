@@ -1,0 +1,43 @@
+{
+  "description": "This bar is located on the 39th floor of the Four Seasons Hotel. Enter through the hotel’s main entrance. The elegant interior and refined décor create a truly gorgeous atmosphere. The staff are friendly and speak good English, so you’ll feel comfortable even if you don’t speak Japanese.",
+  "address": "1-2-1 Ōtemachi, Chiyoda City, Tokyo 100-0004",
+  "businesshour": {
+    "timezone": "Asia/Tokyo",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "17:00", "end": "00:00" }],
+      "Tuesday": [{ "start": "17:00", "end": "00:00" }],
+      "Wednesday": [{ "start": "17:00", "end": "00:00" }],
+      "Thursday": [{ "start": "17:00", "end": "00:00" }],
+      "Friday": [{ "start": "17:00", "end": "00:30" }],
+      "Saturday": [{ "start": "17:00", "end": "00:30" }],
+      "Sunday": [{ "start": "17:00", "end": "00:00" }]
+    }
+  },
+  "product1": {
+    "description": "ヴェルテュ マティーニ<br>Japanese Gin & Vodka, French Vermouth, Hinoki Bitter<br>国産ジン＆ウォッカ、フレンチベルモット、ビター<br>30% ABV",
+    "name": "VIRTU MARTINI",
+    "price": "¥4,100"
+  },
+  "product2": {
+    "description": "フィグコニャック＆スパイス<br>Cognac, Figs, Spices, Japanese Black Tea, Clarified Milk<br>コニャック、無花果、スパイス、和紅茶、クラリファイドミルク<br>9% ABV",
+    "name": "FIG COGNAC & SPICES",
+    "price": "¥4,100"
+  },
+  "product3": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product4": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product5": {
+    "description": "",
+    "name": "",
+    "price": ""
+  }
+}

@@ -576,6 +576,24 @@
         "storetag": ["omakase", "english", "friendly", "service-charge"],
         "producttag": ["sushi", "sashimi", "miso"]
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.76276614232754, 35.68824716512637]
+      },
+      "properties": {
+        "id": "JP_b1c4e7f905ad38c2",
+        "auid": "I1B3A4B0177EA2768",
+        "placeid": "ChIJlbohVy2NGGARYM9c0wZX34I",
+        "title": "VIRTÙ",
+        "type": "bar",
+        "layout": "food",
+        "storetag": ["bar", "friendly", "english", "service-charge"],
+        "producttag": ["cocktail"]
+      }
     }
   ]
 }
