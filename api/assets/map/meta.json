@@ -558,6 +558,24 @@
         "storetag": ["bar"],
         "producttag": ["cocktail"]
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.72524107302246, 35.66195903375869]
+      },
+      "properties": {
+        "id": "JP_7e3f9a1b2c8d4f60",
+        "auid": "I8C31905591CBB59",
+        "placeid": "ChIJ13sWRHqLGGARX9fpN_Tkxfc",
+        "title": "Sushi Yuu",
+        "type": "omakase",
+        "layout": "food",
+        "storetag": ["omakase", "english", "friendly", "service-charge"],
+        "producttag": ["sushi", "sashimi", "miso"]
+      }
     }
   ]
 }

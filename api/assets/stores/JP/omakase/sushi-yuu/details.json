@@ -1,0 +1,43 @@
+{
+  "description": "Sushi Yuu offers a warm and approachable omakase experience, perfect for travelers. The chef is fluent in English and not only introduces each dish with care, but also ensures you feel comfortable and well looked after throughout your meal. The hospitality goes beyond food — she attentively supports your overall experience, even offering tips for your trip.",
+  "address": "1-4-15 Nishiazabu, Minato City, Tokyo 106-0031",
+  "businesshour": {
+    "timezone": "Asia/Tokyo",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "17:00", "end": "23:30" }],
+      "Tuesday": [{ "start": "17:00", "end": "23:30" }],
+      "Wednesday": [{ "start": "17:00", "end": "23:30" }],
+      "Thursday": [{ "start": "17:00", "end": "23:30" }],
+      "Friday": [{ "start": "17:00", "end": "23:30" }],
+      "Saturday": [{ "start": "17:00", "end": "23:30" }],
+      "Sunday": []
+    }
+  },
+  "product1": {
+    "description": "Omakase style(Chef's choice) 23,000 yen per person, excluding drinks and consumption tax)",
+    "name": "Omakase style",
+    "price": "¥23,000"
+  },
+  "product2": {
+    "description": "ōtoro (大トロ) nigiri, the fattiest cut of tuna belly. It melts in your mouth",
+    "name": "Nigiri",
+    "price": ""
+  },
+  "product3": {
+    "description": "Maguro yamakake",
+    "name": "Appertizer",
+    "price": ""
+  },
+  "product4": {
+    "description": "Mocha mousse",
+    "name": "Dessert",
+    "price": ""
+  },
+  "product5": {
+    "description": "三千盛　銘醸",
+    "name": "Sake",
+    "price": "¥2,000"
+  }
+}
