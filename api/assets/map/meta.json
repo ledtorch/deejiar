@@ -591,7 +591,13 @@
         "title": "VIRTÙ",
         "type": "bar",
         "layout": "food",
-        "storetag": ["bar", "friendly", "english", "service-charge"],
+        "storetag": [
+          "bar",
+          "friendly",
+          "english",
+          "service-charge",
+          "top50-asia-2025"
+        ],
         "producttag": ["cocktail"]
       }
     }
