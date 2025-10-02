@@ -153,7 +153,7 @@ const toDetailHomePage = () => {
 
 const share = () => {
   const webUrl = `https://app.deejiar.com/detail/${route.params.id}`;
-  const text = `I found ${storeTitle.value} on Deejiar!`;
+  const text = `I found ${storeProperties.value.title} on Deejiar!`;
   const url = encodeURIComponent('\n' + webUrl);
   const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
   window.open(twitterUrl, '_blank');
