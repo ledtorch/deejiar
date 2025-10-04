@@ -27,7 +27,7 @@
       </div>
       <div class="key-info-container">
         <HeaderStore :store="storeProperties" />
-        <p class="store-description">{{ detailsJSON.description }}</p>
+        <p class="store-description" v-html="detailsJSON.description"></p>
       </div>
       <!-- <ListBusinesshour :bizTime="detailsJSON.businesshour" viewMode="overview" /> -->
       <Divider />
