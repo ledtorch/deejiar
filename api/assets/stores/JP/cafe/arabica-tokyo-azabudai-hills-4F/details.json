@@ -1,0 +1,43 @@
+{
+  "description": "If you’re exploring Tokyo Tower and nearby Azabudai Hills, don’t miss % Arabica on the 4th floor. This sleek new space offers another chance to enjoy our coffee in a fresh setting—perfect if you’ve already visited the basement shop and want a different vibe.",
+  "address": "Hills Tower Plaza 4F, 1-3-1 Azabudai, Minato City, Tokyo 106-0041",
+  "businesshour": {
+    "timezone": "Asia/Tokyo",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "11:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "11:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "11:00", "end": "20:00" }],
+      "Thursday": [{ "start": "11:00", "end": "20:00" }],
+      "Friday": [{ "start": "11:00", "end": "20:00" }],
+      "Saturday": [{ "start": "11:00", "end": "20:00" }],
+      "Sunday": [{ "start": "11:00", "end": "20:00" }]
+    }
+  },
+  "product1": {
+    "description": "は茶ラテ <br> Hot ¥600 (8oz) <br> Hot ¥650 (12oz) <br> Iced ¥650 (12oz)",
+    "name": "Matcha Latte",
+    "price": "¥650"
+  },
+  "product2": {
+    "description": "キョウトラテ <br> Hot ¥600 (8oz) <br> Hot ¥650 (12oz) <br> Iced ¥650 (12oz)",
+    "name": "Kyoto Latte",
+    "price": "¥650"
+  },
+  "product3": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product4": {
+    "description": "",
+    "name": "",
+    "price": ""
+  },
+  "product5": {
+    "description": "",
+    "name": "",
+    "price": ""
+  }
+}

@@ -600,6 +600,24 @@
         ],
         "producttag": ["cocktail"]
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.7403276999673, 35.66145396483629]
+      },
+      "properties": {
+        "id": "JP_9f2d8c3a7e0b46d1",
+        "auid": "IBDCAB3D1413BEC6E",
+        "placeid": "ChIJWaziUaqLGGARFPFO9vTknlw",
+        "title": "%ARABICA Tokyo Azabudai Hills 4F",
+        "type": "cafe",
+        "layout": "food",
+        "storetag": ["cafe"],
+        "producttag": ["matcha", "coffee", "latte", "dessert"]
+      }
     }
   ]
 }
