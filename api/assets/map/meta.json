@@ -618,6 +618,31 @@
         "storetag": ["cafe"],
         "producttag": ["matcha", "coffee", "latte", "dessert"]
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.73254512883622, 35.656987854791744]
+      },
+      "properties": {
+        "id": "JP_d6a3c8f9b204e175",
+        "auid": "IA6A38A394E0C993",
+        "placeid": "ChIJrakWGB6LGGARiF0Sj6XxVNs",
+        "title": "Azabu Oozora",
+        "type": "ramen",
+        "layout": "food",
+        "storetag": [
+          "ramen",
+          "friendly",
+          "minimum-charge",
+          "service-charge",
+          "english",
+          "wifi"
+        ],
+        "producttag": ["ramen", "sake", "soba"]
+      }
     }
   ]
 }
