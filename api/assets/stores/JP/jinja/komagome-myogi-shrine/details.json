@@ -1,0 +1,43 @@
+{
+  "description": "An ancient shrine in Komagome with 1,300 years of history, dedicated to Yamato Takeru, worshipped since Japan’s early eastern expeditions.",
+  "address": "3-16-16 Komagome, Toshima City, Tokyo 170-0003",
+  "businesshour": {
+    "timezone": "Asia/Tokyo",
+    "24hr": false,
+    "holiday": [],
+    "hours": {
+      "Monday": [{ "start": "09:00", "end": "16:00" }],
+      "Tuesday": [{ "start": "09:00", "end": "16:00" }],
+      "Wednesday": [],
+      "Thursday": [{ "start": "09:00", "end": "16:00" }],
+      "Friday": [{ "start": "09:00", "end": "16:00" }],
+      "Saturday": [{ "start": "09:00", "end": "16:00" }],
+      "Sunday": [{ "start": "09:00", "end": "16:00" }]
+    }
+  },
+  "product1": {
+    "name": "Amulet for New Beginnings",
+    "description": "黎明守 <br> Reimei-mamori (黎明守) features a black cat said to guide its bearer toward light, like the rising sun at dawn. It embodies strength, clarity, and renewal—blessing those who seek new beginnings, meaningful encounters, or guidance in times of change. Available in three colors: pink, sky blue, and golden yellow. <br> “黎明守”は、黒猫の導きによって登る朝日のように力強く、人生に光が差し、迷いや戸惑いのないよう祈願されたお守りです。新たな始まりや良い出会い、導きを求める方におすすめです。紐の色は、桃色・空色・山吹色の3種類があります。",
+    "price": "¥2,000"
+  },
+  "product2": {
+    "name": "Amulet for Serenity",
+    "description": "静謐守 <br> Seihitsu-mamori (静謐守) depicts a black cat gazing up at the night sky. This charm embodies the quiet beauty of a peaceful night gently wrapped in starlight, offering calm and comfort to those who carry it. <br> 夜空を見上げる黒猫の後ろ姿が印象的な“静謐守”は、星の光に優しく包まれるような、静かで穏やかな夜をイメージしたお守りです。持つ人に安らぎと心の静けさをもたらします。",
+    "price": "¥2,000"
+  },
+  "product3": {
+    "description": "ノルウェージャン(6歳♂)<br>おとなしい猫ですが、かまいすぎると荒ぶることがあります。甘噛みすることもあるので、ほどよい距離感で仲良くしてあげてくださいね！<br>チャオちゅ～る（マグロ味）が大好きです（=^・^=）<br> おなかがすくと、すぐにお昼休みに行っちゃいます。。。",
+    "name": "Mugi",
+    "price": ""
+  },
+  "product4": {
+    "description": "およそ1300年の歴史を持つ妙義神社は、駒込に鎮座しております。<br> 伝承によれば、日本古代史における伝承上の英雄　日本武尊（ヤマトタケルノミコト）が、当時東国にいた民族である蝦夷を討つために東征した際、この妙義神社がある場所に陣営を構えたと伝えられています。<br> 人々は、御威徳慕い尊びまつりこの地に社が建てられました。<br> 日本武尊が白鳥に生まれ変わり飛び立ったという伝説から、白雉（はくち）2年（651）5月12日、白鳥社と号しました。豊島区内では最古の神社として伝えられています。「新編武蔵風土起稿」※によると、最初に江戸城を築いた室町時代後期の武将　太田道灌は、文明3年（1471）5月、古河公方　足利成氏との戦に出陣する際、当社に参詣し、神馬、宝剣を寄進し戦勝を祈願しました。その時、近臣である樋口与三郎兼信と次のような連歌を詠んだと伝えられています。",
+    "name": "Honden",
+    "price": ""
+  },
+  "product5": {
+    "description": "",
+    "name": "",
+    "price": ""
+  }
+}

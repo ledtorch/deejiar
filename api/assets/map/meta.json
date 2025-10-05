@@ -643,6 +643,24 @@
         ],
         "producttag": ["ramen", "sake", "soba"]
       }
+    },
+    {
+      "type": "Feature",
+      "license": true,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.74551759659533, 35.74156386106609]
+      },
+      "properties": {
+        "id": "JP_40c7a1e9f5d2b38a",
+        "auid": "I281AB7AA8B3F544E",
+        "placeid": "ChIJ4TbHIZGNGGARjSLRXUh-zoQ",
+        "title": "Komagome Myogi Shrine",
+        "type": "jinja",
+        "layout": "view",
+        "storetag": ["jinja"],
+        "producttag": []
+      }
     }
   ]
 }
