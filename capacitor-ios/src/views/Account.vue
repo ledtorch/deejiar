@@ -35,7 +35,7 @@
 
       <div class="button-set">
         <NeutralButton action="Log Out" default @click="handleLogout" />
-        <PrimaryButton action="Start Free Trial" default @click="handleStartTrial" />
+        <PrimaryButton action="Join Deejiar Pioneers?" default @click="handleStartTrial" />
       </div>
     </section>
 
