@@ -346,15 +346,6 @@ onUnmounted(() => {
   height: 100vh;
 }
 
-#pickscard {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-
-  /* 📱 Account for top safe area */
-  top: env(safe-area-inset-top);
-}
-
 #bottomsheet {
   position: absolute;
   z-index: 1;
