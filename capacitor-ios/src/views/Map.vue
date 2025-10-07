@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useUserLocation } from '@/composables/useUserLocation.js';
 import { useMapStore } from '@/stores/mapStore.js';
 import BottomSheet from "../components/theSheet/BottomSheet.vue";
@@ -16,25 +16,37 @@ import Locate from "../components/button/Icon/Locate.vue";
 const map = ref(null);
 const mapboxgl = ref(null);
 const tempMarker = ref(null);
-const userLocationControl = ref(null);
+const userLocationControl = ref(null); // Web-only
 const bottomSheetRef = ref(null);
 
-// Stores and utils
-const { userPosition, startWatching, stopWatching } = useUserLocation();
+const {
+  isNative,
+  initialize,
+  startWatching,
+  stopWatching,
+  hasPermission,
+  userPosition,
+  getPositionForMap
+} = useUserLocation();
 const mapStore = useMapStore();
 
 // Locate user
 const locateUser = () => {
-  map.value.flyTo({
-    center: [userPosition.longitude, userPosition.latitude],
-    zoom: 15,
-    speed: 2,
-    curve: 1
-  });
-  userLocationControl.value.trigger();
-  // // 🐞 Debug console
-  // console.log("📍 Fly to user position: ", userPosition);
-};
+  // Recenter using latest native/web position (no browser prompt on native)
+  if (userPosition.latitude && userPosition.longitude && map.value) {
+    map.value.flyTo({
+      center: [userPosition.longitude, userPosition.latitude],
+      zoom: 15,
+      speed: 2,
+      curve: 1
+    });
+  } else if (!isNative.value && userLocationControl.value) {
+    // On web, allow Mapbox control to request browser geolocation
+    userLocationControl.value.trigger();
+    // // 🐞 Debug console
+    // console.log("📍 Fly to user position: ", userPosition);
+  }
+}
 
 // Navigate to location
 watch(() => mapStore.navigateToLocation.value, (navigationData) => {
@@ -261,7 +273,72 @@ watch(() => mapStore.selectedStore, (storeData) => {
   }
 }, { deep: true })
 
-// Initialize map
+/* -------------------- Custom user-location (no browser prompt on native) -------------------- */
+
+const addUserLocationLayers = () => {
+  if (!map.value) return
+  if (!map.value.getSource('user-location')) {
+    map.value.addSource('user-location', {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [0, 0] },
+        properties: { accuracy: 0, radiusPx: 12 }
+      }
+    })
+  }
+
+  if (!map.value.getLayer('user-accuracy')) {
+    map.value.addLayer({
+      id: 'user-accuracy',
+      type: 'circle',
+      source: 'user-location',
+      paint: {
+        'circle-radius': [
+          'coalesce',
+          ['to-number', ['get', 'radiusPx']],
+          0
+        ],
+        'circle-color': '#ffffff',
+        'circle-opacity': 0.12
+      }
+    })
+  }
+
+  if (!map.value.getLayer('user-dot')) {
+    map.value.addLayer({
+      id: 'user-dot',
+      type: 'circle',
+      source: 'user-location',
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 0, 4, 22, 12],
+        'circle-color': '#ffffff'
+      }
+    })
+  }
+}
+
+const syncUserLocationToMap = () => {
+  if (!map.value) return
+  const src = map.value.getSource('user-location')
+  if (!src) return
+  if (!userPosition.latitude || !userPosition.longitude) return
+
+  src.setData({
+    type: 'Feature',
+    geometry: { type: 'Point', coordinates: [userPosition.longitude, userPosition.latitude] },
+    properties: { accuracy: userPosition.accuracy || 0 }
+  })
+}
+
+// Keep the dot/ring updated
+watch(
+  () => [userPosition.latitude, userPosition.longitude, userPosition.accuracy],
+  () => syncUserLocationToMap()
+)
+
+/* -------------------- Map init -------------------- */
+
 onMounted(async () => {
   // Initialize mapboxgl
   await import('mapbox-gl/dist/mapbox-gl.css');
@@ -275,60 +352,62 @@ onMounted(async () => {
     zoom: 12.5,
     minZoom: 4,
     maxZoom: 18
-  });
+  })
 
-  // After map load, add stores and initialize user location control for position dot
-  map.value.on("load", () => {
-    initializeStores();
+  map.value.on('load', async () => {
+    // Stores and interactions
+    initializeStores()
 
-    // Initialize GeolocateControl only if it doesn't exist
-    userLocationControl.value = new mapboxgl.value.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showUserLocation: true,
-      showUserHeading: false
-    });
+    // User location layers (our own, on all platforms; they don't request perms)
+    addUserLocationLayers()
 
-    map.value.addControl(userLocationControl.value);
-
-  });
-
-  // Map center logic
-  // Get stored marker position
-  const markerLatitude = localStorage.getItem('markerLatitude');
-  const markerLongitude = localStorage.getItem('markerLongitude');
-  navigator.geolocation.getCurrentPosition(
-    // Use stored marker position if available, otherwise use current position
-    position => {
-      if (markerLatitude && markerLongitude) {
-        map.value.setCenter([
-          markerLatitude,
-          markerLongitude
-        ]);
+    // Platform-specific geolocation behavior
+    if (isNative.value) {
+      // Ask ONLY iOS/Android (native) for location
+      await initialize()
+      if (hasPermission.value) {
+        await startWatching()
+        // Center to first good fix (fallback to Taipei 101 if not ready)
+        const [lng, lat] = getPositionForMap()
+        map.value.jumpTo({ center: [lng, lat], zoom: Math.max(map.value.getZoom(), 14) })
+        syncUserLocationToMap()
       } else {
-        userLocationControl.value.trigger();
+        // Fallback: Taipei 101
+        map.value.setCenter([121.56456012803592, 25.034029946192703])
       }
-      // // 🐞 Debug console
-      // console.log(
-      //   "📍 Current position: " +
-      //   "(" + position.coords.latitude + "," + position.coords.longitude + ")"
-      // );
-    },
+    } else {
+      // WEB: Keep Mapbox's GeolocateControl
+      userLocationControl.value = new mapboxgl.value.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+        showUserLocation: true,
+        showUserHeading: false
+      });
 
-    // If user denies geolocation, set map center to Taipei 101 for MVP version
-    error => {
-      console.error("Geolocation error: ", error);
-      map.value.setCenter([121.56456012803592, 25.034029946192703]);
+      map.value.addControl(userLocationControl.value);
+
+      // Optionally center via control (triggers browser prompt only on web)
+      // We do NOT call navigator.geolocation ourselves.
+      nextTick(() => userLocationControl.value?.trigger?.())
     }
-  );
 
-  startWatching();
-});
+    // Map center logic
+    // Get stored marker position
+    const markerLatitude = localStorage.getItem('markerLatitude');
+    const markerLongitude = localStorage.getItem('markerLongitude');
+    if (markerLatitude && markerLongitude) {
+      map.value.setCenter([
+        markerLatitude,
+        markerLongitude
+      ]);
+    }
+  })
+})
 
-onUnmounted(() => {
-  stopWatching();
+onUnmounted(async () => {
+  await stopWatching();
   if (map.value && userLocationControl.value) {
     map.value.removeControl(userLocationControl.value);
     userLocationControl.value = null;
