@@ -102,12 +102,6 @@ dmypy.json
 *.local
 .eslintcache
 
-# Capacitor
-.capacitor/
-ios/
-android/
-capacitor.config.ts.backup
-
 # Temporary files
 *.tmp
 *.temp
