@@ -1,7 +1,5 @@
 import UIKit
 import Capacitor
-import AppTrackingTransparency
-import AdSupport
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,22 +7,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        // Request App Tracking Transparency on first launch, after app becomes active momentarily
-        if #available(iOS 14, *) {
-            let status = ATTrackingManager.trackingAuthorizationStatus
-            if status == .notDetermined {
-                // Ensure we present after the app has a window; slight delay avoids presenting too early
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    ATTrackingManager.requestTrackingAuthorization { newStatus in
-                        print("[ATT] authorization status: \(newStatus.rawValue)")
-                    }
-                }
-            } else {
-                print("[ATT] existing authorization status: \(status.rawValue)")
-            }
-        }
-
+        
+        // ✅ REMOVED: Auto ATT prompt on launch
+        // ATT will now be requested via Vue.js frontend using ATTPlugin
+        // This follows Apple's "just-in-time" permission best practice
+        
+        print("[Deejiar] App launched successfully")
+        print("[Deejiar] ATT permission will be requested by user action")
+        print("[Deejiar] ATTPlugin manually registered")
+        
         return true
     }
 

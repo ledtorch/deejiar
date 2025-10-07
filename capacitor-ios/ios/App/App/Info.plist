@@ -63,6 +63,6 @@
 	
 	<!-- 🧭 App Tracking Transparency purpose -->
 	<key>NSUserTrackingUsageDescription</key>
-	<string>Deejiar uses your device identifier to measure installs and subscriptions performance. We do not sell or share your data, and tracking is only used to improve your app experience.</string>
+	<string>Deejiar uses your device identifier to measure installs and subscriptions performance. We do not sell your data, and tracking is only used to improve your app experience.</string>
 </dict>
 </plist>
