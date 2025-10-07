@@ -114,6 +114,7 @@ const currentItem = computed(() => {
   const base = storeDetailsEndpoint();
   const safeName = product.name
     .replace(/&/g, 'and')
+    .replace(/%/g, '')
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()

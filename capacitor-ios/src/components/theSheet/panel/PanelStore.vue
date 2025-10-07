@@ -83,6 +83,7 @@ const getStoreDetailsEndpoint = () => {
   const country = id.split('_')[0];
   const safeTitle = title
     .replace(/&/g, 'and')
+    .replace(/%/g, '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
