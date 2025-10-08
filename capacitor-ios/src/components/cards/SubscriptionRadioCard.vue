@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import Divider from '../common/Divider.vue'
 
 // State
@@ -62,7 +62,6 @@ const selectedPlan = ref('yearly') // Default to yearly as shown in the design
 const emit = defineEmits(['planSelected'])
 
 // Watch for plan changes
-import { watch } from 'vue'
 watch(selectedPlan, (newPlan) => {
   emit('planSelected', newPlan)
 })
