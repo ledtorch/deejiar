@@ -14,6 +14,12 @@ PODS:
   - CapacitorStatusBar (7.0.0):
     - Capacitor
   - IONGeolocationLib (1.0.1)
+  - PurchasesHybridCommon (14.3.0):
+    - RevenueCat (= 5.32.0)
+  - RevenueCat (5.32.0)
+  - RevenuecatPurchasesCapacitor (10.4.0):
+    - Capacitor
+    - PurchasesHybridCommon (= 14.3.0)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -23,10 +29,13 @@ DEPENDENCIES:
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - CapacitorPluginAppTrackingTransparency (from `../../node_modules/capacitor-plugin-app-tracking-transparency`)
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - "RevenuecatPurchasesCapacitor (from `../../node_modules/@revenuecat/purchases-capacitor`)"
 
 SPEC REPOS:
   trunk:
     - IONGeolocationLib
+    - PurchasesHybridCommon
+    - RevenueCat
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -43,6 +52,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/capacitor-plugin-app-tracking-transparency"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
+  RevenuecatPurchasesCapacitor:
+    :path: "../../node_modules/@revenuecat/purchases-capacitor"
 
 SPEC CHECKSUMS:
   Capacitor: 9d9e481b79ffaeacaf7a85d6a11adec32bd33b59
@@ -53,7 +64,10 @@ SPEC CHECKSUMS:
   CapacitorPluginAppTrackingTransparency: 92ae9c1cfb5cf477753db9269689332a686f675a
   CapacitorStatusBar: a8c4c83ed2e973bdafb979e80e4b00d027832cb7
   IONGeolocationLib: 20f9d0248a0b5264511fb57a37e25dd2badf797a
+  PurchasesHybridCommon: 7f0944cc5411bdcd1ea5d69affa6a6f9aaf87b13
+  RevenueCat: 7e1d0768fb287c9983173c9b28e39ccbeeb828a9
+  RevenuecatPurchasesCapacitor: c84ce1cd5253bf22758c28decfb4313267cabb2c
 
-PODFILE CHECKSUM: a11d5abab5e753374503b967c1cacadb28f9083d
+PODFILE CHECKSUM: 8eeb16b34775f11983d4bf246965948220f77f60
 
 COCOAPODS: 1.16.2
