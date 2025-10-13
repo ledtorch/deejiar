@@ -30,7 +30,6 @@ class UserResponse(BaseModel):
     avatar_url: Optional[str] = None
     provider: AuthProvider
     is_new_user: Optional[bool] = False
-    premium: Optional[bool] = False
     
     # Add missing fields that exist in database
     created_at: Optional[datetime] = None
@@ -43,7 +42,14 @@ class UserResponse(BaseModel):
     ig_account: Optional[str] = Field(None, alias="ig-account")
     x_connected: Optional[datetime] = Field(None, alias="x-connected")
     ig_connected: Optional[datetime] = Field(None, alias="ig-connected")
-    
+
+    # Subscription
+    premium: Optional[bool] = False
+    subscription_plan: Optional[str] = None                 # e.g. "com.deejiar.premium.brass.monthly.v1"
+    subscription_status: Optional[str] = None               # "active" | "trial" | "expired" | "cancelled"
+    subscription_started_at: Optional[datetime] = None
+    subscription_expires_at: Optional[datetime] = None
+
     class Config:
         # Allow field aliases to work
         allow_population_by_field_name = True
@@ -60,13 +66,19 @@ class UserProfile(BaseModel):
     """
     uid: str
     email: str
-    premium: bool = False
     created_at: datetime
     language: List[str] = []  # Array of language codes
     age: Optional[int] = None
     gender: Optional[str] = None  # 'male', 'female', 'other', 'prefer_not_to_say'
     x_account: Optional[str] = None
     ig_account: Optional[str] = None
+
+    # Subscription
+    premium: Optional[bool] = False
+    subscription_plan: Optional[str] = None
+    subscription_status: Optional[str] = None
+    subscription_started_at: Optional[datetime] = None
+    subscription_expires_at: Optional[datetime] = None
 
 class UserUpdateRequest(BaseModel):
     """
