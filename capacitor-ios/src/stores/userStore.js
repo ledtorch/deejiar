@@ -1,6 +1,7 @@
 // src/stores/userStore.js
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
+import { Purchases } from '@revenuecat/purchases-capacitor'
 
 const API_ENDPOINT = import.meta.env.VITE_API_URL;
 
@@ -204,6 +205,17 @@ export const useUserStore = defineStore('user', () => {
   const login = async (authData) => {
     setAuth(authData);
 
+    try {
+      const uid = userUID.value;               // your computed UID
+      if (uid) {
+        const res = await Purchases.logIn({ appUserID: uid });
+        // res.created === true when RC created a new customer for this uid
+        // res.customerInfo holds current entitlements
+      }
+    } catch (e) {
+      console.warn('[RC] logIn failed', e);
+    }
+
     // Mark as not new user after successful login
     if (user.value && user.value.is_new_user) {
       user.value.is_new_user = false;
@@ -231,6 +243,12 @@ export const useUserStore = defineStore('user', () => {
             'Content-Type': 'application/json'
           }
         });
+      }
+      try {
+        // Return to anonymous in RC
+        await Purchases.logOut();
+      } catch (e) {
+        console.warn('[RC] logOut failed', e);
       }
     } catch (error) {
       console.error('Logout error:', error);

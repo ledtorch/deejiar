@@ -4,9 +4,15 @@ import { Capacitor } from '@capacitor/core'
 import { Purchases } from '@revenuecat/purchases-capacitor'
 
 export function usePurchases() {
+  /* 
+  loading: Tracks whether a RevenueCat operation is in progress
+  offering: Subscription plans (collection)
+  selectedId: Selected package identifier (NOT offering identifier)
+  packages: Array of available packages from the offering
+  */
   const loading = ref(false)
   const offering = ref(null)
-  const selectedId = ref('Yearly') // Default to Yearly to match UI
+  const selectedId = ref('$rc_monthly')
   const packages = ref([])
   const premiumActive = ref(false)
   const error = ref(null)
@@ -23,11 +29,6 @@ export function usePurchases() {
   })
 
   async function refreshEntitlement() {
-    if (!Capacitor.isNativePlatform()) {
-      console.warn('[usePurchases] Cannot check entitlements on web')
-      return false
-    }
-
     try {
       const info = await Purchases.getCustomerInfo()
       premiumActive.value = !!info?.entitlements?.active?.premium
@@ -40,68 +41,30 @@ export function usePurchases() {
   }
 
   async function loadOffering() {
-    console.log('[usePurchases] loadOffering called')
-    console.log('[usePurchases] Is native platform?', Capacitor.isNativePlatform())
-
-    if (!Capacitor.isNativePlatform()) {
-      console.warn('[usePurchases] ⚠️ RevenueCat only works on iOS. Please test on a real device.')
-      error.value = 'Subscriptions only available on iOS'
-      return
-    }
-
     loading.value = true
     error.value = null
 
     try {
-      console.log('[usePurchases] Fetching offerings from RevenueCat...')
-      const res = await Purchases.getOfferings()
+      const response = await Purchases.getOfferings()
 
-      console.log('[usePurchases] Offerings response:', res)
-
-      offering.value = res.current ?? null
+      offering.value = response.current ?? null
       packages.value = offering.value?.availablePackages ?? []
 
-      console.log('[usePurchases] Offering loaded:', {
-        offeringId: offering.value?.identifier,
-        packagesCount: packages.value.length,
-        packageIds: packages.value.map(p => p.identifier)
-      })
-
       if (packages.value.length === 0) {
-        console.error('[usePurchases] ❌ No packages found!')
-        console.error('[usePurchases] Please check:')
-        console.error('[usePurchases] 1. RevenueCat offering is configured')
-        console.error('[usePurchases] 2. Offering is set as "current"')
-        console.error('[usePurchases] 3. Packages are added to the offering')
-        console.error('[usePurchases] 4. You are signed into Apple ID on device')
-        error.value = 'No subscription packages available. Please sign into Apple ID or check RevenueCat configuration.'
+        error.value = 'No subscription packages available'
       }
 
       await refreshEntitlement()
     } catch (e) {
       console.error('[usePurchases] Failed to load offerings:', e)
       error.value = e?.message || 'Failed to load products'
-
-      if (e?.message?.includes('No active account')) {
-        error.value = 'Please sign into Apple ID in Settings → App Store'
-      }
     } finally {
       loading.value = false
     }
   }
 
   async function purchaseSelected() {
-    console.log('[usePurchases] purchaseSelected called')
-    console.log('[usePurchases] selectedPkg:', selectedPkg.value)
-
-    if (!Capacitor.isNativePlatform()) {
-      console.error('[usePurchases] ❌ Purchases only work on iOS')
-      error.value = 'Purchases only available on iOS'
-      return false
-    }
-
     if (!selectedPkg.value) {
-      console.error('[usePurchases] ❌ No package selected!')
       error.value = 'Please select a subscription plan'
       return false
     }
@@ -110,30 +73,17 @@ export function usePurchases() {
     error.value = null
 
     try {
-      console.log('[usePurchases] Starting purchase:', {
-        packageId: selectedPkg.value.identifier,
-        offeringId: offering.value?.identifier,
-        productId: selectedPkg.value.product?.identifier
-      })
-
       const { customerInfo } = await Purchases.purchasePackage({
-        identifier: selectedPkg.value.identifier,
-        offeringIdentifier: offering.value.identifier,
+        aPackage: selectedPkg.value
       })
 
       premiumActive.value = !!customerInfo?.entitlements?.active?.premium
-      console.log('[usePurchases] ✅ Purchase complete. Premium:', premiumActive.value)
-
       return premiumActive.value
     } catch (e) {
-      console.error('[usePurchases] Purchase error:', e)
-
       if (e?.userCancelled) {
         error.value = 'Purchase cancelled'
-        console.log('[usePurchases] User cancelled purchase')
       } else {
         error.value = e?.message || 'Purchase failed'
-        console.error('[usePurchases] Purchase failed:', error.value)
       }
       return false
     } finally {
@@ -142,24 +92,14 @@ export function usePurchases() {
   }
 
   async function restore() {
-    console.log('[usePurchases] restore called')
-
-    if (!Capacitor.isNativePlatform()) {
-      console.error('[usePurchases] ❌ Restore only works on iOS')
-      error.value = 'Restore only available on iOS'
-      return false
-    }
-
     loading.value = true
     error.value = null
 
     try {
       const info = await Purchases.restorePurchases()
       premiumActive.value = !!info?.entitlements?.active?.premium
-      console.log('[usePurchases] ✅ Restore complete. Premium:', premiumActive.value)
       return premiumActive.value
     } catch (e) {
-      console.error('[usePurchases] Restore failed:', e)
       error.value = e?.message || 'Restore failed'
       return false
     } finally {

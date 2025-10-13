@@ -1,70 +1,99 @@
 <template>
   <section class="subscription-section">
-
     <div class="plans-container">
 
       <!-- Monthly Plan -->
-      <div class="plan-card" :class="{ 'selected': selectedPlan === 'monthly' }" @click="selectedPlan = 'monthly'">
+      <div class="plan-card" :class="{ 'selected': internalSelectedPlan === 'monthly' }"
+        @click="handlePlanClick('monthly')">
         <div class="monthly-container">
           <div class="plan-header">
             <p class="plan-title _subtitle">Trailblazer Monthly</p>
-            <div class="radio-button" :class="{ 'checked': selectedPlan === 'monthly' }">
-            </div>
+            <div class="radio-button" :class="{ 'checked': internalSelectedPlan === 'monthly' }"></div>
           </div>
-          <h5 class="price">$4.99/mo</h5>
+          <h5 class="price">{{ monthlyPrice }}</h5>
         </div>
       </div>
 
       <Divider />
 
       <!-- Yearly Plan -->
-      <div class="plan-card" :class="{ 'selected': selectedPlan === 'yearly' }" @click="selectedPlan = 'yearly'">
+      <div class="plan-card" :class="{ 'selected': internalSelectedPlan === 'yearly' }"
+        @click="handlePlanClick('yearly')">
         <div class="yearly-container">
           <div class="yearly-header">
             <div class="plan-header">
               <p class="plan-title _subtitle">Trailblazer Yearly</p>
-              <div class="radio-button" :class="{ 'checked': selectedPlan === 'yearly' }">
-              </div>
+              <div class="radio-button" :class="{ 'checked': internalSelectedPlan === 'yearly' }"></div>
             </div>
-            <h5 class="price">$49/yr</h5>
+            <h5 class="price">{{ yearlyPrice }}</h5>
           </div>
 
           <div class="bonus-container">
             <img class="bonus-icon" src="@/assets/icons/key.png">
-            <p class="bonus-text _button-secondary">Join <a class="club-link"
-                href="https://x.com/i/communities/1962023966777995432">Deejiar Club</a></p>
+            <p class="bonus-text _button-secondary">
+              Join <a class="club-link" href="https://x.com/i/communities/1962023966777995432">Deejiar Club</a>
+            </p>
           </div>
           <div class="bonus-container">
             <img class="bonus-icon" src="@/assets/icons/discount.png">
             <p class="bonus-text _button-secondary">Save over 20% with the yearly plan</p>
           </div>
-
         </div>
       </div>
     </div>
 
     <!-- Terms Text -->
     <p class="_caption1 terms-text">
-      Free 7 days, then {{ selectedPlan === 'monthly' ? '$4.99/month' : '$49/year' }}. Renews automatically until
-      canceled.
+      Free 7 days, then {{ internalSelectedPlan === 'monthly' ? monthlyPrice : yearlyPrice }}.
+      Renews automatically until canceled.
     </p>
   </section>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 import Divider from '../common/Divider.vue'
 
-// State
-const selectedPlan = ref('yearly') // Default to yearly as shown in the design
+const props = defineProps({
+  packages: {
+    type: Array,
+    default: () => []
+  },
+  selectedPlan: {
+    type: String,
+    default: 'monthly'
+  }
+})
 
-// Emit selected plan to parent if needed
 const emit = defineEmits(['planSelected'])
 
-// Watch for plan changes
-watch(selectedPlan, (newPlan) => {
-  emit('planSelected', newPlan)
+const internalSelectedPlan = ref(props.selectedPlan)
+
+watch(() => props.selectedPlan, (newVal) => {
+  internalSelectedPlan.value = newVal
 })
+
+const handlePlanClick = (plan) => {
+  internalSelectedPlan.value = plan
+  emit('planSelected', plan)
+}
+
+// ✅ Get packages by correct RevenueCat identifiers
+const monthlyPackage = computed(() =>
+  props.packages.find(p => p.identifier === '$rc_monthly')
+)
+
+const yearlyPackage = computed(() =>
+  props.packages.find(p => p.identifier === '$rc_annual')
+)
+
+const monthlyPrice = computed(() =>
+  monthlyPackage.value?.product?.priceString
+)
+
+const yearlyPrice = computed(() =>
+  yearlyPackage.value?.product?.priceString
+)
 </script>
 
 <style lang="scss" scoped>
