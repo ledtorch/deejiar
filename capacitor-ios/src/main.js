@@ -8,9 +8,11 @@ import './style.css';
 
 // Plugin
 import router from './router.js'
+import VueLazyload from 'vue-lazyload'
 import { useMapStore } from './stores/mapStore'
 import { useUserStore } from './stores/userStore';
-import VueLazyload from 'vue-lazyload'
+import { Capacitor } from '@capacitor/core';
+import { Purchases } from '@revenuecat/purchases-capacitor'
 
 // Create Pinia and app instance
 const pinia = createPinia();
@@ -29,11 +31,19 @@ async function initializeApp() {
   const mapStore = useMapStore();
   const userStore = useUserStore();
 
-  // Run both operations in parallel
+  // 1) restore auth (once)
   await Promise.all([
     mapStore.initialize(),
     userStore.loadAuthFromStorage()
-  ]);
+  ])
+
+  // 2) configure RC with your public key and the UID (or null for anon) on iOS platform
+  if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios') {
+    await Purchases.configure({
+      apiKey: import.meta.env.VITE_RC_PUBLIC_KEY_IOS,
+      appUserID: userStore.userUID || null,
+    })
+  }
 
   app.mount('#app');
 }
