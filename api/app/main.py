@@ -8,7 +8,9 @@ import json
 from dotenv import load_dotenv
 # Modules
 from app.routes.user.auth import router as user_auth_router
+from app.routes.user.subscription import router as subscription_router
 from app.routes.admin.auth import router as admin_auth_router
+from app.routes.webhooks.revenuecat import router as webhook_router
 from app.routes.map import get_map_json
 from app.routes.search import router as search_router
 from app.routes.search import search_stores as perform_search_stores
@@ -55,7 +57,9 @@ app.add_middleware(
 
 # ─── Routers ────────────────────────────────────
 app.include_router(user_auth_router, prefix="/api/user")
+app.include_router(subscription_router, prefix="/api/user")
 app.include_router(admin_auth_router, prefix="/api/admin")
+app.include_router(webhook_router, prefix="/api/webhooks")
 app.include_router(search_router, prefix="/api/search", tags=["search"])
 
 # ─── Pages ────────────────────────────────────────────

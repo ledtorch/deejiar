@@ -11,10 +11,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Goes up to api/
 env = os.getenv('ENV', 'development')
 env_file = BASE_DIR / ('.env.production' if env == 'production' else '.env.local')
 
-# Debug: Print the path being used
-print(f"Loading environment from: {env_file}")
-print(f"File exists: {env_file.exists()}")
-
 # Load the env file
 load_dotenv(env_file)
 
@@ -23,9 +19,9 @@ SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
 SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 
-# Debug: Print loaded values (remove in production!)
-print(f"SUPABASE_URL loaded: {SUPABASE_URL}")
-print(f"SUPABASE_ANON_KEY loaded: {SUPABASE_ANON_KEY[:20]}..." if SUPABASE_ANON_KEY else "SUPABASE_ANON_KEY not loaded")
+# # 🐞 Print loaded values (remove in production!)
+# print(f"SUPABASE_URL loaded: {SUPABASE_URL}")
+# print(f"SUPABASE_ANON_KEY loaded: {SUPABASE_ANON_KEY[:20]}..." if SUPABASE_ANON_KEY else "SUPABASE_ANON_KEY not loaded")
 
 # Validate that credentials are loaded
 if not SUPABASE_URL or not SUPABASE_ANON_KEY:

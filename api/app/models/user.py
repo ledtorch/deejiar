@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import Optional, List
 from datetime import datetime
 from enum import Enum
@@ -50,9 +50,7 @@ class UserResponse(BaseModel):
     subscription_started_at: Optional[datetime] = None
     subscription_expires_at: Optional[datetime] = None
 
-    class Config:
-        # Allow field aliases to work
-        allow_population_by_field_name = True
+    model_config = ConfigDict(populate_by_name=True, str_strip_whitespace=True)
 
 class AuthResponse(BaseModel):
     access_token: str

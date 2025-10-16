@@ -11,7 +11,8 @@ load_dotenv('../.env.local')
 
 # Define JSON_PATH relative to this file
 JSON_PATH = Path(__file__).parent.parent.parent / 'assets/map'
-print(f"JSON_PATH: {JSON_PATH}")
+# # 🐞 Debug: Print the path being used
+# print(f"JSON_PATH: {JSON_PATH}")
 
 def list_json_files() -> List[str]:
     """List all JSON files in the map directory"""

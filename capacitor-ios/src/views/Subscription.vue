@@ -12,6 +12,8 @@
     </section>
     <PrimaryButton :action="purchaseButtonText" :disabled="!selectedPkg || purchasing" @click="handlePurchase"
       default />
+
+    <button @click="handlePurchase">Test Data</button>
   </main>
 </template>
 
@@ -56,24 +58,42 @@ const handlePlanSelected = (plan) => {
   selectedId.value = plan === 'monthly' ? '$rc_monthly' : '$rc_annual'
 }
 
+// WHY?
 const handlePurchase = async () => {
+  console.log('Test Data')
+  console.log('selectedPkg', selectedPkg)
+  console.log('selectedId', selectedId)
+  console.log('selectedPlan', selectedPlan)
+  console.log('premiumActive', premiumActive)
   if (!selectedPkg.value) return
 
   try {
     purchasing.value = true
+    console.log('💳 Starting purchase...')
+
+    // Step 1: Purchase through RevenueCat
     const success = await purchaseSelected()
+    console.log('RevenueCat premiumActive:', premiumActive.value)  // true ✅
 
     if (success) {
-      userStore.updateUserProfile({
-        premium: true,
-        subscription_plan: selectedPkg.value.product.identifier,
-        subscription_status: 'active'
-      })
+      console.log('✅ Purchase successful!')
+      console.log('📊 Before sync - isPremium:', userStore.isPremium)  // false ❌
 
-      router.push('/profile')
+      // Step 2: Sync to Supabase backend
+      const synced = await userStore.syncPremiumStatus(
+        selectedPkg.value.product.identifier,
+        'active'
+      )
+
+      if (synced) {
+        console.log('✅ Premium synced to backend!')
+        console.log('📊 After sync - isPremium:', userStore.isPremium)  // true ✅
+      }
+
+      router.push('/account')
     }
   } catch (err) {
-    console.error('[Subscription] Purchase error:', err)
+    console.error('❌ Purchase error:', err)
   } finally {
     purchasing.value = false
   }
@@ -81,6 +101,7 @@ const handlePurchase = async () => {
 
 onMounted(async () => {
   await loadOffering()
+  console.log('isPremium', userStore.isPremium)
 })
 </script>
 
