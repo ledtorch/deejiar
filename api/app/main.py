@@ -72,7 +72,7 @@ async def dashboard():
     return {"message": "Login successful"}
 
 # ─── App API ────────────────────────────────────
-@app.get("/map/{filename}")
+@app.get("/api/map/{filename}")
 async def serve_map_data(filename: str):
     try:
         return get_map_json(filename)

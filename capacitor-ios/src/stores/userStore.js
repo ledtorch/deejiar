@@ -74,7 +74,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     try {
-      const response = await fetch(`${API_ENDPOINT}/api/user/subscription/sync-premium`, {
+      const response = await fetch(`${API_ENDPOINT}/user/subscription/sync-premium`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken.value}`,
@@ -180,7 +180,7 @@ export const useUserStore = defineStore('user', () => {
     try {
       isLoading.value = true;
 
-      const response = await fetch(`${API_ENDPOINT}/api/user/auth/refresh`, {
+      const response = await fetch(`${API_ENDPOINT}/user/auth/refresh`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refresh_token: refreshToken.value })
@@ -210,7 +210,7 @@ export const useUserStore = defineStore('user', () => {
     try {
       isLoading.value = true;
 
-      const response = await fetch(`${API_ENDPOINT}/api/user/auth/me`, {
+      const response = await fetch(`${API_ENDPOINT}/user/auth/me`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken.value}`,
@@ -274,7 +274,7 @@ export const useUserStore = defineStore('user', () => {
     try {
       if (accessToken.value) {
         // Notify backend about logout
-        await fetch(`${API_ENDPOINT}/api/user/auth/logout`, {
+        await fetch(`${API_ENDPOINT}/user/auth/logout`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${accessToken.value}`,

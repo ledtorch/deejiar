@@ -84,7 +84,7 @@ const performSearch = async (query = '') => {
     params.append('q', trimmedQuery);
 
     // Construct API URL
-    const apiUrl = `${import.meta.env.VITE_API_URL}/api/search?${params}`;
+    const apiUrl = `${import.meta.env.VITE_API_URL}/search?${params}`;
     console.log('📡 API URL:', apiUrl);
 
     // Call search API

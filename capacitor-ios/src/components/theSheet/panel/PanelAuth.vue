@@ -149,7 +149,7 @@ const submitEmail = async () => {
 
   try {
     // Your existing API calls...
-    const checkResponse = await fetch(`${API_ENDPOINT}/api/user/auth/check-email`, {
+    const checkResponse = await fetch(`${API_ENDPOINT}/user/auth/check-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email })
@@ -163,8 +163,8 @@ const submitEmail = async () => {
     userAction.value = checkData.suggested_action;
 
     const endpoint = userAction.value === 'login'
-      ? '/api/user/auth/login/send-otp'
-      : '/api/user/auth/register/send-otp';
+      ? '/user/auth/login/send-otp'
+      : '/user/auth/register/send-otp';
 
     const response = await fetch(`${API_ENDPOINT}${endpoint}`, {
       method: 'POST',

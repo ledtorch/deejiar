@@ -132,8 +132,8 @@ const submitCode = async () => {
   try {
     // Determine endpoint based on action
     const endpoint = props.action === 'login'
-      ? '/api/user/auth/login/verify-otp'
-      : '/api/user/auth/register/verify-otp';
+      ? '/user/auth/login/verify-otp'
+      : '/user/auth/register/verify-otp';
 
     const response = await fetch(`${API_ENDPOINT}${endpoint}`, {
       method: 'POST',
@@ -197,8 +197,8 @@ const resendCode = async () => {
   try {
     // Determine endpoint based on action
     const endpoint = props.action === 'login'
-      ? '/api/user/auth/login/send-otp'
-      : '/api/user/auth/register/send-otp';
+      ? '/user/auth/login/send-otp'
+      : '/user/auth/register/send-otp';
 
     const response = await fetch(`${API_ENDPOINT}${endpoint}`, {
       method: 'POST',

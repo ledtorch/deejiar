@@ -81,7 +81,7 @@ const handleLogout = async () => {
 
     if (token) {
       // Call the logout API endpoint
-      await fetch(`${API_ENDPOINT}/api/user/auth/logout`, {
+      await fetch(`${API_ENDPOINT}/user/auth/logout`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
