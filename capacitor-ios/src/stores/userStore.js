@@ -66,44 +66,6 @@ export const useUserStore = defineStore('user', () => {
   const formattedInstagramConnectedDate = computed(() => formatConnectedDate(instagramConnectedDate.value));
   const formattedRegistrationDate = computed(() => formatRegistrationDate(userCreatedAt.value));
 
-  // Subscription info
-  const syncPremiumStatus = async (subscriptionPlan, subscriptionStatus = 'active') => {
-    if (!accessToken.value) {
-      console.error('❌ No access token available')
-      return false
-    }
-
-    try {
-      const response = await fetch(`${API_ENDPOINT}/user/subscription/sync-premium`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${accessToken.value}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          subscription_plan: subscriptionPlan,
-          subscription_status: subscriptionStatus
-        })
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to sync premium status')
-      }
-
-      const data = await response.json()
-      console.log('✅ Premium synced:', data)
-
-      // Update local user state with returned data
-      user.value = data.user
-      localStorage.setItem('user', JSON.stringify(data.user))
-
-      return true
-    } catch (error) {
-      console.error('❌ Failed to sync premium:', error)
-      return false
-    }
-  };
-
   // User state for TheAvatar component
   const userState = computed(() => {
     if (!isAuthenticated.value) return 'default';
@@ -327,7 +289,6 @@ export const useUserStore = defineStore('user', () => {
     formattedXConnectedDate,
     formattedInstagramConnectedDate,
     formattedRegistrationDate,
-    syncPremiumStatus,
 
     // Actions
     setAuth,

@@ -8,7 +8,10 @@ import json
 from dotenv import load_dotenv
 # Modules
 from app.routes.user.auth import router as user_auth_router
-from app.routes.user.subscription import router as subscription_router
+
+# # Vue Fetches from Supabase directly
+# from app.routes.user.subscription import router as subscription_router
+
 from app.routes.admin.auth import router as admin_auth_router
 from app.routes.webhooks.revenuecat import router as webhook_router
 from app.routes.map import get_map_json
