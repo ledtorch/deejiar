@@ -12,7 +12,7 @@ export function usePurchases() {
   const offering = ref(null)
   const selectedId = ref('$rc_annual')
   const packages = ref([])
-  const premiumActive = ref(false)
+  const isPremium = ref(false)
   const error = ref(null)
 
   const selectedPkg = computed(() => {
@@ -22,8 +22,8 @@ export function usePurchases() {
   async function refreshEntitlement() {
     try {
       const info = await Purchases.getCustomerInfo()
-      premiumActive.value = !!info?.customerInfo?.entitlements?.active?.premium
-      return premiumActive.value
+      isPremium.value = !!info?.customerInfo?.entitlements?.active?.premium
+      return isPremium.value
     } catch (e) {
       return false
     }
@@ -34,17 +34,39 @@ export function usePurchases() {
     error.value = null
 
     try {
+      console.log('📡 Calling Purchases.getOfferings()...')
       const response = await Purchases.getOfferings()
 
+      // ✅ Log the RAW response
+      console.log('📦 RAW Response:', JSON.stringify(response, null, 2))
+      console.log('📦 response.current:', response.current)
+      console.log('📦 response.all:', response.all)
+
       offering.value = response.current ?? null
-      packages.value = offering.value?.availablePackages ?? []
+
+      if (offering.value) {
+        console.log('📦 offering.availablePackages:', offering.value.availablePackages)
+        packages.value = offering.value.availablePackages ?? []
+      } else {
+        console.warn('⚠️ No current offering found!')
+        packages.value = []
+      }
+
+      console.log('📦 Final packages.value length:', packages.value.length)
 
       if (packages.value.length === 0) {
         error.value = 'No subscription packages available'
+        console.error('❌ No packages loaded!')
+      } else {
+        console.log('✅ Packages loaded successfully:')
+        packages.value.forEach(pkg => {
+          console.log(`  - ${pkg.identifier}: ${pkg.product?.priceString}`)
+        })
       }
 
       await refreshEntitlement()
     } catch (e) {
+      console.error('❌ loadOffering error:', e)
       error.value = e?.message || 'Failed to load products'
     } finally {
       loading.value = false
@@ -67,9 +89,9 @@ export function usePurchases() {
         aPackage: rawPackage
       })
 
-      premiumActive.value = !!result.customerInfo?.entitlements?.active?.premium
+      isPremium.value = !!result.customerInfo?.entitlements?.active?.premium
 
-      return premiumActive.value
+      return isPremium.value
     } catch (e) {
       if (e?.userCancelled) {
         error.value = 'Purchase cancelled'
@@ -89,8 +111,8 @@ export function usePurchases() {
     try {
       const info = await Purchases.restorePurchases()
 
-      premiumActive.value = !!info?.customerInfo?.entitlements?.active?.premium
-      return premiumActive.value
+      isPremium.value = !!info?.customerInfo?.entitlements?.active?.premium
+      return isPremium.value
     } catch (e) {
       error.value = e?.message || 'Restore failed'
       return false
@@ -105,7 +127,7 @@ export function usePurchases() {
     packages,
     selectedId,
     selectedPkg,
-    premiumActive,
+    isPremium,
     offering,
     loadOffering,
     purchaseSelected,

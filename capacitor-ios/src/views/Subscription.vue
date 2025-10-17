@@ -8,8 +8,10 @@
         <img src="/icon/action/arrow-right.svg" class="arrow-right-in-subscription">
         <TheAvatar overrideState="premium" class="avatar-in-subscription" />
       </div>
-      <SubscriptionRadioCard :packages="packages" :selectedPlan="selectedPlan" @planSelected="handlePlanSelected" />
+      <SubscriptionRadioCard :monthlyPackage="monthlyPkg" :yearlyPackage="yearlyPkg" :selectedId="selectedId"
+        @select="selectPackage" />
     </section>
+
     <PrimaryButton :action="purchaseButtonText" :disabled="!selectedPkg || purchasing" @click="handlePurchase"
       default />
 
@@ -37,7 +39,7 @@ const {
   packages,
   selectedId,
   selectedPkg,
-  premiumActive,
+  isPremium,
   loadOffering,
   purchaseSelected,
 } = usePurchases()
@@ -45,41 +47,47 @@ const {
 const purchasing = ref(false)
 const selectedPlan = ref('yearly')
 
+// SubscriptionRadioCard: Map UI on iOS
+const monthlyPkg = computed(() =>
+  packages.value.find(p => p.identifier === '$rc_monthly')
+)
+
+const yearlyPkg = computed(() =>
+  packages.value.find(p => p.identifier === '$rc_annual')
+)
+
+const selectPackage = (packageId) => {
+  console.log('📦 Package selected:', packageId)
+  selectedId.value = packageId
+}
+
+/* Button Text */
 const purchaseButtonText = computed(() => {
   if (purchasing.value) return 'Processing...'
-  if (premiumActive.value) return 'Already Subscribed'
+  if (isPremium.value) return 'Already Subscribed'
   return 'Start Free Trial for 7 days'
 })
 
-const handlePlanSelected = (plan) => {
-  selectedPlan.value = plan
-
-  // ✅ Map UI selection to RevenueCat package identifier
-  selectedId.value = plan === 'monthly' ? '$rc_monthly' : '$rc_annual'
-}
-
 // WHY?
 const handlePurchase = async () => {
-  console.log('Test Data')
-  console.log('selectedPkg', selectedPkg)
-  console.log('selectedId', selectedId)
-  console.log('selectedPlan', selectedPlan)
-  console.log('premiumActive', premiumActive)
-  if (!selectedPkg.value) return
+  console.log('=== Purchase Debug ===')
+  console.log('isPremium:', isPremium.value)
+  if (!selectedPkg.value) {
+    console.error('❌ No package selected!')
+    return
+  }
 
   try {
     purchasing.value = true
     console.log('💳 Starting purchase...')
 
-    // Step 1: Purchase through RevenueCat
     const success = await purchaseSelected()
-    console.log('RevenueCat premiumActive:', premiumActive.value)  // true ✅
+    console.log('RevenueCat isPremium:', isPremium.value)
 
     if (success) {
       console.log('✅ Purchase successful!')
-      console.log('📊 Before sync - isPremium:', userStore.isPremium)  // false ❌
+      console.log('📊 Before sync - isPremium:', userStore.isPremium)
 
-      // Step 2: Sync to Supabase backend
       const synced = await userStore.syncPremiumStatus(
         selectedPkg.value.product.identifier,
         'active'
@@ -87,7 +95,7 @@ const handlePurchase = async () => {
 
       if (synced) {
         console.log('✅ Premium synced to backend!')
-        console.log('📊 After sync - isPremium:', userStore.isPremium)  // true ✅
+        console.log('📊 After sync - isPremium:', userStore.isPremium)
       }
 
       router.push('/account')
@@ -100,7 +108,10 @@ const handlePurchase = async () => {
 }
 
 onMounted(async () => {
+  console.log('🔄 Loading offerings...')
   await loadOffering()
+  console.log('✅ Offerings loaded!')
+  console.log('📦 Packages:', packages.value.length)
   console.log('isPremium', userStore.isPremium)
 })
 </script>

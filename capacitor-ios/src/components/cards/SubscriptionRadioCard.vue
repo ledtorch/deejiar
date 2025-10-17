@@ -3,29 +3,29 @@
     <div class="plans-container">
 
       <!-- Monthly Plan -->
-      <div class="plan-card" :class="{ 'selected': internalSelectedPlan === 'monthly' }"
-        @click="handlePlanClick('monthly')">
+      <div class="plan-card" :class="{ 'selected': selectedId === '$rc_monthly' }"
+        @click="$emit('select', '$rc_monthly')">
         <div class="monthly-container">
           <div class="plan-header">
             <p class="plan-title _subtitle">Trailblazer Monthly</p>
-            <div class="radio-button" :class="{ 'checked': internalSelectedPlan === 'monthly' }"></div>
+            <div class="radio-button" :class="{ 'checked': selectedId === '$rc_monthly' }"></div>
           </div>
-          <h5 class="price">{{ monthlyPrice }}</h5>
+          <h5 class="price">{{ monthlyPackage?.product?.priceString }}</h5>
         </div>
       </div>
 
       <Divider />
 
       <!-- Yearly Plan -->
-      <div class="plan-card" :class="{ 'selected': internalSelectedPlan === 'yearly' }"
-        @click="handlePlanClick('yearly')">
+      <div class="plan-card" :class="{ 'selected': selectedId === '$rc_annual' }"
+        @click="$emit('select', '$rc_annual')">
         <div class="yearly-container">
           <div class="yearly-header">
             <div class="plan-header">
               <p class="plan-title _subtitle">Trailblazer Yearly</p>
-              <div class="radio-button" :class="{ 'checked': internalSelectedPlan === 'yearly' }"></div>
+              <div class="radio-button" :class="{ 'checked': selectedId === '$rc_annual' }"></div>
             </div>
-            <h5 class="price">{{ yearlyPrice }}</h5>
+            <h5 class="price">{{ yearlyPackage?.product?.priceString }}</h5>
           </div>
 
           <div class="bonus-container">
@@ -44,56 +44,23 @@
 
     <!-- Terms Text -->
     <p class="_caption1 terms-text">
-      Free 7 days, then {{ internalSelectedPlan === 'monthly' ? monthlyPrice : yearlyPrice }}.
+      Free 7 days, then
+      {{ selectedId === '$rc_monthly' ? monthlyPackage?.product?.priceString : yearlyPackage?.product?.priceString }}.
       Renews automatically until canceled.
     </p>
   </section>
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
 import Divider from '../common/Divider.vue'
 
-const props = defineProps({
-  packages: {
-    type: Array,
-    default: () => []
-  },
-  selectedPlan: {
-    type: String,
-    default: 'monthly'
-  }
+defineProps({
+  monthlyPackage: Object,
+  yearlyPackage: Object,
+  selectedId: String
 })
 
-const emit = defineEmits(['planSelected'])
-
-const internalSelectedPlan = ref(props.selectedPlan)
-
-watch(() => props.selectedPlan, (newVal) => {
-  internalSelectedPlan.value = newVal
-})
-
-const handlePlanClick = (plan) => {
-  internalSelectedPlan.value = plan
-  emit('planSelected', plan)
-}
-
-// ✅ Get packages by correct RevenueCat identifiers
-const monthlyPackage = computed(() =>
-  props.packages.find(p => p.identifier === '$rc_monthly')
-)
-
-const yearlyPackage = computed(() =>
-  props.packages.find(p => p.identifier === '$rc_annual')
-)
-
-const monthlyPrice = computed(() =>
-  monthlyPackage.value?.product?.priceString
-)
-
-const yearlyPrice = computed(() =>
-  yearlyPackage.value?.product?.priceString
-)
+defineEmits(['select'])
 </script>
 
 <style lang="scss" scoped>
