@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/userStore';
 import HeaderPage from '../components/nav/HeaderPage.vue'
@@ -67,12 +67,10 @@ import PageButton from '../components/button/PageButton.vue'
 
 import MedalIconLevel0 from '@/assets/icons/subscription-medal/none.svg';
 
-
-
-const router = useRouter();
-
+const router = useRouter()
 const userStore = useUserStore();
 const API_ENDPOINT = import.meta.env.VITE_API_URL;
+const isSubscribed = computed(() => userStore.isPremium || false);
 
 const handleLogout = async () => {
   try {
@@ -109,10 +107,7 @@ const handleStartTrial = () => {
   router.push('/subscription');
 };
 
-const displayName = computed(() =>
-  userStore.email?.split('@')[0] ||
-  'Mx. Wanderer'
-);
+const displayName = computed(() => userStore.userEmail?.split('@')[0] || 'Mx. Wanderer');
 
 const mailToDeejiar = () => {
   window.open('mailto:hi@deejiar.com');
