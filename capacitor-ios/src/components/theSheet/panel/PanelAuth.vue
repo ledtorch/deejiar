@@ -20,7 +20,7 @@
           <img src="/icon/logo/logo-app.png" class="app-logo">
           <h4>Deejiar</h4>
         </div>
-        <h4 class="auth-email-heading">Register your account with your email address</h4>
+        <h4 class="auth-email-heading">Register or login your account with your email address</h4>
       </div>
     </template>
 
