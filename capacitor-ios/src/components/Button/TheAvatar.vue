@@ -5,13 +5,12 @@
 
     <!-- Active: Image only -->
     <img v-if="currentUserState === 'active'" :src="'/images/default-avatar.jpg'" :alt="displayName"
-      class="avatar-image avatar-image--active" @error="handleImageError" />
+      class="avatar-image" @error="handleImageError" />
 
     <!-- Premium: + Ring & Medal -->
     <template v-if="currentUserState === 'premium'">
       <div class="avatar-ring"></div>
-      <img :src="'/images/default-avatar.jpg'" :alt="displayName" class="avatar-image avatar-image--premium"
-        @error="handleImageError" />
+      <img :src="'/images/default-avatar.jpg'" class="avatar-image avatar-image--premium" @error="handleImageError" />
       <div class="premium-medal"></div>
     </template>
   </div>
@@ -51,8 +50,6 @@ const currentUserState = computed(() => {
   // Use actual user state from store
   return userStore.userState;
 });
-
-const displayName = computed(() => userStore.displayName);
 
 // Computed classes for consistent scaling
 const avatarContainerClass = computed(() => ({
@@ -130,10 +127,11 @@ const clickAvatar = () => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
 
   /* Layout & Box Model */
-  width: 46px;
-  height: 46px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   border: 2px solid var(--color-green);
 }
@@ -145,18 +143,13 @@ const clickAvatar = () => {
   /* Visual & Colors */
   object-fit: cover;
 
-  &--active {
-    /* Active: Full container size (44x44) */
-    width: 100%;
-    height: 100%;
-  }
+  width: 100%;
+  height: 100%;
 
   &--premium {
     /* Premium: Centered inside ring */
     position: relative;
-    z-index: 2;
-    width: 40px;
-    height: 40px;
+    z-index: 1;
   }
 }
 
@@ -168,8 +161,8 @@ const clickAvatar = () => {
   z-index: 3;
 
   /* Layout & Box Model */
-  width: 16px;
-  height: 16px;
+  width: 37.5%;
+  height: 37.5%;
 
   /* Visual & Colors */
   background-image: url('@/assets/icons/subscription-medal/trailblazer.svg');
