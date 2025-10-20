@@ -50,26 +50,15 @@ async def get_current_user(
 
 # ─── Registration Flow ──────────────────────────────────────────────
 
+# Step 1: Send OTP for new user registration
 @router.post("/register/send-otp")
 async def send_registration_otp(request: UserRegisterRequest):
-    """
-    Step 1: Send OTP for new user registration
-    - Checks if user already exists
-    - If exists, returns error asking user to login
-    - If not exists, sends 4-digit OTP to email
-    """
     result = await auth_service.send_registration_otp(request.email)
     return result
 
+# Step 2: Verify OTP and complete registration
 @router.post("/register/verify-otp")
 async def verify_registration_otp(request: VerifyOTPRequest) -> AuthResponse:
-    """
-    Step 2: Verify OTP and complete registration
-    - Verifies the 4-digit OTP
-    - Creates new user account in Supabase
-    - Creates user profile in database
-    - Returns access token and user info
-    """
     result = await auth_service.verify_registration_otp(request.email, request.otp)
     return result
 
@@ -86,6 +75,7 @@ async def send_login_otp(request: UserRegisterRequest):
     result = await auth_service.send_login_otp(request.email)
     return result
 
+# Step 2: Verify OTP and complete login
 @router.post("/login/verify-otp")
 async def verify_login_otp(request: VerifyOTPRequest) -> AuthResponse:
     """
@@ -140,9 +130,41 @@ async def get_current_user_profile(
     current_user: UserResponse = Depends(get_current_user)
 ) -> UserResponse:
     """
-    Get current user profile
+    Get current user profile with fresh data from Supabase
     """
-    return current_user
+    try:
+        from app.db.supabase import get_supabase_admin_client
+        
+        supabase = get_supabase_admin_client()
+        
+        # Query fresh user data from Supabase
+        result = supabase.table('users') \
+            .select('*') \
+            .eq('uid', current_user.uid) \
+            .single() \
+            .execute()
+        
+        if not result.data:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
+        
+        # 🔍 DEBUG: Log what we're returning
+        print(f"[🐍/routes/user/auth/me] Fresh user data from Supabase:")
+        print(f"  - UID: {result.data.get('uid')}")
+        print(f"  - Email: {result.data.get('email')}")
+        print(f"  - Premium: {result.data.get('premium')}")
+        print(f"  - Subscription Status: {result.data.get('subscription_status')}")
+        
+        return result.data
+        
+    except Exception as e:
+        print(f"❌ Error fetching user: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to fetch user profile: {str(e)}"
+        )
 
 @router.post("/logout")
 async def logout(

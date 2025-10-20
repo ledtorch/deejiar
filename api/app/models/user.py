@@ -1,3 +1,4 @@
+from atexit import register
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import Optional, List
 from datetime import datetime
@@ -24,26 +25,28 @@ class TokenRefreshRequest(BaseModel):
     refresh_token: str
 
 class UserResponse(BaseModel):
+    provider: AuthProvider = AuthProvider.EMAIL
+    
+    # Basic info
     uid: Optional[str] = None
     email: Optional[str] = None
     display_name: Optional[str] = None
     avatar_url: Optional[str] = None
-    provider: AuthProvider
+    created_at: Optional[datetime] = None
     is_new_user: Optional[bool] = False
     
     # Add missing fields that exist in database
-    created_at: Optional[datetime] = None
     language: Optional[List[str]] = None
     age: Optional[int] = None
     gender: Optional[str] = None
     
-    # Social account fields (using field names that match your database)
+    # Social accounts info
     x_account: Optional[str] = Field(None, alias="x-account")
-    ig_account: Optional[str] = Field(None, alias="ig-account")
     x_connected: Optional[datetime] = Field(None, alias="x-connected")
+    ig_account: Optional[str] = Field(None, alias="ig-account")
     ig_connected: Optional[datetime] = Field(None, alias="ig-connected")
 
-    # Subscription
+    # Subscription info
     premium: Optional[bool] = False
     subscription_plan: Optional[str] = None                 # e.g. "com.deejiar.premium.brass.monthly.v1"
     subscription_status: Optional[str] = None               # "active" | "trial" | "expired" | "cancelled"

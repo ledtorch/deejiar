@@ -31,17 +31,30 @@ async function initializeApp() {
   const mapStore = useMapStore();
   const userStore = useUserStore();
 
+  console.log('🚀 Initializing app...');
+
+  // 🔍 DEBUG: Check localStorage before loading
+  console.log('📦 localStorage contents:', {
+    hasAccessToken: !!localStorage.getItem('access_token'),
+    hasRefreshToken: !!localStorage.getItem('refresh_token'),
+    hasUser: !!localStorage.getItem('user'),
+    AccessToken: localStorage.getItem('access_token')
+
+  });
+
   // 1) restore auth (once)
   await Promise.all([
     mapStore.initialize(),
-    userStore.loadAuthFromStorage()
+    userStore.loadAuthFromStorage(),
   ])
+
+  console.log("userStore.user: ", userStore.user)
 
   // 2) configure RC with your public key and the UID (or null for anon) on iOS platform
   if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios') {
     await Purchases.configure({
       apiKey: import.meta.env.VITE_RC_PUBLIC_KEY_IOS,
-      appUserID: userStore.userUID || null,
+      appUserID: userStore.userUID || 'Unknown',
     })
   }
 

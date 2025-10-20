@@ -60,7 +60,10 @@ app.add_middleware(
 
 # ─── Routers ────────────────────────────────────
 app.include_router(user_auth_router, prefix="/api/user")
-app.include_router(subscription_router, prefix="/api/user")
+
+# # Vue Fetches from Supabase directly
+# app.include_router(subscription_router, prefix="/api/user")
+
 app.include_router(admin_auth_router, prefix="/api/admin")
 app.include_router(webhook_router, prefix="/api/webhooks")
 app.include_router(search_router, prefix="/api/search", tags=["search"])
