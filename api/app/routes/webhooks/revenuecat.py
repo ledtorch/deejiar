@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, Request, Header
 import os
+import json
 from datetime import datetime
 from app.db.supabase import get_supabase_admin_client
 
-# router = APIRouter(tags=["Webhooks"])
 router = APIRouter(prefix="/revenuecat")
 
 @router.post("")
@@ -13,9 +13,6 @@ async def handle_revenuecat_webhook(
 ):
     """
     Handle RevenueCat webhook events and sync subscription data to Supabase
-    
-    RevenueCat sends Authorization header as: "Bearer <your_token>"
-    This endpoint uses admin client to bypass RLS for webhook updates
     """
     
     # ─── Step 1: Verify Authorization ─────────────────────────────────
@@ -48,8 +45,6 @@ async def handle_revenuecat_webhook(
     
     if received_token != expected_token:
         print(f"❌ Token mismatch")
-        print(f"   Expected: {expected_token[:10]}...")
-        print(f"   Received: {received_token[:10]}...")
         raise HTTPException(status_code=401, detail="Unauthorized")
     
     print("✅ Authorization verified")
@@ -57,22 +52,68 @@ async def handle_revenuecat_webhook(
     # ─── Step 2: Parse Webhook Data ─────────────────────────────────
     try:
         data = await request.json()
-        event_type = data.get('type')
-        event = data.get('event', {})
-        app_user_id = event.get('app_user_id')
-        product_id = event.get('product_id')
         
-        print(f"\n📨 Webhook received:")
+        # 🔍 CRITICAL DEBUG: Log the ENTIRE payload structure
+        print(f"\n🔍 ===== FULL WEBHOOK PAYLOAD =====")
+        print(json.dumps(data, indent=2))
+        print(f"===== END PAYLOAD =====\n")
+        
+        # Check all possible locations for event type
+        event_type = None
+        app_user_id = None
+        product_id = None
+        period_type = None
+        purchased_at = None
+        expiration_at = None
+        
+        # Try different payload structures
+        if 'event' in data:
+            event = data['event']
+            print(f"🔍 Found 'event' object: {event}")
+            event_type = event.get('type')
+            app_user_id = event.get('app_user_id')
+            product_id = event.get('product_id')
+            period_type = event.get('period_type')
+            purchased_at = event.get('purchased_at_ms')
+            expiration_at = event.get('expiration_at_ms')
+        
+        # Fallback: check root level
+        if not event_type:
+            event_type = data.get('type')
+            print(f"🔍 Checking root level 'type': {event_type}")
+        
+        if not app_user_id:
+            app_user_id = data.get('app_user_id')
+            print(f"🔍 Checking root level 'app_user_id': {app_user_id}")
+        
+        if not product_id:
+            product_id = data.get('product_id')
+            print(f"🔍 Checking root level 'product_id': {product_id}")
+        
+        # Log what we found
+        print(f"\n📨 Parsed webhook data:")
         print(f"   Event Type: {event_type}")
         print(f"   User ID: {app_user_id}")
         print(f"   Product ID: {product_id}")
+        print(f"   Period Type: {period_type}")
+        print(f"   Purchased At: {purchased_at}")
+        print(f"   Expiration At: {expiration_at}")
         
         if not app_user_id:
             print("⚠️  No app_user_id in webhook data")
             return {"status": "ignored", "reason": "missing_user_id"}
         
+        if not event_type:
+            print("⚠️  No event type in webhook data")
+            print(f"🔍 Available keys in data: {list(data.keys())}")
+            if 'event' in data:
+                print(f"🔍 Available keys in event: {list(data['event'].keys())}")
+            return {"status": "ignored", "reason": "missing_event_type", "debug": data}
+        
     except Exception as e:
         print(f"❌ Failed to parse webhook data: {str(e)}")
+        import traceback
+        traceback.print_exc()
         raise HTTPException(
             status_code=400, 
             detail=f"Invalid webhook data: {str(e)}"
@@ -90,9 +131,14 @@ async def handle_revenuecat_webhook(
             update_data = {
                 'premium': True,
                 'subscription_plan': product_id,
-                'subscription_status': 'active',
+                'subscription_status': 'trial' if period_type == 'TRIAL' else 'active',
                 'subscription_started_at': datetime.utcnow().isoformat()
             }
+            
+            # Add expiration if provided
+            if expiration_at:
+                expiration_date = datetime.fromtimestamp(expiration_at / 1000)
+                update_data['subscription_expires_at'] = expiration_date.isoformat()
             
             result = supabase.table('users').update(update_data).eq('uid', app_user_id).execute()
             
@@ -117,6 +163,11 @@ async def handle_revenuecat_webhook(
                 'premium': True,
                 'subscription_status': 'active'
             }
+            
+            # Update expiration date
+            if expiration_at:
+                expiration_date = datetime.fromtimestamp(expiration_at / 1000)
+                update_data['subscription_expires_at'] = expiration_date.isoformat()
             
             result = supabase.table('users').update(update_data).eq('uid', app_user_id).execute()
             
