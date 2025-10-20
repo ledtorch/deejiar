@@ -176,7 +176,7 @@ class AuthService:
             user_metadata = {
                 "uid": custom_uid,
                 "provider": AuthProvider.EMAIL.value,
-                "registered_at": datetime.utcnow().isoformat(),
+                "created_at": datetime.utcnow().isoformat(),
                 "is_new_user": True
             }
             
