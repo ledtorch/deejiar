@@ -13,21 +13,35 @@ export const useUserStore = defineStore('user', () => {
   const isLoading = ref(false);
   const lastTokenRefresh = ref(null);
 
-  // Computed
+  // Auth
   const isAuthenticated = computed(() => !!accessToken.value && !!user.value);
   const isNewUser = computed(() => user.value?.is_new_user || false);
-  const isPremium = computed(() => user.value?.premium || false);
-  const userEmail = computed(() => user.value?.email || '');
+
+  // Basic info
   const userUID = computed(() => user.value?.uid || '');
+  const userEmail = computed(() => user.value?.email || '');
   const displayName = computed(() => user.value?.display_name || user.value?.email?.split('@')[0] || 'User');
   const avatarUrl = computed(() => user.value?.avatar_url || null);
+  const userRegisteredAt = computed(() => user.value?.created_at || null);
 
-  // New computed properties for social accounts
+  // Social accounts info
   const xAccount = computed(() => user.value?.['x-account'] || null);
-  const instagramAccount = computed(() => user.value?.['ig-account'] || null);
   const xConnectedDate = computed(() => user.value?.['x-connected'] || null);
+  const instagramAccount = computed(() => user.value?.['ig-account'] || null);
   const instagramConnectedDate = computed(() => user.value?.['ig-connected'] || null);
-  const userCreatedAt = computed(() => user.value?.created_at || null);
+
+  // Subscription info
+  const isPremium = computed(() => user.value?.premium || false);
+  const subscriptionPlan = computed(() => user.value?.subscription_plan || null);
+  const subscriptionStatus = computed(() => user.value?.subscription_status || null);
+  const subscriptionStartedAt = computed(() => user.value?.subscription_started_at || null);
+  const subscriptionExpiresAt = computed(() => user.value?.subscription_expires_at || null);
+
+  // Subscription helper
+  const isSubscriptionActive = computed(() => subscriptionStatus.value === 'active');
+  const isSubscriptionTrial = computed(() => subscriptionStatus.value === 'trial');
+  const isSubscriptionExpired = computed(() => subscriptionStatus.value === 'expired');
+  const isSubscriptionCancelled = computed(() => subscriptionStatus.value === 'cancelled');
 
   // Helper function to format dates
   const formatConnectedDate = (dateString) => {
@@ -64,14 +78,7 @@ export const useUserStore = defineStore('user', () => {
   // Formatted date computed properties
   const formattedXConnectedDate = computed(() => formatConnectedDate(xConnectedDate.value));
   const formattedInstagramConnectedDate = computed(() => formatConnectedDate(instagramConnectedDate.value));
-  const formattedRegistrationDate = computed(() => formatRegistrationDate(userCreatedAt.value));
-
-  // User state for TheAvatar component
-  const userState = computed(() => {
-    if (!isAuthenticated.value) return 'default';
-    if (isPremium.value) return 'premium';
-    return 'active';
-  });
+  const formattedRegistrationDate = computed(() => formatRegistrationDate(userRegisteredAt.value));
 
   // Actions
   const setAuth = (authData) => {
@@ -105,25 +112,26 @@ export const useUserStore = defineStore('user', () => {
   const loadAuthFromStorage = async () => {
     try {
       const storedToken = localStorage.getItem('access_token');
-      const storedRefresh = localStorage.getItem('refresh_token');
       const storedUser = localStorage.getItem('user');
       const storedLastRefresh = localStorage.getItem('last_token_refresh');
 
       if (storedToken && storedUser) {
         accessToken.value = storedToken;
-        refreshToken.value = storedRefresh;
-        user.value = JSON.parse(storedUser);
-        lastTokenRefresh.value = storedLastRefresh ? parseInt(storedLastRefresh) : null;
+        refreshToken.value = localStorage.getItem('refresh_token');
 
-        // Check if token needs refresh (older than 30 minutes)
-        const thirtyMinutes = 30 * 60 * 1000;
-        const shouldRefresh = !lastTokenRefresh.value ||
-          (Date.now() - lastTokenRefresh.value) > thirtyMinutes;
+        // Check how old the cached data is
+        const lastRefresh = storedLastRefresh ? parseInt(storedLastRefresh) : 0;
+        const cacheAge = Date.now() - lastRefresh;
+        const fiveMinutes = 5 * 60 * 1000;
 
-        if (shouldRefresh && storedRefresh) {
-          await refreshAccessToken();
+        if (cacheAge < fiveMinutes) {
+          // Cache is fresh enough - show it immediately
+          user.value = JSON.parse(storedUser);
+
+          // Still fetch in background for accuracy
+          fetchCurrentUser(); // No await - don't block UI
         } else {
-          // Verify token is still valid by fetching user profile
+          // Cache is too old - fetch fresh data first
           await fetchCurrentUser();
         }
       }
@@ -131,7 +139,7 @@ export const useUserStore = defineStore('user', () => {
       console.error('Failed to load auth from storage:', error);
       clearAuth();
     }
-  };
+  }
 
   const refreshAccessToken = async () => {
     if (!refreshToken.value) {
@@ -182,14 +190,23 @@ export const useUserStore = defineStore('user', () => {
 
       if (response.ok) {
         const userData = await response.json();
+
+        console.log('[fetchCurrentUser] Fresh data from API:', {
+          email: userData.email,
+          premium: userData.premium,
+          subscription_status: userData.subscription_status
+        });
+
         user.value = userData;
+        lastTokenRefresh.value = Date.now(); // ← Update timestamp
+
         localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('last_token_refresh', lastTokenRefresh.value); // ← Save timestamp
+
         return userData;
       } else if (response.status === 401) {
-        // Token expired, try to refresh
         const refreshed = await refreshAccessToken();
         if (refreshed) {
-          // Retry with new token
           return fetchCurrentUser();
         }
       }
@@ -264,31 +281,52 @@ export const useUserStore = defineStore('user', () => {
     localStorage.setItem('user', JSON.stringify(user.value));
   };
 
+  // 🏗️ User state for TheAvatar component
+  const userState = computed(() => {
+    if (!isAuthenticated.value) return 'default';
+    if (isPremium.value) return 'premium';
+    return 'active';
+  });
+
+
   return {
     // State
     user,
     accessToken,
     isLoading,
 
-    // Computed
+    // Auth
     isAuthenticated,
     isNewUser,
-    isPremium,
-    userEmail,
+
+    // Basic info
     userUID,
+    userEmail,
     displayName,
     avatarUrl,
-    userState,
+    userRegisteredAt,
 
-    // New social account computed properties
+    // Social account info
     xAccount,
-    instagramAccount,
     xConnectedDate,
+    instagramAccount,
     instagramConnectedDate,
-    userCreatedAt,
     formattedXConnectedDate,
     formattedInstagramConnectedDate,
     formattedRegistrationDate,
+
+    // Subscription info
+    isPremium,
+    subscriptionPlan,
+    subscriptionStatus,
+    subscriptionStartedAt,
+    subscriptionExpiresAt,
+
+    // Subscription helper
+    isSubscriptionActive,
+    isSubscriptionTrial,
+    isSubscriptionExpired,
+    isSubscriptionCancelled,
 
     // Actions
     setAuth,
@@ -299,6 +337,9 @@ export const useUserStore = defineStore('user', () => {
     login,
     register,
     logout,
-    updateUserProfile
+    updateUserProfile,
+
+    // 🏗️
+    userState
   };
 });
