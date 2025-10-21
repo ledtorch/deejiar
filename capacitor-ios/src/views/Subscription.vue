@@ -14,8 +14,6 @@
 
     <PrimaryButton :action="purchaseButtonText" :disabled="!selectedPkg || purchasing" @click="handlePurchase"
       default />
-
-    <button @click="handlePurchase">Test Data</button>
   </main>
 </template>
 
@@ -85,20 +83,8 @@ const handlePurchase = async () => {
     console.log('RevenueCat isPremium:', isPremium.value)
 
     if (success) {
-      console.log('✅ Purchase successful!')
-      console.log('📊 Before sync - isPremium:', userStore.isPremium)
-
-      const synced = await userStore.syncPremiumStatus(
-        selectedPkg.value.product.identifier,
-        'active'
-      )
-
-      if (synced) {
-        console.log('✅ Premium synced to backend!')
-        console.log('📊 After sync - isPremium:', userStore.isPremium)
-      }
-
-      router.push('/account')
+      // Replace instead of push to prevent back to subscription
+      router.back()
     }
   } catch (err) {
     console.error('❌ Purchase error:', err)
