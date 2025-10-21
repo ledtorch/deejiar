@@ -30,6 +30,7 @@
         <ListAccountData email />
         <!-- <ListAccountData x /> -->
         <!-- <ListAccountData instagram /> -->
+        <button class="temp-button _title" @click="toPageDelete">Need to delete account?</button>
         <p class="version-text _caption2">v0.01.1 Release 2025.09.09</p>
       </div>
 
@@ -115,6 +116,14 @@ const mailToDeejiar = () => {
 
 const openX = () => {
   window.open('https://x.com/deejiar');
+};
+
+const sendMail = () => {
+  window.open('mailto:hi@deejiar.com');
+};
+
+const toPageDelete = () => {
+  router.push('/delete');
 };
 </script>
 

@@ -26,6 +26,11 @@ const routes = [
     component: () => import("./views/Account.vue")
   },
   {
+    path: "/delete",
+    name: "delete",
+    component: () => import("./views/Delete.vue")
+  },
+  {
     path: "/profile/:uid",
     name: "profile",
     component: () => import("./views/Profile.vue")
