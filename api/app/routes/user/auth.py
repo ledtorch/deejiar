@@ -199,10 +199,6 @@ async def logout(
 async def delete_account(
     authorization: Optional[str] = Header(None)
 ):
-    """
-    Schedule account deletion in 30 days
-    Prevents login/registration during grace period
-    """
     if not authorization:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
