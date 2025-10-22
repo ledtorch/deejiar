@@ -194,3 +194,33 @@ async def logout(
     
     result = await auth_service.logout(token)
     return result
+
+@router.delete("/delete")
+async def delete_account(
+    authorization: Optional[str] = Header(None)
+):
+    """
+    Schedule account deletion in 30 days
+    Prevents login/registration during grace period
+    """
+    if not authorization:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authorization header missing"
+        )
+    
+    try:
+        scheme, token = authorization.split()
+        if scheme.lower() != "bearer":
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid authentication scheme"
+            )
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authorization header format"
+        )
+    
+    result = await auth_service.delete_account(token)
+    return result

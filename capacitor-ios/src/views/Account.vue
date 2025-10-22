@@ -28,6 +28,7 @@
         </div>
         -->
         <ListAccountData email />
+
         <!-- <ListAccountData x /> -->
         <!-- <ListAccountData instagram /> -->
         <button class="temp-button _title" @click="toPageDelete">Need to delete account?</button>
@@ -36,20 +37,40 @@
 
       <div class="button-set">
         <NeutralButton action="Log Out" default @click="handleLogout" />
-        <PrimaryButton action="Join Deejiar Pioneers?" default @click="handleStartTrial" />
+        <PrimaryButton action="Join Deejiar Pioneers?" default @click="toSubscription" />
       </div>
     </section>
 
     <section v-else class="main-container">
-      <HeaderPage :pagetitle="'Account'" />
-      <div class="account-overview">
-        <TheAvatar userState="active" class="avatar-layout" />
-        <img :src="MedalIconLevel0" class="level-icon">
+      <div class="upper-container">
+        <HeaderPage :pagetitle="'Account'" />
+        <div class="account-overview">
+          <div class="user-info-container">
+            <TheAvatar userState="active" class="avatar-layout" />
+            <div class="user-info-box">
+              <p class="uid _title">{{ displayName }}</p>
+              <p class="title-trailblazer _title">Trailblazer</p>
+            </div>
+          </div>
+          <img :src="MedalIconLevel1" class="level-icon">
+        </div>
+        <Divider />
+        <!-- For MVP -->
+        <div class="page-buttons">
+          <PageButton action="Mail Us" mailUs @click="mailToDeejiar" />
+          <PageButton action="Follow on X" followOnX @click="openX" />
+        </div>
+        <ListAccountData email />
+        <!-- <ListAccountData x /> -->
+        <!-- <ListAccountData instagram /> -->
+        <button class="temp-button _title" @click="toPageDelete">Need to delete account?</button>
+        <p class="version-text _caption2">v0.01.1 Release 2025.09.09</p>
       </div>
-      <Divider />
-      <Divider or />
-      <Divider vertical />
-      <PrimaryButton action="Share Your Feedback" default />
+
+      <div class="button-set">
+        <NeutralButton action="Log Out" default @click="handleLogout" />
+        <PrimaryButton action="Share Your Feedback" default @click="sendMail" />
+      </div>
     </section>
   </main>
 </template>
@@ -67,11 +88,13 @@ import ListAccountData from '../components/list/ListAccountData.vue'
 import PageButton from '../components/button/PageButton.vue'
 
 import MedalIconLevel0 from '@/assets/icons/subscription-medal/none.svg';
+import MedalIconLevel1 from '@/assets/icons/subscription-medal/trailblazer.svg';
 
 const router = useRouter()
 const userStore = useUserStore();
 const API_ENDPOINT = import.meta.env.VITE_API_URL;
-const isSubscribed = computed(() => userStore.isPremium || false);
+const isSubscribed = computed(() => userStore.isPremium);
+console.log(isSubscribed.value);
 
 const handleLogout = async () => {
   try {
@@ -104,7 +127,8 @@ const handleLogout = async () => {
   }
 };
 
-const handleStartTrial = () => {
+const toSubscription = () => {
+  console.log('toSubscription');
   router.push('/subscription');
 };
 
@@ -229,5 +253,14 @@ const toPageDelete = () => {
 .page-buttons {
   gap: var(--block);
   width: 100%;
+}
+
+.title-trailblazer {
+  color: var(--color-trailblazer);
+}
+
+.temp-button {
+  width: fit-content;
+  color: var(--color-red);
 }
 </style>

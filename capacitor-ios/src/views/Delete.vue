@@ -87,7 +87,7 @@ const deleteAccount = async () => {
     console.log('[deleteAccount] Scheduling account deletion...');
 
     // Call the delete account API endpoint
-    const response = await fetch(`${API_ENDPOINT}/user/account/delete`, {
+    const response = await fetch(`${API_ENDPOINT}/user/auth/delete`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
