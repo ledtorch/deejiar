@@ -47,13 +47,12 @@ class AuthService:
             gender=user_data.get('gender'),
         )
     
-
     async def check_user_exists(self, email: str) -> bool:
         """Check if user exists in your users table"""
         try:
             # Check in your users table
             result = self.supabase.table('users') \
-                .select('uid, account_status, deletion_scheduled_for') \
+                .select('uid, account_status, deletion_scheduled_at') \
                 .eq('email', email) \
                 .execute()
             
@@ -65,17 +64,18 @@ class AuthService:
             
             # Check if account is in deletion grace period
             if user.get('account_status') == 'pending_deletion':
-                deletion_date = user.get('deletion_scheduled_for')
+                deletion_date = user.get('deletion_scheduled_at')
                 print(f"[check_user_exists] Account pending deletion until: {deletion_date}")
-                return True  # User EXISTS (but pending deletion)
+                return True  # User EXISTS (but blocked from login)
             
-            # If we get here, account is 'active'
+            # Account is 'active'
             return True
             
         except Exception as e:
             print(f"Error checking user existence: {str(e)}")
             return False
-    
+
+    # ─── Registration ───────────────────────────────────────────────────
     async def send_registration_otp(self, email: str) -> Dict[str, str]:
         """Send 6-digit OTP for new user registration"""
         try:
@@ -118,48 +118,7 @@ class AuthService:
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail=f"An error occurred: {str(e)}"
             )
-    
-    async def send_login_otp(self, email: str) -> Dict[str, str]:
-        try:
-            # Check if user exists
-            user_exists = await self.check_user_exists(email)
-            if not user_exists:
-                raise HTTPException(
-                    status_code=status.HTTP_404_NOT_FOUND,
-                    detail="No account found with this email. Please register first."
-                )
-            
-            # Send OTP for existing user
-            response = self.supabase.auth.sign_in_with_otp({
-                "email": email,
-                "options": {
-                    "should_create_user": False,
-                    "data": {
-                        "login_flow": True
-                    }
-                }
-            })
-            
-            return {
-                "message": "6-digit verification code sent to your email",
-                "email": email,
-                "action": "login",
-                "expires_in": 600  # 10 minutes
-            }
-            
-        except HTTPException:
-            raise
-        except AuthError as e:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Failed to send verification code: {str(e)}"
-            )
-        except Exception as e:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"An error occurred: {str(e)}"
-            )
-    
+
     async def verify_registration_otp(self, email: str, otp: str) -> AuthResponse:
         """Verify 6-digit OTP for registration and create user profile"""
         try:
@@ -229,6 +188,48 @@ class AuthService:
                 detail=f"Registration failed: {str(e)}"
             )
     
+    # ─── Login ──────────────────────────────────────────────────────────
+    async def send_login_otp(self, email: str) -> Dict[str, str]:
+        try:
+            # Check if user exists
+            user_exists = await self.check_user_exists(email)
+            if not user_exists:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="No account found with this email. Please register first."
+                )
+            
+            # Send OTP for existing user
+            response = self.supabase.auth.sign_in_with_otp({
+                "email": email,
+                "options": {
+                    "should_create_user": False,
+                    "data": {
+                        "login_flow": True
+                    }
+                }
+            })
+            
+            return {
+                "message": "6-digit verification code sent to your email",
+                "email": email,
+                "action": "login",
+                "expires_in": 600  # 10 minutes
+            }
+            
+        except HTTPException:
+            raise
+        except AuthError as e:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Failed to send verification code: {str(e)}"
+            )
+        except Exception as e:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"An error occurred: {str(e)}"
+            )
+    
     async def verify_login_otp(self, email: str, otp: str) -> AuthResponse:
         """Verify 6-digit OTP for login"""
         try:
@@ -284,6 +285,121 @@ class AuthService:
                 detail=f"Login failed: {str(e)}"
             )
     
+    # ─── Logout ──────────────────────────────────────────────────────────
+    async def logout(self, token: str) -> Dict[str, str]:
+        """Logout user by invalidating the session"""
+        try:
+            # Sign out from Supabase
+            self.supabase.auth.sign_out()
+            
+            return {
+                "message": "Successfully logged out"
+            }
+        except Exception as e:
+            print(f"Logout error: {str(e)}")
+            # Even if logout fails, we return success
+            # Frontend will clear tokens anyway
+            return {
+                "message": "Logged out"
+            }
+    
+    # ─── Delete account ──────────────────────────────────────────────────
+    async def delete_account(self, token: str) -> Dict[str, Any]:
+        try:
+            # Get user from token
+            user = await self.get_user_by_token(token)
+            if not user:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid or expired token"
+                )
+            
+            print(f"[delete_account] Scheduling deletion for user: {user.uid}")
+            
+            # Get full user data
+            result = self.supabase.table('users').select('*').eq('uid', user.uid).single().execute()
+            
+            if not result.data:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="User not found"
+                )
+            
+            user_data = result.data
+            
+            # Check if already pending deletion
+            if user_data.get('account_status') == 'pending_deletion':
+                deletion_date = user_data.get('deletion_scheduled_at')
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Account deletion already scheduled for {deletion_date}"
+                )
+            
+            # ⭐ Calculate deletion date (30 days from now at 23:59 UTC)
+            now = datetime.utcnow()
+            # deletion_date = now + timedelta(days=30)
+            # ‼️ Testing
+            deletion_date = now
+            
+            # Normalize to 23:59:00 UTC
+            deletion_date = deletion_date.replace(
+                hour=23, 
+                minute=59, 
+                second=0, 
+                microsecond=0
+            )
+            
+            # Check if user has active subscription
+            has_active_subscription = (
+                user_data.get('premium') and 
+                user_data.get('subscription_status') in ['active', 'trial']
+            )
+            
+            if has_active_subscription:
+                print(f"[delete_account] ⚠️ User has active subscription")
+                print(f"  - Plan: {user_data.get('subscription_plan')}")
+                print(f"  - Status: {user_data.get('subscription_status')}")
+            
+            # Update user record - Mark as pending deletion
+            update_data = {
+                'account_status': 'pending_deletion',
+                'deletion_requested_at': now.isoformat(),
+                'deletion_scheduled_at': deletion_date.isoformat(),
+                
+                # Cancel subscription if active
+                'subscription_status': 'cancelled' if has_active_subscription else user_data.get('subscription_status')
+            }
+            
+            update_result = self.supabase.table('users').update(update_data).eq('uid', user.uid).execute()
+            
+            if not update_result.data:
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="Failed to schedule account deletion"
+                )
+            
+            print(f"[delete_account] ✅ Deletion scheduled for: {deletion_date.isoformat()}")
+            
+            return {
+                "message": "Account deletion scheduled successfully",
+                "deletion_requested_at": now.isoformat(),
+                "deletion_scheduled_at": deletion_date.isoformat(),
+                "recovery_email": "hi@deejiar.com",
+                "note": "You cannot log in during the deletion grace period. To recover your account, email hi@deejiar.com before the deadline."
+            }
+            
+        except HTTPException:
+            raise
+        except Exception as e:
+            print(f"[delete_account] ❌ Error: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"Failed to delete account: {str(e)}"
+        )
+
+    # Others
     async def get_user_by_token(self, token: str) -> Optional[UserResponse]:
         """Get user information from access token"""
         try:
@@ -341,115 +457,6 @@ class AuthService:
                 detail=f"Token refresh failed: {str(e)}"
             )
     
-    async def logout(self, token: str) -> Dict[str, str]:
-        """Logout user by invalidating the session"""
-        try:
-            # Sign out from Supabase
-            self.supabase.auth.sign_out()
-            
-            return {
-                "message": "Successfully logged out"
-            }
-        except Exception as e:
-            print(f"Logout error: {str(e)}")
-            # Even if logout fails, we return success
-            # Frontend will clear tokens anyway
-            return {
-                "message": "Logged out"
-            }
-    
-    async def delete_account(self, token: str) -> Dict[str, Any]:
-        """
-        Schedule account deletion in 30 days
-        Prevents login during grace period
-        """
-        try:
-            # Get user from token
-            user = await self.get_user_by_token(token)
-            if not user:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Invalid or expired token"
-                )
-            
-            print(f"[delete_account] Scheduling deletion for user: {user.uid}")
-            
-            # Get full user data
-            result = self.supabase.table('users').select('*').eq('uid', user.uid).single().execute()
-            
-            if not result.data:
-                raise HTTPException(
-                    status_code=status.HTTP_404_NOT_FOUND,
-                    detail="User not found"
-                )
-            
-            user_data = result.data
-            
-            # Check if already pending deletion
-            if user_data.get('account_status') == 'pending_deletion':
-                deletion_date = user_data.get('deletion_scheduled_for')
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail=f"Account deletion already scheduled for {deletion_date}"
-                )
-            
-            # Calculate deletion date (30 days from now)
-            deletion_date = datetime.utcnow() + timedelta(days=30)
-            
-            # Check if user has active subscription
-            has_active_subscription = (
-                user_data.get('premium') and 
-                user_data.get('subscription_status') in ['active', 'trial']
-            )
-            
-            if has_active_subscription:
-                print(f"[delete_account] ⚠️ User has active subscription")
-                print(f"  - Plan: {user_data.get('subscription_plan')}")
-                print(f"  - Status: {user_data.get('subscription_status')}")
-                print(f"  - Expires: {user_data.get('subscription_expires_at')}")
-            
-            # Update user record - Mark as pending deletion
-            update_data = {
-                'account_status': 'pending_deletion',
-                'deletion_scheduled_at': datetime.utcnow().isoformat(),
-                'deletion_scheduled_for': deletion_date.isoformat(),
-                
-                # Immediately revoke premium access
-                'premium': False,
-                
-                # Update subscription status
-                'subscription_status': 'cancelled' if has_active_subscription else user_data.get('subscription_status')
-            }
-            
-            update_result = self.supabase.table('users').update(update_data).eq('uid', user.uid).execute()
-            
-            if not update_result.data:
-                raise HTTPException(
-                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                    detail="Failed to schedule account deletion"
-                )
-            
-            print(f"[delete_account] ✅ Account deletion scheduled for: {deletion_date.isoformat()}")
-            
-            return {
-                "message": "Account deletion scheduled successfully",
-                "deletion_scheduled_for": deletion_date.isoformat(),
-                "recovery_deadline": deletion_date.isoformat(),
-                "recovery_email": "hi@deejiar.com",
-                "note": "You cannot log in during the deletion grace period. To recover your account, email hi@deejiar.com before the deadline."
-            }
-            
-        except HTTPException:
-            raise
-        except Exception as e:
-            print(f"[delete_account] Error: {str(e)}")
-            import traceback
-            traceback.print_exc()
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Failed to delete account: {str(e)}"
-            )
-
     def _generate_uid(self) -> str:
         """Generate unique user ID"""
         random_part = str(uuid.uuid4())[:8]
