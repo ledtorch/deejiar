@@ -98,32 +98,11 @@ console.log(isSubscribed.value);
 
 const handleLogout = async () => {
   try {
-    // Get the current access token
-    const token = userStore.accessToken;
-
-    if (token) {
-      // Call the logout API endpoint
-      await fetch(`${API_ENDPOINT}/user/auth/logout`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        }
-      });
-    }
-
-    // Clear user data from store (regardless of API call success)
     await userStore.logout();
-
-    // Navigate to map
     router.push('/map');
 
   } catch (error) {
     console.error('Logout error:', error);
-
-    // Even if API call fails, clear local data and redirect
-    await userStore.logout();
-    router.push('/map');
   }
 };
 
