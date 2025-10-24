@@ -37,6 +37,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '../stores/userStore';
 import HeaderPage from '../components/nav/HeaderPage.vue';
 import Divider from '../components/common/Divider.vue';
 import PrimaryButton from '../components/button/CTA/PrimaryButton.vue';
@@ -44,6 +45,7 @@ import PageIllustration from '@/assets/illustration/illu-delete-account.jpg';
 
 const router = useRouter();
 const API_ENDPOINT = import.meta.env.VITE_API_URL;
+const userStore = useUserStore();
 
 // Computed deletion deadline: Today + 30 days at 23:59
 const deletionDeadline = computed(() => {
