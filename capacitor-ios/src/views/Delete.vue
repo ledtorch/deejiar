@@ -9,7 +9,12 @@
           <strong>Sorry to see you go =(</strong>
         </p>
 
+        <!-- MVP Text -->
         <p class="_body1">
+          Your account will be deleted immediately after you click the confirm button. Please consider this action
+          carefully.
+        </p>
+        <!-- <p class="_body1">
           Your account will be scheduled for deletion and fully removed after 30 days.
         </p>
 
@@ -24,7 +29,7 @@
 
         <p class="_body1">
           Please consider this action carefully. It can <strong>NOT</strong> be undone after the deadline.
-        </p>
+        </p> -->
 
         <Divider />
       </div>
@@ -68,9 +73,12 @@ const deletionDeadline = computed(() => {
 const deleteAccount = async () => {
   // Show confirmation dialog
   const confirmed = confirm(
+    // MVP Text
     `Are you absolutely sure?\n\n` +
-    `Your account will be deleted on ${deletionDeadline.value}.\n\n` +
-    `This action cannot be undone after the deadline.`
+    // `Your account will be deleted on ${deletionDeadline.value}.\n\n` +
+    // `This action cannot be undone after the deadline.`
+    `Your account will be deleted immediately after you click the confirm button.\n\n` +
+    `This action cannot be undone!`
   );
 
   if (!confirmed) {
@@ -102,8 +110,11 @@ const deleteAccount = async () => {
       console.log('[deleteAccount] ✅ Account deletion scheduled:', result);
 
       alert(
-        `Account deletion scheduled.\n\n` +
-        `You have until ${deletionDeadline.value} to recover your account by emailing hi@deejiar.com`
+        // MVP Text
+        `Account deleted successfully!\n\n` +
+        `You will be redirected to the home page.`
+        // `Account deletion scheduled.\n\n` +
+        // `You have until ${deletionDeadline.value} to recover your account by emailing hi@deejiar.com`
       );
 
       // Log out and redirect
