@@ -91,12 +91,14 @@ async def verify_login_otp(request: VerifyOTPRequest) -> AuthResponse:
 
 @router.post("/check-email")
 async def check_email_exists(request: UserRegisterRequest):
-    """
-    Check if email exists in system
-    - Returns user_exists: true/false
-    - Frontend can use this to show appropriate flow
-    """
-    user_exists = await auth_service.check_user_exists(request.email)
+    print(f"[🌐/routes/user/auth/check-email]")
+    
+    # Dict response from check_user_exists
+    user_info = await auth_service.check_user_exists(request.email)
+    
+    # Extract the boolean from the dict
+    user_exists = user_info['user_exists']
+
     return {
         "email": request.email,
         "user_exists": user_exists,

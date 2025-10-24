@@ -47,33 +47,46 @@ class AuthService:
             gender=user_data.get('gender'),
         )
     
-    async def check_user_exists(self, email: str) -> bool:
-        """Check if user exists in your users table"""
+    async def check_user_exists(self, email: str) -> Dict[str, any]:
         try:
-            # Check in your users table
+            print(f"[check_user_exists] Checking email: {email}")
+            
             result = self.supabase.table('users') \
-                .select('uid, account_status, deletion_scheduled_at') \
+                .select('uid, account_status') \
                 .eq('email', email) \
                 .execute()
             
             # No data found = user doesn't exist
             if not result.data or len(result.data) == 0:
-                return False
-            
+                print(f"[check_user_exists] ❌ User not found")
+                return {
+                    'user_exists': False,
+                    'account_status': None,
+                    'uid': None
+                }
+
+            # Get user data
             user = result.data[0]
+            uid = user.get('uid')
+            account_status = user.get('account_status', 'active')
             
-            # Check if account is in deletion grace period
-            if user.get('account_status') == 'pending_deletion':
-                deletion_date = user.get('deletion_scheduled_at')
-                print(f"[check_user_exists] Account pending deletion until: {deletion_date}")
-                return True  # User EXISTS (but blocked from login)
+            print(f"[check_user_exists] ✅ User found!")
+            print(f"  - UID: {uid}")
+            print(f"  - Account Status: {account_status}")
             
-            # Account is 'active'
-            return True
+            return {
+                'user_exists': True,
+                'account_status': account_status,
+                'uid': uid
+            }
             
         except Exception as e:
-            print(f"Error checking user existence: {str(e)}")
-            return False
+            print(f"[check_user_exists] ❌ Error: {str(e)}")
+            return {
+                'user_exists': False,
+                'account_status': None,
+                'uid': None
+            }
 
     # ─── Registration ───────────────────────────────────────────────────
     async def send_registration_otp(self, email: str) -> Dict[str, str]:
