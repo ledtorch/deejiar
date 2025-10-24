@@ -2,6 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+  
+  <!-- Add this UIApplicationSceneManifest section to your existing Info.plist -->
+  <!-- This fixes the "UIScene lifecycle will soon be required" warning -->
+  <key>UIApplicationSceneManifest</key>
+  <dict>
+      <key>UIApplicationSupportsMultipleScenes</key>
+      <false/>
+      <key>UISceneConfigurations</key>
+      <dict>
+          <key>UIWindowSceneSessionRoleApplication</key>
+          <array>
+              <dict>
+                  <key>UISceneConfigurationName</key>
+                  <string>Default Configuration</string>
+                  <key>UISceneDelegateClassName</key>
+                  <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+              </dict>
+          </array>
+      </dict>
+  </dict>
+  
+  <!-- Required Permissions for Deejiar -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -22,47 +44,29 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>LSApplicationCategoryType</key>
-	<string>Privacy - Location </string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	
-	<!-- Geolocation permission request -->
-	<string>Deejiar uses your location to suggest nearby cafes and landmarks, and guide you to each spot.</string>
+	<string>Deejiar uses your location to help you discover nearby cafés, shops, and cultural landmarks — and guide you to each one. Location is only used while you’re exploring, and never stored.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Deejiar uses your location to suggest nearby cafes and landmarks, and guide you to each spot.</string>
+	<string>Deejiar uses your location to help you discover nearby cafés, shops, and cultural landmarks — and guide you to each one. Location is only used while you’re exploring, and never stored.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Deejiar uses your location to suggest nearby cafes and landmarks, and guide you to each spot.</string>
+	<string>Deejiar uses your location to help you discover nearby cafés, shops, and cultural landmarks — and guide you to each one. Location is only used while you’re exploring, and never stored.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Deejiar uses your location to suggest nearby cafes and landmarks, and guide you to each spot.</string>
-
+	<string>Deejiar uses your location to help you discover nearby cafés, shops, and cultural landmarks — and guide you to each one. Location is only used while you’re exploring, and never stored.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Deejiar uses your device identifier to measure installs and subscriptions performance. We do not sell your data, and tracking is only used to improve your app experience.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UIRequiredDeviceCapabilities</key>
+	<key>UIDeviceFamily</key>
 	<array>
-		<string>armv7</string>
+		<integer>1</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	
-	<!-- 🧭 App Tracking Transparency purpose -->
-	<key>NSUserTrackingUsageDescription</key>
-	<string>Deejiar uses your device identifier to measure installs and subscriptions performance. We do not sell your data, and tracking is only used to improve your app experience.</string>
 </dict>
 </plist>

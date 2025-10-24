@@ -1,7 +1,7 @@
 PODS:
-  - Capacitor (7.4.2):
+  - Capacitor (7.4.4):
     - CapacitorCordova
-  - CapacitorCordova (7.4.2)
+  - CapacitorCordova (7.4.4)
   - CapacitorDevice (7.0.2):
     - Capacitor
   - CapacitorGeolocation (7.1.5):
@@ -56,8 +56,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@revenuecat/purchases-capacitor"
 
 SPEC CHECKSUMS:
-  Capacitor: 9d9e481b79ffaeacaf7a85d6a11adec32bd33b59
-  CapacitorCordova: 5e58d04631bc5094894ac106e2bf1da18a9e6151
+  Capacitor: 358dd1c3fdd71d969547b17e159fd8a7736cb45f
+  CapacitorCordova: bf648a636f3c153f652d312ae145fb508b6ffced
   CapacitorDevice: 81ae78d5d1942707caad79276badd458bf6ec603
   CapacitorGeolocation: 84f868bea4c2499aebc3bb3a88fd0a508f87ab87
   CapacitorKeyboard: 62f36104f26d53d8b3a2a43f2a69fe714f1777d5
