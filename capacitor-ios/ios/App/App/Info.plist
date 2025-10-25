@@ -2,28 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  
-  <!-- Add this UIApplicationSceneManifest section to your existing Info.plist -->
-  <!-- This fixes the "UIScene lifecycle will soon be required" warning -->
-  <key>UIApplicationSceneManifest</key>
-  <dict>
-      <key>UIApplicationSupportsMultipleScenes</key>
-      <false/>
-      <key>UISceneConfigurations</key>
-      <dict>
-          <key>UIWindowSceneSessionRoleApplication</key>
-          <array>
-              <dict>
-                  <key>UISceneConfigurationName</key>
-                  <string>Default Configuration</string>
-                  <key>UISceneDelegateClassName</key>
-                  <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-              </dict>
-          </array>
-      </dict>
-  </dict>
-  
   <!-- Required Permissions for Deejiar -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -58,10 +42,6 @@
 	<string>Deejiar uses your device identifier to measure installs and subscriptions performance. We do not sell your data, and tracking is only used to improve your app experience.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIDeviceFamily</key>
-	<array>
-		<integer>1</integer>
-	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
