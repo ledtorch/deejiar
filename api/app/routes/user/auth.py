@@ -53,12 +53,14 @@ async def get_current_user(
 # Step 1: Send OTP for new user registration
 @router.post("/register/send-otp")
 async def send_registration_otp(request: UserRegisterRequest):
+    print(f"[🌐/routes/user/auth/register/send-otp]")
     result = await auth_service.send_registration_otp(request.email)
     return result
 
 # Step 2: Verify OTP and complete registration
 @router.post("/register/verify-otp")
 async def verify_registration_otp(request: VerifyOTPRequest) -> AuthResponse:
+    print(f"[🌐/routes/user/auth/register/verify-otp]")
     result = await auth_service.verify_registration_otp(request.email, request.otp)
     return result
 
@@ -66,24 +68,12 @@ async def verify_registration_otp(request: VerifyOTPRequest) -> AuthResponse:
 
 @router.post("/login/send-otp")
 async def send_login_otp(request: UserRegisterRequest):
-    """
-    Step 1: Send OTP for existing user login
-    - Checks if user exists
-    - If not exists, returns error asking user to register
-    - If exists, sends 4-digit OTP to email
-    """
     result = await auth_service.send_login_otp(request.email)
     return result
 
 # Step 2: Verify OTP and complete login
 @router.post("/login/verify-otp")
 async def verify_login_otp(request: VerifyOTPRequest) -> AuthResponse:
-    """
-    Step 2: Verify OTP and complete login
-    - Verifies the 4-digit OTP
-    - Updates last login timestamp
-    - Returns access token and user info
-    """
     result = await auth_service.verify_login_otp(request.email, request.otp)
     return result
 
@@ -112,16 +102,11 @@ async def resend_otp(request: ResendOTPRequest):
     - Can be used for both registration and login flows
     - Frontend should specify which flow this is for
     """
-    # You might want to track whether this is for login or register
-    # For now, treating as login OTP
     result = await auth_service.send_login_otp(request.email)
     return result
 
 @router.post("/refresh")
 async def refresh_token(request: TokenRefreshRequest) -> AuthResponse:
-    """
-    Refresh access token using refresh token
-    """
     result = await auth_service.refresh_token(request.refresh_token)
     return result
 
@@ -172,9 +157,6 @@ async def get_current_user_profile(
 async def logout(
     authorization: Optional[str] = Header(None)
 ):
-    """
-    Logout current user
-    """
     if not authorization:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
