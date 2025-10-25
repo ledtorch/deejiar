@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, system-ui;
+      padding: 20px;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .log { 
+      background: #2a2a2a; 
+      padding: 10px; 
+      margin: 10px 0; 
+      border-radius: 8px;
+      border-left: 3px solid #4CAF50;
+    }
+    .error { border-left-color: #f44336; }
+    h1 { margin-bottom: 20px; color: #4CAF50; }
+  </style>
+</head>
+<body>
+  <h1>🔍 iOS Debug Log</h1>
+  <div id="logs"></div>
+
+  <script>
+    const logsDiv = document.getElementById('logs');
+    
+    function log(message, isError = false) {
+      const div = document.createElement('div');
+      div.className = isError ? 'log error' : 'log';
+      div.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+      logsDiv.appendChild(div);
+      console.log(message);
+    }
+
+    log('✅ HTML loaded');
+    log('✅ JavaScript running');
+    log(`📱 User agent: ${navigator.userAgent}`);
+    log(`🌍 Location: ${window.location.href}`);
+    log(`📂 Origin: ${window.location.origin}`);
+    
+    // Test if Capacitor is available
+    if (window.Capacitor) {
+      log('✅ Capacitor detected');
+      log(`📦 Platform: ${window.Capacitor.getPlatform()}`);
+      log(`🔢 Is native: ${window.Capacitor.isNativePlatform()}`);
+    } else {
+      log('❌ Capacitor NOT found', true);
+    }
+
+    // Check for Capacitor script
+    const scripts = Array.from(document.scripts).map(s => s.src);
+    log(`📜 Scripts: ${scripts.length} total`);
+    scripts.forEach(src => log(`  - ${src}`));
+
+    // Log any errors
+    window.onerror = function(msg, url, line, col, error) {
+      log(`❌ Error: ${msg} at ${url}:${line}:${col}`, true);
+      log(`❌ Stack: ${error?.stack}`, true);
+      return false;
+    };
+
+    // Log unhandled rejections
+    window.onunhandledrejection = function(event) {
+      log(`❌ Unhandled Promise: ${event.reason}`, true);
+    };
+
+    log('🎉 Debug page ready');
+  </script>
+</body>
+</html>
