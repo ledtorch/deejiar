@@ -90,17 +90,29 @@ class AuthService:
 
     # ─── Registration ───────────────────────────────────────────────────
     async def send_registration_otp(self, email: str) -> Dict[str, str]:
-        """Send 6-digit OTP for new user registration"""
         try:
-            # Check if user already exists
-            user_exists = await self.check_user_exists(email)
-            if user_exists:
-                raise HTTPException(
-                    status_code=status.HTTP_409_CONFLICT,
-                    detail="User with this email already exists. Please use login instead."
-                )
+            # Check if user exists and get account status
+            result = self.supabase.table('users') \
+                .select('uid, account_status') \
+                .eq('email', email) \
+                .execute()
             
-            # Send OTP using Supabase's sign_in_with_otp
+            if result.data and len(result.data) > 0:
+                user = result.data[0]
+                account_status = user.get('account_status', 'active')
+                
+                # ⚠️ Block registration if account is active
+                if account_status == 'active':
+                    raise HTTPException(
+                        status_code=status.HTTP_409_CONFLICT,
+                        detail="User with this email already exists. Please use login instead."
+                    )
+                
+                # ⚠️ Block registration if account is pending deletion
+                if account_status == 'pending_deletion':
+                    raise HTTPException(status_code=status.HTTP_409_CONFLICT)
+            
+            # Send OTP
             response = self.supabase.auth.sign_in_with_otp({
                 "email": email,
                 "options": {
@@ -116,7 +128,7 @@ class AuthService:
                 "message": "6-digit verification code sent to your email",
                 "email": email,
                 "action": "register",
-                "expires_in": 600  # 10 minutes
+                "expires_in": 600
             }
             
         except HTTPException:
@@ -148,6 +160,22 @@ class AuthService:
                     detail="Invalid verification code"
                 )
             
+            # Check if user already exists
+            existing_user = await self._get_user_profile(email)
+
+            if existing_user:
+                print(f"[verify_registration_otp] ⚠️ User already exists: {email}")
+                
+                return AuthResponse(
+                    access_token=response.session.access_token,
+                    refresh_token=response.session.refresh_token,
+                    user=self._create_user_response_from_data({
+                        **existing_user,
+                        'is_new_user': False
+                    }),
+                    expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
+                )
+
             # Generate custom UID (simplified)
             custom_uid = self._generate_uid()
             
@@ -204,15 +232,28 @@ class AuthService:
     # ─── Login ──────────────────────────────────────────────────────────
     async def send_login_otp(self, email: str) -> Dict[str, str]:
         try:
-            # Check if user exists
-            user_exists = await self.check_user_exists(email)
-            if not user_exists:
+            # Check if user exists and get account status
+            result = self.supabase.table('users') \
+                .select('uid, account_status') \
+                .eq('email', email) \
+                .execute()
+            
+            if not result.data or len(result.data) == 0:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail="No account found with this email. Please register first."
                 )
             
+            user = result.data[0]
+            account_status = user.get('account_status', 'active')
+            
+            # ⚠️ Block login if account is pending deletion
+            if account_status == 'pending_deletion':
+                raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
+            
             # Send OTP for existing user
+            print(f"[send_login_otp] Sending OTP to: {email}")
+            
             response = self.supabase.auth.sign_in_with_otp({
                 "email": email,
                 "options": {
@@ -227,22 +268,24 @@ class AuthService:
                 "message": "6-digit verification code sent to your email",
                 "email": email,
                 "action": "login",
-                "expires_in": 600  # 10 minutes
+                "expires_in": 600
             }
             
         except HTTPException:
             raise
         except AuthError as e:
+            print(f"[send_login_otp] AuthError: {str(e)}")
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail=f"Failed to send verification code: {str(e)}"
             )
         except Exception as e:
+            print(f"[send_login_otp] Error: {str(e)}")
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail=f"An error occurred: {str(e)}"
             )
-    
+        
     async def verify_login_otp(self, email: str, otp: str) -> AuthResponse:
         """Verify 6-digit OTP for login"""
         try:
@@ -263,15 +306,19 @@ class AuthService:
             user_data = await self._get_user_profile(email)
             
             if not user_data:
-                # User exists in Auth but not in database - create profile
-                custom_uid = self._generate_uid()
-                user_data = await self._create_user_profile(
-                    response.user.id,
-                    custom_uid,
-                    email,
-                    AuthProvider.EMAIL
+                print(f"[verify_login_otp] ❌ No user found in database for {email}")
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="Account not found. Please register first."
                 )
             
+            # Check if account is pending deletion
+            if user_data.get('account_status') == 'pending_deletion':
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="This account is scheduled for deletion."
+                )
+
             # Update last login
             await self._update_last_login(user_data['uid'])
             
