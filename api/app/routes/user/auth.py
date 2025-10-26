@@ -16,9 +16,7 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
 async def get_current_user(
     authorization: Optional[str] = Header(None)
 ) -> UserResponse:
-    """
-    Dependency to get current user from token
-    """
+    print("[get_current_user]")
     if not authorization:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -53,14 +51,14 @@ async def get_current_user(
 # Step 1: Send OTP for new user registration
 @router.post("/register/send-otp")
 async def send_registration_otp(request: UserRegisterRequest):
-    print(f"[🌐/routes/user/auth/register/send-otp]")
+    print("[🌐/routes/user/auth/register/send-otp]")
     result = await auth_service.send_registration_otp(request.email)
     return result
 
 # Step 2: Verify OTP and complete registration
 @router.post("/register/verify-otp")
 async def verify_registration_otp(request: VerifyOTPRequest) -> AuthResponse:
-    print(f"[🌐/routes/user/auth/register/verify-otp]")
+    print("[🌐/routes/user/auth/register/verify-otp]")
     result = await auth_service.verify_registration_otp(request.email, request.otp)
     return result
 
@@ -68,12 +66,14 @@ async def verify_registration_otp(request: VerifyOTPRequest) -> AuthResponse:
 
 @router.post("/login/send-otp")
 async def send_login_otp(request: UserRegisterRequest):
+    print("[🌐/routes/user/auth/login/send-otp]")
     result = await auth_service.send_login_otp(request.email)
     return result
 
 # Step 2: Verify OTP and complete login
 @router.post("/login/verify-otp")
 async def verify_login_otp(request: VerifyOTPRequest) -> AuthResponse:
+    print("[🌐/routes/user/auth/login/verify-otp]")
     result = await auth_service.verify_login_otp(request.email, request.otp)
     return result
 
@@ -81,7 +81,7 @@ async def verify_login_otp(request: VerifyOTPRequest) -> AuthResponse:
 
 @router.post("/check-email")
 async def check_email_exists(request: UserRegisterRequest):
-    print(f"[🌐/routes/user/auth/check-email]")
+    print("[🌐/routes/user/auth/check-email]")
     
     # Dict response from check_user_exists
     user_info = await auth_service.check_user_exists(request.email)
@@ -107,6 +107,7 @@ async def resend_otp(request: ResendOTPRequest):
 
 @router.post("/refresh")
 async def refresh_token(request: TokenRefreshRequest) -> AuthResponse:
+    print("[🌐/routes/user/auth/refresh]")
     result = await auth_service.refresh_token(request.refresh_token)
     return result
 
@@ -116,9 +117,7 @@ async def refresh_token(request: TokenRefreshRequest) -> AuthResponse:
 async def get_current_user_profile(
     current_user: UserResponse = Depends(get_current_user)
 ) -> UserResponse:
-    """
-    Get current user profile with fresh data from Supabase
-    """
+    print("[🌐/routes/user/auth/me]")
     try:
         from app.db.supabase import get_supabase_admin_client
         
@@ -138,11 +137,11 @@ async def get_current_user_profile(
             )
         
         # 🔍 DEBUG: Log what we're returning
-        print(f"[🐍/routes/user/auth/me] Fresh user data from Supabase:")
-        print(f"  - UID: {result.data.get('uid')}")
-        print(f"  - Email: {result.data.get('email')}")
-        print(f"  - Premium: {result.data.get('premium')}")
-        print(f"  - Subscription Status: {result.data.get('subscription_status')}")
+        print("[🐍/routes/user/auth/me] Fresh user data from Supabase:")
+        print(f" - UID: {result.data.get('uid')}")
+        print(f" - Email: {result.data.get('email')}")
+        print(f" - Premium: {result.data.get('premium')}")
+        print(f" - Subscription Status: {result.data.get('subscription_status')}")
         
         return result.data
         
@@ -157,6 +156,7 @@ async def get_current_user_profile(
 async def logout(
     authorization: Optional[str] = Header(None)
 ):
+    print("[🌐/routes/user/auth/logout]")
     if not authorization:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -183,6 +183,7 @@ async def logout(
 async def delete_account(
     authorization: Optional[str] = Header(None)
 ):
+    print("[🌐/routes/user/auth/delete]")
     if not authorization:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
