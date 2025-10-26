@@ -10,7 +10,7 @@ async def cleanup_deleted_accounts():
     result = supabase.table('users') \
         .select('uid, email') \
         .eq('account_status', 'pending_deletion') \
-        .lte('deletion_scheduled_for', now) \
+        .lte('deletion_scheduled_at', now) \
         .execute()
     
     if not result.data or len(result.data) == 0:
