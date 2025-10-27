@@ -88,6 +88,111 @@ class AuthService:
                 'uid': None
             }
 
+    async def refresh_token(self, refresh_token: str) -> AuthResponse:
+        print("[🛠️/services/auth_service/refresh_token]")
+        print(f"📥 Received refresh token: {refresh_token[:20]}..." if refresh_token else "❌ No token received")
+        
+        try:
+            # 🔍 DEBUG: Check token format
+            if not refresh_token or len(refresh_token) < 20:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Invalid refresh token format"
+                )
+            
+            print("1️⃣ Calling supabase.auth.refresh_session()...")
+            
+            # Try refreshing the session
+            response = self.supabase.auth.refresh_session(refresh_token)
+            
+            print(f"2️⃣ Response received: {type(response)}")
+            print(f"3️⃣ Has user: {response.user is not None if response else False}")
+            print(f"4️⃣ Has session: {response.session is not None if response else False}")
+            
+            if not response.user or not response.session:
+                print("❌ No user or session in response")
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid refresh token - no session returned"
+                )
+            
+            print(f"5️⃣ Getting user profile for: {response.user.email}")
+            
+            # Get user profile from database
+            user_data = await self._get_user_profile(response.user.email)
+            
+            if not user_data:
+                print("❌ User profile not found in database")
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="User profile not found"
+                )
+            
+            print("✅ Token refresh successful!")
+            
+            return AuthResponse(
+                access_token=response.session.access_token,
+                refresh_token=response.session.refresh_token,
+                user=self._create_user_response_from_data(user_data),
+                expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
+            )
+            
+        except HTTPException:
+            raise
+        except AuthError as e:
+            # 🔍 Catch Supabase-specific errors
+            print(f"❌ Supabase AuthError: {type(e).__name__}")
+            print(f"❌ Error message: {str(e)}")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail=f"Token refresh failed: {str(e)}"
+            )
+        except Exception as e:
+            # 🔍 Catch all other errors
+            print(f"❌ Unexpected error: {type(e).__name__}")
+            print(f"❌ Error message: {str(e)}")
+            import traceback
+            print(f"❌ Traceback: {traceback.format_exc()}")
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"Token refresh failed: {str(e)}"
+            )
+    # async def refresh_token(self, refresh_token: str) -> AuthResponse:
+    #         print("[🛠️/services/auth_service/refresh_token]")
+    #         print(f"📥 Received refresh token: {refresh_token[:20]}..." if refresh_token else "❌ No token received")
+    #         try:
+    #             response = self.supabase.auth.refresh_session(refresh_token)
+                
+    #             if not response.user or not response.session:
+    #                 raise HTTPException(
+    #                     status_code=status.HTTP_401_UNAUTHORIZED,
+    #                     detail="Invalid refresh token"
+    #                 )
+                
+    #             # Get user profile from database
+    #             user_data = await self._get_user_profile(response.user.email)
+                
+    #             if not user_data:
+    #                 raise HTTPException(
+    #                     status_code=status.HTTP_404_NOT_FOUND,
+    #                     detail="User profile not found"
+    #                 )
+                
+    #             return AuthResponse(
+    #                 access_token=response.session.access_token,
+    #                 refresh_token=response.session.refresh_token,
+    #                 user=self._create_user_response_from_data(user_data),
+    #                 expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
+    #             )
+                
+    #         except HTTPException:
+    #             raise
+    #         except Exception as e:
+    #             raise HTTPException(
+    #                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    #                 detail=f"Token refresh failed: {str(e)}"
+    #             )        
+
     # ─── Registration ───────────────────────────────────────────────────
     async def send_registration_otp(self, email: str) -> Dict[str, str]:
         try:
@@ -538,42 +643,6 @@ class AuthService:
         except Exception as e:
             print(f"Error getting user by token: {str(e)}")
             return None
-    
-    async def refresh_token(self, refresh_token: str) -> AuthResponse:
-        """Refresh access token using refresh token"""
-        try:
-            # Refresh the session
-            response = self.supabase.auth.refresh_session(refresh_token)
-            
-            if not response.user or not response.session:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Invalid refresh token"
-                )
-            
-            # Get user profile from database
-            user_data = await self._get_user_profile(response.user.email)
-            
-            if not user_data:
-                raise HTTPException(
-                    status_code=status.HTTP_404_NOT_FOUND,
-                    detail="User profile not found"
-                )
-            
-            return AuthResponse(
-                access_token=response.session.access_token,
-                refresh_token=response.session.refresh_token,
-                user=self._create_user_response_from_data(user_data),
-                expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
-            )
-            
-        except HTTPException:
-            raise
-        except Exception as e:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Token refresh failed: {str(e)}"
-            )
     
     def _generate_uid(self) -> str:
         """Generate unique user ID"""
