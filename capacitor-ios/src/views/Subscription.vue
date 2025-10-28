@@ -32,8 +32,6 @@ import SubscriptionRadioCard from '../components/cards/SubscriptionRadioCard.vue
 const router = useRouter()
 const userStore = useUserStore()
 const {
-  loading,
-  error,
   packages,
   selectedId,
   selectedPkg,
@@ -44,6 +42,9 @@ const {
 
 const purchasing = ref(false)
 const selectedPlan = ref('yearly')
+
+// Button Animation
+const loadingDots = ref('');
 
 // SubscriptionRadioCard: Map UI on iOS
 const monthlyPkg = computed(() =>
@@ -61,15 +62,31 @@ const selectPackage = (packageId) => {
 
 /* Button Text */
 const purchaseButtonText = computed(() => {
-  if (purchasing.value) return 'Processing...'
+  if (purchasing.value) return `Processing${loadingDots.value}`
   if (isPremium.value) return 'Already Subscribed'
   return 'Start Free Trial for 7 days'
 })
+
+const startLoadingAnimation = () => {
+  console.log('Animation started');
+  let dotCount = 0;
+  const loadingInterval = setInterval(() => {
+    dotCount = (dotCount + 1) % 4; // 0, 1, 2, 3, then repeat
+    loadingDots.value = '.'.repeat(dotCount);
+
+    // Stop animation when no longer submitting
+    if (!purchasing.value) {
+      clearInterval(loadingInterval);
+      loadingDots.value = '';
+    }
+  }, 500); // Change dots every 500ms
+};
 
 // WHY?
 const handlePurchase = async () => {
   console.log('=== Purchase Debug ===')
   console.log('isPremium:', isPremium.value)
+  startLoadingAnimation();
   if (!selectedPkg.value) {
     console.error('❌ No package selected!')
     return
@@ -77,13 +94,15 @@ const handlePurchase = async () => {
 
   try {
     purchasing.value = true
+    startLoadingAnimation()
     console.log('💳 Starting purchase...')
 
     const success = await purchaseSelected()
     console.log('RevenueCat isPremium:', isPremium.value)
 
     if (success) {
-      // Replace instead of push to prevent back to subscription
+      // 🏗️ Didn't handle the case if Supabase missed to update immediately
+      await userStore.fetchCurrentUser()
       router.back()
     }
   } catch (err) {
