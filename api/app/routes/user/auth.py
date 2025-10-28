@@ -137,7 +137,6 @@ async def get_current_user_profile(
             )
         
         # 🔍 DEBUG: Log what we're returning
-        print("[🐍/routes/user/auth/me] Fresh user data from Supabase:")
         print(f" - UID: {result.data.get('uid')}")
         print(f" - Email: {result.data.get('email')}")
         print(f" - Premium: {result.data.get('premium')}")
