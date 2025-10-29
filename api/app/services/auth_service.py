@@ -90,14 +90,14 @@ class AuthService:
 
     async def refresh_token(self, refresh_token: str) -> AuthResponse:
         print("[🛠️/services/auth_service/refresh_token]")
-        print(f"📥 Received refresh token: {refresh_token[:20]}..." if refresh_token else "❌ No token received")
+        print(f"📥 Token: {refresh_token}")
+        print(f"📥 Token length: {len(refresh_token)}")
         
         try:
-            # 🔍 DEBUG: Check token format
-            if not refresh_token or len(refresh_token) < 20:
+            if not refresh_token:
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Invalid refresh token format"
+                    detail="Refresh token required"
                 )
             
             print("1️⃣ Calling supabase.auth.refresh_session()...")
@@ -118,7 +118,7 @@ class AuthService:
             
             print(f"5️⃣ Getting user profile for: {response.user.email}")
             
-            # Get user profile from database
+            # ✅ IMPORTANT: Get user profile from database
             user_data = await self._get_user_profile(response.user.email)
             
             if not user_data:
@@ -133,7 +133,7 @@ class AuthService:
             return AuthResponse(
                 access_token=response.session.access_token,
                 refresh_token=response.session.refresh_token,
-                user=self._create_user_response_from_data(user_data),
+                user=self._create_user_response_from_data(user_data),  # ✅ Now user_data exists!
                 expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
             )
             
@@ -157,41 +157,6 @@ class AuthService:
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail=f"Token refresh failed: {str(e)}"
             )
-    # async def refresh_token(self, refresh_token: str) -> AuthResponse:
-    #         print("[🛠️/services/auth_service/refresh_token]")
-    #         print(f"📥 Received refresh token: {refresh_token[:20]}..." if refresh_token else "❌ No token received")
-    #         try:
-    #             response = self.supabase.auth.refresh_session(refresh_token)
-                
-    #             if not response.user or not response.session:
-    #                 raise HTTPException(
-    #                     status_code=status.HTTP_401_UNAUTHORIZED,
-    #                     detail="Invalid refresh token"
-    #                 )
-                
-    #             # Get user profile from database
-    #             user_data = await self._get_user_profile(response.user.email)
-                
-    #             if not user_data:
-    #                 raise HTTPException(
-    #                     status_code=status.HTTP_404_NOT_FOUND,
-    #                     detail="User profile not found"
-    #                 )
-                
-    #             return AuthResponse(
-    #                 access_token=response.session.access_token,
-    #                 refresh_token=response.session.refresh_token,
-    #                 user=self._create_user_response_from_data(user_data),
-    #                 expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
-    #             )
-                
-    #         except HTTPException:
-    #             raise
-    #         except Exception as e:
-    #             raise HTTPException(
-    #                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-    #                 detail=f"Token refresh failed: {str(e)}"
-    #             )        
 
     # ─── Registration ───────────────────────────────────────────────────
     async def send_registration_otp(self, email: str) -> Dict[str, str]:
@@ -392,7 +357,6 @@ class AuthService:
             )
         
     async def verify_login_otp(self, email: str, otp: str) -> AuthResponse:
-        """Verify 6-digit OTP for login"""
         try:
             # Verify OTP with Supabase
             response = self.supabase.auth.verify_otp({
@@ -400,6 +364,22 @@ class AuthService:
                 "token": otp,
                 "type": "email"
             })
+
+            # 🔍 ADD THIS DEBUG - Check what Supabase returns
+            print("=" * 50)
+            print("🔍 [verify_login_otp] Supabase Response:")
+            print(f"  Response type: {type(response)}")
+            print(f"  Has user: {response.user is not None}")
+            print(f"  Has session: {response.session is not None}")
+            
+            if response.session:
+                print(f"  📊 Session details:")
+                print(f"    Access Token Length: {len(response.session.access_token)}")
+                print(f"    Refresh Token Length: {len(response.session.refresh_token)}")
+                print(f"    Refresh Token Value: {response.session.refresh_token}")
+                print(f"    Refresh Token Type: {type(response.session.refresh_token)}")
+            print("=" * 50)
+            # 🔍 END DEBUG
             
             if not response.user or not response.session:
                 raise HTTPException(
@@ -427,6 +407,13 @@ class AuthService:
             # Update last login
             await self._update_last_login(user_data['uid'])
             
+            # 🔍 DEBUG - Check what we're about to return
+            print("🔍 [verify_login_otp] About to return AuthResponse:")
+            print(f"  Access Token Length: {len(response.session.access_token)}")
+            print(f"  Refresh Token Length: {len(response.session.refresh_token)}")
+            print(f"  Refresh Token: {response.session.refresh_token}")
+            # 🔍 END DEBUG
+
             return AuthResponse(
                 access_token=response.session.access_token,
                 refresh_token=response.session.refresh_token,
