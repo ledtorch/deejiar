@@ -1,5 +1,5 @@
 <template>
-  <button @click="openDirections" class="flex button-frame">
+  <button @click="openDirections" class="button-frame">
     <div class="title-frame">
       <div :class="iconClass"></div>
       <p class="_button-secondary">Get Direction</p>
@@ -76,6 +76,7 @@ export default {
 
 <style lang="scss" scoped>
 .button-frame {
+  display: flex;
   height: 48px;
   width: 100%;
   padding: 12px;

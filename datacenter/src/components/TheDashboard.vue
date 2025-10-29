@@ -1,26 +1,26 @@
 <template>
   <div class="body">
 
-    <aside class="sidebar flex flex-col">
-      <section class="flex-col">
+    <aside class="sidebar">
+      <section class="section-container">
         <p class="title _color-secondary">Total Stores: {{ featureCollection?.features?.length || 0 }}</p>
         <p class="title _color-tertiary">United States: {{ countryCounts.US }}</p>
         <p class="title _color-tertiary">Formosa: {{ countryCounts.FM }}</p>
         <p class="title _color-tertiary">Singapore: {{ countryCounts.SG }}</p>
         <p class="title _color-tertiary">Japan: {{ countryCounts.JP }}</p>
       </section>
-      <section class="flex-col">
+      <section class="section-container">
         <p class="title _color-secondary">Latest Updated Time</p>
         <p class="title _color-tertiary">{{ new Date().toLocaleString() }}</p>
       </section>
     </aside>
 
     <main class="board flex">
-      <section class="flex flex-col wrapper">
-        <div class="flex-col basic-data-section">
+      <section class="section-container wrapper">
+        <div class="basic-data-section">
           <Header :title="currentStore || 'No Store Selected'" @update="saveChanges" />
-          <div class="basic-data-container flex-row">
-            <div class="left-col flex-col">
+          <div class="basic-data-container">
+            <div class="left-col">
               <FormString :title="'The Name of the Store'" :value="currentStore || ''"
                 @update="val => updateProperty('title', val)" />
               <div class="type-data">
@@ -47,11 +47,11 @@
             </div>
           </div>
         </div>
-        <div v-if="currentStore" class="flex-col container">
+        <div v-if="currentStore" class="container">
           <Header title="Detail" />
         </div>
       </section>
-      <section class="file-container flex flex-col">
+      <section class="file-container">
         <MainDropdown v-model="selectedJsonFile" :options="jsonList" @update:modelValue="handleJsonSelection" />
         <Dropdown :title="'Store'" :options="storeList" @selected="selectStore" />
       </section>
@@ -299,6 +299,8 @@ function updateProperty(key, val) {
 }
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.09);
   color: #000000;
@@ -321,8 +323,15 @@ function updateProperty(key, val) {
   gap: 12px;
 }
 
+.section-container {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .basic-data-section {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
@@ -332,6 +341,8 @@ function updateProperty(key, val) {
 
 
 .file-container {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
@@ -387,6 +398,7 @@ function updateProperty(key, val) {
 }
 
 .left-col {
+  flex-direction: column;
   gap: 24px;
 }
 </style>

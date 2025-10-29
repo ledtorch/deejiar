@@ -1,6 +1,6 @@
 <template>
   <Menu as="div" class="dropdown-container">
-    <MenuButton class="menu-button flex flex-col">
+    <MenuButton class="menu-button">
       <div class="header">
         <span class="_subtitle _color-secondary">{{ title }}</span>
         <ChevronDownIcon class="ChevronDownIcon _color-primary" />
@@ -69,6 +69,8 @@ function selectOption(option) {
 }
 
 .menu-button {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   gap: 4px;
   justify-content: space-between;

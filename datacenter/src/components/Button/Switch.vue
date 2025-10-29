@@ -1,5 +1,5 @@
 <template>
-  <main class="switch-container flex flex-col">
+  <main class="switch-container">
     <div class="nav">
       <p class="_subtitle the-title">{{ title }}</p>
     </div>
@@ -79,6 +79,8 @@ const emit = defineEmits(['update']);
 }
 
 .switch-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   gap: 4px;
 }

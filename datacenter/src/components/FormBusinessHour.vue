@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col form-frame-businesshour">
+  <div class="form-frame-businesshour">
     <div class="nav">
       <p class="headline">JSON data</p>
       <button class="text-button" v-if="!editing" @click="edit(property)">Edit</button>
