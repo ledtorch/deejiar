@@ -1,3 +1,7 @@
+## [0.01.2](https://deejiar.com) (2025-10-29)
+### Feature
+* MVP
+
 ## [5](https://deejiar.com) (2024-08-18)
 ### Feature
 * Author's Pick
