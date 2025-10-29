@@ -417,33 +417,29 @@ onUnmounted(async () => {
 
 <style lang="scss" scoped>
 #map {
-  /* Prevent any unexpected overflow */
-  overflow: hidden;
-
   position: relative;
+  overflow: hidden;
   width: 100vw;
   height: 100vh;
 }
 
 #bottomsheet {
   position: absolute;
+  bottom: 0;
   z-index: 1;
   width: 100%;
   height: auto;
 
-  /* 📱 Account for bottom safe area */
-  bottom: 0;
+  /* Safe area */
   padding-bottom: calc(60px + env(safe-area-inset-bottom));
 }
 
 #button-locate {
   position: absolute;
   right: 16px;
+  bottom: calc(76px + env(safe-area-inset-bottom));
   z-index: 1;
   transition: transform 0.3s ease;
-
-  /* 📱 Account for bottom safe area plus 48px spacing */
-  bottom: calc(76px + env(safe-area-inset-bottom));
 }
 
 .marker-active {
