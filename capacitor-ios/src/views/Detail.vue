@@ -270,31 +270,34 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.image-loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--background);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  backdrop-filter: blur(8px);
-}
-
 .page {
   position: relative;
-
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  overflow-y: auto;
-
-  background-color: var(--background);
   padding-bottom: env(safe-area-inset-bottom);
+  background-color: var(--background);
+}
+
+.image-loading-overlay {
+  /* Position */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  /* Layout */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Others */
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
+  backdrop-filter: blur(8px);
 }
 
 .hero-container {
@@ -304,15 +307,27 @@ onMounted(async () => {
   // Maintains 1:1 aspect ratio
   padding-top: 100%;
 
+  border-radius: 0 0 var(--round-xl) var(--round-xl);
+
   // Image setting
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
-  border-radius: 0 0 var(--round-xl) var(--round-xl);
 }
 
 // Buttons on hero image
+.home-btn {
+  position: absolute;
+  left: var(--block);
+  top: env(safe-area-inset-top);
+}
+
+.share-btn {
+  position: absolute;
+  right: var(--block);
+  top: env(safe-area-inset-top);
+}
+
 .left-arrow,
 .right-arrow {
   position: absolute;
@@ -328,39 +343,20 @@ onMounted(async () => {
   right: var(--block);
 }
 
-.home-btn {
-  position: absolute;
-  left: var(--block);
-  // top: var(--block);
-  top: env(safe-area-inset-top);
-}
-
-.share-btn {
-  position: absolute;
-  right: var(--block);
-  // top: var(--block);
-  top: env(safe-area-inset-top);
-}
-
 // Store title and description
-.key-info-container {
+.content-section {
+  display: flex;
   flex-direction: column;
-  gap: var(--block);
-}
-
-.store-description {
   align-items: flex-start;
-  align-self: stretch;
-  padding: var(--block);
-  border-radius: var(--round-m);
-  background: var(--content);
-  color: var(--primary-content);
+  width: 100%;
+  gap: var(--container);
+  padding: var(--wrapper);
 }
 
 .products-shortcut {
   align-items: flex-start;
-  width: 100%;
   gap: var(--block);
+  width: 100%;
 }
 
 .leftImage {
@@ -383,21 +379,20 @@ onMounted(async () => {
   background-repeat: no-repeat;
 }
 
-.content-section {
-  display: flex;
+.key-info-container {
   flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  padding: var(--wrapper);
-  gap: var(--container)
+  gap: var(--block);
 }
 
-.title-block {
+.store-description {
+  /* Layout */
   align-items: flex-start;
-  align-items: center;
-  justify-content: flex-start;
-  align-content: flex-start;
   align-self: stretch;
-  gap: var(--block);
+  padding: var(--block);
+  border-radius: var(--round-m);
+
+  /* Visual */
+  color: var(--primary-content);
+  background: var(--content);
 }
 </style>
