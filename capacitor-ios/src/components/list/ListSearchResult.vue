@@ -27,6 +27,7 @@ const storeIcon = computed(() => {
 
 const navigateToStore = () => {
   console.log('🔍 Search result clicked:', props.storeData.title)
+  console.log('Lon + lat:', props.storeData.longitude, props.storeData.latitude)
 
   // Use centralized store selection - data is already in correct format
   mapStore.selectStore(props.storeData, true)
