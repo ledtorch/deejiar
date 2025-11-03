@@ -135,30 +135,25 @@ const deleteAccount = async () => {
 
 <style lang="scss" scoped>
 .page {
-  /* Positioning */
   position: relative;
-
-  /* Layout */
   display: flex;
   flex-direction: column;
-  min-width: 100%;
   justify-content: space-between;
-  width: 100vw;
-  height: 100vh;
   padding: var(--safe-area-top) var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
-
-  /* Visual & Colors */
+  width: 100vw;
+  min-width: 100%;
+  height: 100vh;
   background-color: var(--background);
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--division);
   width: 100%;
   height: 100%;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--division);
 }
 
 .main-container> :first-child {
@@ -171,8 +166,8 @@ const deleteAccount = async () => {
 
 .upper-container {
   flex-direction: column;
-  width: 100%;
   gap: var(--division);
+  width: 100%;
 }
 
 .page-illustration {
