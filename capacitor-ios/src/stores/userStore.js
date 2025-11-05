@@ -1,4 +1,3 @@
-// src/stores/userStore.js
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import { Purchases } from '@revenuecat/purchases-capacitor'
@@ -125,13 +124,12 @@ export const useUserStore = defineStore('user', () => {
         const fiveMinutes = 5 * 60 * 1000;
 
         if (cacheAge < fiveMinutes) {
-          // Cache is fresh enough - show it immediately
           user.value = JSON.parse(storedUser);
 
-          // Still fetch in background for accuracy
-          fetchCurrentUser(); // No await - don't block UI
+          // Instantly display cached user data, then refresh it in the background for accuracy
+          fetchCurrentUser();
         } else {
-          // Cache is too old - fetch fresh data first
+          // Cache is outdated - fetch fresh data first
           await fetchCurrentUser();
         }
       }
@@ -223,7 +221,7 @@ export const useUserStore = defineStore('user', () => {
     setAuth(authData);
 
     try {
-      const uid = userUID.value;               // your computed UID
+      const uid = userUID.value;
       if (uid) {
         const res = await Purchases.logIn({ appUserID: uid });
         // res.created === true when RC created a new customer for this uid
