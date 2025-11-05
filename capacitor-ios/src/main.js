@@ -38,8 +38,6 @@ async function initializeApp() {
     hasAccessToken: !!localStorage.getItem('access_token'),
     hasRefreshToken: !!localStorage.getItem('refresh_token'),
     hasUser: !!localStorage.getItem('user'),
-    AccessToken: localStorage.getItem('access_token')
-
   });
 
   // 1) restore auth (once)
