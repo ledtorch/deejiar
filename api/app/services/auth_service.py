@@ -13,11 +13,32 @@ from app.models.user import (
     AuthProvider
 )
 
+from app.utils.token_tracker import token_tracker
+
 class AuthService:
+    # def __init__(self):
+    #     # Creates client with ANON_KEY
+    #     self.supabase = get_supabase_client()
+
+    #     # Creates client with SERVICE_KEY
+    #     self.admin_supabase = get_supabase_admin_client()
+
+    # Testing
     def __init__(self):
-        self.supabase = get_supabase_client()
-        self.admin_supabase = get_supabase_admin_client()
+        # ✅ No caching! Clean initialization
+        pass
     
+    @property
+    def supabase(self) -> Client:
+        """Get fresh client (auto-refreshes if expired)"""
+        return get_supabase_client()
+    
+    @property
+    def admin_supabase(self) -> Client:
+        """Get fresh admin client (auto-refreshes if expired)"""
+        return get_supabase_admin_client()
+    # Testing END
+
     def _create_user_response_from_data(self, user_data: Dict) -> UserResponse:
         """Helper method to create UserResponse from database data"""
         return UserResponse(
@@ -51,7 +72,7 @@ class AuthService:
         try:
             print(f"[check_user_exists] Checking email: {email}")
             
-            result = self.supabase.table('users') \
+            result = self.admin_supabase.table('users') \
                 .select('uid, account_status') \
                 .eq('email', email) \
                 .execute()
@@ -88,13 +109,112 @@ class AuthService:
                 'uid': None
             }
 
+    # async def refresh_token(self, refresh_token: str) -> AuthResponse:
+    #     print("[🛠️/services/auth_service/refresh_token]")
+    #     print(f"📥 Current Token: {refresh_token}")
+        
+    #     try:
+    #         if not refresh_token:
+    #             raise HTTPException(
+    #                 status_code=status.HTTP_400_BAD_REQUEST,
+    #                 detail="Refresh token required"
+    #             )
+            
+    #         print("1️⃣ Calling supabase.auth.refresh_session()...")
+            
+    #         # Try refreshing the session
+    #         response = self.supabase.auth.refresh_session(refresh_token)
+            
+    #         print(f"2️⃣ Response received: {type(response)}")
+    #         print(f"3️⃣ Has user: {response.user is not None if response else False}")
+    #         print(f"4️⃣ Has session: {response.session is not None if response else False}")
+            
+    #         if not response.user or not response.session:
+    #             print("❌ No user or session in response")
+    #             raise HTTPException(
+    #                 status_code=status.HTTP_401_UNAUTHORIZED,
+    #                 detail="Invalid refresh token - no session returned"
+    #             )
+            
+    #         print(f"5️⃣ Getting user profile for: {response.user.email}")
+            
+    #         # ✅ IMPORTANT: Get user profile from database
+    #         user_data = await self._get_user_profile(response.user.email)
+            
+    #         if not user_data:
+    #             print("❌ User profile not found in database")
+    #             raise HTTPException(
+    #                 status_code=status.HTTP_404_NOT_FOUND,
+    #                 detail="User profile not found"
+    #             )
+            
+    #         print("✅ Token refresh successful!")
+        
+    #         # 🔍 CRITICAL LOGGING - Add this BEFORE return
+    #         print(f"6️⃣ Comparing tokens:")
+    #         print(f" - Input Token: {refresh_token}")
+    #         print(f" - New Refresh Token: {response.session.refresh_token}")
+    #         print(f" - Are Different: {response.session.refresh_token != refresh_token}")
+        
+    #         if response.session.refresh_token == refresh_token:
+    #             print("🚨 WARNING: Supabase returned the SAME refresh token!")
+    #             print("🚨 This will cause 'Already Used' error on next refresh!")
+            
+    #         return AuthResponse(
+    #             access_token=response.session.access_token,
+    #             refresh_token=response.session.refresh_token,
+    #             user=self._create_user_response_from_data(user_data),  # ✅ Now user_data exists!
+    #             expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
+    #         )
+            
+    #     except HTTPException:
+    #         raise
+    #     except AuthError as e:
+    #         # 🔍 Catch Supabase-specific errors
+    #         print(f"❌ Supabase AuthError: {type(e).__name__}")
+    #         print(f"❌ Error message: {str(e)}")
+    #         raise HTTPException(
+    #             status_code=status.HTTP_401_UNAUTHORIZED,
+    #             detail=f"Token refresh failed: {str(e)}"
+    #         )
+    #     except Exception as e:
+    #         # 🔍 Catch all other errors
+    #         print(f"❌ Unexpected error: {type(e).__name__}")
+    #         print(f"❌ Error message: {str(e)}")
+    #         import traceback
+    #         print(f"❌ Traceback: {traceback.format_exc()}")
+    #         raise HTTPException(
+    #             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    #             detail=f"Token refresh failed: {str(e)}"
+    #         )
+
+    # ─── Refresh Token ─────────────────────────────────────────────────────
     async def refresh_token(self, refresh_token: str) -> AuthResponse:
         print("[🛠️/services/auth_service/refresh_token]")
-        print(f"📥 Token: {refresh_token}")
-        print(f"📥 Token length: {len(refresh_token)}")
+        print(f"📥 Old Token (received from frontend): {refresh_token}")
+        
+        # Save the old token for comparison
+        old_token = refresh_token
+        
+        # 🔍 CHECK: Has this token been used before?
+        is_reused, usage_count = token_tracker.check_for_reuse(old_token)
+        
+        if is_reused:
+            print(f"⚠️ WARNING: This Old Token has been used {usage_count} time(s) before!")
+            print(f"⚠️ This refresh attempt will likely fail with 'Already Used'")
+            token_tracker.print_token_history(old_token)
+        
+        # 🔍 LOG: Token refresh attempt
+        token_tracker.log_usage(
+            old_token, 
+            "REFRESH_ATTEMPT",
+            "pending",
+            f"Attempt #{usage_count + 1}"
+        )
         
         try:
             if not refresh_token:
+                token_tracker.log_usage(old_token, "REFRESH_ATTEMPT", "failed", "No token provided")
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
                     detail="Refresh token required"
@@ -111,6 +231,7 @@ class AuthService:
             
             if not response.user or not response.session:
                 print("❌ No user or session in response")
+                token_tracker.log_usage(old_token, "REFRESH_ATTEMPT", "failed", "No session in response")
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Invalid refresh token - no session returned"
@@ -123,34 +244,90 @@ class AuthService:
             
             if not user_data:
                 print("❌ User profile not found in database")
+                token_tracker.log_usage(old_token, "REFRESH_ATTEMPT", "failed", "User not found")
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
                     detail="User profile not found"
                 )
             
+            # Get the new token from Supabase
+            current_token = response.session.refresh_token
+            
+            # 🔍 CRITICAL: Check token usage status
+            old_token_is_reused, old_usage_count = token_tracker.check_for_reuse(old_token)
+            current_token_is_used, current_usage_count = token_tracker.check_for_reuse(current_token)
+            
             print("✅ Token refresh successful!")
+            print(f"6️⃣ Token Status:")
+            print(f"   📥 Old Token: {old_token}")
+            print(f"      - Old Token Used: {old_token_is_reused} (used {old_usage_count} time(s))")
+            print(f"   📤 Current Token: {current_token}")
+            print(f"      - Current Token Used: {current_token_is_used} (used {current_usage_count} time(s))")
+            print(f"   🔄 Tokens Are Different: {current_token != old_token}")
+            
+            # Check for issues
+            if current_token == old_token:
+                print("🚨 CRITICAL BUG: Supabase returned the SAME token!")
+                print("🚨 This will cause 'Already Used' error on next refresh!")
+                token_tracker.log_usage(
+                    old_token, 
+                    "REFRESH_ATTEMPT", 
+                    "success_but_same_token",
+                    "Backend returned same token - this is a bug!"
+                )
+            else:
+                print("✅ GOOD: Received new Current Token from Supabase")
+                print(f"   ✅ Old Token ({old_token}) should NOT be used again")
+                print(f"   ✅ Current Token ({current_token}) should be used for next refresh")
+                
+                # Log the old token as successfully used
+                token_tracker.log_usage(
+                    old_token, 
+                    "REFRESH_ATTEMPT", 
+                    "success",
+                    f"Replaced with Current Token: {current_token}"
+                )
+                
+                # Log the new Current Token as issued
+                token_tracker.log_usage(
+                    current_token, 
+                    "TOKEN_ISSUED", 
+                    "issued",
+                    f"Replaced Old Token: {old_token}"
+                )
             
             return AuthResponse(
                 access_token=response.session.access_token,
-                refresh_token=response.session.refresh_token,
-                user=self._create_user_response_from_data(user_data),  # ✅ Now user_data exists!
+                refresh_token=current_token,
+                user=self._create_user_response_from_data(user_data),
                 expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
             )
             
         except HTTPException:
             raise
         except AuthError as e:
-            # 🔍 Catch Supabase-specific errors
+            error_msg = str(e)
             print(f"❌ Supabase AuthError: {type(e).__name__}")
-            print(f"❌ Error message: {str(e)}")
+            print(f"❌ Error message: {error_msg}")
+            
+            # 🔍 LOG: Failed refresh
+            if "Already Used" in error_msg:
+                token_tracker.log_usage(old_token, "REFRESH_ATTEMPT", "already_used", error_msg)
+                print("🚨 'Already Used' error detected!")
+                print(f"🚨 The Old Token ({old_token}) was already used before")
+                print("🚨 Printing complete token history:")
+                token_tracker.print_token_history(old_token)
+            else:
+                token_tracker.log_usage(old_token, "REFRESH_ATTEMPT", "auth_error", error_msg)
+            
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail=f"Token refresh failed: {str(e)}"
+                detail=f"Token refresh failed: {error_msg}"
             )
         except Exception as e:
-            # 🔍 Catch all other errors
             print(f"❌ Unexpected error: {type(e).__name__}")
             print(f"❌ Error message: {str(e)}")
+            token_tracker.log_usage(old_token, "REFRESH_ATTEMPT", "exception", str(e))
             import traceback
             print(f"❌ Traceback: {traceback.format_exc()}")
             raise HTTPException(
@@ -407,6 +584,19 @@ class AuthService:
             # Update last login
             await self._update_last_login(user_data['uid'])
             
+            # 🔍 DEBUG - Track initial token issuance
+            initial_token = response.session.refresh_token
+            token_tracker.log_usage(
+                initial_token,
+                "TOKEN_ISSUED",
+                "login",
+                f"Initial token issued during login for: {email}"
+            )
+
+            print(f"📝 [verify_login_otp] Initial refresh token issued: {initial_token}")
+            print(f"📝 [verify_login_otp] User should use this token for first refresh")
+            # 🔍 END DEBUG
+
             # 🔍 DEBUG - Check what we're about to return
             print("🔍 [verify_login_otp] About to return AuthResponse:")
             print(f"  Access Token Length: {len(response.session.access_token)}")
