@@ -5,6 +5,10 @@ from typing import Optional
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
+# auto-refresh issue
+from supabase.lib.client_options import ClientOptions
+# END
+
 # Get the base directory (api folder)
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -35,6 +39,13 @@ if not SUPABASE_URL or not SUPABASE_ANON_KEY:
 # Refresh at 59 minutes to avoid edge cases to handle Supabase JWT expiration (1hour)
 JWT_EXPIRY_SECONDS = 59 * 60
 
+# auto-refresh issue
+client_options = ClientOptions(
+    auto_refresh_token=False,  # ← CRITICAL FIX
+    persist_session=False       # ← Not needed on server
+)
+# END
+
 class SupabaseClientManager:
     """
     Manages Supabase client lifecycle to prevent JWT expiration.
@@ -58,7 +69,11 @@ class SupabaseClientManager:
         """Get client, auto-refresh if expired"""
         if self._is_client_expired(self._anon_created_at):
             print("⚠️ Client expired. Recreating...")
-            self._anon_client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
+            self._anon_client = create_client(
+                SUPABASE_URL, 
+                SUPABASE_ANON_KEY,
+                options=client_options  # ← FIX: Pass options here!
+            )
             self._anon_created_at = datetime.utcnow()
             print(f"✅ New client at {self._anon_created_at.isoformat()}")
         
@@ -71,7 +86,11 @@ class SupabaseClientManager:
         
         if self._is_client_expired(self._admin_created_at):
             print("⚠️ Admin client expired. Recreating...")
-            self._admin_client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
+            self._admin_client = create_client(
+                SUPABASE_URL, 
+                SUPABASE_SERVICE_KEY,
+                options=client_options  # ← FIX: Pass options here!
+            )
             self._admin_created_at = datetime.utcnow()
             print(f"✅ New admin client at {self._admin_created_at.isoformat()}")
         
@@ -80,7 +99,11 @@ class SupabaseClientManager:
     def force_refresh_anon_client(self) -> Client:
         """Force recreation of client"""
         print("🔄 Force refreshing client...")
-        self._anon_client = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
+        self._anon_client = create_client(
+            SUPABASE_URL, 
+            SUPABASE_ANON_KEY,
+            options=client_options  # ← FIX: Pass options here!
+        )
         self._anon_created_at = datetime.utcnow()
         return self._anon_client
 
@@ -100,14 +123,3 @@ def force_refresh_clients():
     """Force refresh both clients"""
     _client_manager.force_refresh_anon_client()
     _client_manager.force_refresh_admin_client()
-
-# # Create Supabase clients
-# def get_supabase_client() -> Client:
-#     """Get regular Supabase client for user operations"""
-#     return create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
-
-# def get_supabase_admin_client() -> Client:
-#     """Get admin Supabase client for privileged operations"""
-#     if not SUPABASE_SERVICE_KEY:
-#         raise ValueError("SUPABASE_SERVICE_KEY not found for admin operations")
-#     return create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)

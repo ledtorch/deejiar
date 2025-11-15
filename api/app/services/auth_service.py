@@ -16,16 +16,7 @@ from app.models.user import (
 from app.utils.token_tracker import token_tracker
 
 class AuthService:
-    # def __init__(self):
-    #     # Creates client with ANON_KEY
-    #     self.supabase = get_supabase_client()
-
-    #     # Creates client with SERVICE_KEY
-    #     self.admin_supabase = get_supabase_admin_client()
-
-    # Testing
     def __init__(self):
-        # ✅ No caching! Clean initialization
         pass
     
     @property
@@ -37,7 +28,6 @@ class AuthService:
     def admin_supabase(self) -> Client:
         """Get fresh admin client (auto-refreshes if expired)"""
         return get_supabase_admin_client()
-    # Testing END
 
     def _create_user_response_from_data(self, user_data: Dict) -> UserResponse:
         """Helper method to create UserResponse from database data"""
@@ -108,85 +98,6 @@ class AuthService:
                 'account_status': None,
                 'uid': None
             }
-
-    # async def refresh_token(self, refresh_token: str) -> AuthResponse:
-    #     print("[🛠️/services/auth_service/refresh_token]")
-    #     print(f"📥 Current Token: {refresh_token}")
-        
-    #     try:
-    #         if not refresh_token:
-    #             raise HTTPException(
-    #                 status_code=status.HTTP_400_BAD_REQUEST,
-    #                 detail="Refresh token required"
-    #             )
-            
-    #         print("1️⃣ Calling supabase.auth.refresh_session()...")
-            
-    #         # Try refreshing the session
-    #         response = self.supabase.auth.refresh_session(refresh_token)
-            
-    #         print(f"2️⃣ Response received: {type(response)}")
-    #         print(f"3️⃣ Has user: {response.user is not None if response else False}")
-    #         print(f"4️⃣ Has session: {response.session is not None if response else False}")
-            
-    #         if not response.user or not response.session:
-    #             print("❌ No user or session in response")
-    #             raise HTTPException(
-    #                 status_code=status.HTTP_401_UNAUTHORIZED,
-    #                 detail="Invalid refresh token - no session returned"
-    #             )
-            
-    #         print(f"5️⃣ Getting user profile for: {response.user.email}")
-            
-    #         # ✅ IMPORTANT: Get user profile from database
-    #         user_data = await self._get_user_profile(response.user.email)
-            
-    #         if not user_data:
-    #             print("❌ User profile not found in database")
-    #             raise HTTPException(
-    #                 status_code=status.HTTP_404_NOT_FOUND,
-    #                 detail="User profile not found"
-    #             )
-            
-    #         print("✅ Token refresh successful!")
-        
-    #         # 🔍 CRITICAL LOGGING - Add this BEFORE return
-    #         print(f"6️⃣ Comparing tokens:")
-    #         print(f" - Input Token: {refresh_token}")
-    #         print(f" - New Refresh Token: {response.session.refresh_token}")
-    #         print(f" - Are Different: {response.session.refresh_token != refresh_token}")
-        
-    #         if response.session.refresh_token == refresh_token:
-    #             print("🚨 WARNING: Supabase returned the SAME refresh token!")
-    #             print("🚨 This will cause 'Already Used' error on next refresh!")
-            
-    #         return AuthResponse(
-    #             access_token=response.session.access_token,
-    #             refresh_token=response.session.refresh_token,
-    #             user=self._create_user_response_from_data(user_data),  # ✅ Now user_data exists!
-    #             expires_in=response.session.expires_in if hasattr(response.session, 'expires_in') else 3600
-    #         )
-            
-    #     except HTTPException:
-    #         raise
-    #     except AuthError as e:
-    #         # 🔍 Catch Supabase-specific errors
-    #         print(f"❌ Supabase AuthError: {type(e).__name__}")
-    #         print(f"❌ Error message: {str(e)}")
-    #         raise HTTPException(
-    #             status_code=status.HTTP_401_UNAUTHORIZED,
-    #             detail=f"Token refresh failed: {str(e)}"
-    #         )
-    #     except Exception as e:
-    #         # 🔍 Catch all other errors
-    #         print(f"❌ Unexpected error: {type(e).__name__}")
-    #         print(f"❌ Error message: {str(e)}")
-    #         import traceback
-    #         print(f"❌ Traceback: {traceback.format_exc()}")
-    #         raise HTTPException(
-    #             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-    #             detail=f"Token refresh failed: {str(e)}"
-    #         )
 
     # ─── Refresh Token ─────────────────────────────────────────────────────
     async def refresh_token(self, refresh_token: str) -> AuthResponse:
@@ -731,18 +642,24 @@ class AuthService:
             print(f"[delete_account] 7️⃣ Updating database with:")
             print(f"  {update_data}")
             
-            # Execute update
-            update_result = self.admin_supabase.table('users').update(update_data).eq('uid', user.uid).execute()
+            # # Execute update
+            # update_result = self.admin_supabase.table('users').update(update_data).eq('uid', user.uid).execute()
+            # # update_result = self.supabase.table('users').update(update_data).eq('uid', user.uid).execute()
             
-            if not update_result.data:
-                print(f"[delete_account] ❌ Database update returned no data")
-                raise HTTPException(
-                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                    detail="Failed to schedule account deletion"
-                )
+            # if not update_result.data:
+            #     print(f"[delete_account] ❌ Database update returned no data")
+            #     print(f" - raw result: {update_result}")
+            #     print(f" - data: {update_result.data}")
+            #     print(f" - error: {getattr(update_result, 'error', None)}")
+            #     print(f" - status_code: {getattr(update_result, 'status_code', None)}")
+            #     print(f" - count: {getattr(update_result, 'count', None)}")
+            #     raise HTTPException(
+            #         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            #         detail="Failed to schedule account deletion"
+            #     )
             
-            print(f"[delete_account] 8️⃣ ✅ Database updated successfully")
-            print(f"[delete_account] 9️⃣ ✅ Deletion scheduled for: {deletion_date.isoformat()}")
+            # print(f"[delete_account] 8️⃣ ✅ Database updated successfully")
+            # print(f"[delete_account] 9️⃣ ✅ Deletion scheduled for: {deletion_date.isoformat()}")
             
             # 🧪 TESTING: Actually delete the user immediately
             TESTING_IMMEDIATE_DELETE = True  # Set to False for production
@@ -759,18 +676,36 @@ class AuthService:
                 print(f"[delete_account] ✅ User deleted from database")
                 
                 # Delete from Supabase Auth
+                # try:
+                #     auth_users = self.admin_supabase.auth.admin.list_users()
+                #     auth_user = next((u for u in auth_users if u.email == user_data['email']), None)
+                    
+                #     if auth_user:
+                #         self.admin_supabase.auth.admin.delete_user(auth_user.id)
+                #         print(f"[delete_account] ✅ User deleted from Supabase Auth: {auth_user.id}")
+                #     else:
+                #         print(f"[delete_account] ⚠️ Auth user not found for email: {user_data['email']}")
+                # except Exception as e:
+                #     print(f"[delete_account] ⚠️ Auth deletion error: {str(e)}")
+                
                 try:
                     auth_users = self.admin_supabase.auth.admin.list_users()
                     auth_user = next((u for u in auth_users if u.email == user_data['email']), None)
                     
                     if auth_user:
-                        self.admin_supabase.auth.admin.delete_user(auth_user.id)
+                        print(f"[delete_account] 🗑️ Deleting auth user: {auth_user.id}")
+                        self.admin_supabase.auth.admin.delete_user(auth_user.id)  # ← UNCOMMENT THIS
                         print(f"[delete_account] ✅ User deleted from Supabase Auth: {auth_user.id}")
                     else:
                         print(f"[delete_account] ⚠️ Auth user not found for email: {user_data['email']}")
                 except Exception as e:
                     print(f"[delete_account] ⚠️ Auth deletion error: {str(e)}")
-                
+                    # 🚨 GDPR: This is critical - raise exception instead of swallowing it
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail=f"Failed to fully delete account (GDPR compliance): {str(e)}"
+                    )
+
                 return {
                     "message": "Account deleted immediately (TESTING MODE)",
                     "deleted_at": now.isoformat(),
