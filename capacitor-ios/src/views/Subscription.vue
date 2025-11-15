@@ -123,10 +123,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .page {
-  /* Positioning */
   position: relative;
-
-  /* Layout & Box Model */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -134,7 +131,7 @@ onMounted(async () => {
   height: 100vh;
   padding: var(--safe-area-top) var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
 
-  /* Visual & Colors */
+  /* Visual */
   background-color: var(--background);
 }
 
