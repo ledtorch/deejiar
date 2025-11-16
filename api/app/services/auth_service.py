@@ -21,12 +21,10 @@ class AuthService:
     
     @property
     def supabase(self) -> Client:
-        """Get fresh client (auto-refreshes if expired)"""
         return get_supabase_client()
     
     @property
     def admin_supabase(self) -> Client:
-        """Get fresh admin client (auto-refreshes if expired)"""
         return get_supabase_admin_client()
 
     def _create_user_response_from_data(self, user_data: Dict) -> UserResponse:
@@ -569,7 +567,7 @@ class AuthService:
             if not user:
                 print(f"[delete_account] ❌ Failed to get user from token")
                 raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    status_code=status.HTTP_401_UNAUTHORIZED, 
                     detail="Invalid or expired token"
                 )
             
