@@ -12,6 +12,9 @@ export const useUserStore = defineStore('user', () => {
   const isLoading = ref(false);
   const lastTokenRefresh = ref(null);
 
+  // 🔒 Refresh lock to prevent race conditions (critical for iOS)
+  let refreshPromise = null;
+
   // Auth
   const isAuthenticated = computed(() => !!accessToken.value && !!user.value);
   const isNewUser = computed(() => user.value?.is_new_user || false);
@@ -83,16 +86,25 @@ export const useUserStore = defineStore('user', () => {
   const setAuth = (authData) => {
     if (!authData) return;
 
+    // ✅ CRITICAL: Update in-memory state FIRST (before localStorage)
+    // This ensures the token is immediately available even if localStorage write is delayed (iOS issue)
     accessToken.value = authData.access_token;
     refreshToken.value = authData.refresh_token;
     user.value = authData.user;
     lastTokenRefresh.value = Date.now();
 
-    // Persist to localStorage
-    localStorage.setItem('access_token', authData.access_token);
-    localStorage.setItem('refresh_token', authData.refresh_token);
-    localStorage.setItem('user', JSON.stringify(authData.user));
-    localStorage.setItem('last_token_refresh', lastTokenRefresh.value);
+    // Then persist to localStorage
+    // Note: On iOS, these writes might be slightly delayed, but in-memory state is already correct
+    try {
+      localStorage.setItem('access_token', authData.access_token);
+      localStorage.setItem('refresh_token', authData.refresh_token);
+      localStorage.setItem('user', JSON.stringify(authData.user));
+      localStorage.setItem('last_token_refresh', lastTokenRefresh.value);
+    } catch (error) {
+      console.error('Failed to persist auth data:', error);
+    }
+
+    scheduleTokenRefresh();
   };
 
   const clearAuth = () => {
@@ -100,23 +112,30 @@ export const useUserStore = defineStore('user', () => {
     accessToken.value = null;
     refreshToken.value = null;
     lastTokenRefresh.value = null;
+    refreshPromise = null; // Clear refresh lock
 
     // Clear localStorage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('last_token_refresh');
+    try {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('last_token_refresh');
+    } catch (error) {
+      console.error('Failed to clear auth data:', error);
+    }
   };
 
   const loadAuthFromStorage = async () => {
     try {
       const storedToken = localStorage.getItem('access_token');
+      const storedRefreshToken = localStorage.getItem('refresh_token');
       const storedUser = localStorage.getItem('user');
       const storedLastRefresh = localStorage.getItem('last_token_refresh');
 
-      if (storedToken && storedUser) {
+      if (storedToken && storedUser && storedRefreshToken) {
+        // ✅ Load ALL tokens including refresh token
         accessToken.value = storedToken;
-        refreshToken.value = localStorage.getItem('refresh_token');
+        refreshToken.value = storedRefreshToken;
 
         // Check how old the cached data is
         const lastRefresh = storedLastRefresh ? parseInt(storedLastRefresh) : 0;
@@ -140,36 +159,57 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const refreshAccessToken = async () => {
+    // 🔒 CRITICAL: If refresh is already in progress, return that promise
+    // This prevents multiple simultaneous refresh attempts (common on iOS when app returns from background)
+    if (refreshPromise) {
+      return refreshPromise;
+    }
+
     if (!refreshToken.value) {
       clearAuth();
       return false;
     }
 
-    try {
-      isLoading.value = true;
+    // 🔒 Create refresh promise with lock
+    refreshPromise = (async () => {
+      try {
+        isLoading.value = true;
 
-      const response = await fetch(`${API_ENDPOINT}/user/auth/refresh`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refresh_token: refreshToken.value })
-      });
+        // ✅ CRITICAL: Capture the current refresh token BEFORE making the request
+        // This prevents the token from changing mid-request (iOS race condition fix)
+        const currentRefreshToken = refreshToken.value;
 
-      if (response.ok) {
-        const data = await response.json();
-        setAuth(data);
-        return true;
-      } else if (response.status === 401) {
-        // Refresh token expired, user needs to login again
+        const response = await fetch(`${API_ENDPOINT}/user/auth/refresh`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refresh_token: currentRefreshToken })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setAuth(data);
+          return true;
+        } else if (response.status === 401) {
+          // Refresh token expired, user needs to login again
+          clearAuth();
+          return false;
+        } else {
+          // Unexpected error
+          clearAuth();
+          return false;
+        }
+      } catch (error) {
+        console.error('Token refresh failed:', error);
         clearAuth();
         return false;
+      } finally {
+        isLoading.value = false;
+        // 🔒 Release lock
+        refreshPromise = null;
       }
-    } catch (error) {
-      console.error('Token refresh failed:', error);
-      clearAuth();
-      return false;
-    } finally {
-      isLoading.value = false;
-    }
+    })();
+
+    return refreshPromise;
   };
 
   const fetchCurrentUser = async () => {
@@ -196,15 +236,17 @@ export const useUserStore = defineStore('user', () => {
         });
 
         user.value = userData;
-        lastTokenRefresh.value = Date.now(); // ← Update timestamp
+        lastTokenRefresh.value = Date.now();
 
         localStorage.setItem('user', JSON.stringify(userData));
-        localStorage.setItem('last_token_refresh', lastTokenRefresh.value); // ← Save timestamp
+        localStorage.setItem('last_token_refresh', lastTokenRefresh.value);
 
         return userData;
       } else if (response.status === 401) {
+        // Token expired, attempt refresh
         const refreshed = await refreshAccessToken();
         if (refreshed) {
+          // Retry after successful refresh
           return fetchCurrentUser();
         }
       }
@@ -279,12 +321,20 @@ export const useUserStore = defineStore('user', () => {
     localStorage.setItem('user', JSON.stringify(user.value));
   };
 
-  // 🏗️ User state for TheAvatar component
+  // 🗝️ User state for TheAvatar component
   const userState = computed(() => {
     if (!isAuthenticated.value) return 'default';
     if (isPremium.value) return 'premium';
     return 'active';
   });
+
+  const scheduleTokenRefresh = () => {
+    setTimeout(() => {
+      if (isAuthenticated.value) {
+        refreshAccessToken();
+      }
+    }, 50 * 60 * 1000); // 50 minutes
+  };
 
 
   return {
@@ -337,7 +387,7 @@ export const useUserStore = defineStore('user', () => {
     logout,
     updateUserProfile,
 
-    // 🏗️
+    // 🗝️
     userState
   };
 });
