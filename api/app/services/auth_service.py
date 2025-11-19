@@ -640,82 +640,150 @@ class AuthService:
             print(f"[delete_account] 7️⃣ Updating database with:")
             print(f"  {update_data}")
             
-            # # Execute update
-            # update_result = self.admin_supabase.table('users').update(update_data).eq('uid', user.uid).execute()
-            # # update_result = self.supabase.table('users').update(update_data).eq('uid', user.uid).execute()
+            # Execute update
+            """ 
+            ⚠️ Use anon client to update public.users
+            Admin client is SERVICE_ROLE, this can NOT read auth.data() to verify POLICIES
+            """
+            update_result = self.supabase.table('users').update(update_data).eq('uid', user.uid).execute()
+            if not update_result.data:
+                print(f"[delete_account] ❌ Database update returned no data")
+                print(f" - raw result: {update_result}")
+                print(f" - data: {update_result.data}")
+                print(f" - error: {getattr(update_result, 'error', None)}")
+                print(f" - status_code: {getattr(update_result, 'status_code', None)}")
+                print(f" - count: {getattr(update_result, 'count', None)}")
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="Failed to schedule account deletion"
+                )
             
-            # if not update_result.data:
-            #     print(f"[delete_account] ❌ Database update returned no data")
-            #     print(f" - raw result: {update_result}")
-            #     print(f" - data: {update_result.data}")
-            #     print(f" - error: {getattr(update_result, 'error', None)}")
-            #     print(f" - status_code: {getattr(update_result, 'status_code', None)}")
-            #     print(f" - count: {getattr(update_result, 'count', None)}")
+            print(f"[delete_account] 8️⃣ ✅ Database updated successfully")
+            
+            # 🧪 TESTING: Delete the user immediately
+            print(f"[delete_account] 🗑️ Deleting user immediately...")
+
+            # Delete from users table
+            delete_result = self.supabase.table('users').delete().eq('uid', user.uid).execute()
+
+            rows_affected = len(delete_result.data) if delete_result.data else 0
+            print(f"[delete_account] ✅ User deleted from public.users")
+            print(f"  - Rows affected: {rows_affected}")
+
+            if rows_affected == 0:
+                print(f"[delete_account] ⚠️ Warning: No rows deleted from public.users")
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="Failed to delete user profile (RLS policy blocking or no matching record)"
+                )
+
+            # try:
+            #     # Get auth user
+            #     auth_users = self.supabase.auth.admin.list_users()
+            #     auth_user = next((u for u in auth_users if u.email == user_data['email']), None)
+                
+            #     if auth_user:
+            #         print(f"[delete_account] 🗑️ Deleting auth user: {auth_user.id}")
+                    
+            #         # Try API deletion first
+            #         try:
+            #             # self.supabase.auth.admin.delete_user(auth_user.id)
+            #             self.admin_supabase.auth.admin.delete_user(auth_user.id)
+            #             print(f"[delete_account] ✅ User deleted from auth.users via API")
+            #         except Exception as api_error:
+            #             # If API fails, try SQL function
+            #             print(f"[delete_account] ⚠️ API deletion failed: {str(api_error)}")
+            #             print(f"[delete_account] 🔄 Trying SQL function fallback...")
+                        
+            #             sql_result = self.admin_supabase.rpc(
+            #                 'delete_auth_user',
+            #                 {'user_id': str(auth_user.id)}
+            #             ).execute()
+                        
+            #             if sql_result.data and sql_result.data.get('success'):
+            #                 print(f"[delete_account] ✅ User deleted from auth.users via SQL")
+            #             else:
+            #                 error_msg = sql_result.data.get('message', 'Unknown error') if sql_result.data else 'No response'
+            #                 raise Exception(f"Both API and SQL deletion failed. SQL error: {error_msg}")
+            #     else:
+            #         print(f"[delete_account] ⚠️ Auth user not found for email: {user_data['email']}")
+                    
+            # except Exception as e:
+            #     error_msg = str(e)
+            #     print(f"[delete_account] ❌ Auth deletion error: {error_msg}")
+                
+            #     # CRITICAL: public.users deleted but auth.users failed
+            #     # This is a GDPR compliance issue
             #     raise HTTPException(
             #         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            #         detail="Failed to schedule account deletion"
+            #         detail=f"Failed to fully delete account (GDPR compliance): {error_msg}"
             #     )
-            
-            # print(f"[delete_account] 8️⃣ ✅ Database updated successfully")
-            # print(f"[delete_account] 9️⃣ ✅ Deletion scheduled for: {deletion_date.isoformat()}")
-            
-            # 🧪 TESTING: Actually delete the user immediately
-            TESTING_IMMEDIATE_DELETE = True  # Set to False for production
-            
-            if TESTING_IMMEDIATE_DELETE:
-                print(f"[delete_account] 🧪 TESTING MODE: Deleting user immediately...")
-                
-                # Delete from users table
-                delete_result = self.admin_supabase.table('users') \
-                    .delete() \
-                    .eq('uid', user.uid) \
-                    .execute()
-                
-                print(f"[delete_account] ✅ User deleted from database")
-                
-                # Delete from Supabase Auth
-                # try:
-                #     auth_users = self.admin_supabase.auth.admin.list_users()
-                #     auth_user = next((u for u in auth_users if u.email == user_data['email']), None)
-                    
-                #     if auth_user:
-                #         self.admin_supabase.auth.admin.delete_user(auth_user.id)
-                #         print(f"[delete_account] ✅ User deleted from Supabase Auth: {auth_user.id}")
-                #     else:
-                #         print(f"[delete_account] ⚠️ Auth user not found for email: {user_data['email']}")
-                # except Exception as e:
-                #     print(f"[delete_account] ⚠️ Auth deletion error: {str(e)}")
-                
-                try:
-                    auth_users = self.admin_supabase.auth.admin.list_users()
-                    auth_user = next((u for u in auth_users if u.email == user_data['email']), None)
-                    
-                    if auth_user:
-                        print(f"[delete_account] 🗑️ Deleting auth user: {auth_user.id}")
-                        self.admin_supabase.auth.admin.delete_user(auth_user.id)  # ← UNCOMMENT THIS
-                        print(f"[delete_account] ✅ User deleted from Supabase Auth: {auth_user.id}")
-                    else:
-                        print(f"[delete_account] ⚠️ Auth user not found for email: {user_data['email']}")
-                except Exception as e:
-                    print(f"[delete_account] ⚠️ Auth deletion error: {str(e)}")
-                    # 🚨 GDPR: This is critical - raise exception instead of swallowing it
-                    raise HTTPException(
-                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                        detail=f"Failed to fully delete account (GDPR compliance): {str(e)}"
-                    )
 
-                return {
-                    "message": "Account deleted immediately (TESTING MODE)",
-                    "deleted_at": now.isoformat(),
-                    "note": "User has been permanently deleted"
-                }
-            
+            # Around line 682-691, replace with:
+            print(f"[delete_account] 🔍 Checking admin client configuration...")
+            print(f"  - Client type: {type(self.admin_supabase)}")
+            print(f"  - Has auth: {hasattr(self.admin_supabase, 'auth')}")
+            print(f"  - Has admin: {hasattr(self.admin_supabase.auth, 'admin')}")
+
+            try:
+                # List users first to verify admin access works
+                print(f"[delete_account] 🔍 Testing admin.list_users()...")
+                auth_users = self.admin_supabase.auth.admin.list_users()
+                print(f"[delete_account] ✅ list_users() worked! Found {len(auth_users)} users")
+                
+                auth_user = next((u for u in auth_users if u.email == user_data['email']), None)
+                
+                if auth_user:
+                    print(f"[delete_account] 🗑️ Found auth user:")
+                    print(f"  - ID: {auth_user.id}")
+                    print(f"  - Email: {auth_user.email}")
+                    print(f"  - Created: {auth_user.created_at}")
+                    
+                    # Try to get user details first
+                    print(f"[delete_account] 🔍 Testing admin.get_user_by_id()...")
+                    try:
+                        user_details = self.admin_supabase.auth.admin.get_user_by_id(auth_user.id)
+                        print(f"[delete_account] ✅ get_user_by_id() worked!")
+                        print(f"  - Can read user: {user_details.email}")
+                    except Exception as get_error:
+                        print(f"[delete_account] ❌ get_user_by_id() failed: {str(get_error)}")
+                    
+                    # Now try delete
+                    print(f"[delete_account] 🗑️ Calling admin.delete_user()...")
+                    print(f"  - User ID: {auth_user.id}")
+                    print(f"  - Using client: admin_supabase")
+                    
+                    delete_response = self.admin_supabase.auth.admin.delete_user(auth_user.id)
+                    
+                    print(f"[delete_account] ✅ Delete response: {delete_response}")
+                    print(f"[delete_account] ✅ User deleted from auth.users!")
+                    
+                else:
+                    print(f"[delete_account] ⚠️ Auth user not found for email: {user_data['email']}")
+                    
+            except Exception as e:
+                print(f"[delete_account] ❌ Auth deletion error: {str(e)}")
+                print(f"  - Error type: {type(e).__name__}")
+                print(f"  - Error details: {e.__dict__ if hasattr(e, '__dict__') else 'N/A'}")
+                
+                # Check if it's an API error with status code
+                if hasattr(e, 'status'):
+                    print(f"  - HTTP Status: {e.status}")
+                if hasattr(e, 'code'):
+                    print(f"  - Error code: {e.code}")
+                
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail=f"Failed to delete auth user: {str(e)}"
+                )
+            # End of auth deletion
+
+            print(f"[delete_account] ✅ Account fully deleted")
+
             return {
-                "message": "Account deletion scheduled successfully",
-                "deletion_requested_at": now.isoformat(),
-                "deletion_scheduled_at": deletion_date.isoformat(),
-                "recovery_email": "hi@deejiar.com",
-                "note": "You cannot log in during the deletion grace period. To recover your account, email hi@deejiar.com before the deadline."
+                "message": "Account deleted successfully",
+                "deleted_at": now.isoformat(),
+                "note": "Your account has been permanently deleted from all systems"
             }
             
         except HTTPException:
