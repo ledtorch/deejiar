@@ -52,7 +52,7 @@ async function initializeApp() {
   if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios') {
     await Purchases.configure({
       apiKey: import.meta.env.VITE_RC_PUBLIC_KEY_IOS,
-      appUserID: userStore.userUID || 'Unknown',
+      appUserID: userStore.userUID || null,
     })
   }
 
