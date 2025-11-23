@@ -19,6 +19,7 @@ load_dotenv(env_file)
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
 SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
+SUPABASE_SECRET_KEY = os.getenv("SUPABASE_SECRET_KEY") # 🧪 Testing: Use New API key
 
 # Validate that all credentials are loaded
 missing = []
@@ -28,6 +29,9 @@ if not SUPABASE_ANON_KEY:
     missing.append("SUPABASE_ANON_KEY")
 if not SUPABASE_SERVICE_KEY:
     missing.append("SUPABASE_SERVICE_KEY")
+# 🧪 Testing: Use New API key
+if not SUPABASE_SECRET_KEY:
+    missing.append("SUPABASE_SECRET_KEY")
 
 if missing:
     raise ValueError(
@@ -40,6 +44,8 @@ if missing:
 print(f"SUPABASE_URL loaded: {SUPABASE_URL}")
 print(f"SUPABASE_ANON_KEY loaded: {SUPABASE_ANON_KEY[:10]}...{SUPABASE_ANON_KEY[-10:]}" if SUPABASE_ANON_KEY else "SUPABASE_ANON_KEY not loaded")
 print(f"SUPABASE_SERVICE_KEY loaded: {SUPABASE_SERVICE_KEY[:10]}...{SUPABASE_SERVICE_KEY[-10:]}" if SUPABASE_SERVICE_KEY else "SUPABASE_SERVICE_KEY not loaded")
+# 🧪 Testing: Use New API key
+print(f"SUPABASE_SECRET_KEY loaded: {SUPABASE_SECRET_KEY[:10]}...{SUPABASE_SECRET_KEY[-10:]}" if SUPABASE_SECRET_KEY else "SUPABASE_SECRET_KEY not loaded")
 
 # ─── Client Management ──────────────────────────────────────────────────
 # Recreate client objects every 59 minutes to prevent stale HTTP connections 
@@ -58,6 +64,10 @@ class SupabaseClientManager:
         self._admin_client: Optional[Client] = None
         self._anon_created_at: Optional[datetime] = None
         self._admin_created_at: Optional[datetime] = None
+        
+        # 🧪 Testing: Use New API key
+        self._newapi_admin_client: Optional[Client] = None
+        self._newapi_admin_created_at: Optional[datetime] = None
     
     # Check if client JWT is expired
     def _is_client_expired(self, created_at: Optional[datetime]) -> bool:
@@ -96,6 +106,26 @@ class SupabaseClientManager:
         
         return self._admin_client
     
+    # 🧪 Testing: Use New API key
+    # Create admin client with new secret key (for auth.admin operations)
+    def get_newapi_admin_client(self) -> Client:
+        if not SUPABASE_SECRET_KEY:
+            print("⚠️ SUPABASE_SECRET_KEY not set, falling back to legacy SERVICE_KEY")
+            return self.get_admin_client()
+        
+        if self._is_client_expired(self._newapi_admin_created_at):
+            print("⚠️ Admin client (new key) expired. Recreating...")
+            self._newapi_admin_client = create_client(
+                SUPABASE_URL, 
+                SUPABASE_SECRET_KEY,
+                options=client_options
+            )
+            self._newapi_admin_created_at = datetime.utcnow()
+            print(f"✅ New admin client (new key) at {self._newapi_admin_created_at.isoformat()}")
+        
+        return self._newapi_admin_client
+
+
     def force_refresh_anon_client(self) -> Client:
         """Force recreation of client"""
         print("🔄 Force refreshing client...")
@@ -118,6 +148,11 @@ def get_supabase_client() -> Client:
 def get_supabase_admin_client() -> Client:
     """Get admin client with auto-refresh"""
     return _client_manager.get_admin_client()
+
+# 🧪 Testing: Use New API key
+def get_newapi_admin_client() -> Client:
+    """Get admin client with auto-refresh"""
+    return _client_manager.get_newapi_admin_client()
 
 def force_refresh_clients():
     """Force refresh both clients"""
