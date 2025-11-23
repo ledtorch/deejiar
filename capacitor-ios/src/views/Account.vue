@@ -33,6 +33,8 @@
         <!-- <ListAccountData instagram /> -->
         <button class="temp-button _title" @click="toPageDelete">Need to delete account?</button>
         <p class="version-text _caption2">v0.01.2</p>
+        <!-- <button class="temp-button-test _title" @click="fetchCurrentUser">Fetch Current User(Auth Me)</button> -->
+        <!-- <button class="temp-button-test _title" @click="refreshAccessToken">Refresh Access Token</button> -->
       </div>
 
       <div class="button-set">
@@ -127,6 +129,15 @@ const sendMail = () => {
 
 const toPageDelete = () => {
   router.push('/delete');
+};
+
+// Testing
+const fetchCurrentUser = () => {
+  userStore.fetchCurrentUser();
+};
+
+const refreshAccessToken = () => {
+  userStore.refreshAccessToken();
 };
 </script>
 
@@ -234,6 +245,11 @@ const toPageDelete = () => {
 .temp-button {
   width: fit-content;
   color: var(--color-red);
+}
+
+.temp-button-test {
+  width: fit-content;
+  color: var(--color-yellow);
 }
 
 // Components Style
