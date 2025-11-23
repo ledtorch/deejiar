@@ -113,11 +113,16 @@ const handlePurchase = async () => {
 }
 
 onMounted(async () => {
-  console.log('🔄 Loading offerings...')
-  await loadOffering()
-  console.log('✅ Offerings loaded!')
-  console.log('📦 Packages:', packages.value.length)
-  console.log('isPremium', userStore.isPremium)
+  try {
+    console.log('🔄 Loading offerings...')
+    await loadOffering()
+    console.log('✅ Offerings loaded!')
+    console.log('📦 Packages:', packages.value.length)
+    console.log('isPremium', userStore.isPremium)
+  } catch (error) {
+    console.error('❌ Failed to load offerings, redirecting to account:', error)
+    router.push({ name: 'account' })
+  }
 })
 </script>
 
