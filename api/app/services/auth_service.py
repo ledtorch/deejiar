@@ -661,8 +661,6 @@ class AuthService:
             print(f"[delete_account] 8️⃣ ✅ Database updated successfully")
             
             # 🧪 TESTING: Delete the user immediately
-            print(f"[delete_account] 🗑️ Deleting user immediately...")
-
             # Delete from users table
             delete_result = self.supabase.table('users').delete().eq('uid', user.uid).execute()
 
@@ -677,114 +675,49 @@ class AuthService:
                     detail="Failed to delete user profile (RLS policy blocking or no matching record)"
                 )
 
-            # try:
-            #     # Get auth user
-            #     auth_users = self.supabase.auth.admin.list_users()
-            #     auth_user = next((u for u in auth_users if u.email == user_data['email']), None)
-                
-            #     if auth_user:
-            #         print(f"[delete_account] 🗑️ Deleting auth user: {auth_user.id}")
-                    
-            #         # Try API deletion first
-            #         try:
-            #             # self.supabase.auth.admin.delete_user(auth_user.id)
-            #             self.admin_supabase.auth.admin.delete_user(auth_user.id)
-            #             print(f"[delete_account] ✅ User deleted from auth.users via API")
-            #         except Exception as api_error:
-            #             # If API fails, try SQL function
-            #             print(f"[delete_account] ⚠️ API deletion failed: {str(api_error)}")
-            #             print(f"[delete_account] 🔄 Trying SQL function fallback...")
-                        
-            #             sql_result = self.admin_supabase.rpc(
-            #                 'delete_auth_user',
-            #                 {'user_id': str(auth_user.id)}
-            #             ).execute()
-                        
-            #             if sql_result.data and sql_result.data.get('success'):
-            #                 print(f"[delete_account] ✅ User deleted from auth.users via SQL")
-            #             else:
-            #                 error_msg = sql_result.data.get('message', 'Unknown error') if sql_result.data else 'No response'
-            #                 raise Exception(f"Both API and SQL deletion failed. SQL error: {error_msg}")
-            #     else:
-            #         print(f"[delete_account] ⚠️ Auth user not found for email: {user_data['email']}")
-                    
-            # except Exception as e:
-            #     error_msg = str(e)
-            #     print(f"[delete_account] ❌ Auth deletion error: {error_msg}")
-                
-            #     # CRITICAL: public.users deleted but auth.users failed
-            #     # This is a GDPR compliance issue
-            #     raise HTTPException(
-            #         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            #         detail=f"Failed to fully delete account (GDPR compliance): {error_msg}"
-            #     )
-
             # Around line 682-691, replace with:
-            print(f"[delete_account] 🔍 Checking admin client configuration...")
-            print(f"  - Client type: {type(self.admin_supabase)}")
-            print(f"  - Has auth: {hasattr(self.admin_supabase, 'auth')}")
-            print(f"  - Has admin: {hasattr(self.admin_supabase.auth, 'admin')}")
+            print(f"[delete_account] 🗑️ Deleting from auth.users via SQL function...")
 
             try:
-                # List users first to verify admin access works
-                print(f"[delete_account] 🔍 Testing admin.list_users()...")
-                auth_users = self.admin_supabase.auth.admin.list_users()
-                print(f"[delete_account] ✅ list_users() worked! Found {len(auth_users)} users")
+                # Get auth user ID from the token
+                auth_response = self.supabase.auth.get_user(token)
+                auth_user_id = auth_response.user.id
                 
-                auth_user = next((u for u in auth_users if u.email == user_data['email']), None)
+                print(f"[delete_account] Auth user ID: {auth_user_id}")
                 
-                if auth_user:
-                    print(f"[delete_account] 🗑️ Found auth user:")
-                    print(f"  - ID: {auth_user.id}")
-                    print(f"  - Email: {auth_user.email}")
-                    print(f"  - Created: {auth_user.created_at}")
-                    
-                    # Try to get user details first
-                    print(f"[delete_account] 🔍 Testing admin.get_user_by_id()...")
-                    try:
-                        user_details = self.admin_supabase.auth.admin.get_user_by_id(auth_user.id)
-                        print(f"[delete_account] ✅ get_user_by_id() worked!")
-                        print(f"  - Can read user: {user_details.email}")
-                    except Exception as get_error:
-                        print(f"[delete_account] ❌ get_user_by_id() failed: {str(get_error)}")
-                    
-                    # Now try delete
-                    print(f"[delete_account] 🗑️ Calling admin.delete_user()...")
-                    print(f"  - User ID: {auth_user.id}")
-                    print(f"  - Using client: admin_supabase")
-                    
-                    delete_response = self.admin_supabase.auth.admin.delete_user(auth_user.id)
-                    
-                    print(f"[delete_account] ✅ Delete response: {delete_response}")
-                    print(f"[delete_account] ✅ User deleted from auth.users!")
-                    
+                # Call SQL function to delete auth user
+                result = self.admin_supabase.rpc(
+                    'delete_auth_user',
+                    {'user_id': str(auth_user_id)}
+                ).execute()
+                
+                print(f"[delete_account] SQL function result: {result.data}")
+                
+                # Check if deletion was successful
+                if result.data and result.data.get('success'):
+                    print(f"[delete_account] ✅ User deleted from auth.users")
                 else:
-                    print(f"[delete_account] ⚠️ Auth user not found for email: {user_data['email']}")
+                    error_msg = result.data.get('message', 'Unknown error') if result.data else 'No response'
+                    print(f"[delete_account] ❌ SQL deletion failed: {error_msg}")
+                    raise Exception(f"Failed to delete auth user: {error_msg}")
                     
             except Exception as e:
                 print(f"[delete_account] ❌ Auth deletion error: {str(e)}")
-                print(f"  - Error type: {type(e).__name__}")
-                print(f"  - Error details: {e.__dict__ if hasattr(e, '__dict__') else 'N/A'}")
-                
-                # Check if it's an API error with status code
-                if hasattr(e, 'status'):
-                    print(f"  - HTTP Status: {e.status}")
-                if hasattr(e, 'code'):
-                    print(f"  - Error code: {e.code}")
-                
                 raise HTTPException(
                     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                     detail=f"Failed to delete auth user: {str(e)}"
                 )
-            # End of auth deletion
 
             print(f"[delete_account] ✅ Account fully deleted")
+            print(f"  - public.users: DELETED")
+            print(f"  - auth.users: DELETED")
 
             return {
                 "message": "Account deleted successfully",
                 "deleted_at": now.isoformat(),
                 "note": "Your account has been permanently deleted from all systems"
             }
+
             
         except HTTPException:
             raise

@@ -86,6 +86,7 @@ const deleteAccount = async () => {
   }
 
   try {
+    await userStore.refreshAccessToken();
     const token = userStore.accessToken;
 
     if (!token) {
