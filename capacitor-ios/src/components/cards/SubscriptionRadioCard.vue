@@ -1,45 +1,59 @@
 <template>
   <section class="subscription-section">
-    <div class="plans-container">
+    <div class="main-container">
+      <div class="plans-container">
 
-      <!-- Monthly Plan -->
-      <div class="plan-card" :class="{ 'selected': selectedId === '$rc_monthly' }"
-        @click="$emit('select', '$rc_monthly')">
-        <div class="monthly-container">
-          <div class="plan-header">
-            <p class="plan-title _subtitle">Trailblazer Monthly</p>
-            <div class="radio-button" :class="{ 'checked': selectedId === '$rc_monthly' }"></div>
-          </div>
-          <h5 class="price">{{ monthlyPackage?.product?.priceString }}</h5>
-        </div>
-      </div>
-
-      <Divider />
-
-      <!-- Yearly Plan -->
-      <div class="plan-card" :class="{ 'selected': selectedId === '$rc_annual' }"
-        @click="$emit('select', '$rc_annual')">
-        <div class="yearly-container">
-          <div class="yearly-header">
+        <!-- Monthly Plan -->
+        <div class="plan-card" :class="{ 'selected': selectedId === '$rc_monthly' }"
+          @click="$emit('select', '$rc_monthly')">
+          <div class="monthly-container">
             <div class="plan-header">
-              <p class="plan-title _subtitle">Trailblazer Yearly</p>
-              <div class="radio-button" :class="{ 'checked': selectedId === '$rc_annual' }"></div>
+              <p class="plan-title _subtitle">Trailblazer Monthly</p>
+              <div class="radio-button" :class="{ 'checked': selectedId === '$rc_monthly' }"></div>
             </div>
-            <h5 class="price">{{ yearlyPackage?.product?.priceString }}</h5>
+            <h5 class="price">{{ monthlyPackage?.product?.priceString }}</h5>
+            <div class="bonus-container">
+              <img class="bonus-icon" src="@/assets/icons/key.png">
+              <p class="bonus-text _button-secondary">
+                Join <a class="club-link" href="https://x.com/i/communities/1962023966777995432">Deejiar Club</a>
+              </p>
+            </div>
           </div>
 
-          <div class="bonus-container">
-            <img class="bonus-icon" src="@/assets/icons/key.png">
-            <p class="bonus-text _button-secondary">
-              Join <a class="club-link" href="https://x.com/i/communities/1962023966777995432">Deejiar Club</a>
-            </p>
-          </div>
-          <div class="bonus-container">
-            <img class="bonus-icon" src="@/assets/icons/discount.png">
-            <p class="bonus-text _button-secondary">Save over 20% with the yearly plan</p>
+        </div>
+
+        <Divider />
+
+        <!-- Yearly Plan -->
+        <div class="plan-card" :class="{ 'selected': selectedId === '$rc_annual' }"
+          @click="$emit('select', '$rc_annual')">
+          <div class="yearly-container">
+            <div class="yearly-header">
+              <div class="plan-header">
+                <p class="plan-title _subtitle">Trailblazer Yearly</p>
+                <div class="radio-button" :class="{ 'checked': selectedId === '$rc_annual' }"></div>
+              </div>
+              <h5 class="price">{{ yearlyPackage?.product?.priceString }}</h5>
+            </div>
+
+            <div class="bonus-container">
+              <img class="bonus-icon" src="@/assets/icons/key.png">
+              <p class="bonus-text _button-secondary">
+                Join <a class="club-link" href="https://x.com/i/communities/1962023966777995432">Deejiar Club</a>
+              </p>
+            </div>
+            <div class="bonus-container">
+              <img class="bonus-icon" src="@/assets/icons/discount.png">
+              <p class="bonus-text _button-secondary">Save over 20% with the yearly plan</p>
+            </div>
           </div>
         </div>
       </div>
+      <p class="_caption1 feature-text">
+        <b>Priority Feature Requests</b><br>
+        Get a direct line to share what you want next — from new stores and cities to feature ideas.
+        Subscribers receive priority consideration in shaping future updates.
+      </p>
     </div>
 
     <!-- Terms Text -->
@@ -70,6 +84,11 @@ defineEmits(['select'])
   gap: var(--division);
   width: 100%;
   height: 100%;
+}
+
+.main-container {
+  flex-direction: column;
+  gap: var(--division);
 }
 
 .plans-container {
@@ -116,6 +135,7 @@ defineEmits(['select'])
 .monthly-container {
   /* Layout */
   flex-direction: column;
+  gap: var(--atom);
   flex: 1;
   padding: var(--box);
   width: 100%;
@@ -240,6 +260,10 @@ defineEmits(['select'])
   }
 }
 
+.feature-text {
+  padding: 0 var(--box);
+  color: var(--secondary-text);
+}
 
 .terms-text {
   color: var(--tertiary-text);
