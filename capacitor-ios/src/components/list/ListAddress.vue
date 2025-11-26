@@ -1,21 +1,20 @@
 <template>
   <div class="list-container">
-    <img :src="iconSrc" class="icon">
+    <img :src="iconSrc" class="icon icon-themed">
     <p class="_body2 address-text">{{ address }}</p>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
-import iconAddressLight from '@/assets/icons/store-info/address-light.svg'
-import iconAddressDark from '@/assets/icons/store-info/address-dark.svg'
+import iconAddress from '@/assets/icons/store-info/address.svg'
 
 const props = defineProps({
   address: String
 });
 
 const iconSrc = computed(() => {
-  return iconAddressDark
+  return iconAddress
 })
 </script>
 
