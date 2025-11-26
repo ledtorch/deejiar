@@ -2,7 +2,7 @@
   <section class="list-container" :class="containerClass">
     <div class="header" v-if="listData.icon">
       <div class="title-container">
-        <img :src="listData.icon" class="title-icon" />
+        <img :src="listData.icon" class="title-icon icon-themed" />
         <p class="_title data-title">{{ listData.title }}</p>
       </div>
       <p class="_button-secondary temp-button-text"></p>
@@ -23,7 +23,7 @@
 import { computed } from 'vue';
 import { useUserStore } from '../../stores/userStore';
 
-import emailIcon from '@/assets/icons/action/email-dark.svg'
+import emailIcon from '@/assets/icons/action/email.svg'
 import xIcon from '@/assets/icons/social/x.svg'
 import instagramIcon from '@/assets/icons/social/instagram.svg'
 
