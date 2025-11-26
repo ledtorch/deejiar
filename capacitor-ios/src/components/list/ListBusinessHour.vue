@@ -9,7 +9,7 @@
     <!-- 🏗️ TODO: Detail View -->
     <template v-if="viewMode === 'detail'">
       <div class="list-container">
-        <img :src="iconSrc" class="icon">
+        <img :src="iconSrc" class="icon icon-themed">
         <div>
           <p :class="[bizHr.stateClass, '_body2']">{{ bizHr.state }}</p>
           <p :class="[bizHr.nextTimeClass, '_body2']">&nbsp;·&nbsp;{{ bizHr.nextTime }}</p>
@@ -21,11 +21,10 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import iconTimeLight from '@/assets/icons/store-info/time-light.svg'
-import iconTimeDark from '@/assets/icons/store-info/time-dark.svg'
+import iconTime from '@/assets/icons/store-info/time.svg'
 
 const iconSrc = computed(() => {
-  return iconTimeDark
+  return iconTime
 })
 
 const props = defineProps({
