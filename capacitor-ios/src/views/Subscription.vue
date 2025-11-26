@@ -1,11 +1,11 @@
 <template>
   <main class="page">
+    <HeaderPage :pagetitle="'Join the Deejiar Pioneers'" class="header"></HeaderPage>
     <section class="main-container">
-      <HeaderPage :pagetitle="'Join the Deejiar Pioneers'"></HeaderPage>
       <img :src="bannerImage" alt="">
       <div class="promote-feature-container">
         <TheAvatar overrideState="active" class="avatar-in-subscription" />
-        <img src="/icon/action/arrow-right.svg" class="arrow-right-in-subscription">
+        <img src="/icon/action/arrow-right.svg" class="arrow-right-in-subscription icon-themed">
         <TheAvatar overrideState="premium" class="avatar-in-subscription" />
       </div>
       <SubscriptionRadioCard :monthlyPackage="monthlyPkg" :yearlyPackage="yearlyPkg" :selectedId="selectedId"
@@ -133,21 +133,33 @@ onMounted(async () => {
   flex-direction: column;
   justify-content: space-between;
   width: 100vw;
-  height: 100vh;
-  padding: var(--safe-area-top) var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
+  // height: 100dvh;
+  height: calc(100dvh - var(--safe-area-top));
+  // padding: var(--safe-area-top) var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
+  margin-top: var(--safe-area-top);
+  padding: 0 var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
   /* Visual */
   background-color: var(--background);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 4;
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100%;
+  flex: 1;
   align-items: center;
   gap: var(--division);
 }
+
 
 .promote-feature-container {
   align-items: center;

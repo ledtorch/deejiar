@@ -161,6 +161,8 @@ body {
 
 	/* Font Family */
 	font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+	background-color: var(--background);
 }
 
 div {
