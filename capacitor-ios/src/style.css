@@ -110,19 +110,38 @@
 	--safe-area-right: env(safe-area-inset-right);
 }
 
-/* Light mode */
-.light {
-	/* Accent Colors */
-	--primary-text: #0D0D0D;
-	--secondary-text: #1E1E1E;
-	--tertiary-text: #808080;
-	--invert-primary: #FAFAFA;
+/* 
+	Light mode 
+  Only for MVP, this cannot be operated manually
+*/
+@media (prefers-color-scheme: light) {
+	:root {
+		/* Accent Colors */
+		--primary-text: #0D0D0D;
+		--secondary-text: #1E1E1E;
+		--tertiary-text: #808080;
+		--invert-primary: #FAFAFA;
 
-	/* Base Colors */
-	--gray-button: #2D2C2E;
-	--content: rgba(255, 255, 255, 0.07);
-	--invert-content: rgba(0, 0, 0, 0.6);
-	--base: #E9E9E9;
+		/* 🏗️ Base Colors */
+		--gray-button: #918E93;
+		--content: rgba(0, 0, 0, 0.07);
+		--invert-content: rgba(255, 255, 255, 0.6);
+		--base: #E9E9E9;
+
+		/* Baseline Colors */
+		--color-green: #3DC363;
+		--color-yellow: #F8BA1B;
+		--color-red: #FD435F;
+		--color-pink: #FF7ABD;
+		--color-purple: #CE53FA;
+		--background: #F4F4F6;
+		--the-white: #FFFFFF;
+		--the-black: #000000;
+	}
+
+	.icon-themed {
+		filter: invert(1);
+	}
 }
 
 html,
