@@ -133,24 +133,28 @@ export const useUserStore = defineStore('user', () => {
       const storedLastRefresh = localStorage.getItem('last_token_refresh');
 
       if (storedToken && storedUser && storedRefreshToken) {
-        // ✅ Load ALL tokens including refresh token
+        // Load tokens into memory
         accessToken.value = storedToken;
         refreshToken.value = storedRefreshToken;
 
-        // Check how old the cached data is
+        // Check token age
         const lastRefresh = storedLastRefresh ? parseInt(storedLastRefresh) : 0;
-        const cacheAge = Date.now() - lastRefresh;
-        const fiveMinutes = 5 * 60 * 1000;
+        const tokenAge = Date.now() - lastRefresh;
+        const fiftyMinutes = 50 * 60 * 1000;  // Supabase tokens expire in ~60 min
 
-        if (cacheAge < fiveMinutes) {
-          user.value = JSON.parse(storedUser);
-
-          // Instantly display cached user data, then refresh it in the background for accuracy
-          fetchCurrentUser();
-        } else {
-          // Cache is outdated - fetch fresh data first
-          await fetchCurrentUser();
+        if (tokenAge > fiftyMinutes) {
+          // ✅ Token is likely expired - refresh FIRST before using
+          console.log('🔄 Token may be expired, refreshing first...');
+          const refreshed = await refreshAccessToken();
+          if (!refreshed) {
+            clearAuth();
+            return;
+          }
         }
+
+        // If token is valid, load user from cache
+        user.value = JSON.parse(storedUser);
+        fetchCurrentUser();
       }
     } catch (error) {
       console.error('Failed to load auth from storage:', error);
