@@ -4,7 +4,7 @@
       <div :class="iconClass"></div>
       <p class="_button-secondary">Get Direction</p>
     </div>
-    <div class="outer-link"></div>
+    <div class="outer-link icon-themed"></div>
   </button>
 </template>
 
@@ -83,7 +83,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   border-radius: var(--Border-Button-Round, 8px);
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--content);
 }
 
 /* Reset button styles */
