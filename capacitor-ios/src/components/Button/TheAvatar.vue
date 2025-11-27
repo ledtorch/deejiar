@@ -1,7 +1,8 @@
 <template>
   <div class="avatar-container" :class="avatarContainerClass" @click="clickAvatar">
     <!-- Default: Icon only -->
-    <div v-if="currentUserState === 'default'" class="default-icon"></div>
+    <!-- <div v-if="currentUserState === 'default'" class="default-icon icon-themed"></div> -->
+    <img v-if="currentUserState === 'default'" :src="avatarIcon" class="default-icon icon-themed" />
 
     <!-- Active: Image only -->
     <img v-if="currentUserState === 'active'" :src="'/images/default-avatar.jpg'" :alt="displayName"
@@ -20,6 +21,7 @@
 import { computed, inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../../stores/userStore';
+import avatarIcon from '@/assets/icons/action/account.svg';
 
 const props = defineProps({
   // Allow override for preview/demo purposes
@@ -114,11 +116,7 @@ const clickAvatar = () => {
   height: 24px;
 
   /* Visual & Colors */
-  background-image: url('/icon/action/account.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: brightness(0) saturate(100%) invert(2%) sepia(8%) saturate(2618%) hue-rotate(309deg) brightness(97%) contrast(85%);
+  // filter: invert(1);
 }
 
 .avatar-ring {
