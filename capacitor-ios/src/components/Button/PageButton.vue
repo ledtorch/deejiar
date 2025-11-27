@@ -6,7 +6,7 @@
       'is-disabled': disabled
     }
   ]" :disabled="disabled" @pointerdown="onPressStart" @pointerup="onPressEnd" @click="handleClick">
-    <img v-if="iconSrc" :src="iconSrc" class="icon" />
+    <img v-if="iconSrc" :src="iconSrc" class="icon icon-themed" />
 
     <p v-if="props.action" class="button-label _button-secondary">{{ props.action }}</p>
   </button>
