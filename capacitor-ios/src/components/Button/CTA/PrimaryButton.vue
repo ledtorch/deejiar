@@ -10,13 +10,13 @@
     }
   ]" :disabled="disabled" @pointerdown="onPressStart" @pointerup="onPressEnd" @click="handleClick">
     <!-- Left icon -->
-    <img v-if="type === 'icon-left' && iconSrc" :src="iconSrc" class="action-icon" />
+    <img v-if="type === 'icon-left' && iconSrc" :src="iconSrc" class="action-icon icon-themed" />
 
     <!-- Button text -->
-    <span class="button-text">{{ action }}</span>
+    <span>{{ action }}</span>
 
     <!-- Right icon -->
-    <img v-if="type === 'icon-right' && iconSrc" :src="iconSrc" class="action-icon" />
+    <img v-if="type === 'icon-right' && iconSrc" :src="iconSrc" class="action-icon icon-themed" />
   </button>
 </template>
 
