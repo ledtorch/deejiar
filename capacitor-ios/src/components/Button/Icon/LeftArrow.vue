@@ -1,5 +1,5 @@
 <template>
-  <button class="icon-button"></button>
+  <button class="icon-button icon-themed"></button>
 </template>
 
 <script setup>
