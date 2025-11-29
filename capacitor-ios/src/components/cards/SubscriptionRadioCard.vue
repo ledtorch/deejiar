@@ -51,30 +51,58 @@
       </div>
       <p class="_caption1 feature-text">
         <b>Priority Feature Requests</b><br>
-        Get a direct line to share what you want next — from new stores and cities to feature ideas.
-        Subscribers receive priority consideration in shaping future updates.
+        Share what you want to see next—from new stores and cities to fresh feature ideas. Subscribers receive priority
+        consideration in shaping future updates.
       </p>
     </div>
 
     <!-- Terms Text -->
     <p class="_caption1 terms-text">
-      Free 7 days, then
-      {{ selectedId === '$rc_monthly' ? monthlyPackage?.product?.priceString : yearlyPackage?.product?.priceString }}.
-      Renews automatically until canceled.
+      By subscribing, you agree to our
+      <a href="https://landing.deejiar.com/terms-of-use" class="link-text">Terms of Use Policy</a>
+      and
+      <a href="https://landing.deejiar.com/privacy-policy" class="link-text">Privacy Policy</a>. First-time subscribers
+      receive a 7-day free trial. After the trial, your subscription starts on <b>{{ trialEndDate }}</b> and will renew
+      automatically at <b>{{ selectedPriceString }} per {{ selectedPeriod }}</b>. You can cancel anytime in your Apple
+      ID account settings.
     </p>
   </section>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import Divider from '../common/Divider.vue'
 
-defineProps({
+const props = defineProps({
   monthlyPackage: Object,
   yearlyPackage: Object,
   selectedId: String
 })
 
 defineEmits(['select'])
+
+const trialEndDate = computed(() => {
+  const date = new Date()
+  date.setDate(date.getDate() + 7)
+
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  })
+})
+
+const selectedPriceString = computed(() => {
+  if (props.selectedId === '$rc_monthly') {
+    return props.monthlyPackage?.product?.priceString
+  }
+  return props.yearlyPackage?.product?.priceString
+})
+
+const selectedPeriod = computed(() => {
+  return props.selectedId === '$rc_monthly' ? 'month' : 'year'
+})
+
 </script>
 
 <style lang="scss" scoped>
@@ -270,6 +298,11 @@ defineEmits(['select'])
   padding: 0 var(--box);
   margin-top: auto;
   padding-bottom: var(--block);
-  text-align: center;
+  // text-align: center;
+}
+
+.link-text {
+  color: var(--secondary-text);
+  text-decoration: underline;
 }
 </style>

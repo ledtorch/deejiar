@@ -12,8 +12,11 @@
         @select="selectPackage" />
     </section>
 
-    <PrimaryButton :action="purchaseButtonText" :disabled="!selectedPkg || purchasing" @click="handlePurchase"
-      default />
+    <div class="subscribe-button-container">
+      <PrimaryButton :action="purchaseButtonText" :disabled="!selectedPkg || purchasing" @click="handlePurchase" default
+        class="subscribe-button" />
+      <!-- <div class="button-mask"></div> -->
+    </div>
   </main>
 </template>
 
@@ -133,11 +136,11 @@ onMounted(async () => {
   flex-direction: column;
   justify-content: space-between;
   width: 100vw;
-  // height: 100dvh;
   height: calc(100dvh - var(--safe-area-top));
-  // padding: var(--safe-area-top) var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
   margin-top: var(--safe-area-top);
-  padding: 0 var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
+  // padding: 0 var(--wrapper) env(safe-area-inset-bottom) var(--wrapper);
+  padding: 0 var(--wrapper);
+
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -174,5 +177,19 @@ onMounted(async () => {
 .arrow-right-in-subscription {
   width: 24px;
   height: 24px;
+}
+
+.subscribe-button-container {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  padding: var(--container) 0 env(safe-area-inset-bottom) 0;
+  background: linear-gradient(to top,
+      var(--background) 70%,
+      transparent 100%);
+}
+
+.subscribe-button {
+  width: 100%;
 }
 </style>
