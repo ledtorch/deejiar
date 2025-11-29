@@ -1,7 +1,7 @@
 <template>
   <div class="search-wrapper" :style="wrapperStyle" @click="focusInput">
     <div class="search-field" :class="{ focused: isFocused }">
-      <div class="search-icon"></div>
+      <div class="search-icon icon-themed"></div>
 
       <input ref="searchInput" class="search-input _caption1" :placeholder="placeholder" type="search"
         :autofocus="autofocus" :value="localValue" @input="onInput" @focus="isFocused = true" @blur="isFocused = false"
