@@ -10,22 +10,20 @@
     }
   ]" :disabled="disabled" @pointerdown="onPressStart" @pointerup="onPressEnd" @click="handleClick">
     <!-- Left icon -->
-    <img v-if="type === 'icon-left' && iconSrc" :src="iconSrc" class="action-icon" />
+    <img v-if="type === 'icon-left' && iconSrc" :src="iconSrc" class="action-icon icon-themed" />
 
     <!-- Button text -->
-    <span class="button-text">{{ action }}</span>
+    <span>{{ action }}</span>
 
     <!-- Right icon -->
-    <img v-if="type === 'icon-right' && iconSrc" :src="iconSrc" class="action-icon" />
+    <img v-if="type === 'icon-right' && iconSrc" :src="iconSrc" class="action-icon icon-themed" />
   </button>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import iconArrowLeftDark from '@/assets/icons/control-data/arrow-left-dark.svg'
-// import iconArrowLeftLight from '@/assets/icons/control-data/arrow-left-light.svg'
-import iconArrowRightDark from '@/assets/icons/control-data/arrow-right-dark.svg'
-// import iconArrowRightLight from '@/assets/icons/control-data/arrow-right-light.svg'
+import iconArrowLeft from '@/assets/icons/control-data/arrow-left.svg'
+import iconArrowRight from '@/assets/icons/control-data/arrow-right.svg'
 import iconX from '@/assets/icons/social/x.svg'
 import iconInstagram from '@/assets/icons/social/instagram.svg'
 
@@ -46,12 +44,8 @@ const isPressed = ref(false)
 
 // Icon mapping
 const iconMap = {
-  // 'arrow-left-dark': iconArrowLeftDark,
-  // 'arrow-left-light': iconArrowLeftLight,
-  // 'arrow-right-dark': iconArrowRightDark,
-  // 'arrow-right-light': iconArrowRightLight,
-  'arrow-left': iconArrowLeftDark,
-  'arrow-right': iconArrowRightDark,
+  'arrow-left': iconArrowLeft,
+  'arrow-right': iconArrowRight,
   'x': iconX,
   'instagram': iconInstagram
 }
