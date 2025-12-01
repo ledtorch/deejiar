@@ -1,8 +1,10 @@
 <template>
   <div>
     <div id="map"></div>
-    <Locate id="button-locate" @locate="locateUser" aria-label="locate user" />
-    <BottomSheet id="bottomsheet" :store="mapStore.selectedStore" @reset="resetSelectedStore" ref="bottomSheetRef" />
+    <Locate id="button-locate" :class="{ 'is-ipad': isIPad, 'is-web': isWeb }" @locate="locateUser"
+      aria-label="locate user" />
+    <BottomSheet id="bottomsheet" :class="{ 'is-ipad': isIPad, 'is-web': isWeb }" :store="mapStore.selectedStore"
+      @reset="resetSelectedStore" ref="bottomSheetRef" />
   </div>
 </template>
 
@@ -10,6 +12,7 @@
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useUserLocation } from '@/composables/useUserLocation.js';
 import { useMapStore } from '@/stores/mapStore.js';
+import { useDeviceType } from '@/composables/useDeviceType'
 import BottomSheet from "../components/theSheet/BottomSheet.vue";
 import Locate from "../components/button/Icon/Locate.vue";
 
@@ -18,6 +21,7 @@ const mapboxgl = ref(null);
 const tempMarker = ref(null);
 const userLocationControl = ref(null); // Web-only
 const bottomSheetRef = ref(null);
+const { isIPad, isWeb } = useDeviceType()
 
 const {
   isNative,
@@ -431,15 +435,37 @@ onUnmounted(async () => {
   height: auto;
 
   /* Safe area */
-  padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  &:not(.is-ipad) {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom));
+  }
+
+  &.is-ipad {
+    padding-bottom: calc(68px + var(--container) + env(safe-area-inset-bottom));
+  }
+
+  &.is-web {
+    padding-bottom: calc(68px + var(--container));
+  }
 }
 
 #button-locate {
   position: absolute;
   right: 16px;
-  bottom: calc(76px + env(safe-area-inset-bottom));
   z-index: 1;
   transition: transform 0.3s ease;
+
+  /* Safe area */
+  &:not(.is-ipad) {
+    bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+
+  &.is-ipad {
+    bottom: calc(84px + var(--container) + env(safe-area-inset-bottom));
+  }
+
+  &.is-web {
+    bottom: calc(84px + var(--container));
+  }
 }
 
 .marker-active {
