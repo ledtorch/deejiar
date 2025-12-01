@@ -1,5 +1,5 @@
 <template>
-  <button :class="buttonClass" @click="onClick"></button>
+  <button :class="buttonClass + ' icon-themed'" @click="onClick"></button>
 </template>
 
 <script setup>
