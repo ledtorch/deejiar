@@ -30,7 +30,7 @@ const icon = computed(() => {
   height: 32px;
   padding: var(--quark);
   border-radius: var(--round-m);
-  background: var(--primary-text);
+  background: var(--the-white);
 }
 
 .icon-image {
