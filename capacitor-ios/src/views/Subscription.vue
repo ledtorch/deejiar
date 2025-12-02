@@ -15,7 +15,6 @@
     <div class="subscribe-button-container">
       <PrimaryButton :action="purchaseButtonText" :disabled="!selectedPkg || purchasing" @click="handlePurchase" default
         class="subscribe-button" />
-      <!-- <div class="button-mask"></div> -->
     </div>
   </main>
 </template>
@@ -122,6 +121,7 @@ onMounted(async () => {
     console.log('✅ Offerings loaded!')
     console.log('📦 Packages:', packages.value.length)
     console.log('isPremium', userStore.isPremium)
+    console.log('subscriptionStatus', userStore.subscriptionStatus)
   } catch (error) {
     console.error('❌ Failed to load offerings, redirecting to account:', error)
     router.push({ name: 'account' })
