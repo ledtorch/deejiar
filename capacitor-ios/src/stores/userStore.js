@@ -35,15 +35,9 @@ export const useUserStore = defineStore('user', () => {
   // Subscription info
   const isPremium = computed(() => user.value?.premium || false);
   const subscriptionPlan = computed(() => user.value?.subscription_plan || null);
-  const subscriptionStatus = computed(() => user.value?.subscription_status || null);
+  const subscriptionStatus = computed(() => user.value?.subscription_status || null); // active, trial, expired, cancelled
   const subscriptionStartedAt = computed(() => user.value?.subscription_started_at || null);
   const subscriptionExpiresAt = computed(() => user.value?.subscription_expires_at || null);
-
-  // Subscription helper
-  const isSubscriptionActive = computed(() => subscriptionStatus.value === 'active');
-  const isSubscriptionTrial = computed(() => subscriptionStatus.value === 'trial');
-  const isSubscriptionExpired = computed(() => subscriptionStatus.value === 'expired');
-  const isSubscriptionCancelled = computed(() => subscriptionStatus.value === 'cancelled');
 
   // Helper function to format dates
   const formatConnectedDate = (dateString) => {
@@ -373,12 +367,6 @@ export const useUserStore = defineStore('user', () => {
     subscriptionStatus,
     subscriptionStartedAt,
     subscriptionExpiresAt,
-
-    // Subscription helper
-    isSubscriptionActive,
-    isSubscriptionTrial,
-    isSubscriptionExpired,
-    isSubscriptionCancelled,
 
     // Actions
     setAuth,
