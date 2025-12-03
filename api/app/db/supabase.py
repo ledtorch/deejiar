@@ -48,9 +48,9 @@ print(f"SUPABASE_SERVICE_KEY loaded: {SUPABASE_SERVICE_KEY[:10]}...{SUPABASE_SER
 print(f"SUPABASE_SECRET_KEY loaded: {SUPABASE_SECRET_KEY[:10]}...{SUPABASE_SECRET_KEY[-10:]}" if SUPABASE_SECRET_KEY else "SUPABASE_SECRET_KEY not loaded")
 
 # ─── Client Management ──────────────────────────────────────────────────
-# Recreate client objects every 59 minutes to prevent stale HTTP connections 
+# Recreate client objects every 50 minutes to prevent stale HTTP connections 
 # (Supabase access token expires in 1 hour)
-CLIENT_REFRESH_SECONDS = 59 * 60
+CLIENT_REFRESH_SECONDS = 50 * 60
 
 # Disable Supabase auto-refresh
 client_options = ClientOptions(
