@@ -2,16 +2,15 @@ import os
 from pathlib import Path
 from datetime import datetime
 from typing import Optional
-from supabase import create_client, Client
+from supabase import create_client, Client, ClientOptions
 from dotenv import load_dotenv
 
-from supabase.lib.client_options import ClientOptions
-
-# Get the base directory (api folder)
+# Load environment settings
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env = os.getenv('ENV', 'local')
 env_file = BASE_DIR / f'.env.{env}'
 load_dotenv(env_file)
+print(f"ENV file URL in supabase: {env_file}")
 
 # Supabase credentials
 SUPABASE_URL = os.getenv("SUPABASE_URL")
