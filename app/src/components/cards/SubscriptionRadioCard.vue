@@ -188,12 +188,12 @@ const selectedPeriod = computed(() => {
 
 .bonus-container {
   gap: var(--atom);
-  align-items: center;
+  align-items: start;
 }
 
 .bonus-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .plan-title {
