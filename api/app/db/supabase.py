@@ -9,10 +9,8 @@ from supabase.lib.client_options import ClientOptions
 
 # Get the base directory (api folder)
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# Load environment variables
-env = os.getenv('ENV', 'development')
-env_file = BASE_DIR / ('.env.production' if env == 'production' else '.env.local')
+env = os.getenv('ENV', 'local')
+env_file = BASE_DIR / f'.env.{env}'
 load_dotenv(env_file)
 
 # Supabase credentials

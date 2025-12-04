@@ -4,13 +4,11 @@ from fastapi import FastAPI, HTTPException, status, Request, Query
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
 import json
+
 # Environment
 from dotenv import load_dotenv
 # Modules
 from app.routes.user.auth import router as user_auth_router
-
-# # Vue Fetches from Supabase directly
-# from app.routes.user.subscription import router as subscription_router
 
 from app.routes.admin.auth import router as admin_auth_router
 from app.routes.webhooks.revenuecat import router as webhook_router
@@ -34,21 +32,19 @@ app.mount(
 )
 
 # Load environment settings
-env_file = '../.env.production' if os.getenv('ENV') == 'production' else '../.env.local'
+BASE_DIR = Path(__file__).resolve().parent.parent
+env = os.getenv('ENV', 'local')
+env_file = BASE_DIR / f'.env.{env}'
 load_dotenv(env_file)
 print(f"ENV file URL: {env_file}")
 
 # CORS config
-env = os.getenv('ENV', 'development')
-if env == 'development':
-        origins = [
-            "https://localhost:5174",  # iOS Map app
-            "https://192.168.50.85:5174",  # iOS Map app
-            "https://localhost:5173",  # Dashboard app
-            "capacitor://localhost"
-    ]
+if env == 'qa':
+    origins = ["https://qa.deejiar.com", "capacitor://localhost", "deejiar://app.deejiar.com"]
+elif env == 'production':
+    origins = ["https://deejiar.com", "https://app.deejiar.com", "capacitor://localhost", "deejiar://app.deejiar.com"]
 else:
-    origins = ["https://deejiar.com", "https://app.deejiar.com", "https://qa.deejiar.com", "capacitor://localhost", "deejiar://app.deejiar.com"]
+    origins = ["https://localhost:5174", "https://192.168.1.112:5174", "https://localhost:5173", "capacitor://localhost"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -60,10 +56,6 @@ app.add_middleware(
 
 # ─── Routers ────────────────────────────────────
 app.include_router(user_auth_router, prefix="/api/user")
-
-# # Vue Fetches from Supabase directly
-# app.include_router(subscription_router, prefix="/api/user")
-
 app.include_router(admin_auth_router, prefix="/api/admin")
 app.include_router(webhook_router, prefix="/api/webhooks")
 app.include_router(search_router, prefix="/api/search", tags=["search"])
