@@ -62,6 +62,7 @@ client_options = ClientOptions(
     persist_session=False
 )
 
+# ─── Legacy Clients ─────────────────────────────────────────────────────
 class SupabaseClientManager:
     def __init__(self):
         self._anon_client: Optional[Client] = None
