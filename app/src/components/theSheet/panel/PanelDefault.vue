@@ -12,7 +12,7 @@
       <ListCollection taco @render="handleCollectionRender" />
     </div>
 
-    <PrimaryButton :action="CTAButtonText" type="default" @click="handleLoginOrRegister" />
+    <PrimaryButton v-if="!userStore.isPremium" :action="CTAButtonText" type="default" @click="handleLoginOrRegister" />
   </section>
 </template>
 
