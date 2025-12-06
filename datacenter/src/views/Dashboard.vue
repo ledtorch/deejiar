@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <main class="page">
 
     <aside class="sidebar">
       <section class="section-container">
@@ -15,7 +15,7 @@
       </section>
     </aside>
 
-    <main class="board flex">
+    <div class="board flex">
       <section class="section-container wrapper">
         <div class="basic-data-section">
           <Header :title="currentStore || 'No Store Selected'" @update="saveChanges" />
@@ -55,21 +55,21 @@
         <MainDropdown v-model="selectedJsonFile" :options="jsonList" @update:modelValue="handleJsonSelection" />
         <Dropdown :title="'Store'" :options="storeList" @selected="selectStore" />
       </section>
-    </main>
+    </div>
 
-  </div>
+  </main>
 </template>
 
 <script setup>
 import { ref, reactive, computed, onMounted, watch } from 'vue';
 import axios from 'axios';
 // Button
-import MainDropdown from "./Button/MainDropdown.vue";
-import Dropdown from "./Button/Dropdown.vue";
-import Switch from "./Button/Switch.vue";
+import MainDropdown from "../components/buttons/MainDropdown.vue";
+import Dropdown from "../components/buttons/Dropdown.vue";
+import Switch from "../components/buttons/Switch.vue";
 // Components
-import Header from './Nav/Header.vue';
-import FormString from "./FormString.vue";
+import Header from '../components/navs/Header.vue';
+import FormString from "../components/forms/FormString.vue";
 
 const API = import.meta.env.VITE_DATACENTER_API;
 
@@ -289,8 +289,8 @@ function updateProperty(key, val) {
 </script>
 
 <style lang="scss" scoped>
-.body {
-  flex-direction: row;
+.page {
+  display: flex;
   align-items: stretch;
   padding: 0px;
   width: 100vw;

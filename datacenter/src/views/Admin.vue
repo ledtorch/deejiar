@@ -1,16 +1,16 @@
 <template>
-  <main class="body flex">
+  <main class="page">
     <section class="dashboard-frame">
       <form class="submit-frame" @submit.prevent="submitLogin">
 
         <fieldset class="form-frame">
-          <p class="_subtitle _color-secondary the-title">Account</p>
+          <p class="_subtitle the-title">Username</p>
           <input :class="{ input: !editing, 'input-on': editing }" id="account" type="text"
             v-model="credentials.username" />
         </fieldset>
 
         <fieldset class="form-frame">
-          <p class="_subtitle _color-secondary the-title">Password</p>
+          <p class="_subtitle the-title">Password</p>
           <input :class="{ input: !editing, 'input-on': editing }" id="password" type="password"
             v-model="credentials.password" />
         </fieldset>
@@ -25,20 +25,20 @@
 import axios from 'axios'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import PrimaryButton from './Button/Primary.vue'
+import PrimaryButton from '../components/buttons/Primary.vue'
 
+const router = useRouter()
 defineOptions({ name: 'TheAdm' })
 
 // State
 const credentials = ref({
-  // 🏗️ TODO: should update "account" to "username"
   username: '',
   password: ''
 })
 // Initially not in editing mode for css
 const editing = ref(false)
 // Router
-const router = useRouter()
+
 
 // Token timer
 function startSessionTimer() {
@@ -79,10 +79,10 @@ async function submitLogin() {
 </script>
 
 <style lang="scss" scoped>
-.body {
+.page {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px;
   width: 100vw;
   height: 100%;
 }
@@ -91,14 +91,14 @@ async function submitLogin() {
   flex-direction: column;
   align-items: flex-start;
   align-items: center;
-  gap: 24px;
+  gap: var(--container);
 }
 
 .submit-frame {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: var(--container);
 }
 
 .form-frame {
@@ -106,30 +106,33 @@ async function submitLogin() {
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  gap: 4px;
+  height: fit-content;
+  gap: var(--atom);
   border: none;
   padding: 0;
 }
 
 .the-title {
   height: 24px;
+  color: var(--secondary-text);
 }
 
 .input {
   width: auto;
   padding: 12px;
   border: 0px;
-  border-radius: var(--border-content, 6px);
+  border-radius: var(--border-content);
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  background-color: var(--base);
 }
 
 .input-on {
   width: auto;
   padding: 12px;
-  border: 1px solid var(--baseline-green, #3dc363);
-  border-radius: var(--border-content, 6px);
+  border: 1px solid var(--baseline-green);
+  border-radius: var(--border-content);
   box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
@@ -141,7 +144,6 @@ async function submitLogin() {
 }
 
 .text-color {
-
-  color: #fff;
+  color: var(--primary-text);
 }
 </style>

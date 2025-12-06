@@ -1,12 +1,12 @@
 <template>
   <div class="header-container">
-    <h4 class="_color-primary">{{ title }}</h4>
+    <h4 class="header-text">{{ title }}</h4>
     <PrimaryButton :label="loading ? 'Saving...' : 'Update'" @click="handleUpdate" :disabled="loading" />
   </div>
 </template>
 
 <script setup>
-import PrimaryButton from "../Button/Primary.vue";
+import PrimaryButton from "../buttons/Primary.vue";
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -29,7 +29,6 @@ function handleUpdate() {
 }
 </script>
 
-
 <style lang="scss" scoped>
 .header-container {
   justify-content: space-between;
@@ -37,5 +36,9 @@ function handleUpdate() {
   width: 100%;
   align-items: center;
   align-self: stretch;
+}
+
+.header-text {
+  color: var(--invert-primary);
 }
 </style>
