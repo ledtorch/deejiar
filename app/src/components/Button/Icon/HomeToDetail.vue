@@ -2,10 +2,7 @@
   <button class="icon-button"></button>
 </template>
 
-<script>
-export default {
-  name: 'HomeToDetailCover'
-};
+<script setup>
 </script>
 
 <style lang="scss" scoped>

@@ -5,24 +5,22 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    store: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
+<script setup>
+import { computed } from 'vue'
 
-  computed: {
-    icon() {
-      const type = this.store?.type;
-      const path = `/icon/category/${type}.png`;
-      console.log("🆗 Component -> TagShopType, Icon Path: " + path);
-      return { backgroundImage: `url('${path}')` };
-    },
-  },
-};
+const props = defineProps({
+  store: {
+    type: Object,
+    default: () => ({})
+  }
+})
+
+const icon = computed(() => {
+  const type = props.store?.type
+  const path = `/icon/category/${type}.png`
+  console.log("🆗 Component -> TagShopType, Icon Path: " + path)
+  return { backgroundImage: `url('${path}')` }
+})
 </script>
 
 <style lang="scss" scoped>

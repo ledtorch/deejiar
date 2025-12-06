@@ -2,15 +2,12 @@
   <button class="icon-button" @click="onClick"></button>
 </template>
 
-<script>
-export default {
-  name: 'Locate',
-  methods: {
-    onClick() {
-      this.$emit("locate");
-    },
-  },
-};
+<script setup>
+const emit = defineEmits(['locate'])
+
+const onClick = () => {
+  emit('locate')
+}
 </script>
 
 <style lang="scss" scoped>

@@ -2,15 +2,12 @@
   <button class="icon-button" @click="onClick"></button>
 </template>
 
-<script>
-export default {
-  name: 'Minimize',
-  methods: {
-    onClick() {
-      this.$emit("minimize");
-    },
-  }
-};
+<script setup>
+const emit = defineEmits(['minimize'])
+
+const onClick = () => {
+  emit('minimize')
+}
 </script>
 
 <style lang="scss" scoped>
